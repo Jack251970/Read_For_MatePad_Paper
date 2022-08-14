@@ -27,7 +27,8 @@ android {
     defaultConfig {
         applicationId "com.jackye.read.matepad_paper"
         minSdkVersion 29
-        targetSdkVersion 30
+        //noinspection ExpiredTargetSdkVersion
+        targetSdkVersion 29
         versionCode 10073 + releaseYear
         versionName version
         project.ext.set("archivesBaseName", name + "_" + version)
