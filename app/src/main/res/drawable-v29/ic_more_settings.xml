@@ -1,0 +1,30 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="60dp"
+    android:height="60dp"
+    android:viewportWidth="60"
+    android:viewportHeight="60">
+    <path
+        android:fillColor="@color/md_black_1000"
+        android:pathData="m18.5 16c1.93 0 3.5 1.57 3.5 3.5c0 1.93 -1.57 3.5 -3.5 3.5c-1.93 0 -3.5 -1.57 -3.5 -3.5c0 -1.93 1.57 -3.5 3.5 -3.5z" />
+    <path
+        android:pathData="m18.5 18c0.83 0 1.5 0.67 1.5 1.5c0 0.83 -0.67 1.5 -1.5 1.5c-0.83 0 -1.5 -0.67 -1.5 -1.5c0 -0.83 0.67 -1.5 1.5 -1.5zm0 -2c-1.93 0 -3.5 1.57 -3.5 3.5c0 1.93 1.57 3.5 3.5 3.5c1.93 0 3.5 -1.57 3.5 -3.5c0 -1.93 -1.57 -3.5 -3.5 -3.5z"
+        android:fillColor="@color/md_black_1000" />
+    <path
+        android:fillColor="@color/md_black_1000"
+        android:pathData="m41.5 16c1.93 0 3.5 1.57 3.5 3.5c0 1.93 -1.57 3.5 -3.5 3.5c-1.93 0 -3.5 -1.57 -3.5 -3.5c0 -1.93 1.57 -3.5 3.5 -3.5z" />
+    <path
+        android:pathData="m41.5 18c0.83 0 1.5 0.67 1.5 1.5c0 0.83 -0.67 1.5 -1.5 1.5c-0.83 0 -1.5 -0.67 -1.5 -1.5c0 -0.83 0.67 -1.5 1.5 -1.5zm0 -2c-1.93 0 -3.5 1.57 -3.5 3.5c0 1.93 1.57 3.5 3.5 3.5c1.93 0 3.5 -1.57 3.5 -3.5c0 -1.93 -1.57 -3.5 -3.5 -3.5z"
+        android:fillColor="@color/md_black_1000" />
+    <path
+        android:fillColor="@color/md_black_1000"
+        android:pathData="m18.5 38c1.93 0 3.5 1.57 3.5 3.5c0 1.93 -1.57 3.5 -3.5 3.5c-1.93 0 -3.5 -1.57 -3.5 -3.5c0 -1.93 1.57 -3.5 3.5 -3.5z" />
+    <path
+        android:pathData="m18.5 40c0.83 0 1.5 0.67 1.5 1.5c0 0.83 -0.67 1.5 -1.5 1.5c-0.83 0 -1.5 -0.67 -1.5 -1.5c0 -0.83 0.67 -1.5 1.5 -1.5zm0 -2c-1.93 0 -3.5 1.57 -3.5 3.5c0 1.93 1.57 3.5 3.5 3.5c1.93 0 3.5 -1.57 3.5 -3.5c0 -1.93 -1.57 -3.5 -3.5 -3.5z"
+        android:fillColor="@color/md_black_1000" />
+    <path
+        android:fillColor="@color/md_black_1000"
+        android:pathData="m41.5 38c1.93 0 3.5 1.57 3.5 3.5c0 1.93 -1.57 3.5 -3.5 3.5c-1.93 0 -3.5 -1.57 -3.5 -3.5c0 -1.93 1.57 -3.5 3.5 -3.5z" />
+    <path
+        android:pathData="m41.5 40c0.83 0 1.5 0.67 1.5 1.5c0 0.83 -0.67 1.5 -1.5 1.5c-0.83 0 -1.5 -0.67 -1.5 -1.5c0 -0.83 0.67 -1.5 1.5 -1.5zm0 -2c-1.93 0 -3.5 1.57 -3.5 3.5c0 1.93 1.57 3.5 3.5 3.5c1.93 0 3.5 -1.57 3.5 -3.5c0 -1.93 -1.57 -3.5 -3.5 -3.5z"
+        android:fillColor="@color/md_black_1000" />
+</vector>

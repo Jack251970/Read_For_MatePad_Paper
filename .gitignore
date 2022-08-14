@@ -1,0 +1,15 @@
+*.iml
+/.gradle
+/.idea
+.DS_Store
+.externalNativeBuild
+.cxx
+/local.properties
+/build
+/captures
+/app/release/
+/app/proguardMapping.txt
+google-services.json
+
+src/androidTest/
+/back

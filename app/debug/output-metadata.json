@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.jackye.read.matepad_paper.debug",
+  "variantName": "debug",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 10095,
+      "versionName": "2.22.0814.205751.8695debug",
+      "outputFile": "Read_For_MatePadPaper_2.22.0814.205751.8695.apk"
+    }
+  ],
+  "elementType": "File"
+}
