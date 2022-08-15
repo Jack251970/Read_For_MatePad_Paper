@@ -16,7 +16,7 @@ import com.jack.bookshelf.utils.popupwindow.PopupWindowsUtil;
 /**
  * PopupMenu in Main Page
  * Adapt to Huawei MatePad Paper
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class MoreSettingMenuMain extends PopupWindow {

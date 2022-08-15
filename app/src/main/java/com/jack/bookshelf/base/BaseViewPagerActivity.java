@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * ViewPager Base Without TabLayout
  * Adapt to Huawei MatePad Paper
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public abstract class BaseViewPagerActivity<T extends IPresenter> extends MBaseActivity<T> {

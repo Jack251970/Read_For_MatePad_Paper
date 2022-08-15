@@ -30,7 +30,7 @@ import kotlin.Unit;
 
 /**
  * 书籍信息编辑
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class BookInfoEditActivity extends MBaseActivity<IPresenter> {

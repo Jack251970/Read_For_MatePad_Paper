@@ -45,7 +45,7 @@ import nl.siegmann.epublib.service.MediatypeService;
 
 /**
  * 加载书籍
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class PageLoaderEpub extends PageLoader {

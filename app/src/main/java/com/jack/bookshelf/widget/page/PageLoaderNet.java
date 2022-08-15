@@ -29,7 +29,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * 网络页面加载器
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class PageLoaderNet extends PageLoader {

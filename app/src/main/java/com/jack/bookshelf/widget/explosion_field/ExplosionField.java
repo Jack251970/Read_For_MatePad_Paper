@@ -38,7 +38,7 @@ import java.util.Random;
 
 /**
  * 清除搜索历史动画
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 public class ExplosionField extends View {
 

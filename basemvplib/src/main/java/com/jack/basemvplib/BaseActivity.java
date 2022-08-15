@@ -17,7 +17,7 @@ import com.jack.basemvplib.impl.IView;
 import com.monke.basemvplib.R;
 
 /**
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivity implements IView {

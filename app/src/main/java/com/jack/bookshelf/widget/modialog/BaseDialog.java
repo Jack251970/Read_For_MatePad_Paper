@@ -2,6 +2,7 @@ package com.jack.bookshelf.widget.modialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,9 +12,8 @@ import androidx.annotation.Nullable;
 import com.jack.bookshelf.utils.SoftInputUtil;
 
 public class BaseDialog extends Dialog {
-    public BaseDialog(@NonNull Context context) {
-        super(context);
-    }
+
+    public BaseDialog(@NonNull Context context) { super(context); }
 
     public BaseDialog(@NonNull Context context, int themeResId) {
         super(context, themeResId);

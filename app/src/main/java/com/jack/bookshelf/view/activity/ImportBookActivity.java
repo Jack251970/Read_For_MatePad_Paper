@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * 导入本地书籍界面
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class ImportBookActivity extends BaseViewPagerWithTabActivity<ImportBookContract.Presenter> implements ImportBookContract.View {

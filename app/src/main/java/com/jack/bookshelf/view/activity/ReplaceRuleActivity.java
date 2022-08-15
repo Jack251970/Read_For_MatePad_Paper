@@ -51,7 +51,7 @@ import kotlin.Unit;
 /**
  * 替换净化界面
  * Created by GKF on 2017/12/16.
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class ReplaceRuleActivity extends MBaseActivity<ReplaceRuleContract.Presenter> implements ReplaceRuleContract.View {

@@ -33,7 +33,7 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * WebDav设置
  * Created by GKF on 2017/12/16.
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class WebDavSettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {

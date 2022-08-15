@@ -18,7 +18,7 @@ import com.jack.bookshelf.utils.SoftInputUtil;
 
 /**
  * 对话框
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class MoDialogHUD {

@@ -48,8 +48,18 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <!-- MatepadPaper Dialog Theme -->
+    <style name="alertDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/NoneAnimation</item>
+        <item name="cornerRadius">24dp</item>
+    </style>
 
-
+    <!--<style name="alertDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert" />-->
 
 
 
@@ -71,8 +81,6 @@
     <style name="NavigationViewStyle">
         <item name="android:listPreferredItemHeightSmall">44dp</item>
     </style>
-
-    <style name="alertDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert" />
 
     <style name="MenuItemTextStyle" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
         <item name="android:textColor">@color/menu_color_default</item>

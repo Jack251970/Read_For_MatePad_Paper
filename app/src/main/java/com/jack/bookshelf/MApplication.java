@@ -32,7 +32,7 @@ import timber.log.Timber;
 /**
  * 共享参数
  * Copyright (c) 2017. 章钦豪. All rights reserved.
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class MApplication extends Application {

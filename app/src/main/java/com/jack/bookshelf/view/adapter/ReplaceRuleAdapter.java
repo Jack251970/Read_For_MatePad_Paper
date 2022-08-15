@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by GKF on 2017/12/22.
  * 替换净化Adapter
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class ReplaceRuleAdapter extends RecyclerView.Adapter<ReplaceRuleAdapter.MyViewHolder> {

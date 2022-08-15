@@ -63,7 +63,6 @@ import io.reactivex.Observable;
 
 public class SourceEditActivity extends MBaseActivity<SourceEditContract.Presenter> implements SourceEditContract.View, KeyboardToolPop.CallBack {
     public final static int EDIT_SOURCE = 1101;
-    private final int REQUEST_QR = 202;
 
     private ActivitySourceEditBinding binding;
     private SourceEditAdapter adapter;
@@ -519,38 +518,6 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
             finish();
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_QR && resultCode == RESULT_OK && null != data) {
-            String result = data.getStringExtra("result");
-            Observable<List<BookSourceBean>> observable = BookSourceManager.importSource(result);
-            if (observable != null) {
-                observable.subscribe(new MyObserver<List<BookSourceBean>>() {
-                    @SuppressLint("DefaultLocale")
-                    @Override
-                    public void onNext(List<BookSourceBean> bookSourceBeans) {
-                        if (bookSourceBeans.size() > 1) {
-                            toast(String.format("导入成功%d个书源, 显示第一个", bookSourceBeans.size()));
-                            setText(bookSourceBeans.get(0));
-                        } else if (bookSourceBeans.size() == 1) {
-                            setText(bookSourceBeans.get(0));
-                        } else {
-                            toast("未导入");
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        toast(e.getLocalizedMessage());
-                    }
-                });
-            } else {
-                toast("导入失败");
-            }
-        }
     }
 
     @Override

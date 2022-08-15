@@ -31,7 +31,7 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * 加载本地书籍
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class PageLoaderText extends PageLoader {

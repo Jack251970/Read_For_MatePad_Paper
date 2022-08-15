@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * InputDialog
  * Adapt to Huawei MatePad Paper
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class InputDialog extends BaseDialog {
@@ -33,6 +33,11 @@ public class InputDialog extends BaseDialog {
 
     public static InputDialog builder(Context context) {
         return new InputDialog(context);
+    }
+
+    public InputDialog setTitle(String title) {
+        tvTitle.setText(title);
+        return this;
     }
 
     @SuppressLint("InflateParams")
@@ -51,15 +56,10 @@ public class InputDialog extends BaseDialog {
 
     public InputDialog setDefaultValue(String defaultValue) {
         if (defaultValue != null) {
-            etInput.setTextSize(2, 16); // 2 --> sp
+            etInput.setTextSize(2, 15); // 2 --> sp
             etInput.setText(defaultValue);
             etInput.setSelectAllOnFocus(true);
         }
-        return this;
-    }
-
-    public InputDialog setTitle(String title) {
-        tvTitle.setText(title);
         return this;
     }
 
@@ -91,7 +91,7 @@ public class InputDialog extends BaseDialog {
     class MyAdapter extends ArrayAdapter<String> {
 
         MyAdapter(@NonNull Context context, @NonNull List<String> objects) {
-            super(context, R.layout.item_1line_text_and_del, objects);
+            super(context, R.layout.item_1line_text_input_dialog, objects);
         }
 
         @NonNull
@@ -99,7 +99,7 @@ public class InputDialog extends BaseDialog {
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             View view;
             if (convertView == null) {
-                view = LayoutInflater.from(context).inflate(R.layout.item_1line_text_and_del, parent, false);
+                view = LayoutInflater.from(context).inflate(R.layout.item_1line_text_input_dialog, parent, false);
             } else {
                 view = convertView;
             }
@@ -123,10 +123,6 @@ public class InputDialog extends BaseDialog {
         }
     }
 
-
-    /**
-     * 输入book地址确定
-     */
     public interface Callback {
         void setInputText(String inputText);
 

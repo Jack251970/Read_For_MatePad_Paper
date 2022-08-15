@@ -20,9 +20,9 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- *  欢迎界面
- *  Copyright (c) 2017. 章钦豪. All rights reserved.
- *  Edited by Jack Ye
+ * 欢迎界面
+ * Copyright (c) 2017. 章钦豪. All rights reserved.
+ * Edited by Jack251970
  */
 
 public class WelcomeActivity extends MBaseActivity<IPresenter>{

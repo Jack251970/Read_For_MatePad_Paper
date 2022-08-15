@@ -14,7 +14,7 @@ def version = "2." + releaseTime()
 def releaseYear = Integer.parseInt(new Date().format("yy", TimeZone.getTimeZone("GMT+8")))
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
     signingConfigs {
         myConfig {
             storeFile file(RELEASE_STORE_FILE)

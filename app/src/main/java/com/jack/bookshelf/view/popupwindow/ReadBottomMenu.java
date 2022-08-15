@@ -13,7 +13,7 @@ import com.jack.bookshelf.service.ReadAloudService;
 
 /**
  * 阅读界面->菜单界面（底部）
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class ReadBottomMenu extends FrameLayout {

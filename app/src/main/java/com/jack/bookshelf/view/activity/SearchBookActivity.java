@@ -53,7 +53,7 @@ import java.util.Objects;
 /**
  * 书籍搜索界面
  * Copyright (c) 2017. 章钦豪. All rights reserved.
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class SearchBookActivity extends MBaseActivity<SearchBookContract.Presenter>

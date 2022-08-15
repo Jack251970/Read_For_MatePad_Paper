@@ -32,7 +32,7 @@ import java.util.ArrayList;
 
 /**
  * 下载任务界面
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class DownloadActivity extends MBaseActivity<IPresenter> {

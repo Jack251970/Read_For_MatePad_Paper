@@ -23,7 +23,7 @@ import java.util.List;
  * Created by GKF on 2017/12/22.
  * 目录正则Adapter
  * 目录正则在TxtChapterRuleActivity.java
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class TxtChapterRuleAdapter extends RecyclerView.Adapter<TxtChapterRuleAdapter.MyViewHolder> {

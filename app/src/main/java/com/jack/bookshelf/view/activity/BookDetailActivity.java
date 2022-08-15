@@ -53,7 +53,7 @@ import com.jack.bookshelf.widget.modialog.MoDialogHUD;
 /**
  * 书籍详细信息栏
  * Copyright (c) 2017. 章钦豪. All rights reserved.
- * Edit by Jack Ye
+ * Edited by Jack251970
  */
 
 public class BookDetailActivity extends MBaseActivity<BookDetailContract.Presenter> implements BookDetailContract.View {

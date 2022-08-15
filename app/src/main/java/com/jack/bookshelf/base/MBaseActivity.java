@@ -31,7 +31,7 @@ import java.util.ArrayList;
 
 /**
  * Copyright (c) 2017. 章钦豪. All rights reserved.
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T> {

@@ -29,7 +29,7 @@ import java.util.Random;
 
 /**
  * 搜索历史清除动画
- * Edited By Jack Ye
+ * Edited by Jack251970
  */
 
 public class ExplosionAnimator extends ValueAnimator {

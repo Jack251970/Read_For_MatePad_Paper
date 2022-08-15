@@ -18,7 +18,7 @@ import com.jack.bookshelf.view.fragment.SettingsFragment;
 /**
  * 设置界面
  * Created by GKF on 2017/12/16.
- * Edited by Jack Ye
+ * Edited by Jack251970
  * 启用了SettingsFragment.kt
  */
 

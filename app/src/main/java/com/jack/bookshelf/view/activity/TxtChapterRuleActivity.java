@@ -40,7 +40,7 @@ import kotlin.Unit;
 /**
  * 目录正则管理界面
  * 目录正则是对本地导入的txt小说设置目录编号方式
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class TxtChapterRuleActivity extends MBaseActivity<TxtChapterRuleContract.Presenter> implements TxtChapterRuleContract.View {

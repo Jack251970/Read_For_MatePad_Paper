@@ -57,12 +57,11 @@ import kotlin.Unit;
 /**
  * Created by GKF on 2017/12/16.
  * 书源管理
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class BookSourceActivity extends MBaseActivity<BookSourceContract.Presenter> implements BookSourceContract.View {
     private final int IMPORT_SOURCE = 102;
-    private final int REQUEST_QR = 202;
     private ActivityBookSourceBinding binding;
     private ItemTouchCallback itemTouchCallback;
     private boolean selectAll = true;
@@ -441,26 +440,6 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
                     if (data != null && data.getData() != null) {
                         mPresenter.importBookSourceLocal(RealPathUtil.getPath(this, data.getData()));
                     }
-                    break;
-                case REQUEST_QR:
-                    if (data != null) {
-                        String result = data.getStringExtra("result");
-                        if (!StringUtils.isTrimEmpty(result)) {
-
-                        if(result.replaceAll("\\s","").matches("^\\{.*\\}$")) {
-                            mPresenter.importBookSource(result);
-                            break;
-                        }
-                            result=result.trim();
-                        String[] string=result.split("#",2);
-                        if(string.length==2){
-                            if(string[1].replaceAll("\\s","").matches("^\\{.*\\}$")) {
-                                mPresenter.importBookSource(string[1]);
-                                break;
-                            }
-                        }
-                        mPresenter.importBookSource(result);
-                    }}
                     break;
             }
         }

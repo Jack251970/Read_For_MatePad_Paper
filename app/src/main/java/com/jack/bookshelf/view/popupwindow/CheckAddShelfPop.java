@@ -15,7 +15,7 @@ import com.jack.bookshelf.R;
 /**
  * 放入书架界面
  * Copyright (c) 2017. 章钦豪. All rights reserved.
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class CheckAddShelfPop extends PopupWindow {

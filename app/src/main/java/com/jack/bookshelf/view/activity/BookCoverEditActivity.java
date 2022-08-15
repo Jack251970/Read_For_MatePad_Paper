@@ -37,7 +37,7 @@ import io.reactivex.SingleOnSubscribe;
 
 /**
  * 封面换源
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class BookCoverEditActivity extends MBaseActivity<IPresenter> {

@@ -22,7 +22,7 @@ import com.jack.bookshelf.widget.modialog.MoDialogHUD;
 /**
  * 关于界面
  * Created by GKF on 2017/12/15.
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class AboutActivity extends MBaseActivity<IPresenter> {

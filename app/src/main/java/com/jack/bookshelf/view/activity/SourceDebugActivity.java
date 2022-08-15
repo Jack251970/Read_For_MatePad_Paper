@@ -34,7 +34,6 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 
 public class SourceDebugActivity extends MBaseActivity<IPresenter> {
-    private final int REQUEST_QR = 202;
 
     private ActivitySourceDebugBinding binding;
     private SourceDebugAdapter adapter;
@@ -160,19 +159,6 @@ public class SourceDebugActivity extends MBaseActivity<IPresenter> {
                 finish();
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == REQUEST_QR) {
-                String result = data.getStringExtra("result");
-                if (!StringUtils.isTrimEmpty(result)) {
-                    binding.searchView.setQuery(result, true);
-                }
-            }
-        }
     }
 
     @Subscribe(thread = EventThread.MAIN_THREAD, tags = {@Tag(RxBusTag.PRINT_DEBUG_LOG)})

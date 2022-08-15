@@ -48,7 +48,7 @@ import kotlin.Unit;
 /**
  * Main Page
  * Adapt to Huawei MatePad Paper
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> implements MainContract.View,
@@ -168,56 +168,8 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
         initGroupIcon(group);
         // 更新书籍类别
         upGroup(group);
-        // 初始化菜单
-        moreSettingMenuMain = new MoreSettingMenuMain(this, new MoreSettingMenuMain.OnItemClickListener() {
-            @Override
-            public void downloadAll() {
-                if (!isNetWorkAvailable()) {
-                    toast(R.string.network_connection_unavailable);
-                } else {
-                    RxBus.get().post(RxBusTag.DOWNLOAD_ALL, 10000);
-                }
-            }
-
-            @Override
-            public void arrangeBookshelf() {
-                if (getBookListFragment() != null) {
-                    getBookListFragment().setArrange(true);
-                }
-            }
-
-            @Override
-            public void selectSequenceRule() {
-                SelectMenu selectMenuMain = new SelectMenu(MainActivity.this,
-                        "书籍排序",
-                        "取消",
-                        new String[]{"按阅读时间排序", "按更新时间排序", "手动排序"},
-                        Integer.parseInt(preferences.getString("bookshelf_px", "0")),
-                        new SelectMenu.OnItemClickListener() {
-                            @Override
-                            public void forBottomButton() {}
-
-                            @Override
-                            public void changeArrangeRule(int lastChoose, int position) {
-                                if (position != lastChoose) {
-                                    preferences.edit().putString("bookshelf_px",String.valueOf(position)).apply();
-                                    RxBus.get().post(RxBusTag.RECREATE, true);
-                                }
-                            }
-                        });
-                if (!selectMenuMain.isShowing()) {
-                    selectMenuMain.show(binding.mppLlContentMain);
-                }
-            }
-
-            @Override
-            public void startWebService() {
-                boolean startedThisTime = WebService.startThis(MainActivity.this);
-                if (!startedThisTime) {
-                    toast(getString(R.string.web_service_already_started_hint));
-                }
-            }
-        });
+        // 初始化更多选项菜单
+        initMoreSetting();
         // 左侧边栏事件
         binding.mppLlMineMain.setOnClickListener(view ->
                 AboutActivity.startThis(this));
@@ -239,17 +191,19 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
         // 主界面添加本地事件
         binding.mppIvAddLocalMain.setOnClickListener(view -> importLocalBooks());
         // 主界面导入网络事件
-        binding.mppIvImportOnlineMain.setOnClickListener(view -> InputDialog.builder(this)
-                .setTitle(getString(R.string.add_book_url))
-                .setCallback(new InputDialog.Callback() {
-                    @Override
-                    public void setInputText(String inputText) {
-                        inputText = StringUtils.trim(inputText);
-                        mPresenter.addBookUrl(inputText);
-                    }
-                    @Override
-                    public void delete(String value) {}
-                }).show());
+        binding.mppIvImportOnlineMain.setOnClickListener(view ->
+                InputDialog.builder(this)
+                        .setTitle("添加书籍网址")
+                        .setCallback(new InputDialog.Callback() {
+                            @Override
+                            public void setInputText(String inputText) {
+                                inputText = StringUtils.trim(inputText);
+                                mPresenter.addBookUrl(inputText);
+                            }
+
+                            @Override
+                            public void delete(String value) {}
+                        }).show());
         // 主界面选择书架布局事件
         binding.mppIvSelectLayoutMain.setOnClickListener(view -> changeBookshelfLayout());
         // 主界面更多选项事件
@@ -264,6 +218,58 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
         binding.mppTvFattenBookMain.setOnClickListener(view -> upGroup(2));
         binding.mppTvEndBookMain.setOnClickListener(view -> upGroup(3));
         binding.mppTvLocalBookMain.setOnClickListener(view -> upGroup(4));
+    }
+
+    /**
+     * 初始化更多选项菜单
+     */
+    private void initMoreSetting() {
+        moreSettingMenuMain = new MoreSettingMenuMain(this, new MoreSettingMenuMain.OnItemClickListener() {
+            @Override
+            public void downloadAll() {
+                if (!isNetWorkAvailable()) {
+                    toast(R.string.network_connection_unavailable);
+                } else {
+                    RxBus.get().post(RxBusTag.DOWNLOAD_ALL, 10000);
+                }
+            }
+
+            @Override
+            public void arrangeBookshelf() {
+                if (getBookListFragment() != null) {
+                    getBookListFragment().setArrange(true);
+                }
+            }
+
+            @Override
+            public void selectSequenceRule() {
+                SelectMenu.builder(MainActivity.this, binding.mppLlContentMain)
+                        .setTitle("书籍排序")
+                        .setBottomButton("取消")
+                        .setMenu(new String[]{"按阅读时间排序", "按更新时间排序", "手动排序"},
+                                Integer.parseInt(preferences.getString("bookshelf_px", "0")))
+                        .setOnclick(new SelectMenu.OnItemClickListener() {
+                            @Override
+                            public void forBottomButton() {}
+
+                            @Override
+                            public void changeArrangeRule(int lastChoose, int position) {
+                                if (position != lastChoose) {
+                                    preferences.edit().putString("bookshelf_px",String.valueOf(position)).apply();
+                                    RxBus.get().post(RxBusTag.RECREATE, true);
+                                }
+                            }
+                        }).show();
+            }
+
+            @Override
+            public void startWebService() {
+                boolean startedThisTime = WebService.startThis(MainActivity.this);
+                if (!startedThisTime) {
+                    toast(getString(R.string.web_service_already_started_hint));
+                }
+            }
+        });
     }
 
     /**
@@ -422,27 +428,5 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
         UpLastChapterModel.destroy();
         DbHelper.getDaoSession().getBookContentBeanDao().deleteAll();
         super.onDestroy();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        BackupRestoreUi.INSTANCE.onActivityResult(requestCode, resultCode, data);
-        /*switch (requestCode) {
-            case requestQR:
-                if (resultCode == RESULT_OK) {
-                    String result = data.getStringExtra("result");
-                    if (!StringUtils.isTrimEmpty(result)) {
-                        result=result.trim();
-                        // 如果只有书源,则导入书源
-                        if(result.replaceAll("(\\s|\n)*","").matches("^\\{.*$")) {
-                            new BookSourcePresenter().importBookSource(result);
-                            break;
-                        }
-                        mPresenter.addBookUrl(result);
-                    }
-                }
-                break;
-        }*/
     }
 }

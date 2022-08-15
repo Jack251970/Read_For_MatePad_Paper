@@ -49,7 +49,7 @@ import kotlin.Unit;
 
 /**
  * 阅读样式设置界面
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 public class ReadStyleActivity extends MBaseActivity<IPresenter> implements ColorPickerDialogListener {

@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Adapter of SelectMenu
  * Adapt to Huawei MatePad Paper
- * Edited by Jack Ye
+ * Edited by Jack251970
  */
 
 @SuppressLint("DefaultLocale")
