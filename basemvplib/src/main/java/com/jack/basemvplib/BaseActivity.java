@@ -1,12 +1,15 @@
 package com.jack.basemvplib;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,6 +20,8 @@ import com.jack.basemvplib.impl.IView;
 import com.monke.basemvplib.R;
 
 /**
+ * BaseActivity
+ * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
@@ -127,6 +132,14 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
         super.recreate();
     }
 
+    public Context getContext(){
+        return this;
+    }
+
+    public Boolean getStart_share_ele() {
+        return startShareAnim;
+    }
+
     /******************************************Toast***********************************************/
 
     public void toast(String msg) {
@@ -138,31 +151,21 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
     }
 
     public void toast(int strId) {
-        toast(strId, 0);
+        toast(getString(strId), Toast.LENGTH_SHORT, 0);
     }
 
     public void toast(int strId, int state) {
         toast(getString(strId), Toast.LENGTH_LONG, state);
     }
 
+    @SuppressLint("InflateParams")
     public void toast(String msg, int length, int state) {
-        Toast toast = Toast.makeText(this, msg, length);
-        try {
-            if (state == SUCCESS) {
-                toast.getView().getBackground().setColorFilter(getResources().getColor(R.color.success), PorterDuff.Mode.SRC_IN);
-            } else if (state == ERROR) {
-                toast.getView().getBackground().setColorFilter(getResources().getColor(R.color.error), PorterDuff.Mode.SRC_IN);
-            }
-        } catch (Exception ignored) {
-        }
+        Toast toast = new Toast(this);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View view = inflater.inflate(R.layout.dialog_toast,null);
+        ((TextView)view.findViewById(R.id.mpp_tv_toast)).setText(msg);
+        toast.setView(view);
+        toast.setDuration(length);
         toast.show();
-    }
-
-    public Context getContext(){
-        return this;
-    }
-
-    public Boolean getStart_share_ele() {
-        return startShareAnim;
     }
 }

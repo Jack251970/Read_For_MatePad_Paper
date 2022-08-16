@@ -1,10 +1,12 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mpp_ll_more_setting_menu_main"
     android:layout_height="200dp"
-    android:layout_width="118dp"
+    android:layout_width="@dimen/more_setting_menu_width"
     android:background="@drawable/more_setting_menu_main_background"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".view.activity.MainActivity">
     <Space
         android:layout_width="match_parent"
         android:layout_height="10dp"/>
@@ -24,7 +26,7 @@
             android:textColor="@color/md_black_1000"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="下载全部" />
+            android:text="@string/download_all" />
     </LinearLayout>
     <!--分割线-->
     <LinearLayout
@@ -57,7 +59,7 @@
             android:textColor="@color/md_black_1000"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="批量管理" />
+            android:text="@string/manage_batch" />
     </LinearLayout>
     <!--分割线-->
     <LinearLayout
@@ -90,7 +92,7 @@
             android:textColor="@color/md_black_1000"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="书籍排序" />
+            android:text="@string/sequence_book" />
     </LinearLayout>
     <!--分割线-->
     <LinearLayout
@@ -123,7 +125,7 @@
             android:textColor="@color/md_black_1000"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Web服务" />
+            android:text="@string/web_service" />
     </LinearLayout>
     <Space
         android:layout_width="match_parent"

@@ -50,7 +50,7 @@ public class CheckAddShelfPop extends PopupWindow {
             itemClick.clickExit();
         });
         TextView tvAddShelf = view.findViewById(R.id.tv_done);
-        tvAddShelf.setText(R.string.dialog_confirm);
+        tvAddShelf.setText(R.string.confirm);
         tvAddShelf.setOnClickListener(v -> itemClick.clickAddShelf());
     }
 

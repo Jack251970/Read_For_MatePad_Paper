@@ -590,7 +590,7 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
         if (mPageLoader.hasPrev()) {
             return true;
         } else {
-            showSnackBar("没有上一页");
+            showSnackBar("没有上一页了");
             return false;
         }
     }
@@ -602,7 +602,7 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
         if (mPageLoader.hasNext(pageOnCur)) {
             return true;
         } else {
-            showSnackBar("没有下一页");
+            showSnackBar("没有下一页了");
             return false;
         }
     }

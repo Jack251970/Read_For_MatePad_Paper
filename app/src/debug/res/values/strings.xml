@@ -1,5 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
     <string name="app_name" >阅读测试版</string>
-    <string name="receiving_shared_label">阅读测试版·搜索</string>
 </resources>

@@ -3,7 +3,7 @@
     android:id="@+id/ll_content"
     android:layout_width="395dp"
     android:layout_height="wrap_content"
-    android:background="@drawable/select_menu_background"
+    android:background="@drawable/dialog_background"
     android:orientation="vertical"
     android:paddingLeft="24dp"
     android:paddingRight="24dp">
@@ -54,7 +54,7 @@
             android:clickable="true"
             android:focusable="true"
             android:layout_gravity="center"
-            android:text="确定"
+            android:text="@string/confirm"
             android:textColor="@color/md_black_1000"
             android:textSize="15sp"
             android:textStyle="bold" />

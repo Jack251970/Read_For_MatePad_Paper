@@ -29,9 +29,9 @@
         android:shortcutId="bookshelf"
         android:enabled="true"
         android:icon="@drawable/ic_shortcuts_bookshelf"
-        android:shortcutShortLabel="@string/bookshelf"
-        android:shortcutLongLabel="@string/bookshelf"
-        android:shortcutDisabledMessage="@string/bookshelf"
+        android:shortcutShortLabel="@string/enter_bookshelf"
+        android:shortcutLongLabel="@string/enter_bookshelf"
+        android:shortcutDisabledMessage="@string/enter_bookshelf"
         tools:ignore="UnusedAttribute">
 
         <!--suppress AndroidDomInspection -->

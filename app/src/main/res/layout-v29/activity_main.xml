@@ -2,12 +2,14 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mpp_ll_content_main"
     android:fitsSystemWindows="true"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:background="@color/md_white_1000"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    tools:context=".view.activity.MainActivity">
 
     <!--左侧边栏-->
     <LinearLayout
@@ -46,7 +48,7 @@
                     android:textColor="@color/md_black_1000"
                     android:gravity="center"
                     android:text="叶庭茂"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:textStyle="bold"/>
             </LinearLayout>
 
@@ -61,17 +63,18 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_gravity="center">
+
                 <ImageView
                     android:layout_width="41.5dp"
-                    android:layout_height="41.5dp"
-                    android:src="@drawable/mpp_ic_book_source"/>
+                    android:layout_height="49dp"
+                    android:src="@drawable/mpp_ic_book_source" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/md_black_1000"
                     android:gravity="center"
                     android:textSize="14sp"
-                    android:text="书源"
+                    android:text="@string/book_source"
                     android:textStyle="bold"/>
             </LinearLayout>
 
@@ -97,7 +100,7 @@
                     android:textColor="@color/md_black_1000"
                     android:gravity="center"
                     android:textSize="14sp"
-                    android:text="净化"
+                    android:text="@string/purify"
                     android:textStyle="bold"/>
             </LinearLayout>
 
@@ -123,7 +126,7 @@
                     android:textColor="@color/md_black_1000"
                     android:gravity="center"
                     android:textSize="14sp"
-                    android:text="下载"
+                    android:text="@string/download"
                     android:textStyle="bold"/>
             </LinearLayout>
 
@@ -149,7 +152,7 @@
                     android:textColor="@color/md_black_1000"
                     android:gravity="center"
                     android:textSize="14sp"
-                    android:text="备份"
+                    android:text="@string/backup"
                     android:textStyle="bold"/>
             </LinearLayout>
 
@@ -174,7 +177,7 @@
                     android:textColor="@color/md_black_1000"
                     android:gravity="center"
                     android:textSize="14sp"
-                    android:text="恢复"
+                    android:text="@string/restore"
                     android:textStyle="bold"/>
             </LinearLayout>
 
@@ -237,7 +240,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/md_black_1000"
                     android:textSize="40sp"
-                    android:text="书架"
+                    android:text="@string/bookshelf"
                     android:textStyle="bold"/>
                 <Space
                     android:layout_width="match_parent"
@@ -401,7 +404,7 @@
                     android:textColor="@color/md_black_1000"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:text="全部书籍" />
+                    android:text="@string/all_books" />
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -439,7 +442,7 @@
                     android:textColor="@color/md_black_1000"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:text="追更"/>
+                    android:text="@string/pursue"/>
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -476,7 +479,7 @@
                     android:textColor="@color/md_black_1000"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:text="养肥" />
+                    android:text="@string/fattening" />
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -513,7 +516,7 @@
                     android:textColor="@color/md_black_1000"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:text="完结" />
+                    android:text="@string/finish" />
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -551,7 +554,7 @@
                     android:textColor="@color/md_black_1000"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:text="本地书籍"/>
+                    android:text="@string/local_book"/>
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="0dp"

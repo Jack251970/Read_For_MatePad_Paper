@@ -139,7 +139,7 @@ internal class Request : OnRequestPermissionsResultCallback {
                                     )
                             )
                         }
-                        .setNegativeButton(R.string.dialog_cancel) { _, _ -> cancel() }
+                        .setNegativeButton(R.string.cancel) { _, _ -> cancel() }
                         .show()
             }
         }

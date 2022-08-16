@@ -53,7 +53,7 @@ public class SelectMenuAdapter extends BaseAdapter{
         String menuName = menuList.get(position);
         holder.tv_name_select_menu_item.setText(menuName);
         if (position == lastChoose) {
-            holder.iv_indicator_select_menu_item.setImageResource(R.drawable.select_menu_indicator_selected);
+            holder.iv_indicator_select_menu_item.setImageResource(R.drawable.ic_select_menu_selected);
         }
         return convertView;
     }

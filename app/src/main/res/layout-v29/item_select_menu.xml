@@ -19,7 +19,7 @@
             android:textColor="@color/md_black_1000"
             android:textSize="15sp"
             android:textStyle="bold"
-            tools:text="编辑时间"/>
+            tools:text="按阅读时间排序"/>
         <Space
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -29,8 +29,8 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/select_menu_indicator_unselected"
-            android:contentDescription="选中与未选中" />
+            android:src="@drawable/ic_select_menu_unselected"
+            android:contentDescription="选中标志" />
     </LinearLayout>
     <Space
         android:layout_width="match_parent"

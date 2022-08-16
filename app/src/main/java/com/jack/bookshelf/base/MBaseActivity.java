@@ -43,19 +43,14 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
     protected void onCreate(Bundle savedInstanceState) {
         initTheme();
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // 禁用自动填充
-            getWindow().getDecorView().setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
-        }
+        getWindow().getDecorView()      // 禁用自动填充
+                .setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
         initImmersionBar();
     }
 
     @SuppressWarnings("NullableProblems")
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-
-    }
+    public void onConfigurationChanged(Configuration newConfig) { super.onConfigurationChanged(newConfig); }
 
     @Override
     protected void onDestroy() {

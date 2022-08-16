@@ -205,7 +205,7 @@ public class TxtChapterRuleActivity extends MBaseActivity<TxtChapterRuleContract
     private void selectReplaceRuleFile() {
         new PermissionsCompat.Builder(this)
                 .addPermissions(Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE)
-                .rationale(R.string.get_storage_per)
+                .rationale(R.string.need_storage_permission_to_backup_book_information)
                 .onGranted((requestCode) -> {
                     FilePicker filePicker = new FilePicker(TxtChapterRuleActivity.this, FilePicker.FILE);
                     filePicker.setBackgroundColor(getResources().getColor(R.color.background));

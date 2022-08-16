@@ -31,7 +31,8 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 /**
- * 下载任务界面
+ * Download Page
+ * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
@@ -49,7 +50,6 @@ public class DownloadActivity extends MBaseActivity<IPresenter> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override

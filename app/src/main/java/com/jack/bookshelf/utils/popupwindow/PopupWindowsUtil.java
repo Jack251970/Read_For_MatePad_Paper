@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 /**
- * Util for PopupWindows
+ * PopupWindow Util
  * Edited by Jack251970
  */
 

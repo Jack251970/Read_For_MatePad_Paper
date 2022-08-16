@@ -1,4 +1,50 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Huawei Matepad Paper Theme-->
+        <!-- Toolbar-->
+        <dimen name="toolbar_layout_height">64dp</dimen>
+        <!-- ViewPager Indicator -->
+        <dimen name="viewpager_indicator_height">4dp</dimen>
+        <dimen name="viewpager_indicator_stroke_width">1dp</dimen>
+        <dimen name="viewpager_indicator_radius">1dp</dimen>
+        <!-- Dialog -->
+        <dimen name="dialog_stroke_width">3dp</dimen>
+        <dimen name="dialog_width">395dp</dimen>
+        <dimen name="dialog_radius">24dp</dimen>
+        <!-- SearchBar-->
+        <dimen name="searchbar_height">42dp</dimen>
+        <dimen name="searchbar_stroke_width">1dp</dimen>
+        <dimen name="searchbar_radius">21dp</dimen>
+        <!-- More Setting Menu-->
+        <dimen name="more_setting_menu_width">118dp</dimen>
+        <dimen name="more_setting_menu_stroke_width">2dp</dimen>
+        <dimen name="more_setting_menu_radius">18dp</dimen>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>

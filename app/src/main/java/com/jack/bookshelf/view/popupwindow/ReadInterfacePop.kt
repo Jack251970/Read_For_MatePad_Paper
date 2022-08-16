@@ -344,7 +344,7 @@ class ReadInterfacePop : FrameLayout {
                         Permissions.READ_EXTERNAL_STORAGE,
                         Permissions.WRITE_EXTERNAL_STORAGE
                     )
-                    .rationale(R.string.get_storage_per)
+                    .rationale(R.string.need_storage_permission_to_backup_book_information)
                     .onGranted {
                         kotlin.runCatching {
                             selectFont(

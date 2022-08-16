@@ -193,7 +193,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
         // 主界面导入网络事件
         binding.mppIvImportOnlineMain.setOnClickListener(view ->
                 InputDialog.builder(this)
-                        .setTitle("添加书籍网址")
+                        .setTitle(getString(R.string.add_book_url))
                         .setCallback(new InputDialog.Callback() {
                             @Override
                             public void setInputText(String inputText) {
@@ -244,9 +244,9 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
             @Override
             public void selectSequenceRule() {
                 SelectMenu.builder(MainActivity.this, binding.mppLlContentMain)
-                        .setTitle("书籍排序")
-                        .setBottomButton("取消")
-                        .setMenu(new String[]{"按阅读时间排序", "按更新时间排序", "手动排序"},
+                        .setTitle(getString(R.string.sequence_book))
+                        .setBottomButton(getString(R.string.cancel))
+                        .setMenu(getResources().getStringArray(R.array.sequence_book),
                                 Integer.parseInt(preferences.getString("bookshelf_px", "0")))
                         .setOnclick(new SelectMenu.OnItemClickListener() {
                             @Override
@@ -266,7 +266,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
             public void startWebService() {
                 boolean startedThisTime = WebService.startThis(MainActivity.this);
                 if (!startedThisTime) {
-                    toast(getString(R.string.web_service_already_started_hint));
+                    toast(getString(R.string.web_service_already_started));
                 }
             }
         });
@@ -278,7 +278,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
     private void importLocalBooks() {
         new PermissionsCompat.Builder(this)
                 .addPermissions(Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE)
-                .rationale(R.string.import_per)
+                .rationale(getString(R.string.import_local_book_need_storage_permission))
                 .onGranted((requestCode) -> {
                     startActivity(new Intent(MainActivity.this, ImportBookActivity.class));
                     return Unit.INSTANCE;
@@ -390,7 +390,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
         if (!Objects.equals(MApplication.downloadPath, FileHelp.getFilesPath())) {
             new PermissionsCompat.Builder(this)
                     .addPermissions(Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE)
-                    .rationale(R.string.get_storage_per)
+                    .rationale(R.string.need_storage_permission_to_backup_book_information)
                     .request();
         }
         handler.postDelayed(() -> {

@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="bookshelf_layout">
-        <item>@string/layout_list</item>
-        <item>@string/layout_grid3</item>
-        <item>@string/layout_grid4</item>
-    </string-array>
+    <!-- More Setting Menu-->
+        <!-- More Setting Menu Main-->
+        <string-array name="sequence_book">
+            <item>@string/sequence_book_by_reading_time</item>
+            <item>@string/sequence_book_by_updating_time</item>
+            <item>@string/sequence_book_manually</item>
+        </string-array>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <string-array name="indent">
         <item>@string/indent_0</item>
@@ -90,12 +108,6 @@
         <attr name="batteryColor" format="color"/>
         <attr name="batteryPower" format="integer"/>
     </declare-styleable>
-
-    <string-array name="icon_names">
-        <item>彩色风格</item>
-        <item>黑白风格</item>
-        <item>MatePad\u0020Paper</item>
-    </string-array>
 
     <string-array name="icons">
         <item>@string/icon_main</item>

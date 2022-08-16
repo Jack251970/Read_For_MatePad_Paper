@@ -3,6 +3,7 @@ package com.jack.bookshelf.service;
 import static com.jack.bookshelf.constant.AppConstant.ActionDoneService;
 import static com.jack.bookshelf.constant.AppConstant.ActionStartService;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -20,11 +21,18 @@ import androidx.core.app.NotificationCompat;
 import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.utils.NetworkUtils;
+import com.jack.bookshelf.utils.ToastUtil;
 import com.jack.bookshelf.web.HttpServer;
 import com.jack.bookshelf.web.WebSocketServer;
 
 import java.io.IOException;
 import java.net.InetAddress;
+
+/**
+ * Web Service
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
 public class WebService extends Service {
     private static boolean sIsRunning = false;
@@ -59,9 +67,9 @@ public class WebService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        updateNotification(getString(R.string.web_service_starting_hint_short));
-        new Handler(Looper.getMainLooper())
-                .post(() -> Toast.makeText(this, R.string.web_service_starting_hint_long, Toast.LENGTH_SHORT).show());
+        updateNotification(getString(R.string.web_service_starting_short));
+        new Handler(Looper.getMainLooper()).post(() ->
+                ToastUtil.toast(this,R.string.web_service_starting_long,Toast.LENGTH_SHORT));
     }
 
     @Override
@@ -119,6 +127,7 @@ public class WebService extends Service {
         }
     }
 
+    @SuppressLint("UnspecifiedImmutableFlag")
     private PendingIntent getThisServicePendingIntent() {
         Intent intent = new Intent(this, this.getClass());
         intent.setAction(ActionDoneService);

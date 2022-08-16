@@ -81,7 +81,7 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
     private fun backupUsePermission(activity: Activity, path: String = Backup.defaultPath) {
         PermissionsCompat.Builder(activity)
             .addPermissions(*Permissions.Group.STORAGE)
-            .rationale(R.string.get_storage_per)
+            .rationale(R.string.need_storage_permission_to_backup_book_information)
             .onGranted {
                 setBackupPath(path)
                 Backup.backup(activity, path, this)
@@ -118,7 +118,7 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
                     1 -> {
                         PermissionsCompat.Builder(activity)
                             .addPermissions(*Permissions.Group.STORAGE)
-                            .rationale(R.string.get_storage_per)
+                            .rationale(R.string.need_storage_permission_to_backup_book_information)
                             .onGranted {
                                 selectBackupFolderApp(activity, false)
                             }
@@ -181,7 +181,7 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
     private fun restoreUsePermission(activity: Activity, path: String = Backup.defaultPath) {
         PermissionsCompat.Builder(activity)
             .addPermissions(*Permissions.Group.STORAGE)
-            .rationale(R.string.get_storage_per)
+            .rationale(R.string.need_storage_permission_to_backup_book_information)
             .onGranted {
                 setBackupPath(path)
                 Restore.restore(path, this)
@@ -218,7 +218,7 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
                     1 -> {
                         PermissionsCompat.Builder(activity)
                             .addPermissions(*Permissions.Group.STORAGE)
-                            .rationale(R.string.get_storage_per)
+                            .rationale(R.string.need_storage_permission_to_backup_book_information)
                             .onGranted {
                                 selectBackupFolderApp(activity, true)
                             }

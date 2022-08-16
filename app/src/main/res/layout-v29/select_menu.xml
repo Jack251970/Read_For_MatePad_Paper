@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:layout_width="395dp"
-    android:background="@drawable/select_menu_background"
+    android:background="@drawable/dialog_background"
     android:orientation="horizontal">
     <Space
         android:layout_width="24dp"

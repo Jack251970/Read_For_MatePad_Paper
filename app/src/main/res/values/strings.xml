@@ -1,15 +1,77 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
+    <!-- Base String -->
     <string name="app_name">阅读</string>
-    <string name="bookshelf">进入书架</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+
+    <!-- Permission -->
+    <string name="import_local_book_need_storage_permission">导入本地书籍需要储存权限</string>
+    <string name="need_storage_permission_to_backup_book_information">本软件需要存储权限来存储备份书籍信息</string>
+
+    <!-- Activity -->
+        <!-- MainActivity -->
+        <string name="book_source">书源</string>
+        <string name="purify">净化</string>
+        <string name="download">下载</string>
+        <string name="backup">备份</string>
+        <string name="restore">恢复</string>
+        <string name="bookshelf">书架</string>
+        <string name="all_books">所有书籍</string>
+        <string name="pursue">追更</string>
+        <string name="fattening">养肥</string>
+        <string name="finish">完结</string>
+        <string name="local_book">本地书籍</string>
+        <string name="double_click_exit">再按一次退出程序</string>
+
+    <!-- Service -->
+        <!-- WebService -->
+        <string name="web_service_starting_short">正在启动Web服务</string>
+        <string name="web_service_starting_long">正在启动Web服务\n具体信息查看通知栏</string>
+
+    <!-- Dialog -->
+        <!-- InputDialog Main -->
+        <string name="add_book_url">添加书籍网址</string>
+
+    <!-- More Setting Menu -->
+        <!-- More Setting Menu Main -->
+        <string name="download_all">下载全部</string>
+            <string name="network_connection_unavailable">网络连接不可用</string>
+        <string name="manage_batch">批量管理</string>
+        <string name="sequence_book">书籍排序</string>
+            <string name="sequence_book_by_reading_time">按阅读时间排序</string>
+            <string name="sequence_book_by_updating_time">按更新时间排序</string>
+            <string name="sequence_book_manually">手动排序</string>
+        <string name="bookshelf_layout">书架布局</string>
+        <string name="web_service">Web服务</string>
+            <string name="web_service_already_started">Web服务已启动</string>
+
+
+
+    <!-- Shortcuts -->
+    <string name="enter_bookshelf">进入书架</string>
     <string name="last_read">最后阅读</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <string name="read_summary">让阅读成为一种习惯。</string>
     <string name="update_log">更新日志</string>
     <string name="receiving_shared_label">阅读·搜索</string>
     <string name="bookshelf_empty">书架还空着，先去添加吧！</string>
     <string name="action_search">搜索</string>
     <string name="action_download">下载任务</string>
-    <string name="bookshelf_layout">书架布局</string>
     <string name="book_library">书城</string>
     <string name="book_local">添加本地</string>
     <string name="book_source_manage">书源管理</string>
@@ -22,8 +84,6 @@
     <string name="navigation_drawer_open">打开侧边栏</string>
     <string name="navigation_drawer_close">关闭侧边栏</string>
     <string name="dialog_title">提示</string>
-    <string name="dialog_cancel">取消</string>
-    <string name="dialog_confirm">确定</string>
     <string name="dialog_setting">去设置</string>
     <string name="tip_cannot_jump_setting_page">无法跳转至设置界面</string>
     <string name="local">本地</string>
@@ -40,12 +100,8 @@
     <string name="is_loading">加载中…</string>
     <string name="get_data_error">获取数据失败！</string>
     <string name="retry">重试</string>
-    <string name="web_service">web服务</string>
     <string name="web_edit_source">web编辑书源</string>
     <string name="http_ip">http://%s:%d</string>
-    <string name="web_service_starting_hint_short">正在启动服务</string>
-    <string name="web_service_starting_hint_long">正在启动服务\n具体信息查看通知栏</string>
-    <string name="web_service_already_started_hint">服务已启动</string>
     <string name="download_offline">离线下载</string>
     <string name="download_offline_t">离线下载</string>
     <string name="download_offline_s">下载选择的章节到本地</string>
@@ -56,12 +112,9 @@
     <string name="ps_auto_refresh">打开软件时自动更新书籍</string>
     <string name="pt_auto_download">自动下载最新章节</string>
     <string name="ps_auto_download">更新书籍时自动下载最新章节</string>
-    <string name="backup">备份</string>
-    <string name="restore">恢复</string>
     <string name="backup_permission">备份请给与存储权限</string>
     <string name="restore_permission">恢复请给与存储权限</string>
     <string name="ok">确认</string>
-    <string name="cancel">取消</string>
     <string name="backup_confirmation">确认备份吗？</string>
     <string name="backup_message">新备份会替换原有备份。\n备份文件夹YueDu</string>
     <string name="restore_confirmation">确认恢复吗？</string>
@@ -113,7 +166,6 @@
     <string name="can_not_share">分享失败</string>
     <string name="no_chapter">无章节</string>
     <string name="add_url">添加网址</string>
-    <string name="add_book_url">添加书籍网址</string>
     <string name="background">背景</string>
     <string name="author">作者</string>
     <string name="analyze_error">站点暂时不支持解析，请反馈</string>
@@ -207,7 +259,6 @@
     <string name="darkStatusIcon">设置状态栏图标颜色（开启为深色，关闭为浅色）</string>
     <string name="content">内容</string>
     <string name="copy_text">拷贝内容</string>
-    <string name="download_all">一键缓存</string>
     <string name="content_sl">这是一段测试文字：\n\u3000\u3000只是让你看看你设置的阅读样式的效果</string>
     <string name="text_bg_style">文字颜色和背景(长按自定义)</string>
     <string name="immersion_status_bar">沉浸式状态栏</string>
@@ -222,7 +273,6 @@
     <string name="load_over_time">加载超时</string>
     <string name="join_group">关注:%s</string>
     <string name="copy_complete">已拷贝</string>
-    <string name="arrange_bookshelf">整理书架</string>
     <string name="clear_bookshelf_s">这将会删除所有书籍，请谨慎操作。</string>
     <string name="search_book_source">搜索书源</string>
     <string name="search_book_source_num">搜索(共%d个书源)</string>
@@ -308,14 +358,11 @@
     <string name="go_to_top">滚动到顶部</string>
     <string name="go_to_bottom">滚动到底部</string>
     <string name="read_y">已读: %s</string>
-    <string name="pursue_more">追更</string>
-    <string name="fattening">养肥</string>
-    <string name="finish">完结</string>
     <string name="all_book">所有书籍</string>
+    <string name="pursue_more">追更</string>
     <string name="pursue_more_book">追更书籍</string>
     <string name="fattening_book">养肥书籍</string>
     <string name="finish_book">完结书籍</string>
-    <string name="local_book">本地书籍</string>
     <string name="status_bar_immersion">顶部状态栏颜色透明</string>
     <string name="navigation_bar_color_change">沉浸式导航栏</string>
     <string name="navigation_bar_color_change_s">底部导航栏颜色透明</string>
@@ -392,10 +439,6 @@
     <string name="import_per">导入本地书籍需存储权限</string>
     <string name="click_to_day">点击可切换到明亮模式</string>
     <string name="click_to_night">点击可切换到暗黑模式</string>
-    <string name="get_storage_per">本软件需要存储权限来存储备份书籍信息</string>
-    <string name="double_click_exit">再按一次退出程序</string>
-    <string name="import_book_per">导入本地书籍需存储权限</string>
-    <string name="network_connection_unavailable">网络连接不可用</string>
     <string name="yes">是</string>
     <string name="no">否</string>
     <string name="sure_del_all_book">是否删除全部书籍？</string>
@@ -446,7 +489,6 @@
     <string name="a10_permission_toast">Android10以上因权限限制可能无法读写文件</string>
     <string name="e_ink_mode">E-Ink模式</string>
     <string name="e_ink_mode_detail">去除动画，减少色彩，优化墨水屏设备使用体验\n程序将退出以改变桌面图标风格</string>
-    <string name="web_menu">Web服务</string>
     <string name="web_port_title">Web端口</string>
     <string name="web_port_summary">当前端口 %s</string>
     <string name="str_share">字符串分享</string>

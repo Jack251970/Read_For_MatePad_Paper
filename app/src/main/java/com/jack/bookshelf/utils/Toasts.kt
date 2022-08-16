@@ -6,7 +6,6 @@ import android.content.Context
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 
-
 private var toast: Toast? = null
 
 fun Context.toastOnUi(message: Int) {

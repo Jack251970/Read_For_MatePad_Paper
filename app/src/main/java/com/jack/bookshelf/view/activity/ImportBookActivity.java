@@ -27,7 +27,6 @@ import java.util.List;
  */
 
 public class ImportBookActivity extends BaseViewPagerWithTabActivity<ImportBookContract.Presenter> implements ImportBookContract.View {
-    private static final String TAG = "ImportBookActivity";
 
     private ActivityImportBookBinding binding;
     private LocalBookFragment mLocalFragment;
@@ -51,7 +50,6 @@ public class ImportBookActivity extends BaseViewPagerWithTabActivity<ImportBookC
         }
     };
 
-
     @Override
     protected ImportBookContract.Presenter initInjector() {
         return new ImportBookPresenter();
@@ -64,7 +62,6 @@ public class ImportBookActivity extends BaseViewPagerWithTabActivity<ImportBookC
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
         setupActionBar();
-
     }
 
     @Override
@@ -86,7 +83,7 @@ public class ImportBookActivity extends BaseViewPagerWithTabActivity<ImportBookC
 
     @Override
     protected List<String> createTabTitles() {
-        return Arrays.asList(getString(R.string.files_tree), getString(R.string.intelligent_import));
+        return Arrays.asList("智能导入", "本机目录");
     }
 
     @Override
@@ -160,7 +157,7 @@ public class ImportBookActivity extends BaseViewPagerWithTabActivity<ImportBookC
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle(R.string.book_local);
+            actionBar.setTitle("导入本地书籍");
         }
     }
 

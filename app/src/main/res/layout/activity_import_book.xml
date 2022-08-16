@@ -73,9 +73,4 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/rl_bottom"
         android:layout_below="@+id/action_bar" />
-
-    <View
-        android:id="@+id/v_shadow"
-        style="@style/Style.Shadow.Bottom"
-        android:layout_above="@+id/rl_bottom" />
 </RelativeLayout>
