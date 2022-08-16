@@ -11,6 +11,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jack.bookshelf.R;
+import com.jack.bookshelf.utils.ToastsKt;
+
+/**
+ * Download Dialog
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
 public class DownLoadDialog extends BaseDialog {
     private final Context context;
@@ -59,7 +66,7 @@ public class DownLoadDialog extends BaseDialog {
                         if (temp > all) {
                             edtStart.setText(String.valueOf(all));
                             edtStart.setSelection(edtStart.getText().length());
-                            Toast.makeText(context, "超过总章节", Toast.LENGTH_SHORT).show();
+                            ToastsKt.toast(context, "超过总章节", Toast.LENGTH_SHORT);
                         } else if (temp <= 0) {
                             edtStart.setText(String.valueOf(1));
                             edtStart.setSelection(edtStart.getText().length());
@@ -89,7 +96,7 @@ public class DownLoadDialog extends BaseDialog {
                         if (temp > all) {
                             edtEnd.setText(String.valueOf(all));
                             edtEnd.setSelection(edtEnd.getText().length());
-                            Toast.makeText(context, "超过总章节", Toast.LENGTH_SHORT).show();
+                            ToastsKt.toast(context, "超过总章节", Toast.LENGTH_SHORT);
                         } else if (temp <= 0) {
                             edtEnd.setText(String.valueOf(1));
                             edtEnd.setSelection(edtEnd.getText().length());
@@ -107,13 +114,13 @@ public class DownLoadDialog extends BaseDialog {
         tvDownload.setOnClickListener(v -> {
             if (edtStart.getText().length() > 0 && edtEnd.getText().length() > 0) {
                 if (Integer.parseInt(edtStart.getText().toString()) > Integer.parseInt(edtEnd.getText().toString())) {
-                    Toast.makeText(context, "输入错误", Toast.LENGTH_SHORT).show();
+                    ToastsKt.toast(context, "输入错误", Toast.LENGTH_SHORT);
                 } else {
                     callback.download(Integer.parseInt(edtStart.getText().toString()) - 1, Integer.parseInt(edtEnd.getText().toString()) - 1);
                 }
                 dismiss();
             } else {
-                Toast.makeText(context, "请输入要离线的章节", Toast.LENGTH_SHORT).show();
+                ToastsKt.toast(context, "请输入要离线的章节", Toast.LENGTH_SHORT);
             }
         });
         return this;

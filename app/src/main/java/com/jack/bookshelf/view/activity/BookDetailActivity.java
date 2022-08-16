@@ -28,7 +28,6 @@ import com.hwangjr.rxbus.RxBus;
 import com.jack.basemvplib.AppActivityManager;
 import com.jack.basemvplib.BitIntentDataManager;
 import com.jack.bookshelf.DbHelper;
-import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.MBaseActivity;
 import com.jack.bookshelf.bean.BookInfoBean;

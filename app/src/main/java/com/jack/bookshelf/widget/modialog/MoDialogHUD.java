@@ -12,9 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 
-import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
-import com.jack.bookshelf.utils.SoftInputUtil;
 
 /**
  * 对话框

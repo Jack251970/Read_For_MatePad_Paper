@@ -24,6 +24,7 @@ import com.jack.bookshelf.bean.DownloadBookBean;
 import com.jack.bookshelf.bean.DownloadChapterBean;
 import com.jack.bookshelf.model.impl.IDownloadTask;
 import com.jack.bookshelf.model.task.DownloadTaskImpl;
+import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.view.activity.DownloadActivity;
 
 import java.util.ArrayList;
@@ -152,9 +153,9 @@ public class DownloadService extends Service {
                 if (downloadTasks.indexOfValue(this) >= 0) {
                     downloadTasks.remove(getId());
                 }
-
-                toast(String.format(Locale.getDefault(), "%s：下载失败", downloadBook.getName()));
-
+                ToastsKt.toast(DownloadService.this,
+                        String.format(Locale.getDefault(), "%s：下载失败",
+                                downloadBook.getName()), Toast.LENGTH_SHORT);
                 startNextTaskAfterRemove(downloadBook);
             }
 
@@ -262,10 +263,6 @@ public class DownloadService extends Service {
         Intent intent = new Intent(obtainDownloadListAction);
         intent.putParcelableArrayListExtra("downloadBooks", downloadBooks);
         sendBroadcast(intent);
-    }
-
-    private void toast(String msg) {
-        Toast.makeText(DownloadService.this, msg, Toast.LENGTH_SHORT).show();
     }
 
     private PendingIntent getChancelPendingIntent() {

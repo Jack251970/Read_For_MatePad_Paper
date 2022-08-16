@@ -5,9 +5,7 @@ import static android.content.Context.DOWNLOAD_SERVICE;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
@@ -23,12 +21,20 @@ import com.jack.bookshelf.base.observer.MyObserver;
 import com.jack.bookshelf.bean.UpdateInfoBean;
 import com.jack.bookshelf.model.analyzeRule.AnalyzeHeaders;
 import com.jack.bookshelf.model.impl.IHttpGetApi;
+import com.jack.bookshelf.utils.ToastsKt;
 
 import java.io.File;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
+
+/**
+ * Update Management
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
 public class UpdateManager {
     private final Activity activity;
@@ -54,15 +60,14 @@ public class UpdateManager {
                         if (updateInfo.getUpDate()) {
 
                         } else if (showMsg) {
-                            Toast.makeText(activity, "已是最新版本", Toast.LENGTH_SHORT).show();
-
+                            ToastsKt.toast(activity, "已是最新版本", Toast.LENGTH_SHORT);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         if (showMsg) {
-                            Toast.makeText(activity, "检测新版本出错", Toast.LENGTH_SHORT).show();
+                            ToastsKt.toast(activity, "检测新版本出错", Toast.LENGTH_SHORT);
                         }
                     }
                 });
@@ -84,7 +89,7 @@ public class UpdateManager {
                     updateInfo.setUrl(url);
                     updateInfo.setLastVersion(lastVersion);
                     updateInfo.setDetail("# " + lastVersion + "\n" + detail);
-                    updateInfo.setUpDate(Integer.valueOf(lastVersion.split("\\.")[2]) > Integer.valueOf(thisVersion.split("\\.")[2]));
+                    updateInfo.setUpDate(Integer.parseInt(lastVersion.split("\\.")[2]) > Integer.parseInt(thisVersion.split("\\.")[2]));
                 }
                 emitter.onNext(updateInfo);
                 emitter.onComplete();
@@ -106,18 +111,13 @@ public class UpdateManager {
         //执行动作
         intent.setAction(Intent.ACTION_VIEW);
         //判读版本是否在7.0以上
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Uri apkUri = FileProvider.getUriForFile(activity, BuildConfig.APPLICATION_ID + ".fileProvider", apkFile);
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
-        } else {
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");
-        }
+        Uri apkUri = FileProvider.getUriForFile(activity, BuildConfig.APPLICATION_ID + ".fileProvider", apkFile);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
         try {
             activity.startActivity(intent);
         } catch (Exception e) {
-            Log.d("wwd", "Failed to launcher installing activity");
+            Timber.tag("wwd").d("Failed to launcher installing activity");
         }
     }
 

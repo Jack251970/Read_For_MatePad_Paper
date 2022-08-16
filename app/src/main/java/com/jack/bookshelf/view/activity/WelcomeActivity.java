@@ -1,6 +1,5 @@
 package com.jack.bookshelf.view.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 

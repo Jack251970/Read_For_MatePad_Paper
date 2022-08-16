@@ -1,9 +1,7 @@
 package com.jack.bookshelf.utils.theme;
 
 
-import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
-import androidx.annotation.ColorRes;
 
 /**
  * @author Aidan Follestad (afollestad), Karim Abou Zeid (kabouzeid)

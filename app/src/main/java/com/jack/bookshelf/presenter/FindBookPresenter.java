@@ -19,6 +19,7 @@ import com.jack.bookshelf.model.analyzeRule.AnalyzeRule;
 import com.jack.bookshelf.presenter.contract.FindBookContract;
 import com.jack.bookshelf.utils.ACache;
 import com.jack.bookshelf.utils.RxUtils;
+import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.widget.recycler.expandable.bean.RecyclerViewData;
 
 import java.util.ArrayList;
@@ -70,7 +71,7 @@ public class FindBookPresenter extends BasePresenterImpl<FindBookContract.View> 
                     @Override
                     public void onError(Throwable e) {
                         e.printStackTrace();
-                        Toast.makeText(mView.getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        ToastsKt.toast(mView.getContext(), e.getMessage(), Toast.LENGTH_SHORT);
                         disposable.dispose();
                         disposable = null;
                     }

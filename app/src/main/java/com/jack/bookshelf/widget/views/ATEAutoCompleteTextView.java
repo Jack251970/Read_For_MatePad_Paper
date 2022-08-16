@@ -2,7 +2,6 @@ package com.jack.bookshelf.widget.views;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 

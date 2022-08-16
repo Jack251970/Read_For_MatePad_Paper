@@ -9,7 +9,6 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -28,6 +27,7 @@ import com.jack.bookshelf.service.ReadAloudService;
 import com.jack.bookshelf.utils.RxUtils;
 import com.jack.bookshelf.utils.ScreenUtils;
 import com.jack.bookshelf.utils.StringUtils;
+import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.widget.page.animation.PageAnimation;
 
@@ -250,7 +250,7 @@ public abstract class PageLoader{
                 typeface = Typeface.SANS_SERIF;
             }
         } catch (Exception e) {
-            Toast.makeText(mContext, "字体文件未找,到恢复默认字体", Toast.LENGTH_SHORT).show();
+            ToastsKt.toast(mContext, "字体文件未找,到恢复默认字体", Toast.LENGTH_SHORT);
             readBookControl.setReadBookFont(null);
             typeface = Typeface.SANS_SERIF;
         }
@@ -267,9 +267,7 @@ public abstract class PageLoader{
         mTitlePaint = new TextPaint();
         mTitlePaint.setColor(readBookControl.getTextColor());
         mTitlePaint.setTextSize(mTitleSize);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mTitlePaint.setLetterSpacing(readBookControl.getTextLetterSpacing());
-        }
+        mTitlePaint.setLetterSpacing(readBookControl.getTextLetterSpacing());
         mTitlePaint.setStyle(Paint.Style.FILL_AND_STROKE);
         mTitlePaint.setTypeface(Typeface.create(typeface, Typeface.BOLD));
         mTitlePaint.setTextAlign(Paint.Align.CENTER);
@@ -279,9 +277,7 @@ public abstract class PageLoader{
         mTextPaint = new TextPaint();
         mTextPaint.setColor(readBookControl.getTextColor());
         mTextPaint.setTextSize(mTextSize);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mTextPaint.setLetterSpacing(readBookControl.getTextLetterSpacing());
-        }
+        mTextPaint.setLetterSpacing(readBookControl.getTextLetterSpacing());
         int bold = readBookControl.getTextBold() ? Typeface.BOLD : Typeface.NORMAL;
         mTextPaint.setTypeface(Typeface.create(typeface, bold));
         mTextPaint.setAntiAlias(true);

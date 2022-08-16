@@ -60,7 +60,6 @@ import com.jack.bookshelf.presenter.contract.ReadBookContract;
 import com.jack.bookshelf.service.ReadAloudService;
 import com.jack.bookshelf.utils.ActivityExtensionsKt;
 import com.jack.bookshelf.utils.BatteryUtil;
-import com.jack.bookshelf.utils.ColorUtils;
 import com.jack.bookshelf.utils.NetworkUtils;
 import com.jack.bookshelf.utils.ScreenUtils;
 import com.jack.bookshelf.utils.SoftInputUtil;

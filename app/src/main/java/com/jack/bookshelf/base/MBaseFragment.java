@@ -10,6 +10,13 @@ import com.jack.basemvplib.BaseFragment;
 import com.jack.basemvplib.impl.IPresenter;
 import com.jack.basemvplib.impl.IView;
 import com.jack.bookshelf.MApplication;
+import com.jack.bookshelf.utils.ToastsKt;
+
+/**
+ * MBaseActivity
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
 public abstract class MBaseFragment<T extends IPresenter> extends BaseFragment<T> implements IView {
     public final SharedPreferences preferences = MApplication.getConfigPreferences();
@@ -51,11 +58,9 @@ public abstract class MBaseFragment<T extends IPresenter> extends BaseFragment<T
         }
     }
 
-    public void toast(String msg) {
-        Toast.makeText(this.getActivity(), msg, Toast.LENGTH_SHORT).show();
-    }
+    public void toast(String msg) { ToastsKt.toast(this.getActivity(),msg,Toast.LENGTH_SHORT); }
 
-    public void toast(int id) {
-        Toast.makeText(this.getActivity(), getString(id), Toast.LENGTH_SHORT).show();
+    public void toast(int strId) {
+        ToastsKt.toast(this.getActivity(),strId,Toast.LENGTH_SHORT);
     }
 }

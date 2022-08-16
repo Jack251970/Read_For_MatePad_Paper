@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation"><!--修改20220729-->
 
+    <string name="pk_bookshelf_px">bookshelf_px</string>
     <string name="pk_auto_refresh">auto_refresh</string>
     <string name="pk_screen_direction">list_screen_direction</string>
     <string name="pk_full_screen">full_screen</string>
     <string name="pk_threads_num">threads_num</string>
     <string name="pk_user_agent">user_agent</string>
-    <string name="pk_bookshelf_px">bookshelf_px</string>
     <string name="pk_read_type">read_type</string>
     <string name="pk_find_expand_group">expandGroupFind</string>
     <string name="pk_default_read">defaultToRead</string>

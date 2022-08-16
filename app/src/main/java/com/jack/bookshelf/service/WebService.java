@@ -21,7 +21,7 @@ import androidx.core.app.NotificationCompat;
 import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.utils.NetworkUtils;
-import com.jack.bookshelf.utils.ToastUtil;
+import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.web.HttpServer;
 import com.jack.bookshelf.web.WebSocketServer;
 
@@ -69,7 +69,7 @@ public class WebService extends Service {
         super.onCreate();
         updateNotification(getString(R.string.web_service_starting_short));
         new Handler(Looper.getMainLooper()).post(() ->
-                ToastUtil.toast(this,R.string.web_service_starting_long,Toast.LENGTH_SHORT));
+                ToastsKt.toast(this,R.string.web_service_starting_long,Toast.LENGTH_SHORT));
     }
 
     @Override

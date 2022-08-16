@@ -22,7 +22,6 @@ import com.jack.bookshelf.constant.RxBusTag;
 import com.jack.bookshelf.databinding.ActivitySourceDebugBinding;
 import com.jack.bookshelf.model.content.Debug;
 import com.jack.bookshelf.utils.SoftInputUtil;
-import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.SourceDebugAdapter;
 

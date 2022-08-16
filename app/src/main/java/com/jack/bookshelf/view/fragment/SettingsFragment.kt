@@ -10,10 +10,8 @@ import android.preference.ListPreference
 import android.preference.Preference
 import android.preference.PreferenceFragment
 import android.preference.PreferenceScreen
-import com.hwangjr.rxbus.RxBus
 import com.jack.bookshelf.MApplication
 import com.jack.bookshelf.R
-import com.jack.bookshelf.constant.RxBusTag
 import com.jack.bookshelf.help.BookshelfHelp
 import com.jack.bookshelf.help.FileHelp
 import com.jack.bookshelf.help.ProcessTextHelp

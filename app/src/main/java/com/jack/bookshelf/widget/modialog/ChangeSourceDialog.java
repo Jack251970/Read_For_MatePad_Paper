@@ -36,6 +36,7 @@ import com.jack.bookshelf.model.SearchBookModel;
 import com.jack.bookshelf.model.UpLastChapterModel;
 import com.jack.bookshelf.utils.ScreenUtils;
 import com.jack.bookshelf.utils.StringUtils;
+import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.view.activity.SourceEditActivity;
 import com.jack.bookshelf.view.adapter.ChangeSourceAdapter;
 import com.jack.bookshelf.widget.recycler.refresh.RefreshRecyclerView;
@@ -52,6 +53,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+
+/**
+ * Source Change Dialog
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
 public class ChangeSourceDialog extends BaseDialog implements ChangeSourceAdapter.CallBack {
     private final Context context;
@@ -152,12 +159,12 @@ public class ChangeSourceDialog extends BaseDialog implements ChangeSourceAdapte
                         sourceBean.setEnable(false);
                         BookSourceManager.addBookSource(sourceBean);
                         adapter.removeData(searchBookBean);
-                        Toast.makeText(context, String.format("%s已禁用", sourceBean.getBookSourceName()), Toast.LENGTH_SHORT).show();
+                        ToastsKt.toast(context, String.format("%s已禁用", sourceBean.getBookSourceName()), Toast.LENGTH_SHORT);
                         break;
                     case R.id.menu_del:
                         BookSourceManager.removeBookSource(sourceBean);
                         adapter.removeData(searchBookBean);
-                        Toast.makeText(context, String.format("%s已删除", sourceBean.getBookSourceName()), Toast.LENGTH_SHORT).show();
+                        ToastsKt.toast(context, String.format("%s已删除", sourceBean.getBookSourceName()), Toast.LENGTH_SHORT);
                         break;
                     case R.id.menu_edit:
                         SourceEditActivity.startThis(context, sourceBean);

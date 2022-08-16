@@ -2,7 +2,6 @@ package com.jack.bookshelf.view.activity;
 
 import static android.text.TextUtils.isEmpty;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -35,7 +34,6 @@ import com.jack.bookshelf.base.observer.MyObserver;
 import com.jack.bookshelf.bean.BookSourceBean;
 import com.jack.bookshelf.constant.BookType;
 import com.jack.bookshelf.databinding.ActivitySourceEditBinding;
-import com.jack.bookshelf.model.BookSourceManager;
 import com.jack.bookshelf.presenter.SourceEditPresenter;
 import com.jack.bookshelf.presenter.contract.SourceEditContract;
 import com.jack.bookshelf.service.ShareService;
@@ -52,8 +50,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-
-import io.reactivex.Observable;
 
 /**
  * Created by GKF on 2018/1/26.

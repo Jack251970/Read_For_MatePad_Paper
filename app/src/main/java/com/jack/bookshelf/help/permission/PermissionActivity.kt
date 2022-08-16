@@ -9,6 +9,7 @@ import android.view.KeyEvent
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.jack.bookshelf.R
+import com.jack.bookshelf.utils.toast
 
 class PermissionActivity : Activity() {
 
@@ -32,7 +33,7 @@ class PermissionActivity : Activity() {
                 settingIntent.data = Uri.fromParts("package", packageName, null)
                 startActivityForResult(settingIntent, Request.TYPE_REQUEST_SETTING)
             } catch (e: Exception) {
-                Toast.makeText(this, R.string.tip_cannot_jump_setting_page, Toast.LENGTH_SHORT).show()
+                toast(this, R.string.tip_cannot_jump_setting_page, Toast.LENGTH_SHORT);
                 finish()
             }
 

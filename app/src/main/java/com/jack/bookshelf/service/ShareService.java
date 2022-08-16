@@ -23,11 +23,18 @@ import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BookSourceBean;
 import com.jack.bookshelf.utils.NetworkUtils;
+import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.web.ShareServer;
 
 import java.io.IOException;
 import java.net.InetAddress;
 import java.util.List;
+
+/**
+ * Shared Service
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
 public class ShareService extends Service {
     private static boolean isRunning = false;
@@ -63,9 +70,9 @@ public class ShareService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        updateNotification("正在启动分享");
-        new Handler(Looper.getMainLooper())
-                .post(() -> Toast.makeText(this, "正在启动分享\n具体信息查看通知栏", Toast.LENGTH_SHORT).show());
+        updateNotification(getString(R.string.shared_service_starting_short));
+        new Handler(Looper.getMainLooper()).post(() ->
+                ToastsKt.toast(this,R.string.shared_service_starting_long,Toast.LENGTH_SHORT));
     }
 
     @Override
@@ -101,7 +108,7 @@ public class ShareService extends Service {
             try {
                 shareServer.start();
                 isRunning = true;
-                updateNotification(String.format("分享地址:%s", inetAddress.getHostAddress()));
+                updateNotification(getString(R.string.sharded_address, inetAddress.getHostAddress()));
             } catch (IOException e) {
                 stopSelf();
             }

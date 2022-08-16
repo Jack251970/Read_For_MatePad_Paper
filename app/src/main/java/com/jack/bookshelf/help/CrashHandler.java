@@ -7,8 +7,9 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.widget.Toast;
+
+import com.jack.bookshelf.utils.ToastsKt;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,9 +22,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import timber.log.Timber;
+
 /**
- * 异常管理类
+ * Crash Handler
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
  */
+
 public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     /**
@@ -86,7 +92,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             try {//延迟3秒杀进程
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
-                Log.e(TAG, "error : ", e);
+                Timber.tag(TAG).e(e, "error : ");
             }
         }
 
@@ -107,7 +113,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         addCustomInfo();
         try {
             //使用Toast来显示异常信息
-            new Handler(Looper.getMainLooper()).post(() -> Toast.makeText(mContext, ex.getMessage(), Toast.LENGTH_LONG).show());
+            new Handler(Looper.getMainLooper()).post(() ->
+                    ToastsKt.toast(mContext, ex.getMessage(), Toast.LENGTH_LONG));
         } catch (Exception ignored) {
         }
         //保存日志文件
@@ -131,7 +138,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
                 paramsMap.put("versionCode", versionCode);
             }
         } catch (PackageManager.NameNotFoundException e) {
-            Log.e(TAG, "an error occured when collect package info", e);
+            Timber.tag(TAG).e(e, "an error occurred when collect package info");
         }
         //获取所有系统信息
         Field[] fields = Build.class.getDeclaredFields();
@@ -140,7 +147,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
                 field.setAccessible(true);
                 paramsMap.put(field.getName(), field.get(null).toString());
             } catch (Exception e) {
-                Log.e(TAG, "an error occured when collect crash info", e);
+                Timber.tag(TAG).e(e, "an error occurred when collect crash info");
             }
         }
     }
@@ -149,7 +156,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
      * 添加自定义参数
      */
     private void addCustomInfo() {
-        Log.i(TAG, "addCustomInfo: 程序出错了...");
+        Timber.tag(TAG).i("addCustomInfo: 程序出错了...");
     }
 
     /**
@@ -187,10 +194,10 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             }
             FileOutputStream fos = new FileOutputStream(path + fileName);
             fos.write(sb.toString().getBytes());
-            Log.i(TAG, "saveCrashInfo2File: " + sb);
+            Timber.tag(TAG).i("saveCrashInfo2File: %s", sb);
             fos.close();
         } catch (Exception e) {
-            Log.e(TAG, "an error occured while writing file...", e);
+            Timber.tag(TAG).e(e, "an error occurred while writing file...");
         }
     }
 }

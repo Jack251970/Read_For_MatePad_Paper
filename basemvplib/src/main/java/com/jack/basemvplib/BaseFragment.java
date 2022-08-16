@@ -1,10 +1,5 @@
 package com.jack.basemvplib;
 
-import static com.jack.basemvplib.BaseActivity.START_SHEAR_ELE;
-
-import android.app.ActivityOptions;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

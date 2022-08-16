@@ -44,6 +44,7 @@ import com.jack.bookshelf.R;
 import com.jack.bookshelf.constant.RxBusTag;
 import com.jack.bookshelf.help.ExoPlayerHelper;
 import com.jack.bookshelf.help.MediaManager;
+import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.view.activity.ReadBookActivity;
 
 import java.util.ArrayList;
@@ -348,7 +349,7 @@ public class ReadAloudService extends Service implements Player.Listener {
     public void onPlayerError(@NonNull PlaybackException error) {
         error.printStackTrace();
         mainHandler.post(() ->
-                Toast.makeText(ReadAloudService.this, "播放出错:" + error.getLocalizedMessage(), Toast.LENGTH_LONG).show());
+                ToastsKt.toast(ReadAloudService.this, "播放出错:" + error.getLocalizedMessage(), Toast.LENGTH_LONG));
         pauseReadAloud(true);
         player.release();
     }
@@ -710,7 +711,7 @@ public class ReadAloudService extends Service implements Player.Listener {
                 ttsInitSuccess = true;
                 playTTS();
             } else {
-                mainHandler.post(() -> Toast.makeText(ReadAloudService.this, getString(R.string.tts_init_failed), Toast.LENGTH_SHORT).show());
+                mainHandler.post(() -> ToastsKt.toast(ReadAloudService.this, getString(R.string.tts_init_failed), Toast.LENGTH_SHORT));
                 ReadAloudService.this.stopSelf();
             }
         }

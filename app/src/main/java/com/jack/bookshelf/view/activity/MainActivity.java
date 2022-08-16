@@ -11,6 +11,7 @@ import android.os.Looper;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -34,6 +35,7 @@ import com.jack.bookshelf.presenter.MainPresenter;
 import com.jack.bookshelf.presenter.contract.MainContract;
 import com.jack.bookshelf.service.WebService;
 import com.jack.bookshelf.utils.StringUtils;
+import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.fragment.BookListFragment;
 import com.jack.bookshelf.view.popupmenu.MoreSettingMenuMain;
@@ -51,8 +53,9 @@ import kotlin.Unit;
  * Edited by Jack251970
  */
 
-public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> implements MainContract.View,
-        BookListFragment.CallbackValue {
+public class MainActivity
+        extends BaseViewPagerActivity<MainContract.Presenter>
+        implements MainContract.View, BookListFragment.CallbackValue {
     private final int requestSource = 14;
     private ActivityMainBinding binding;
     private int group;
@@ -228,7 +231,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
             @Override
             public void downloadAll() {
                 if (!isNetWorkAvailable()) {
-                    toast(R.string.network_connection_unavailable);
+                    ToastsKt.toast(MainActivity.this, R.string.network_connection_unavailable, Toast.LENGTH_SHORT);
                 } else {
                     RxBus.get().post(RxBusTag.DOWNLOAD_ALL, 10000);
                 }
@@ -266,7 +269,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
             public void startWebService() {
                 boolean startedThisTime = WebService.startThis(MainActivity.this);
                 if (!startedThisTime) {
-                    toast(getString(R.string.web_service_already_started));
+                    ToastsKt.toast(MainActivity.this,getString(R.string.web_service_already_started),Toast.LENGTH_SHORT);
                 }
             }
         });
@@ -416,7 +419,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
      */
     public void exit() {
         if ((System.currentTimeMillis() - exitTime) > 2000) {
-            toast(getString(R.string.double_click_exit));
+            ToastsKt.toast(MainActivity.this, getString(R.string.double_click_exit),Toast.LENGTH_SHORT);
             exitTime = System.currentTimeMillis();
         } else {
             finish();

@@ -9,9 +9,7 @@ import android.widget.CompoundButton
 import android.widget.FrameLayout
 import android.widget.SeekBar
 import androidx.appcompat.app.AlertDialog
-import com.hwangjr.rxbus.RxBus
 import com.jack.bookshelf.R
-import com.jack.bookshelf.constant.RxBusTag
 import com.jack.bookshelf.databinding.PopMoreSettingBinding
 import com.jack.bookshelf.help.ReadBookControl
 import com.jack.bookshelf.utils.theme.ATH

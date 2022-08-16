@@ -19,6 +19,7 @@ import com.jack.bookshelf.help.FileHelp;
 import com.jack.bookshelf.help.ProcessTextHelp;
 import com.jack.bookshelf.help.storage.BackupRestoreUi;
 import com.jack.bookshelf.help.storage.WebDavHelp;
+import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.view.activity.SettingActivity;
 
 import java.util.ArrayList;
@@ -31,8 +32,8 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * WebDav设置
- * Created by GKF on 2017/12/16.
+ * WebDav Settings
+ * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
@@ -134,7 +135,7 @@ public class WebDavSettingsFragment extends PreferenceFragment implements Shared
                     @Override
                     public void onSuccess(ArrayList<String> strings) {
                         if (!WebDavHelp.INSTANCE.showRestoreDialog(getActivity(), strings, BackupRestoreUi.INSTANCE)) {
-                            Toast.makeText(getActivity(), "没有备份", Toast.LENGTH_SHORT).show();
+                            ToastsKt.toast(getActivity(),"没有备份",Toast.LENGTH_SHORT);
                         }
                     }
                 });

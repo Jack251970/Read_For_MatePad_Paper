@@ -28,6 +28,11 @@
         <!-- WebService -->
         <string name="web_service_starting_short">正在启动Web服务</string>
         <string name="web_service_starting_long">正在启动Web服务\n具体信息查看通知栏</string>
+        <string name="http_ip">http://%s:%d</string>
+        <!-- SharedService -->
+        <string name="shared_service_starting_short">正在启动Web服务</string>
+        <string name="shared_service_starting_long">正在启动Web服务\n具体信息查看通知栏</string>
+        <string name="sharded_address">分享地址:%s</string>
 
     <!-- Dialog -->
         <!-- InputDialog Main -->
@@ -101,7 +106,7 @@
     <string name="get_data_error">获取数据失败！</string>
     <string name="retry">重试</string>
     <string name="web_edit_source">web编辑书源</string>
-    <string name="http_ip">http://%s:%d</string>
+
     <string name="download_offline">离线下载</string>
     <string name="download_offline_t">离线下载</string>
     <string name="download_offline_s">下载选择的章节到本地</string>

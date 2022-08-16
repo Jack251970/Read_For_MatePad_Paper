@@ -29,8 +29,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
-import com.jack.bookshelf.MApplication;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

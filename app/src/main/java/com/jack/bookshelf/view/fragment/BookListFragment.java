@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -46,7 +45,15 @@ import java.util.List;
 import io.reactivex.Single;
 import io.reactivex.SingleOnSubscribe;
 
-public class BookListFragment extends MBaseFragment<BookListContract.Presenter> implements BookListContract.View {
+/**
+ * BookList Fragment
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
+public class BookListFragment
+        extends MBaseFragment<BookListContract.Presenter>
+        implements BookListContract.View {
 
     private CallbackValue callbackValue;
     private FragmentBookListBinding binding;
@@ -110,7 +117,7 @@ public class BookListFragment extends MBaseFragment<BookListContract.Presenter> 
         binding.refreshLayout.setOnRefreshListener(() -> {
             mPresenter.queryBookShelf(NetworkUtils.isNetWorkAvailable(), group);
             if (!NetworkUtils.isNetWorkAvailable()) {
-                Toast.makeText(getContext(), R.string.network_connection_unavailable, Toast.LENGTH_SHORT).show();
+                toast(R.string.network_connection_unavailable);
             }
             binding.refreshLayout.setRefreshing(false);
         });
