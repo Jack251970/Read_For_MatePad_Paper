@@ -1,7 +1,12 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Huawei Matepad Paper Theme-->
         <!-- Toolbar-->
         <dimen name="toolbar_layout_height">64dp</dimen>
+        <!-- Button -->
+        <dimen name="button_width">280dp</dimen>
+        <dimen name="button_height">42dp</dimen>
+        <dimen name="button_radius">21dp</dimen>
+        <dimen name="button_stroke_width">2dp</dimen>
         <!-- ViewPager Indicator -->
         <dimen name="viewpager_indicator_height">4dp</dimen>
         <dimen name="viewpager_indicator_stroke_width">1dp</dimen>

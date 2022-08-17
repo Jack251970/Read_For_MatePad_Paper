@@ -290,9 +290,7 @@ public class BookShelfBean implements Cloneable, BaseBookBean {
         this.customCoverPath = customCoverPath;
     }
 
-    public Boolean getAllowUpdate() {
-        return allowUpdate == null || allowUpdate;
-    }
+    public Boolean getAllowUpdate() { return allowUpdate == null || allowUpdate; }
 
     public void setAllowUpdate(Boolean allowUpdate) {
         this.allowUpdate = allowUpdate;

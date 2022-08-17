@@ -7,8 +7,13 @@
             <item>@string/sequence_book_by_updating_time</item>
             <item>@string/sequence_book_manually</item>
         </string-array>
-
-
+        <!-- More Setting Menu BookDetail-->
+        <string-array name="book_groups">
+            <item>@string/pursue</item>
+            <item>@string/fattening</item>
+            <item>@string/finish</item>
+            <item>@string/local</item>
+        </string-array>
 
 
 

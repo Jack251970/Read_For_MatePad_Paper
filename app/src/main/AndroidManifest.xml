@@ -108,8 +108,7 @@
             android:name=".view.activity.BookDetailActivity"
             android:configChanges="locale|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
             android:launchMode="singleTask"
-            android:screenOrientation="behind"
-            android:theme="@style/CAppTransparentTheme" />
+            android:screenOrientation="behind"/>
         <activity
             android:name=".view.activity.ImportBookActivity"
             android:configChanges="locale|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"

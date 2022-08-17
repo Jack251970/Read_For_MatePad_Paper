@@ -15,8 +15,6 @@
     <!-- NavigationBar-->
     <color name="mpp_navigation_bar_line">#dcdcdc</color>
     <color name="mpp_text_light">#cccccc</color>
-    <!--Toolbar-->
-    <color name="toolbar_text">#1a1a1a</color>
 
 
 

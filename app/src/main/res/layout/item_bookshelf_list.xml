@@ -81,7 +81,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_author"
         app:layout_constraintLeft_toRightOf="@+id/iv_cover"
         app:layout_constraintTop_toTopOf="@+id/tv_author"
-        app:tint="@color/tv_text_secondary"
         tools:ignore="RtlHardcoded,RtlSymmetry" />
 
     <TextView
@@ -141,7 +140,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_last"
         app:layout_constraintLeft_toRightOf="@+id/iv_cover"
         app:layout_constraintTop_toTopOf="@+id/tv_last"
-        app:tint="@color/tv_text_secondary"
         tools:ignore="RtlHardcoded,RtlSymmetry" />
 
     <TextView

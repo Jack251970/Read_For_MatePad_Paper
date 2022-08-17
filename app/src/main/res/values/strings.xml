@@ -23,6 +23,25 @@
         <string name="finish">完结</string>
         <string name="local_book">本地书籍</string>
         <string name="double_click_exit">再按一次退出程序</string>
+        <!-- BookDetailActivity -->
+        <string name="book_info">书籍信息</string>
+        <string name="book_name">书名</string>
+        <string name="author">作者</string>
+        <string name="origin">来源</string>
+        <string name="change_origin">换源</string>
+        <string name="read_dur_progress">最近: %s</string>
+        <string name="check_chapter_list">查看目录</string>
+        <string name="book_groups">分组</string>
+        <string name="manage_groups">设置分组</string>
+            <string name="local">本地</string>
+        <string name="book_intro">内容简介</string>
+        <string name="remove_from_bookshelf">删除书籍</string>
+        <string name="start_read">开始阅读</string>
+        <string name="add_to_shelf">放入书架</string>
+        <string name="continue_read">继续阅读</string>
+        <string name="data_loading">加载数据中…</string>
+        <string name="load_error_retry">加载失败，点击重试</string>
+        <string name="unknown">未知</string>
 
     <!-- Service -->
         <!-- WebService -->
@@ -50,7 +69,12 @@
         <string name="bookshelf_layout">书架布局</string>
         <string name="web_service">Web服务</string>
             <string name="web_service_already_started">Web服务已启动</string>
-
+        <!-- More Setting Menu BookDetail -->
+        <string name="refresh">重新加载</string>
+        <string name="disable_update">禁止更新</string>
+        <string name="allow_update">允许更新</string>
+        <string name="edit_book_source">编辑书源</string>
+        <string name="copy_book_url">复制网址</string>
 
 
     <!-- Shortcuts -->
@@ -91,15 +115,11 @@
     <string name="dialog_title">提示</string>
     <string name="dialog_setting">去设置</string>
     <string name="tip_cannot_jump_setting_page">无法跳转至设置界面</string>
-    <string name="local">本地</string>
     <string name="search">搜索</string>
     <string name="net_error_10001">没有网络</string>
     <string name="net_error_10002">网络连接超时</string>
     <string name="net_error_10003">数据解析失败</string>
-    <string name="origin_format">来源: %s</string>
-    <string name="read_dur_progress">最近: %s</string>
-    <string name="book_name">书名</string>
-    <string name="book_search_last">最新: %s</string>
+    <string name="chapter_list">目录</string>
     <string name="check_add_bookshelf">是否将《%s》放入书架？</string>
     <string name="import_books_count">共%s个Text文件</string>
     <string name="is_loading">加载中…</string>
@@ -110,7 +130,8 @@
     <string name="download_offline">离线下载</string>
     <string name="download_offline_t">离线下载</string>
     <string name="download_offline_s">下载选择的章节到本地</string>
-    <string name="change_origin">换源</string>
+    <string name="origin_format">来源: %s</string>
+    <string name="book_search_last">最新: %s</string>
     <string name="about_description">\u3000\u3000这是一款适配墨水屏的阅读软件。</string><!--修改20220726-->
     <string name="version_name">Version %s</string>
     <string name="pt_auto_refresh">自动刷新书籍</string>
@@ -138,7 +159,6 @@
     <string name="all_chapter_num">共%d章</string>
     <string name="interface_setting">界面</string>
     <string name="brightness">亮度</string>
-    <string name="chapter_list">目录</string>
     <string name="next_chapter">下一章</string>
     <string name="previous_chapter">上一章</string>
     <string name="pt_hide_status_bar">隐藏状态栏</string>
@@ -149,7 +169,6 @@
     <string name="read_aloud_t">正在朗读</string>
     <string name="read_aloud_s">点击打开阅读界面</string>
     <string name="text_return">返回</string>
-    <string name="refresh">重新加载</string>
     <string name="start">开始</string>
     <string name="stop">停止</string>
     <string name="pause">暂停</string>
@@ -172,7 +191,7 @@
     <string name="no_chapter">无章节</string>
     <string name="add_url">添加网址</string>
     <string name="background">背景</string>
-    <string name="author">作者</string>
+
     <string name="analyze_error">站点暂时不支持解析，请反馈</string>
     <string name="aloud_stop">朗读停止</string>
     <string name="pt_clear_cache">清除应用缓存</string>
@@ -180,7 +199,7 @@
     <string name="pt_replace">默认启用替换净化</string>
     <string name="ps_replace">新加入的书籍是否自动启用替换净化</string>
     <string name="action_save">保存</string>
-    <string name="edit_book_source">编辑书源</string>
+
     <string name="disable_book_source">禁用书源</string>
     <string name="add_book_source">新建本地</string>
     <string name="book_file_selector">添加书籍</string>
@@ -229,13 +248,8 @@
     <string name="import_select_book">导入选择书籍</string>
     <string name="update_search_threads_num">更新和搜索线程数（太多会卡顿）</string>
     <string name="change_icon">切换图标</string>
-    <string name="remove_from_bookshelf">删除书籍</string>
-    <string name="start_read">开始阅读</string>
-    <string name="data_loading">加载数据中…</string>
-    <string name="load_error_retry">加载失败,点击重试</string>
-    <string name="book_intro">内容简介</string>
     <string name="open_from_other">打开外部书籍</string>
-    <string name="origin">来源</string>
+
     <string name="import_replace_rule_local">导入本地</string>
     <string name="import_replace_rule_online">导入网络</string>
     <string name="del_all_replace_rule">删除所有</string>
@@ -332,7 +346,7 @@
     <string name="auto_next_page_stop">停止自动翻页</string>
     <string name="auto_next_page_speed">自动翻页时每分钟阅读字数(CPM)</string>
     <string name="edit_book_info">书籍信息编辑</string>
-    <string name="book_info">书籍信息</string>
+
     <string name="ps_default_read">打开应用时将自动前往上一次阅读位置</string>
     <string name="pt_default_read">自动跳转最近阅读</string>
     <string name="use_to">替换范围，选填书名或者源名</string>
@@ -344,8 +358,7 @@
     <string name="download_update">下载更新</string>
     <string name="aloud_volume_page">朗读时音量键翻页</string>
     <string name="tip_margin_change">Tip边距跟随边距调整</string>
-    <string name="disable_update">禁止更新</string>
-    <string name="allow_update">允许更新</string>
+
     <string name="revert_selection">反转选择</string>
     <string name="search_book_key">搜索书名、作者</string>
     <string name="debug_hint">书名、作者、URL</string>
@@ -371,8 +384,6 @@
     <string name="status_bar_immersion">顶部状态栏颜色透明</string>
     <string name="navigation_bar_color_change">沉浸式导航栏</string>
     <string name="navigation_bar_color_change_s">底部导航栏颜色透明</string>
-    <string name="add_to_shelf">放入书架</string>
-    <string name="continue_read">继续阅读</string>
     <string name="cover_path">封面地址</string>
     <string name="page_mode_COVER">覆盖</string>
     <string name="page_mode_SIMULATION">仿真</string>
@@ -527,8 +538,6 @@
     <string name="search_result_filter_grade">搜索结果过滤等级</string>
     <string name="search_result_filter_grade_tip">\n当前过滤等级 %s\n调高过滤等级可以避免看到书名/作者无关的搜索结果。\n等级1-9：搜索关键字需要出现到书名/作者中，但是允许有8-0个字（空格不计）没有出现（避免误输入的影响）。默认等级0，不过滤。推荐等级7，允许2个错別字。
         </string>
-    <string name="share_book">分享书籍</string>
-    <string name="copy_url">复制网址</string>
     <string name="replace_ad">广告话术</string>
     <string name="replace_ad_title">编辑广告话术规则</string>
     <string name="replace_add_ad_title">添加广告话术规则</string>
