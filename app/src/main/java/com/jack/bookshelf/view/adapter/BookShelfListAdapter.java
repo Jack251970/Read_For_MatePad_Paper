@@ -1,4 +1,3 @@
-//Copyright (c) 2017. 章钦豪. All rights reserved.
 package com.jack.bookshelf.view.adapter;
 
 import android.annotation.SuppressLint;
@@ -32,6 +31,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * List Bookshelf Item Adapter
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
 public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdapter.MyViewHolder> implements BookShelfAdapter {
     private boolean isArrange;
     private final Activity activity;
@@ -42,9 +47,7 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
 
     private final ItemTouchCallback.OnItemTouchCallbackListener itemTouchCallbackListener = new ItemTouchCallback.OnItemTouchCallbackListener() {
         @Override
-        public void onSwiped(int adapterPosition) {
-
-        }
+        public void onSwiped(int adapterPosition) {}
 
         @Override
         public boolean onMove(int srcPosition, int targetPosition) {
@@ -179,7 +182,7 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
             holder.rotateLoading.start();
         } else {
             holder.bvUnread.setBadgeCount(bookShelfBean.getUnreadChapterNum());
-            holder.bvUnread.setHighlight(bookShelfBean.getHasUpdate());
+            holder.bvUnread.setBackground();
             holder.rotateLoading.setVisibility(View.INVISIBLE);
             holder.rotateLoading.stop();
         }
@@ -228,7 +231,6 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
         View vwSelect;
         ImageView ivBack;
         ImageView ivEditBook;
-
         MyViewHolder(View itemView) {
             super(itemView);
             flContent = itemView.findViewById(R.id.cv_content);

@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
-    android:background="?android:attr/selectableItemBackground"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="0dp"
     tools:ignore="UnusedAttribute">
 
     <com.jack.bookshelf.widget.image.CoverImageView
         android:id="@+id/iv_cover"
-        android:layout_width="60dp"
-        android:layout_height="80dp"
+        android:layout_width="75dp"
+        android:layout_height="100dp"
         android:layout_margin="8dp"
         android:contentDescription="@string/img_cover"
         android:scaleType="centerCrop"
@@ -63,6 +67,7 @@
         android:text="@string/book_name"
         android:textColor="@color/tv_text_default"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tv_author"
         app:layout_constraintLeft_toRightOf="@+id/iv_cover"
         app:layout_constraintRight_toLeftOf="@id/fl_has_new"
@@ -91,7 +96,7 @@
         android:maxLines="1"
         android:paddingEnd="6dp"
         android:text="@string/author"
-        android:textColor="@color/tv_text_secondary"
+        android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_read"
         app:layout_constraintLeft_toRightOf="@+id/iv_author"
@@ -111,7 +116,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_read"
         app:layout_constraintLeft_toRightOf="@+id/iv_cover"
         app:layout_constraintTop_toTopOf="@+id/tv_read"
-        app:tint="@color/tv_text_secondary"
         tools:ignore="RtlHardcoded,RtlSymmetry" />
 
     <TextView
@@ -121,7 +125,7 @@
         android:includeFontPadding="false"
         android:singleLine="true"
         android:text="@string/read_dur_progress"
-        android:textColor="@color/tv_text_secondary"
+        android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintBottom_toTopOf="@id/tv_last"
         app:layout_constraintLeft_toRightOf="@+id/iv_read"
@@ -149,7 +153,7 @@
         android:layout_marginBottom="8dp"
         android:singleLine="true"
         android:text="@string/book_search_last"
-        android:textColor="@color/tv_text_secondary"
+        android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/iv_last"
@@ -161,13 +165,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/btn_bg_press"
+        android:layout_height="1dp"
+        android:background="@color/black"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

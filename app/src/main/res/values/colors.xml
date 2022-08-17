@@ -36,8 +36,6 @@
 
     <color name="colorPrimaryDark">@color/md_grey_200</color>
 
-    <color name="highlight">#d3321b</color>
-
     <color name="btn_bg_press">#80C0C0C0</color>
     <color name="btn_bg_press_2">#80858585</color>
     <color name="btn_bg_press_tp">#88000000</color>

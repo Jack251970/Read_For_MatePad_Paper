@@ -1,4 +1,3 @@
-//Copyright (c) 2017. 章钦豪. All rights reserved.
 package com.jack.bookshelf.view.adapter;
 
 import android.annotation.SuppressLint;
@@ -29,6 +28,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Grid Bookshelf Item Adapter
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
 public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdapter.MyViewHolder> implements BookShelfAdapter {
     private boolean isArrange;
     private List<BookShelfBean> books;
@@ -39,9 +44,7 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
 
     private final ItemTouchCallback.OnItemTouchCallbackListener itemTouchCallbackListener = new ItemTouchCallback.OnItemTouchCallbackListener() {
         @Override
-        public void onSwiped(int adapterPosition) {
-
-        }
+        public void onSwiped(int adapterPosition) {}
 
         @Override
         public boolean onMove(int srcPosition, int targetPosition) {
@@ -173,7 +176,7 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
             holder.rotateLoading.start();
         } else {
             holder.bvUnread.setBadgeCount(bookShelfBean.getUnreadChapterNum());
-            holder.bvUnread.setHighlight(bookShelfBean.getHasUpdate());
+            holder.bvUnread.setBackground();
             holder.rotateLoading.setVisibility(View.INVISIBLE);
             holder.rotateLoading.stop();
         }
@@ -216,7 +219,6 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
         BadgeView bvUnread;
         RotateLoading rotateLoading;
         View vwSelect;
-
         MyViewHolder(View itemView) {
             super(itemView);
             ivCover = itemView.findViewById(R.id.iv_cover);

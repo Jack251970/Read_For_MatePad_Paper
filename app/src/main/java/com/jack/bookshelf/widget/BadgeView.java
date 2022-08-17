@@ -1,7 +1,10 @@
 package com.jack.bookshelf.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.text.TextUtils;
@@ -18,14 +21,16 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.jack.bookshelf.R;
 
-
 /**
- * Created by milad heydari on 5/6/2016.
+ * Badge View for Unread Chapter Showing
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
  */
+
 public class BadgeView extends AppCompatTextView {
 
     private boolean mHideOnNull = true;
-    private float radius;
+    private float radius = dip2Px(8);
 
     public BadgeView(Context context) {
         this(context, null);
@@ -37,7 +42,6 @@ public class BadgeView extends AppCompatTextView {
 
     public BadgeView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-
         init();
     }
 
@@ -50,38 +54,26 @@ public class BadgeView extends AppCompatTextView {
                             Gravity.CENTER);
             setLayoutParams(layoutParams);
         }
-
-        // set default font
-        setTextColor(Color.WHITE);
-        //setTypeface(Typeface.DEFAULT_BOLD);
-        setTextSize(TypedValue.COMPLEX_UNIT_SP, 11);
+        // 设置字体
+        setTextColor(Color.BLACK);
+        setTypeface(Typeface.DEFAULT_BOLD);
+        setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+        // 设置边距
         setPadding(dip2Px(5), dip2Px(1), dip2Px(5), dip2Px(1));
-        radius = 8;
-
-        // set default background
-        setBackground(radius, Color.parseColor("#d3321b"));
-
+        // 设置默认背景
+        setBackground();
+        // 设置对齐方式
         setGravity(Gravity.CENTER);
-
-        // default values
+        // 设置其余参数
         setHideOnNull(true);
         setBadgeCount(0);
         setMinWidth(dip2Px(16));
         setMinHeight(dip2Px(16));
     }
 
-    public void setBackground(float dipRadius, int badgeColor) {
-        int radius = dip2Px(dipRadius);
-        float[] radiusArray = new float[]{radius, radius, radius, radius, radius, radius, radius, radius};
-
-        RoundRectShape roundRect = new RoundRectShape(radiusArray, null, null);
-        ShapeDrawable bgDrawable = new ShapeDrawable(roundRect);
-        bgDrawable.getPaint().setColor(badgeColor);
-        setBackground(bgDrawable);
-    }
-
-    public void setBackground(int badgeColor) {
-        setBackground(radius, badgeColor);
+    @SuppressLint("UseCompatLoadingForDrawables")
+    public void setBackground() {
+        setBackground(getResources().getDrawable(R.drawable.shape_badge_view));
     }
 
     /**
@@ -117,10 +109,6 @@ public class BadgeView extends AppCompatTextView {
         if (count == 0) {
             setVisibility(GONE);
         }
-    }
-
-    public void setHighlight(boolean highlight) {
-        setBackground(getResources().getColor(highlight ? R.color.highlight : R.color.darker_gray));
     }
 
     public Integer getBadgeCount() {

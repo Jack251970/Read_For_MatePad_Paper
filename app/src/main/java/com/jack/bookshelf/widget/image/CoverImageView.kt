@@ -90,7 +90,7 @@ class CoverImageView : androidx.appcompat.widget.AppCompatImageView {
             namePaint.color = Color.WHITE
             namePaint.style = Paint.Style.STROKE
             canvas.drawText(it, width / 2, nameHeight, namePaint)
-            namePaint.color = Color.RED
+            namePaint.color = Color.BLACK
             namePaint.style = Paint.Style.FILL
             canvas.drawText(it, width / 2, nameHeight, namePaint)
         }
@@ -98,7 +98,7 @@ class CoverImageView : androidx.appcompat.widget.AppCompatImageView {
             authorPaint.color = Color.WHITE
             authorPaint.style = Paint.Style.STROKE
             canvas.drawText(it, width / 2, authorHeight, authorPaint)
-            authorPaint.color = Color.RED
+            authorPaint.color = Color.BLACK
             authorPaint.style = Paint.Style.FILL
             canvas.drawText(it, width / 2, authorHeight, authorPaint)
         }
