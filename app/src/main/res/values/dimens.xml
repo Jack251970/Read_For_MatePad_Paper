@@ -1,4 +1,5 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="PxUsage">
     <!-- Huawei Matepad Paper Theme-->
         <!-- Toolbar-->
         <dimen name="toolbar_layout_height">64dp</dimen>
@@ -6,22 +7,29 @@
         <dimen name="button_width">280dp</dimen>
         <dimen name="button_height">42dp</dimen>
         <dimen name="button_radius">21dp</dimen>
-        <dimen name="button_stroke_width">2dp</dimen>
+        <dimen name="button_stroke_width">2px</dimen>
         <!-- ViewPager Indicator -->
         <dimen name="viewpager_indicator_height">4dp</dimen>
         <dimen name="viewpager_indicator_stroke_width">1dp</dimen>
         <dimen name="viewpager_indicator_radius">1dp</dimen>
         <!-- Dialog -->
-        <dimen name="dialog_stroke_width">3dp</dimen>
-        <dimen name="dialog_width">395dp</dimen>
-        <dimen name="dialog_radius">24dp</dimen>
+        <dimen name="dialog_stroke_width">3px</dimen>
+            <!-- Normal -->
+            <dimen name="dialog_width">395dp</dimen>
+            <dimen name="dialog_radius">24dp</dimen>
+            <!-- Alert -->
+            <dimen name="alert_dialog_button_divide_line_width">2px</dimen>
+                <!-- No Title-->
+                <dimen name="alert_dialog_no_title_width">396dp</dimen>
+                <dimen name="alert_dialog_no_title_height">122dp</dimen>
+                <dimen name="alert_dialog_no_title_radius">28dp</dimen>
         <!-- SearchBar-->
         <dimen name="searchbar_height">42dp</dimen>
-        <dimen name="searchbar_stroke_width">1dp</dimen>
+        <dimen name="searchbar_stroke_width">1px</dimen>
         <dimen name="searchbar_radius">21dp</dimen>
         <!-- More Setting Menu-->
         <dimen name="more_setting_menu_width">118dp</dimen>
-        <dimen name="more_setting_menu_stroke_width">2dp</dimen>
+        <dimen name="more_setting_menu_stroke_width">2px</dimen>
         <dimen name="more_setting_menu_radius">18dp</dimen>
 
 

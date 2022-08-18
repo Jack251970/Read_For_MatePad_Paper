@@ -4,7 +4,6 @@ import static android.text.TextUtils.isEmpty;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.net.Uri;
@@ -21,7 +20,7 @@ import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
+import com.jack.bookshelf.view.dialog.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -539,13 +538,17 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
             bookSourceBean = new BookSourceBean();
         }
         if (!getBookSource(true).equals(bookSourceBean)) {
-            new AlertDialog.Builder(this)
-                    .setTitle(getString(R.string.exit))
-                    .setMessage(getString(R.string.exit_no_save))
-                    .setPositiveButton("是", (DialogInterface dialogInterface, int which) -> {
-                    })
-                    .setNegativeButton("否", (DialogInterface dialogInterface, int which) -> finish())
-                    .show();
+            AlertDialog.builder(this,binding.getRoot(), AlertDialog.NO_TITLE)
+                    .setMessage(R.string.exit_no_save)
+                    .setNegativeButton(R.string.yes)
+                    .setPositiveButton(R.string.no)
+                    .setOnclick(new AlertDialog.OnItemClickListener() {
+                        @Override
+                        public void forNegativeButton() { finish(); }
+
+                        @Override
+                        public void forPositiveButton() {}
+                    }).show();
             return true;
         }
         return false;

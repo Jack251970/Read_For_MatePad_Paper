@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
+import com.jack.bookshelf.view.dialog.AlertDialog;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,11 +34,10 @@ import com.jack.bookshelf.presenter.contract.ReplaceRuleContract;
 import com.jack.bookshelf.utils.ACache;
 import com.jack.bookshelf.utils.RealPathUtil;
 import com.jack.bookshelf.utils.StringUtils;
-import com.jack.bookshelf.utils.theme.ATH;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.ReplaceRuleAdapter;
 import com.jack.bookshelf.widget.filepicker.picker.FilePicker;
-import com.jack.bookshelf.widget.modialog.InputDialog;
+import com.jack.bookshelf.view.dialog.InputDialog;
 import com.jack.bookshelf.widget.modialog.MoDialogHUD;
 import com.jack.bookshelf.widget.modialog.ReplaceRuleDialog;
 
@@ -219,14 +218,17 @@ public class ReplaceRuleActivity extends MBaseActivity<ReplaceRuleContract.Prese
 
     // 删除所有替换规则的消息框
     private void deleteAllDialog() {
-        AlertDialog alertDialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.delete)
+        AlertDialog.builder(this, binding.getRoot(), AlertDialog.NO_TITLE)
                 .setMessage(R.string.del_all_msg)
-                .setPositiveButton(R.string.ok, (dialog, which) -> mPresenter.delData(adapter.getData()))
-                .setNegativeButton(R.string.cancel, (dialogInterface, i) -> {
-                })
-                .show();
-        ATH.setAlertDialogTint(alertDialog);
+                .setNegativeButton(R.string.cancel)
+                .setPositiveButton(R.string.delete)
+                .setOnclick(new AlertDialog.OnItemClickListener() {
+                    @Override
+                    public void forNegativeButton() {}
+
+                    @Override
+                    public void forPositiveButton() { mPresenter.delData(adapter.getData());}
+                }).show();
     }
 
     private void selectReplaceRuleFile() {

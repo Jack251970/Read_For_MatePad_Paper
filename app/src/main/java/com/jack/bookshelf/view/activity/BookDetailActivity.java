@@ -202,7 +202,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
             public void editBookSource() {
                 BookSourceBean sourceBean = BookSourceManager.getBookSourceByUrl(mPresenter.getBookShelf().getTag());
                 if (sourceBean != null) {
-                    SourceEditActivity.startThis(this, sourceBean);
+                    SourceEditActivity.startThis(BookDetailActivity.this, sourceBean);
                 }
             }
 

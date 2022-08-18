@@ -24,6 +24,7 @@ import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
 import com.jack.bookshelf.widget.BadgeView;
 import com.jack.bookshelf.widget.RotateLoading;
 import com.jack.bookshelf.widget.image.CoverImageView;
+import com.jack.bookshelf.widget.views.ATECheckBox;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,7 +43,7 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
     private final Activity activity;
     private List<BookShelfBean> books;
     private OnItemClickListenerTwo itemClickListener;
-    private String bookshelfPx;
+    private int bookshelfPx;
     private final HashSet<String> selectList = new HashSet<>();
 
     private final ItemTouchCallback.OnItemTouchCallbackListener itemTouchCallbackListener = new ItemTouchCallback.OnItemTouchCallbackListener() {
@@ -117,24 +118,22 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
         final BookShelfBean bookShelfBean = books.get(index);
         holder.itemView.setBackgroundColor(ThemeStore.backgroundColor(activity));
         if (isArrange) {
-            if (selectList.contains(bookShelfBean.getNoteUrl())) {
-                holder.vwSelect.setBackgroundResource(R.color.ate_button_disabled_light);
-            } else {
-                holder.vwSelect.setBackgroundColor(Color.TRANSPARENT);
-            }
             holder.vwSelect.setVisibility(View.VISIBLE);
+            holder.checkBox.setVisibility(View.VISIBLE);
+            holder.checkBox.setChecked(selectList.contains(bookShelfBean.getNoteUrl()));
             holder.vwSelect.setOnClickListener(v -> {
                 if (selectList.contains(bookShelfBean.getNoteUrl())) {
                     selectList.remove(bookShelfBean.getNoteUrl());
-                    holder.vwSelect.setBackgroundColor(Color.TRANSPARENT);
+                    holder.checkBox.setChecked(false);
                 } else {
                     selectList.add(bookShelfBean.getNoteUrl());
-                    holder.vwSelect.setBackgroundResource(R.color.ate_button_disabled_light);
+                    holder.checkBox.setChecked(true);
                 }
                 itemClickListener.onClick(v, index);
             });
         } else {
             holder.vwSelect.setVisibility(View.GONE);
+            holder.checkBox.setVisibility(View.INVISIBLE);
         }
         BookInfoBean bookInfoBean = bookShelfBean.getBookInfoBean();
         if (!activity.isFinishing()) {
@@ -158,21 +157,21 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
             if (itemClickListener != null)
                 itemClickListener.onClick(v, index);
         });
-        if (!Objects.equals(bookshelfPx, "2")) {
+        if (bookshelfPx == 2) { // 书籍手动排序
+            holder.ivCover.setOnClickListener(view -> {
+                if (itemClickListener != null) {
+                    itemClickListener.onLongClick(view, index);
+                }
+            });
+        } else {
             holder.flContent.setOnLongClickListener(view -> {
                 if (itemClickListener != null) {
                     itemClickListener.onLongClick(view, index);
                 }
                 return true;
             });
-        } else {
-            holder.ivCover.setOnClickListener(view -> {
-                if (itemClickListener != null) {
-                    itemClickListener.onLongClick(view, index);
-                }
-            });
         }
-        if (Objects.equals(bookshelfPx, "2") && bookShelfBean.getSerialNumber() != index) {
+        if ((bookshelfPx == 2) && bookShelfBean.getSerialNumber() != index) {
             bookShelfBean.setSerialNumber(index);
             AsyncTask.execute(() -> DbHelper.getDaoSession().getBookShelfBeanDao().insertOrReplace(bookShelfBean));
         }
@@ -194,7 +193,7 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
     }
 
     @Override
-    public synchronized void replaceAll(List<BookShelfBean> newDataS, String bookshelfPx) {
+    public synchronized void replaceAll(List<BookShelfBean> newDataS, int bookshelfPx) {
         this.bookshelfPx = bookshelfPx;
         selectList.clear();
         if (null != newDataS && newDataS.size() > 0) {
@@ -231,6 +230,7 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
         View vwSelect;
         ImageView ivBack;
         ImageView ivEditBook;
+        ATECheckBox checkBox;
         MyViewHolder(View itemView) {
             super(itemView);
             flContent = itemView.findViewById(R.id.cv_content);
@@ -245,7 +245,7 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
             vwSelect = itemView.findViewById(R.id.vw_select);
             ivBack = itemView.findViewById(R.id.iv_back);
             ivEditBook = itemView.findViewById(R.id.iv_edit_book);
+            checkBox = itemView.findViewById(R.id.checkbox_book);
         }
     }
-
 }

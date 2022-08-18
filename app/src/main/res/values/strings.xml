@@ -17,6 +17,7 @@
         <string name="backup">备份</string>
         <string name="restore">恢复</string>
         <string name="bookshelf">书架</string>
+        <string name="search_book_name_or_author">搜索书名、作者</string>
         <string name="all_books">所有书籍</string>
         <string name="pursue">追更</string>
         <string name="fattening">养肥</string>
@@ -43,6 +44,15 @@
         <string name="load_error_retry">加载失败，点击重试</string>
         <string name="unknown">未知</string>
 
+    <!-- Fragment -->
+        <!-- BookList Fragment-->
+        <string name="have_choose_items">已选择%d项</string>
+        <string name="unselected">未选择</string>
+        <string name="sure_del_book">是否删除书籍？</string>
+        <string name="bookshelf_empty">书架还空着，先去添加吧！</string>
+        <string name="select_all">全选</string>
+        <string name="delete">删除</string>
+
     <!-- Service -->
         <!-- WebService -->
         <string name="web_service_starting_short">正在启动Web服务</string>
@@ -57,11 +67,12 @@
         <!-- InputDialog Main -->
         <string name="add_book_url">添加书籍网址</string>
 
+
     <!-- More Setting Menu -->
         <!-- More Setting Menu Main -->
         <string name="download_all">下载全部</string>
             <string name="network_connection_unavailable">网络连接不可用</string>
-        <string name="manage_batch">批量管理</string>
+        <string name="organize_bookshelf">整理书架</string>
         <string name="sequence_book">书籍排序</string>
             <string name="sequence_book_by_reading_time">按阅读时间排序</string>
             <string name="sequence_book_by_updating_time">按更新时间排序</string>
@@ -75,7 +86,6 @@
         <string name="allow_update">允许更新</string>
         <string name="edit_book_source">编辑书源</string>
         <string name="copy_book_url">复制网址</string>
-
 
     <!-- Shortcuts -->
     <string name="enter_bookshelf">进入书架</string>
@@ -98,7 +108,7 @@
     <string name="read_summary">让阅读成为一种习惯。</string>
     <string name="update_log">更新日志</string>
     <string name="receiving_shared_label">阅读·搜索</string>
-    <string name="bookshelf_empty">书架还空着，先去添加吧！</string>
+
     <string name="action_search">搜索</string>
     <string name="action_download">下载任务</string>
     <string name="book_library">书城</string>
@@ -239,7 +249,7 @@
     <string name="clear_all_content">清除缓存会删除所有已保存章节,是否确认删除?</string>
     <string name="book_source_share_url">书源共享</string>
     <string name="replace_rule_summary">替换规则名称</string>
-    <string name="select_all">全选</string>
+
     <string name="night_theme">夜间模式</string>
     <string name="welcome">启动页</string>
     <string name="download_start">开始下载</string>
@@ -253,11 +263,7 @@
     <string name="import_replace_rule_local">导入本地</string>
     <string name="import_replace_rule_online">导入网络</string>
     <string name="del_all_replace_rule">删除所有</string>
-    <string name="bookshelf_px">书架排序规则</string>
     <string name="check_update_interval">检查更新间隔</string>
-    <string name="bookshelf_px_0">按阅读时间排序</string>
-    <string name="bookshelf_px_1">按更新时间排序</string>
-    <string name="bookshelf_px_2">手动排序</string>
     <string name="read_type">阅读方式</string>
     <string name="del_select">删除所选</string>
     <string name="del_all_msg">是否确认删除所有内容?</string>
@@ -268,7 +274,7 @@
     <string name="find_empty">没有内容,去书源里自定义吧!</string>
     <string name="searchHistory">搜索历史</string>
     <string name="clear">清除</string>
-    <string name="clear_all_history">确定清除全部历史记录吗?</string>
+    <string name="delete_all_history">是否删除所有历史记录?</string>
     <string name="showTitle">正文显示标题</string>
     <string name="refresh_default">书源同步</string>
     <string name="no_last_chapter">无最新章节信息</string>
@@ -336,7 +342,7 @@
     <string name="line_size">行距</string>
     <string name="paragraph_size">段距</string>
     <string name="edit">编辑</string>
-    <string name="delete">删除</string>
+
     <string name="to_top">置顶</string>
     <string name="auto_expand_find">自动展开发现</string>
     <string name="default_expand_first">默认展开第一组发现</string>
@@ -457,7 +463,7 @@
     <string name="click_to_night">点击可切换到暗黑模式</string>
     <string name="yes">是</string>
     <string name="no">否</string>
-    <string name="sure_del_all_book">是否删除全部书籍？</string>
+
     <string name="sure_del_download_book">是否同时删除已下载的书籍目录？</string>
     <string name="aloud_can_not_auto_page">朗读正在运行,不能自动翻页</string>
     <string name="input_charset">输入编码</string>

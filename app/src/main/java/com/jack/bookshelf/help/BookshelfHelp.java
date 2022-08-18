@@ -410,18 +410,18 @@ public class BookshelfHelp {
     /**
      * 排序
      */
-    public static void order(List<BookShelfBean> books, String bookshelfOrder) {
+    public static void order(List<BookShelfBean> books, int bookshelfOrder) {
         if (books == null || books.size() == 0) {
             return;
         }
         switch (bookshelfOrder) {
-            case "0":
+            case 0:
                 Collections.sort(books, (o1, o2) -> Long.compare(o2.getFinalDate(), o1.getFinalDate()));
                 break;
-            case "1":
+            case 1:
                 Collections.sort(books, (o1, o2) -> Long.compare(o2.getFinalRefreshData(), o1.getFinalRefreshData()));
                 break;
-            case "2":
+            case 2:
                 Collections.sort(books, (o1, o2) -> Integer.compare(o1.getSerialNumber(), o2.getSerialNumber()));
                 break;
         }

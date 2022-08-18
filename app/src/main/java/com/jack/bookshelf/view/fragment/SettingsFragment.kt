@@ -31,7 +31,6 @@ import org.jetbrains.anko.okButton
 @Suppress("DEPRECATION")
 class SettingsFragment : PreferenceFragment(), OnSharedPreferenceChangeListener {
     private var settingActivity: SettingActivity? = null
-    private lateinit var bookshelfPxKey: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,13 +46,6 @@ class SettingsFragment : PreferenceFragment(), OnSharedPreferenceChangeListener 
             editor.putString("downloadPath", FileHelp.getCachePath())
         }
         editor.apply()
-
-
-        /*bookshelfPxKey = getString(R.string.pk_bookshelf_px)
-        upPreferenceSummary(bookshelfPxKey, sharedPreferences.getString(bookshelfPxKey, "0"))*/
-
-
-
         upPreferenceSummary("downloadPath", MApplication.downloadPath)
         upPreferenceSummary("backupPath", sharedPreferences.getString("backupPath", null))
         preferenceManager.sharedPreferences.registerOnSharedPreferenceChangeListener(this)
@@ -70,10 +62,6 @@ class SettingsFragment : PreferenceFragment(), OnSharedPreferenceChangeListener 
      */
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
         when (key) {
-            /*bookshelfPxKey -> {
-                upPreferenceSummary(key, sharedPreferences.getString(key, "0"))
-                RxBus.get().post(RxBusTag.RECREATE, true)
-            }*/
             "process_text" -> ProcessTextHelp.setProcessTextEnable(sharedPreferences.getBoolean("process_text", true))
             "webPort" -> WebService.upHttpServer(activity)
             "backupPath" -> upPreferenceSummary(key, sharedPreferences.getString(key, null))

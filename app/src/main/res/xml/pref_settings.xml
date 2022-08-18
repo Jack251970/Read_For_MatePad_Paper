@@ -4,13 +4,6 @@
 
     <com.jack.bookshelf.widget.prefs.ATEPreferenceCategory android:title="书架设置">
 
-        <ListPreference
-            android:defaultValue="0"
-            android:entries="@array/bookshelf_px_title"
-            android:entryValues="@array/bookshelf_px_value"
-            android:key="@string/pk_bookshelf_px"
-            android:title="@string/bookshelf_px" />
-
         <com.jack.bookshelf.widget.prefs.ATESwitchPreference
             android:defaultValue="true"
             android:key="@string/pk_auto_refresh"

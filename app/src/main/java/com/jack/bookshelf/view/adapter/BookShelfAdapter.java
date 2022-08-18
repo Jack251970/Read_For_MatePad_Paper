@@ -17,7 +17,7 @@ public interface BookShelfAdapter {
 
     List<BookShelfBean> getBooks();
 
-    void replaceAll(List<BookShelfBean> newDataS, String bookshelfPx);
+    void replaceAll(List<BookShelfBean> newDataS, int bookshelfPx);
 
     void refreshBook(String noteUrl);
 

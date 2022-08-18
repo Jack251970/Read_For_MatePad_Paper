@@ -52,14 +52,14 @@
             android:layout_width="18dp"
             android:layout_height="match_parent"/>
         <TextView
-            android:id="@+id/mpp_tv_arrange_bookshelf_main"
+            android:id="@+id/mpp_tv_sequence_rule_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:textColor="@color/md_black_1000"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="@string/manage_batch" />
+            android:text="@string/sequence_book" />
     </LinearLayout>
     <!--分割线-->
     <LinearLayout
@@ -85,14 +85,14 @@
             android:layout_width="18dp"
             android:layout_height="match_parent"/>
         <TextView
-            android:id="@+id/mpp_tv_sequence_rule_main"
+            android:id="@+id/mpp_tv_arrange_bookshelf_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:textColor="@color/md_black_1000"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="@string/sequence_book" />
+            android:text="@string/organize_bookshelf" />
     </LinearLayout>
     <!--分割线-->
     <LinearLayout

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jack.bookshelf.DbHelper;
@@ -22,6 +23,7 @@ import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
 import com.jack.bookshelf.widget.BadgeView;
 import com.jack.bookshelf.widget.RotateLoading;
 import com.jack.bookshelf.widget.image.CoverImageView;
+import com.jack.bookshelf.widget.views.ATECheckBox;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -38,7 +40,7 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
     private boolean isArrange;
     private List<BookShelfBean> books;
     private OnItemClickListenerTwo itemClickListener;
-    private String bookshelfPx;
+    private int bookshelfPx;
     private final Activity activity;
     private final HashSet<String> selectList = new HashSet<>();
 
@@ -120,28 +122,29 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
         BookInfoBean bookInfoBean = bookShelfBean.getBookInfoBean();
 
         if (isArrange) {
+            // 启用选择按钮与选择背景
             holder.vwSelect.setVisibility(View.VISIBLE);
-            if (selectList.contains(bookShelfBean.getNoteUrl())) {
-                holder.vwSelect.setBackgroundResource(R.color.ate_button_disabled_light);
-            } else {
-                holder.vwSelect.setBackgroundColor(Color.TRANSPARENT);
-            }
+            holder.checkBox.setVisibility(View.VISIBLE);
+            // 刷新选择状态
+            holder.checkBox.setChecked(selectList.contains(bookShelfBean.getNoteUrl()));
+            // 设置选择监听
             holder.vwSelect.setOnClickListener(v -> {
                 if (selectList.contains(bookShelfBean.getNoteUrl())) {
                     selectList.remove(bookShelfBean.getNoteUrl());
-                    holder.vwSelect.setBackgroundColor(Color.TRANSPARENT);
+                    holder.checkBox.setChecked(false);
                 } else {
                     selectList.add(bookShelfBean.getNoteUrl());
-                    holder.vwSelect.setBackgroundResource(R.color.ate_button_disabled_light);
+                    holder.checkBox.setChecked(true);
                 }
                 itemClickListener.onClick(v, index);
             });
         } else {
-            holder.vwSelect.setVisibility(View.VISIBLE);
+            // 启用选择按钮与选择背景
+            holder.vwSelect.setVisibility(View.INVISIBLE);
+            holder.checkBox.setVisibility(View.INVISIBLE);
         }
         holder.tvName.setText(bookInfoBean.getName());
         holder.tvName.setBackgroundColor(ThemeStore.backgroundColor(activity));
-
         if (!activity.isFinishing()) {
             holder.ivCover.load(bookShelfBean.getCoverPath(), bookShelfBean.getName(), bookShelfBean.getAuthor());
         }
@@ -155,7 +158,7 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
                 itemClickListener.onLongClick(view, index);
             }
         });
-        if (!Objects.equals(bookshelfPx, "2")) {
+        if (bookshelfPx != 2) {
             holder.ivCover.setOnLongClickListener(v -> {
                 if (itemClickListener != null) {
                     itemClickListener.onLongClick(v, index);
@@ -188,7 +191,7 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
     }
 
     @Override
-    public synchronized void replaceAll(List<BookShelfBean> newDataS, String bookshelfPx) {
+    public synchronized void replaceAll(List<BookShelfBean> newDataS, int bookshelfPx) {
         this.bookshelfPx = bookshelfPx;
         selectList.clear();
         if (null != newDataS && newDataS.size() > 0) {
@@ -219,6 +222,7 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
         BadgeView bvUnread;
         RotateLoading rotateLoading;
         View vwSelect;
+        ATECheckBox checkBox;
         MyViewHolder(View itemView) {
             super(itemView);
             ivCover = itemView.findViewById(R.id.iv_cover);
@@ -227,6 +231,7 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
             rotateLoading = itemView.findViewById(R.id.rl_loading);
             rotateLoading.setLoadingColor(ThemeStore.accentColor(itemView.getContext()));
             vwSelect = itemView.findViewById(R.id.vw_select);
+            checkBox = itemView.findViewById(R.id.checkbox_book);
         }
     }
 }

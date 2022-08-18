@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
+import com.jack.bookshelf.view.dialog.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -40,11 +40,10 @@ import com.jack.bookshelf.utils.GsonUtils;
 import com.jack.bookshelf.utils.IOUtils;
 import com.jack.bookshelf.utils.RealPathUtil;
 import com.jack.bookshelf.utils.StringUtils;
-import com.jack.bookshelf.utils.theme.ATH;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.BookSourceAdapter;
 import com.jack.bookshelf.widget.filepicker.picker.FilePicker;
-import com.jack.bookshelf.widget.modialog.InputDialog;
+import com.jack.bookshelf.view.dialog.InputDialog;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -333,14 +332,17 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
     }
 
     private void deleteSelectDialog() {
-        AlertDialog alertDialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.delete)
+        AlertDialog.builder(this,binding.getRoot(), AlertDialog.NO_TITLE)
                 .setMessage(R.string.del_select_msg)
-                .setPositiveButton(R.string.ok, (dialog, which) -> mPresenter.delData(adapter.getSelectDataList()))
-                .setNegativeButton(R.string.cancel, (dialogInterface, i) -> {
-                })
-                .show();
-        ATH.setAlertDialogTint(alertDialog);
+                .setNegativeButton(R.string.cancel)
+                .setPositiveButton(R.string.delete)
+                .setOnclick(new AlertDialog.OnItemClickListener() {
+                    @Override
+                    public void forNegativeButton() {}
+
+                    @Override
+                    public void forPositiveButton() { mPresenter.delData(adapter.getSelectDataList());}
+                }).show();
     }
 
     private void selectBookSourceFile() {

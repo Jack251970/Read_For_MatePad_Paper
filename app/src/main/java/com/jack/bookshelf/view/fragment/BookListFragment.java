@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,7 +30,6 @@ import com.jack.bookshelf.presenter.ReadBookPresenter;
 import com.jack.bookshelf.presenter.contract.BookListContract;
 import com.jack.bookshelf.utils.NetworkUtils;
 import com.jack.bookshelf.utils.RxUtils;
-import com.jack.bookshelf.utils.theme.ATH;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.activity.BookDetailActivity;
 import com.jack.bookshelf.view.activity.ReadBookActivity;
@@ -39,6 +37,7 @@ import com.jack.bookshelf.view.adapter.BookShelfAdapter;
 import com.jack.bookshelf.view.adapter.BookShelfGridAdapter;
 import com.jack.bookshelf.view.adapter.BookShelfListAdapter;
 import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
+import com.jack.bookshelf.view.dialog.AlertDialog;
 
 import java.util.List;
 
@@ -57,7 +56,7 @@ public class BookListFragment
 
     private CallbackValue callbackValue;
     private FragmentBookListBinding binding;
-    private String bookPx;
+    private int bookPx;
     private boolean resumed = false;
     private boolean isRecreate;
     private int group;
@@ -86,13 +85,14 @@ public class BookListFragment
     @Override
     protected void initData() {
         callbackValue = (CallbackValue) getActivity();
-        bookPx = preferences.getString(getString(R.string.pk_bookshelf_px), "0");
+        bookPx = preferences.getInt(getString(R.string.pk_bookshelf_px), 0);
         isRecreate = callbackValue != null && callbackValue.isRecreate();
     }
 
     @Override
     protected void bindView() {
         super.bindView();
+        // 书架布局
         if (preferences.getInt("bookshelfLayout", 1) == 0) {
             binding.rvBookshelf.setLayoutManager(new LinearLayoutManager(getContext()));
             bookShelfAdapter = new BookShelfListAdapter(getActivity());
@@ -114,6 +114,7 @@ public class BookListFragment
 
     @Override
     protected void bindEvent() {
+        // 书架刷新功能
         binding.refreshLayout.setOnRefreshListener(() -> {
             mPresenter.queryBookShelf(NetworkUtils.isNetWorkAvailable(), group);
             if (!NetworkUtils.isNetWorkAvailable()) {
@@ -124,7 +125,8 @@ public class BookListFragment
         ItemTouchCallback itemTouchCallback = new ItemTouchCallback();
         itemTouchCallback.setSwipeRefreshLayout(binding.refreshLayout);
         itemTouchCallback.setViewPager(callbackValue.getViewPager());
-        if (bookPx.equals("2")) {
+        // 载入书架排序规则
+        if (bookPx == 2) {
             itemTouchCallback.setDragEnable(true);
             ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemTouchCallback);
             itemTouchHelper.attachToRecyclerView(binding.rvBookshelf);
@@ -133,30 +135,32 @@ public class BookListFragment
             ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemTouchCallback);
             itemTouchHelper.attachToRecyclerView(binding.rvBookshelf);
         }
+        // 整理书架
         bookShelfAdapter.setItemClickListener(getAdapterListener());
         itemTouchCallback.setOnItemTouchCallbackListener(bookShelfAdapter.getItemTouchCallbackListener());
         binding.ivBack.setOnClickListener(v -> setArrange(false));
-        binding.ivDel.setOnClickListener(v -> {
-            if (bookShelfAdapter.getSelected().size() == bookShelfAdapter.getBooks().size()) {
-                AlertDialog alertDialog = new AlertDialog.Builder(requireContext())
-                        .setTitle(R.string.delete)
-                        .setMessage(getString(R.string.sure_del_all_book))
-                        .setPositiveButton(R.string.yes, (dialog, which) -> delSelect())
-                        .setNegativeButton(R.string.no, null)
-                        .show();
-                ATH.setAlertDialogTint(alertDialog);
-            } else {
-                delSelect();
-            }
-        });
-        binding.ivSelectAll.setOnClickListener(v -> bookShelfAdapter.selectAll());
+        binding.llDelete.setOnClickListener(v -> {
+            if (bookShelfAdapter.getSelected().size() != 0) {
+                AlertDialog.builder(requireContext(),binding.getRoot(),AlertDialog.NO_TITLE)
+                        .setMessage(R.string.sure_del_book)
+                        .setNegativeButton(R.string.cancel)
+                        .setPositiveButton(R.string.delete)
+                        .setOnclick(new AlertDialog.OnItemClickListener() {
+                            @Override
+                            public void forNegativeButton() {}
+
+                            @Override
+                            public void forPositiveButton() { delSelect();}
+                        }).show();
+            }});
+        binding.llSelectAll.setOnClickListener(v -> bookShelfAdapter.selectAll());
     }
 
     private OnItemClickListenerTwo getAdapterListener() {
         return new OnItemClickListenerTwo() {
             @Override
             public void onClick(View view, int index) {
-                if (binding.actionBar.getVisibility() == View.VISIBLE) {
+                if (binding.toolBar.getVisibility() == View.VISIBLE) {
                     upSelectCount();
                     return;
                 }
@@ -213,11 +217,12 @@ public class BookListFragment
     @Override
     public void refreshBookShelf(List<BookShelfBean> bookShelfBeanList) {
         bookShelfAdapter.replaceAll(bookShelfBeanList, bookPx);
-        if (bookShelfBeanList.size() > 0) {
-            binding.viewEmpty.rlEmptyView.setVisibility(View.GONE);
-        } else {
+        if (bookShelfBeanList.size() == 0) {    // 书架中没有书籍
             binding.viewEmpty.tvEmpty.setText(R.string.bookshelf_empty);
+            binding.viewEmpty.ivEmpty.setVisibility(View.VISIBLE);
             binding.viewEmpty.rlEmptyView.setVisibility(View.VISIBLE);
+        } else {
+            binding.viewEmpty.rlEmptyView.setVisibility(View.GONE);
         }
     }
 
@@ -242,21 +247,35 @@ public class BookListFragment
         binding = null;
     }
 
+    /**
+     * 设置整理书架模式
+     */
     public void setArrange(boolean isArrange) {
         if (bookShelfAdapter != null) {
             bookShelfAdapter.setArrange(isArrange);
             if (isArrange) {
-                binding.actionBar.setVisibility(View.VISIBLE);
+                binding.toolBar.setVisibility(View.VISIBLE);
                 upSelectCount();
             } else {
-                binding.actionBar.setVisibility(View.GONE);
+                binding.toolBar.setVisibility(View.GONE);
             }
         }
     }
 
+    /**
+     * 更新已选择项数与删除按钮启用状态
+     */
     @SuppressLint("DefaultLocale")
     private void upSelectCount() {
-        binding.tvSelectCount.setText(String.format("%d/%d", bookShelfAdapter.getSelected().size(), bookShelfAdapter.getBooks().size()));
+        if (bookShelfAdapter.getSelected().size() == 0) {
+            binding.tvSelectCount.setText(R.string.unselected);
+            binding.tvDelete.setTextColor(getResources().getColor(R.color.mpp_button_unable));
+            binding.ivDelete.setImageResource(R.drawable.ic_delete_unable);
+        } else {
+            binding.tvSelectCount.setText(getString(R.string.have_choose_items, bookShelfAdapter.getSelected().size()));
+            binding.tvDelete.setTextColor(getResources().getColor(R.color.black));
+            binding.ivDelete.setImageResource(R.drawable.ic_delete);
+        }
     }
 
     private void delSelect() {
@@ -267,7 +286,7 @@ public class BookListFragment
             bookShelfAdapter.getSelected().clear();
             emitter.onSuccess(true);
         }).compose(RxUtils::toSimpleSingle)
-                .subscribe(new MySingleObserver<Boolean>() {
+                .subscribe(new MySingleObserver<>() {
                     @Override
                     public void onSuccess(Boolean aBoolean) {
                         mPresenter.queryBookShelf(false, group);

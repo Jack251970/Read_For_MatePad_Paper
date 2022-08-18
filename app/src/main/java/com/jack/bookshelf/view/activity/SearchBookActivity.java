@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
+import com.jack.bookshelf.view.dialog.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -40,7 +40,6 @@ import com.jack.bookshelf.presenter.contract.SearchBookContract;
 import com.jack.bookshelf.utils.ColorUtils;
 import com.jack.bookshelf.utils.Selector;
 import com.jack.bookshelf.utils.SoftInputUtil;
-import com.jack.bookshelf.utils.theme.ATH;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.SearchBookAdapter;
 import com.jack.bookshelf.view.adapter.SearchBookshelfAdapter;
@@ -271,16 +270,17 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
     protected void bindEvent() {
         // 搜索历史的清除按钮
         binding.tvSearchHistoryClean.setOnClickListener(v -> {
-            AlertDialog alertDialog = new AlertDialog.Builder(this)
-                    .setMessage(R.string.clear_all_history)
-                    .setPositiveButton(R.string.ok, (dialog, which) -> {
-                        mExplosionField.explode(binding.tflSearchHistory, true);
-                        mPresenter.cleanSearchHistory();
-                    })
-                    .setNegativeButton(R.string.cancel, (dialogInterface, i) -> {
-                    })
-                    .show();
-            ATH.setAlertDialogTint(alertDialog);
+            AlertDialog.builder(this,binding.getRoot(), AlertDialog.NO_TITLE)
+                    .setMessage(R.string.delete_all_history)
+                    .setNegativeButton(R.string.cancel)
+                    .setPositiveButton(R.string.delete)
+                    .setOnclick(new AlertDialog.OnItemClickListener() {
+                        @Override
+                        public void forNegativeButton() {}
+
+                        @Override
+                        public void forPositiveButton() { mPresenter.cleanSearchHistory();;}
+                    }).show();
         });
 
         // 搜索历史其他按钮

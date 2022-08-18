@@ -23,7 +23,6 @@ import com.jack.bookshelf.view.fragment.SettingsFragment;
  */
 
 public class SettingActivity extends MBaseActivity<IPresenter> {
-
     private ActivitySettingsBinding binding;
     private final SettingsFragment settingsFragment = new SettingsFragment();
 
@@ -50,9 +49,7 @@ public class SettingActivity extends MBaseActivity<IPresenter> {
     }
 
     @Override
-    protected void initData() {
-
-    }
+    protected void initData() {}
 
     //设置ToolBar
     public void setupActionBar(String title) {

@@ -77,7 +77,7 @@ import com.jack.bookshelf.view.popupwindow.ReadLongPressPop;
 import com.jack.bookshelf.widget.modialog.BookmarkDialog;
 import com.jack.bookshelf.widget.modialog.ChangeSourceDialog;
 import com.jack.bookshelf.widget.modialog.DownLoadDialog;
-import com.jack.bookshelf.widget.modialog.InputDialog;
+import com.jack.bookshelf.view.dialog.InputDialog;
 import com.jack.bookshelf.widget.modialog.MoDialogHUD;
 import com.jack.bookshelf.widget.modialog.ReplaceRuleDialog;
 import com.jack.bookshelf.widget.page.PageLoader;

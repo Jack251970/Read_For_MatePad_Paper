@@ -1,4 +1,4 @@
-package com.jack.bookshelf.widget.modialog;
+package com.jack.bookshelf.view.dialog;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.jack.bookshelf.R;
+import com.jack.bookshelf.widget.modialog.BaseDialog;
 import com.jack.bookshelf.widget.views.ATEAutoCompleteTextView;
 
 import java.util.List;

@@ -3,7 +3,7 @@ package com.jack.bookshelf.view.activity;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
+import com.jack.bookshelf.view.dialog.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -128,18 +128,22 @@ public class ImportBookActivity extends BaseViewPagerWithTabActivity<ImportBookC
 
         binding.fileSystemBtnDelete.setOnClickListener(
                 (v) -> {
-                    //弹出，确定删除文件吗。
-                    new AlertDialog.Builder(this)
-                            .setTitle(getString(R.string.del_file))
-                            .setMessage(getString(R.string.sure_del_file))
-                            .setPositiveButton(getResources().getString(R.string.ok), (dialog, which) -> {
-                                //删除选中的文件
-                                mCurFragment.deleteCheckedFiles();
-                                //提示删除文件成功
-                                toast(R.string.del_file_success);
-                            })
-                            .setNegativeButton(getResources().getString(R.string.cancel), null)
-                            .show();
+                    AlertDialog.builder(this,binding.getRoot(), AlertDialog.NO_TITLE)
+                            .setMessage(R.string.sure_del_file)
+                            .setNegativeButton(R.string.cancel)
+                            .setPositiveButton(R.string.delete)
+                            .setOnclick(new AlertDialog.OnItemClickListener() {
+                                @Override
+                                public void forNegativeButton() {}
+
+                                @Override
+                                public void forPositiveButton() {
+                                    //删除选中的文件
+                                    mCurFragment.deleteCheckedFiles();
+                                    //提示删除文件成功
+                                    toast(R.string.del_file_success);
+                                }
+                            }).show();
                 }
         );
         mCategoryFragment.setOnFileCheckedListener(mListener);

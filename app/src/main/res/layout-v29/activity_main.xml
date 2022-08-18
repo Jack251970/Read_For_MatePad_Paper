@@ -294,7 +294,7 @@
                         android:gravity="center_vertical"
                         android:textColor="@color/mpp_text_light"
                         android:textSize="16sp"
-                        android:text="搜索书名、作者"
+                        android:text="@string/search_book_name_or_author"
                         android:textStyle="bold"/>
                 </LinearLayout>
                 <Space
@@ -530,7 +530,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:visibility="invisible"
-                        android:src="@drawable/viewpager_indicator"/>
+                        android:src="@drawable/viewpager_indicator"
+                        android:contentDescription="ViewPager指示器" />
                 </LinearLayout>
             </LinearLayout>
 

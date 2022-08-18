@@ -40,7 +40,7 @@ import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.fragment.BookListFragment;
 import com.jack.bookshelf.view.popupmenu.MoreSettingMenuMain;
 import com.jack.bookshelf.view.popupmenu.SelectMenu;
-import com.jack.bookshelf.widget.modialog.InputDialog;
+import com.jack.bookshelf.view.dialog.InputDialog;
 
 import java.util.List;
 import java.util.Objects;
@@ -110,9 +110,7 @@ public class MainActivity
                         }
 
                         @Override
-                        public void delete(String value) {
-
-                        }
+                        public void delete(String value) {}
                     }).show();
             preferences.edit()
                     .putString("shared_url", "")
@@ -250,7 +248,7 @@ public class MainActivity
                         .setTitle(getString(R.string.sequence_book))
                         .setBottomButton(getString(R.string.cancel))
                         .setMenu(getResources().getStringArray(R.array.sequence_book),
-                                Integer.parseInt(preferences.getString("bookshelf_px", "0")))
+                                preferences.getInt(getString(R.string.pk_bookshelf_px), 0))
                         .setOnclick(new SelectMenu.OnItemClickListener() {
                             @Override
                             public void forBottomButton() {}
@@ -258,7 +256,7 @@ public class MainActivity
                             @Override
                             public void changeArrangeRule(int lastChoose, int position) {
                                 if (position != lastChoose) {
-                                    preferences.edit().putString("bookshelf_px",String.valueOf(position)).apply();
+                                    preferences.edit().putInt(getString(R.string.pk_bookshelf_px),position).apply();
                                     RxBus.get().post(RxBusTag.RECREATE, true);
                                 }
                             }
