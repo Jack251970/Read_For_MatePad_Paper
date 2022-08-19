@@ -58,7 +58,7 @@ public class SelectMenu extends PopupWindow{
         lvMenu.setAdapter(adapter);
         lvMenu.setOnItemClickListener((parent, view, position, id) -> {
             dismiss();
-            itemClick.changeArrangeRule(lastChoose, position);
+            itemClick.forListItem(lastChoose, position);
         });
         return this;
     }
@@ -94,6 +94,6 @@ public class SelectMenu extends PopupWindow{
     public interface OnItemClickListener {
         void forBottomButton();
 
-        void changeArrangeRule(int lastChoose, int position);
+        void forListItem(int lastChoose, int position);
     }
 }

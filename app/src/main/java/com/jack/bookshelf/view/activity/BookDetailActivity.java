@@ -317,7 +317,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
                     public void forBottomButton() {}
 
                     @Override
-                    public void changeArrangeRule(int lastChoose, int position) {
+                    public void forListItem(int lastChoose, int position) {
                         if (position != lastChoose) {
                             mPresenter.getBookShelf().setGroup(position);
                         }

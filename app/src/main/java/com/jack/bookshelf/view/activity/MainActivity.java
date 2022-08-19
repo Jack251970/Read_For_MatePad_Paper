@@ -62,6 +62,7 @@ public class MainActivity
     private long exitTime = 0;
     private boolean resumed = false;
     private final Handler handler = new Handler(Looper.getMainLooper());
+
     private MoreSettingMenu moreSettingMenu;
 
     @Override
@@ -247,7 +248,7 @@ public class MainActivity
                                         public void forBottomButton() {}
 
                                         @Override
-                                        public void changeArrangeRule(int lastChoose, int position) {
+                                        public void forListItem(int lastChoose, int position) {
                                             if (position != lastChoose) {
                                                 preferences.edit().putInt(getString(R.string.pk_bookshelf_px),position).apply();
                                                 RxBus.get().post(RxBusTag.RECREATE, true);
