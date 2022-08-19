@@ -38,7 +38,7 @@ import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.fragment.BookListFragment;
-import com.jack.bookshelf.view.popupmenu.MoreSettingMenuMain;
+import com.jack.bookshelf.view.popupmenu.MoreSettingMenu;
 import com.jack.bookshelf.view.popupmenu.SelectMenu;
 import com.jack.bookshelf.view.dialog.InputDialog;
 
@@ -62,7 +62,7 @@ public class MainActivity
     private long exitTime = 0;
     private boolean resumed = false;
     private final Handler handler = new Handler(Looper.getMainLooper());
-    private MoreSettingMenuMain moreSettingMenuMain;
+    private MoreSettingMenu moreSettingMenu;
 
     @Override
     protected MainContract.Presenter initInjector() {
@@ -209,8 +209,8 @@ public class MainActivity
         binding.mppIvSelectLayoutMain.setOnClickListener(view -> changeBookshelfLayout());
         // 主界面更多选项事件
         binding.mppIvMoreSettingsMain.setOnClickListener(view -> {
-            if (!moreSettingMenuMain.isShowing()) {
-                moreSettingMenuMain.show(binding.mppLlContentMain, binding.mppIvMoreSettingsMain);
+            if (!moreSettingMenu.isShowing()) {
+                moreSettingMenu.show(binding.mppLlContentMain, binding.mppIvMoreSettingsMain);
             }
         });
         // 书籍类别切换事件
@@ -225,52 +225,49 @@ public class MainActivity
      * 初始化更多选项菜单
      */
     private void initMoreSetting() {
-        moreSettingMenuMain = new MoreSettingMenuMain(this, new MoreSettingMenuMain.OnItemClickListener() {
-            @Override
-            public void downloadAll() {
-                if (!isNetWorkAvailable()) {
-                    ToastsKt.toast(MainActivity.this, R.string.network_connection_unavailable, Toast.LENGTH_SHORT);
-                } else {
-                    RxBus.get().post(RxBusTag.DOWNLOAD_ALL, 10000);
-                }
-            }
-
-            @Override
-            public void arrangeBookshelf() {
-                if (getBookListFragment() != null) {
-                    getBookListFragment().setArrange(true);
-                }
-            }
-
-            @Override
-            public void selectSequenceRule() {
-                SelectMenu.builder(MainActivity.this, binding.mppLlContentMain)
-                        .setTitle(getString(R.string.sequence_book))
-                        .setBottomButton(getString(R.string.cancel))
-                        .setMenu(getResources().getStringArray(R.array.sequence_book),
-                                preferences.getInt(getString(R.string.pk_bookshelf_px), 0))
-                        .setOnclick(new SelectMenu.OnItemClickListener() {
-                            @Override
-                            public void forBottomButton() {}
-
-                            @Override
-                            public void changeArrangeRule(int lastChoose, int position) {
-                                if (position != lastChoose) {
-                                    preferences.edit().putInt(getString(R.string.pk_bookshelf_px),position).apply();
-                                    RxBus.get().post(RxBusTag.RECREATE, true);
-                                }
+        moreSettingMenu = MoreSettingMenu.builder(this)
+                .setMenu(getResources().getStringArray(R.array.more_setting_menu_main))
+                .setOnclick(position -> {
+                    switch (position) {
+                        case 0:
+                            if (!isNetWorkAvailable()) {
+                                ToastsKt.toast(MainActivity.this, R.string.network_connection_unavailable, Toast.LENGTH_SHORT);
+                            } else {
+                                RxBus.get().post(RxBusTag.DOWNLOAD_ALL, 10000);
                             }
-                        }).show();
-            }
+                            break;
+                        case 1:
+                            SelectMenu.builder(MainActivity.this, binding.getRoot())
+                                    .setTitle(getString(R.string.sequence_book))
+                                    .setBottomButton(getString(R.string.cancel))
+                                    .setMenu(getResources().getStringArray(R.array.sequence_book),
+                                            preferences.getInt(getString(R.string.pk_bookshelf_px), 0))
+                                    .setOnclick(new SelectMenu.OnItemClickListener() {
+                                        @Override
+                                        public void forBottomButton() {}
 
-            @Override
-            public void startWebService() {
-                boolean startedThisTime = WebService.startThis(MainActivity.this);
-                if (!startedThisTime) {
-                    ToastsKt.toast(MainActivity.this,getString(R.string.web_service_already_started),Toast.LENGTH_SHORT);
-                }
-            }
-        });
+                                        @Override
+                                        public void changeArrangeRule(int lastChoose, int position) {
+                                            if (position != lastChoose) {
+                                                preferences.edit().putInt(getString(R.string.pk_bookshelf_px),position).apply();
+                                                RxBus.get().post(RxBusTag.RECREATE, true);
+                                            }
+                                        }
+                                    }).show();
+                            break;
+                        case 2:
+                            if (getBookListFragment() != null) {
+                                getBookListFragment().setArrange(true);
+                            }
+                            break;
+                        case 3:
+                            boolean startedThisTime = WebService.startThis(MainActivity.this);
+                            if (!startedThisTime) {
+                                ToastsKt.toast(MainActivity.this,getString(R.string.web_service_already_started),Toast.LENGTH_SHORT);
+                            }
+                            break;
+                    }
+                });
     }
 
     /**

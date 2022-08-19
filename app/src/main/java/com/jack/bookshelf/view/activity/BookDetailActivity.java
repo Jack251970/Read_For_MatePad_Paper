@@ -1,7 +1,6 @@
 package com.jack.bookshelf.view.activity;
 
 import static com.jack.bookshelf.presenter.BookDetailPresenter.FROM_BOOKSHELF;
-import static com.jack.bookshelf.utils.NetworkUtils.isNetWorkAvailable;
 
 import android.annotation.SuppressLint;
 import android.content.ClipData;
@@ -11,13 +10,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
-import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.View;
-import android.widget.PopupMenu;
-import android.widget.RadioButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -38,11 +32,8 @@ import com.jack.bookshelf.model.BookSourceManager;
 import com.jack.bookshelf.presenter.BookDetailPresenter;
 import com.jack.bookshelf.presenter.ReadBookPresenter;
 import com.jack.bookshelf.presenter.contract.BookDetailContract;
-import com.jack.bookshelf.service.WebService;
 import com.jack.bookshelf.utils.StringUtils;
-import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.view.popupmenu.MoreSettingMenuBookDetail;
-import com.jack.bookshelf.view.popupmenu.MoreSettingMenuMain;
 import com.jack.bookshelf.view.popupmenu.SelectMenu;
 import com.jack.bookshelf.widget.modialog.ChangeSourceDialog;
 import com.jack.bookshelf.widget.modialog.MoDialogHUD;

@@ -2,7 +2,6 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <size
-        android:height="200dp"
         android:width="@dimen/more_setting_menu_width"/>
     <corners android:radius="@dimen/more_setting_menu_radius" />
     <stroke
