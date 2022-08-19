@@ -25,6 +25,12 @@ public class SelectMenuAdapter extends BaseAdapter{
     private final List<String> menuList;
     private final int lastChoose;
 
+    public SelectMenuAdapter(Context context, List<String> menuList) {
+        this.mContext = context;
+        this.menuList = menuList;
+        this.lastChoose = -1;
+    }
+
     public SelectMenuAdapter(Context context, List<String> menuList, int lastChoose) {
         this.mContext = context;
         this.menuList = menuList;
@@ -52,7 +58,9 @@ public class SelectMenuAdapter extends BaseAdapter{
         holder.iv_indicator_select_menu_item = convertView.findViewById(R.id.mpp_iv_indicator_select_menu_item);
         String menuName = menuList.get(position);
         holder.tv_name_select_menu_item.setText(menuName);
-        if (position == lastChoose) {
+        if (lastChoose == -1) {
+            holder.iv_indicator_select_menu_item.setVisibility(View.GONE);
+        } else if (position == lastChoose) {
             holder.iv_indicator_select_menu_item.setImageResource(R.drawable.ic_select_menu_selected);
         }
         return convertView;

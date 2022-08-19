@@ -251,7 +251,7 @@
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="27"/>
+                android:layout_weight="39"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -306,7 +306,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="44"
+                android:layout_weight="32"
                 android:orientation="vertical">
                 <Space
                     android:layout_width="match_parent"
@@ -317,26 +317,14 @@
                     android:layout_height="0dp"
                     android:layout_weight="24"
                     android:orientation="horizontal">
-
                     <Space
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="9"/>
                     <ImageView
-                        android:id="@+id/mpp_iv_add_local_main"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/mpp_ic_add"
-                        android:contentDescription="添加本地书籍" />
-                    <Space
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="8"/>
-                    <ImageView
                         android:id="@+id/mpp_iv_import_online_main"
                         android:layout_width="36dp"
-                        android:layout_height="36dp"
+                        android:layout_height="32dp"
                         android:layout_gravity="center_vertical"
                         android:src="@drawable/mpp_ic_import"
                         android:contentDescription="导入网络书籍" />

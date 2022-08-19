@@ -307,7 +307,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
         });
         // 分组点击事件
         binding.tvManageGroups.setOnClickListener(v ->
-                SelectMenu.builder(BookDetailActivity.this, binding.iflContent)
+                SelectMenu.builder(this, binding.getRoot())
                 .setTitle(getString(R.string.manage_groups))
                 .setBottomButton(getString(R.string.cancel))
                 .setMenu(getResources().getStringArray(R.array.book_groups),

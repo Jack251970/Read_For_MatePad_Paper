@@ -2,6 +2,11 @@
 
 *此版本仅适配华为MatepadPaper,其他设备极大概率存在不适配问题！*
 
+**2022/08/19**
+* 重写了MoreSettingMenu的实现
+* 整合了主界面导入书籍的功能
+* 扩展了SelectMenu的功能
+
 **2022/08/18**
 * 重新绘制了AlertDialog使之符合华为墨水屏设备风格
 * 重新绘制了BookListFragment使之符合华为墨水屏设备风格

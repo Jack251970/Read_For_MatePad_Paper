@@ -64,6 +64,7 @@ public class MainActivity
     private final Handler handler = new Handler(Looper.getMainLooper());
 
     private MoreSettingMenu moreSettingMenu;
+    private SelectMenu selectMenu;
 
     @Override
     protected MainContract.Presenter initInjector() {
@@ -170,8 +171,8 @@ public class MainActivity
         initGroupIcon(group);
         // 更新书籍类别
         upGroup(group);
-        // 初始化更多选项菜单
-        initMoreSetting();
+        // 初始化一级菜单
+        initMenu();
         // 左侧边栏事件
         binding.mppLlMineMain.setOnClickListener(view ->
                 AboutActivity.startThis(this));
@@ -190,28 +191,18 @@ public class MainActivity
         // 主界面搜索栏事件
         binding.mppLlSearchMain.setOnClickListener(view -> MainActivity.this
                 .startActivity(new Intent(MainActivity.this, SearchBookActivity.class)));
-        // 主界面添加本地事件
-        binding.mppIvAddLocalMain.setOnClickListener(view -> importLocalBooks());
-        // 主界面导入网络事件
-        binding.mppIvImportOnlineMain.setOnClickListener(view ->
-                InputDialog.builder(this)
-                        .setTitle(getString(R.string.add_book_url))
-                        .setCallback(new InputDialog.Callback() {
-                            @Override
-                            public void setInputText(String inputText) {
-                                inputText = StringUtils.trim(inputText);
-                                mPresenter.addBookUrl(inputText);
-                            }
-
-                            @Override
-                            public void delete(String value) {}
-                        }).show());
+        // 主界面导入书籍事件
+        binding.mppIvImportOnlineMain.setOnClickListener(view -> {
+            if (!selectMenu.isShowing()) {
+                selectMenu.show();
+            }
+            });
         // 主界面选择书架布局事件
         binding.mppIvSelectLayoutMain.setOnClickListener(view -> changeBookshelfLayout());
         // 主界面更多选项事件
         binding.mppIvMoreSettingsMain.setOnClickListener(view -> {
             if (!moreSettingMenu.isShowing()) {
-                moreSettingMenu.show(binding.mppLlContentMain, binding.mppIvMoreSettingsMain);
+                moreSettingMenu.show(binding.getRoot(), binding.mppIvMoreSettingsMain);
             }
         });
         // 书籍类别切换事件
@@ -223,9 +214,9 @@ public class MainActivity
     }
 
     /**
-     * 初始化更多选项菜单
+     * 初始化一级菜单
      */
-    private void initMoreSetting() {
+    private void initMenu() {
         moreSettingMenu = MoreSettingMenu.builder(this)
                 .setMenu(getResources().getStringArray(R.array.more_setting_menu_main))
                 .setOnclick(position -> {
@@ -269,6 +260,26 @@ public class MainActivity
                             break;
                     }
                 });
+        selectMenu = SelectMenu.builder(this, binding.getRoot())
+                .setTitle(getString(R.string.import_book))
+                .setBottomButton(getString(R.string.cancel))
+                .setMenu(getResources().getStringArray(R.array.import_book))
+                .setOnclick(new SelectMenu.OnItemClickListener() {
+                    @Override
+                    public void forBottomButton() {}
+
+                    @Override
+                    public void forListItem(int lastChoose, int position) {
+                        switch (position) {
+                            case 0:
+                                importLocalBooks();
+                                break;
+                            case 1:
+                                importOnlineBooks();
+                                break;
+                        }
+                    }
+                });
     }
 
     /**
@@ -283,6 +294,24 @@ public class MainActivity
                     return Unit.INSTANCE;
                 })
                 .request();
+    }
+
+    /**
+     * 导入网络书籍
+     */
+    private void importOnlineBooks() {
+        InputDialog.builder(this)
+                .setTitle(getString(R.string.add_book_url))
+                .setCallback(new InputDialog.Callback() {
+                    @Override
+                    public void setInputText(String inputText) {
+                        inputText = StringUtils.trim(inputText);
+                        mPresenter.addBookUrl(inputText);
+                    }
+
+                    @Override
+                    public void delete(String value) {}
+                }).show();
     }
 
     /**

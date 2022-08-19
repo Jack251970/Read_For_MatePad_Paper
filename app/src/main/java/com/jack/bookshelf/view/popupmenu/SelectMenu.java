@@ -52,6 +52,17 @@ public class SelectMenu extends PopupWindow{
         return this;
     }
 
+    public SelectMenu setMenu (String[] menuList) {
+        List<String> menuNameList = Arrays.asList(menuList);
+        SelectMenuAdapter adapter = new SelectMenuAdapter(context, menuNameList);
+        lvMenu.setAdapter(adapter);
+        lvMenu.setOnItemClickListener((parent, view, position, id) -> {
+            dismiss();
+            itemClick.forListItem(-1, position);
+        });
+        return this;
+    }
+
     public SelectMenu setMenu (String[] menuList, int lastChoose) {
         List<String> menuNameList = Arrays.asList(menuList);
         SelectMenuAdapter adapter = new SelectMenuAdapter(context, menuNameList, lastChoose);
