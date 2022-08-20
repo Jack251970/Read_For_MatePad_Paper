@@ -59,8 +59,10 @@
         <item name="cornerRadius">@dimen/dialog_radius</item>
     </style>
 
-
-
+    <!-- MatepadPaper ToolBar Theme -->
+    <style name="PaperToolbarTheme" parent="Base.Widget.AppCompat.Toolbar">
+        <item name="actionBarItemBackground">@color/transparent</item>
+    </style>
 
 
 

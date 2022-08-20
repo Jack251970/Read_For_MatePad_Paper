@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import com.jack.basemvplib.BitIntentDataManager;
 import com.jack.bookshelf.MApplication;
@@ -38,6 +37,7 @@ import com.jack.bookshelf.view.adapter.BookShelfGridAdapter;
 import com.jack.bookshelf.view.adapter.BookShelfListAdapter;
 import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
 import com.jack.bookshelf.view.dialog.AlertDialog;
+import com.jack.bookshelf.widget.viewpager.ViewPager;
 
 import java.util.List;
 

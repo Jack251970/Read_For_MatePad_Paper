@@ -292,7 +292,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="60"
                         android:gravity="center_vertical"
-                        android:textColor="@color/mpp_text_light"
+                        android:textColor="@color/text_light"
                         android:textSize="16sp"
                         android:text="@string/search_book_name_or_author"
                         android:textStyle="bold"/>
@@ -576,7 +576,7 @@
             android:layout_weight="158"
             android:orientation="vertical">
 
-            <androidx.viewpager.widget.ViewPager
+            <com.jack.bookshelf.widget.viewpager.ViewPager
                 android:id="@+id/tab_vp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

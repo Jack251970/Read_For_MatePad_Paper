@@ -1,14 +1,15 @@
 package com.jack.bookshelf.base;
 
+import android.widget.ImageView;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import com.jack.basemvplib.impl.IPresenter;
 import com.jack.bookshelf.R;
-
+import com.jack.bookshelf.widget.viewpager.ViewPager;
 import java.util.List;
 
 /**
@@ -22,8 +23,11 @@ public abstract class BaseViewPagerActivity<T extends IPresenter> extends MBaseA
     protected ViewPager mVp;
     protected TabFragmentPageAdapter tabFragmentPageAdapter;
     protected List<Fragment> mFragmentList;
+    // private List<ImageView> mIndicatorList;
+    // private int lastChoose;
 
     protected abstract List<Fragment> createTabFragments();
+    // private abstract List<ImageView> createTabIndicators();
 
     @Override
     protected void bindView() {
@@ -34,9 +38,19 @@ public abstract class BaseViewPagerActivity<T extends IPresenter> extends MBaseA
 
     private void setUpViewPager() {
         mFragmentList = createTabFragments();
+        // mIndicatorList = createTabIndicators();
         tabFragmentPageAdapter = new TabFragmentPageAdapter(getSupportFragmentManager());
         mVp.setAdapter(tabFragmentPageAdapter);
         mVp.setOffscreenPageLimit(3);
+        //
+    }
+
+    public void setCurrentItem(int item) {
+        if (mVp.getCurrentItem() != item) {
+            mVp.setCurrentItem(item);
+        }
+        //
+        //
     }
 
     public class TabFragmentPageAdapter extends FragmentPagerAdapter {

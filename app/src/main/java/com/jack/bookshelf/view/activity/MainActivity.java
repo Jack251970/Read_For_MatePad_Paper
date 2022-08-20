@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import com.hwangjr.rxbus.RxBus;
 import com.jack.bookshelf.BuildConfig;
@@ -41,6 +40,7 @@ import com.jack.bookshelf.view.fragment.BookListFragment;
 import com.jack.bookshelf.view.popupmenu.MoreSettingMenu;
 import com.jack.bookshelf.view.popupmenu.SelectMenu;
 import com.jack.bookshelf.view.dialog.InputDialog;
+import com.jack.bookshelf.widget.viewpager.ViewPager;
 
 import java.util.List;
 import java.util.Objects;
@@ -196,7 +196,7 @@ public class MainActivity
             if (!selectMenu.isShowing()) {
                 selectMenu.show();
             }
-            });
+        });
         // 主界面选择书架布局事件
         binding.mppIvSelectLayoutMain.setOnClickListener(view -> changeBookshelfLayout());
         // 主界面更多选项事件

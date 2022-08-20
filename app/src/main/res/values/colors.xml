@@ -7,14 +7,13 @@
 
     <!-- Matepad Paper Color -->
     <!-- Base color-->
-
+    <color name="text_light">#cccccc</color>
     <!-- Main Color -->
     <color name="colorPrimary">@color/md_white_1000</color>
     <color name="background">@color/colorPrimary</color>
     <color name="colorAccent">@color/md_black_1000</color>
     <!-- NavigationBar-->
     <color name="mpp_navigation_bar_line">#dcdcdc</color>
-    <color name="mpp_text_light">#cccccc</color>
     <!-- Button Color -->
     <color name="mpp_button_unable">#afafaf</color>
 

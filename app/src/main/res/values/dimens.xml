@@ -8,6 +8,9 @@
         <dimen name="button_height">42dp</dimen>
         <dimen name="button_radius">21dp</dimen>
         <dimen name="button_stroke_width">2px</dimen>
+        <!-- ViewPager -->
+        <dimen name="viewpager_radius">16dp</dimen>
+        <dimen name="viewpager_stroke_width">1dp</dimen>
         <!-- ViewPager Indicator -->
         <dimen name="viewpager_indicator_height">4dp</dimen>
         <dimen name="viewpager_indicator_stroke_width">1dp</dimen>

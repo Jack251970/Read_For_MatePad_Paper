@@ -1,14 +1,14 @@
 package com.jack.bookshelf.view.activity;
 
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
-import com.jack.bookshelf.view.dialog.AlertDialog;
+
+import com.jack.bookshelf.base.BaseViewPagerActivity;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import com.jack.bookshelf.R;
-import com.jack.bookshelf.base.BaseViewPagerWithTabActivity;
 import com.jack.bookshelf.databinding.ActivityImportBookBinding;
 import com.jack.bookshelf.presenter.ImportBookPresenter;
 import com.jack.bookshelf.presenter.contract.ImportBookContract;
@@ -16,22 +16,25 @@ import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.fragment.BaseFileFragment;
 import com.jack.bookshelf.view.fragment.FileCategoryFragment;
 import com.jack.bookshelf.view.fragment.LocalBookFragment;
+import com.jack.bookshelf.widget.viewpager.ViewPager;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 /**
- * 导入本地书籍界面
+ * Import Local Book
+ * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
-public class ImportBookActivity extends BaseViewPagerWithTabActivity<ImportBookContract.Presenter> implements ImportBookContract.View {
+public class ImportBookActivity extends BaseViewPagerActivity<ImportBookContract.Presenter> implements ImportBookContract.View {
 
     private ActivityImportBookBinding binding;
     private LocalBookFragment mLocalFragment;
     private FileCategoryFragment mCategoryFragment;
     private BaseFileFragment mCurFragment;
+    private boolean ifSelectAll = false;
 
     private final BaseFileFragment.OnFileCheckedListener mListener = new BaseFileFragment.OnFileCheckedListener() {
         @Override
@@ -41,12 +44,10 @@ public class ImportBookActivity extends BaseViewPagerWithTabActivity<ImportBookC
 
         @Override
         public void onCategoryChanged() {
-            //状态归零
+            // 状态归零
             mCurFragment.setCheckedAll(false);
-            //改变菜单
+            // 改变菜单
             changeMenuStatus();
-            //改变是否能够全选
-            changeCheckedAllStatus();
         }
     };
 
@@ -60,8 +61,8 @@ public class ImportBookActivity extends BaseViewPagerWithTabActivity<ImportBookC
         getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivityImportBookBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setSupportActionBar(binding.toolbar);
-        setupActionBar();
+        // 初始化TabIndicator
+        binding.ivLocalBookIndicator.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -70,80 +71,60 @@ public class ImportBookActivity extends BaseViewPagerWithTabActivity<ImportBookC
     @Override
     protected void bindView() {
         super.bindView();
-        mTlIndicator.setSelectedTabIndicatorColor(ThemeStore.accentColor(this));
-        mTlIndicator.setTabTextColors(getResources().getColor(R.color.tv_text_default), ThemeStore.accentColor(this));
     }
 
     @Override
     protected List<Fragment> createTabFragments() {
-        mCategoryFragment = new FileCategoryFragment();
-        mLocalFragment = new LocalBookFragment();
+        mCategoryFragment = new FileCategoryFragment(); // 本机目录
+        mLocalFragment = new LocalBookFragment();   // 智能导入
         return Arrays.asList(mCategoryFragment, mLocalFragment);
     }
 
     @Override
-    protected List<String> createTabTitles() {
-        return Arrays.asList("智能导入", "本机目录");
-    }
-
-    @Override
     protected void bindEvent() {
-        binding.fileSystemCbSelectedAll.setOnClickListener(
-                (view) -> {
-                    //设置全选状态
-                    boolean isChecked = binding.fileSystemCbSelectedAll.isChecked();
-                    mCurFragment.setCheckedAll(isChecked);
-                    //改变菜单状态
-                    changeMenuStatus();
-                }
-        );
-
+        // 返回事件
+        binding.ivBack.setOnClickListener(v -> finish());
+        // 界面改变事件
+        binding.tvLocalBook.setOnClickListener(v -> {
+            setCurrentItem(0);
+            binding.ivLocalBookIndicator.setVisibility(View.VISIBLE);
+            binding.ivSmartImportIndicator.setVisibility(View.INVISIBLE);
+        });
+        binding.tvSmartImport.setOnClickListener(v -> {
+            setCurrentItem(1);
+            binding.ivLocalBookIndicator.setVisibility(View.INVISIBLE);
+            binding.ivSmartImportIndicator.setVisibility(View.VISIBLE);
+        });
+        // 界面改变事件监听
         mVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
 
             @Override
             public void onPageSelected(int position) {
                 mCurFragment = (BaseFileFragment) mFragmentList.get(position);
-                //改变菜单状态
                 changeMenuStatus();
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
+            public void onPageScrollStateChanged(int state) {}
         });
-
+        // 加入书架事件
         binding.fileSystemBtnAddBook.setOnClickListener(
                 (v) -> {
-                    //获取选中的文件
+                    // 获取选中的文件
                     List<File> files = mCurFragment.getCheckedFiles();
-                    //转换成CollBook,并存储
+                    // 转换成CollBook,并存储
                     mPresenter.importBooks(files);
                 }
         );
-
-        binding.fileSystemBtnDelete.setOnClickListener(
-                (v) -> {
-                    AlertDialog.builder(this,binding.getRoot(), AlertDialog.NO_TITLE)
-                            .setMessage(R.string.sure_del_file)
-                            .setNegativeButton(R.string.cancel)
-                            .setPositiveButton(R.string.delete)
-                            .setOnclick(new AlertDialog.OnItemClickListener() {
-                                @Override
-                                public void forNegativeButton() {}
-
-                                @Override
-                                public void forPositiveButton() {
-                                    //删除选中的文件
-                                    mCurFragment.deleteCheckedFiles();
-                                    //提示删除文件成功
-                                    toast(R.string.del_file_success);
-                                }
-                            }).show();
+        binding.fileSystemCbSelectedAll.setOnClickListener(
+                (view) -> {
+                    // 设置全选状态
+                    ifSelectAll = !ifSelectAll;
+                    mCurFragment.setCheckedAll(ifSelectAll);
+                    // 改变菜单状态
+                    changeMenuStatus();
                 }
         );
         mCategoryFragment.setOnFileCheckedListener(mListener);
@@ -156,105 +137,76 @@ public class ImportBookActivity extends BaseViewPagerWithTabActivity<ImportBookC
         mCurFragment = (BaseFileFragment) mFragmentList.get(0);
     }
 
-    // 设置顶部信息栏
-    private void setupActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("导入本地书籍");
-        }
-    }
-
-    // 菜单
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     /**
      * 改变底部选择栏的状态
      */
     private void changeMenuStatus() {
-
-        //点击、删除状态的设置
-        if (mCurFragment.getCheckedCount() == 0) {
-            binding.fileSystemBtnAddBook.setText(getString(R.string.nb_file_add_shelf));
-            //设置某些按钮的是否可点击
-            setMenuClickable(false);
-
-            if (binding.fileSystemCbSelectedAll.isChecked()) {
+        // 加入书架按钮状态设置,全选状态刷新
+        if (mCurFragment.getCheckedCount() == 0) {  // 选中数量为0
+            // 加入书籍按钮禁用
+            changeAddToBookshelfStatus(false);
+            // 全选状态刷新
+            if (ifSelectAll) {
                 mCurFragment.setChecked(false);
-                binding.fileSystemCbSelectedAll.setChecked(mCurFragment.isCheckedAll());
+                ifSelectAll = mCurFragment.isCheckedAll();
             }
-
-        } else {
-            binding.fileSystemBtnAddBook.setText(getString(R.string.nb_file_add_shelves, mCurFragment.getCheckedCount()));
-            setMenuClickable(true);
-
-            //全选状态的设置
-
-            //如果选中的全部的数据，则判断为全选
+        } else {    // 选中数量不为0
+            // 加入书籍按钮启用
+            changeAddToBookshelfStatus(true);
+            // 如果选中的全部的数据，则设置为全选
             if (mCurFragment.getCheckedCount() == mCurFragment.getCheckableCount()) {
-                //设置为全选
                 mCurFragment.setChecked(true);
-                binding.fileSystemCbSelectedAll.setChecked(mCurFragment.isCheckedAll());
-            }
-            //如果曾今是全选则替换
-            else if (mCurFragment.isCheckedAll()) {
+                ifSelectAll = mCurFragment.isCheckedAll();
+            } else if (mCurFragment.isCheckedAll()) { // 如果曾经是全选则替换
                 mCurFragment.setChecked(false);
-                binding.fileSystemCbSelectedAll.setChecked(mCurFragment.isCheckedAll());
+                ifSelectAll = mCurFragment.isCheckedAll();
             }
         }
-
-        //重置全选的文字
-        if (mCurFragment.isCheckedAll()) {
-            binding.fileSystemCbSelectedAll.setText(R.string.cancel);
-        } else {
-            binding.fileSystemCbSelectedAll.setText(getString(R.string.select_all));
-        }
-
+        // 全选按钮状态设置
+        changeCheckedAllStatus();
     }
 
-    private void setMenuClickable(boolean isClickable) {
-
-        //设置是否可删除
-        binding.fileSystemBtnDelete.setEnabled(isClickable);
-        binding.fileSystemBtnDelete.setClickable(isClickable);
-
-        //设置是否可添加书籍
-        binding.fileSystemBtnAddBook.setEnabled(isClickable);
-        binding.fileSystemBtnAddBook.setClickable(isClickable);
+    /**
+     * 改变加入书架按钮的状态
+     */
+    private void changeAddToBookshelfStatus(boolean ifEnable) {
+        binding.fileSystemBtnAddBook.setEnabled(ifEnable);
+        binding.fileSystemBtnAddBook.setClickable(ifEnable);
+        if (ifEnable) {
+            binding.ivFileSystemBtnAddBook.setImageResource(R.drawable.ic_add_to_bookshelf);
+            binding.tvFileSystemBtnAddBook.setTextColor(getColor(R.color.black));
+        } else {
+            binding.ivFileSystemBtnAddBook.setImageResource(R.drawable.ic_add_to_bookshelf_unable);
+            binding.tvFileSystemBtnAddBook.setTextColor(getColor(R.color.text_light));
+        }
     }
 
     /**
      * 改变全选按钮的状态
      */
     private void changeCheckedAllStatus() {
-        //获取可选择的文件数量
+        // 获取可选择的文件数量
         int count = mCurFragment.getCheckableCount();
-
-        //设置是否能够全选
+        // 设置是否能够全选
         if (count > 0) {
             binding.fileSystemCbSelectedAll.setClickable(true);
             binding.fileSystemCbSelectedAll.setEnabled(true);
+            binding.ivFileSystemCbSelectedAll.setImageResource(R.drawable.mpp_ic_select_all);
+            binding.tvFileSystemCbSelectedAll.setTextColor(getColor(R.color.black));
         } else {
             binding.fileSystemCbSelectedAll.setClickable(false);
             binding.fileSystemCbSelectedAll.setEnabled(false);
+            binding.ivFileSystemCbSelectedAll.setImageResource(R.drawable.ic_select_all_unable);
+            binding.tvFileSystemCbSelectedAll.setTextColor(getColor(R.color.text_light));
         }
     }
 
     @Override
     public void addSuccess() {
-        //设置HashMap为false
+        // 设置HashMap为false
         mCurFragment.setCheckedAll(false);
-        //改变菜单状态
+        // 改变菜单状态
         changeMenuStatus();
-        //改变是否可以全选
-        changeCheckedAllStatus();
     }
 
     @Override
