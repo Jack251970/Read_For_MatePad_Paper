@@ -1,7 +1,5 @@
 package com.jack.bookshelf.view.popupmenu;
 
-import static com.jack.bookshelf.utils.StringUtils.getString;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.Gravity;

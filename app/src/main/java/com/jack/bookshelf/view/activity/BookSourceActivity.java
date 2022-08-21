@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import com.jack.bookshelf.view.dialog.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -42,8 +41,9 @@ import com.jack.bookshelf.utils.RealPathUtil;
 import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.BookSourceAdapter;
-import com.jack.bookshelf.widget.filepicker.picker.FilePicker;
+import com.jack.bookshelf.view.dialog.AlertDialog;
 import com.jack.bookshelf.view.dialog.InputDialog;
+import com.jack.bookshelf.widget.filepicker.picker.FilePicker;
 
 import java.io.IOException;
 import java.io.InputStream;

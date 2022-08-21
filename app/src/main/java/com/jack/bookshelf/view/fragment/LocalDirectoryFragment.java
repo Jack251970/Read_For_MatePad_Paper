@@ -7,16 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.jack.basemvplib.impl.IPresenter;
 import com.jack.bookshelf.R;
-import com.jack.bookshelf.databinding.FragmentFileCategoryBinding;
+import com.jack.bookshelf.databinding.FragmentLocalDirectoryBinding;
 import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.help.FileHelp;
 import com.jack.bookshelf.utils.FileStack;
-import com.jack.bookshelf.utils.FileUtils;
 import com.jack.bookshelf.view.adapter.FileSystemAdapter;
 import com.jack.bookshelf.widget.itemdecoration.DividerItemDecoration;
 
@@ -24,7 +22,6 @@ import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -32,20 +29,20 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * Category File Fragment
+ * Local Directory Fragment
  * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
-public class FileCategoryFragment extends BaseFileFragment {
+public class LocalDirectoryFragment extends BaseFileFragment {
 
-    private FragmentFileCategoryBinding binding;
+    private FragmentLocalDirectoryBinding binding;
     private FileStack mFileStack;
     private String rootFilePath;
 
     @Override
     protected View createView(LayoutInflater inflater, ViewGroup container) {
-        binding = FragmentFileCategoryBinding.inflate(inflater, container, false);
+        binding = FragmentLocalDirectoryBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -129,7 +126,6 @@ public class FileCategoryFragment extends BaseFileFragment {
     }
 
     private void setTextViewIconColor(TextView textView) {
-        // textView.getCompoundDrawables()[0].mutate();
         try {
             textView.getCompoundDrawables()[0].setColorFilter(getResources().getColor(R.color.tv_text_default), PorterDuff.Mode.SRC_ATOP);
         } catch (Exception ignored) {
@@ -138,7 +134,9 @@ public class FileCategoryFragment extends BaseFileFragment {
 
     private void toggleFileTree(File file) {
         // 路径名
-        binding.fileCategoryTvPath.setText(file.getPath().replace(rootFilePath, ""));
+        binding.fileCategoryTvPath.setText(file.getPath()
+                .replace(rootFilePath, "")
+                .replace("/"," / "));
         // 获取数据
         File[] files = file.listFiles(new SimpleFileFilter());
         // 转换成List

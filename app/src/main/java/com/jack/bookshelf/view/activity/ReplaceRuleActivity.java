@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.ActionBar;
-import com.jack.bookshelf.view.dialog.AlertDialog;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,8 +35,9 @@ import com.jack.bookshelf.utils.RealPathUtil;
 import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.ReplaceRuleAdapter;
-import com.jack.bookshelf.widget.filepicker.picker.FilePicker;
+import com.jack.bookshelf.view.dialog.AlertDialog;
 import com.jack.bookshelf.view.dialog.InputDialog;
+import com.jack.bookshelf.widget.filepicker.picker.FilePicker;
 import com.jack.bookshelf.widget.modialog.MoDialogHUD;
 import com.jack.bookshelf.widget.modialog.ReplaceRuleDialog;
 

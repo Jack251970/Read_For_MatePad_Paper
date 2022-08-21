@@ -1,21 +1,18 @@
 package com.jack.bookshelf.view.activity;
 
-import android.view.MenuItem;
 import android.view.View;
 
-import androidx.appcompat.app.ActionBar;
-
-import com.jack.bookshelf.base.BaseViewPagerActivity;
 import androidx.fragment.app.Fragment;
 
 import com.jack.bookshelf.R;
+import com.jack.bookshelf.base.BaseViewPagerActivity;
 import com.jack.bookshelf.databinding.ActivityImportBookBinding;
 import com.jack.bookshelf.presenter.ImportBookPresenter;
 import com.jack.bookshelf.presenter.contract.ImportBookContract;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.fragment.BaseFileFragment;
-import com.jack.bookshelf.view.fragment.FileCategoryFragment;
-import com.jack.bookshelf.view.fragment.LocalBookFragment;
+import com.jack.bookshelf.view.fragment.LocalDirectoryFragment;
+import com.jack.bookshelf.view.fragment.SmartImportFragment;
 import com.jack.bookshelf.widget.viewpager.ViewPager;
 
 import java.io.File;
@@ -31,8 +28,8 @@ import java.util.List;
 public class ImportBookActivity extends BaseViewPagerActivity<ImportBookContract.Presenter> implements ImportBookContract.View {
 
     private ActivityImportBookBinding binding;
-    private LocalBookFragment mLocalFragment;
-    private FileCategoryFragment mCategoryFragment;
+    private SmartImportFragment mLocalFragment;
+    private LocalDirectoryFragment mCategoryFragment;
     private BaseFileFragment mCurFragment;
     private boolean ifSelectAll = false;
 
@@ -75,8 +72,8 @@ public class ImportBookActivity extends BaseViewPagerActivity<ImportBookContract
 
     @Override
     protected List<Fragment> createTabFragments() {
-        mCategoryFragment = new FileCategoryFragment(); // 本机目录
-        mLocalFragment = new LocalBookFragment();   // 智能导入
+        mCategoryFragment = new LocalDirectoryFragment(); // 本机目录
+        mLocalFragment = new SmartImportFragment();   // 智能导入
         return Arrays.asList(mCategoryFragment, mLocalFragment);
     }
 

@@ -7,24 +7,25 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.jack.basemvplib.impl.IPresenter;
-import com.jack.bookshelf.databinding.FragmentLocalBookBinding;
+import com.jack.bookshelf.databinding.FragmentSmartImportBinding;
 import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.help.media.MediaStoreHelper;
 import com.jack.bookshelf.view.adapter.FileSystemAdapter;
 import com.jack.bookshelf.widget.itemdecoration.DividerItemDecoration;
 
 /**
- * Created by newbiechen on 17-5-27.
- * 本地书籍
+ * Smart Import Fragment
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
  */
 
-public class LocalBookFragment extends BaseFileFragment {
+public class SmartImportFragment extends BaseFileFragment {
 
-    private FragmentLocalBookBinding binding;
+    private FragmentSmartImportBinding binding;
 
     @Override
     protected View createView(LayoutInflater inflater, ViewGroup container) {
-        binding = FragmentLocalBookBinding.inflate(inflater, container, false);
+        binding = FragmentSmartImportBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -56,16 +57,14 @@ public class LocalBookFragment extends BaseFileFragment {
         super.bindEvent();
         mAdapter.setOnItemClickListener(
                 (view, pos) -> {
-                    //如果是已加载的文件，则点击事件无效。
+                    // 如果是已加载的文件，则点击事件无效
                     String id = mAdapter.getItem(pos).getAbsolutePath();
                     if (BookshelfHelp.getBook(id) != null) {
                         return;
                     }
-
-                    //点击选中
+                    // 点击选中
                     mAdapter.setCheckedItem(pos);
-
-                    //反馈
+                    // 反馈
                     if (mListener != null) {
                         mListener.onItemCheckedChange(mAdapter.getItemIsChecked(pos));
                     }
@@ -84,7 +83,7 @@ public class LocalBookFragment extends BaseFileFragment {
                         } else {
                             mAdapter.refreshItems(files);
                             binding.refreshLayout.showFinish();
-                            //反馈
+                            // 反馈
                             if (mListener != null) {
                                 mListener.onCategoryChanged();
                             }

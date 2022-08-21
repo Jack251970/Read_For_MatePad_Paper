@@ -20,7 +20,6 @@ import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import com.jack.bookshelf.view.dialog.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -39,6 +38,7 @@ import com.jack.bookshelf.service.ShareService;
 import com.jack.bookshelf.utils.SoftInputUtil;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.SourceEditAdapter;
+import com.jack.bookshelf.view.dialog.AlertDialog;
 import com.jack.bookshelf.view.dialog.SourceLoginDialog;
 import com.jack.bookshelf.view.popupwindow.KeyboardToolPop;
 

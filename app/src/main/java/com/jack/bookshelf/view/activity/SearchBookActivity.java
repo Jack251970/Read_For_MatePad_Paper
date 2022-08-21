@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
-import com.jack.bookshelf.view.dialog.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -43,6 +42,7 @@ import com.jack.bookshelf.utils.SoftInputUtil;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.SearchBookAdapter;
 import com.jack.bookshelf.view.adapter.SearchBookshelfAdapter;
+import com.jack.bookshelf.view.dialog.AlertDialog;
 import com.jack.bookshelf.widget.explosion_field.ExplosionField;
 import com.jack.bookshelf.widget.recycler.refresh.OnLoadMoreListener;
 

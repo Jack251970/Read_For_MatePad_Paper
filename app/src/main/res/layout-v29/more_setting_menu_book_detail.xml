@@ -1,6 +1,4 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mpp_ll_more_setting_menu_book_detail"
     android:layout_height="wrap_content"
     android:layout_width="@dimen/more_setting_menu_width"

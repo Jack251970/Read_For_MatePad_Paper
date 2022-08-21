@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatCheckBox;
 
-import com.jack.bookshelf.R;
 import com.jack.bookshelf.utils.theme.ATH;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 
