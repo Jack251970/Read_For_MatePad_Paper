@@ -8,6 +8,10 @@
         <dimen name="button_height">42dp</dimen>
         <dimen name="button_radius">21dp</dimen>
         <dimen name="button_stroke_width">2px</dimen>
+            <!-- TextView Button -->
+            <dimen name="text_view_button_radius">6px</dimen>
+            <dimen name="text_view_button_stroke_width">3px</dimen>
+            <dimen name="text_view_button_padding">12px</dimen>
         <!-- ViewPager -->
         <dimen name="viewpager_radius">16dp</dimen>
         <dimen name="viewpager_stroke_width">1dp</dimen>

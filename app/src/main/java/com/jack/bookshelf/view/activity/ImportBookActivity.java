@@ -46,7 +46,7 @@ public class ImportBookActivity extends BaseViewPagerActivity<ImportBookContract
         public void onCategoryChanged() {
             // 状态归零
             mCurFragment.setCheckedAll(false);
-            // 改变菜单
+            // 刷新菜单
             changeMenuStatus();
         }
     };
@@ -138,7 +138,7 @@ public class ImportBookActivity extends BaseViewPagerActivity<ImportBookContract
     }
 
     /**
-     * 改变底部选择栏的状态
+     * 刷新底部选择栏的状态
      */
     private void changeMenuStatus() {
         // 加入书架按钮状态设置,全选状态刷新
@@ -205,7 +205,7 @@ public class ImportBookActivity extends BaseViewPagerActivity<ImportBookContract
     public void addSuccess() {
         // 设置HashMap为false
         mCurFragment.setCheckedAll(false);
-        // 改变菜单状态
+        // 刷新菜单
         changeMenuStatus();
     }
 

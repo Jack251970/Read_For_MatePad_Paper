@@ -15,13 +15,17 @@ import com.jack.bookshelf.view.adapter.base.ViewHolderImpl;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
- * Created by newbiechen on 17-5-27.
+ * File Item Holder
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
  */
 
 public class FileHolder extends ViewHolderImpl<File> {
     private ImageView mIvIcon;
+    private ImageView mIvIfAdd;
     private CheckBox mCbSelect;
     private TextView mTvName;
     private LinearLayout mLlBrief;
@@ -46,6 +50,7 @@ public class FileHolder extends ViewHolderImpl<File> {
         mTvSize = findById(R.id.file_tv_size);
         mTvDate = findById(R.id.file_tv_date);
         mTvSubCount = findById(R.id.file_tv_sub_count);
+        mIvIfAdd = findById(R.id.file_iv_if_add);
     }
 
     @Override
@@ -59,41 +64,46 @@ public class FileHolder extends ViewHolderImpl<File> {
         mCbSelect.setClickable(false);
     }
 
+    /**
+     * 文件类型的显示设置
+     */
     private void setFile(File file) {
-        //选择
-
+        // 书架是否加入与是否可以选择
         if (BookshelfHelp.getBook(file.getAbsolutePath()) != null) {
-            mIvIcon.setImageResource(R.drawable.ic_book_has);
-            mIvIcon.setVisibility(View.VISIBLE);
             mCbSelect.setVisibility(View.GONE);
+            mIvIfAdd.setVisibility(View.VISIBLE);
         } else {
-            boolean isSelected = mSelectedMap.get(file);
-            mCbSelect.setChecked(isSelected);
-            mIvIcon.setVisibility(View.GONE);
+            mCbSelect.setChecked(Boolean.TRUE.equals(mSelectedMap.get(file)));
             mCbSelect.setVisibility(View.VISIBLE);
         }
-
-        mLlBrief.setVisibility(View.VISIBLE);
-        mTvSubCount.setVisibility(View.GONE);
-
-        mTvName.setText(file.getName());
+        // 文件图片
+        mTvTag.setVisibility(View.VISIBLE);
         mTvTag.setText(file.getName().substring(file.getName().lastIndexOf(".") + 1).toUpperCase());
+        // 文件名字、大小、日期
+        mTvName.setText(file.getName());
         mTvSize.setText(FileHelp.getFileSize(file.length()));
         mTvDate.setText(StringUtils.dateConvert(file.lastModified(), AppConstant.FORMAT_FILE_DATE));
+        // 文件其余信息
+        mLlBrief.setVisibility(View.VISIBLE);
+        mTvSubCount.setVisibility(View.GONE);
     }
 
+    /**
+     * 文件夹类型的显示设置
+     */
     public void setFolder(File folder) {
-        //图片
+        // 文件夹图片
         mIvIcon.setVisibility(View.VISIBLE);
+        mTvTag.setVisibility(View.GONE);
+        // 是否可以选择
         mCbSelect.setVisibility(View.GONE);
-        mIvIcon.setImageResource(R.drawable.ic_folder);
-        //名字
+        // 文件夹名字
         mTvName.setText(folder.getName());
-        //介绍
+        // 文件夹介绍
         mLlBrief.setVisibility(View.GONE);
         mTvSubCount.setVisibility(View.VISIBLE);
-
-        mTvSubCount.setText(getContext().getString(R.string.nb_file_sub_count, folder.list().length));
+        // 文件夹所含项目数量
+        mTvSubCount.setText(getContext().getString(R.string.nb_file_sub_count, Objects.requireNonNull(folder.list()).length));
     }
 
     @Override

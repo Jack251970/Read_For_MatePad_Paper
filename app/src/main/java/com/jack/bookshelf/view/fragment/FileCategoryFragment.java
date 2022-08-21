@@ -28,10 +28,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Category File Fragment
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
 public class FileCategoryFragment extends BaseFileFragment {
-    private static final String TAG = "FileCategoryFragment";
 
     private FragmentFileCategoryBinding binding;
     private FileStack mFileStack;
@@ -61,7 +67,7 @@ public class FileCategoryFragment extends BaseFileFragment {
     private void setUpAdapter() {
         mAdapter = new FileSystemAdapter();
         binding.fileCategoryRvContent.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.fileCategoryRvContent.addItemDecoration(new DividerItemDecoration(getContext()));
+        binding.fileCategoryRvContent.addItemDecoration(new DividerItemDecoration(requireContext()));
         binding.fileCategoryRvContent.setAdapter(mAdapter);
         setTextViewIconColor(binding.fileCategoryTvBackLast);
     }
@@ -73,31 +79,30 @@ public class FileCategoryFragment extends BaseFileFragment {
                 (view, pos) -> {
                     File file = mAdapter.getItem(pos);
                     if (file.isDirectory()) {
-                        //保存当前信息。
+                        // 保存当前信息
                         FileStack.FileSnapshot snapshot = new FileStack.FileSnapshot();
                         snapshot.filePath = binding.fileCategoryTvPath.getText().toString();
                         snapshot.files = new ArrayList<>(mAdapter.getItems());
                         snapshot.scrollOffset = binding.fileCategoryRvContent.computeVerticalScrollOffset();
                         mFileStack.push(snapshot);
-                        //切换下一个文件
+                        // 切换下一个文件
                         toggleFileTree(file);
                     } else {
-
-                        //如果是已加载的文件，则点击事件无效。
+                        // 如果是已加载的文件，则点击事件无效
                         String id = mAdapter.getItem(pos).getAbsolutePath();
                         if (BookshelfHelp.getBook(id) != null) {
                             return;
                         }
-                        //点击选中
+                        // 点击选中
                         mAdapter.setCheckedItem(pos);
-                        //反馈
+                        // 反馈
                         if (mListener != null) {
                             mListener.onItemCheckedChange(mAdapter.getItemIsChecked(pos));
                         }
                     }
                 }
         );
-
+        // 返回上级按钮事件
         binding.fileCategoryTvBackLast.setOnClickListener(v -> {
             FileStack.FileSnapshot snapshot = mFileStack.pop();
             int oldScrollOffset = binding.fileCategoryRvContent.computeHorizontalScrollOffset();
@@ -105,27 +110,9 @@ public class FileCategoryFragment extends BaseFileFragment {
             binding.fileCategoryTvPath.setText(snapshot.filePath);
             mAdapter.refreshItems(snapshot.files);
             binding.fileCategoryRvContent.scrollBy(0, snapshot.scrollOffset - oldScrollOffset);
-            //反馈
+            // 反馈
             if (mListener != null) {
                 mListener.onCategoryChanged();
-            }
-                }
-        );
-
-        binding.tvSd.setOnClickListener(v -> {
-            if (getContext() != null) {
-                List<String> list = FileUtils.getStorageData(getContext());
-                if (list != null) {
-                    String[] filePathS = list.toArray(new String[0]);
-                    AlertDialog dialog = new AlertDialog.Builder(getContext())
-                            .setTitle(R.string.select_sd_file)
-                            .setSingleChoiceItems(filePathS, 0, (dialogInterface, i) -> {
-                                upRootFile(filePathS[i]);
-                                dialogInterface.dismiss();
-                            })
-                            .create();
-                    dialog.show();
-                }
             }
         });
     }
@@ -150,17 +137,17 @@ public class FileCategoryFragment extends BaseFileFragment {
     }
 
     private void toggleFileTree(File file) {
-        //路径名
+        // 路径名
         binding.fileCategoryTvPath.setText(file.getPath().replace(rootFilePath, ""));
-        //获取数据
+        // 获取数据
         File[] files = file.listFiles(new SimpleFileFilter());
-        //转换成List
-        List<File> rootFiles = Arrays.asList(files);
-        //排序
-        Collections.sort(rootFiles, new FileComparator());
-        //加入
+        // 转换成List
+        List<File> rootFiles = Arrays.asList(Objects.requireNonNull(files));
+        // 排序
+        rootFiles.sort(new FileComparator());
+        // 加入
         mAdapter.refreshItems(rootFiles);
-        //反馈
+        // 反馈
         if (mListener != null) {
             mListener.onCategoryChanged();
         }
@@ -204,12 +191,11 @@ public class FileCategoryFragment extends BaseFileFragment {
             if (pathname.getName().startsWith(".")) {
                 return false;
             }
-            //文件夹内部数量为0
-            if (pathname.isDirectory() && (pathname.list() == null || pathname.list().length == 0)) {
+            // 文件夹内部数量为0
+            if (pathname.isDirectory() && (pathname.list() == null || Objects.requireNonNull(pathname.list()).length == 0)) {
                 return false;
             }
-
-            //文件内容为空,或者不以txt为开头
+            // 文件内容为空,或者不以txt为开头
             return pathname.isDirectory() ||
                     (pathname.length() != 0
                             && (pathname.getName().toLowerCase().endsWith(FileHelp.SUFFIX_TXT)

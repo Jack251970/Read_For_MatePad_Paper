@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:background="@drawable/selector_common_bg"
-    android:orientation="horizontal">
-
+    android:background="@color/transparent"
+    android:orientation="horizontal"
+    tools:ignore="DisableBaselineAlignment">
     <FrameLayout
-        android:id="@+id/file_fl_icon"
         android:layout_width="60dp"
         android:layout_height="match_parent">
         <!--文件夹标识或已选文件标识-->
@@ -18,34 +16,38 @@
             android:layout_height="match_parent"
             android:scaleType="center"
             android:visibility="gone"
-            app:tint="@color/tv_text_default"
-            tools:src="@drawable/ic_folder" />
-        <!--选择是否添加文件-->
-        <com.jack.bookshelf.widget.views.ATECheckBox
-            android:id="@+id/file_cb_select"
+            android:src="@drawable/ic_folder"
+            tools:visibility="invisible"/>
+        <!-- 文件类型标志 -->
+        <TextView
+            android:id="@+id/file_tv_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:clickable="true"
-            android:enabled="true"
-            android:focusable="true" />
+            android:gravity="center"
+            android:background="@drawable/file_type_background"
+            android:text="TXT"
+            android:textColor="@color/black"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,RtlHardcoded"
+            tools:visibility="visible"/>
     </FrameLayout>
-
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:paddingTop="8dp"
         android:paddingBottom="8dp">
-
         <TextView
             android:id="@+id/file_tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:text="@string/app_name"
-            android:textSize="16sp" />
-
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
         <LinearLayout
             android:id="@+id/file_ll_brief"
             android:layout_width="match_parent"
@@ -53,38 +55,56 @@
             android:layout_alignParentBottom="true"
             android:gravity="center_vertical"
             android:orientation="horizontal">
-
-            <com.jack.bookshelf.widget.views.ATEAccentBgTextView
-                android:id="@+id/file_tv_tag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:text="TXT"
-                tools:ignore="HardcodedText,RtlHardcoded" />
-
             <TextView
                 android:id="@+id/file_tv_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
+                android:textColor="@color/black"
                 tools:ignore="RtlHardcoded"
                 tools:text="324kb" />
-
             <TextView
                 android:id="@+id/file_tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 tools:text="2017-05-22" />
         </LinearLayout>
-
         <TextView
             android:id="@+id/file_tv_sub_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:textColor="@color/black"
             android:visibility="gone"
             tools:text="0 项" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--文件夹标识或已选文件标识-->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/file_iv_if_add"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="center"
+                android:visibility="gone"
+                android:src="@drawable/ic_have_add_to_bookshelf"
+                tools:visibility="visible"/>
+            <!--选择是否添加文件-->
+            <com.jack.bookshelf.widget.views.ATECheckBox
+                android:id="@+id/file_cb_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:enabled="true"
+                android:focusable="true"
+                tools:visibility="invisible"/>
+        </FrameLayout>
     </RelativeLayout>
 </LinearLayout>

@@ -78,7 +78,7 @@ public class FileSystemAdapter extends BaseListAdapter<File> {
         File file = getItem(pos);
         if (isFileLoaded(file.getAbsolutePath())) return;
 
-        boolean isSelected = mCheckMap.get(file);
+        boolean isSelected = Boolean.TRUE.equals(mCheckMap.get(file));
         if (isSelected) {
             mCheckMap.put(file, false);
             --mCheckedCount;
