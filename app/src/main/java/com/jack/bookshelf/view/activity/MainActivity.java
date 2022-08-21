@@ -53,8 +53,7 @@ import kotlin.Unit;
  * Edited by Jack251970
  */
 
-public class MainActivity
-        extends BaseViewPagerActivity<MainContract.Presenter>
+public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
         implements MainContract.View, BookListFragment.CallbackValue {
     private final int requestSource = 14;
     private ActivityMainBinding binding;
