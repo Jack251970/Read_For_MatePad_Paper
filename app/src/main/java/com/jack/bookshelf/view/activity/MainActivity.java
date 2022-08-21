@@ -183,9 +183,9 @@ public class MainActivity
         binding.mppLlDownloadMain.setOnClickListener(view ->
                 DownloadActivity.startThis(this));
         binding.mppLlBackupMain.setOnClickListener(view ->
-                BackupRestoreUi.INSTANCE.backup(this));
+                BackupRestoreUi.INSTANCE.backup(this,binding.getRoot()));
         binding.mppLlRestoreMain.setOnClickListener(view ->
-                BackupRestoreUi.INSTANCE.restore(this));
+                BackupRestoreUi.INSTANCE.restore(this,binding.getRoot()));
         binding.mppIvSettingMain.setOnClickListener(view ->
                 SettingActivity.startThis(this));
         // 主界面搜索栏事件

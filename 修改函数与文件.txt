@@ -1,0 +1,12 @@
+1. 风格不统一
+MApplication.getInstance().toast
+activity.alert{}
+2. webdav保存目录有关
+WebDavHelp.kt
+3. Kotlin代码参考
+/*activity.alert {
+            titleResource = R.string.select_folder
+            items(activity.resources.getStringArray(R.array.select_folder).toList()) { _, index ->
+                when (index) {}
+            }
+        }.show()*/

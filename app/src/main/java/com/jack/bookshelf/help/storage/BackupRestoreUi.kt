@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.text.TextUtils
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.documentfile.provider.DocumentFile
 import com.hwangjr.rxbus.RxBus
@@ -17,13 +18,20 @@ import com.jack.bookshelf.help.permission.Permissions
 import com.jack.bookshelf.help.permission.PermissionsCompat
 import com.jack.bookshelf.help.storage.WebDavHelp.getWebDavFileNames
 import com.jack.bookshelf.help.storage.WebDavHelp.showRestoreDialog
+import com.jack.bookshelf.utils.StringUtils.getString
+import com.jack.bookshelf.utils.toastOnUi
+import com.jack.bookshelf.view.popupmenu.SelectMenu
 import com.jack.bookshelf.widget.filepicker.picker.FilePicker
 import io.reactivex.Single
 import io.reactivex.SingleEmitter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.toast
+
+/**
+ * Backup & Restore
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
 object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
 
@@ -43,36 +51,36 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
     }
 
     override fun backupSuccess() {
-        MApplication.getInstance().toast(R.string.backup_success)
+        MApplication.getInstance().toastOnUi(R.string.backup_success);
     }
 
     override fun backupError(msg: String) {
-        MApplication.getInstance().toast(msg)
+        MApplication.getInstance().toastOnUi(msg)
     }
 
     override fun restoreSuccess() {
-        MApplication.getInstance().toast(R.string.restore_success)
+        MApplication.getInstance().toastOnUi(R.string.restore_success)
         RxBus.get().post(RxBusTag.RECREATE, true)
     }
 
     override fun restoreError(msg: String) {
-        MApplication.getInstance().toast(msg)
+        MApplication.getInstance().toastOnUi(msg)
     }
 
-    fun backup(activity: Activity) {
+    fun backup(activity: Activity, mainView: View) {
         val backupPath = getBackupPath()
         if (backupPath.isNullOrEmpty()) {
-            selectBackupFolder(activity)
+            selectBackupFolder(activity, mainView)
         } else if (backupPath.isContentPath()) {
             val uri = Uri.parse(backupPath)
             val doc = DocumentFile.fromTreeUri(activity, uri)
             if (doc?.canWrite() == true) {
                 Backup.backup(activity, backupPath, this)
             } else {
-                selectBackupFolder(activity)
+                selectBackupFolder(activity,mainView)
             }
         } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
-            selectBackupFolder(activity)
+            selectBackupFolder(activity,mainView)
         } else {
             backupUsePermission(activity)
         }
@@ -89,7 +97,7 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
             .request()
     }
 
-    fun selectBackupFolder(activity: Activity) {
+    fun selectBackupFolder(activity: Activity, mainView: View) {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
             try {
                 val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
@@ -97,46 +105,50 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
                 activity.startActivityForResult(intent, backupSelectRequestCode)
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
-                activity.toast(e.localizedMessage ?: "ERROR")
+                activity.toastOnUi(e.localizedMessage ?: "ERROR")
             }
             return
         }
-        activity.alert {
-            titleResource = R.string.select_folder
-            items(activity.resources.getStringArray(R.array.select_folder).toList()) { _, index ->
-                when (index) {
-                    0 -> {
-                        try {
-                            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
-                            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                            activity.startActivityForResult(intent, backupSelectRequestCode)
-                        } catch (e: java.lang.Exception) {
-                            e.printStackTrace()
-                            activity.toast(e.localizedMessage ?: "ERROR")
+        SelectMenu.builder(activity, mainView)
+            .setTitle(getString(R.string.select_folder))
+            .setBottomButton(getString(R.string.cancel))
+            .setMenu(activity.resources.getStringArray(R.array.select_folder))
+            .setOnclick(object : SelectMenu.OnItemClickListener {
+                override fun forBottomButton() {}
+                override fun forListItem(lastChoose: Int, position: Int) {
+                    when (position) {
+                        0 -> {
+                            try {
+                                val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
+                                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                                activity.startActivityForResult(intent, backupSelectRequestCode)
+                            } catch (e: java.lang.Exception) {
+                                e.printStackTrace()
+                                activity.toastOnUi(e.localizedMessage ?: "ERROR")
+                            }
+                        }
+                        1 -> {
+                            PermissionsCompat.Builder(activity)
+                                .addPermissions(*Permissions.Group.STORAGE)
+                                .rationale(R.string.need_storage_permission_to_backup_book_information)
+                                .onGranted {
+                                    selectBackupFolderApp(activity, false)
+                                }
+                                .request()
+                        }
+                        2 -> {
+                            setBackupPath(Backup.defaultPath)
+                            backupUsePermission(activity)
                         }
                     }
-                    1 -> {
-                        PermissionsCompat.Builder(activity)
-                            .addPermissions(*Permissions.Group.STORAGE)
-                            .rationale(R.string.need_storage_permission_to_backup_book_information)
-                            .onGranted {
-                                selectBackupFolderApp(activity, false)
-                            }
-                            .request()
-                    }
-                    2 -> {
-                        setBackupPath(Backup.defaultPath)
-                        backupUsePermission(activity)
-                    }
                 }
-            }
-        }.show()
+            }).show()
     }
 
     private fun selectBackupFolderApp(activity: Activity, isRestore: Boolean) {
         val picker = FilePicker(activity, FilePicker.DIRECTORY)
-        picker.setBackgroundColor(ContextCompat.getColor(activity, R.color.background))
-        picker.setTopBackgroundColor(ContextCompat.getColor(activity, R.color.background))
+        picker.setBackgroundColor(ContextCompat.getColor(activity, R.color.white))
+        picker.setTopBackgroundColor(ContextCompat.getColor(activity, R.color.white))
         picker.setItemHeight(30)
         picker.setOnFilePickListener { currentPath: String ->
             setBackupPath(currentPath)
@@ -149,7 +161,7 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
         picker.show()
     }
 
-    fun restore(activity: Activity) {
+    fun restore(activity: Activity, mainView: View) {
         Single.create { emitter: SingleEmitter<ArrayList<String>?> ->
             emitter.onSuccess(getWebDavFileNames())
         }.subscribeOn(Schedulers.io())
@@ -159,17 +171,17 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
                     if (!showRestoreDialog(activity, strings, this@BackupRestoreUi)) {
                         val path = getBackupPath()
                         if (TextUtils.isEmpty(path)) {
-                            selectRestoreFolder(activity)
+                            selectRestoreFolder(activity, mainView)
                         } else if (path.isContentPath()) {
                             val uri = Uri.parse(path)
                             val doc = DocumentFile.fromTreeUri(activity, uri)
                             if (doc?.canWrite() == true) {
                                 Restore.restore(activity, Uri.parse(path), this@BackupRestoreUi)
                             } else {
-                                selectRestoreFolder(activity)
+                                selectRestoreFolder(activity, mainView)
                             }
                         } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
-                            selectRestoreFolder(activity)
+                            selectRestoreFolder(activity, mainView)
                         } else {
                             restoreUsePermission(activity)
                         }
@@ -189,7 +201,7 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
             .request()
     }
 
-    private fun selectRestoreFolder(activity: Activity) {
+    private fun selectRestoreFolder(activity: Activity, mainView: View) {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
             try {
                 val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
@@ -197,37 +209,41 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
                 activity.startActivityForResult(intent, restoreSelectRequestCode)
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
-                activity.toast(e.localizedMessage ?: "ERROR")
+                activity.toastOnUi(e.localizedMessage ?: "ERROR")
             }
             return
         }
-        activity.alert {
-            titleResource = R.string.select_folder
-            items(activity.resources.getStringArray(R.array.select_folder).toList()) { _, index ->
-                when (index) {
-                    0 -> {
-                        try {
-                            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
-                            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                            activity.startActivityForResult(intent, restoreSelectRequestCode)
-                        } catch (e: java.lang.Exception) {
-                            e.printStackTrace()
-                            activity.toast(e.localizedMessage ?: "ERROR")
-                        }
-                    }
-                    1 -> {
-                        PermissionsCompat.Builder(activity)
-                            .addPermissions(*Permissions.Group.STORAGE)
-                            .rationale(R.string.need_storage_permission_to_backup_book_information)
-                            .onGranted {
-                                selectBackupFolderApp(activity, true)
+        SelectMenu.builder(activity, mainView)
+            .setTitle(getString(R.string.select_folder))
+            .setBottomButton(getString(R.string.cancel))
+            .setMenu(activity.resources.getStringArray(R.array.select_folder))
+            .setOnclick(object : SelectMenu.OnItemClickListener {
+                override fun forBottomButton() {}
+                override fun forListItem(lastChoose: Int, position: Int) {
+                    when (position) {
+                        0 -> {
+                            try {
+                                val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
+                                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                                activity.startActivityForResult(intent, restoreSelectRequestCode)
+                            } catch (e: java.lang.Exception) {
+                                e.printStackTrace()
+                                activity.toastOnUi(e.localizedMessage ?: "ERROR")
                             }
-                            .request()
+                        }
+                        1 -> {
+                            PermissionsCompat.Builder(activity)
+                                .addPermissions(*Permissions.Group.STORAGE)
+                                .rationale(R.string.need_storage_permission_to_backup_book_information)
+                                .onGranted {
+                                    selectBackupFolderApp(activity, true)
+                                }
+                                .request()
+                        }
+                        2 -> restoreUsePermission(activity)
                     }
-                    2 -> restoreUsePermission(activity)
                 }
-            }
-        }.show()
+            }).show()
     }
 
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -15,7 +15,6 @@ import com.jack.bookshelf.R
 import com.jack.bookshelf.help.BookshelfHelp
 import com.jack.bookshelf.help.FileHelp
 import com.jack.bookshelf.help.ProcessTextHelp
-import com.jack.bookshelf.help.storage.BackupRestoreUi.selectBackupFolder
 import com.jack.bookshelf.service.WebService
 import com.jack.bookshelf.view.activity.SettingActivity
 import org.jetbrains.anko.alert
@@ -88,7 +87,7 @@ class SettingsFragment : PreferenceFragment(), OnSharedPreferenceChangeListener 
     override fun onPreferenceTreeClick(preferenceScreen: PreferenceScreen, preference: Preference): Boolean {
         when (preference.key) {
             "backupPath" -> {
-                selectBackupFolder(activity)
+                // selectBackupFolder(activity)
             }
             "webDavSetting" -> {
                 val webDavSettingsFragment = WebDavSettingsFragment()

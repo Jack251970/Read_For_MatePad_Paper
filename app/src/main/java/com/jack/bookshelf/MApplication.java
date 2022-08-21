@@ -7,10 +7,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.os.Build;
 import android.text.TextUtils;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.multidex.MultiDex;
 
@@ -77,9 +75,7 @@ public class MApplication extends Application {
             versionCode = 0;
             versionName = "0.0.0";
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            createChannelId();
-        }
+        createChannelId();
         configPreferences = getSharedPreferences("CONFIG", 0);
         downloadPath = configPreferences.getString("downloadPath", "");
         if (TextUtils.isEmpty(downloadPath) | Objects.equals(downloadPath, FileHelp.getCachePath())) {
@@ -142,7 +138,6 @@ public class MApplication extends Application {
     /**
      * 创建通知ID
      */
-    @RequiresApi(Build.VERSION_CODES.O)
     private void createChannelId() {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         //用唯一的ID创建渠道对象
@@ -181,5 +176,4 @@ public class MApplication extends Application {
     public static SharedPreferences getConfigPreferences() {
         return getInstance().configPreferences;
     }
-
 }

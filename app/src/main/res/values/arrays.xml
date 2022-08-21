@@ -2,21 +2,11 @@
 <resources>
     <!-- More Setting Menu-->
         <!-- More Setting Menu Main-->
-        <string-array name="import_book">
-            <item>@string/import_local_book</item>
-            <item>@string/import_online_book</item>
-        </string-array>
         <string-array name="more_setting_menu_main">
             <item>@string/download_all</item>
             <item>@string/sequence_book</item>
             <item>@string/organize_bookshelf</item>
             <item>@string/web_service</item>
-        </string-array>
-        <!-- Book Sequence Setting Main-->
-        <string-array name="sequence_book">
-            <item>@string/sequence_book_by_reading_time</item>
-            <item>@string/sequence_book_by_updating_time</item>
-            <item>@string/sequence_book_manually</item>
         </string-array>
         <!-- More Setting Menu BookDetail-->
         <string-array name="book_groups">
@@ -26,7 +16,24 @@
             <item>@string/local</item>
         </string-array>
 
-
+    <!-- Select Menu -->
+        <!-- MainActivity -->
+        <string-array name="import_book">
+            <item>@string/import_local_book</item>
+            <item>@string/import_online_book</item>
+        </string-array>
+        <!-- Book Sequence Setting Main-->
+        <string-array name="sequence_book">
+            <item>@string/sequence_book_by_reading_time</item>
+            <item>@string/sequence_book_by_updating_time</item>
+            <item>@string/sequence_book_manually</item>
+        </string-array>
+        <!-- Backup & Restore Ui-->
+        <string-array name="select_folder">
+            <item>@string/sys_folder_picker</item>
+            <item>@string/app_folder_picker</item>
+            <item>@string/default_path</item>
+        </string-array>
 
 
 
@@ -98,12 +105,6 @@
         <item>@string/screen_sensor</item>
     </string-array>
 
-    <string-array name="select_folder">
-        <item>@string/sys_folder_picker</item>
-        <item>@string/app_folder_picker</item>
-        <item>@string/default_path</item>
-    </string-array>
-
     <declare-styleable name="Battery">
         <attr name="batteryOrientation">
             <enum name="horizontal" value="0"/>
@@ -112,11 +113,5 @@
         <attr name="batteryColor" format="color"/>
         <attr name="batteryPower" format="integer"/>
     </declare-styleable>
-
-    <string-array name="icons">
-        <item>@string/icon_main</item>
-        <item>@string/icon_book</item>
-        <item>@string/icon_matepad_paper</item>
-    </string-array>
 
 </resources>

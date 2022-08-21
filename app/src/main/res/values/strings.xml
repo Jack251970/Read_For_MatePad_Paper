@@ -69,10 +69,19 @@
         <string name="shared_service_starting_long">正在启动Web服务\n具体信息查看通知栏</string>
         <string name="sharded_address">分享地址:%s</string>
 
+    <!-- Help -->
+        <!-- Backup & Restore Ui -->
+        <string name="backup_success">备份成功</string>
+        <string name="restore_success">恢复成功</string>
+        <string name="select_folder">选择文件夹</string>
+            <!-- Select Menu -->
+            <string name="sys_folder_picker">系统文件夹选择器</string>
+            <string name="app_folder_picker">软件文件夹选择器</string>
+            <string name="default_path">默认路径</string>
+
     <!-- Dialog -->
         <!-- InputDialog Main -->
         <string name="add_book_url">添加书籍网址</string>
-
 
     <!-- Select Menu -->
         <!-- Select Menu Main -->
@@ -167,10 +176,10 @@
     <string name="backup_message">新备份会替换原有备份。\n备份文件夹YueDu</string>
     <string name="restore_confirmation">确认恢复吗？</string>
     <string name="restore_message">恢复书架会覆盖现有书架。</string>
-    <string name="backup_success">备份成功</string>
+
     <string name="backup_fail">备份失败</string>
     <string name="on_restore">正在恢复</string>
-    <string name="restore_success">恢复成功</string>
+
     <string name="restore_fail">恢复失败</string>
     <string name="screen_direction">屏幕方向</string>
     <string name="screen_sensor">跟随传感器</string>
@@ -504,7 +513,6 @@
     <string name="indent_2">二字符缩进</string>
     <string name="indent_3">三字符缩进</string>
     <string name="indent_4">四字符缩进</string>
-    <string name="select_folder">选择文件夹</string>
     <string name="select_sd_file">选择SD卡</string>
     <string name="no_find">没有发现，可以在书源里添加。</string>
     <string name="restore_default">恢复默认</string>
@@ -517,9 +525,6 @@
     <string name="content_padding">正文边距</string>
     <string name="tip_padding">Tip边距</string>
     <string name="text_letter_spacing">字距</string>
-    <string name="default_path">默认路径</string>
-    <string name="sys_folder_picker">系统文件夹选择器</string>
-    <string name="app_folder_picker">自带选择器\n(Android10以上因权限限制可能无法使用)</string>
     <string name="a10_permission_toast">Android10以上因权限限制可能无法读写文件</string>
     <string name="e_ink_mode">E-Ink模式</string>
     <string name="e_ink_mode_detail">去除动画，减少色彩，优化墨水屏设备使用体验\n程序将退出以改变桌面图标风格</string>
