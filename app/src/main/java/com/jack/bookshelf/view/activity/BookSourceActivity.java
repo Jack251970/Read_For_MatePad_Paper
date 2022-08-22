@@ -7,13 +7,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.SubMenu;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -43,6 +39,8 @@ import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.BookSourceAdapter;
 import com.jack.bookshelf.view.dialog.AlertDialog;
 import com.jack.bookshelf.view.dialog.InputDialog;
+import com.jack.bookshelf.view.popupmenu.MoreSettingMenu;
+import com.jack.bookshelf.view.popupmenu.SelectMenu;
 import com.jack.bookshelf.widget.filepicker.picker.FilePicker;
 
 import java.io.IOException;
@@ -54,22 +52,23 @@ import java.util.List;
 import kotlin.Unit;
 
 /**
- * Created by GKF on 2017/12/16.
- * 书源管理
+ * Book Source Page
+ * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
-public class BookSourceActivity extends MBaseActivity<BookSourceContract.Presenter> implements BookSourceContract.View {
+public class BookSourceActivity extends MBaseActivity<BookSourceContract.Presenter>
+        implements BookSourceContract.View {
     private final int IMPORT_SOURCE = 102;
     private ActivityBookSourceBinding binding;
     private ItemTouchCallback itemTouchCallback;
     private boolean selectAll = true;
-    private MenuItem groupItem;
-    private SubMenu groupMenu;
     private BookSourceAdapter adapter;
     private SearchView.SearchAutoComplete mSearchAutoComplete;
     private boolean isSearch;
     private final SharedPreferences preferences = MApplication.getConfigPreferences();
+
+    private MoreSettingMenu moreSettingMenu;
 
     public static void startThis(@NonNull Activity activity, int requestCode) {
         activity.startActivityForResult(new Intent(activity, BookSourceActivity.class), requestCode);
@@ -90,8 +89,6 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
         getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivityBookSourceBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        this.setSupportActionBar(binding.toolbar);
-        setupActionBar();
     }
 
     @Override
@@ -110,8 +107,72 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
     @Override
     protected void bindView() {
         super.bindView();
+        // 初始化一级菜单
+        initMenu();
+        // 初始化搜索框
         initSearchView();
+        // 初始化RecyclerView
         initRecyclerView();
+        // 返回
+        binding.ivBackBookSource.setOnClickListener(v -> finish());
+        // 快速搜索
+        binding.ivQuickSearchBookSource.setOnClickListener(v -> {
+            List<String> groupList = BookSourceManager.getGroupList();
+            groupList.add(0,getString(R.string.enabled_book_source));
+            SelectMenu.builder(getContext(), binding.getRoot())
+                    .setTitle(getString(R.string.quick_search))
+                    .setBottomButton(getString(R.string.cancel))
+                    .setMenu(groupList)
+                    .setOnclick(new SelectMenu.OnItemClickListener() {
+                        @Override
+                        public void forBottomButton() {}
+
+                        @Override
+                        public void forListItem(int lastChoose, int position) {
+                            if (position == 0) {
+                                binding.searchView.setQuery("enabled", false);
+                            } else {
+                                binding.searchView.setQuery(groupList.get(position), true);
+                            }
+                        }
+                    }).show();
+        });
+        // 全选
+        binding.ivSelectAllBookSource.setOnClickListener(v -> selectAllDataS());
+        // 书源排序
+        binding.ivUpGroupBookSource.setOnClickListener(v -> {
+            SelectMenu.builder(this, binding.getRoot())
+                    .setTitle(getString(R.string.book_source_sequence))
+                    .setBottomButton(getString(R.string.cancel))
+                    .setMenu(getResources().getStringArray(R.array.book_source_sequence), getSort())
+                    .setOnclick(new SelectMenu.OnItemClickListener() {
+                        @Override
+                        public void forBottomButton() {}
+
+                        @Override
+                        public void forListItem(int lastChoose, int position) {
+                            if (lastChoose != position) {
+                                switch (position) {
+                                    case 0:
+                                        upSourceSort(0);
+                                        break;
+                                    case 1:
+                                        upSourceSort(1);
+                                        break;
+                                    case 2:
+                                        upSourceSort(2);
+                                        break;
+                                }
+                            }
+                        }
+                    }).show();
+        });
+        // 更多选项
+        binding.ivMoreSettingsBookSource.setOnClickListener(v -> {
+            if (!moreSettingMenu.isShowing()) {
+                moreSettingMenu.show(binding.getRoot(), binding.ivMoreSettingsBookSource);
+            }
+        });
     }
 
     @Override
@@ -120,6 +181,45 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
         refreshBookSource();
     }
 
+    /**
+     * 初始化一级菜单
+     */
+    private void initMenu() {
+        moreSettingMenu = MoreSettingMenu.builder(this)
+                .setMenu(getResources().getStringArray(R.array.more_setting_menu_book_source))
+                .setOnclick(position -> {
+                    switch (position) {
+                        case 0:
+                            addBookSource();
+                            break;
+                        case 1:
+                            selectBookSourceFile();
+                            break;
+                        case 2:
+                            importBookSourceOnLine();
+                            break;
+                        case 3:
+                            importBookSourceDefault();
+                            break;
+                        case 4:
+                            revertSelection();
+                            break;
+                        case 5:
+                            deleteSelectDialog();
+                            break;
+                        case 6:
+                            mPresenter.checkBookSource(adapter.getSelectDataList());
+                            break;
+                        case 7:
+                            ShareService.startThis(this, adapter.getSelectDataList());
+                            break;
+                    }
+                });
+    }
+
+    /**
+     * 初始化搜索框
+     */
     private void initSearchView() {
         mSearchAutoComplete = binding.searchView.findViewById(R.id.search_src_text);
         mSearchAutoComplete.setTextSize(16);
@@ -141,6 +241,9 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
         });
     }
 
+    /**
+     * 初始化RecyclerView
+     */
     private void initRecyclerView() {
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
@@ -154,9 +257,7 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
     }
 
     private void setDragEnable(int sort) {
-        if (itemTouchCallback == null) {
-            return;
-        }
+        if (itemTouchCallback == null) { return; }
         adapter.setSort(sort);
         itemTouchCallback.setDragEnable(sort == 0);
     }
@@ -235,105 +336,36 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
         setResult(RESULT_OK);
     }
 
-    // 设置ToolBar
-    private void setupActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle(R.string.book_source_manage);
-        }
-    }
-
-    // 添加菜单
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_book_source_activity, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        groupItem = menu.findItem(R.id.action_group);
-        groupMenu = groupItem.getSubMenu();
-        upGroupMenu();
-        upSortMenu();
-        return super.onPrepareOptionsMenu(menu);
-    }
-
-    //菜单
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_add_book_source) {
-            addBookSource();
-        } else if (id == R.id.action_select_all) {
-            selectAllDataS();
-        } else if (id == R.id.action_import_book_source_local) {
-            selectBookSourceFile();
-        } else if (id == R.id.action_import_book_source_online) {
-            importBookSourceOnLine();
-        } else if (id == R.id.action_import_book_source_default) {
-            importBookSourceDefault();
-        } else if (id == R.id.action_revert_selection) {
-            revertSelection();
-        } else if (id == R.id.action_del_select) {
-            deleteSelectDialog();
-        } else if (id == R.id.action_check_book_source) {
-            mPresenter.checkBookSource(adapter.getSelectDataList());
-        } else if (id == R.id.sort_manual) {
-            upSourceSort(0);
-        } else if (id == R.id.sort_auto) {
-            upSourceSort(1);
-        } else if (id == R.id.sort_pin_yin) {
-            upSourceSort(2);
-        } else if (id == R.id.show_enabled) {
-            binding.searchView.setQuery("enabled", false);
-        } else if (id == R.id.action_share_wifi) {
-            ShareService.startThis(this, adapter.getSelectDataList());
-        } else if (id == android.R.id.home) {
-            finish();
-        }
-        if (item.getGroupId() == R.id.source_group) {
-            binding.searchView.setQuery(item.getTitle(), true);
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void upGroupMenu() {
-        if (groupMenu == null) return;
-        groupMenu.removeGroup(R.id.source_group);
-        List<String> groupList = BookSourceManager.getGroupList();
-        for (String groupName : new ArrayList<>(groupList)) {
-            groupMenu.add(R.id.source_group, Menu.NONE, Menu.NONE, groupName);
-        }
-    }
-
-    private void upSortMenu() {
-        groupMenu.getItem(0).setChecked(false);
-        groupMenu.getItem(1).setChecked(false);
-        groupMenu.getItem(2).setChecked(false);
-        groupMenu.getItem(getSort()).setChecked(true);
-    }
-
+    /**
+     * 更新书源排序规则
+     */
     private void upSourceSort(int sort) {
         preferences.edit().putInt("SourceSort", sort).apply();
-        upSortMenu();
         setDragEnable(sort);
         refreshBookSource();
     }
 
+    /**
+     * 读取书源排序规则
+     */
     public int getSort() {
         return preferences.getInt("SourceSort", 0);
     }
 
+    /**
+     * 添加本地书源
+     */
     private void addBookSource() {
         Intent intent = new Intent(this, SourceEditActivity.class);
         startActivityForResult(intent, SourceEditActivity.EDIT_SOURCE);
     }
 
+    /**
+     * 删除所选书源
+     */
     private void deleteSelectDialog() {
         AlertDialog.builder(this,binding.getRoot(), AlertDialog.NO_TITLE)
-                .setMessage(R.string.del_select_msg)
+                .setMessage(R.string.del_delete_book_source)
                 .setNegativeButton(R.string.cancel)
                 .setPositiveButton(R.string.delete)
                 .setOnclick(new AlertDialog.OnItemClickListener() {
@@ -345,6 +377,9 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
                 }).show();
     }
 
+    /**
+     * 导入本地书源
+     */
     private void selectBookSourceFile() {
         new PermissionsCompat.Builder(this)
                 .addPermissions(Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE)
@@ -367,7 +402,7 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
     }
 
     /**
-     * 网络导入书源
+     * 导入网络书源
      */
     private void importBookSourceOnLine() {
         String cu = ACache.get(this).getAsString("sourceUrl");
@@ -416,7 +451,7 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
             preferences.edit()
                     .putBoolean("importDefaultBookSource", true)
                     .apply();
-            toast("导入成功");
+            toast(R.string.import_success);
             refreshBookSource();
         }
     }
@@ -452,7 +487,7 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (isSearch) {
                 try {
-                    //如果搜索框中有文字，则会先清空文字.
+                    // 如果搜索框中有文字，则会先清空文字
                     mSearchAutoComplete.setText("");
                 } catch (Exception e) {
                     e.printStackTrace();

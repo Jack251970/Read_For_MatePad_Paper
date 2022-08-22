@@ -23,8 +23,9 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by GKF on 2017/12/22.
- * 书源Adapter
+ * BookSource Item Adapter
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
  */
 
 public class BookSourceAdapter extends RecyclerView.Adapter<BookSourceAdapter.MyViewHolder> {
@@ -61,7 +62,6 @@ public class BookSourceAdapter extends RecyclerView.Adapter<BookSourceAdapter.My
         notifyDataSetChanged();
         activity.upDateSelectAll();
         activity.upSearchView(dataList.size());
-        activity.upGroupMenu();
     }
 
     private void setAllDataList(List<BookSourceBean> bookSourceBeanList) {

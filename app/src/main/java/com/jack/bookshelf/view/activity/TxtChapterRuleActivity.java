@@ -133,7 +133,7 @@ public class TxtChapterRuleActivity extends MBaseActivity<TxtChapterRuleContract
         List<TxtChapterRuleBean> ruleDefaultList = GsonUtils.parseJArray(json, TxtChapterRuleBean.class);
         if (ruleDefaultList != null) {
             DbHelper.getDaoSession().getTxtChapterRuleBeanDao().insertOrReplaceInTx(ruleDefaultList);
-            toast("导入成功");
+            toast(R.string.import_success);
             refresh();
             preferences.edit()
                     .putBoolean("importDefaultBookSource", true)

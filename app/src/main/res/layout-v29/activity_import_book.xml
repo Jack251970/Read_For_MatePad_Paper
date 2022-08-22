@@ -11,31 +11,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <!-- ToolBar -->
+        <!-- Custom ActionBar -->
         <LinearLayout
             android:id="@+id/action_bar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/toolbar_layout_height"
+            android:layout_height="@dimen/actionbar_layout_height"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingLeft="16dp"
-            android:paddingTop="18dp"
-            android:paddingRight="16dp"
-            android:paddingBottom="18dp">
+            android:paddingLeft="@dimen/action_bar_padding_and_margin"
+            android:paddingRight="@dimen/action_bar_padding_and_margin">
             <ImageView
                 android:id="@+id/iv_back"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/action_bar_icon_height_and_width"
+                android:layout_height="@dimen/action_bar_icon_height_and_width"
                 android:contentDescription="返回"
                 android:src="@drawable/ic_arrow_back" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="@dimen/action_bar_padding_and_margin"
                 android:text="@string/import_local_book"
                 android:textColor="@color/colorAccent"
-                android:textSize="22sp"
+                android:textSize="@dimen/action_bar_title_text_size"
                 android:textStyle="bold" />
         </LinearLayout>
         <!-- Title_VP -->
@@ -104,7 +101,7 @@
     <LinearLayout
         android:id="@+id/rl_bottom"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar_layout_height"
+        android:layout_height="@dimen/actionbar_layout_height"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:gravity="center_vertical"

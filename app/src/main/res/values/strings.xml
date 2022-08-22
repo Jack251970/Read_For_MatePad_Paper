@@ -4,6 +4,8 @@
     <string name="app_name">阅读</string>
     <string name="confirm">确定</string>
     <string name="cancel">取消</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
 
     <!-- Permission -->
     <string name="import_local_book_need_storage_permission">导入本地书籍需要储存权限</string>
@@ -46,6 +48,14 @@
         <!-- Import Book Activity -->
         <string name="local_directory">本地目录</string>
         <string name="smart_import">智能导入</string>
+        <!-- Book Source Activity -->
+        <string name="search">搜索</string>
+        <string name="search_book_source">搜索书源</string>
+        <string name="search_book_source_num">搜索(共%d个书源)</string>
+        <string name="del_delete_book_source">是否删除所选书源？</string>
+        <string name="sys_file_picker">系统文件选择器</string>
+        <string name="input_book_source_url">输入书源网址</string>
+        <string name="import_success">导入成功</string>
 
     <!-- Fragment -->
         <!-- BookList Fragment-->
@@ -91,6 +101,14 @@
         <string name="import_book">导入书籍</string>
             <string name="import_local_book">导入本地书籍</string>
             <string name="import_online_book">导入网络书籍</string>
+        <!-- Select Menu Book Source UpGroup -->
+        <string name="book_source_sequence">书源排序</string>
+        <string name="sort_manual">手动排序</string>
+        <string name="sort_auto">智能排序</string>
+        <string name="sort_pin_yin">拼音排序</string>
+        <!-- Select Menu Book Source Quick Search -->
+        <string name="quick_search">快速搜索</string>
+        <string name="enabled_book_source">启用书源</string>
 
     <!-- More Setting Menu -->
         <!-- More Setting Menu Main -->
@@ -107,6 +125,15 @@
         <string name="allow_update">允许更新</string>
         <string name="edit_book_source">编辑书源</string>
         <string name="copy_book_url">复制网址</string>
+        <!-- More Setting Menu BookSource -->
+        <string name="add_book_source">新建本地</string>
+        <string name="import_book_source_local">导入本地</string>
+        <string name="import_book_source_online">导入网络</string>
+        <string name="import_by_default">导入默认</string>
+        <string name="revert_selection">反转选择</string>
+        <string name="del_select">删除所选</string>
+        <string name="check_select_source">校验所选</string>
+        <string name="wifi_share">wifi分享</string>
 
     <!-- Shortcuts -->
     <string name="enter_bookshelf">进入书架</string>
@@ -121,6 +148,28 @@
 
 
 
+
+    <string name="default_source">默认书源</string>
+
+    <string name="no_default_source">没有可用的默认书源</string>
+    <string name="row_0">单倍</string>
+    <string name="row_1">双倍</string>
+    <string name="row_2">三倍</string>
+    <string name="row_def">默认</string>
+    <string name="custom_mr">自定义间距</string>
+
+    <string name="custom_mr_rm">行间距</string>
+    <string name="custom_mr_dm">段间距</string>
+    <string name="custom_mr_f">字间距</string>
+    <string name="custom_mr_z_t">上边距</string>
+    <string name="custom_mr_z_b">下边距</string>
+    <string name="custom_mr_z_l">左边距</string>
+    <string name="custom_mr_z_r">右边距</string>
+
+    <string name="custom_mr_t_t">上Tip</string>
+    <string name="custom_mr_t_b">下Tip</string>
+    <string name="custom_mr_t_l">左Tip</string>
+    <string name="custom_mr_t_r">右Tip</string>
 
 
 
@@ -146,7 +195,7 @@
     <string name="dialog_title">提示</string>
     <string name="dialog_setting">去设置</string>
     <string name="tip_cannot_jump_setting_page">无法跳转至设置界面</string>
-    <string name="search">搜索</string>
+
     <string name="net_error_10001">没有网络</string>
     <string name="net_error_10002">网络连接超时</string>
     <string name="net_error_10003">数据解析失败</string>
@@ -232,7 +281,6 @@
     <string name="action_save">保存</string>
 
     <string name="disable_book_source">禁用书源</string>
-    <string name="add_book_source">新建本地</string>
     <string name="book_file_selector">添加书籍</string>
     <string name="scan_book_source">扫描</string>
     <string name="copy_source">拷贝书源</string>
@@ -247,8 +295,7 @@
     <string name="flow_sys">跟随系统</string>
     <string name="add">添加</string>
     <string name="import_book_source">导入书源</string>
-    <string name="import_book_source_local">导入本地</string>
-    <string name="import_book_source_online">导入网络</string>
+
     <string name="replace_rule_title">替换净化</string>
     <string name="edit_replace_rule">编辑规则</string>
     <string name="light_novel_paragraph">重新分段</string>
@@ -286,7 +333,6 @@
     <string name="del_all_replace_rule">删除所有</string>
     <string name="check_update_interval">检查更新间隔</string>
     <string name="read_type">阅读方式</string>
-    <string name="del_select">删除所选</string>
     <string name="del_all_msg">是否确认删除所有内容?</string>
     <string name="del_select_msg">是否确认删除所选内容?</string>
     <string name="clear_font">默认字体</string>
@@ -320,8 +366,6 @@
     <string name="join_group">关注:%s</string>
     <string name="copy_complete">已拷贝</string>
     <string name="clear_bookshelf_s">这将会删除所有书籍，请谨慎操作。</string>
-    <string name="search_book_source">搜索书源</string>
-    <string name="search_book_source_num">搜索(共%d个书源)</string>
     <string name="chapter_list_size">目录(%d)</string>
     <string name="text_bold">粗/细</string>
     <string name="custom_font">字体</string>
@@ -337,7 +381,7 @@
     <string name="padding_left">左边距</string>
     <string name="padding_right">右边距</string>
     <string name="check_book_source">校验书源</string>
-    <string name="check_select_source">校验所选</string>
+
     <string name="progress_show">进度 %d/%d</string>
     <string name="tts_fix">请安装并选择中文TTS!</string>
     <string name="tts_init_failed">TTS初始化失败!</string>
@@ -373,20 +417,16 @@
     <string name="auto_next_page_stop">停止自动翻页</string>
     <string name="auto_next_page_speed">自动翻页时每分钟阅读字数(CPM)</string>
     <string name="edit_book_info">书籍信息编辑</string>
-
     <string name="ps_default_read">打开应用时将自动前往上一次阅读位置</string>
     <string name="pt_default_read">自动跳转最近阅读</string>
     <string name="use_to">替换范围，选填书名或者源名</string>
     <string name="menu_action_group">分组</string>
     <string name="backup_path">本地备份路径</string>
     <string name="download_path">书籍缓存路径</string>
-    <string name="sys_file_picker">系统文件选择器</string>
     <string name="new_version">新版本</string>
     <string name="download_update">下载更新</string>
     <string name="aloud_volume_page">朗读时音量键翻页</string>
     <string name="tip_margin_change">Tip边距跟随边距调整</string>
-
-    <string name="revert_selection">反转选择</string>
     <string name="search_book_key">搜索书名、作者</string>
     <string name="debug_hint">书名、作者、URL</string>
     <string name="faq">常见问题</string>
@@ -397,9 +437,6 @@
     <string name="set_charset">设置编码</string>
     <string name="swap_sort">倒序-顺序</string>
     <string name="sort">排序</string>
-    <string name="sort_auto">智能排序</string>
-    <string name="sort_manual">手动排序</string>
-    <string name="sort_pin_yin">拼音排序</string>
     <string name="go_to_top">滚动到顶部</string>
     <string name="go_to_bottom">滚动到底部</string>
     <string name="read_y">已读: %s</string>
@@ -471,7 +508,6 @@
     <string name="restore_default_theme">恢复所有主题为默认配色</string>
     <string name="read_file_error">文件读取失败</string>
     <string name="bg_image_per">获取背景图片需存储权限</string>
-    <string name="input_book_source_url">输入书源网址</string>
     <string name="del_file">删除文件</string>
     <string name="del_file_success">删除文件成功</string>
     <string name="sure_del_file">确定删除文件吗?</string>
@@ -482,9 +518,6 @@
     <string name="import_per">导入本地书籍需存储权限</string>
     <string name="click_to_day">点击可切换到明亮模式</string>
     <string name="click_to_night">点击可切换到暗黑模式</string>
-    <string name="yes">是</string>
-    <string name="no">否</string>
-
     <string name="sure_del_download_book">是否同时删除已下载的书籍目录？</string>
     <string name="aloud_can_not_auto_page">朗读正在运行,不能自动翻页</string>
     <string name="input_charset">输入编码</string>
@@ -531,7 +564,7 @@
     <string name="web_port_title">Web端口</string>
     <string name="web_port_summary">当前端口 %s</string>
     <string name="str_share">字符串分享</string>
-    <string name="wifi_share">wifi分享</string>
+
     <string name="please_grant_storage_permission">请给于存储权限</string>
     <string name="skip_previous">上一个</string>
     <string name="skip_next">下一个</string>
@@ -543,9 +576,7 @@
     <string name="clear_find_cache">清空发现缓存</string>
     <string name="edit_find">编辑发现</string>
     <string name="change_icon_summary">切换软件显示在桌面的图标</string>
-    <string name="show_enabled">显示勾选</string>
     <string name="to_lh">扩展到刘海</string>
-
     <string name="layout_list">列表视图</string>
     <string name="layout_grid3">网格视图三列</string>
     <string name="layout_grid4">网格视图四列</string>

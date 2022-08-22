@@ -1,8 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="PxUsage">
     <!-- Huawei Matepad Paper Theme-->
-        <!-- Toolbar-->
-        <dimen name="toolbar_layout_height">64dp</dimen>
+        <!-- Actionbar-->
+        <dimen name="actionbar_layout_height">64dp</dimen>
+        <dimen name="action_bar_padding_and_margin">20dp</dimen>
+        <dimen name="action_bar_icon_height_and_width">30dp</dimen>
+        <dimen name="action_bar_title_text_size">22sp</dimen>
         <!-- Button -->
         <dimen name="button_width">280dp</dimen>
         <dimen name="button_height">42dp</dimen>
@@ -32,7 +35,7 @@
                 <dimen name="alert_dialog_no_title_radius">28dp</dimen>
         <!-- SearchBar-->
         <dimen name="searchbar_height">42dp</dimen>
-        <dimen name="searchbar_stroke_width">1px</dimen>
+        <dimen name="searchbar_stroke_width">1dp</dimen>
         <dimen name="searchbar_radius">21dp</dimen>
         <!-- More Setting Menu-->
         <dimen name="more_setting_menu_width">118dp</dimen>

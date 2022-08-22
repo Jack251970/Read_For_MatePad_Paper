@@ -15,6 +15,17 @@
             <item>@string/finish</item>
             <item>@string/local</item>
         </string-array>
+        <!-- More Setting Menu BookSource -->
+        <string-array name="more_setting_menu_book_source">
+            <item>@string/add_book_source</item>
+            <item>@string/import_book_source_local</item>
+            <item>@string/import_book_source_online</item>
+            <item>@string/import_by_default</item>
+            <item>@string/revert_selection</item>
+            <item>@string/del_select</item>
+            <item>@string/check_select_source</item>
+            <item>@string/wifi_share</item>
+        </string-array>
 
     <!-- Select Menu -->
         <!-- MainActivity -->
@@ -34,6 +45,19 @@
             <item>@string/app_folder_picker</item>
             <item>@string/default_path</item>
         </string-array>
+        <!-- Book Source Sequence -->
+        <string-array name="book_source_sequence">
+            <item>@string/sort_manual</item>
+            <item>@string/sort_auto</item>
+            <item>@string/sort_pin_yin</item>
+        </string-array>
+
+
+
+
+
+
+
 
 
 

@@ -10,6 +10,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.hwangjr.rxbus.RxBus;
 import com.jack.basemvplib.BasePresenterImpl;
 import com.jack.bookshelf.DbHelper;
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.observer.MyObserver;
 import com.jack.bookshelf.bean.TxtChapterRuleBean;
 import com.jack.bookshelf.help.DocumentHelper;
@@ -119,7 +120,7 @@ public class TxtChapterRulePresenter extends BasePresenterImpl<TxtChapterRuleCon
                 @Override
                 public void onNext(Boolean aBoolean) {
                     mView.refresh();
-                    mView.toast("导入成功");
+                    mView.toast(R.string.import_success);
                 }
 
                 @Override

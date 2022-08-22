@@ -52,6 +52,16 @@ public class SelectMenu extends PopupWindow{
         return this;
     }
 
+    public SelectMenu setMenu (List<String> menuNameList) {
+        SelectMenuAdapter adapter = new SelectMenuAdapter(context, menuNameList);
+        lvMenu.setAdapter(adapter);
+        lvMenu.setOnItemClickListener((parent, view, position, id) -> {
+            dismiss();
+            itemClick.forListItem(-1, position);
+        });
+        return this;
+    }
+
     public SelectMenu setMenu (String[] menuList) {
         List<String> menuNameList = Arrays.asList(menuList);
         SelectMenuAdapter adapter = new SelectMenuAdapter(context, menuNameList);
@@ -59,6 +69,16 @@ public class SelectMenu extends PopupWindow{
         lvMenu.setOnItemClickListener((parent, view, position, id) -> {
             dismiss();
             itemClick.forListItem(-1, position);
+        });
+        return this;
+    }
+
+    public SelectMenu setMenu (List<String> menuNameList, int lastChoose) {
+        SelectMenuAdapter adapter = new SelectMenuAdapter(context, menuNameList, lastChoose);
+        lvMenu.setAdapter(adapter);
+        lvMenu.setOnItemClickListener((parent, view, position, id) -> {
+            dismiss();
+            itemClick.forListItem(lastChoose, position);
         });
         return this;
     }
