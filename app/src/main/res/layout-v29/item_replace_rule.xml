@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="16dp">
-
     <com.jack.bookshelf.widget.views.ATECheckBox
         android:id="@+id/cb_replace_rule"
         android:layout_width="0dp"
@@ -13,26 +12,23 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:singleLine="true"
-        android:text=""
-        android:textColor="@color/tv_text_default" />
-
+        android:textColor="@color/tv_text_default"
+        android:textStyle="bold"
+        tools:text="净化规则1"/>
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_edit"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
-        android:contentDescription="@string/edit"
+        android:contentDescription="编辑"
         android:padding="8dp"
-        android:src="@drawable/ic_edit"
-        app:tint="@color/tv_text_default" />
-
+        android:src="@drawable/ic_edit"/>
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_del"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
-        android:contentDescription="@string/delete"
+        android:contentDescription="删除"
         android:padding="8dp"
-        android:src="@drawable/ic_clear"
-        app:tint="@color/tv_text_default" />
+        android:src="@drawable/mpp_ic_clear"/>
 </LinearLayout>

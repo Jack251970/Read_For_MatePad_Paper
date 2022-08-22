@@ -12,17 +12,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.jack.basemvplib.impl.IPresenter;
-import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.MBaseActivity;
 import com.jack.bookshelf.bean.DownloadBookBean;
-import com.jack.bookshelf.databinding.ActivityRecyclerVewBinding;
+import com.jack.bookshelf.databinding.ActivityDownloadBinding;
 import com.jack.bookshelf.service.DownloadService;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.DownloadAdapter;
@@ -38,13 +34,12 @@ import java.util.ArrayList;
 
 public class DownloadActivity extends MBaseActivity<IPresenter> {
 
-    private ActivityRecyclerVewBinding binding;
+    private ActivityDownloadBinding binding;
     private DownloadAdapter adapter;
     private DownloadReceiver receiver;
 
     public static void startThis(Activity activity) {
-        Intent intent = new Intent(activity, DownloadActivity.class);
-        activity.startActivity(intent);
+        activity.startActivity(new Intent(activity, DownloadActivity.class));
     }
 
     @Override
@@ -69,15 +64,13 @@ public class DownloadActivity extends MBaseActivity<IPresenter> {
     }
 
     /**
-     * 布局载入  setContentView()
+     * 布局载入
      */
     @Override
     protected void onCreateActivity() {
         getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
-        binding = ActivityRecyclerVewBinding.inflate(getLayoutInflater());
+        binding = ActivityDownloadBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        this.setSupportActionBar(binding.toolbar);
-        setupActionBar();
     }
 
     /**
@@ -97,44 +90,23 @@ public class DownloadActivity extends MBaseActivity<IPresenter> {
 
     @Override
     protected void bindView() {
+        // 初始化RecyclerView
         initRecyclerView();
+        // 返回
+        binding.ivBackDownload.setOnClickListener(v -> finish());
+        // 停止下载
+        binding.ivStopDownload.setOnClickListener(v -> DownloadService.cancelDownload(this));
     }
 
+    /**
+     * 初始化RecyclerView
+     */
     private void initRecyclerView() {
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new DownloadAdapter(this);
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setItemAnimator(null);
-
         DownloadService.obtainDownloadList(this);
-    }
-
-    //设置顶部信息栏
-    private void setupActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle(R.string.download_offline);
-        }
-    }
-
-    // 添加菜单
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_book_download, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    // 菜单
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_cancel) {
-            DownloadService.cancelDownload(this);
-        } else if (id == android.R.id.home) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     private static class DownloadReceiver extends BroadcastReceiver {
@@ -155,7 +127,8 @@ public class DownloadActivity extends MBaseActivity<IPresenter> {
             if (action != null) {
                 switch (action) {
                     case addDownloadAction:
-                        DownloadBookBean downloadBook = intent.getParcelableExtra("downloadBook");
+                        DownloadBookBean downloadBook =
+                                intent.getParcelableExtra("downloadBook");
                         adapter.addData(downloadBook);
                         break;
                     case removeDownloadAction:
@@ -170,7 +143,8 @@ public class DownloadActivity extends MBaseActivity<IPresenter> {
                         adapter.upDataS(null);
                         break;
                     case obtainDownloadListAction:
-                        ArrayList<DownloadBookBean> downloadBooks = intent.getParcelableArrayListExtra("downloadBooks");
+                        ArrayList<DownloadBookBean> downloadBooks =
+                                intent.getParcelableArrayListExtra("downloadBooks");
                         adapter.upDataS(downloadBooks);
                         break;
 

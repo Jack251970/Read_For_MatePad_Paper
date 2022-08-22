@@ -18,13 +18,25 @@
         <!-- More Setting Menu BookSource -->
         <string-array name="more_setting_menu_book_source">
             <item>@string/add_book_source</item>
-            <item>@string/import_book_source_local</item>
+            <item>@string/import_local</item>
             <item>@string/import_book_source_online</item>
-            <item>@string/import_by_default</item>
+            <item>@string/import_default</item>
             <item>@string/revert_selection</item>
             <item>@string/del_select</item>
             <item>@string/check_select_source</item>
             <item>@string/wifi_share</item>
+        </string-array>
+        <!-- More Setting Menu Replace Rule-->
+        <string-array name="more_setting_menu_replace_rule">
+            <item>@string/import_local</item>
+            <item>@string/import_online</item>
+            <item>@string/del_all</item>
+        </string-array>
+        <!-- More Setting Menu TxtChapter Rule -->
+        <string-array name="more_setting_menu_txt_chapter_rule">
+            <item>@string/import_local</item>
+            <item>@string/import_default</item>
+            <item>@string/del_all</item>
         </string-array>
 
     <!-- Select Menu -->
@@ -52,8 +64,12 @@
             <item>@string/sort_pin_yin</item>
         </string-array>
 
-
-
+    <!-- FilePicker -->
+    <string-array name="text_suffix">
+        <item>.txt</item>
+        <item>.json</item>
+        <item>.xml</item>
+    </string-array>
 
 
 
@@ -77,20 +93,6 @@
         <item>@string/indent_2</item>
         <item>@string/indent_3</item>
         <item>@string/indent_4</item>
-    </string-array>
-
-    <string-array name="book_group_array">
-        <item>@string/all_book</item>
-        <item>@string/pursue_more_book</item>
-        <item>@string/fattening_book</item>
-        <item>@string/finish_book</item>
-        <item>@string/local_book</item>
-    </string-array>
-
-    <string-array name="text_suffix">
-        <item>.txt</item>
-        <item>.json</item>
-        <item>.xml</item>
     </string-array>
 
     <string-array name="convert_s">
@@ -137,5 +139,4 @@
         <attr name="batteryColor" format="color"/>
         <attr name="batteryPower" format="integer"/>
     </declare-styleable>
-
 </resources>

@@ -11,8 +11,13 @@ import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.TxtChapterRuleBean;
 import com.jack.bookshelf.widget.views.ATEEditText;
 
-public class TxtChapterRuleDialog {
+/**
+ * Txt Chapter Input Dialog
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
+public class TxtChapterRuleDialog {
     private ATEEditText tieRuleName;
     private ATEEditText tieRuleRegex;
     private TextView tvOk;
@@ -24,12 +29,13 @@ public class TxtChapterRuleDialog {
         return new TxtChapterRuleDialog(context, txtChapterRuleBean);
     }
 
+    @SuppressLint("InflateParams")
     private TxtChapterRuleDialog(Context context, TxtChapterRuleBean txtChapterRuleBean) {
         if (txtChapterRuleBean != null) {
             this.txtChapterRuleBean = txtChapterRuleBean.copy();
         }
         dialog = new BaseDialog(context, R.style.alertDialogTheme);
-        @SuppressLint("InflateParams") View view = LayoutInflater.from(context).inflate(R.layout.dialog_txt_chpater_rule, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_txt_chpater_rule, null);
         bindView(view);
         dialog.setContentView(view);
     }
@@ -72,5 +78,4 @@ public class TxtChapterRuleDialog {
     public interface Callback {
         void onPositiveButton(TxtChapterRuleBean txtChapterRuleBean);
     }
-
 }

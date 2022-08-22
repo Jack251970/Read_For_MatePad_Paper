@@ -164,11 +164,7 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
     }
 
     protected void initTheme() {
-        if (ColorUtils.isColorLight(ThemeStore.primaryColor(this))) {
-            setTheme(R.style.CAppTheme);
-        } else {
-            setTheme(R.style.CAppThemeBarDark);
-        }
+        setTheme(R.style.CAppTheme);
     }
 
     public void showSnackBar(View view, String msg, int length) {

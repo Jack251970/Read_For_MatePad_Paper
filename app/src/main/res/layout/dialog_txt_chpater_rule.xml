@@ -3,58 +3,56 @@
     android:id="@+id/ll_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@drawable/dialog_background"
     android:orientation="vertical"
     android:padding="10dp">
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:text="@string/chapter_regex"
-        android:textSize="20sp" />
-
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
     <com.jack.bookshelf.widget.views.ATETextInputLayout
         android:id="@+id/til_rule_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="名称"
         android:padding="10dp">
-
         <com.jack.bookshelf.widget.views.ATEEditText
             android:id="@+id/tie_rule_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="3" />
     </com.jack.bookshelf.widget.views.ATETextInputLayout>
-
     <com.jack.bookshelf.widget.views.ATETextInputLayout
         android:id="@+id/til_rule_regex"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="正则"
         android:padding="10dp">
-
         <com.jack.bookshelf.widget.views.ATEEditText
             android:id="@+id/tie_rule_regex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="3" />
     </com.jack.bookshelf.widget.views.ATETextInputLayout>
-
     <TextView
         android:id="@+id/tv_ok"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/selector_fillet_btn_bg"
+        android:layout_gravity="center"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
+        android:padding="@dimen/text_view_button_padding"
+        android:background="@drawable/textview_button_background"
+        android:layout_margin="5dp"
         android:text="@string/ok"
-        android:textColor="@color/tv_text_default" />
-
+        android:textFontWeight="800"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="14sp"/>
 </LinearLayout>

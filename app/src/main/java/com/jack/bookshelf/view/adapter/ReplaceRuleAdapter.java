@@ -20,19 +20,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by GKF on 2017/12/22.
- * 替换净化Adapter
+ * Replace Rule Adapter
+ * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
 public class ReplaceRuleAdapter extends RecyclerView.Adapter<ReplaceRuleAdapter.MyViewHolder> {
     private final List<ReplaceRuleBean> data;
     private final ReplaceRuleActivity activity;
-    private final ItemTouchCallback.OnItemTouchCallbackListener itemTouchCallbackListener = new ItemTouchCallback.OnItemTouchCallbackListener() {
-        @Override
-        public void onSwiped(int adapterPosition) {
 
-        }
+    private final ItemTouchCallback.OnItemTouchCallbackListener itemTouchCallbackListener =
+            new ItemTouchCallback.OnItemTouchCallbackListener() {
+        @Override
+        public void onSwiped(int adapterPosition) {}
 
         @Override
         public boolean onMove(int srcPosition, int targetPosition) {
@@ -68,7 +68,8 @@ public class ReplaceRuleAdapter extends RecyclerView.Adapter<ReplaceRuleAdapter.
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_replace_rule, parent, false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_replace_rule, parent, false);
         return new MyViewHolder(view);
     }
 

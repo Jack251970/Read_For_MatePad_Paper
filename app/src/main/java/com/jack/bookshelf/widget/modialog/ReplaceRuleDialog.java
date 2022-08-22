@@ -17,8 +17,13 @@ import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BookShelfBean;
 import com.jack.bookshelf.bean.ReplaceRuleBean;
 
+/**
+ * Replace Rule Input Dialog
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
 public class ReplaceRuleDialog extends BaseDialog {
-    private final Context context;
     private AppCompatEditText tieReplaceSummary;
     private AppCompatEditText tieReplaceRule;
     private AppCompatEditText tieReplaceTo;
@@ -29,44 +34,35 @@ public class ReplaceRuleDialog extends BaseDialog {
     private ReplaceRuleBean replaceRuleBean;
     private final BookShelfBean bookShelfBean;
 
-    private TextView replace_ad_intro, tvtitle;
-    private View til_replace_to;
-
-    // 替换规则编辑UI的模式  1 默认  2 广告话术  3 添加广告话术
-    private int ReplaceUIMode = 1;
+    private int ReplaceUIMode = 1; // 替换规则编辑UI的模式  1 默认  2 广告话术  3 添加广告话术
     public static int DefaultUI = 1, AdUI = 2, AddAdUI = 3;
     private String str_summary = "";
-
 
     public static ReplaceRuleDialog builder(Context context, ReplaceRuleBean replaceRuleBean, BookShelfBean bookShelfBean, int replaceUIMode) {
         return new ReplaceRuleDialog(context, replaceRuleBean, bookShelfBean, replaceUIMode);
     }
 
-
     public static ReplaceRuleDialog builder(Context context, ReplaceRuleBean replaceRuleBean, BookShelfBean bookShelfBean) {
         return new ReplaceRuleDialog(context, replaceRuleBean, bookShelfBean);
     }
 
+    @SuppressLint("InflateParams")
     private ReplaceRuleDialog(Context context, ReplaceRuleBean replaceRuleBean, BookShelfBean bookShelfBean) {
         super(context, R.style.alertDialogTheme);
-        this.context = context;
         this.replaceRuleBean = replaceRuleBean;
         this.bookShelfBean = bookShelfBean;
-
-        @SuppressLint("InflateParams") View view = LayoutInflater.from(context).inflate(R.layout.dialog_replace_rule, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_replace_rule, null);
         bindView(view);
         setContentView(view);
-
     }
 
+    @SuppressLint("InflateParams")
     private ReplaceRuleDialog(Context context, ReplaceRuleBean replaceRuleBean, BookShelfBean bookShelfBean, int replaceUIMod) {
         super(context, R.style.alertDialogTheme);
-        this.context = context;
         this.replaceRuleBean = replaceRuleBean;
         this.bookShelfBean = bookShelfBean;
         this.ReplaceUIMode = replaceUIMod;
-
-        @SuppressLint("InflateParams") View view = LayoutInflater.from(context).inflate(R.layout.dialog_replace_rule, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_replace_rule, null);
         bindView(view);
         setContentView(view);
     }
@@ -74,30 +70,27 @@ public class ReplaceRuleDialog extends BaseDialog {
     private void bindView(View view) {
         View llContent = view.findViewById(R.id.ll_content);
         llContent.setOnClickListener(null);
-
         tieReplaceRule = view.findViewById(R.id.tie_replace_rule);
         tieReplaceSummary = view.findViewById(R.id.tie_replace_summary);
         tieReplaceTo = view.findViewById(R.id.tie_replace_to);
         tieUseTo = view.findViewById(R.id.tie_use_to);
         cbUseRegex = view.findViewById(R.id.cb_use_regex);
         tvOk = view.findViewById(R.id.tv_ok);
-        replace_ad_intro = view.findViewById(R.id.replace_ad_intro);
-        tvtitle = view.findViewById(R.id.title);
-        til_replace_to=view.findViewById(R.id.til_replace_to);
+        TextView replace_ad_intro = view.findViewById(R.id.replace_ad_intro);
+        TextView tvTitle = view.findViewById(R.id.title);
+        View til_replace_to = view.findViewById(R.id.til_replace_to);
         if (replaceRuleBean != null) {
             tieReplaceSummary.setText(replaceRuleBean.getReplaceSummary());
             tieReplaceTo.setText(replaceRuleBean.getReplacement());
             tieReplaceRule.setText(replaceRuleBean.getRegex());
             tieUseTo.setText(replaceRuleBean.getUseTo());
             cbUseRegex.setChecked(replaceRuleBean.getIsRegex());
-
             // 初始化广告话术规则的UI
             if (ReplaceUIMode == DefaultUI) {
                 if (replaceRuleBean.getReplaceSummary().matches("^" + view.getContext().getString(R.string.replace_ad) + ".*"))
                     ReplaceUIMode = AdUI;
             }
             if (ReplaceUIMode > DefaultUI) {
-//                tieReplaceTo.setVisibility(View.GONE);
                 til_replace_to.setVisibility(View.GONE);
                 cbUseRegex.setVisibility(View.GONE);
                 replace_ad_intro.setVisibility(View.VISIBLE);
@@ -105,17 +98,16 @@ public class ReplaceRuleDialog extends BaseDialog {
                 tieReplaceRule.setMaxLines(8);
 
                 if (ReplaceUIMode == AdUI) {
-                    tvtitle.setText(view.getContext().getString(R.string.replace_ad_title));
+                    tvTitle.setText(view.getContext().getString(R.string.replace_ad_title));
                 } else {
-                    tvtitle.setText(view.getContext().getString(R.string.replace_add_ad_title));
+                    tvTitle.setText(view.getContext().getString(R.string.replace_add_ad_title));
                 }
                 str_summary = view.getContext().getString(R.string.replace_ad);
                 TextWatcher mTextWatcher = new TextWatcher() {
-                    private CharSequence temp;
 
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        temp = s;
                         String str=s.toString().trim();
                         if (str.replaceAll("[\\s,]", "").length() > 0)
                             tieReplaceSummary.setText(str_summary + "-" + str);
@@ -124,17 +116,10 @@ public class ReplaceRuleDialog extends BaseDialog {
                     }
 
                     @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
                     @Override
-                    public void afterTextChanged(Editable s) {
-/*                        if (s.toString().replaceAll("[\\s,]", "").length() > 0)
-                            tieReplaceSummary.setText(str_summary + "-" + temp);
-                        else
-                            tieReplaceSummary.setText(str_summary);*/
-                    }
+                    public void afterTextChanged(Editable s) {}
                 };
                 tieUseTo.addTextChangedListener(mTextWatcher);
 
@@ -149,7 +134,6 @@ public class ReplaceRuleDialog extends BaseDialog {
         }
 
     }
-
 
     public ReplaceRuleDialog setPositiveButton(Callback callback) {
         tvOk.setOnClickListener(v -> {
@@ -174,6 +158,4 @@ public class ReplaceRuleDialog extends BaseDialog {
     public interface Callback {
         void onPositiveButton(ReplaceRuleBean replaceRuleBean);
     }
-
-
 }

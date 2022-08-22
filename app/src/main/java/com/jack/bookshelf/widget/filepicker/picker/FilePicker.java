@@ -24,13 +24,13 @@ import com.jack.bookshelf.widget.filepicker.util.StorageUtils;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-
 /**
  * 文件目录选择器
  *
  * @author 李玉江[QQ:1032694760]
  * @since 2015/9/29, 2017/01/01, 2017/01/08
  */
+
 public class FilePicker extends ConfirmPopup<LinearLayout> implements FileAdapter.CallBack, PathAdapter.CallBack {
     public static final int DIRECTORY = 0;
     public static final int FILE = 1;
@@ -69,10 +69,11 @@ public class FilePicker extends ConfirmPopup<LinearLayout> implements FileAdapte
         pathAdapter.setCallBack(this);
     }
 
+    @SuppressLint("InflateParams")
     @Override
     @NonNull
     protected LinearLayout makeCenterView() {
-        @SuppressLint("InflateParams") LinearLayout rootLayout = (LinearLayout) LayoutInflater.from(activity).inflate(R.layout.view_file_picker, null);
+        LinearLayout rootLayout = (LinearLayout) LayoutInflater.from(activity).inflate(R.layout.view_file_picker, null);
 
         RecyclerView recyclerView = rootLayout.findViewById(R.id.rv_file);
         recyclerView.addItemDecoration(new DividerItemDecoration(activity, LinearLayout.VERTICAL));
@@ -234,5 +235,4 @@ public class FilePicker extends ConfirmPopup<LinearLayout> implements FileAdapte
         void onFilePicked(String currentPath);
 
     }
-
 }
