@@ -174,8 +174,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
         // 初始化一级菜单
         initMenu();
         // 左侧边栏事件
-        binding.mppLlMineMain.setOnClickListener(view ->
-                AboutActivity.startThis(this));
+        binding.mppLlMineMain.setOnClickListener(null);
         binding.mppLlBookSourceMain.setOnClickListener(view ->
                 BookSourceActivity.startThis(this, requestSource));
         binding.mppLlReplaceMain.setOnClickListener(view ->

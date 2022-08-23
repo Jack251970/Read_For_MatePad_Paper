@@ -3,6 +3,7 @@ package com.jack.bookshelf.view.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -55,6 +56,13 @@ public class SettingActivity extends MBaseActivity<IPresenter> {
      */
     public void setTile(int strId) {
         binding.tvSettingTitle.setText(strId);
+    }
+
+    /**
+     * 获得根View
+     */
+    public View getRoot() {
+        return binding.getRoot();
     }
 
     @Override

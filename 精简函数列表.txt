@@ -2,7 +2,6 @@
 handler.postDelayed(()
 2.
 /**
-     * 仅在非E-Ink模式下才显示CardView的内部颜色
      */
     @Override
     protected void onCreateActivity() {

@@ -37,7 +37,8 @@ import io.reactivex.schedulers.Schedulers;
  * Edited by Jack251970
  */
 
-public class WebDavSettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class WebDavSettingsFragment extends PreferenceFragment
+        implements SharedPreferences.OnSharedPreferenceChangeListener {
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @Override
@@ -60,9 +61,9 @@ public class WebDavSettingsFragment extends PreferenceFragment implements Shared
         bindPreferenceSummaryToValue(findPreference("web_dav_password"));
     }
 
-    private static final Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = (Preference preference, Object value) -> {
+    private static final Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener
+            = (Preference preference, Object value) -> {
         String stringValue = value.toString();
-
         if (preference.getKey().equals("web_dav_url")) {
             if (TextUtils.isEmpty(stringValue)) {
                 preference.setSummary(DEFAULT_WEB_DAV_URL);
@@ -113,9 +114,7 @@ public class WebDavSettingsFragment extends PreferenceFragment implements Shared
     }
 
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-
-    }
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {}
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
@@ -134,7 +133,7 @@ public class WebDavSettingsFragment extends PreferenceFragment implements Shared
                     @Override
                     public void onSuccess(ArrayList<String> strings) {
                         if (!WebDavHelp.INSTANCE.showRestoreDialog(getActivity(), strings, BackupRestoreUi.INSTANCE)) {
-                            ToastsKt.toast(getActivity(),"没有备份",Toast.LENGTH_SHORT);
+                            ToastsKt.toast(getActivity(),R.string.no_backup,Toast.LENGTH_SHORT);
                         }
                     }
                 });
@@ -150,5 +149,4 @@ public class WebDavSettingsFragment extends PreferenceFragment implements Shared
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
-
 }

@@ -63,6 +63,15 @@
         <!-- Txt Chapter Rule Activity -->
         <string name="chapter_regex">目录正则</string>
         <string name="del_delete_all_txt_chapter_rule">是否删除所有目录正则？</string>
+        <!-- About Activity -->
+        <string name="about_read">关于阅读</string>
+        <string name="can_not_open">无法打开</string>
+        <string name="version_name">Version %s</string>
+        <string name="about_description">For Huawei Matepad Paper</string>
+        <string name="check_update">检查更新</string>
+        <string name="update_log">更新日志</string>
+        <string name="git_hub">项目主页</string>
+        <string name="disclaimer">免责声明</string>
 
     <!-- Fragment -->
         <!-- BookList Fragment-->
@@ -75,6 +84,53 @@
         <!-- File Category Fragment -->
         <string name="default_file_path">内部存储</string>
         <string name="parent">上级</string>
+        <!-- Setting Fragment -->
+        <string name="setting">设置</string>
+        <string name="sure_delete_download_book">是否同时删除已下载的书籍目录？</string>
+        <string name="launcher_setting">启动设置</string>
+            <string name="ps_default_read">打开阅读时将自动前往上一次阅读位置</string>
+            <string name="pt_default_read">默认跳转最近阅读</string>
+        <string name="backup_setting">备份设置</string>
+            <string name="ps_webdav_setting">WebDav服务器与账号设置</string>
+            <string name="backup_path">本地备份路径</string>
+        <string name="update_setting">更新设置</string>
+            <string name="pt_auto_update">自动更新书籍</string>
+            <string name="ps_auto_update">打开阅读时自动更新书籍</string>
+            <string name="pt_auto_download">自动下载最新章节</string>
+            <string name="ps_auto_download">刷新书籍时自动下载最新章节</string>
+            <string name="pt_up_change_source_last_chapter_t">后台更新换源最新章节</string>
+            <string name="ps_up_change_source_last_chapter_s">打开阅读后1分钟后自动换源更新书籍</string>
+        <string name="purify_setting">净化设置</string>
+            <string name="pt_replace">默认启用替换净化</string>
+            <string name="ps_replace">新加入的书籍自动启用替换净化</string>
+        <string name="search_setting">搜索设置</string>
+            <string name="search_result_filter_grade">搜索结果过滤等级</string>
+            <string name="search_result_filter_grade_tip">\n当前过滤等级 %s\n
+                调高过滤等级可以避免看到书名/作者无关的搜索结果。
+                \n等级1-9：搜索关键字需要出现到书名/作者中，但是允许有8-0个字（空格不计）没有出现（避免误输入的影响）。</string>
+            <string name="pt_show_all_find">显示所有发现内容</string>
+            <string name="ps_show_all_find">关闭则只显示勾选源的发现内容</string>
+            <string name="pt_process_text_show_search">文字操作显示搜索</string>
+            <string name="ps_process_text_show_search">长按文字在操作菜单中显示阅读·搜索</string>
+        <string name="other_setting">其他设置</string>
+            <string name="update_search_threads_num">更新和搜索线程数（太多会卡顿）</string>
+            <string name="threads_num">当前线程数 %s</string>
+            <string name="web_port_title">Web端口</string>
+            <string name="web_port_summary">当前端口 %s</string>
+            <string name="pt_clear_cache">清除应用缓存</string>
+            <string name="ps_clear_cache">清除字体缓存并选择是否清除已下载书籍</string>
+            <string name="ps_about_read">关于阅读的更多信息</string>
+        <!-- WebDav Fragment -->
+        <string name="webdav">WebDav</string>
+        <string name="no_backup">没有备份</string>
+        <string name="pt_web_dav_url">WebDav 服务器</string>
+        <string name="ps_web_dav_url">输入你的服务器地址</string>
+        <string name="pt_web_dav_account">WebDav 账号</string>
+        <string name="ps_web_dav_account">输入你的WebDav账号</string>
+        <string name="pt_web_dav_password">WebDav 密码</string>
+        <string name="ps_web_dav_password">输入你的WebDav授权密码</string>
+        <string name="pt_web_dav_restore">WebDav 恢复</string>
+        <string name="ps_web_dav_restore">从你的WebDav恢复数据</string>
 
     <!-- Service -->
         <!-- WebService -->
@@ -174,6 +230,8 @@
 
 
 
+
+
     <string name="row_0">单倍</string>
     <string name="row_1">双倍</string>
     <string name="row_2">三倍</string>
@@ -191,15 +249,12 @@
     <string name="custom_mr_t_l">左Tip</string>
     <string name="custom_mr_t_r">右Tip</string>
     <string name="read_summary">让阅读成为一种习惯。</string>
-    <string name="update_log">更新日志</string>
     <string name="receiving_shared_label">阅读·搜索</string>
     <string name="action_search">搜索</string>
     <string name="action_download">下载任务</string>
     <string name="book_library">书城</string>
     <string name="book_local">添加本地</string>
     <string name="book_source_manage">书源管理</string>
-    <string name="setting">设置</string>
-    <string name="about">关于</string>
     <string name="exit">退出</string>
     <string name="exit_no_save">还未保存,是否继续编辑</string>
     <string name="read_style">阅读样式设置</string>
@@ -222,12 +277,10 @@
     <string name="download_offline_s">下载选择的章节到本地</string>
     <string name="origin_format">来源: %s</string>
     <string name="book_search_last">最新: %s</string>
-    <string name="about_description">\u3000\u3000这是一款适配墨水屏的阅读软件。</string><!--修改20220726-->
-    <string name="version_name">Version %s</string>
-    <string name="pt_auto_refresh">自动刷新书籍</string>
-    <string name="ps_auto_refresh">打开软件时自动更新书籍</string>
-    <string name="pt_auto_download">自动下载最新章节</string>
-    <string name="ps_auto_download">更新书籍时自动下载最新章节</string>
+    <string name="pt_hide_status_bar">隐藏状态栏</string>
+    <string name="ps_hide_status_bar">阅读界面隐藏状态栏</string>
+    <string name="pt_read_line_adjust">阅读行数调整</string>
+    <string name="ps_read_line_adjust">阅读行数减一行,如阅读界面显示不全可启用</string>
     <string name="backup_permission">备份请给与存储权限</string>
     <string name="restore_permission">恢复请给与存储权限</string>
     <string name="ok">确认</string>
@@ -243,16 +296,11 @@
     <string name="screen_landscape">横向</string>
     <string name="screen_portrait">竖向</string>
     <string name="screen_unspecified">跟随系统</string>
-    <string name="disclaimer">免责声明</string>
     <string name="all_chapter_num">共%d章</string>
     <string name="interface_setting">界面</string>
     <string name="brightness">亮度</string>
     <string name="next_chapter">下一章</string>
     <string name="previous_chapter">上一章</string>
-    <string name="pt_hide_status_bar">隐藏状态栏</string>
-    <string name="ps_hide_status_bar">阅读界面隐藏状态栏</string>
-    <string name="pt_read_line_adjust">阅读行数调整</string>
-    <string name="ps_read_line_adjust">阅读行数减一行,如阅读界面显示不全可启用</string>
     <string name="read_aloud">朗读</string>
     <string name="read_aloud_t">正在朗读</string>
     <string name="read_aloud_s">点击打开阅读界面</string>
@@ -271,20 +319,12 @@
     <string name="ps_hide_navigation_bar">阅读界面隐藏虚拟按键</string>
     <string name="pt_hide_navigation_bar">隐藏导航栏</string>
     <string name="re_navigation_bar_color">导航栏颜色</string>
-    <string name="git_hub">项目主页</string>
-    <string name="scoring">评分</string>
-    <string name="send_mail">发送邮件</string>
-    <string name="can_not_open">无法打开</string>
     <string name="can_not_share">分享失败</string>
     <string name="no_chapter">无章节</string>
     <string name="add_url">添加网址</string>
     <string name="background">背景</string>
     <string name="analyze_error">站点暂时不支持解析，请反馈</string>
     <string name="aloud_stop">朗读停止</string>
-    <string name="pt_clear_cache">清除应用缓存</string>
-    <string name="ps_clear_cache">清除字体缓存并选择是否清除已下载书籍</string>
-    <string name="pt_replace">默认启用替换净化</string>
-    <string name="ps_replace">新加入的书籍是否自动启用替换净化</string>
     <string name="action_save">保存</string>
     <string name="disable_book_source">禁用书源</string>
     <string name="book_file_selector">添加书籍</string>
@@ -293,7 +333,6 @@
     <string name="copy_source_no_find">拷贝书源无发现</string>
     <string name="paste_source">粘贴书源</string>
     <string name="source_rule_s">书源规则说明</string>
-    <string name="check_update">检查更新</string>
     <string name="scan_image">扫描本地图片</string>
     <string name="rule_summary">规则说明</string>
     <string name="share">分享</string>
@@ -324,7 +363,6 @@
     <string name="download_cancel">取消下载</string>
     <string name="no_download">暂无任务</string>
     <string name="import_select_book">导入选择书籍</string>
-    <string name="update_search_threads_num">更新和搜索线程数（太多会卡顿）</string>
     <string name="change_icon">切换图标</string>
     <string name="open_from_other">打开外部书籍</string>
     <string name="check_update_interval">检查更新间隔</string>
@@ -404,16 +442,12 @@
     <string name="to_top">置顶</string>
     <string name="auto_expand_find">自动展开发现</string>
     <string name="default_expand_first">默认展开第一组发现</string>
-    <string name="threads_num">当前线程数 %s</string>
     <string name="read_aloud_speed">朗读语速</string>
     <string name="auto_next_page">自动翻页</string>
     <string name="auto_next_page_stop">停止自动翻页</string>
     <string name="auto_next_page_speed">自动翻页时每分钟阅读字数(CPM)</string>
     <string name="edit_book_info">书籍信息编辑</string>
-    <string name="ps_default_read">打开应用时将自动前往上一次阅读位置</string>
-    <string name="pt_default_read">自动跳转最近阅读</string>
     <string name="menu_action_group">分组</string>
-    <string name="backup_path">本地备份路径</string>
     <string name="download_path">书籍缓存路径</string>
     <string name="new_version">新版本</string>
     <string name="download_update">下载更新</string>
@@ -422,8 +456,6 @@
     <string name="search_book_key">搜索书名、作者</string>
     <string name="debug_hint">书名、作者、URL</string>
     <string name="faq">常见问题</string>
-    <string name="pt_show_all_find">显示所有发现内容</string>
-    <string name="ps_show_all_find">关闭则只显示勾选源的发现内容</string>
     <string name="update_chapter">更新目录</string>
     <string name="set_charset">设置编码</string>
     <string name="swap_sort">倒序-顺序</string>
@@ -445,8 +477,6 @@
     <string name="page_mode_SLIDE">滑动</string>
     <string name="page_mode_SCROLL">滚动</string>
     <string name="page_mode_NONE">无动画</string>
-    <string name="up_change_source_last_chapter_t">后台更新换源最新章节</string>
-    <string name="up_change_source_last_chapter_s">开启则会在软件打开1分钟后开始更新</string>
     <string name="behavior_main_t">自动隐藏搜索栏</string>
     <string name="behavior_main_s">滚动书架时上方搜索栏自动隐藏</string>
     <string name="login">登录</string>
@@ -509,7 +539,6 @@
     <string name="import_per">导入本地书籍需存储权限</string>
     <string name="click_to_day">点击可切换到明亮模式</string>
     <string name="click_to_night">点击可切换到暗黑模式</string>
-    <string name="sure_del_download_book">是否同时删除已下载的书籍目录？</string>
     <string name="aloud_can_not_auto_page">朗读正在运行,不能自动翻页</string>
     <string name="input_charset">输入编码</string>
     <string name="text_chapter_list_rule">TXT目录规则</string>
@@ -548,8 +577,6 @@
     <string name="tip_padding">Tip边距</string>
     <string name="text_letter_spacing">字距</string>
     <string name="a10_permission_toast">Android10以上因权限限制可能无法读写文件</string>
-    <string name="web_port_title">Web端口</string>
-    <string name="web_port_summary">当前端口 %s</string>
     <string name="str_share">字符串分享</string>
     <string name="please_grant_storage_permission">请给于存储权限</string>
     <string name="skip_previous">上一个</string>
@@ -570,26 +597,11 @@
     <string name="custom_page_key">自定义翻页按键</string>
     <string name="prev_page_key">上一页按键</string>
     <string name="next_page_key">下一页按键</string>
-    <string name="search_result_filter_grade">搜索结果过滤等级</string>
-    <string name="search_result_filter_grade_tip">\n当前过滤等级 %s\n调高过滤等级可以避免看到书名/作者无关的搜索结果。\n等级1-9：搜索关键字需要出现到书名/作者中，但是允许有8-0个字（空格不计）没有出现（避免误输入的影响）。默认等级0，不过滤。推荐等级7，允许2个错別字。
-        </string>
     <string name="login_ui">登录UI(loginUi)</string>
     <string name="login_check_js">登录检查Js(loginCheckJs)</string>
     <string name="rule_vip">VIP标识(ruleVip)</string>
     <string name="rule_pay">购买标识(rulePay)</string>
     <string name="chapter_pay">购买</string>
-    <string name="pt_process_text_show_search">文字操作显示搜索</string>
-    <string name="ps_process_text_show_search">长按文字在操作菜单中显示阅读·搜索</string>
-    <string name="webdav">WebDav</string>
-    <string name="ps_webdav_setting">WebDav服务器与账号设置</string>
-    <string name="pt_web_dav_url">WebDav 服务器</string>
-    <string name="ps_web_dav_url">输入你的服务器地址</string>
-    <string name="pt_web_dav_account">WebDav 账号</string>
-    <string name="ps_web_dav_account">输入你的WebDav账号</string>
-    <string name="pt_web_dav_password">WebDav 密码</string>
-    <string name="ps_web_dav_password">输入你的WebDav授权密码</string>
-    <string name="pt_web_dav_restore">WebDav 恢复</string>
-    <string name="ps_web_dav_restore">从你的WebDav恢复数据</string>
     <string name="import_txt_chapter_rule_default">导入默认</string>
     <string name="import_txt_chapter_rule_local">导入本地</string>
     <string name="output_book_source_local">导出本地</string>

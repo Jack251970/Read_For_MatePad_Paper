@@ -18,8 +18,11 @@ import com.jack.bookshelf.widget.RotateLoading;
 import ru.noties.markwon.Markwon;
 
 /**
- * 对话框
+ * MoDialog View
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
  */
+
 public class MoDialogView extends LinearLayout {
     private final Context context;
 
@@ -37,7 +40,7 @@ public class MoDialogView extends LinearLayout {
         setOrientation(VERTICAL);
     }
 
-    //转圈的载入
+    // 转圈的载入
     public void showLoading(String text) {
         removeAllViews();
         LayoutInflater.from(getContext()).inflate(R.layout.mo_dialog_loading, this, true);
@@ -50,7 +53,7 @@ public class MoDialogView extends LinearLayout {
         rlLoading.start();
     }
 
-    //单个按钮的信息提示框
+    // 单个按钮的信息提示框
     public void showInfo(String msg, final OnClickListener listener) {
         removeAllViews();
         LayoutInflater.from(getContext()).inflate(R.layout.mo_dialog_infor, this, true);
@@ -62,7 +65,7 @@ public class MoDialogView extends LinearLayout {
         tvClose.setOnClickListener(listener);
     }
 
-    //单个按钮的信息提示框
+    // 单个按钮的信息提示框
     public void showInfo(String msg, String btnText, final OnClickListener listener) {
         removeAllViews();
         LayoutInflater.from(getContext()).inflate(R.layout.mo_dialog_infor, this, true);
@@ -75,7 +78,7 @@ public class MoDialogView extends LinearLayout {
         tvClose.setOnClickListener(listener);
     }
 
-    //////////////////////两个不同等级的按钮//////////////////////
+    // 两个不同等级的按钮
     public void showTwoButton(String title, String msg, String b_f, OnClickListener c_f, String b_s, OnClickListener c_s) {
         removeAllViews();
         LayoutInflater.from(getContext()).inflate(R.layout.mo_dialog_two, this, true);
@@ -102,7 +105,7 @@ public class MoDialogView extends LinearLayout {
     }
 
     /**
-     * 显示asset Markdown
+     * 显示Markdown文本
      */
     public void showAssetMarkdown(String assetFileName) {
         removeAllViews();
@@ -127,5 +130,4 @@ public class MoDialogView extends LinearLayout {
         imageView.setImageBitmap(bitmap);
         tvCanCopy.setText(text);
     }
-
 }

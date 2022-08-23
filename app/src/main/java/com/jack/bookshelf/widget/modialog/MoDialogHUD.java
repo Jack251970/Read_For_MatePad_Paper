@@ -3,19 +3,19 @@ package com.jack.bookshelf.widget.modialog;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 
 import com.jack.bookshelf.R;
 
 /**
- * 对话框
+ * MoDialog HUD
+ * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
@@ -26,7 +26,7 @@ public class MoDialogHUD {
     private MoDialogView mSharedView;
     private OnDismissListener dismissListener;
 
-    private Boolean canBack = false;
+    private Boolean canBack = false;    // 是否可以用系统返回键返回
 
     public MoDialogHUD(Context context) {
         this.context = context;
@@ -59,7 +59,7 @@ public class MoDialogHUD {
     }
 
     private void initMarRightTop() {
-        mSharedView.setGravity(Gravity.RIGHT | Gravity.TOP);
+        mSharedView.setGravity(Gravity.START | Gravity.TOP);
         if (mSharedView != null) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) mSharedView.getLayoutParams();
             if (layoutParams != null) {
@@ -70,28 +70,25 @@ public class MoDialogHUD {
         }
     }
 
+    /**
+     * 初始化根View与内容View
+     */
     private void initViews() {
         decorView = ((Activity) context).getWindow().getDecorView().findViewById(android.R.id.content);
+        // decorView.setBackground(context.getResources().getDrawable(R.drawable.dialog_background));
         rootView = new FrameLayout(context);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
         );
         rootView.setLayoutParams(layoutParams);
         rootView.setClickable(true);
-        rootView.setBackgroundColor(context.getResources().getColor(R.color.btn_bg_press_tp));
-
+        rootView.setBackgroundColor(Color.TRANSPARENT);
         mSharedView = new MoDialogView(context);
-
     }
 
-    private Animation getInAnimation() {
-        return AnimationUtils.loadAnimation(context, R.anim.moprogress_in);
-    }
-
-    private Animation getOutAnimation() {
-        return AnimationUtils.loadAnimation(context, R.anim.moprogress_out);
-    }
-
+    /**
+     * 是否显示
+     */
     private boolean isShowing() {
         return rootView.getParent() != null;
     }
@@ -103,11 +100,9 @@ public class MoDialogHUD {
         rootView.addView(mSharedView);
     }
 
-    public void dismissImmediately() {
-        dismiss();
-    }
-
-    // 无消失动画的退出
+    /**
+     * 退出
+     */
     public void dismiss() {
         if (dismissListener != null) {
             dismissListener.onDismiss();
@@ -132,7 +127,7 @@ public class MoDialogHUD {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (isShowing()) {
                 if (canBack) {
-                    dismissImmediately();
+                    dismiss();
                 }
                 return true;
             }
@@ -160,7 +155,7 @@ public class MoDialogHUD {
         initCenter();
         canBack = true;
         rootView.setOnClickListener(null);
-        mSharedView.showInfo(msg, v -> dismissImmediately());
+        mSharedView.showInfo(msg, v -> dismiss());
         if (!isShowing()) {
             onAttached();
         }
@@ -185,7 +180,7 @@ public class MoDialogHUD {
     public void showTwoButton(String title,String msg, String b_f, View.OnClickListener c_f, String b_s, View.OnClickListener c_s, boolean canBack) {
         initCenter();
         this.canBack = canBack;
-        rootView.setOnClickListener(v -> dismissImmediately());
+        rootView.setOnClickListener(v -> dismiss());
         mSharedView.showTwoButton(title, msg, b_f, c_f, b_s, c_s);
         if (!isShowing()) {
             onAttached();
@@ -198,7 +193,7 @@ public class MoDialogHUD {
     public void showText(String text) {
         initCenter();
         canBack = true;
-        rootView.setOnClickListener(v -> dismissImmediately());
+        rootView.setOnClickListener(v -> dismiss());
         mSharedView.showText(text);
         if (!isShowing()) {
             onAttached();
@@ -206,8 +201,7 @@ public class MoDialogHUD {
     }
 
     /**
-     * 显示asset Markdown
-     * 仅在非E-Ink模式下才显示淡入淡出动画
+     * 显示Markdown文件
      */
     public void showAssetMarkdown(String assetFileName) {
         // 初始化界面
@@ -215,7 +209,7 @@ public class MoDialogHUD {
         // 设置是否可以通过返回键退出
         canBack = true;
         // 设置事件
-        rootView.setOnClickListener(v -> dismissImmediately());
+        rootView.setOnClickListener(v -> dismiss());
         // 显示Markdown文档
         mSharedView.showAssetMarkdown(assetFileName);
         if (!isShowing()) {
@@ -226,7 +220,7 @@ public class MoDialogHUD {
     public void showImageText(Bitmap bitmap, String text) {
         initCenter();
         canBack = true;
-        rootView.setOnClickListener(v -> dismissImmediately());
+        rootView.setOnClickListener(v -> dismiss());
         mSharedView.showImageText(bitmap, text);
         if (!isShowing()) {
             onAttached();

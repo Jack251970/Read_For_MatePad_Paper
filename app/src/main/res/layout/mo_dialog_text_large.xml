@@ -1,24 +1,23 @@
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/md_scroll"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="30dp"
-    app:cardBackgroundColor="@color/background_card">
-
-    <ScrollView
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    android:layout_marginBottom="20dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:background="@drawable/card_background"
+    android:scrollbars="vertical"
+    android:fillViewport="true">
+    <TextView
+        android:id="@+id/tv_can_copy"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/tv_can_copy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:padding="10dp"
-            android:text="@string/app_name"
-            android:textColor="@color/tv_text_default"
-            android:lineSpacingExtra="2dp"
-            android:textIsSelectable="true"/>
-    </ScrollView>
-
-</androidx.cardview.widget.CardView>
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:padding="20dp"
+        android:textColor="@color/tv_text_default"
+        android:lineSpacingExtra="2dp"
+        android:textIsSelectable="true"
+        tools:text="这是一段文字!"/>
+</ScrollView>

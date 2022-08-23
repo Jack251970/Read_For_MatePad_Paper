@@ -15,16 +15,16 @@ import com.jack.bookshelf.R
 import com.jack.bookshelf.help.BookshelfHelp
 import com.jack.bookshelf.help.FileHelp
 import com.jack.bookshelf.help.ProcessTextHelp
+import com.jack.bookshelf.help.storage.BackupRestoreUi.selectBackupFolder
 import com.jack.bookshelf.service.WebService
+import com.jack.bookshelf.view.activity.AboutActivity
 import com.jack.bookshelf.view.activity.SettingActivity
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.noButton
-import org.jetbrains.anko.okButton
+import com.jack.bookshelf.view.dialog.AlertDialog
 
 /**
- * 设置界面的Fragment
- * Created by GKF on 2017/12/16.
- * Edited by Jack Ye
+ * Setting Fragment
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
  */
 
 @Suppress("DEPRECATION")
@@ -89,24 +89,29 @@ class SettingsFragment : PreferenceFragment(), OnSharedPreferenceChangeListener 
     @Deprecated("Deprecated in Java")
     override fun onPreferenceTreeClick(preferenceScreen: PreferenceScreen, preference: Preference): Boolean {
         when (preference.key) {
-            "backupPath" -> {
-                // selectBackupFolder(activity)
-            }
             "webDavSetting" -> {
                 val webDavSettingsFragment = WebDavSettingsFragment()
                 fragmentManager.beginTransaction().replace(R.id.settingsFrameLayout, webDavSettingsFragment, "webDavSettings").commit()
             }
+            "backupPath" -> {
+                settingActivity?.let { selectBackupFolder(activity, it.root) }
+            }
             "clearCache" -> {
-                alert {
-                    titleResource = R.string.pt_clear_cache
-                    messageResource = R.string.sure_del_download_book
-                    okButton {
-                        BookshelfHelp.clearCaches(true)
-                    }
-                    noButton {
-                        BookshelfHelp.clearCaches(false)
-                    }
-                }.show()
+                AlertDialog.builder(activity, settingActivity!!.root, AlertDialog.NO_TITLE)
+                    .setMessage(R.string.sure_delete_download_book)
+                    .setNegativeButton(R.string.cancel)
+                    .setPositiveButton(R.string.delete)
+                    .setOnclick(object : AlertDialog.OnItemClickListener {
+                        override fun forNegativeButton() {
+                            BookshelfHelp.clearCaches(false)
+                        }
+                        override fun forPositiveButton() {
+                            BookshelfHelp.clearCaches(true)
+                        }
+                    }).show()
+            }
+            "aboutRead" -> {
+                AboutActivity.startThis(activity)
             }
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference)

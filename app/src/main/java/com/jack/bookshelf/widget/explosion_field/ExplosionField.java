@@ -127,7 +127,6 @@ public class ExplosionField extends View {
     /**
      * 清除搜索历史的动画
      * 包含初始动画和爆炸动画
-     * 爆炸动画效果仅在非E-Ink模式下生效
      */
     public void explode(final View view, Boolean restartState) {
         // 初始动画
@@ -188,6 +187,4 @@ public class ExplosionField extends View {
     public void setOnClickListener(OnClickListener mOnClickListener) {
         this.mOnClickListener = mOnClickListener;
     }
-
-
 }

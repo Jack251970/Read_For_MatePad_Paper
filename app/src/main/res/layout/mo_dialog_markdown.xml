@@ -1,24 +1,21 @@
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/md_scroll"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="30dp"
-    app:cardBackgroundColor="@color/background_card">
-
-
-    <ScrollView
-        android:id="@+id/md_scroll"
-        android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    android:layout_marginBottom="20dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:background="@drawable/card_background"
+    android:scrollbars="vertical"
+    android:fillViewport="true">
+    <TextView
+        android:id="@+id/tv_markdown"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        android:fillViewport="true">
-        <TextView
-            android:id="@+id/tv_markdown"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:lineSpacingMultiplier="1.2"
-            android:padding="10dp"/>
-    </ScrollView>
-
-</androidx.cardview.widget.CardView>
+        android:lineSpacingMultiplier="1.2"
+        android:padding="20dp"
+        android:textColor="@color/tv_text_default"
+        tools:text="这是一段Markdown文字！"/>
+</ScrollView>

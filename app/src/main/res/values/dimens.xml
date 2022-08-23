@@ -37,6 +37,12 @@
         <dimen name="searchbar_height">42dp</dimen>
         <dimen name="searchbar_stroke_width">1dp</dimen>
         <dimen name="searchbar_radius">21dp</dimen>
+        <!-- SearchBar-->
+        <dimen name="card_margin">12dp</dimen>
+        <dimen name="card_item_padding">3dp</dimen>
+        <dimen name="card_text_margin">10dp</dimen>
+        <dimen name="card_stroke_width">1dp</dimen>
+        <dimen name="card_radius">16dp</dimen>
         <!-- More Setting Menu-->
         <dimen name="more_setting_menu_width">118dp</dimen>
         <dimen name="more_setting_menu_stroke_width">2px</dimen>
