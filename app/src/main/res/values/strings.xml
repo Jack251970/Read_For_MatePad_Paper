@@ -580,6 +580,7 @@
     <string name="chapter_pay">购买</string>
     <string name="pt_process_text_show_search">文字操作显示搜索</string>
     <string name="ps_process_text_show_search">长按文字在操作菜单中显示阅读·搜索</string>
+    <string name="webdav">WebDav</string>
     <string name="ps_webdav_setting">WebDav服务器与账号设置</string>
     <string name="pt_web_dav_url">WebDav 服务器</string>
     <string name="ps_web_dav_url">输入你的服务器地址</string>

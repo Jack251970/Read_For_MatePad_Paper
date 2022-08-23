@@ -1,6 +1,7 @@
 package com.jack.bookshelf.widget.prefs;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.preference.SwitchPreference;
 import android.util.AttributeSet;
@@ -18,7 +19,6 @@ import java.util.LinkedList;
 @SuppressWarnings("unused")
 public class ATESwitchPreference extends SwitchPreference {
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public ATESwitchPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
@@ -57,7 +57,5 @@ public class ATESwitchPreference extends SwitchPreference {
                 }
             }
         }
-
     }
-
 }

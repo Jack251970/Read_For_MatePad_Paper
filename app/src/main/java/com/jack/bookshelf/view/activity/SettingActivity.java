@@ -16,10 +16,9 @@ import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.fragment.SettingsFragment;
 
 /**
- * 设置界面
- * Created by GKF on 2017/12/16.
+ * Setting Page
+ * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
- * 启用了SettingsFragment.kt
  */
 
 public class SettingActivity extends MBaseActivity<IPresenter> {
@@ -40,35 +39,26 @@ public class SettingActivity extends MBaseActivity<IPresenter> {
         getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivitySettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        this.setSupportActionBar(binding.toolbar);
-        setupActionBar(getString(R.string.setting));
-
         getFragmentManager().beginTransaction()
                 .replace(R.id.settingsFrameLayout, settingsFragment, "settings")
                 .commit();
     }
 
     @Override
-    protected void initData() {}
-
-    //设置ToolBar
-    public void setupActionBar(String title) {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle(title);
-        }
+    protected void bindView() {
+        super.bindView();
+        binding.ivBackSetting.setOnClickListener(v -> finish());
     }
 
-    //菜单
+    /**
+     * 设置界面标题
+     */
+    public void setTile(int strId) {
+        binding.tvSettingTitle.setText(strId);
+    }
+
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
+    protected void initData() {}
 
     @Override
     public void finish() {

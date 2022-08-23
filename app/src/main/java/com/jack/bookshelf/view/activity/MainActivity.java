@@ -56,6 +56,7 @@ import kotlin.Unit;
 public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
         implements MainContract.View, BookListFragment.CallbackValue {
     private final int requestSource = 14;
+
     private ActivityMainBinding binding;
     private int group;
     private long exitTime = 0;

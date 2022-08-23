@@ -31,11 +31,12 @@ import org.jetbrains.anko.okButton
 class SettingsFragment : PreferenceFragment(), OnSharedPreferenceChangeListener {
     private var settingActivity: SettingActivity? = null
 
+    @Deprecated("Deprecated in Java")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         preferenceManager.sharedPreferencesName = "CONFIG"
         settingActivity = activity as? SettingActivity
-        settingActivity?.setupActionBar(getString(R.string.setting))
+        settingActivity?.setTile(R.string.setting)
         addPreferencesFromResource(R.xml.pref_settings)
         val sharedPreferences = preferenceManager.sharedPreferences
         val editor = sharedPreferences.edit()
@@ -51,6 +52,7 @@ class SettingsFragment : PreferenceFragment(), OnSharedPreferenceChangeListener 
         settingActivity?.initImmersionBar()
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onDestroy() {
         super.onDestroy()
         preferenceManager.sharedPreferences.unregisterOnSharedPreferenceChangeListener(this)
@@ -84,6 +86,7 @@ class SettingsFragment : PreferenceFragment(), OnSharedPreferenceChangeListener 
     /**
      * 按钮点击事件
      */
+    @Deprecated("Deprecated in Java")
     override fun onPreferenceTreeClick(preferenceScreen: PreferenceScreen, preference: Preference): Boolean {
         when (preference.key) {
             "backupPath" -> {
@@ -109,8 +112,12 @@ class SettingsFragment : PreferenceFragment(), OnSharedPreferenceChangeListener 
         return super.onPreferenceTreeClick(preferenceScreen, preference)
     }
 
+    @Deprecated("Deprecated in Java", ReplaceWith(
+        "super.onActivityResult(requestCode, resultCode, data)",
+        "android.preference.PreferenceFragment"
+    )
+    )
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         super.onActivityResult(requestCode, resultCode, data)
     }
-
 }

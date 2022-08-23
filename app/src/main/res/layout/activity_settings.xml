@@ -2,33 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_content"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/ll_content">
-
-    <com.google.android.material.appbar.AppBarLayout
+    android:layout_height="match_parent">
+    <!-- Custom ActionBar -->
+    <LinearLayout
         android:id="@+id/action_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="?attr/actionBarStyle"
-        android:transitionName="sharedView"
-        tools:ignore="UnusedAttribute">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
+        android:layout_height="@dimen/action_bar_layout_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+        <ImageView
+            android:id="@+id/iv_back_setting"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:contentDescription="返回"
+            android:paddingRight="2dp"
+            android:src="@drawable/ic_arrow_back"
+            tools:ignore="RtlHardcoded,RtlSymmetry"/>
+        <TextView
+            android:id="@+id/tv_setting_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:text="@string/setting"
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/settingsFrameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" />
-
 </LinearLayout>

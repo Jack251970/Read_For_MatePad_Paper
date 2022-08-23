@@ -38,15 +38,14 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class WebDavSettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
-    private SettingActivity settingActivity;
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getPreferenceManager().setSharedPreferencesName("CONFIG");
-        settingActivity = (SettingActivity) this.getActivity();
-        settingActivity.setupActionBar("WebDav");
+        SettingActivity settingActivity = (SettingActivity) this.getActivity();
+        settingActivity.setTile(R.string.webdav);
         SharedPreferences sharedPreferences = getPreferenceManager().getSharedPreferences();
         SharedPreferences.Editor editor = sharedPreferences.edit();
         boolean processTextEnabled = ProcessTextHelp.isProcessTextEnabled();

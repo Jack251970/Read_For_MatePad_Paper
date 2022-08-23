@@ -2,7 +2,7 @@
     tools:ignore="PxUsage">
     <!-- Huawei Matepad Paper Theme-->
         <!-- Actionbar-->
-        <dimen name="actionbar_layout_height">64dp</dimen>
+        <dimen name="action_bar_layout_height">64dp</dimen>
         <dimen name="action_bar_padding_and_margin">20dp</dimen>
         <dimen name="action_bar_icon_height_and_width">30dp</dimen>
         <dimen name="action_bar_title_text_size">22sp</dimen>
