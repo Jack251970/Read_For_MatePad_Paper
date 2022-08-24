@@ -11,15 +11,13 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -36,10 +34,12 @@ import com.jack.bookshelf.presenter.SourceEditPresenter;
 import com.jack.bookshelf.presenter.contract.SourceEditContract;
 import com.jack.bookshelf.service.ShareService;
 import com.jack.bookshelf.utils.SoftInputUtil;
+import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.SourceEditAdapter;
 import com.jack.bookshelf.view.dialog.AlertDialog;
 import com.jack.bookshelf.view.dialog.SourceLoginDialog;
+import com.jack.bookshelf.view.popupmenu.MoreSettingMenu;
 import com.jack.bookshelf.view.popupwindow.KeyboardToolPop;
 
 import org.jetbrains.annotations.NotNull;
@@ -72,6 +72,8 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
     private boolean showFind;
     private final String[] keyHelp = {"@", "&", "|", "%", "/", ":", "[", "]", "(", ")", "{", "}", "<", ">", "\\", "$", "#", "!", ".",
             "href", "src", "textNodes", "xpath", "json", "css", "id", "class", "tag"};
+
+    private MoreSettingMenu moreSettingMenu;
 
     public static void startThis(Object object, BookSourceBean sourceBean) {
         String key = String.valueOf(System.currentTimeMillis());
@@ -139,13 +141,12 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
                 enable = bookSourceBean.getEnable();
             }
         }
-
+        binding.tvTitleBookSource.setText(title);
     }
 
     @Override
     protected void bindView() {
-        this.setSupportActionBar(binding.toolbar);
-        setupActionBar();
+        initMenu();
         mSoftKeyboardTool = new KeyboardToolPop(this, Arrays.asList(keyHelp), this);
         getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new KeyboardOnGlobalChangeListener());
         adapter = new SourceEditAdapter(this);
@@ -155,9 +156,63 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
         setText(bookSourceBean);
     }
 
+    /**
+     * 初始化一级菜单
+     */
+    private void initMenu() {
+        moreSettingMenu = MoreSettingMenu.builder(this)
+                .setMenu(getResources().getStringArray(R.array.more_setting_menu_source_edit))
+                .setOnclick(position -> {
+                    switch (position) {
+                        case 0:
+                            BookSourceBean bookSourceBean = getBookSource(true);
+                            if (!isEmpty(bookSourceBean.getLoginUrl())) {
+                                if (isEmpty(bookSourceBean.getLoginUi())) {
+                                    SourceLoginActivity.startThis(this, getBookSource(true));
+                                } else {
+                                    SourceLoginDialog.Companion.start(
+                                            getSupportFragmentManager(),
+                                            bookSourceBean.getBookSourceUrl()
+                                    );
+                                }
+                            } else {
+                                toast(R.string.source_no_login);
+                            }
+                            break;
+                        case 1:
+                            AlertDialog.builder(this, binding.getRoot(), AlertDialog.NO_TITLE)
+                                    .setMessage("是否拷贝发现内容？")
+                                    .setNegativeButton(R.string.no)
+                                    .setPositiveButton(R.string.yes)
+                                    .setOnclick(new AlertDialog.OnItemClickListener() {
+                                        @Override
+                                        public void forNegativeButton() { mPresenter.copySource(getBookSourceStr(false)); }
+
+                                        @Override
+                                        public void forPositiveButton() { mPresenter.copySource(getBookSourceStr(true)); }
+                                    }).show();
+                            break;
+                        case 2:
+                            mPresenter.pasteSource();
+                            break;
+                        case 3:
+                            shareText("Source Share", getBookSourceStr(true));
+                            break;
+                        case 4:
+                            ShareService.startThis(this, Collections.singletonList(getBookSource(true)));
+                            break;
+                        case 5:
+                            // 规则说明
+                            openRuleSummary();
+                            break;
+                    }
+                });
+    }
+
     @Override
     protected void bindEvent() {
         super.bindEvent();
+        // 切换按钮
         binding.tvEditFind.setOnClickListener(v -> {
             binding.recyclerView.clearFocus();
             if (showFind) {
@@ -169,6 +224,56 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
             }
             showFind = !showFind;
             binding.recyclerView.scrollToPosition(0);
+        });
+        // 返回
+        binding.ivBackSourceEdit.setOnClickListener(v -> {
+            SoftInputUtil.hideIMM(getCurrentFocus());
+            if (!back()) { finish(); }
+        });
+        // 保存
+        binding.ivSaveSourceEdit.setOnClickListener(v -> {
+            if (canSaveBookSource()) {
+                mPresenter.saveSource(getBookSource(true), bookSourceBean)
+                        .subscribe(new MyObserver<Boolean>() {
+                            @Override
+                            public void onNext(Boolean aBoolean) {
+                                bookSourceBean = getBookSource(true);
+                                toast(R.string.save_success);
+                                setResult(RESULT_OK);
+                                finish();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                toast(e.getLocalizedMessage());
+                            }
+                        });
+            }
+        });
+        // 调试
+        binding.ivDebugSourceEdit.setOnClickListener(v -> {
+            if (canSaveBookSource()) {
+                mPresenter.saveSource(getBookSource(true), bookSourceBean)
+                        .subscribe(new MyObserver<Boolean>() {
+                            @Override
+                            public void onNext(Boolean aBoolean) {
+                                bookSourceBean = getBookSource(true);
+                                setResult(RESULT_OK);
+                                SourceDebugActivity.startThis(SourceEditActivity.this, getBookSource(true).getBookSourceUrl());
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                toast(e.getLocalizedMessage());
+                            }
+                        });
+            }
+        });
+        // 更多菜单
+        binding.ivMoreSettingsSourceEdit.setOnClickListener(v -> {
+            if (!moreSettingMenu.isShowing()) {
+                moreSettingMenu.show(binding.getRoot(), binding.ivMoreSettingsSourceEdit);
+            }
         });
     }
 
@@ -424,97 +529,6 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
         }
     }
 
-    //设置ToolBar
-    private void setupActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle(title);
-        }
-    }
-
-    // 添加菜单
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_book_source_edit, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    //菜单
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_save) {
-            if (canSaveBookSource()) {
-                mPresenter.saveSource(getBookSource(true), bookSourceBean)
-                        .subscribe(new MyObserver<Boolean>() {
-                            @Override
-                            public void onNext(Boolean aBoolean) {
-                                bookSourceBean = getBookSource(true);
-                                toast("保存成功");
-                                setResult(RESULT_OK);
-                                finish();
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                toast(e.getLocalizedMessage());
-                            }
-                        });
-            }
-        } else if (id == R.id.action_login) {
-            BookSourceBean bookSourceBean = getBookSource(true);
-            if (!isEmpty(bookSourceBean.getLoginUrl())) {
-                if (isEmpty(bookSourceBean.getLoginUi())) {
-                    SourceLoginActivity.startThis(this, getBookSource(true));
-                } else {
-                    SourceLoginDialog.Companion.start(
-                            getSupportFragmentManager(),
-                            bookSourceBean.getBookSourceUrl()
-                    );
-                }
-            } else {
-                toast(R.string.source_no_login);
-            }
-        } else if (id == R.id.action_copy_source) {
-            mPresenter.copySource(getBookSourceStr(true));
-        } else if (id == R.id.action_copy_source_no_find) {
-            mPresenter.copySource(getBookSourceStr(false));
-        } else if (id == R.id.action_paste_source) {
-            mPresenter.pasteSource();
-        } else if (id == R.id.action_share_str) {
-            shareText("Source Share", getBookSourceStr(true));
-        } else if (id == R.id.action_share_wifi) {
-            ShareService.startThis(this, Collections.singletonList(getBookSource(true)));
-        } else if (id == R.id.action_rule_summary) {
-            openRuleSummary();
-        } else if (id == R.id.action_debug_source) {
-            if (canSaveBookSource()) {
-                mPresenter.saveSource(getBookSource(true), bookSourceBean)
-                        .subscribe(new MyObserver<Boolean>() {
-                            @Override
-                            public void onNext(Boolean aBoolean) {
-                                bookSourceBean = getBookSource(true);
-                                setResult(RESULT_OK);
-                                SourceDebugActivity.startThis(SourceEditActivity.this, getBookSource(true).getBookSourceUrl());
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                toast(e.getLocalizedMessage());
-                            }
-                        });
-            }
-        } else if (id == android.R.id.home) {
-            SoftInputUtil.hideIMM(getCurrentFocus());
-            if (back()) {
-                return true;
-            }
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent keyEvent) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -610,7 +624,12 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
         }
     }
 
-    public class SourceEdit {
+    @Override
+    public void toast(int strId) {
+        ToastsKt.toast(this, strId, Toast.LENGTH_SHORT);
+    }
+
+    public static class SourceEdit {
         private String key;
         private String value;
         private final int hint;

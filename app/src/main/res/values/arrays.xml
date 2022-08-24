@@ -38,6 +38,15 @@
             <item>@string/import_default</item>
             <item>@string/del_all</item>
         </string-array>
+    <!-- More Setting Menu Book Source Edit -->
+    <string-array name="more_setting_menu_source_edit">
+        <item>@string/login</item>
+        <item>@string/copy_source</item>
+        <item>@string/paste_source</item>
+        <item>@string/str_share</item>
+        <item>@string/wifi_share</item>
+        <item>@string/rule_summary</item>
+    </string-array>
 
     <!-- Select Menu -->
         <!-- MainActivity -->
