@@ -3,10 +3,12 @@ package com.jack.bookshelf.view.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -223,6 +225,9 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
     private void initSearchView() {
         mSearchAutoComplete = binding.searchView.findViewById(R.id.search_src_text);
         mSearchAutoComplete.setTextSize(16);
+        ImageView closeButton = binding.searchView.findViewById(R.id.search_close_btn);
+        closeButton.setBackgroundColor(Color.TRANSPARENT);
+        closeButton.setImageResource(R.drawable.ic_close);
         binding.searchView.setQueryHint(getString(R.string.search_book_source));
         binding.searchView.onActionViewExpanded();
         binding.searchView.clearFocus();

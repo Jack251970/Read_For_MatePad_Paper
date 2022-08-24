@@ -27,11 +27,6 @@ import com.jack.bookshelf.view.adapter.SourceDebugAdapter;
 
 import io.reactivex.disposables.CompositeDisposable;
 
-/**
- * 书源管理测试
- * 最后修改20220730
- */
-
 public class SourceDebugActivity extends MBaseActivity<IPresenter> {
 
     private ActivitySourceDebugBinding binding;

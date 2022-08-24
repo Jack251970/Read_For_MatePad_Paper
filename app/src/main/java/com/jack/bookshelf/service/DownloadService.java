@@ -294,7 +294,7 @@ public class DownloadService extends Service {
                 .setContentTitle("正在下载：" + downloadChapterBean.getBookName())
                 .setContentText(downloadChapterBean.getDurChapterName() == null ? "  " : downloadChapterBean.getDurChapterName())
                 .setContentIntent(mainPendingIntent);
-        builder.addAction(R.drawable.ic_stop_black_24dp, getString(R.string.cancel), getChancelPendingIntent());
+        builder.addAction(R.drawable.ic_stop_white, getString(R.string.cancel), getChancelPendingIntent());
         //发送通知
         startForeground(notificationId, builder.build());
     }

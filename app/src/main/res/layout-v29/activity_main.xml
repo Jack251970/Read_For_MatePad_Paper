@@ -3,26 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mpp_ll_content_main"
     android:fitsSystemWindows="true"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:background="@color/md_white_1000"
     android:orientation="horizontal"
     tools:context=".view.activity.MainActivity">
-
     <!--左侧边栏-->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_weight="15"
         android:layout_height="match_parent"
-        android:background="@color/md_white_1000"
+        android:gravity="center_horizontal"
         android:orientation="horizontal">
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-
         <!--左侧边栏内容-->
         <LinearLayout
             android:layout_width="60dp"
@@ -32,7 +25,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="7"/>
-
             <LinearLayout
                 android:id="@+id/mpp_ll_mine_main"
                 android:layout_width="wrap_content"
@@ -47,23 +39,20 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/md_black_1000"
                     android:gravity="center"
-                    android:text="叶庭茂"
+                    android:text="Jack"
                     android:textSize="12sp"
                     android:textStyle="bold"/>
             </LinearLayout>
-
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="12"/>
-
             <LinearLayout
                 android:id="@+id/mpp_ll_book_source_main"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_gravity="center">
-
                 <ImageView
                     android:layout_width="41.5dp"
                     android:layout_height="49dp"
@@ -77,12 +66,10 @@
                     android:text="@string/book_source"
                     android:textStyle="bold"/>
             </LinearLayout>
-
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="7"/>
-
             <LinearLayout
                 android:id="@+id/mpp_ll_replace_main"
                 android:layout_width="wrap_content"
@@ -103,12 +90,10 @@
                     android:text="@string/purify"
                     android:textStyle="bold"/>
             </LinearLayout>
-
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="7"/>
-
             <LinearLayout
                 android:id="@+id/mpp_ll_download_main"
                 android:layout_width="wrap_content"
@@ -129,12 +114,10 @@
                     android:text="@string/download"
                     android:textStyle="bold"/>
             </LinearLayout>
-
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="7"/>
-
             <LinearLayout
                 android:id="@+id/mpp_ll_backup_main"
                 android:layout_width="wrap_content"
@@ -155,7 +138,6 @@
                     android:text="@string/backup"
                     android:textStyle="bold"/>
             </LinearLayout>
-
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -180,29 +162,21 @@
                     android:text="@string/restore"
                     android:textStyle="bold"/>
             </LinearLayout>
-
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="64"/>
-
             <ImageView
                 android:id="@+id/mpp_iv_setting_main"
                 android:layout_width="41.5dp"
                 android:layout_height="41.5dp"
                 android:layout_gravity="center"
                 android:src="@drawable/mpp_ic_setting"/>
-
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3.5"/>
         </LinearLayout>
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
     </LinearLayout>
 
     <!--分割线-->

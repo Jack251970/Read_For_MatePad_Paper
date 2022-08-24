@@ -3,20 +3,18 @@ package com.jack.bookshelf.view.activity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -36,37 +34,32 @@ import com.jack.bookshelf.model.BookSourceManager;
 import com.jack.bookshelf.presenter.BookDetailPresenter;
 import com.jack.bookshelf.presenter.SearchBookPresenter;
 import com.jack.bookshelf.presenter.contract.SearchBookContract;
-import com.jack.bookshelf.utils.ColorUtils;
-import com.jack.bookshelf.utils.Selector;
 import com.jack.bookshelf.utils.SoftInputUtil;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.SearchBookAdapter;
 import com.jack.bookshelf.view.adapter.SearchBookshelfAdapter;
 import com.jack.bookshelf.view.dialog.AlertDialog;
-import com.jack.bookshelf.widget.explosion_field.ExplosionField;
+import com.jack.bookshelf.view.popupmenu.SelectMenu;
 import com.jack.bookshelf.widget.recycler.refresh.OnLoadMoreListener;
 
 import java.util.List;
 import java.util.Objects;
 
 /**
- * 书籍搜索界面
- * Copyright (c) 2017. 章钦豪. All rights reserved.
+ * Search Book Page
+ * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
 public class SearchBookActivity extends MBaseActivity<SearchBookContract.Presenter>
         implements SearchBookContract.View, SearchBookshelfAdapter.CallBack {
-    private final int requestSource = 14;
 
     private ActivitySearchBookBinding binding;
     private View refreshErrorView;
-    private ExplosionField mExplosionField;
     private SearchBookAdapter searchBookAdapter;
     private SearchView.SearchAutoComplete mSearchAutoComplete;
     private boolean showHistory;
     private String searchKey;
-    private Menu menu;
     private SearchBookshelfAdapter searchBookshelfAdapter;
 
     public static void startByKey(Context context, String searchKey) {
@@ -94,7 +87,6 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
 
     @Override
     protected void initData() {
-        mExplosionField = ExplosionField.attach2Window(this);
         searchBookAdapter = new SearchBookAdapter(this);
         searchBookshelfAdapter = new SearchBookshelfAdapter(this);
     }
@@ -102,25 +94,57 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
     @SuppressLint("InflateParams")
     @Override
     protected void bindView() {
-        binding.cardSearch.setCardBackgroundColor(ThemeStore.primaryColorDark(this));
+        // 返回
+        binding.ivBackSearchBook.setOnClickListener(v -> {
+            SoftInputUtil.hideIMM(getCurrentFocus());
+            finish();
+        });
+        // 初始化搜索框
         initSearchView();
-        setSupportActionBar(binding.toolbar);
-        setupActionBar();
-        binding.fabSearchStop.hide();
-        binding.fabSearchStop.setBackgroundTintList(Selector.colorBuild()
-                .setDefaultColor(ThemeStore.accentColor(this))
-                .setPressedColor(ColorUtils.darkenColor(ThemeStore.accentColor(this)))
-                .create());
+        // 更多选项
+        binding.ivMoreSettingsSearchBook.setOnClickListener(v -> {
+            List<String> groupList = BookSourceManager.getEnableGroupList();
+            int last_choose = 0;
+            groupList.add(0,getString(R.string.all_source));
+            if (MApplication.SEARCH_GROUP != null) {
+                for (int i = 0; i < groupList.size(); i++) {
+                    if (groupList.get(i).equals(MApplication.SEARCH_GROUP)) {
+                        last_choose = i;
+                        break;
+                    }
+                }
+            }
+            SelectMenu.builder(getContext(), binding.getRoot())
+                    .setTitle(getString(R.string.book_source_search_range))
+                    .setBottomButton(getString(R.string.cancel))
+                    .setMenu(groupList,last_choose)
+                    .setOnclick(new SelectMenu.OnItemClickListener() {
+                        @Override
+                        public void forBottomButton() {}
+
+                        @Override
+                        public void forListItem(int lastChoose, int position) {
+                            if (lastChoose != position) {
+                                if (position == 0) {
+                                    MApplication.SEARCH_GROUP = null;
+                                } else {
+                                    MApplication.SEARCH_GROUP = groupList.get(position);
+                                }
+                                mPresenter.initSearchEngineS(MApplication.SEARCH_GROUP);
+                            }
+                        }
+                    }).show();
+        });
+        // 主界面无事件
         binding.llSearchHistory.setOnClickListener(null);
         binding.rfRvSearchBooks.setRefreshRecyclerViewAdapter(searchBookAdapter, new LinearLayoutManager(this));
-        refreshErrorView = LayoutInflater.from(this).inflate(R.layout.view_refresh_error, null);
-        refreshErrorView.findViewById(R.id.tv_refresh_again).setOnClickListener(v -> {
-            //刷新失败 ，重试
-            toSearch();
-        });
+        // 未搜索到相关书籍
         binding.rfRvSearchBooks.setNoDataAndRefreshErrorView(LayoutInflater.from(this).inflate(R.layout.view_refresh_no_data, null),
                 refreshErrorView);
-
+        refreshErrorView = LayoutInflater.from(this).inflate(R.layout.view_refresh_error, null);
+        // 重新刷新
+        refreshErrorView.findViewById(R.id.tv_refresh_again).setOnClickListener(v -> toSearch());
+        // 搜索结果书籍点击
         searchBookAdapter.setItemClickListener((view, position) -> {
             String dataKey = String.valueOf(System.currentTimeMillis());
             Intent intent = new Intent(SearchBookActivity.this, BookDetailActivity.class);
@@ -129,64 +153,14 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
             BitIntentDataManager.getInstance().putData(dataKey, searchBookAdapter.getItemData(position));
             startActivity(intent);
         });
-
+        // 停止刷新
         binding.fabSearchStop.setOnClickListener(view -> {
-            binding.fabSearchStop.hide();
+            binding.fabSearchStop.setVisibility(View.INVISIBLE);
             mPresenter.stopSearch();
         });
+        // 书架建议
         binding.rvBookshelf.setLayoutManager(new FlexboxLayoutManager(this));
         binding.rvBookshelf.setAdapter(searchBookshelfAdapter);
-    }
-
-    /**
-     * 设置顶部ToolBar
-     */
-    private void setupActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle(R.string.action_search);
-        }
-    }
-
-    /**
-     * 添加右侧边栏菜单
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_book_search_activity, menu);
-        this.menu = menu;
-        initMenu();
-        return super.onCreateOptionsMenu(menu);
-    }
-
-
-    /**
-     * 右侧边栏菜单事件
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_book_source_manage:    // 书源管理按钮
-                BookSourceActivity.startThis(this, requestSource);
-                break;
-            case android.R.id.home: // 返回按钮
-                SoftInputUtil.hideIMM(getCurrentFocus());
-                finish();
-                break;
-            default:    // 书源选择按钮
-                if (item.getGroupId() == R.id.source_group) {
-                    item.setChecked(true);
-                    if (Objects.equals(getString(R.string.all_source), item.getTitle().toString())) {
-                        MApplication.SEARCH_GROUP = null;
-                    } else {
-                        MApplication.SEARCH_GROUP = item.getTitle().toString();
-                    }
-                    mPresenter.initSearchEngineS(MApplication.SEARCH_GROUP);
-                }
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -197,8 +171,8 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
      */
     private void initSearchView() {
         mSearchAutoComplete = binding.searchView.findViewById(R.id.search_src_text);
-        binding.searchView.setQueryHint(getString(R.string.search_book_key));
-        //获取到TextView的控件
+        binding.searchView.setQueryHint(getString(R.string.search_book_name_or_author));
+        // 获取到TextView的控件
         mSearchAutoComplete.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
         mSearchAutoComplete.setPadding(15, 0, 0, 0);
         binding.searchView.onActionViewExpanded();
@@ -211,7 +185,13 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
         closeButton.setScaleX(0.9f);
         closeButton.setScaleY(0.9f);
         closeButton.setPadding(0, 0, 0, 0);
+        closeButton.setBackgroundColor(Color.TRANSPARENT);
+        closeButton.setImageResource(R.drawable.ic_close);
+        goButton.setScaleX(0.8f);
+        goButton.setScaleY(0.8f);
         goButton.setPadding(0, 0, 0, 0);
+        goButton.setBackgroundColor(Color.TRANSPARENT);
+        goButton.setImageResource(R.drawable.mpp_ic_search);
         binding.searchView.setSubmitButtonEnabled(true);
         binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -245,7 +225,7 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
                     binding.tvBookshelf.setVisibility(View.GONE);
                     binding.rvBookshelf.setVisibility(View.GONE);
                 }
-                if (!newText.toLowerCase().startsWith("set")) {
+                if (!Objects.requireNonNull(newText).toLowerCase().startsWith("set")) {
                     mPresenter.querySearchHistory(newText);
                 } else {
                     showHideSetting();
@@ -259,7 +239,7 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
                 finish();
             }
             if (showHistory) {
-                binding.fabSearchStop.hide();
+                binding.fabSearchStop.setVisibility(View.INVISIBLE);
                 mPresenter.stopSearch();
             }
             openOrCloseHistory(showHistory);
@@ -269,7 +249,7 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
     @Override
     protected void bindEvent() {
         // 搜索历史的清除按钮
-        binding.tvSearchHistoryClean.setOnClickListener(v -> {
+        binding.ivSearchHistoryClean.setOnClickListener(v -> {
             AlertDialog.builder(this,binding.getRoot(), AlertDialog.NO_TITLE)
                     .setMessage(R.string.delete_all_history)
                     .setNegativeButton(R.string.cancel)
@@ -282,18 +262,17 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
                         public void forPositiveButton() { mPresenter.cleanSearchHistory();;}
                     }).show();
         });
-
         // 搜索历史其他按钮
         binding.rfRvSearchBooks.setLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void startLoadMore() {
-                binding.fabSearchStop.show();
+                binding.fabSearchStop.setVisibility(View.VISIBLE);
                 mPresenter.toSearchBooks(null, false);
             }
 
             @Override
             public void loadMoreErrorTryAgain() {
-                binding.fabSearchStop.show();
+                binding.fabSearchStop.setVisibility(View.VISIBLE);
                 mPresenter.toSearchBooks(null, true);
             }
         });
@@ -328,32 +307,6 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
             mPresenter.querySearchHistory("");
         }
         openOrCloseHistory(showHistory);
-    }
-
-    private void initMenu() {
-        if (menu == null) return;
-        menu.removeGroup(R.id.source_group);
-        menu.add(R.id.source_group, Menu.NONE, Menu.NONE, R.string.all_source);
-        List<String> groupList = BookSourceManager.getEnableGroupList();
-        for (String groupName : groupList) {
-            menu.add(R.id.source_group, Menu.NONE, Menu.NONE, groupName);
-        }
-        menu.setGroupCheckable(R.id.source_group, true, true);
-        if (MApplication.SEARCH_GROUP != null) {
-            boolean hasGroup = false;
-            for (int i = 0; i < menu.size(); i++) {
-                if (menu.getItem(i).getTitle().toString().equals(MApplication.SEARCH_GROUP)) {
-                    menu.getItem(i).setChecked(true);
-                    hasGroup = true;
-                    break;
-                }
-            }
-            if (!hasGroup) {
-                menu.getItem(1).setChecked(true);
-            }
-        } else {
-            menu.getItem(1).setChecked(true);
-        }
     }
 
     private void showHideSetting() {
@@ -422,9 +375,9 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
             new Handler().postDelayed(() -> {
                 mPresenter.initPage();
                 binding.rfRvSearchBooks.startRefresh();
-                binding.fabSearchStop.show();
+                binding.fabSearchStop.setVisibility(View.VISIBLE);
                 mPresenter.toSearchBooks(searchKey, false);
-            }, 300);
+            }, 0);
         }
     }
 
@@ -459,21 +412,16 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
                     List<BookInfoBean> beans = BookshelfHelp.searchBookInfo(historyBean.getContent());
                     binding.searchView.setQuery(historyBean.getContent(), beans.isEmpty());
                 });
-                tagView.setOnLongClickListener(view -> {
-                    SearchHistoryBean historyBean = (SearchHistoryBean) view.getTag();
-                    mExplosionField.explode(view);
-                    view.setOnLongClickListener(null);
-                    mPresenter.cleanSearchHistory(historyBean);
-                    return true;
-                });
                 binding.tflSearchHistory.addView(tagView);
             }
         }
     }
 
+    /**
+     * 搜索历史插入或者修改成功
+     */
     @Override
     public void insertSearchHistorySuccess(SearchHistoryBean searchHistoryBean) {
-        //搜索历史插入或者修改成功
         mPresenter.querySearchHistory(searchKey);
     }
 
@@ -481,9 +429,9 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
     public void querySearchHistorySuccess(List<SearchHistoryBean> data) {
         addNewHistories(data);
         if (binding.tflSearchHistory.getChildCount() > 0) {
-            binding.tvSearchHistoryClean.setVisibility(View.VISIBLE);
+            binding.ivSearchHistoryClean.setVisibility(View.VISIBLE);
         } else {
-            binding.tvSearchHistoryClean.setVisibility(View.INVISIBLE);
+            binding.ivSearchHistoryClean.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -494,13 +442,13 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
 
     @Override
     public void refreshFinish(Boolean isAll) {
-        binding.fabSearchStop.hide();
+        binding.fabSearchStop.setVisibility(View.INVISIBLE);
         binding.rfRvSearchBooks.finishRefresh(isAll, true);
     }
 
     @Override
     public void loadMoreFinish(Boolean isAll) {
-        binding.fabSearchStop.hide();
+        binding.fabSearchStop.setVisibility(View.INVISIBLE);
         binding.rfRvSearchBooks.finishLoadMore(isAll, true);
     }
 
@@ -522,7 +470,6 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
     @Override
     protected void onDestroy() {
         mPresenter.stopSearch();
-        mExplosionField.clear();
         super.onDestroy();
     }
 
@@ -537,21 +484,7 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == requestSource) {
-                initMenu();
-                mPresenter.initSearchEngineS(MApplication.SEARCH_GROUP);
-            }
-        }
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(0, android.R.anim.fade_out);
-    }
+    public void finish() { super.finish(); }
 
     @Override
     public void openBookInfo(BookInfoBean bookInfoBean) {

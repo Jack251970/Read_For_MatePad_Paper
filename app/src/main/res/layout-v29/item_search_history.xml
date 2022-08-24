@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tv"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="3dp"
-    android:background="@drawable/shape_card_view"
+    android:background="@drawable/item_search_history_background"
     android:clickable="true"
     android:ellipsize="middle"
     android:focusable="true"
-    android:padding="6dp"
+    android:paddingLeft="14dp"
+    android:paddingRight="14dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
     android:singleLine="true"
     android:text="@string/app_name"
-    android:textColor="@color/tv_text_default" />
+    android:textColor="@color/tv_text_default"
+    android:textStyle="bold"
+    tools:text="完美世界"/>

@@ -64,7 +64,15 @@
         <item name="actionBarItemBackground">@color/transparent</item>
     </style>
 
-
+    <!-- MatePad Paper Text Button Theme -->
+    <style name="PaperTextButton">
+        <item name="android:background">@drawable/textview_button_background</item>
+        <item name="android:padding">@dimen/text_view_button_padding</item>
+        <item name="android:textColor">@color/tv_text_default</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
 
 
 

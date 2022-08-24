@@ -6,51 +6,49 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
-
-    <com.google.android.material.appbar.AppBarLayout
+    <!-- Custom ActionBar -->
+    <LinearLayout
         android:id="@+id/action_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="?attr/actionBarStyle"
-        tools:ignore="UnusedAttribute">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            style="@style/NoPaddingToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:transitionName="sharedView"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_search"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                app:cardBackgroundColor="@color/background_card"
-                app:cardElevation="0dp">
-
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/searchView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-5dp"
-                    android:imeOptions="actionSearch"
-                    app:iconifiedByDefault="false"
-                    app:queryBackground="@null"
-                    app:searchIcon="@null"
-                    app:submitBackground="@null"
-                    tools:ignore="RtlHardcoded,UnusedAttribute" />
-            </androidx.cardview.widget.CardView>
-
-        </androidx.appcompat.widget.Toolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
+        android:layout_height="@dimen/action_bar_layout_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/action_bar_padding_and_margin"
+        android:paddingRight="@dimen/action_bar_padding_and_margin">
+        <ImageView
+            android:id="@+id/iv_back_search_book"
+            android:layout_width="@dimen/action_bar_icon_height_and_width"
+            android:layout_height="@dimen/action_bar_icon_height_and_width"
+            android:gravity="center_vertical"
+            android:contentDescription="返回"
+            android:src="@drawable/ic_arrow_back"/>
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/action_bar_icon_height_and_width"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/action_bar_padding_and_margin"
+            android:background="@drawable/searchbar_background"
+            android:imeOptions="actionSearch"
+            app:iconifiedByDefault="false"
+            app:showDividers="none"
+            app:queryBackground="@null"
+            app:searchIcon="@null"
+            app:submitBackground="@null"
+            tools:ignore="RtlHardcoded,UnusedAttribute" />
+        <ImageView
+            android:id="@+id/iv_more_settings_search_book"
+            android:layout_width="@dimen/action_bar_icon_height_and_width"
+            android:layout_height="@dimen/action_bar_icon_height_and_width"
+            android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+            android:contentDescription="更多选项"
+            android:src="@drawable/ic_more_settings"/>
+    </LinearLayout>
+    <!-- 搜索界面 -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        <!-- 搜索结果 -->
         <com.jack.bookshelf.widget.recycler.refresh.RefreshRecyclerView
             android:id="@+id/rfRv_search_books"
             android:layout_width="match_parent"
@@ -61,15 +59,16 @@
             app:second_color="#c1c1c1"
             app:second_max_progress="80dp"
             app:speed="2dp" />
-
+        <!-- 搜索建议 -->
         <LinearLayout
             android:id="@+id/ll_search_history"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/background"
             android:orientation="vertical"
-            android:visibility="invisible">
-
+            android:visibility="invisible"
+            tools:visibility="visible">
+            <!-- 书架搜索建议 -->
             <TextView
                 android:id="@+id/tv_bookshelf"
                 android:layout_width="wrap_content"
@@ -79,78 +78,70 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:text="@string/bookshelf"
-                android:textColor="#767676"
+                android:textColor="@color/black"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 android:visibility="gone"
-                tools:ignore="RtlHardcoded" />
-
+                tools:ignore="RtlHardcoded"
+                tools:visibility="visible"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_bookshelf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="18dp"
                 android:paddingRight="18dp"
-                android:visibility="gone" />
-
+                android:visibility="gone"
+                tools:visibility="visible"/>
+            <!-- 历史搜索建议 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="18dp"
+                    android:layout_marginStart="18dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:text="@string/searchHistory"
-                    android:textColor="#767676"
+                    android:textColor="@color/tv_text_default"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     tools:ignore="RtlHardcoded" />
-
-                <View
+                <Space
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/tv_search_history_clean"
+                <ImageView
+                    android:id="@+id/iv_search_history_clean"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="18dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:gravity="center"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="5dp"
-                    android:paddingRight="15dp"
-                    android:paddingBottom="5dp"
-                    android:text="@string/clear"
-                    android:textColor="@drawable/selector_tv_black"
-                    android:textSize="16sp" />
+                    android:src="@drawable/ic_delete"/>
             </LinearLayout>
-
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
                 <com.google.android.flexbox.FlexboxLayout
                     android:id="@+id/tfl_search_history"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clipToPadding="false"
                     android:overScrollMode="never"
-                    android:padding="15dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
                     app:dividerDrawable="@drawable/shape_space_divider"
                     app:flexDirection="row"
                     app:flexWrap="wrap"
                     app:showDivider="middle" />
             </ScrollView>
-
         </LinearLayout>
-
+        <!-- 停止搜索 -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabSearchStop"
             android:layout_width="wrap_content"
@@ -160,11 +151,12 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
             android:contentDescription="@string/stop"
-            android:src="@drawable/ic_stop_black_24dp"
-            app:elevation="5dp"
+            android:src="@drawable/ic_stop_white"
+            android:elevation="0dp"
+            app:elevation="0dp"
             app:fabSize="mini"
-            app:layout_anchorGravity="right|bottom" />
-
+            app:layout_anchorGravity="right|bottom"
+            android:visibility="invisible"
+            tools:visibility="visible"/>
     </RelativeLayout>
-
 </LinearLayout>

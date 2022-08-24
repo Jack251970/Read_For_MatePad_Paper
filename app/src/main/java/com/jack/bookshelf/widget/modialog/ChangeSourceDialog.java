@@ -54,12 +54,6 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-/**
- * Source Change Dialog
- * Adapt to Huawei MatePad Paper
- * Edited by Jack251970
- */
-
 public class ChangeSourceDialog extends BaseDialog implements ChangeSourceAdapter.CallBack {
     private final Context context;
     private TextView atvTitle;
@@ -181,15 +175,12 @@ public class ChangeSourceDialog extends BaseDialog implements ChangeSourceAdapte
         adapter = new ChangeSourceAdapter(false);
         rvSource.setRefreshRecyclerViewAdapter(adapter, new LinearLayoutManager(context));
         adapter.setCallBack(this);
+        // 刷新失败界面
         View viewRefreshError = LayoutInflater.from(context).inflate(R.layout.view_refresh_error, null);
-        viewRefreshError.setBackgroundResource(R.color.background_card);
-        viewRefreshError.findViewById(R.id.tv_refresh_again).setOnClickListener(v -> {
-            //刷新失败 ，重试
-            reSearchBook();
-        });
+        // 重新刷新事件
+        viewRefreshError.findViewById(R.id.tv_refresh_again).setOnClickListener(v -> reSearchBook());
         rvSource.setNoDataAndRefreshErrorView(LayoutInflater.from(context).inflate(R.layout.view_refresh_no_data, null),
                 viewRefreshError);
-
         SearchBookModel.OnSearchListener searchListener = new SearchBookModel.OnSearchListener() {
             @Override
             public void refreshSearchBook() {

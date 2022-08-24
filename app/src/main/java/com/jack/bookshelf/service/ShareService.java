@@ -141,7 +141,7 @@ public class ShareService extends Service {
                 .setOngoing(true)
                 .setContentTitle(getString(R.string.wifi_share))
                 .setContentText(content);
-        builder.addAction(R.drawable.ic_stop_black_24dp, getString(R.string.cancel), getThisServicePendingIntent());
+        builder.addAction(R.drawable.ic_stop_white, getString(R.string.cancel), getThisServicePendingIntent());
         builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
         Notification notification = builder.build();
         int notificationId = 1122;

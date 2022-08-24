@@ -579,7 +579,7 @@ public class ReadAloudService extends Service implements Player.Listener {
         } else {
             builder.addAction(R.drawable.ic_pause_24dp, getString(R.string.pause), getThisServicePendingIntent(ActionPauseService));
         }
-        builder.addAction(R.drawable.ic_stop_black_24dp, getString(R.string.stop), getThisServicePendingIntent(ActionDoneService));
+        builder.addAction(R.drawable.ic_stop_white, getString(R.string.stop), getThisServicePendingIntent(ActionDoneService));
         builder.addAction(R.drawable.ic_time_add_24dp, getString(R.string.set_timer), getThisServicePendingIntent(ActionSetTimer));
         builder.setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
                 .setMediaSession(mediaSessionCompat.getSessionToken())

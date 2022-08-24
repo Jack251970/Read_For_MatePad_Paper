@@ -141,7 +141,7 @@ public class CheckSourceService extends Service {
                 .setContentTitle(getString(R.string.check_book_source))
                 .setContentText(msg)
                 .setContentIntent(getActivityPendingIntent());
-        builder.addAction(R.drawable.ic_stop_black_24dp, getString(R.string.cancel), getThisServicePendingIntent());
+        builder.addAction(R.drawable.ic_stop_white, getString(R.string.cancel), getThisServicePendingIntent());
         if (bookSourceBeanList != null) {
             builder.setProgress(bookSourceBeanList.size(), state, false);
         }

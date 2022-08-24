@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tv_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/shape_card_view"
+    android:background="@drawable/item_search_history_background"
     android:clickable="true"
     android:ellipsize="end"
     android:focusable="true"
@@ -11,4 +12,5 @@
     android:padding="5dp"
     android:singleLine="true"
     android:textColor="@color/tv_text_default"
-    android:textSize="14sp" />
+    android:textSize="14sp"
+    tools:text="阅读测试版"/>

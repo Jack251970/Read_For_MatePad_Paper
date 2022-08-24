@@ -14,6 +14,12 @@ import com.jack.bookshelf.bean.BookInfoBean;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Main Page
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
 public class SearchBookshelfAdapter extends RecyclerView.Adapter<SearchBookshelfAdapter.MyViewHolder> {
 
     private final List<BookInfoBean> beans = new ArrayList<>();
@@ -32,7 +38,8 @@ public class SearchBookshelfAdapter extends RecyclerView.Adapter<SearchBookshelf
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_search_history, parent, false));
+        return new MyViewHolder(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_search_history, parent, false));
     }
 
     @Override

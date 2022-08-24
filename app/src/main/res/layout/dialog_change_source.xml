@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_stop_black_24dp"
+            android:src="@drawable/ic_stop_white"
             android:tint="@color/tv_text_default" />
     </LinearLayout>
 
