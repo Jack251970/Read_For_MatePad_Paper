@@ -51,9 +51,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Created by GKF on 2018/1/26.
- * 编辑书源
- * 最后修改20220730
+ * Book Source Edit Page
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
  */
 
 public class SourceEditActivity extends MBaseActivity<SourceEditContract.Presenter> implements SourceEditContract.View, KeyboardToolPop.CallBack {

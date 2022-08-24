@@ -5,11 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 
 import com.hwangjr.rxbus.RxBus;
 import com.jack.basemvplib.impl.IPresenter;
@@ -26,16 +23,20 @@ import com.jack.bookshelf.utils.SoftInputUtil;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.widget.modialog.MoDialogHUD;
 
+import java.util.Objects;
+
 import kotlin.Unit;
 
 /**
- * 书籍信息编辑
+ * Book Info Edit Page
+ * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
 public class BookInfoEditActivity extends MBaseActivity<IPresenter> {
     private final int ResultSelectCover = 103;
     private final int ResultEditCover = 104;
+
     private ActivityBookInfoEditBinding binding;
     private String noteUrl;
     private BookShelfBean book;
@@ -71,15 +72,13 @@ public class BookInfoEditActivity extends MBaseActivity<IPresenter> {
     }
 
     /**
-     * 布局载入  setContentView()
+     * 布局载入
      */
     @Override
     protected void onCreateActivity() {
         getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivityBookInfoEditBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        this.setSupportActionBar(binding.toolbar);
-        setupActionBar();
         binding.tilBookName.setHint(getString(R.string.book_name));
         binding.tilBookAuthor.setHint(getString(R.string.author));
         binding.tilCoverUrl.setHint(getString(R.string.cover_path));
@@ -117,6 +116,11 @@ public class BookInfoEditActivity extends MBaseActivity<IPresenter> {
     @Override
     protected void bindEvent() {
         super.bindEvent();
+        binding.ivBackBookInfoEdit.setOnClickListener(v -> {
+            SoftInputUtil.hideIMM(getCurrentFocus());
+            finish();
+        });
+        binding.ivSaveBookInfoEdit.setOnClickListener(v -> saveInfo());
         binding.tvSelectCover.setOnClickListener(view -> selectCover());
         binding.tvChangeCover.setOnClickListener(view -> {
             Intent intent = new Intent(BookInfoEditActivity.this, BookCoverEditActivity.class);
@@ -125,7 +129,7 @@ public class BookInfoEditActivity extends MBaseActivity<IPresenter> {
             startActivityForResult(intent, ResultEditCover);
         });
         binding.tvRefreshCover.setOnClickListener(view -> {
-            book.setCustomCoverPath(binding.tieCoverUrl.getText().toString());
+            book.setCustomCoverPath(Objects.requireNonNull(binding.tieCoverUrl.getText()).toString());
             initCover();
         });
     }
@@ -150,41 +154,12 @@ public class BookInfoEditActivity extends MBaseActivity<IPresenter> {
         }
     }
 
-    //设置ToolBar
-    private void setupActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle(R.string.edit_book_info);
-        }
-    }
-
-    // 添加菜单
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_book_info, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    //菜单
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_save) {
-            saveInfo();
-        } else if (id == android.R.id.home) {
-            SoftInputUtil.hideIMM(getCurrentFocus());
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private void saveInfo() {
         if (book != null) {
-            book.getBookInfoBean().setName(binding.tieBookName.getText().toString());
-            book.getBookInfoBean().setAuthor(binding.tieBookAuthor.getText().toString());
-            book.getBookInfoBean().setIntroduce(binding.tieBookJj.getText().toString());
-            book.setCustomCoverPath(binding.tieCoverUrl.getText().toString());
+            book.getBookInfoBean().setName(Objects.requireNonNull(binding.tieBookName.getText()).toString());
+            book.getBookInfoBean().setAuthor(Objects.requireNonNull(binding.tieBookAuthor.getText()).toString());
+            book.getBookInfoBean().setIntroduce(Objects.requireNonNull(binding.tieBookJj.getText()).toString());
+            book.setCustomCoverPath(Objects.requireNonNull(binding.tieCoverUrl.getText()).toString());
             initCover();
             BookshelfHelp.saveBookToShelf(book);
             RxBus.get().post(RxBusTag.HAD_ADD_BOOK, book);
@@ -213,7 +188,7 @@ public class BookInfoEditActivity extends MBaseActivity<IPresenter> {
             case ResultSelectCover:
                 if (resultCode == RESULT_OK && null != data) {
                     binding.tieCoverUrl.setText(RealPathUtil.getPath(this, data.getData()));
-                    book.setCustomCoverPath(binding.tieCoverUrl.getText().toString());
+                    book.setCustomCoverPath(Objects.requireNonNull(binding.tieCoverUrl.getText()).toString());
                     initCover();
                 }
                 break;

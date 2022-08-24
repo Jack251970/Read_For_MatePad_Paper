@@ -6,6 +6,8 @@
         <dimen name="action_bar_padding_and_margin">20dp</dimen>
         <dimen name="action_bar_icon_height_and_width">30dp</dimen>
         <dimen name="action_bar_title_text_size">22sp</dimen>
+        <!-- Content Padding -->
+        <dimen name="content_padding">10dp</dimen>
         <!-- Button -->
         <dimen name="button_width">280dp</dimen>
         <dimen name="button_height">42dp</dimen>

@@ -36,7 +36,8 @@ import io.reactivex.Single;
 import io.reactivex.SingleOnSubscribe;
 
 /**
- * 封面换源
+ * Book Cover Edit Page
+ * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
@@ -53,33 +54,11 @@ public class BookCoverEditActivity extends MBaseActivity<IPresenter> {
     protected void onCreateActivity() {
         getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivityBookCoverEditBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        this.setSupportActionBar(binding.toolbar);
-        setupActionBar();
-    }
-
-    //设置ToolBar
-    private void setupActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle(R.string.cover_change_source);
-        }
-    }
-
-
-    //菜单
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
     protected void initData() {
+        binding.ivBackBookCoverEdit.setOnClickListener(v -> finish());
         name = getIntent().getStringExtra("name");
         author = getIntent().getStringExtra("author");
         ChangeCoverAdapter changeCoverAdapter = new ChangeCoverAdapter();

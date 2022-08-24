@@ -84,6 +84,13 @@
         <string name="loading">加载中…</string>
         <string name="book_search_last">最新: %s</string>
         <string name="no_kind">暂未分类</string>
+        <!-- Book Info Edit Activity -->
+        <string name="edit_book_info">书籍信息编辑</string>
+        <string name="cover_path">封面地址</string>
+        <string name="bg_image_per">获取背景图片需存储权限</string>
+        <string name="select_local_image">选择本地图片</string>
+        <string name="cover_change_source">封面换源</string>
+        <string name="refresh_cover">刷新封面</string>
 
     <!-- Fragment -->
         <!-- BookList Fragment-->
@@ -448,7 +455,6 @@
     <string name="auto_next_page">自动翻页</string>
     <string name="auto_next_page_stop">停止自动翻页</string>
     <string name="auto_next_page_speed">自动翻页时每分钟阅读字数(CPM)</string>
-    <string name="edit_book_info">书籍信息编辑</string>
     <string name="menu_action_group">分组</string>
     <string name="download_path">书籍缓存路径</string>
     <string name="new_version">新版本</string>
@@ -472,7 +478,6 @@
     <string name="status_bar_immersion">顶部状态栏颜色透明</string>
     <string name="navigation_bar_color_change">沉浸式导航栏</string>
     <string name="navigation_bar_color_change_s">底部导航栏颜色透明</string>
-    <string name="cover_path">封面地址</string>
     <string name="page_mode_COVER">覆盖</string>
     <string name="page_mode_SIMULATION">仿真</string>
     <string name="page_mode_SLIDE">滑动</string>
@@ -525,18 +530,10 @@
     <string name="source_user_agent">HttpUserAgent</string>
     <string name="debug_source">调试书源</string>
     <string name="click_on_selected_show_menu">选中时点击可弹出菜单</string>
-    <string name="theme">主题</string>
-    <string name="default_theme">恢复主题配色</string>
-    <string name="restore_default_theme">恢复所有主题为默认配色</string>
     <string name="read_file_error">文件读取失败</string>
-    <string name="bg_image_per">获取背景图片需存储权限</string>
     <string name="del_file">删除文件</string>
     <string name="del_file_success">删除文件成功</string>
     <string name="sure_del_file">确定删除文件吗?</string>
-    <string name="files_tree">手机目录</string>
-    <string name="intelligent_import">智能导入</string>
-    <string name="find">发现</string>
-    <string name="switch_display_style">切换显示样式</string>
     <string name="import_per">导入本地书籍需存储权限</string>
     <string name="click_to_day">点击可切换到明亮模式</string>
     <string name="click_to_night">点击可切换到暗黑模式</string>
@@ -590,9 +587,6 @@
     <string name="edit_find">编辑发现</string>
     <string name="change_icon_summary">切换软件显示在桌面的图标</string>
     <string name="to_lh">扩展到刘海</string>
-    <string name="cover_change_source">封面换源</string>
-    <string name="select_local_image">选择本地图片</string>
-    <string name="refresh_cover">刷新封面</string>
     <string name="c_page_key">自定义翻页按键</string>
     <string name="custom_page_key">自定义翻页按键</string>
     <string name="prev_page_key">上一页按键</string>

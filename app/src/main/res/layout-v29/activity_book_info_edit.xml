@@ -1,31 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
-
-    <com.google.android.material.appbar.AppBarLayout
+    <!-- Custom ActionBar -->
+    <LinearLayout
         android:id="@+id/action_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="?attr/actionBarStyle">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
+        android:layout_height="@dimen/action_bar_layout_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/action_bar_padding_and_margin"
+        android:paddingRight="@dimen/action_bar_padding_and_margin">
+        <ImageView
+            android:id="@+id/iv_back_book_info_edit"
+            android:layout_width="@dimen/action_bar_icon_height_and_width"
+            android:layout_height="@dimen/action_bar_icon_height_and_width"
+            android:gravity="center_vertical"
+            android:contentDescription="返回"
+            android:src="@drawable/ic_arrow_back"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:text="@string/edit_book_info"
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+        <ImageView
+            android:id="@+id/iv_save_book_info_edit"
+            android:layout_width="@dimen/action_bar_icon_height_and_width"
+            android:layout_height="@dimen/action_bar_icon_height_and_width"
+            android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+            android:contentDescription="保存"
+            android:src="@drawable/ic_save"/>
+    </LinearLayout>
+    <!-- 书籍信息编辑 -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:padding="@dimen/content_padding">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="5dp">
-
+                <!-- 封面 -->
                 <com.jack.bookshelf.widget.image.CoverImageView
                     android:id="@+id/iv_cover"
                     android:layout_width="90dp"
@@ -44,102 +61,90 @@
                     android:contentDescription="@string/img_cover"
                     android:scaleType="centerCrop"
                     android:src="@drawable/image_cover_default" />
-
+                <!-- 书名、作者 -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
+                    android:layout_marginStart="10dp"
                     android:padding="5dp">
-
                     <com.jack.bookshelf.widget.views.ATETextInputLayout
                         android:id="@+id/til_book_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/book_name">
-
                         <com.jack.bookshelf.widget.views.ATEEditText
                             android:id="@+id/tie_book_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:singleLine="true" />
                     </com.jack.bookshelf.widget.views.ATETextInputLayout>
-
                     <com.jack.bookshelf.widget.views.ATETextInputLayout
                         android:id="@+id/til_book_author"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/author">
-
                         <com.jack.bookshelf.widget.views.ATEEditText
                             android:id="@+id/tie_book_author"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:singleLine="true" />
                     </com.jack.bookshelf.widget.views.ATETextInputLayout>
-
                 </LinearLayout>
             </LinearLayout>
-
+            <!-- 封面地址 -->
             <com.jack.bookshelf.widget.views.ATETextInputLayout
                 android:id="@+id/til_cover_url"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:hint="@string/cover_path">
-
                 <com.jack.bookshelf.widget.views.ATEEditText
                     android:id="@+id/tie_cover_url"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.jack.bookshelf.widget.views.ATETextInputLayout>
-
+            <!-- 封面改变按钮 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="5dp"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp">
-
-                <com.jack.bookshelf.widget.views.ATEStrokeTextView
+                <TextView
                     android:id="@+id/tv_select_cover"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="@string/select_local_image" />
-
-                <com.jack.bookshelf.widget.views.ATEStrokeTextView
+                    android:text="@string/select_local_image"
+                    style="@style/PaperTextButton"/>
+                <TextView
                     android:id="@+id/tv_change_cover"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:padding="5dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:text="@string/cover_change_source"
-                    tools:ignore="RtlHardcoded" />
-
-                <com.jack.bookshelf.widget.views.ATEStrokeTextView
+                    style="@style/PaperTextButton"/>
+                <TextView
                     android:id="@+id/tv_refresh_cover"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:padding="5dp"
                     android:text="@string/refresh_cover"
-                    tools:ignore="RtlHardcoded" />
-
+                    style="@style/PaperTextButton"/>
             </LinearLayout>
-
+            <!-- 内容简介编辑 -->
             <com.jack.bookshelf.widget.views.ATETextInputLayout
                 android:id="@+id/til_book_jj"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:hint="@string/book_intro">
-
                 <com.jack.bookshelf.widget.views.ATEEditText
                     android:id="@+id/tie_book_jj"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.jack.bookshelf.widget.views.ATETextInputLayout>
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

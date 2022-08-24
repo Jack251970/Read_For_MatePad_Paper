@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/ll_content"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context="com.jack.bookshelf.view.activity.BookCoverEditActivity">
+    <!-- Custom ActionBar -->
+    <LinearLayout
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/action_bar_layout_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/action_bar_padding_and_margin"
+        android:paddingRight="@dimen/action_bar_padding_and_margin">
+        <ImageView
+            android:id="@+id/iv_back_book_cover_edit"
+            android:layout_width="@dimen/action_bar_icon_height_and_width"
+            android:layout_height="@dimen/action_bar_icon_height_and_width"
+            android:gravity="center_vertical"
+            android:contentDescription="返回"
+            android:src="@drawable/ic_arrow_back"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:text="@string/cover_change_source"
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+    </LinearLayout>
+    <!-- 封面目录 -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/content_padding">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rf_rv_change_cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

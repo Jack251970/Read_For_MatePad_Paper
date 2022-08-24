@@ -39,7 +39,7 @@ import com.jack.bookshelf.widget.modialog.ChangeSourceDialog;
 import com.jack.bookshelf.widget.modialog.MoDialogHUD;
 
 /**
- * BookDetail Activity
+ * Book Detail Page
  * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */

@@ -125,3 +125,5 @@ case android.R.id.home:
                     binding.drawer.openDrawer(GravityCompat.START, false);
                 }
                 break;
+5.
+private MoDialogHUD moDialogHUD;
