@@ -147,6 +147,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
     @Override
     protected void bindView() {
         initMenu();
+        // 输入法帮助字符
         mSoftKeyboardTool = new KeyboardToolPop(this, Arrays.asList(keyHelp), this);
         getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(new KeyboardOnGlobalChangeListener());
         adapter = new SourceEditAdapter(this);
@@ -181,7 +182,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
                             break;
                         case 1:
                             AlertDialog.builder(this, binding.getRoot(), AlertDialog.NO_TITLE)
-                                    .setMessage("是否拷贝发现内容？")
+                                    .setMessage(R.string.if_copy_find_content)
                                     .setNegativeButton(R.string.no)
                                     .setPositiveButton(R.string.yes)
                                     .setOnclick(new AlertDialog.OnItemClickListener() {
@@ -196,7 +197,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
                             mPresenter.pasteSource();
                             break;
                         case 3:
-                            shareText("Source Share", getBookSourceStr(true));
+                            shareText(getBookSourceStr(true));
                             break;
                         case 4:
                             ShareService.startThis(this, Collections.singletonList(getBookSource(true)));
@@ -234,7 +235,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
         binding.ivSaveSourceEdit.setOnClickListener(v -> {
             if (canSaveBookSource()) {
                 mPresenter.saveSource(getBookSource(true), bookSourceBean)
-                        .subscribe(new MyObserver<Boolean>() {
+                        .subscribe(new MyObserver<>() {
                             @Override
                             public void onNext(Boolean aBoolean) {
                                 bookSourceBean = getBookSource(true);
@@ -254,7 +255,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
         binding.ivDebugSourceEdit.setOnClickListener(v -> {
             if (canSaveBookSource()) {
                 mPresenter.saveSource(getBookSource(true), bookSourceBean)
-                        .subscribe(new MyObserver<Boolean>() {
+                        .subscribe(new MyObserver<>() {
                             @Override
                             public void onNext(Boolean aBoolean) {
                                 bookSourceBean = getBookSource(true);
@@ -277,6 +278,9 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
         });
     }
 
+    /**
+     * 判断是否可以保存书源
+     */
     private boolean canSaveBookSource() {
         SoftInputUtil.hideIMM(binding.recyclerView);
         binding.recyclerView.clearFocus();
@@ -340,7 +344,6 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
         sourceEditList.add(new SourceEdit("ruleBookContent", bookSourceBean.getRuleBookContent(), R.string.rule_book_content));
         sourceEditList.add(new SourceEdit("ruleBookContentReplace", bookSourceBean.getRuleBookContentReplace(), R.string.rule_book_content_replace));
         sourceEditList.add(new SourceEdit("httpUserAgent", bookSourceBean.getHttpUserAgent(), R.string.source_user_agent));
-
         //发现
         findEditList.add(new SourceEdit("ruleFindUrl", bookSourceBean.getRuleFindUrl(), R.string.rule_find_url));
         findEditList.add(new SourceEdit("ruleFindList", bookSourceBean.getRuleFindList(), R.string.rule_find_list));
@@ -351,7 +354,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
         findEditList.add(new SourceEdit("ruleFindLastChapter", bookSourceBean.getRuleFindLastChapter(), R.string.rule_find_last_chapter));
         findEditList.add(new SourceEdit("ruleFindCoverUrl", bookSourceBean.getRuleFindCoverUrl(), R.string.rule_find_cover_url));
         findEditList.add(new SourceEdit("ruleFindNoteUrl", bookSourceBean.getRuleFindNoteUrl(), R.string.rule_find_note_url));
-
+        // 是否未发现页面
         if (showFind) {
             adapter.reSetData(findEditList);
         } else {
@@ -518,12 +521,12 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
         }
     }
 
-    private void shareText(String title, String text) {
+    private void shareText(String text) {
         try {
             Intent textIntent = new Intent(Intent.ACTION_SEND);
             textIntent.setType("text/plain");
             textIntent.putExtra(Intent.EXTRA_TEXT, text);
-            startActivity(Intent.createChooser(textIntent, title));
+            startActivity(Intent.createChooser(textIntent, "Source Share"));
         } catch (Exception e) {
             toast(R.string.can_not_share, ERROR);
         }
@@ -554,8 +557,8 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
         if (!getBookSource(true).equals(bookSourceBean)) {
             AlertDialog.builder(this,binding.getRoot(), AlertDialog.NO_TITLE)
                     .setMessage(R.string.exit_no_save)
-                    .setNegativeButton(R.string.yes)
-                    .setPositiveButton(R.string.no)
+                    .setNegativeButton(R.string.no)
+                    .setPositiveButton(R.string.yes)
                     .setOnclick(new AlertDialog.OnItemClickListener() {
                         @Override
                         public void forNegativeButton() { finish(); }
@@ -576,11 +579,11 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
             EditText editText = (EditText) view;
             int start = editText.getSelectionStart();
             int end = editText.getSelectionEnd();
-            Editable edit = editText.getEditableText();//获取EditText的文字
+            Editable edit = editText.getEditableText(); //获取EditText的文字
             if (start < 0 || start >= edit.length()) {
                 edit.append(txt);
             } else {
-                edit.replace(start, end, txt);//光标所在位置插入文字
+                edit.replace(start, end, txt);  //光标所在位置插入文字
             }
         }
     }
@@ -660,5 +663,4 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
             return hint;
         }
     }
-
 }

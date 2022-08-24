@@ -32,7 +32,6 @@ public class ATETextInputLayout extends TextInputLayout {
 
     @Override
     public void draw(Canvas canvas) {
-
         super.draw(canvas);
     }
 }

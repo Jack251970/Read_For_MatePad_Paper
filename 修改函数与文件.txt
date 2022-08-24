@@ -10,3 +10,5 @@ WebDavHelp.kt
                 when (index) {}
             }
         }.show()*/
+4. 固定滚动动画
+SourceEditAdapter.java

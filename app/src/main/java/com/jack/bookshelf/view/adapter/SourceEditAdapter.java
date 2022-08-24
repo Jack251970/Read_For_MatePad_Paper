@@ -20,6 +20,12 @@ import com.jack.bookshelf.view.activity.SourceEditActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Book Source Item Adapter
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
 public class SourceEditAdapter extends Adapter<SourceEditAdapter.MyViewHolder> {
     private final Context context;
     private List<SourceEditActivity.SourceEdit> data = new ArrayList<>();
@@ -38,7 +44,6 @@ public class SourceEditAdapter extends Adapter<SourceEditAdapter.MyViewHolder> {
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_source_edit, parent, false));
     }
-
 
     @Override
     @SuppressLint("RecyclerView")
@@ -86,12 +91,10 @@ public class SourceEditAdapter extends Adapter<SourceEditAdapter.MyViewHolder> {
         holder.editText.setTag(R.id.tag2, textWatcher);
     }
 
-
     @Override
     public int getItemCount() {
         return data.size();
     }
-
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
         TextInputLayout textInputLayout;

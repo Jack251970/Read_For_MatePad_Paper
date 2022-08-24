@@ -8,10 +8,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jack.bookshelf.base.adapter.ItemViewHolder
 import com.jack.bookshelf.base.adapter.RecyclerAdapter
-import com.jack.bookshelf.databinding.ItemTextBinding
+import com.jack.bookshelf.databinding.ItemPopupKeyboardToolBinding
 import com.jack.bookshelf.databinding.PopupKeyboardToolBinding
 import org.jetbrains.anko.sdk27.listeners.onClick
 
+/**
+ * Popup Help Keyboard
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
 class KeyboardToolPop(
         context: Context,
@@ -38,20 +43,20 @@ class KeyboardToolPop(
     }
 
     inner class Adapter(context: Context) :
-            RecyclerAdapter<String, ItemTextBinding>(context) {
+            RecyclerAdapter<String, ItemPopupKeyboardToolBinding>(context) {
 
-        override fun getViewBinding(parent: ViewGroup): ItemTextBinding {
-            return ItemTextBinding.inflate(inflater, parent, false)
+        override fun getViewBinding(parent: ViewGroup): ItemPopupKeyboardToolBinding {
+            return ItemPopupKeyboardToolBinding.inflate(inflater, parent, false)
         }
 
-        override fun convert(holder: ItemViewHolder, binding: ItemTextBinding, item: String, payloads: MutableList<Any>) {
+        override fun convert(holder: ItemViewHolder, binding: ItemPopupKeyboardToolBinding, item: String, payloads: MutableList<Any>) {
             with(binding) {
                 textView.text = item
                 root.onClick { callBack?.sendText(item) }
             }
         }
 
-        override fun registerListener(holder: ItemViewHolder, binding: ItemTextBinding) {
+        override fun registerListener(holder: ItemViewHolder, binding: ItemPopupKeyboardToolBinding) {
 
         }
     }
@@ -59,5 +64,4 @@ class KeyboardToolPop(
     interface CallBack {
         fun sendText(text: String)
     }
-
 }
