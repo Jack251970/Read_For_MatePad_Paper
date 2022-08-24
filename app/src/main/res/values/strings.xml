@@ -80,6 +80,10 @@
         <string name="all_source">全部书源</string>
         <string name="delete_all_history">是否删除所有历史记录?</string>
         <string name="searchHistory">搜索历史</string>
+        <string name="origin_format">来源: %s</string>
+        <string name="loading">加载中…</string>
+        <string name="book_search_last">最新: %s</string>
+        <string name="no_kind">暂未分类</string>
 
     <!-- Fragment -->
         <!-- BookList Fragment-->
@@ -239,7 +243,6 @@
 
 
 
-
     <string name="row_0">单倍</string>
     <string name="row_1">双倍</string>
     <string name="row_2">三倍</string>
@@ -280,8 +283,6 @@
     <string name="web_edit_source">web编辑书源</string>
     <string name="download_offline_t">离线下载</string>
     <string name="download_offline_s">下载选择的章节到本地</string>
-    <string name="origin_format">来源: %s</string>
-    <string name="book_search_last">最新: %s</string>
     <string name="pt_hide_status_bar">隐藏状态栏</string>
     <string name="ps_hide_status_bar">阅读界面隐藏状态栏</string>
     <string name="pt_read_line_adjust">阅读行数调整</string>
@@ -392,7 +393,6 @@
     <string name="immersion_status_bar">沉浸式状态栏</string>
     <string name="un_download">还剩%d章未下载</string>
     <string name="long_click_input_color">长按输入颜色值</string>
-    <string name="loading">加载中…</string>
     <string name="group_zg">追更区</string>
     <string name="group_yf">养肥区</string>
     <string name="bookmark">书签</string>

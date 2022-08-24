@@ -1,4 +1,3 @@
-//Copyright (c) 2017. 章钦豪. All rights reserved.
 package com.jack.bookshelf.view.adapter;
 
 import static com.jack.bookshelf.utils.StringUtils.isTrimEmpty;
@@ -20,6 +19,12 @@ import com.jack.bookshelf.widget.recycler.refresh.RefreshRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Item Choice Book Adapter
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
 public class ChoiceBookAdapter extends RefreshRecyclerViewAdapter {
     private final Activity activity;
@@ -45,52 +50,48 @@ public class ChoiceBookAdapter extends RefreshRecyclerViewAdapter {
         if (!activity.isFinishing()) {
             myViewHolder.ivCover.load(book.getCoverUrl(), book.getName(), book.getCoverUrl());
         }
+        // 名字与作者
         String title = book.getName();
         String author = book.getAuthor();
         if (author != null && author.trim().length() > 0)
-            title = String.format("%s (%s)", title, author);
+            title = String.format("%s  (%s)", title, author);
         myViewHolder.tvName.setText(title);
         BookKindBean bookKindBean = new BookKindBean(book.getKind());
-        if (isTrimEmpty(bookKindBean.getKind())) {
-            myViewHolder.tvKind.setVisibility(View.GONE);
-        } else {
-            myViewHolder.tvKind.setVisibility(View.VISIBLE);
-            myViewHolder.tvKind.setText(bookKindBean.getKind());
-        }
-        if (isTrimEmpty(bookKindBean.getWordsS())) {
-            myViewHolder.tvWords.setVisibility(View.GONE);
-        } else {
-            myViewHolder.tvWords.setVisibility(View.VISIBLE);
-            myViewHolder.tvWords.setText(bookKindBean.getWordsS());
-        }
+        // 状态
         if (isTrimEmpty(bookKindBean.getState())) {
             myViewHolder.tvState.setVisibility(View.GONE);
         } else {
             myViewHolder.tvState.setVisibility(View.VISIBLE);
             myViewHolder.tvState.setText(bookKindBean.getState());
         }
-        //来源
-        if (isTrimEmpty(book.getOrigin())) {
-            myViewHolder.tvOrigin.setVisibility(View.GONE);
+        // 类别
+        myViewHolder.tvKind.setVisibility(View.VISIBLE);
+        if (isTrimEmpty(bookKindBean.getKind()) || bookKindBean.getKind().equals("[]")) {
+            myViewHolder.tvKind.setText(activity.getString(R.string.no_kind));
         } else {
-            myViewHolder.tvOrigin.setVisibility(View.VISIBLE);
+            myViewHolder.tvKind.setText(bookKindBean.getKind());
+        }
+        // 字数
+        if (isTrimEmpty(bookKindBean.getWordsS())) {
+            myViewHolder.tvWords.setVisibility(View.GONE);
+        } else {
+            myViewHolder.tvWords.setVisibility(View.VISIBLE);
+            myViewHolder.tvWords.setText(bookKindBean.getWordsS());
+        }
+        // 来源
+        myViewHolder.tvOrigin.setVisibility(View.VISIBLE);
+        if (isTrimEmpty(book.getOrigin())) {
+            myViewHolder.tvOrigin.setText(activity.getString(R.string.origin_format, activity.getString(R.string.loading)));
+        } else {
             myViewHolder.tvOrigin.setText(activity.getString(R.string.origin_format, searchBooks.get(position).getOrigin()));
         }
-        //最新章节
+        // 最新章节
+        myViewHolder.tvLasted.setVisibility(View.VISIBLE);
         if (isTrimEmpty(book.getLastChapter())) {
-            myViewHolder.tvLasted.setVisibility(View.GONE);
+            myViewHolder.tvLasted.setText(activity.getString(R.string.book_search_last, activity.getString(R.string.unknown)));
         } else {
-            myViewHolder.tvLasted.setText(book.getLastChapter());
-            myViewHolder.tvLasted.setVisibility(View.VISIBLE);
+            myViewHolder.tvLasted.setText(activity.getString(R.string.book_search_last, book.getLastChapter()));
         }
-        //简介
-        if (isTrimEmpty(book.getIntroduce())) {
-            myViewHolder.tvIntroduce.setVisibility(View.GONE);
-        } else {
-            myViewHolder.tvIntroduce.setText(StringUtils.formatHtml(searchBooks.get(position).getIntroduce()));
-            myViewHolder.tvIntroduce.setVisibility(View.VISIBLE);
-        }
-
         myViewHolder.flContent.setOnClickListener(v -> {
             if (callback != null)
                 callback.clickItem(myViewHolder.ivCover, position, book);
@@ -143,7 +144,6 @@ public class ChoiceBookAdapter extends RefreshRecyclerViewAdapter {
         TextView tvKind;
         TextView tvLasted;
         TextView tvOrigin;
-        TextView tvIntroduce;
 
         MyViewHolder(View itemView) {
             super(itemView);
@@ -155,7 +155,6 @@ public class ChoiceBookAdapter extends RefreshRecyclerViewAdapter {
             tvLasted = itemView.findViewById(R.id.tv_lasted);
             tvKind = itemView.findViewById(R.id.tv_kind);
             tvOrigin = itemView.findViewById(R.id.tv_origin);
-            tvIntroduce = itemView.findViewById(R.id.tv_introduce);
         }
     }
 }

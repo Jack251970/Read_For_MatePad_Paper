@@ -21,7 +21,7 @@
                 android:layout_height="match_parent"
                 app:bg_color="@color/transparent"
                 app:font_color="@color/tv_text_default"
-                app:second_color="#c1c1c1"
+                app:second_color="@color/black"
                 app:second_max_progress="80dp"
                 app:speed="2dp" />
             <!-- 书架无书籍界面 -->

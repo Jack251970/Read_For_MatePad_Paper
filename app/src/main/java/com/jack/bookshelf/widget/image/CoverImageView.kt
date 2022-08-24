@@ -13,6 +13,11 @@ import com.bumptech.glide.request.target.Target
 import com.jack.bookshelf.R
 import com.jack.bookshelf.help.glide.ImageLoader
 
+/**
+ * Cover Image View
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
 class CoverImageView : androidx.appcompat.widget.AppCompatImageView {
     internal var width: Float = 0.toFloat()
@@ -24,6 +29,8 @@ class CoverImageView : androidx.appcompat.widget.AppCompatImageView {
     private var name: String? = null
     private var author: String? = null
     private var loadFailed = false
+    private val coverRadius = 10f
+    private val paint = Paint()
 
     constructor(context: Context) : super(context)
 
@@ -44,6 +51,13 @@ class CoverImageView : androidx.appcompat.widget.AppCompatImageView {
         authorPaint.isAntiAlias = true
         authorPaint.textAlign = Paint.Align.CENTER
         authorPaint.textSkewX = -0.1f
+        paint.color = Color.BLACK
+        paint.isAntiAlias = true    // 抗锯齿
+        paint.isDither = true   // 图形抖动处理
+        paint.style = Paint.Style.FILL
+        paint.strokeWidth = 50f  // 线宽
+        paint.strokeCap = Paint.Cap.ROUND   // 端点圆角
+        paint.strokeJoin = Paint.Join.ROUND // 圆角连接
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -70,22 +84,26 @@ class CoverImageView : androidx.appcompat.widget.AppCompatImageView {
     override fun onDraw(canvas: Canvas) {
         if (width >= 10 && height > 10) {
             @SuppressLint("DrawAllocation")
-            val path = Path()
-            //四个圆角
-            path.moveTo(10f, 0f)
+            val path = Path()   // 创建圆角矩形
+            path.moveTo(coverRadius, 0f)
             path.lineTo(width - 10, 0f)
-            path.quadTo(width, 0f, width, 10f)
+            path.quadTo(width, 0f, width, coverRadius)
             path.lineTo(width, height - 10)
             path.quadTo(width, height, width - 10, height)
-            path.lineTo(10f, height)
+            path.lineTo(coverRadius, height)
             path.quadTo(0f, height, 0f, height - 10)
-            path.lineTo(0f, 10f)
-            path.quadTo(0f, 0f, 10f, 0f)
-
+            path.lineTo(0f, coverRadius)
+            path.quadTo(0f, 0f, coverRadius, 0f)
+            // 裁剪圆角矩形的封面
             canvas.clipPath(path)
         }
         super.onDraw(canvas)
         if (!loadFailed) return
+        // 绘制边框
+        val rectOut: RectF = RectF(0f, 0f, width, height)
+        val rectIn: RectF = RectF(3f, 3f, width - 3, height - 3)
+        canvas.drawDoubleRoundRect(rectOut, coverRadius, coverRadius,
+            rectIn, coverRadius, coverRadius, paint)
         name?.let {
             namePaint.color = Color.WHITE
             namePaint.style = Paint.Style.STROKE
@@ -126,7 +144,7 @@ class CoverImageView : androidx.appcompat.widget.AppCompatImageView {
 
     fun load(path: String?, name: String?, author: String?) {
         setText(name, author)
-        ImageLoader.load(context, path)//Glide自动识别http://和file://
+        ImageLoader.load(context, path)     //Glide自动识别http://和file://
                 .placeholder(R.drawable.image_cover_default)
                 .error(R.drawable.image_cover_default)
                 .listener(object : RequestListener<Drawable> {

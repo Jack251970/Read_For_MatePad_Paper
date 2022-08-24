@@ -55,8 +55,8 @@
             android:layout_height="match_parent"
             android:background="@color/background"
             app:bg_color="#00000000"
-            app:font_color="#767676"
-            app:second_color="#c1c1c1"
+            app:font_color="@color/black"
+            app:second_color="@color/black"
             app:second_max_progress="80dp"
             app:speed="2dp" />
         <!-- 搜索建议 -->
