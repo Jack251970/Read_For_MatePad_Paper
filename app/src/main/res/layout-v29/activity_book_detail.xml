@@ -35,18 +35,15 @@
                     android:contentDescription="返回"
                     android:src="@drawable/ic_arrow_back"/>
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/action_bar_padding_and_margin"
                     android:text="@string/book_info"
                     android:textSize="@dimen/action_bar_title_text_size"
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
                 <ImageView
                     android:id="@+id/iv_edit_book"
                     android:layout_width="@dimen/action_bar_icon_height_and_width"

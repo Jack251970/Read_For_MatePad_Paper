@@ -86,9 +86,13 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
         // 内容简介
         binding.tvIntro.setMovementMethod(ScrollingMovementMethod.getInstance());
         if (mPresenter.getOpenFrom() == FROM_BOOKSHELF) {
+            // 启用书籍信息编辑
+            binding.ivEditBook.setVisibility(View.VISIBLE);
             updateView();
         } else {
             if (mPresenter.getSearchBook() == null) return;
+            // 禁用书籍信息编辑
+            binding.ivEditBook.setVisibility(View.GONE);
             SearchBookBean searchBookBean = mPresenter.getSearchBook();
             // 加载封面
             upImageView(searchBookBean.getCoverUrl(), searchBookBean.getName(), searchBookBean.getAuthor());
@@ -115,6 +119,9 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
         }
     }
 
+    /**
+     * 从书架中打开
+     */
     @Override
     public void updateView() {
         bookShelfBean = mPresenter.getBookShelf();
