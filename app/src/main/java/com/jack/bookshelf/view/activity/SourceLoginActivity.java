@@ -12,6 +12,7 @@ import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 
@@ -23,7 +24,14 @@ import com.jack.bookshelf.base.MBaseActivity;
 import com.jack.bookshelf.bean.BookSourceBean;
 import com.jack.bookshelf.bean.CookieBean;
 import com.jack.bookshelf.databinding.ActivitySourceLoginBinding;
+import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.utils.theme.ThemeStore;
+
+/**
+ * Source Login Page
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
 public class SourceLoginActivity extends MBaseActivity<IPresenter> {
 
@@ -64,8 +72,6 @@ public class SourceLoginActivity extends MBaseActivity<IPresenter> {
         getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivitySourceLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        this.setSupportActionBar(binding.toolbar);
-        setupActionBar();
     }
 
     /**
@@ -86,14 +92,16 @@ public class SourceLoginActivity extends MBaseActivity<IPresenter> {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 String cookie = cookieManager.getCookie(url);
-                DbHelper.getDaoSession().getCookieBeanDao().insertOrReplace(new CookieBean(bookSourceBean.getBookSourceUrl(), cookie));
+                DbHelper.getDaoSession().getCookieBeanDao()
+                        .insertOrReplace(new CookieBean(bookSourceBean.getBookSourceUrl(), cookie));
                 super.onPageStarted(view, url, favicon);
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
                 String cookie = cookieManager.getCookie(url);
-                DbHelper.getDaoSession().getCookieBeanDao().insertOrReplace(new CookieBean(bookSourceBean.getBookSourceUrl(), cookie));
+                DbHelper.getDaoSession().getCookieBeanDao()
+                        .insertOrReplace(new CookieBean(bookSourceBean.getBookSourceUrl(), cookie));
                 if (checking)
                     finish();
                 else
@@ -104,35 +112,21 @@ public class SourceLoginActivity extends MBaseActivity<IPresenter> {
         binding.webView.loadUrl(bookSourceBean.getLoginUrl());
     }
 
-    //设置ToolBar
-    private void setupActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle(getString(R.string.login));
-        }
-    }
-
-    // 添加菜单
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_source_login, menu);
-        return super.onCreateOptionsMenu(menu);
+    protected void bindView() {
+        super.bindView();
+        binding.ivBackSourceLogin.setOnClickListener(v -> finish());
+        binding.ivCheckSourceLogin.setOnClickListener(v -> {
+            if (!checking) {
+                checking = true;
+                toast(getString(R.string.check_host_cookie));
+                binding.webView.loadUrl(bookSourceBean.getBookSourceUrl());
+            }
+        });
     }
 
-    //菜单
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_check) {
-            if (checking) return super.onOptionsItemSelected(item);
-            checking = true;
-            toast(getString(R.string.check_host_cookie));
-            binding.webView.loadUrl(bookSourceBean.getBookSourceUrl());
-        } else if (id == android.R.id.home) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
+    public void toast(int strId) {
+        ToastsKt.toast(this, strId, Toast.LENGTH_SHORT);
     }
-
 }

@@ -2,9 +2,7 @@ package com.jack.bookshelf.view.dialog
 
 import android.os.Bundle
 import android.text.InputType
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.EditText
 import android.widget.TextView
 import androidx.core.os.bundleOf
@@ -16,12 +14,17 @@ import com.jack.bookshelf.R
 import com.jack.bookshelf.databinding.DialogLoginBinding
 import com.jack.bookshelf.model.BookSourceManager
 import com.jack.bookshelf.utils.*
-import com.jack.bookshelf.utils.theme.ThemeStore
 import com.jack.bookshelf.utils.viewbindingdelegate.viewBinding
 import io.reactivex.Single
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 import org.jetbrains.anko.sdk27.listeners.onClick
+
+/**
+ * Source Login Dialog
+ * Partly Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
 class SourceLoginDialog : DialogFragment() {
 
@@ -37,11 +40,16 @@ class SourceLoginDialog : DialogFragment() {
 
     val binding by viewBinding(DialogLoginBinding::bind)
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(STYLE_NORMAL, R.style.PaperDialogFragment)
+    }
+
     override fun onStart() {
         super.onStart()
-        dialog?.window?.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
+        val window: Window? = dialog?.window
+        window?.setLayout(
+            ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
         )
     }
 
@@ -55,15 +63,13 @@ class SourceLoginDialog : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.toolBar.setBackgroundColor(ThemeStore.primaryColor(requireContext()))
-        binding.toolBar.title = getString(R.string.login)
         val sourceUrl = arguments?.getString("sourceUrl")
         val source = BookSourceManager.getBookSourceByUrl(sourceUrl)
         source ?: let {
             dismiss()
             return
         }
-        binding.toolBar.title = getString(R.string.login_source, source.bookSourceName)
+        binding.tvTitleDialogLogin.text = getString(R.string.login_source, source.bookSourceName)
         val loginInfo = source.loginInfoMap
         val loginUi = GSON.fromJsonArray<RowUi>(source.loginUi)
         loginUi?.forEachIndexed { index, rowUi ->
@@ -89,7 +95,7 @@ class SourceLoginDialog : DialogFragment() {
                         }
                     }
                 "button" -> layoutInflater.inflate(
-                    R.layout.item_find2_childer_view,
+                    R.layout.item_source_login_dialog,
                     binding.root,
                     false
                 )
@@ -108,46 +114,40 @@ class SourceLoginDialog : DialogFragment() {
                     }
             }
         }
-        binding.toolBar.inflateMenu(R.menu.menu_source_login)
-        binding.toolBar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.action_check -> {
-                    val loginData = hashMapOf<String, String?>()
-                    loginUi?.forEachIndexed { index, rowUi ->
-                        when (rowUi.type) {
-                            "text", "password" -> {
-                                val value = binding.listView.findViewById<TextInputLayout>(index)
-                                    .findViewById<EditText>(R.id.editText).text?.toString()
-                                loginData[rowUi.name] = value
-                            }
-
-                        }
+        binding.ivCheckDialogLogin.setOnClickListener { v ->
+            val loginData = hashMapOf<String, String?>()
+            loginUi?.forEachIndexed { index, rowUi ->
+                when (rowUi.type) {
+                    "text", "password" -> {
+                        val value = binding.listView.findViewById<TextInputLayout>(index)
+                            .findViewById<EditText>(R.id.editText).text?.toString()
+                        loginData[rowUi.name] = value
                     }
-                    source.putLoginInfo(loginData)
-                    Single.create<String> { emitter ->
-                        source.loginUrl?.let { loginUrl ->
-                            emitter.onSuccess(source.evalJS(loginUrl).toString())
-                        } ?: let {
-                            emitter.onError(Throwable(""))
-                        }
-                    }.compose(RxUtils::toSimpleSingle)
-                        .subscribe(object : SingleObserver<String> {
 
-                            override fun onSubscribe(d: Disposable) {
-
-                            }
-
-                            override fun onSuccess(t: String) {
-                                dismiss()
-                            }
-
-                            override fun onError(e: Throwable) {
-
-                            }
-                        })
                 }
             }
-            return@setOnMenuItemClickListener true
+            source.putLoginInfo(loginData)
+            Single.create<String> { emitter ->
+                source.loginUrl?.let { loginUrl ->
+                    emitter.onSuccess(source.evalJS(loginUrl).toString())
+                } ?: let {
+                    emitter.onError(Throwable(""))
+                }
+            }.compose(RxUtils::toSimpleSingle)
+                .subscribe(object : SingleObserver<String> {
+
+                    override fun onSubscribe(d: Disposable) {
+
+                    }
+
+                    override fun onSuccess(t: String) {
+                        dismiss()
+                    }
+
+                    override fun onError(e: Throwable) {
+
+                    }
+                })
         }
     }
 
@@ -156,5 +156,4 @@ class SourceLoginDialog : DialogFragment() {
         var type: String,
         var action: String?
     )
-
 }

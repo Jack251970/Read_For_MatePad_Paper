@@ -101,10 +101,6 @@
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden|adjustUnspecified" />
         <activity
-            android:name=".view.activity.ChoiceBookActivity"
-            android:configChanges="locale|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
-            android:launchMode="singleTask" />
-        <activity
             android:name=".view.activity.BookDetailActivity"
             android:configChanges="locale|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
             android:launchMode="singleTask"

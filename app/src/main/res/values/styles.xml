@@ -54,14 +54,14 @@
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:backgroundDimEnabled">false</item>
-        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowAnimationStyle">@style/NoneAnimation</item>
         <item name="cornerRadius">@dimen/dialog_radius</item>
     </style>
 
     <!-- MatepadPaper ToolBar Theme -->
     <style name="PaperToolbarTheme" parent="Base.Widget.AppCompat.Toolbar">
-        <item name="actionBarItemBackground">@color/transparent</item>
+        <item name="actionBarItemBackground">@android:color/transparent</item>
     </style>
 
     <!-- MatePad Paper Text Button Theme -->
@@ -72,6 +72,14 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <!-- MatePad Paper Dialog Fragment Theme -->
+    <style name="PaperDialogFragment" parent="@android:style/Theme.Dialog">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowAnimationStyle">@style/NoneAnimation</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="cornerRadius">@dimen/dialog_radius</item>
     </style>
 
 

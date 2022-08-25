@@ -146,6 +146,9 @@
         <!-- Source Debug Activity -->
         <string name="debug_hint">书名、作者、URL</string>
         <string name="cannot_empty">输入不能为空</string>
+        <!-- Source Login Activity -->
+        <string name="click_check_after_success">登录成功后请点击右上角图标进行首页访问测试</string>
+        <string name="check_host_cookie">正在打开首页，成功自动返回主界面</string>
 
     <!-- Fragment -->
         <!-- BookList Fragment-->
@@ -244,6 +247,8 @@
         <string name="replace_add_ad_title">添加广告话术规则</string>
         <!-- InputDialog Replace Rule -->
         <string name="input_replace_url">输入替换规则网址</string>
+    <!-- Source Login Dialog -->
+    <string name="login_source">登录%s</string>
 
     <!-- Select Menu -->
         <!-- Select Menu Main -->
@@ -532,10 +537,6 @@
     <string name="page_mode_SLIDE">滑动</string>
     <string name="page_mode_SCROLL">滚动</string>
     <string name="page_mode_NONE">无动画</string>
-    <string name="behavior_main_t">自动隐藏搜索栏</string>
-    <string name="behavior_main_s">滚动书架时上方搜索栏自动隐藏</string>
-
-    <string name="login_source">登录%s</string>
     <string name="success">成功</string>
     <string name="debug_source">调试书源</string>
     <string name="click_on_selected_show_menu">选中时点击可弹出菜单</string>
@@ -544,8 +545,6 @@
     <string name="del_file_success">删除文件成功</string>
     <string name="sure_del_file">确定删除文件吗?</string>
     <string name="import_per">导入本地书籍需存储权限</string>
-    <string name="click_to_day">点击可切换到明亮模式</string>
-    <string name="click_to_night">点击可切换到暗黑模式</string>
     <string name="aloud_can_not_auto_page">朗读正在运行,不能自动翻页</string>
     <string name="input_charset">输入编码</string>
     <string name="text_chapter_list_rule">TXT目录规则</string>
@@ -557,10 +556,7 @@
     <string name="no_book_name">未获取到书名</string>
     <string name="get_book_list_success">搜索列表获取成功%d</string>
     <string name="gallery">图库</string>
-    <string name="get_ali_pay_hb">领支付宝红包</string>
     <string name="non_update_url">没有获取到更新地址</string>
-    <string name="check_host_cookie">正在打开首页，成功自动返回主界面</string>
-    <string name="click_check_after_success">登录成功后请点击右上角图标进行首页访问测试</string>
     <string name="chapter">章</string>
     <string name="chapter_s">章节:</string>
     <string name="to">至</string>
@@ -583,7 +579,6 @@
     <string name="tip_padding">Tip边距</string>
     <string name="text_letter_spacing">字距</string>
     <string name="a10_permission_toast">Android10以上因权限限制可能无法读写文件</string>
-
     <string name="please_grant_storage_permission">请给于存储权限</string>
     <string name="skip_previous">上一个</string>
     <string name="skip_next">下一个</string>
