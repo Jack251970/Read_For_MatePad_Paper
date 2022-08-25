@@ -72,7 +72,7 @@ public class BookInfoEditActivity extends MBaseActivity<IPresenter> {
     }
 
     /**
-     * 布局载入
+     * 布局载入  setContentView()
      */
     @Override
     protected void onCreateActivity() {

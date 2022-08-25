@@ -143,7 +143,9 @@
         <string name="rule_find_cover_url">发现封面规则(ruleFindCoverUrl)</string>
         <string name="can_not_share">分享失败</string>
         <string name="exit_no_save">是否继续编辑书源？</string>
-        <!--    Activity -->
+        <!-- Source Debug Activity -->
+        <string name="debug_hint">书名、作者、URL</string>
+        <string name="cannot_empty">输入不能为空</string>
 
     <!-- Fragment -->
         <!-- BookList Fragment-->
@@ -509,7 +511,6 @@
     <string name="download_update">下载更新</string>
     <string name="aloud_volume_page">朗读时音量键翻页</string>
     <string name="tip_margin_change">Tip边距跟随边距调整</string>
-    <string name="debug_hint">书名、作者、URL</string>
     <string name="faq">常见问题</string>
     <string name="update_chapter">更新目录</string>
     <string name="set_charset">设置编码</string>
@@ -589,17 +590,11 @@
     <string name="music">音乐</string>
     <string name="audio">音频</string>
     <string name="is_enable">启用</string>
-    <string name="cannot_empty">输入不能为空</string>
-    <string name="clear_find_cache">清空发现缓存</string>
-
-    <string name="change_icon_summary">切换软件显示在桌面的图标</string>
     <string name="to_lh">扩展到刘海</string>
     <string name="c_page_key">自定义翻页按键</string>
     <string name="custom_page_key">自定义翻页按键</string>
     <string name="prev_page_key">上一页按键</string>
     <string name="next_page_key">下一页按键</string>
-
-
     <string name="chapter_pay">购买</string>
     <string name="import_txt_chapter_rule_default">导入默认</string>
     <string name="import_txt_chapter_rule_local">导入本地</string>

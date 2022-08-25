@@ -2,10 +2,14 @@ package com.jack.bookshelf.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.SearchView;
@@ -26,6 +30,12 @@ import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.SourceDebugAdapter;
 
 import io.reactivex.disposables.CompositeDisposable;
+
+/**
+ * Book Source Debug Page
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
 public class SourceDebugActivity extends MBaseActivity<IPresenter> {
 
@@ -87,16 +97,32 @@ public class SourceDebugActivity extends MBaseActivity<IPresenter> {
     @Override
     protected void bindView() {
         super.bindView();
-        this.setSupportActionBar(binding.toolbar);
-        setupActionBar();
         initSearchView();
+        binding.ivBackSourceDebug.setOnClickListener(v -> finish());
         adapter = new SourceDebugAdapter(this);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerView.setAdapter(adapter);
     }
 
     private void initSearchView() {
+        LinearLayout editFrame = binding.searchView.findViewById(R.id.search_edit_frame);
+        ImageView closeButton = binding.searchView.findViewById(R.id.search_close_btn);
+        ImageView goButton = binding.searchView.findViewById(R.id.search_go_btn);
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) editFrame.getLayoutParams();
+        params.setMargins(20, 0, 10, 0);
+        editFrame.setLayoutParams(params);
+        closeButton.setScaleX(0.9f);
+        closeButton.setScaleY(0.9f);
+        closeButton.setPadding(0, 0, 0, 0);
+        closeButton.setBackgroundColor(Color.TRANSPARENT);
+        closeButton.setImageResource(R.drawable.ic_close);
+        goButton.setScaleX(0.8f);
+        goButton.setScaleY(0.8f);
+        goButton.setPadding(0, 0, 0, 0);
+        goButton.setBackgroundColor(Color.TRANSPARENT);
+        goButton.setImageResource(R.drawable.mpp_ic_search);
         binding.searchView.setQueryHint(getString(R.string.debug_hint));
+        binding.searchView.setSubmitButtonEnabled(true);
         binding.searchView.onActionViewExpanded();
         binding.searchView.setSubmitButtonEnabled(true);
         binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -128,31 +154,6 @@ public class SourceDebugActivity extends MBaseActivity<IPresenter> {
         binding.loading.start();
         adapter.clearData();
         Debug.newDebug(sourceTag, key, compositeDisposable);
-    }
-
-    //设置ToolBar
-    private void setupActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-    }
-
-    // 添加菜单
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_debug_activity, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    //菜单
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Subscribe(thread = EventThread.MAIN_THREAD, tags = {@Tag(RxBusTag.PRINT_DEBUG_LOG)})

@@ -82,7 +82,7 @@ public class ReadStyleActivity extends MBaseActivity<IPresenter> implements Colo
     }
 
     /**
-     * 布局载入
+     * 布局载入  setContentView()
      */
     @Override
     protected void onCreateActivity() {
