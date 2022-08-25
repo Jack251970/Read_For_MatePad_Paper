@@ -69,7 +69,7 @@ public class ChoiceBookActivity extends MBaseActivity<ChoiceBookContract.Present
         viewRefreshError = LayoutInflater.from(this).inflate(R.layout.view_refresh_error, null);
         viewRefreshError.findViewById(R.id.tv_refresh_again).setOnClickListener(v -> {
             searchBookAdapter.replaceAll(null);
-            //刷新失败 ，重试
+            // 刷新失败，重试
             mPresenter.initPage();
             mPresenter.toSearchBooks(null);
             startRefreshAnim();
@@ -87,7 +87,7 @@ public class ChoiceBookActivity extends MBaseActivity<ChoiceBookContract.Present
         }
     }
 
-    //菜单
+    // 菜单
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -186,5 +186,4 @@ public class ChoiceBookActivity extends MBaseActivity<ChoiceBookContract.Present
     protected void firstRequest() {
         super.firstRequest();
     }
-
 }
