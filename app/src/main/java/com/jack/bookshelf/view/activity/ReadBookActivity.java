@@ -60,7 +60,6 @@ import com.jack.bookshelf.utils.ScreenUtils;
 import com.jack.bookshelf.utils.SoftInputUtil;
 import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.SystemUtil;
-import com.jack.bookshelf.utils.theme.ATH;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.dialog.AlertDialog;
 import com.jack.bookshelf.view.dialog.InputDialog;
