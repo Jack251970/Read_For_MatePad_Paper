@@ -15,6 +15,12 @@ import com.jack.bookshelf.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Item Source Debug Adapter
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
 public class SourceDebugAdapter extends Adapter<SourceDebugAdapter.MyViewHolder> {
     private final Context context;
     private final List<String> data = new ArrayList<>();
@@ -39,7 +45,6 @@ public class SourceDebugAdapter extends Adapter<SourceDebugAdapter.MyViewHolder>
         return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_source_debug, parent, false));
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         if (holder.textView.getTag(R.id.tag1) == null) {
@@ -61,19 +66,17 @@ public class SourceDebugAdapter extends Adapter<SourceDebugAdapter.MyViewHolder>
         holder.textView.setText(data.get(position));
     }
 
-
     @Override
     public int getItemCount() {
         return data.size();
     }
-
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.tv);
+            textView = itemView.findViewById(R.id.tv_item_source_debug);
         }
     }
 }

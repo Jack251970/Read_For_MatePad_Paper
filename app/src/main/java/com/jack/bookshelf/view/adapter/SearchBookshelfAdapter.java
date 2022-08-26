@@ -58,7 +58,7 @@ public class SearchBookshelfAdapter extends RecyclerView.Adapter<SearchBookshelf
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.tv);
+            textView = itemView.findViewById(R.id.tv_item_search_history);
         }
     }
 

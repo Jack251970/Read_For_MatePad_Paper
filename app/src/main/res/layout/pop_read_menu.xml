@@ -46,6 +46,7 @@
 
     </LinearLayout>
 
+    <!-- 操作栏 -->
     <LinearLayout
         android:id="@+id/ll_floating_button"
         android:layout_width="match_parent"
@@ -53,7 +54,6 @@
         android:orientation="horizontal"
         android:paddingStart="32dp"
         android:paddingEnd="32dp">
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabReadAloud"
             android:layout_width="wrap_content"
@@ -63,15 +63,13 @@
             android:src="@drawable/ic_read_aloud"
             android:tint="@color/tv_text_default"
             app:backgroundTint="@color/background_menu"
-            app:elevation="2dp"
+            app:elevation="0dp"
             app:fabSize="mini"
-            app:pressedTranslationZ="2dp" />
-
+            app:pressedTranslationZ="0dp" />
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAutoPage"
             android:layout_width="wrap_content"
@@ -81,25 +79,19 @@
             android:src="@drawable/ic_auto_page"
             android:tint="@color/tv_text_default"
             app:backgroundTint="@color/background_menu"
-            app:elevation="2dp"
+            app:elevation="0dp"
             app:fabSize="mini"
-            app:pressedTranslationZ="2dp" />
-
+            app:pressedTranslationZ="0dp" />
     </LinearLayout>
-
-    <View style="@style/Style.Shadow.Bottom" />
-
-    <!--底部设置栏-->
+    <!-- 底部设置栏 -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@color/background_menu">
-
+        android:background="@color/white">
         <View
             android:id="@+id/vw_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
         <LinearLayout
             android:id="@+id/llNavigationBar"
             android:layout_width="match_parent"
@@ -114,7 +106,6 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
-
                 <TextView
                     android:id="@+id/tv_pre"
                     android:layout_width="wrap_content"
@@ -129,7 +120,6 @@
                     android:text="@string/previous_chapter"
                     android:textColor="@color/tv_text_default"
                     android:textSize="14sp" />
-
                 <com.jack.bookshelf.widget.views.ATESeekBar
                     android:id="@+id/hpb_read_progress"
                     android:layout_width="0dp"
@@ -274,10 +264,4 @@
                 android:layout_height="match_parent" />
         </LinearLayout>
     </FrameLayout>
-
-    <View
-        android:id="@+id/vwNavigationBar"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/background_menu" />
 </LinearLayout>

@@ -147,8 +147,6 @@
                 </com.google.android.material.appbar.AppBarLayout>
 
             </LinearLayout>
-
-            <View style="@style/Style.Shadow.Top" />
         </LinearLayout>
 
         <com.jack.bookshelf.view.popupwindow.ReadBottomMenu

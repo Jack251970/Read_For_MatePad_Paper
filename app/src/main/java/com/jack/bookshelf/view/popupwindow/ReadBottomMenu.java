@@ -37,7 +37,6 @@ public class ReadBottomMenu extends FrameLayout {
 
     private void init(Context context) {
         binding.vwBg.setOnClickListener(null);
-        binding.vwNavigationBar.setOnClickListener(null);
     }
 
     public void setListener(Callback callback) {

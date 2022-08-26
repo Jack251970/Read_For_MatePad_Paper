@@ -156,6 +156,7 @@
             app:elevation="0dp"
             app:fabSize="mini"
             app:layout_anchorGravity="right|bottom"
+            app:pressedTranslationZ="0dp"
             android:visibility="invisible"
             tools:visibility="visible"/>
     </RelativeLayout>

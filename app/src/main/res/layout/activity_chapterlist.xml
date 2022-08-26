@@ -38,8 +38,4 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <View
-        style="@style/Style.Shadow.Top"
-        android:layout_below="@id/action_bar" />
-
 </RelativeLayout>

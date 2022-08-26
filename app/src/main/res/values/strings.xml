@@ -182,8 +182,8 @@
             <string name="ps_replace">新加入的书籍自动启用替换净化</string>
         <string name="search_setting">搜索设置</string>
             <string name="search_result_filter_grade">搜索结果过滤等级</string>
-            <string name="search_result_filter_grade_tip">\n当前过滤等级 %s\n
-                调高过滤等级可以避免看到书名/作者无关的搜索结果。
+            <string name="search_result_filter_grade_tip">\n当前过滤等级 %s
+                \n调高过滤等级可以避免看到书名/作者无关的搜索结果。
                 \n等级1-9：搜索关键字需要出现到书名/作者中，但是允许有8-0个字（空格不计）没有出现（避免误输入的影响）。</string>
             <string name="pt_show_all_find">显示所有发现内容</string>
             <string name="ps_show_all_find">关闭则只显示勾选源的发现内容</string>
