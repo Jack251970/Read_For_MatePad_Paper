@@ -1,7 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".view.activity.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group android:id="@+id/menuOnline">
         <item
@@ -12,7 +10,7 @@
 
         <item
             android:id="@+id/action_refresh"
-            android:icon="@drawable/ic_refresh_black_24dp"
+            android:icon="@drawable/ic_refresh_black"
             android:title="@string/refresh"
             app:showAsAction="ifRoom" />
 
@@ -24,7 +22,7 @@
 
         <item
             android:id="@+id/disable_book_source"
-            android:icon="@drawable/ic_cancel"
+            android:icon="@drawable/mpp_ic_cancel_with_circle"
             android:title="@string/disable_book_source"
             app:showAsAction="never" />
 
@@ -103,5 +101,4 @@
             android:title="@string/open_browser"
             app:showAsAction="never" />
     </group>
-
 </menu>

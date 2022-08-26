@@ -60,52 +60,152 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:visibility="gone" />
-
+    <!-- 菜单 -->
     <FrameLayout
         android:id="@+id/fl_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible">
-
+        android:visibility="invisible"
+        tools:visibility="visible">
+        <!-- 全局点击范围 -->
         <View
             android:id="@+id/v_menu_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/transparent"
             android:clickable="true"
-            android:focusable="true" />
-
+            android:focusable="true"
+            tools:visibility="gone"/>
+        <!-- 顶部菜单 -->
         <LinearLayout
             android:id="@+id/ll_menu_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="invisible">
-
+            android:visibility="invisible"
+            tools:visibility="visible">
+            <!-- Custom ActionBar -->
             <LinearLayout
+                android:id="@+id/appBar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/action_bar_layout_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/action_bar_padding_and_margin"
+                android:paddingRight="@dimen/action_bar_padding_and_margin">
+                <ImageView
+                    android:id="@+id/iv_back_book_read"
+                    android:layout_width="@dimen/action_bar_icon_height_and_width"
+                    android:layout_height="@dimen/action_bar_icon_height_and_width"
+                    android:gravity="center_vertical"
+                    android:contentDescription="返回"
+                    android:src="@drawable/ic_arrow_back"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="15dp"
+                    android:textSize="22sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:text="哑舍"/>
+                <LinearLayout
+                    android:id="@+id/appBar_iv_local"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+                    <ImageView
+                        android:id="@+id/iv_set_txt_regex"
+                        android:layout_width="@dimen/action_bar_icon_height_and_width"
+                        android:layout_height="@dimen/action_bar_icon_height_and_width"
+                        android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+                        android:contentDescription="设置目录正则"
+                        android:src="@drawable/ic_book"/>
+                    <ImageView
+                        android:id="@+id/iv_set_charset"
+                        android:layout_width="@dimen/action_bar_icon_height_and_width"
+                        android:layout_height="@dimen/action_bar_icon_height_and_width"
+                        android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+                        android:contentDescription="设置编码"
+                        android:src="@drawable/ic_translate"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/appBar_iv_online"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+                    <ImageView
+                        android:id="@+id/iv_exchange_source"
+                        android:layout_width="@dimen/action_bar_icon_height_and_width"
+                        android:layout_height="@dimen/action_bar_icon_height_and_width"
+                        android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+                        android:contentDescription="切换书源"
+                        android:src="@drawable/ic_exchange"/>
+                    <ImageView
+                        android:id="@+id/iv_refresh"
+                        android:layout_width="@dimen/action_bar_icon_height_and_width"
+                        android:layout_height="@dimen/action_bar_icon_height_and_width"
+                        android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+                        android:contentDescription="重新加载"
+                        android:src="@drawable/ic_refresh_black"/>
+                    <ImageView
+                        android:id="@+id/iv_download_offline"
+                        android:layout_width="@dimen/action_bar_icon_height_and_width"
+                        android:layout_height="@dimen/action_bar_icon_height_and_width"
+                        android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+                        android:contentDescription="离线下载"
+                        android:src="@drawable/ic_download_line"/>
+                </LinearLayout>
+                <ImageView
+                    android:id="@+id/iv_add_bookmark"
+                    android:layout_width="@dimen/action_bar_icon_height_and_width"
+                    android:layout_height="@dimen/action_bar_icon_height_and_width"
+                    android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+                    android:contentDescription="添加书签"
+                    android:src="@drawable/ic_bookmark"/>
+                <ImageView
+                    android:id="@+id/iv_copy_text"
+                    android:layout_width="@dimen/action_bar_icon_height_and_width"
+                    android:layout_height="@dimen/action_bar_icon_height_and_width"
+                    android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+                    android:contentDescription="拷贝内容"
+                    android:src="@drawable/ic_copy"/>
+                <ImageView
+                    android:id="@+id/iv_more_settings_book_read"
+                    android:layout_width="@dimen/action_bar_icon_height_and_width"
+                    android:layout_height="@dimen/action_bar_icon_height_and_width"
+                    android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+                    android:contentDescription="更多选项"
+                    android:src="@drawable/ic_more_settings"/>
+            </LinearLayout>
+            <!--<LinearLayout
                 android:id="@+id/ll_ISB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
                 android:orientation="vertical">
-
                 <com.google.android.material.appbar.AppBarLayout
                     android:id="@+id/appBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="?attr/actionBarStyle">
-
                     <androidx.appcompat.widget.Toolbar
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
                         android:background="?attr/colorPrimary"
-                        app:popupTheme="@style/AppTheme.PopupOverlay" />
-
+                        app:popupTheme="@style/AppTheme.PopupOverlay" />-->
+                    <!-- 基础信息栏 -->
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-
                         <TextView
                             android:id="@+id/tv_chapter_name"
                             android:layout_width="0dp"
@@ -116,7 +216,6 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toLeftOf="@+id/login" />
-
                         <com.jack.bookshelf.widget.views.ATEAccentBgTextView
                             android:id="@+id/login"
                             android:layout_width="wrap_content"
@@ -128,7 +227,6 @@
                             app:layout_constraintRight_toLeftOf="@+id/pay"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent" />
-
                         <com.jack.bookshelf.widget.views.ATEAccentBgTextView
                             android:id="@+id/pay"
                             android:layout_width="wrap_content"
@@ -140,12 +238,14 @@
                             app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent" />
-
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </com.google.android.material.appbar.AppBarLayout>
-
-            </LinearLayout>
+                <!--</com.google.android.material.appbar.AppBarLayout>
+            </LinearLayout>-->
+            <!-- 分割线 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"/>
         </LinearLayout>
 
         <com.jack.bookshelf.view.popupwindow.ReadBottomMenu
@@ -177,5 +277,4 @@
             android:visibility="invisible" />
 
     </FrameLayout>
-
 </FrameLayout>

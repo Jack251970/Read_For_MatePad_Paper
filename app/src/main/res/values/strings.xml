@@ -410,7 +410,7 @@
     <string name="flow_sys">跟随系统</string>
     <string name="add">添加</string>
     <string name="replace_rule_title">替换净化</string>
-    <string name="edit_replace_rule">编辑规则</string>
+    <string name="edit_replace_rule">编辑替换规则</string>
     <string name="light_novel_paragraph">重新分段</string>
     <string name="img_cover">封面</string>
     <string name="book">书</string>
