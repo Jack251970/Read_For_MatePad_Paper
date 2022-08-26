@@ -17,7 +17,6 @@ import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,7 +27,6 @@ import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 
 import com.jack.basemvplib.AppActivityManager;
 import com.jack.basemvplib.BitIntentDataManager;
@@ -64,9 +62,10 @@ import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.SystemUtil;
 import com.jack.bookshelf.utils.theme.ATH;
 import com.jack.bookshelf.utils.theme.ThemeStore;
+import com.jack.bookshelf.view.dialog.AlertDialog;
 import com.jack.bookshelf.view.dialog.InputDialog;
 import com.jack.bookshelf.view.dialog.SourceLoginDialog;
-import com.jack.bookshelf.view.popupwindow.CheckAddShelfPop;
+import com.jack.bookshelf.view.popupmenu.SelectMenu;
 import com.jack.bookshelf.view.popupwindow.MoreSettingPop;
 import com.jack.bookshelf.view.popupwindow.ReadAdjustMarginPop;
 import com.jack.bookshelf.view.popupwindow.ReadBottomMenu;
@@ -117,7 +116,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
     private int screenTimeOut;
     private final int upHpbInterval = 100;
     private Menu menu;
-    private CheckAddShelfPop checkAddShelfPop;
     private MoDialogHUD moDialogHUD;
     private ThisBatInfoReceiver batInfoReceiver;
     private final ReadBookControl readBookControl = ReadBookControl.getInstance();
@@ -1323,20 +1321,27 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
             if (checkedItem < 0) {
                 checkedItem = 0;
             }
-            AlertDialog dialog = new AlertDialog.Builder(this)
+            SelectMenu.builder(this, binding.getRoot())
                     .setTitle("选择目录正则")
-                    .setSingleChoiceItems(ruleNameList.toArray(new String[0]), checkedItem, (dialog1, which) -> {
-                        if (which < 0) return;
-                        mPresenter.getBookShelf().getBookInfoBean().setChapterUrl(ruleBeanList.get(which).getRule());
-                        mPresenter.saveProgress();
-                        if (mPageLoader != null) {
-                            mPageLoader.updateChapter(binding,mPageLoader);
+                    .setBottomButton("管理目录正则")
+                    .setMenu(ruleNameList, checkedItem)
+                    .setOnclick(new SelectMenu.OnItemClickListener() {
+                        @Override
+                        public void forBottomButton() {
+                            TxtChapterRuleActivity.startThis(ReadBookActivity.this);
                         }
-                        dialog1.dismiss();
-                    })
-                    .setPositiveButton("管理目录正则", (dialog12, which) -> TxtChapterRuleActivity.startThis(ReadBookActivity.this))
-                    .show();
-            ATH.setAlertDialogTint(dialog);
+
+                        @Override
+                        public void forListItem(int lastChoose, int position) {
+                            if (position != lastChoose) {
+                                mPresenter.getBookShelf().getBookInfoBean().setChapterUrl(ruleBeanList.get(position).getRule());
+                                mPresenter.saveProgress();
+                                if (mPageLoader != null) {
+                                    mPageLoader.updateChapter(binding,mPageLoader);
+                                }
+                            }
+                        }
+                    }).show();
         }
     }
 
@@ -1434,31 +1439,23 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
      */
     public boolean checkAddShelf() {
         String bookName = mPresenter.getBookShelf().getBookInfoBean().getName();
-        if (isAdd || mPresenter.getBookShelf() == null
-                || TextUtils.isEmpty(bookName)) {
+        if (isAdd || mPresenter.getBookShelf() == null || TextUtils.isEmpty(bookName)) {
             return true;
         } else if (mPresenter.getChapterList().isEmpty()) {
             mPresenter.removeFromShelf();
             return true;
         } else {
-            if (checkAddShelfPop == null) {
-                checkAddShelfPop = new CheckAddShelfPop(this, mPresenter.getBookShelf().getBookInfoBean().getName(),
-                        new CheckAddShelfPop.OnItemClickListener() {
-                            @Override
-                            public void clickExit() {
-                                mPresenter.removeFromShelf();
-                            }
+            AlertDialog.builder(this,binding.getRoot(), AlertDialog.NO_TITLE)
+                    .setMessage(getString(R.string.check_add_bookshelf, bookName))
+                    .setNegativeButton(R.string.no)
+                    .setPositiveButton(R.string.confirm)
+                    .setOnclick(new AlertDialog.OnItemClickListener() {
+                        @Override
+                        public void forNegativeButton() { mPresenter.removeFromShelf(); }
 
-                            @Override
-                            public void clickAddShelf() {
-                                mPresenter.addToShelf(null);
-                                checkAddShelfPop.dismiss();
-                            }
-                        });
-            }
-            if (!checkAddShelfPop.isShowing()) {
-                checkAddShelfPop.showAtLocation(binding.flContent, Gravity.CENTER, 0, 0);
-            }
+                        @Override
+                        public void forPositiveButton() { mPresenter.addToShelf(null); }
+                    }).show();
             return false;
         }
     }
@@ -1914,5 +1911,4 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
             batInfoReceiver = null;
         }
     }
-
 }

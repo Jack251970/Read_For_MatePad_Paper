@@ -80,6 +80,9 @@ public class MApplication extends Application {
         if (TextUtils.isEmpty(downloadPath) | Objects.equals(downloadPath, FileHelp.getCachePath())) {
             setDownloadPath(null);
         }
+        if (!ThemeStore.isConfigured(this, versionCode)) {
+            upThemeStore(); // 初始化主题商店
+        }
         AppFrontBackHelper.getInstance().register(this, new AppFrontBackHelper.OnAppStatusListener() {
             @Override
             public void onFront() {}
@@ -95,6 +98,17 @@ public class MApplication extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+    }
+
+    /**
+     * 初始化主题
+     */
+    public void upThemeStore() {
+        ThemeStore.editTheme(this)
+                .primaryColor(getResources().getColor(R.color.md_white_1000))
+                .accentColor(getResources().getColor(R.color.md_black_1000))
+                .backgroundColor(getResources().getColor(R.color.md_white_1000))
+                .apply();
     }
 
     /**

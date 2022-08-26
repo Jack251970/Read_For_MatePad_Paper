@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jack.bookshelf.DbHelper;
@@ -218,7 +219,7 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
     }
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
-        ViewGroup flContent;
+        ConstraintLayout flContent;
         CoverImageView ivCover;
         BadgeView bvUnread;
         TextView tvName;

@@ -6,7 +6,7 @@
     android:id="@+id/cv_content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground"
+    android:background="@color/white"
     android:clickable="true"
     android:focusable="true"
     android:paddingLeft="10dp"
@@ -155,7 +155,7 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <View
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/black"
