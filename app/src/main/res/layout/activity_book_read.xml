@@ -6,8 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <!--阅读页面-->
     <com.jack.bookshelf.widget.page.PageView
         android:id="@+id/pageView"
         android:layout_width="match_parent"
@@ -15,21 +13,19 @@
         android:clickable="true"
         android:focusable="true"
         tools:visibility="gone" />
-
+    <!-- 自动翻页指示器 -->
     <com.jack.bookshelf.widget.seekbar.VerticalSeekBarWrapper
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="20dp"
         tools:ignore="RtlHardcoded">
-
         <com.jack.bookshelf.widget.seekbar.VerticalSeekBar
             android:id="@+id/pb_nextPage"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:visibility="invisible"
             app:seekBarRotation="CW270" />
-
     </com.jack.bookshelf.widget.seekbar.VerticalSeekBarWrapper>
 
     <ImageView
@@ -38,7 +34,8 @@
         android:layout_height="wrap_content"
         android:contentDescription="@null"
         android:src="@drawable/ic_cursor_left"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        tools:visibility="visible"/>
 
     <ImageView
         android:id="@+id/cursor_right"
@@ -46,14 +43,16 @@
         android:layout_height="wrap_content"
         android:contentDescription="@null"
         android:src="@drawable/ic_cursor_right"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        tools:visibility="visible"/>
 
     <com.jack.bookshelf.view.popupwindow.ReadLongPressPop
         android:id="@+id/readLongPress"
         android:layout_width="190dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        tools:visibility="visible"/>
 
     <com.jack.bookshelf.view.popupwindow.MediaPlayerPop
         android:id="@+id/mediaPlayerPop"
@@ -72,7 +71,7 @@
             android:id="@+id/v_menu_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#00000000"
+            android:background="@color/transparent"
             android:clickable="true"
             android:focusable="true" />
 
