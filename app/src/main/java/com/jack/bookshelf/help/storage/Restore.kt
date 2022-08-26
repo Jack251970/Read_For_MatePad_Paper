@@ -121,8 +121,6 @@ object Restore {
                 .subscribe(object : MySingleObserver<Boolean>() {
                     override fun onSuccess(t: Boolean) {
                         ReadBookControl.getInstance().updateReaderSettings()
-                        MApplication.getInstance().upThemeStore()
-                        MApplication.getInstance().initNightTheme()
                         callBack?.restoreSuccess()
                     }
 
@@ -133,10 +131,8 @@ object Restore {
                 })
     }
 
-
     interface CallBack {
         fun restoreSuccess()
         fun restoreError(msg: String)
     }
-
 }

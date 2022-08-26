@@ -1,4 +1,3 @@
-//Copyright (c) 2017. 章钦豪. All rights reserved.
 package com.jack.bookshelf;
 
 import android.content.Context;
@@ -20,6 +19,11 @@ import com.jack.bookshelf.dao.TxtChapterRuleBeanDao;
 import org.greenrobot.greendao.database.Database;
 
 import java.util.Locale;
+
+/**
+ * DataBase Helper
+ * Copyright (c) 2017. 章钦豪. All rights reserved.
+ */
 
 public class DbHelper {
     private static DbHelper instance;

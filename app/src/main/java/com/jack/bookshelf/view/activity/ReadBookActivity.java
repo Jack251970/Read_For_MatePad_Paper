@@ -435,7 +435,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         mPresenter.initData(this);
         binding.appBar.setPadding(0, ScreenUtils.getStatusBarHeight(), 0, 0);
         binding.appBar.setBackgroundColor(ThemeStore.primaryColor(this));
-        binding.readMenuBottom.setFabLightTheme();
         // 弹窗
         moDialogHUD = new MoDialogHUD(this);
         initBottomMenu();

@@ -16,6 +16,7 @@ import com.jack.bookshelf.utils.ColorUtils;
 /**
  * @author Aidan Follestad (afollestad), Karim Abou Zeid (kabouzeid)
  */
+
 public final class ThemeStore implements ThemeStorePrefKeys, ThemeStoreInterface {
 
     private final Context mContext;
@@ -95,7 +96,7 @@ public final class ThemeStore implements ThemeStorePrefKeys, ThemeStoreInterface
 
     @CheckResult
     @NonNull
-    protected static SharedPreferences prefs(@NonNull Context context) {
+    static SharedPreferences prefs(@NonNull Context context) {
         return context.getSharedPreferences(CONFIG_PREFS_KEY_DEFAULT, Context.MODE_PRIVATE);
     }
 

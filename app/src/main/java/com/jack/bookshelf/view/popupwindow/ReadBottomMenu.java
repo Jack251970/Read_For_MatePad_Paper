@@ -91,9 +91,6 @@ public class ReadBottomMenu extends FrameLayout {
             return true;
         });
 
-        // 明亮、暗黑模式切换
-        binding.fabNightTheme.setOnClickListener(null);
-
         // 上一章
         binding.tvPre.setOnClickListener(view -> callback.skipPreChapter());
 
@@ -152,10 +149,6 @@ public class ReadBottomMenu extends FrameLayout {
             binding.fabAutoPage.setImageResource(R.drawable.ic_auto_page);
             binding.fabAutoPage.setContentDescription(getContext().getString(R.string.auto_next_page));
         }
-    }
-
-    public void setFabLightTheme() {
-        binding.fabNightTheme.setImageResource(R.drawable.ic_brightness);
     }
 
     public interface Callback {

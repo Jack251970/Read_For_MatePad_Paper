@@ -85,24 +85,6 @@
             app:fabSize="mini"
             app:pressedTranslationZ="2dp" />
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabNightTheme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:contentDescription="@string/night_theme"
-            android:src="@drawable/ic_brightness"
-            android:tint="@color/tv_text_default"
-            app:backgroundTint="@color/background_menu"
-            app:elevation="2dp"
-            app:fabSize="mini"
-            app:pressedTranslationZ="2dp" />
-
     </LinearLayout>
 
     <View style="@style/Style.Shadow.Bottom" />
