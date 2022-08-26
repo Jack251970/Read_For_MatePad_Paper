@@ -14,7 +14,6 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.BatteryManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -26,8 +25,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -97,19 +94,16 @@ import javax.script.SimpleBindings;
 import kotlin.Unit;
 
 /**
- * 阅读界面
+ * Read Page
  * Copyright (c) 2017. 章钦豪. All rights reserved.
  */
 
-public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> implements ReadBookContract.View, View.OnTouchListener {
-
+public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
+        implements ReadBookContract.View, View.OnTouchListener {
     private final int payActivityRequest = 1234;
     public final int fontDirRequest = 24345;
+
     private ActivityBookReadBinding binding;
-    private Animation menuTopIn;
-    private Animation menuTopOut;
-    private Animation menuBottomIn;
-    private Animation menuBottomOut;
     private ActionBar actionBar;
     private PageLoader mPageLoader;
     private final Handler mHandler = new Handler();
@@ -131,15 +125,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     private boolean autoPage = false;
     private boolean aloudNextPage;
     private int lastX, lastY;
-    private int textDrawableIndex;
-
-    public int getTextDrawableIndex() {
-        return textDrawableIndex;
-    }
-
-    public void setTextDrawableIndex(int textDrawableIndex) {
-        this.textDrawableIndex = textDrawableIndex;
-    }
 
     @Override
     protected ReadBookContract.Presenter initInjector() {
@@ -165,7 +150,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         setOrientation(readBookControl.getScreenDirection());
         binding = ActivityBookReadBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && readBookControl.getToLh()) {
+        if (readBookControl.getToLh()) {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 WindowManager.LayoutParams lp = getWindow().getAttributes();
                 lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
@@ -331,102 +316,73 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         });
     }
 
-    @Override
-    protected void initData() {
-        mPresenter.saveProgress();
-        // 显示菜单
-        menuTopIn = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_top_in);
-        menuTopIn.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-                // 手动设置状态栏颜色
-                initImmersionStatusBar();
-                BookChapterBean durChapter = mPresenter.getDurChapter();
-                BookSourceBean source = mPresenter.getBookSource();
-                if (durChapter != null && source != null) {
-                    if (TextUtils.isEmpty(source.getLoginUrl())) {
-                        binding.login.setVisibility(View.GONE);
-                        binding.pay.setVisibility(View.GONE);
-                    } else if (durChapter.getIsVip() && !durChapter.getIsPay() && !TextUtils.isEmpty(source.getPayAction())) {
-                        binding.login.setVisibility(View.VISIBLE);
-                        binding.pay.setVisibility(View.VISIBLE);
-                    } else {
-                        binding.login.setVisibility(View.VISIBLE);
-                    }
-                } else {
-                    binding.login.setVisibility(View.GONE);
-                    binding.pay.setVisibility(View.GONE);
-                }
+    /**
+     * 顶部菜单显示
+     */
+    private void menuTopIn () {
+        // 手动设置状态栏颜色
+        initImmersionStatusBar();
+        BookChapterBean durChapter = mPresenter.getDurChapter();
+        BookSourceBean source = mPresenter.getBookSource();
+        if (durChapter != null && source != null) {
+            if (TextUtils.isEmpty(source.getLoginUrl())) {
+                binding.login.setVisibility(View.GONE);
+                binding.pay.setVisibility(View.GONE);
+            } else if (durChapter.getIsVip() && !durChapter.getIsPay() &&
+                    !TextUtils.isEmpty(source.getPayAction())) {
+                binding.login.setVisibility(View.VISIBLE);
+                binding.pay.setVisibility(View.VISIBLE);
+            } else {
+                binding.login.setVisibility(View.VISIBLE);
             }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                binding.vMenuBg.setOnClickListener(v -> popMenuOut());
-                // 刷新阅读界面中的目录
-                binding.tvChapterName.setText(mPresenter.getChapterList().get(mPageLoader.getCurChapterPos()).getDurChapterName());
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {}
-        });
-        menuBottomIn = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_bottom_in);
-        menuBottomIn.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {screenOffTimerStart();}
-
-            @Override
-            public void onAnimationEnd(Animation animation) {binding.vMenuBg.setOnClickListener(v -> popMenuOut());}
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {}
-        });
-
-        // 隐藏菜单
-        menuTopOut = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_top_out);
-        menuTopOut.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {binding.vMenuBg.setOnClickListener(null);}
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                binding.flMenu.setVisibility(View.INVISIBLE);
-                binding.llMenuTop.setVisibility(View.INVISIBLE);
-                binding.readMenuBottom.setVisibility(View.INVISIBLE);
-                binding.readAdjustMarginPop.setVisibility(View.INVISIBLE);
-                binding.readInterfacePop.setVisibility(View.INVISIBLE);
-                binding.moreSettingPop.setVisibility(View.INVISIBLE);
-                initImmersionBar();
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {}
-        });
-        menuBottomOut = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_bottom_out);
-        menuBottomOut.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-                screenOffTimerStart();
-                binding.vMenuBg.setOnClickListener(null);
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                binding.flMenu.setVisibility(View.INVISIBLE);
-                binding.llMenuTop.setVisibility(View.INVISIBLE);
-                binding.readMenuBottom.setVisibility(View.INVISIBLE);
-                binding.readAdjustMarginPop.setVisibility(View.INVISIBLE);
-                binding.readInterfacePop.setVisibility(View.INVISIBLE);
-                binding.moreSettingPop.setVisibility(View.INVISIBLE);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {}
-        });
-        menuTopIn.setDuration(0);
-        menuTopOut.setDuration(0);
-        menuBottomIn.setDuration(0);
-        menuBottomOut.setDuration(0);
+        } else {
+            binding.login.setVisibility(View.GONE);
+            binding.pay.setVisibility(View.GONE);
+        }
+        binding.vMenuBg.setOnClickListener(v -> popMenuOut());
+        // 刷新阅读界面中的目录
+        binding.tvChapterName.setText(mPresenter.getChapterList().get(mPageLoader.getCurChapterPos())
+                .getDurChapterName());
     }
+
+    /**
+     * 顶部菜单隐藏
+     */
+    private void menuTopOut() {
+        binding.vMenuBg.setOnClickListener(null);
+        binding.flMenu.setVisibility(View.INVISIBLE);
+        binding.llMenuTop.setVisibility(View.INVISIBLE);
+        binding.readMenuBottom.setVisibility(View.INVISIBLE);
+        binding.readAdjustMarginPop.setVisibility(View.INVISIBLE);
+        binding.readInterfacePop.setVisibility(View.INVISIBLE);
+        binding.moreSettingPop.setVisibility(View.INVISIBLE);
+        initImmersionBar();
+    }
+
+    /**
+     * 底部菜单显示
+     */
+    private void menuBottomIn() {
+        screenOffTimerStart();
+        binding.vMenuBg.setOnClickListener(v -> popMenuOut());
+    }
+
+    /**
+     * 底部菜单隐藏
+     */
+    private void menuBottomOut() {
+        screenOffTimerStart();
+        binding.vMenuBg.setOnClickListener(null);
+        binding.flMenu.setVisibility(View.INVISIBLE);
+        binding.llMenuTop.setVisibility(View.INVISIBLE);
+        binding.readMenuBottom.setVisibility(View.INVISIBLE);
+        binding.readAdjustMarginPop.setVisibility(View.INVISIBLE);
+        binding.readInterfacePop.setVisibility(View.INVISIBLE);
+        binding.moreSettingPop.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    protected void initData() { mPresenter.saveProgress(); }
 
     @Override
     protected void bindView() {
@@ -457,7 +413,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         binding.mediaPlayerPop.setIvCoverBgClickListener(v -> {
             binding.flMenu.setVisibility(View.VISIBLE);
             binding.llMenuTop.setVisibility(View.VISIBLE);
-            binding.llMenuTop.startAnimation(menuTopIn);
+            menuTopIn();
         });
         binding.mediaPlayerPop.setPlayClickListener(v -> onMediaButton(ReadAloudService.ActionMediaPlay));
         binding.mediaPlayerPop.setPrevClickListener(v -> {
@@ -516,20 +472,23 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
             public void openChapterList() {
                 ReadBookActivity.this.popMenuOut();
                 if (!mPresenter.getChapterList().isEmpty()) {
-                    mHandler.postDelayed(() -> ChapterListActivity.startThis(ReadBookActivity.this, mPresenter.getBookShelf(), mPresenter.getChapterList()), menuTopOut.getDuration());
+                    mHandler.postDelayed(() ->
+                            ChapterListActivity.startThis(ReadBookActivity.this,
+                                    mPresenter.getBookShelf(),
+                                    mPresenter.getChapterList()), 0);
                 }
             }
 
             @Override
             public void openReadInterface() {
                 ReadBookActivity.this.popMenuOut();
-                mHandler.postDelayed(ReadBookActivity.this::readInterfaceIn, menuBottomOut.getDuration() + 100);
+                mHandler.postDelayed(ReadBookActivity.this::readInterfaceIn, 0);
             }
 
             @Override
             public void openMoreSetting() {
                 ReadBookActivity.this.popMenuOut();
-                mHandler.postDelayed(ReadBookActivity.this::moreSettingIn, menuBottomOut.getDuration() + 100);
+                mHandler.postDelayed(ReadBookActivity.this::moreSettingIn, 0);
             }
 
             @Override
@@ -973,7 +932,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                 ReplaceRuleDialog.builder(ReadBookActivity.this, oldRuleBean, mPresenter.getBookShelf(), ReplaceRuleDialog.DefaultUI)
                         .setPositiveButton(replaceRuleBean1 ->
                                 ReplaceRuleManager.saveData(replaceRuleBean1)
-                                        .subscribe(new MySingleObserver<Boolean>() {
+                                        .subscribe(new MySingleObserver<>() {
                                             @Override
                                             public void onSuccess(@NonNull Boolean aBoolean) {
                                                 binding.cursorLeft.setVisibility(View.INVISIBLE);
@@ -1027,7 +986,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                 ReplaceRuleDialog.builder(ReadBookActivity.this, oldRuleBean, mPresenter.getBookShelf(), ReplaceRuleDialog.AddAdUI)
                         .setPositiveButton(replaceRuleBean1 ->
                                 ReplaceRuleManager.mergeAdRules(replaceRuleBean1)
-                                        .subscribe(new MySingleObserver<Boolean>() {
+                                        .subscribe(new MySingleObserver<>() {
                                             @Override
                                             public void onSuccess(@NonNull Boolean aBoolean) {
                                                 binding.cursorLeft.setVisibility(View.INVISIBLE);
@@ -1396,7 +1355,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         binding.flMenu.setVisibility(View.VISIBLE);
         binding.readAdjustMarginPop.show();
         binding.readAdjustMarginPop.setVisibility(View.VISIBLE);
-        binding.readAdjustMarginPop.startAnimation(menuBottomIn);
+        menuBottomIn();
     }
 
     /**
@@ -1405,7 +1364,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     private void readInterfaceIn() {
         binding.flMenu.setVisibility(View.VISIBLE);
         binding.readInterfacePop.setVisibility(View.VISIBLE);
-        binding.readInterfacePop.startAnimation(menuBottomIn);
+        menuBottomIn();
     }
 
     /**
@@ -1414,7 +1373,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     private void moreSettingIn() {
         binding.flMenu.setVisibility(View.VISIBLE);
         binding.moreSettingPop.setVisibility(View.VISIBLE);
-        binding.moreSettingPop.startAnimation(menuBottomIn);
+        menuBottomIn();
     }
 
     /**
@@ -1424,9 +1383,8 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         binding.flMenu.setVisibility(View.VISIBLE);
         binding.llMenuTop.setVisibility(View.VISIBLE);
         binding.readMenuBottom.setVisibility(View.VISIBLE);
-        binding.llMenuTop.startAnimation(menuTopIn);
-        binding.readMenuBottom.startAnimation(menuBottomIn);
-        // 底部信息栏，功能类似toast
+        menuTopIn();
+        menuBottomIn();
         hideSnackBar();
     }
 
@@ -1435,21 +1393,11 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
      */
     private void popMenuOut() {
         if (binding.flMenu.getVisibility() == View.VISIBLE) {
-            if (binding.llMenuTop.getVisibility() == View.VISIBLE) {
-                binding.llMenuTop.startAnimation(menuTopOut);
-            }
-            if (binding.readMenuBottom.getVisibility() == View.VISIBLE) {
-                binding.readMenuBottom.startAnimation(menuBottomOut);
-            }
-            if (binding.moreSettingPop.getVisibility() == View.VISIBLE) {
-                binding.moreSettingPop.startAnimation(menuBottomOut);
-            }
-            if (binding.readInterfacePop.getVisibility() == View.VISIBLE) {
-                binding.readInterfacePop.startAnimation(menuBottomOut);
-            }
-            if (binding.readAdjustMarginPop.getVisibility() == View.VISIBLE) {
-                binding.readAdjustMarginPop.startAnimation(menuBottomOut);
-            }
+            if (binding.llMenuTop.getVisibility() == View.VISIBLE) { menuTopOut(); }
+            if (binding.readMenuBottom.getVisibility() == View.VISIBLE) { menuBottomOut(); }
+            if (binding.moreSettingPop.getVisibility() == View.VISIBLE) { menuBottomOut(); }
+            if (binding.readInterfacePop.getVisibility() == View.VISIBLE) { menuBottomOut(); }
+            if (binding.readAdjustMarginPop.getVisibility() == View.VISIBLE) { menuBottomOut(); }
         }
     }
 
