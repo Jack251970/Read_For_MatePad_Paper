@@ -6,15 +6,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
-
-import androidx.appcompat.app.ActionBar;
 
 import com.jack.basemvplib.BitIntentDataManager;
 import com.jack.basemvplib.impl.IPresenter;

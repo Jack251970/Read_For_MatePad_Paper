@@ -2,11 +2,9 @@ package com.jack.bookshelf.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 
 import com.jack.basemvplib.impl.IPresenter;
 import com.jack.bookshelf.R;

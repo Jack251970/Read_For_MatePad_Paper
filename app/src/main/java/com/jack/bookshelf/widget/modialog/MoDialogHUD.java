@@ -11,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.jack.bookshelf.R;
-
 /**
  * MoDialog HUD
  * Adapt to Huawei MatePad Paper

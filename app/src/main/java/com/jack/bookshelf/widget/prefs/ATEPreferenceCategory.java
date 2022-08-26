@@ -1,7 +1,6 @@
 package com.jack.bookshelf.widget.prefs;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.preference.PreferenceCategory;
 import android.util.AttributeSet;

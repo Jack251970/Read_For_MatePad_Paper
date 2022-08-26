@@ -1,15 +1,11 @@
 package com.jack.bookshelf.widget.prefs;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.os.Build;
 import android.preference.SwitchPreference;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Switch;
-
-import androidx.annotation.RequiresApi;
 
 import com.jack.bookshelf.utils.theme.ATH;
 import com.jack.bookshelf.utils.theme.ThemeStore;
