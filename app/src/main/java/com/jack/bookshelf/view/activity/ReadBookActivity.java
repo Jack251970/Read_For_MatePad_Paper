@@ -697,8 +697,9 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
     @Override
     public void startLoadingBook() {
         initPageView();
-        binding.mediaPlayerPop.setCover(mPresenter.getBookShelf().getCustomCoverPath() != null ? mPresenter.getBookShelf().getCustomCoverPath()
-                : mPresenter.getBookShelf().getBookInfoBean().getCoverUrl());
+        binding.mediaPlayerPop.setCover(mPresenter.getBookShelf().getCustomCoverPath() != null ?
+                mPresenter.getBookShelf().getCustomCoverPath() :
+                mPresenter.getBookShelf().getBookInfoBean().getCoverUrl());
     }
 
     /**
@@ -815,7 +816,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
                             }
                         }
 
-                        //启动朗读
+                        // 启动朗读
                         if (getIntent().getBooleanExtra("readAloud", false)
                                 && pageIndex >= 0 && mPageLoader.getContent() != null) {
                             getIntent().putExtra("readAloud", false);
@@ -859,16 +860,14 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-
         if (v.getId() == R.id.cursor_left || v.getId() == R.id.cursor_right) {
             int ea = event.getAction();
             switch (ea) {
                 case MotionEvent.ACTION_DOWN:
-                    lastX = (int) event.getRawX();// 获取触摸事件触摸位置的原始X坐标
+                    // 获取触摸事件触摸位置的原始X坐标
+                    lastX = (int) event.getRawX();
                     lastY = (int) event.getRawY();
-
                     binding.readLongPress.setVisibility(View.INVISIBLE);
-
                     break;
                 case MotionEvent.ACTION_MOVE:
                     int dx = (int) event.getRawX() - lastX;
@@ -912,7 +911,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
     public void showAction(View clickView) {
 
         binding.readLongPress.setVisibility(View.VISIBLE);
-        //如果太靠右，则靠左
+        // 如果太靠右，则靠左
         int[] aa = ScreenUtils.getScreenSize(this);
         if ((binding.cursorLeft.getX() + ScreenUtils.dpToPx(200)) > aa[0]) {
             binding.readLongPress.setX(aa[0] - ScreenUtils.dpToPx(200));
@@ -920,7 +919,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
             binding.readLongPress.setX(binding.cursorLeft.getX() + binding.cursorLeft.getWidth() + ScreenUtils.dpToPx(5));
         }
 
-        //如果太靠上
+        // 如果太靠上
         if ((binding.cursorLeft.getY() - ScreenUtils.spToPx(readBookControl.getTextSize()) - ScreenUtils.dpToPx(60)) < 0) {
             binding.readLongPress.setY(binding.cursorLeft.getY() - ScreenUtils.spToPx(readBookControl.getTextSize()));
         } else {
@@ -930,7 +929,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
     }
 
     /**
-     * 显示
+     * 显示光标
      */
     private void selectTextCursorShow() {
         if (binding.pageView.getFirstSelectTxtChar() == null || binding.pageView.getLastSelectTxtChar() == null)
@@ -939,13 +938,14 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
         cursorShow();
         //set current word selected
         binding.pageView.invalidate();
-
         hideSnackBar();
     }
 
+    /**
+     * 显示光标
+     */
     @SuppressWarnings("ConstantConditions")
     private void cursorShow() {
-
         binding.cursorLeft.setVisibility(View.VISIBLE);
         binding.cursorRight.setVisibility(View.VISIBLE);
         int hh = binding.cursorLeft.getHeight();
@@ -1757,8 +1757,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
             if (data != null) {
                 Uri uri = data.getData();
                 if (uri != null) {
-                    int modeFlags =
-                            Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
+                    int modeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
                     getContentResolver().takePersistableUriPermission(uri, modeFlags);
                     binding.readInterfacePop.showFontSelector(uri);
                 }
@@ -1805,17 +1804,13 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
         }
     }
 
-    /**
-     * 结束
-     */
     @Override
     public void finish() {
         if (!checkAddShelf()) {
             return;
         }
         if (!AppActivityManager.getInstance().isExist(MainActivity.class)) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, MainActivity.class));
         }
         Backup.INSTANCE.autoBack();
         super.finish();

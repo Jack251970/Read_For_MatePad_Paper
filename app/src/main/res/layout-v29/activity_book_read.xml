@@ -6,13 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <!-- 阅读主界面 -->
     <com.jack.bookshelf.widget.page.PageView
         android:id="@+id/pageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"
         android:focusable="true"
-        tools:visibility="gone" />
+        tools:visibility="gone"/>
     <!-- 自动翻页指示器 -->
     <com.jack.bookshelf.widget.seekbar.VerticalSeekBarWrapper
         android:layout_width="wrap_content"
@@ -27,7 +28,7 @@
             android:visibility="invisible"
             app:seekBarRotation="CW270" />
     </com.jack.bookshelf.widget.seekbar.VerticalSeekBarWrapper>
-
+    <!-- 长按文本出现光标（开启长按选择文本功能后） -->
     <ImageView
         android:id="@+id/cursor_left"
         android:layout_width="wrap_content"
@@ -36,7 +37,6 @@
         android:src="@drawable/ic_cursor_left"
         android:visibility="invisible"
         tools:visibility="visible"/>
-
     <ImageView
         android:id="@+id/cursor_right"
         android:layout_width="wrap_content"
@@ -59,7 +59,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:visibility="gone" />
+        android:visibility="gone"
+        tools:visibility="visible"/>
     <!-- 菜单 -->
     <FrameLayout
         android:id="@+id/fl_menu"
@@ -158,7 +159,7 @@
                         android:visibility="gone"
                         android:clickable="false"
                         android:focusable="false"
-                        tools:visibility="visible">
+                        tools:visibility="gone">
                         <ImageView
                             android:id="@+id/iv_change_source"
                             android:layout_width="@dimen/action_bar_icon_height_and_width"
@@ -258,14 +259,14 @@
                 android:layout_height="1dp"
                 android:background="@color/black"/>
         </LinearLayout>
-
+        <!-- 底部菜单 -->
         <com.jack.bookshelf.view.popupwindow.ReadBottomMenu
             android:id="@+id/read_menu_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:visibility="invisible" />
-
+            android:visibility="invisible"
+            tools:visibility="visible"/>
         <com.jack.bookshelf.view.popupwindow.ReadInterfacePop
             android:id="@+id/readInterfacePop"
             android:layout_width="match_parent"
@@ -286,6 +287,5 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:visibility="invisible" />
-
     </FrameLayout>
 </FrameLayout>
