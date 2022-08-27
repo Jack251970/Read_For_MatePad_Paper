@@ -1,58 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ll_content"
+    android:id="@+id/ll_content_change_source_dialog"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@drawable/dialog_background"
     android:orientation="vertical"
-    android:padding="10dp">
-
+    android:padding="@dimen/content_padding">
+    <!-- 标题栏 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
-
         <TextView
             android:id="@+id/atv_title"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:gravity="center|start"
             android:singleLine="true"
-            android:textSize="16sp" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/ibt_stop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_stop_white"
-            android:tint="@color/tv_text_default" />
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="完美世界"/>
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/btn_bg_press" />
-
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:queryHint="@string/search" />
-
-    <com.jack.bookshelf.widget.recycler.refresh.RefreshRecyclerView
-        android:id="@+id/rf_rv_change_source"
+        app:queryHint="@string/search_book_source" />
+    <!-- With Bugs -->
+    <!--<androidx.appcompat.widget.SearchView
+        android:background="@drawable/searchbar_background"
+        android:imeOptions="actionSearch"
+        app:iconifiedByDefault="false"
+        app:searchIcon="@null"
+        app:defaultQueryHint="搜索"
+        app:queryHint="搜索"
+        app:showDividers="none"
+        app:queryBackground="@null"
+        app:submitBackground="@null" />-->
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:bg_color="#00000000"
-        app:font_color="#767676"
-        app:second_color="#c1c1c1"
-        app:second_max_progress="80dp"
-        app:speed="2dp" />
+        android:layout_margin="10dp">
 
+        <com.jack.bookshelf.widget.recycler.refresh.RefreshRecyclerView
+            android:id="@+id/rf_rv_change_source"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:bg_color="@color/white"
+            app:font_color="@color/black"
+            app:second_color="@color/black"
+            app:second_max_progress="80dp"
+            app:speed="2dp" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/ibt_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/ic_stop_white"
+            android:elevation="0dp"
+            app:elevation="0dp"
+            app:fabSize="mini"
+            app:layout_anchorGravity="right|bottom"
+            app:pressedTranslationZ="0dp"
+            android:visibility="invisible"
+            tools:visibility="visible"
+            android:contentDescription="停止搜索" />
+    </RelativeLayout>
 </LinearLayout>

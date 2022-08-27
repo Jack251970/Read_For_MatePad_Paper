@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.utils.popupwindow.PopupWindowsUtil;
 import com.jack.bookshelf.view.adapter.MoreSettingMenuAdapter;
+import com.jack.bookshelf.view.dialog.AlertDialog;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +28,7 @@ import java.util.List;
 public class MoreSettingMenu extends PopupWindow {
     private final Context context;
     private View view = null;
-    private ListView lvMenu;
+    private final ListView lvMenu;
     private OnItemClickListener itemClick;
 
     public static MoreSettingMenu builder(Context context) {
@@ -36,6 +37,17 @@ public class MoreSettingMenu extends PopupWindow {
 
     public MoreSettingMenu setMenu (String[] menuList) {
         List<String> menuNameList = Arrays.asList(menuList);
+        MoreSettingMenuAdapter adapter = new MoreSettingMenuAdapter(context, menuNameList);
+        lvMenu.setAdapter(adapter);
+        lvMenu.setOnItemClickListener((parent, view, position, id) -> {
+            dismiss();
+            itemClick.chooseMenuItem(position);
+        });
+        return this;
+    }
+
+    public MoreSettingMenu setMenu (int arrayId) {
+        List<String> menuNameList = Arrays.asList(context.getResources().getStringArray(arrayId));
         MoreSettingMenuAdapter adapter = new MoreSettingMenuAdapter(context, menuNameList);
         lvMenu.setAdapter(adapter);
         lvMenu.setOnItemClickListener((parent, view, position, id) -> {
@@ -64,6 +76,11 @@ public class MoreSettingMenu extends PopupWindow {
     public void show(final View mainView, final View anchorView) {
         int[] windowPos = PopupWindowsUtil.calculatePopWindowPos(anchorView,view);
         showAtLocation(mainView, Gravity.TOP | Gravity.START, windowPos[0] - 30, windowPos[1] + 10);
+    }
+
+    public void showForChangeSourceDialog(final View mainView, final View anchorView) {
+        int[] windowPos = PopupWindowsUtil.calculatePopWindowPos(anchorView,view);
+        showAtLocation(mainView, Gravity.TOP | Gravity.START, 30, windowPos[1] - 50);
     }
 
     public interface OnItemClickListener {

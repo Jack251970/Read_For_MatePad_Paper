@@ -47,6 +47,13 @@
             <item>@string/wifi_share</item>
             <item>@string/rule_summary</item>
         </string-array>
+        <!-- More Setting Menu Change Source Dialog  -->
+        <string-array name="more_setting_menu_change_source_dialog">
+            <item>@string/disable_book_source</item>
+            <item>@string/delete_book_source</item>
+            <item>@string/edit_book_source</item>
+        </string-array>
+    <!-- More Setting Menu -->
 
     <!-- Select Menu -->
         <!-- MainActivity -->

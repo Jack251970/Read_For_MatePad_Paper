@@ -2,6 +2,7 @@ package com.jack.bookshelf.widget.modialog;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -9,8 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,10 +40,10 @@ import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.view.activity.SourceEditActivity;
 import com.jack.bookshelf.view.adapter.ChangeSourceAdapter;
+import com.jack.bookshelf.view.popupmenu.MoreSettingMenu;
 import com.jack.bookshelf.widget.recycler.refresh.RefreshRecyclerView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -54,8 +55,15 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * Change Source Dialog
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
 public class ChangeSourceDialog extends BaseDialog implements ChangeSourceAdapter.CallBack {
     private final Context context;
+    private View llContent;
     private TextView atvTitle;
     private ImageButton ibtStop;
     private SearchView searchView;
@@ -84,24 +92,30 @@ public class ChangeSourceDialog extends BaseDialog implements ChangeSourceAdapte
     private void init(BookShelfBean bookShelf) {
         this.book = bookShelf;
         compositeDisposable = new CompositeDisposable();
-        @SuppressLint("InflateParams") View view = LayoutInflater.from(context).inflate(R.layout.dialog_change_source, null);
+        @SuppressLint("InflateParams") View view = LayoutInflater.from(context)
+                .inflate(R.layout.dialog_change_source, null);
         bindView(view);
+        bindEvent();
         setContentView(view);
         initData();
     }
 
     private void bindView(View view) {
-        View llContent = view.findViewById(R.id.ll_content);
-        llContent.setOnClickListener(null);
+        llContent = view.findViewById(R.id.ll_content_change_source_dialog);
         searchView = view.findViewById(R.id.searchView);
+        initSearchView(searchView);
         atvTitle = view.findViewById(R.id.atv_title);
         ibtStop = view.findViewById(R.id.ibt_stop);
         rvSource = view.findViewById(R.id.rf_rv_change_source);
-        ibtStop.setVisibility(View.INVISIBLE);
+    }
 
-        rvSource.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
-        rvSource.setBaseRefreshListener(this::reSearchBook);
-        ibtStop.setOnClickListener(v -> stopChangeSource());
+    /**
+     * 初始化搜索框
+     */
+    private void initSearchView(SearchView searchView) {
+        ImageView closeButton = searchView.findViewById(R.id.search_close_btn);
+        closeButton.setBackgroundColor(Color.TRANSPARENT);
+        closeButton.setImageResource(R.drawable.ic_close);
         searchView.onActionViewExpanded();
         searchView.clearFocus();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -130,6 +144,13 @@ public class ChangeSourceDialog extends BaseDialog implements ChangeSourceAdapte
         });
     }
 
+    private void bindEvent() {
+        llContent.setOnClickListener(null);
+        rvSource.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
+        rvSource.setBaseRefreshListener(this::reSearchBook);
+        ibtStop.setOnClickListener(v -> stopChangeSource());
+    }
+
     @Override
     public void changeTo(SearchBookBean searchBookBean) {
         if (!Objects.equals(book.getNoteUrl(), searchBookBean.getNoteUrl())) {
@@ -139,35 +160,30 @@ public class ChangeSourceDialog extends BaseDialog implements ChangeSourceAdapte
     }
 
     @Override
-    public void showMenu(View view, SearchBookBean searchBookBean) {
+    public void showMenu(View anchorView, SearchBookBean searchBookBean) {
         final String url = searchBookBean.getTag();
         final BookSourceBean sourceBean = BookSourceManager.getBookSourceByUrl(url);
-        PopupMenu popupMenu = new PopupMenu(context, view);
-        popupMenu.getMenu().add(0, R.id.menu_disable, 1, "禁用书源");
-        popupMenu.getMenu().add(0, R.id.menu_del, 2, "删除书源");
-        popupMenu.getMenu().add(0, R.id.menu_edit, 3, "编辑书源");
-        popupMenu.setOnMenuItemClickListener(menuItem -> {
-            if (sourceBean != null) {
-                switch (menuItem.getItemId()) {
-                    case R.id.menu_disable:
-                        sourceBean.setEnable(false);
-                        BookSourceManager.addBookSource(sourceBean);
-                        adapter.removeData(searchBookBean);
-                        ToastsKt.toast(context, String.format("%s已禁用", sourceBean.getBookSourceName()), Toast.LENGTH_SHORT);
-                        break;
-                    case R.id.menu_del:
-                        BookSourceManager.removeBookSource(sourceBean);
-                        adapter.removeData(searchBookBean);
-                        ToastsKt.toast(context, String.format("%s已删除", sourceBean.getBookSourceName()), Toast.LENGTH_SHORT);
-                        break;
-                    case R.id.menu_edit:
-                        SourceEditActivity.startThis(context, sourceBean);
-                        break;
-                }
-            }
-            return true;
-        });
-        popupMenu.show();
+        MoreSettingMenu.builder(context)
+                .setMenu(R.array.more_setting_menu_change_source_dialog)
+                .setOnclick(position -> {
+                    switch (position) {
+                        case 0:
+                            Objects.requireNonNull(sourceBean).setEnable(false);
+                            BookSourceManager.addBookSource(sourceBean);
+                            adapter.removeData(searchBookBean);
+                            ToastsKt.toast(context, context.getString(R.string.have_disabled,sourceBean.getBookSourceName()), Toast.LENGTH_SHORT);
+                            break;
+                        case 1:
+                            BookSourceManager.removeBookSource(sourceBean);
+                            adapter.removeData(searchBookBean);
+                            ToastsKt.toast(context, context.getString(R.string.have_deleted, Objects.requireNonNull(sourceBean).getBookSourceName()), Toast.LENGTH_SHORT);
+                            break;
+                        case 2:
+                            SourceEditActivity.startThis(context, Objects.requireNonNull(sourceBean));
+                            break;
+                    }
+                })
+                .showForChangeSourceDialog(llContent, anchorView);
     }
 
     @SuppressLint("InflateParams")
@@ -175,9 +191,7 @@ public class ChangeSourceDialog extends BaseDialog implements ChangeSourceAdapte
         adapter = new ChangeSourceAdapter(false);
         rvSource.setRefreshRecyclerViewAdapter(adapter, new LinearLayoutManager(context));
         adapter.setCallBack(this);
-        // 刷新失败界面
         View viewRefreshError = LayoutInflater.from(context).inflate(R.layout.view_refresh_error, null);
-        // 重新刷新事件
         viewRefreshError.findViewById(R.id.tv_refresh_again).setOnClickListener(v -> reSearchBook());
         rvSource.setNoDataAndRefreshErrorView(LayoutInflater.from(context).inflate(R.layout.view_refresh_no_data, null),
                 viewRefreshError);
@@ -284,12 +298,12 @@ public class ChangeSourceDialog extends BaseDialog implements ChangeSourceAdapte
                 for (SearchBookBean searchBookBean : searchBookList) {
                     searchBookBean.setIsCurrentSource(searchBookBean.getTag().equals(bookShelf.getTag()));
                 }
-                Collections.sort(searchBookList, this::compareSearchBooks);
+                searchBookList.sort(this::compareSearchBooks);
             }
             e.onSuccess(searchBookList);
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<List<SearchBookBean>>() {
+                .subscribe(new SingleObserver<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);
@@ -326,7 +340,7 @@ public class ChangeSourceDialog extends BaseDialog implements ChangeSourceAdapte
 
     private synchronized void addSearchBook(List<SearchBookBean> value) {
         if (value.size() > 0) {
-            Collections.sort(value, this::compareSearchBooks);
+            value.sort(this::compareSearchBooks);
             for (SearchBookBean searchBookBean : value) {
                 if (searchBookBean.getName().equals(bookName)
                         && (searchBookBean.getAuthor().equals(bookAuthor) || TextUtils.isEmpty(searchBookBean.getAuthor()) || TextUtils.isEmpty(bookAuthor))) {

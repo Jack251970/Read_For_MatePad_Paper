@@ -19,3 +19,21 @@ SourceEditAdapter.java
         android:layout_height="wrap_content"
         android:paddingStart="-3dp"
         android:paddingEnd="-6dp"
+6. 修复searchView问题
+见dialog_change_source.xml
+ <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:queryHint="@string/search_book_source" />
+    <!-- With Bugs -->
+    <!--<androidx.appcompat.widget.SearchView
+        android:background="@drawable/searchbar_background"
+        android:imeOptions="actionSearch"
+        app:iconifiedByDefault="false"
+        app:searchIcon="@null"
+        app:defaultQueryHint="搜索"
+        app:queryHint="搜索"
+        app:showDividers="none"
+        app:queryBackground="@null"
+        app:submitBackground="@null" />-->
