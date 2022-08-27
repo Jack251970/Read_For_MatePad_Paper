@@ -506,5 +506,4 @@ public class ReadBookPresenter extends BasePresenterImpl<ReadBookContract.View> 
     public interface OnAddListener {
         void addSuccess();
     }
-
 }

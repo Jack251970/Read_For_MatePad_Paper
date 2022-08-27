@@ -102,7 +102,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
     public final int fontDirRequest = 24345;
 
     private ActivityBookReadBinding binding;
-    private ActionBar actionBar;
+    // private ActionBar actionBar;
     private PageLoader mPageLoader;
     private final Handler mHandler = new Handler();
     private Runnable autoPageRunnable;
@@ -383,8 +383,9 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
 
     @Override
     protected void bindView() {
-        this.setSupportActionBar(binding.toolbar);
-        setupActionBar();
+        /*this.setSupportActionBar(binding.toolbar);
+        setupActionBar();*/
+        upMenu();
         mPresenter.initData(this);
         binding.appBar.setPadding(0, ScreenUtils.getStatusBarHeight(), 0, 0);
         binding.appBar.setBackgroundColor(ThemeStore.primaryColor(this));
@@ -623,6 +624,19 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void bindEvent() {
+        binding.toolbar.setOnClickListener(null);
+        binding.clChapterNameBookRead.setOnClickListener(null);
+        binding.ivBackBookRead.setOnClickListener(v -> finish());
+        binding.ivAddBookmark.setOnClickListener(v -> showBookmark(null));
+        binding.ivCopyText.setOnClickListener(v -> {
+            popMenuOut();
+            if (mPageLoader != null) { moDialogHUD.showText(mPageLoader.getAllContent()); }
+        });
+        binding.ivSetCharset.setOnClickListener(v -> setCharset());
+        binding.ivSetTextChapterRegex.setOnClickListener(v -> setTextChapterRegex());
+        binding.ivChangeSource.setOnClickListener(v -> changeSource());
+        binding.ivRefresh.setOnClickListener(v -> refreshDurChapter());
+        binding.ivDownloadOffline.setOnClickListener(v -> download());
         binding.login.setOnClickListener(v -> login());
         binding.pay.setOnClickListener(v -> pay());
         binding.cursorLeft.setOnTouchListener(this);
@@ -659,7 +673,10 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
                         if (mPresenter.getChapterList().isEmpty()) return;
                         if (pos >= mPresenter.getChapterList().size()) return;
                         mPresenter.getBookShelf().setDurChapterName(mPresenter.getChapterList().get(pos).getDurChapterName());
-                        actionBar.setTitle(mPresenter.getBookShelf().getBookInfoBean().getName());
+
+                        binding.tvBookTitle.setText(mPresenter.getBookShelf().getBookInfoBean().getName());
+                        // actionBar.setTitle(mPresenter.getBookShelf().getBookInfoBean().getName());
+
                         if (mPresenter.getBookShelf().getChapterListSize() > 0) {
                             BookChapterBean chapter = mPresenter.getChapterList().get(pos);
                             if (chapter.getIsVip() && !chapter.getIsPay()) {
@@ -1006,34 +1023,34 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
     /**
      * 设置ToolBar
      */
-    private void setupActionBar() {
+    /*private void setupActionBar() {
         actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-    }
+    }*/
 
     /**
      * 添加菜单
      */
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_book_read_activity, menu);
         return super.onCreateOptionsMenu(menu);
-    }
+    }*/
 
-    @Override
+    /*@Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         this.menu = menu;
         upMenu();
         return super.onPrepareOptionsMenu(menu);
-    }
+    }*/
 
 
     /**
      * 菜单事件
      */
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.enable_replace:
@@ -1102,7 +1119,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     private void login() {
         BookSourceBean source = mPresenter.getBookSource();
@@ -1648,10 +1665,25 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
      */
     @Override
     public void upMenu() {
-        if (menu == null) return;
-        boolean onLine = mPresenter.getBookShelf() != null
-                && !mPresenter.getBookShelf().getTag().equals(BookShelfBean.LOCAL_TAG);
-        for (int i = 0; i < menu.size(); i++) {
+        /*if (menu == null) return;*/
+        boolean onLine = (mPresenter.getBookShelf() != null) &&
+                !mPresenter.getBookShelf().getTag().equals(BookShelfBean.LOCAL_TAG);
+        boolean isTxt = (mPresenter.getBookShelf() != null)
+                && mPresenter.getBookShelf().getNoteUrl().toLowerCase().endsWith(".txt");
+        if (onLine) {
+            binding.appBarOnline.setVisibility(View.VISIBLE);
+            binding.appBarLocal.setVisibility(View.GONE);
+        } else {
+            binding.appBarOnline.setVisibility(View.GONE);
+            binding.appBarLocal.setVisibility(View.VISIBLE);
+        }
+        if (isTxt) {
+            binding.appBarTxt.setVisibility(View.VISIBLE);
+        } else {
+            binding.appBarTxt.setVisibility(View.GONE);
+        }
+        /*for (int i = 0; i < menu.size(); i++) {
+            // 设置基本
             switch (menu.getItem(i).getGroupId()) {
                 case R.id.menuOnline:
                 case R.id.menuOnline1:
@@ -1669,7 +1701,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
                     menu.getItem(i).setEnabled(isTxt);
                     break;
             }
-            // 选择按钮
+            // 设置选择按钮
             switch (menu.getItem(i).getItemId()) {
                 case R.id.enable_replace:
                     menu.getItem(i).setChecked(mPresenter.getBookShelf() != null
@@ -1679,9 +1711,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
                     menu.getItem(i).setChecked(readBookControl != null
                             && readBookControl.getLightNovelParagraph());
                     break;
-            }
-        }
-
+            }*/
     }
 
     /**
