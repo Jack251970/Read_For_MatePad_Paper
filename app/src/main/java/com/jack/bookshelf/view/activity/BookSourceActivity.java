@@ -369,8 +369,9 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
      * 删除所选书源
      */
     private void deleteSelectDialog() {
-        AlertDialog.builder(this,binding.getRoot(), AlertDialog.NO_TITLE)
-                .setMessage(R.string.del_delete_book_source)
+        AlertDialog.builder(this)
+                .setType(AlertDialog.ONLY_CENTER_TITLE)
+                .setTitle(R.string.del_delete_book_source)
                 .setNegativeButton(R.string.cancel)
                 .setPositiveButton(R.string.delete)
                 .setOnclick(new AlertDialog.OnItemClickListener() {
@@ -379,7 +380,7 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
 
                     @Override
                     public void forPositiveButton() { mPresenter.delData(adapter.getSelectDataList());}
-                }).show();
+                }).show(binding.getRoot());
     }
 
     /**

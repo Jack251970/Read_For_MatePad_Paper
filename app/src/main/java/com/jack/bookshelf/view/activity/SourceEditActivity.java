@@ -181,8 +181,9 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
                             }
                             break;
                         case 1:
-                            AlertDialog.builder(this, binding.getRoot(), AlertDialog.NO_TITLE)
-                                    .setMessage(R.string.if_copy_find_content)
+                            AlertDialog.builder(this)
+                                    .setType(AlertDialog.ONLY_CENTER_TITLE)
+                                    .setTitle(R.string.if_copy_find_content)
                                     .setNegativeButton(R.string.no)
                                     .setPositiveButton(R.string.yes)
                                     .setOnclick(new AlertDialog.OnItemClickListener() {
@@ -191,7 +192,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
 
                                         @Override
                                         public void forPositiveButton() { mPresenter.copySource(getBookSourceStr(true)); }
-                                    }).show();
+                                    }).show(binding.getRoot());
                             break;
                         case 2:
                             mPresenter.pasteSource();
@@ -555,8 +556,9 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
             bookSourceBean = new BookSourceBean();
         }
         if (!getBookSource(true).equals(bookSourceBean)) {
-            AlertDialog.builder(this,binding.getRoot(), AlertDialog.NO_TITLE)
-                    .setMessage(R.string.exit_no_save)
+            AlertDialog.builder(this)
+                    .setType(AlertDialog.ONLY_CENTER_TITLE)
+                    .setTitle(R.string.exit_no_save)
                     .setNegativeButton(R.string.no)
                     .setPositiveButton(R.string.yes)
                     .setOnclick(new AlertDialog.OnItemClickListener() {
@@ -565,7 +567,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
 
                         @Override
                         public void forPositiveButton() {}
-                    }).show();
+                    }).show(binding.getRoot());
             return true;
         }
         return false;

@@ -200,8 +200,9 @@ public class ReplaceRuleActivity extends MBaseActivity<ReplaceRuleContract.Prese
      * 删除所有规则
      */
     private void deleteAllDialog() {
-        AlertDialog.builder(this, binding.getRoot(), AlertDialog.NO_TITLE)
-                .setMessage(R.string.del_delete_all_replace_rule)
+        AlertDialog.builder(this)
+                .setType(AlertDialog.ONLY_CENTER_TITLE)
+                .setTitle(R.string.del_delete_all_replace_rule)
                 .setNegativeButton(R.string.cancel)
                 .setPositiveButton(R.string.delete)
                 .setOnclick(new AlertDialog.OnItemClickListener() {
@@ -210,7 +211,7 @@ public class ReplaceRuleActivity extends MBaseActivity<ReplaceRuleContract.Prese
 
                     @Override
                     public void forPositiveButton() { mPresenter.delData(adapter.getData());}
-                }).show();
+                }).show(binding.getRoot());
     }
 
     /**

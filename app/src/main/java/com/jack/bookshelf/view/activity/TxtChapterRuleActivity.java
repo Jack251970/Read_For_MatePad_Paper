@@ -197,8 +197,9 @@ public class TxtChapterRuleActivity extends MBaseActivity<TxtChapterRuleContract
      * 删除所有正则
      */
     private void deleteAllDialog() {
-        AlertDialog.builder(this, binding.getRoot(), AlertDialog.NO_TITLE)
-                .setMessage(R.string.del_delete_all_txt_chapter_rule)
+        AlertDialog.builder(this)
+                .setType(AlertDialog.ONLY_CENTER_TITLE)
+                .setTitle(R.string.del_delete_all_txt_chapter_rule)
                 .setNegativeButton(R.string.cancel)
                 .setPositiveButton(R.string.delete)
                 .setOnclick(new AlertDialog.OnItemClickListener() {
@@ -207,7 +208,7 @@ public class TxtChapterRuleActivity extends MBaseActivity<TxtChapterRuleContract
 
                     @Override
                     public void forPositiveButton() { mPresenter.delData(adapter.getData());}
-                }).show();
+                }).show(binding.getRoot());
     }
 
     public void upDateSelectAll() {

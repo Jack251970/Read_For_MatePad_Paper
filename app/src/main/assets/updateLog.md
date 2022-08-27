@@ -4,7 +4,8 @@
 
 **2022/08/27**
 * 重新绘制了书籍阅读界面的更多选项菜单使之符合华为墨水屏设备风格
-* 重新绘制了BookmarkDialog使之符合华为墨水屏设备风格
+* 重新绘制了BookmarkDialog,DownloadChoiceDialog使之符合华为墨水屏设备风格
+* 重新绘制了AlertDialog并扩展了AlertDialog的功能
 
 **2022/08/26**
 * 删除了与黑暗模式有关的内容

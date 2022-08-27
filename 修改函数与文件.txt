@@ -12,3 +12,10 @@ WebDavHelp.kt
         }.show()*/
 4. 固定滚动动画
 SourceEditAdapter.java
+5. 对齐问题
+<com.jack.bookshelf.widget.views.ATETextInputLayout
+        android:id="@+id/til_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="-3dp"
+        android:paddingEnd="-6dp"

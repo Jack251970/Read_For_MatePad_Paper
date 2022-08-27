@@ -30,11 +30,18 @@
             <dimen name="dialog_width">395dp</dimen>
             <dimen name="dialog_radius">24dp</dimen>
             <!-- Alert -->
-            <dimen name="alert_dialog_button_divide_line_width">2px</dimen>
-                <!-- No Title-->
-                <dimen name="alert_dialog_no_title_width">396dp</dimen>
-                <dimen name="alert_dialog_no_title_height">122dp</dimen>
-                <dimen name="alert_dialog_no_title_radius">28dp</dimen>
+            <dimen name="alert_dialog_width">396dp</dimen>
+            <dimen name="alert_dialog_radius">28dp</dimen>
+            <dimen name="alert_dialog_padding_top">21dp</dimen>
+            <dimen name="alert_dialog_padding_bottom">18dp</dimen>
+            <dimen name="alert_dialog_button_layout_height">30dp</dimen>
+            <dimen name="alert_dialog_button_divide_line_width">1dp</dimen>
+            <dimen name="alert_dialog_title_margin_bottom">26dp</dimen>
+            <dimen name="alert_dialog_message_margin_bottom">13dp</dimen>
+            <dimen name="alert_dialog_title_text_size">20sp</dimen>
+            <dimen name="alert_dialog_message_text_size">19sp</dimen>
+            <dimen name="alert_dialog_append_message_text_size">14sp</dimen>
+            <dimen name="alert_dialog_button_text_size">18sp</dimen>
         <!-- SearchBar-->
         <dimen name="searchbar_height">42dp</dimen>
         <dimen name="searchbar_stroke_width">1dp</dimen>

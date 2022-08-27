@@ -40,24 +40,20 @@ public class DownLoadDialog extends BaseDialog {
     }
 
     private void bindView(View view, int startIndex, int endIndex, final int all) {
-        View llContent = view.findViewById(R.id.ll_content);
+        View llContent = view.findViewById(R.id.ll_content_download_dialog);
         llContent.setOnClickListener(null);
         edtStart = view.findViewById(R.id.edt_start);
         edtEnd = view.findViewById(R.id.edt_end);
-        tvCancel = view.findViewById(R.id.tv_cancel);
-        tvDownload = view.findViewById(R.id.tv_download);
+        tvCancel = view.findViewById(R.id.ll_cancel_download_dialog);
+        tvDownload = view.findViewById(R.id.ll_confirm_download_dialog);
         edtStart.setText(String.valueOf(startIndex + 1));
         edtEnd.setText(String.valueOf(endIndex + 1));
         edtStart.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -67,7 +63,7 @@ public class DownLoadDialog extends BaseDialog {
                         if (temp > all) {
                             edtStart.setText(String.valueOf(all));
                             edtStart.setSelection(edtStart.getText().length());
-                            ToastsKt.toast(context, "超过总章节", Toast.LENGTH_SHORT);
+                            ToastsKt.toast(context, R.string.exceed_total_chapter, Toast.LENGTH_SHORT);
                         } else if (temp <= 0) {
                             edtStart.setText(String.valueOf(1));
                             edtStart.setSelection(edtStart.getText().length());
@@ -80,14 +76,10 @@ public class DownLoadDialog extends BaseDialog {
         });
         edtEnd.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -97,7 +89,7 @@ public class DownLoadDialog extends BaseDialog {
                         if (temp > all) {
                             edtEnd.setText(String.valueOf(all));
                             edtEnd.setSelection(edtEnd.getText().length());
-                            ToastsKt.toast(context, "超过总章节", Toast.LENGTH_SHORT);
+                            ToastsKt.toast(context, R.string.exceed_total_chapter, Toast.LENGTH_SHORT);
                         } else if (temp <= 0) {
                             edtEnd.setText(String.valueOf(1));
                             edtEnd.setSelection(edtEnd.getText().length());
@@ -115,13 +107,13 @@ public class DownLoadDialog extends BaseDialog {
         tvDownload.setOnClickListener(v -> {
             if (edtStart.getText().length() > 0 && edtEnd.getText().length() > 0) {
                 if (Integer.parseInt(edtStart.getText().toString()) > Integer.parseInt(edtEnd.getText().toString())) {
-                    ToastsKt.toast(context, "输入错误", Toast.LENGTH_SHORT);
+                    ToastsKt.toast(context, R.string.input_error, Toast.LENGTH_SHORT);
                 } else {
                     callback.download(Integer.parseInt(edtStart.getText().toString()) - 1, Integer.parseInt(edtEnd.getText().toString()) - 1);
                 }
                 dismiss();
             } else {
-                ToastsKt.toast(context, "请输入要离线的章节", Toast.LENGTH_SHORT);
+                ToastsKt.toast(context, R.string.input_download_offline_chapter, Toast.LENGTH_SHORT);
             }
         });
         return this;

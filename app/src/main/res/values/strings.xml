@@ -253,6 +253,13 @@
         <string name="bookmark">书签</string>
         <string name="content">内容</string>
         <string name="save">保存</string>
+        <!-- Download Choice Dialog -->
+        <string name="chapter_s">章节:</string>
+        <string name="to">至</string>
+        <string name="exceed_total_chapter">超过总章节</string>
+        <string name="input_error">输入错误</string>
+        <string name="input_download_offline_chapter">请输入要离线的章节</string>
+
 
     <!-- Select Menu -->
         <!-- Select Menu Main -->
@@ -560,8 +567,6 @@
     <string name="gallery">图库</string>
     <string name="non_update_url">没有获取到更新地址</string>
     <string name="chapter">章</string>
-    <string name="chapter_s">章节:</string>
-    <string name="to">至</string>
     <string name="indent">缩进</string>
     <string name="indent_0">无缩进</string>
     <string name="indent_1">一字符缩进</string>

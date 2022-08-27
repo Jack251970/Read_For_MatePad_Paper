@@ -141,8 +141,9 @@ public class BookListFragment
         binding.ivBack.setOnClickListener(v -> setArrange(false));
         binding.llDelete.setOnClickListener(v -> {
             if (bookShelfAdapter.getSelected().size() != 0) {
-                AlertDialog.builder(requireContext(),binding.getRoot(),AlertDialog.NO_TITLE)
-                        .setMessage(R.string.sure_del_book)
+                AlertDialog.builder(requireContext())
+                        .setType(AlertDialog.ONLY_CENTER_TITLE)
+                        .setTitle(R.string.sure_del_book)
                         .setNegativeButton(R.string.cancel)
                         .setPositiveButton(R.string.delete)
                         .setOnclick(new AlertDialog.OnItemClickListener() {
@@ -151,7 +152,7 @@ public class BookListFragment
 
                             @Override
                             public void forPositiveButton() { delSelect();}
-                        }).show();
+                        }).show(binding.getRoot());
             }});
         binding.llSelectAll.setOnClickListener(v -> bookShelfAdapter.selectAll());
     }

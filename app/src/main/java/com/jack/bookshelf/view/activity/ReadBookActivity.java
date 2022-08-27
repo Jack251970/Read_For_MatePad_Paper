@@ -1412,8 +1412,9 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
             mPresenter.removeFromShelf();
             return true;
         } else {
-            AlertDialog.builder(this,binding.getRoot(), AlertDialog.NO_TITLE)
-                    .setMessage(getString(R.string.check_add_bookshelf, bookName))
+            AlertDialog.builder(this)
+                    .setType(AlertDialog.ONLY_CENTER_TITLE)
+                    .setTitle(getString(R.string.check_add_bookshelf, bookName))
                     .setNegativeButton(R.string.no)
                     .setPositiveButton(R.string.confirm)
                     .setOnclick(new AlertDialog.OnItemClickListener() {
@@ -1422,7 +1423,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
 
                         @Override
                         public void forPositiveButton() { mPresenter.addToShelf(null); }
-                    }).show();
+                    }).show(binding.getRoot());
             return false;
         }
     }

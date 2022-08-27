@@ -250,8 +250,9 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
     protected void bindEvent() {
         // 搜索历史的清除按钮
         binding.ivSearchHistoryClean.setOnClickListener(v -> {
-            AlertDialog.builder(this,binding.getRoot(), AlertDialog.NO_TITLE)
-                    .setMessage(R.string.delete_all_history)
+            AlertDialog.builder(this)
+                    .setType(AlertDialog.ONLY_CENTER_TITLE)
+                    .setTitle(R.string.delete_all_history)
                     .setNegativeButton(R.string.cancel)
                     .setPositiveButton(R.string.delete)
                     .setOnclick(new AlertDialog.OnItemClickListener() {
@@ -260,7 +261,7 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
 
                         @Override
                         public void forPositiveButton() { mPresenter.cleanSearchHistory();;}
-                    }).show();
+                    }).show(binding.getRoot());
         });
         // 搜索历史其他按钮
         binding.rfRvSearchBooks.setLoadMoreListener(new OnLoadMoreListener() {

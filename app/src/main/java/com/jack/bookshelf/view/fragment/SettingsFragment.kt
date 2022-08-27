@@ -97,8 +97,9 @@ class SettingsFragment : PreferenceFragment(), OnSharedPreferenceChangeListener 
                 settingActivity?.let { selectBackupFolder(activity, it.root) }
             }
             "clearCache" -> {
-                AlertDialog.builder(activity, settingActivity!!.root, AlertDialog.NO_TITLE)
-                    .setMessage(R.string.sure_delete_download_book)
+                AlertDialog.builder(activity)
+                    .setType(AlertDialog.ONLY_CENTER_TITLE)
+                    .setTitle(R.string.sure_delete_download_book)
                     .setNegativeButton(R.string.cancel)
                     .setPositiveButton(R.string.delete)
                     .setOnclick(object : AlertDialog.OnItemClickListener {
@@ -108,7 +109,7 @@ class SettingsFragment : PreferenceFragment(), OnSharedPreferenceChangeListener 
                         override fun forPositiveButton() {
                             BookshelfHelp.clearCaches(true)
                         }
-                    }).show()
+                    }).show(settingActivity!!.root)
             }
             "aboutRead" -> {
                 AboutActivity.startThis(activity)

@@ -23,23 +23,56 @@ import com.jack.bookshelf.R;
 
 public class AlertDialog extends PopupWindow{
     private final Context context;
-    private final View mainView;
     private TextView tvTitle;
+    private TextView tvMessage;
+    private TextView tvAppendMessage;
     private TextView tvNegativeButton;
     private TextView tvPositiveButton;
     private OnItemClickListener itemClick;
-    public static final int NO_TITLE = 0;
 
-    public static AlertDialog builder(Context context, View mainView, int type) {
-        return new AlertDialog(context, mainView, type);
+    public static final int NO_APPEND_MESSAGE = 0, ONLY_CENTER_TITLE = 1, ALL = 2;
+
+    public static AlertDialog builder(Context context) { return new AlertDialog(context); }
+
+    public AlertDialog setType(int type) {
+        switch (type) {
+            case ONLY_CENTER_TITLE:
+                tvTitle.setGravity(Gravity.CENTER);
+                tvMessage.setVisibility(View.GONE);
+                break;
+            case ALL:
+                tvAppendMessage.setVisibility(View.VISIBLE);
+                break;
+            case NO_APPEND_MESSAGE:
+                return this;
+        }
+        return this;
+    }
+
+    public AlertDialog setTitle(int strId) {
+        return setTitle(getString(strId));
+    }
+
+    public AlertDialog setTitle(String title) {
+        tvTitle.setText(title);
+        return this;
     }
 
     public AlertDialog setMessage(int strId) {
         return setMessage(getString(strId));
     }
 
-    public AlertDialog setMessage(String title) {
-        tvTitle.setText(title);
+    public AlertDialog setMessage(String message) {
+        tvMessage.setText(message);
+        return this;
+    }
+
+    public AlertDialog setAppendMessage(int strId) {
+        return setAppendMessage(getString(strId));
+    }
+
+    public AlertDialog setAppendMessage(String appendMessage) {
+        tvAppendMessage.setText(appendMessage);
         return this;
     }
 
@@ -75,26 +108,25 @@ public class AlertDialog extends PopupWindow{
     }
 
     @SuppressLint({"InflateParams"})
-    public AlertDialog(Context context, View mainView, int type) {
+    public AlertDialog(Context context) {
         super(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         this.context = context;
-        this.mainView = mainView;
-        if (type == NO_TITLE) {
-            View view = LayoutInflater.from(context).inflate(R.layout.alert_dialog_no_title, null);
-            this.setContentView(view);
-            bindView(view);
-        }
+        View view = LayoutInflater.from(context).inflate(R.layout.alert_dialog_paper, null);
+        this.setContentView(view);
+        bindView(view);
         setFocusable(true);
         setTouchable(true);
     }
 
     private void bindView(View view) {
-        tvTitle = view.findViewById(R.id.tv_alert_dialog_no_title_tips);
-        tvNegativeButton = view.findViewById(R.id.tv_alert_dialog_no_title_negative_button);
-        tvPositiveButton = view.findViewById(R.id.tv_alert_dialog_no_title_positive_button);
+        tvTitle = view.findViewById(R.id.tv_alert_dialog_title);
+        tvMessage = view.findViewById(R.id.tv_alert_dialog_message);
+        tvAppendMessage = view.findViewById(R.id.tv_alert_dialog_append_message);
+        tvNegativeButton = view.findViewById(R.id.tv_alert_dialog_negative_button);
+        tvPositiveButton = view.findViewById(R.id.tv_alert_dialog_positive_button);
     }
 
-    public void show() {
+    public void show(View mainView) {
         showAtLocation(mainView, Gravity.CENTER, 0, 0);
     }
 
