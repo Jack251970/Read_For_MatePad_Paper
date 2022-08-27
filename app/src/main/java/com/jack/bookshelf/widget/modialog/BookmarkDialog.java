@@ -12,6 +12,12 @@ import androidx.annotation.NonNull;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BookmarkBean;
 
+/**
+ * Bookmark Dialog
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
 public class BookmarkDialog extends BaseDialog {
     private final Context context;
     private TextView tvChapterName;
@@ -26,11 +32,12 @@ public class BookmarkDialog extends BaseDialog {
         return new BookmarkDialog(context, bookmarkBean, isAdd);
     }
 
+    @SuppressLint("InflateParams")
     private BookmarkDialog(Context context, @NonNull BookmarkBean bookmarkBean, boolean isAdd) {
         super(context, R.style.alertDialogTheme);
         this.context = context;
         this.bookmarkBean = bookmarkBean;
-        @SuppressLint("InflateParams") View view = LayoutInflater.from(context).inflate(R.layout.dialog_bookmark, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_bookmark, null);
         bindView(view);
         setContentView(view);
         tvChapterName.setText(bookmarkBean.getChapterName());
@@ -82,5 +89,4 @@ public class BookmarkDialog extends BaseDialog {
 
         void openChapter(int chapterIndex, int pageIndex);
     }
-
 }

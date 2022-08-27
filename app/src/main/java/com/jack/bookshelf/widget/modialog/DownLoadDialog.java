@@ -30,10 +30,11 @@ public class DownLoadDialog extends BaseDialog {
         return new DownLoadDialog(context, startIndex, endIndex, all);
     }
 
+    @SuppressLint("InflateParams")
     private DownLoadDialog(Context context, int startIndex, int endIndex, final int all) {
         super(context, R.style.alertDialogTheme);
         this.context = context;
-        @SuppressLint("InflateParams") View view = LayoutInflater.from(context).inflate(R.layout.dialog_download_choice, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_download_choice, null);
         bindView(view, startIndex, endIndex, all);
         setContentView(view);
     }
@@ -129,5 +130,4 @@ public class DownLoadDialog extends BaseDialog {
     public interface Callback {
         void download(int start, int end);
     }
-
 }

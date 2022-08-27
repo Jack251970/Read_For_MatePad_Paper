@@ -72,7 +72,7 @@ fun Activity.setStatusBarColorAuto(
         if (isTransparent) {
             window.statusBarColor = Color.TRANSPARENT
         } else {
-            window.statusBarColor = getCompatColor(R.color.status_bar_bag)
+            window.statusBarColor = getCompatColor(R.color.status_bar_background)
         }
     } else {
         window.statusBarColor = color

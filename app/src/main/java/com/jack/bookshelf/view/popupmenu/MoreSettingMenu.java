@@ -63,7 +63,7 @@ public class MoreSettingMenu extends PopupWindow {
 
     public void show(final View mainView, final View anchorView) {
         int[] windowPos = PopupWindowsUtil.calculatePopWindowPos(anchorView,view);
-        showAtLocation(mainView, Gravity.TOP | Gravity.START, windowPos[0] - 40, windowPos[1] + 10);
+        showAtLocation(mainView, Gravity.TOP | Gravity.START, windowPos[0] - 30, windowPos[1] + 10);
     }
 
     public interface OnItemClickListener {

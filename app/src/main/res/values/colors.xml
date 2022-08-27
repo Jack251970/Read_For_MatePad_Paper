@@ -17,7 +17,10 @@
     <color name="mpp_navigation_bar_line">#dcdcdc</color>
     <!-- Button Color -->
     <color name="mpp_button_unable">#afafaf</color>
-
+    <!-- StatusBar Background-->
+    <color name="status_bar_background">@color/white</color>
+    <!-- Navigation Background-->
+    <color name="navigation_bar_background">@color/white</color>
 
 
 
@@ -57,9 +60,6 @@
 
     <!-- 分格线背景色 -->
     <color name="bg_divider_line">#FFD4D4D4</color>
-    <!--statusBarBackground-->
-    <color name="status_bar_bag">#64000000</color>
-    <color name="navigation_bar_bag">#f4f4f4</color>
 
     <!--"control" means checkbox / radio button-->
 

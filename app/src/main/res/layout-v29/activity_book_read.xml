@@ -207,7 +207,10 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_chapter_name_book_read"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/content_padding"
+                    android:paddingRight="@dimen/content_padding"
+                    android:layout_marginBottom="6dp">
                     <TextView
                         android:id="@+id/tv_chapter_name"
                         android:layout_width="0dp"

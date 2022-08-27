@@ -49,7 +49,7 @@ public class NumberPickerDialog {
     }
 
     public NumberPickerDialog setListener(OnClickListener onClickListener) {
-        builder.setPositiveButton(R.string.ok, (dialogInterface, i) -> {
+        builder.setPositiveButton(R.string.confirm, (dialogInterface, i) -> {
             numberPicker.clearFocus();
             SoftInputUtil.hideIMM(numberPicker);
             if (onClickListener != null) {

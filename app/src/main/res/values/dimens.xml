@@ -49,10 +49,8 @@
         <dimen name="more_setting_menu_width">118dp</dimen>
         <dimen name="more_setting_menu_stroke_width">2px</dimen>
         <dimen name="more_setting_menu_radius">18dp</dimen>
-        <dimen name="more_setting_menu_width_with_iv_and_cb">218dp</dimen>
         <dimen name="more_setting_menu_iv_width_and_height">26dp</dimen>
         <dimen name="more_setting_menu_cb_width_and_height">26dp</dimen>
-
             <!-- Item More Setting Menu -->
             <dimen name="item_more_setting_menu_width">82dp</dimen>
 

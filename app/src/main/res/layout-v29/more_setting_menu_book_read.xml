@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
-    android:layout_width="@dimen/more_setting_menu_width_with_iv_and_cb"
+    android:layout_width="wrap_content"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
     android:paddingLeft="18dp"
@@ -34,6 +34,7 @@
                 android:layout_weight="1"
                 android:layout_marginStart="6dp"
                 android:layout_marginEnd="6dp"
+                android:layout_gravity="center_vertical"
                 android:textColor="@color/md_black_1000"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -62,6 +63,7 @@
                 android:layout_weight="1"
                 android:layout_marginStart="6dp"
                 android:layout_marginEnd="6dp"
+                android:layout_gravity="center_vertical"
                 android:textColor="@color/md_black_1000"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -91,6 +93,7 @@
             android:layout_weight="1"
             android:layout_marginStart="6dp"
             android:layout_marginEnd="6dp"
+            android:layout_gravity="center_vertical"
             android:textColor="@color/md_black_1000"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -100,7 +103,9 @@
             android:layout_width="@dimen/more_setting_menu_cb_width_and_height"
             android:layout_height="@dimen/more_setting_menu_cb_width_and_height"
             android:layout_marginEnd="6dp"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            android:clickable="false"
+            android:focusable="false"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -125,6 +130,7 @@
             android:layout_weight="1"
             android:layout_marginStart="6dp"
             android:layout_marginEnd="6dp"
+            android:layout_gravity="center_vertical"
             android:textColor="@color/md_black_1000"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -153,6 +159,7 @@
             android:layout_weight="1"
             android:layout_marginStart="6dp"
             android:layout_marginEnd="6dp"
+            android:layout_gravity="center_vertical"
             android:textColor="@color/md_black_1000"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -162,7 +169,9 @@
             android:layout_width="@dimen/more_setting_menu_cb_width_and_height"
             android:layout_height="@dimen/more_setting_menu_cb_width_and_height"
             android:layout_marginEnd="6dp"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            android:clickable="false"
+            android:focusable="false"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -187,6 +196,7 @@
             android:layout_weight="1"
             android:layout_marginStart="6dp"
             android:layout_marginEnd="6dp"
+            android:layout_gravity="center_vertical"
             android:textColor="@color/md_black_1000"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -222,6 +232,7 @@
                 android:layout_weight="1"
                 android:layout_marginStart="6dp"
                 android:layout_marginEnd="6dp"
+                android:layout_gravity="center_vertical"
                 android:textColor="@color/md_black_1000"
                 android:textSize="18sp"
                 android:textStyle="bold"

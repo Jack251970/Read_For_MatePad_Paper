@@ -18,15 +18,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 
 import com.jack.basemvplib.AppActivityManager;
 import com.jack.basemvplib.BitIntentDataManager;
@@ -64,6 +61,7 @@ import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.dialog.AlertDialog;
 import com.jack.bookshelf.view.dialog.InputDialog;
 import com.jack.bookshelf.view.dialog.SourceLoginDialog;
+import com.jack.bookshelf.view.popupmenu.MoreSettingMenuReadBook;
 import com.jack.bookshelf.view.popupmenu.SelectMenu;
 import com.jack.bookshelf.view.popupwindow.MoreSettingPop;
 import com.jack.bookshelf.view.popupwindow.ReadAdjustMarginPop;
@@ -102,7 +100,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
     public final int fontDirRequest = 24345;
 
     private ActivityBookReadBinding binding;
-    // private ActionBar actionBar;
     private PageLoader mPageLoader;
     private final Handler mHandler = new Handler();
     private Runnable autoPageRunnable;
@@ -110,11 +107,10 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
     private Runnable upHpbNextPage;
     private int nextPageTime;
     private String noteUrl;
-    private Boolean isAdd = false;  //判断是否已经添加进书架
+    private Boolean isAdd = false;
     private ReadAloudService.Status aloudStatus = ReadAloudService.Status.STOP;
     private int screenTimeOut;
     private final int upHpbInterval = 100;
-    private Menu menu;
     private MoDialogHUD moDialogHUD;
     private ThisBatInfoReceiver batInfoReceiver;
     private final ReadBookControl readBookControl = ReadBookControl.getInstance();
@@ -383,13 +379,9 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
 
     @Override
     protected void bindView() {
-        /*this.setSupportActionBar(binding.toolbar);
-        setupActionBar();*/
         upMenu();
-        mPresenter.initData(this);
         binding.appBar.setPadding(0, ScreenUtils.getStatusBarHeight(), 0, 0);
-        binding.appBar.setBackgroundColor(ThemeStore.primaryColor(this));
-        // 弹窗
+        mPresenter.initData(this);
         moDialogHUD = new MoDialogHUD(this);
         initBottomMenu();
         initReadInterfacePop();
@@ -637,6 +629,61 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
         binding.ivChangeSource.setOnClickListener(v -> changeSource());
         binding.ivRefresh.setOnClickListener(v -> refreshDurChapter());
         binding.ivDownloadOffline.setOnClickListener(v -> download());
+        binding.ivMoreSettingsBookRead.setOnClickListener(v -> {
+            boolean online = (mPresenter.getBookShelf() != null) &&
+                    !mPresenter.getBookShelf().getTag().equals(BookShelfBean.LOCAL_TAG);
+            boolean enableReplaceRule = mPresenter.getBookShelf() != null && mPresenter.getBookShelf().getReplaceEnable();
+            boolean enableLightParagraph = readBookControl != null && readBookControl.getLightNovelParagraph();
+            MoreSettingMenuReadBook.builder(this, online)
+                    .setCheckBox(enableReplaceRule,enableLightParagraph)
+                    .setOnclick(new MoreSettingMenuReadBook.OnItemClickListener() {
+                        @Override
+                        public void forLocalMenuItem(int position) {
+                            switch (position) {
+                                case 0:
+                                    mPresenter.getBookShelf().setReplaceEnable(!mPresenter.getBookShelf().getReplaceEnable());
+                                    refresh(false);
+                                    break;
+                                case 1:
+                                    ReplaceRuleActivity.startThis(ReadBookActivity.this, null);
+                                    break;
+                                case 2:
+                                    Objects.requireNonNull(readBookControl).setLightNovelParagraph(!readBookControl.getLightNovelParagraph());
+                                    recreate();
+                                    break;
+                                case 3:
+                                    if (mPageLoader != null) {
+                                        mPageLoader.updateChapter(binding,mPageLoader);
+                                    }
+                                    break;
+                            }
+                        }
+
+                        @Override
+                        public void forOnlineMenuItem(int position) {
+                            switch (position) {
+                                case 0:
+                                    mPresenter.disableDurBookSource();
+                                    break;
+                                case 1:
+                                    if (mPresenter.getBookSource() != null) {
+                                        SourceEditActivity.startThis(this, mPresenter.getBookSource());
+                                    }
+                                    break;
+                                case 2:
+                                    try {
+                                        String url = url_CS.toString();
+                                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                                        intent.setData(Uri.parse(url));
+                                        startActivity(intent);
+                                    } catch (Exception e) {
+                                        toast(R.string.can_not_open);
+                                    }
+                                    break;
+                            }
+                        }
+                    }).show(binding.getRoot(),binding.ivMoreSettingsBookRead);
+        });
         binding.login.setOnClickListener(v -> login());
         binding.pay.setOnClickListener(v -> pay());
         binding.cursorLeft.setOnTouchListener(this);
@@ -1019,108 +1066,9 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
         });
     }
 
-
     /**
-     * 设置ToolBar
+     * 登陆账号
      */
-    /*private void setupActionBar() {
-        actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-    }*/
-
-    /**
-     * 添加菜单
-     */
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_book_read_activity, menu);
-        return super.onCreateOptionsMenu(menu);
-    }*/
-
-    /*@Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        this.menu = menu;
-        upMenu();
-        return super.onPrepareOptionsMenu(menu);
-    }*/
-
-
-    /**
-     * 菜单事件
-     */
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.enable_replace:
-                mPresenter.getBookShelf().setReplaceEnable(!mPresenter.getBookShelf().getReplaceEnable());
-                refresh(false);
-                break;
-            case R.id.light_novel_paragraph:
-                readBookControl.setLightNovelParagraph(!readBookControl.getLightNovelParagraph());
-                recreate();
-                break;
-            case R.id.action_change_source:
-                changeSource();
-                break;
-            case R.id.action_refresh:
-                refreshDurChapter();
-                break;
-            case R.id.action_download:
-                download();
-                break;
-            case R.id.add_bookmark:
-                showBookmark(null);
-                break;
-            case R.id.action_copy_text:
-                popMenuOut();
-                if (mPageLoader != null) {
-                    moDialogHUD.showText(mPageLoader.getAllContent());
-                }
-                break;
-            case R.id.disable_book_source:
-                mPresenter.disableDurBookSource();
-                break;
-            case R.id.edit_book_source:
-                // 编辑当前所选书源
-                if (mPresenter.getBookSource() != null) {
-                    SourceEditActivity.startThis(this, mPresenter.getBookSource());
-                }
-                break;
-            case R.id.edit_replace_rule:
-                ReplaceRuleActivity.startThis(this, null);
-                break;
-            case R.id.action_open_browser:
-                // 打开URL
-                try {
-                    String url = url_CS.toString();
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(url));
-                    startActivity(intent);
-                } catch (Exception e) {
-                    toast(R.string.can_not_open);
-                }
-                break;
-            case R.id.action_set_charset:
-                setCharset();
-                break;
-            case R.id.update_chapter_list:
-                if (mPageLoader != null) {
-                    mPageLoader.updateChapter(binding,mPageLoader);
-                }
-                break;
-            case R.id.action_set_regex:
-                // 对于本地导入的txt小说文件设置目录正则（目录编号方式）
-                setTextChapterRegex();
-                break;
-            default:
-                finish();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
-
     private void login() {
         BookSourceBean source = mPresenter.getBookSource();
         if (TextUtils.isEmpty(source.getLoginUi())) {
@@ -1133,6 +1081,9 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
         }
     }
 
+    /**
+     * 购买章节
+     */
     private void pay() {
         BookShelfBean book = mPresenter.getBookShelf();
         BookChapterBean chapter = mPresenter.getDurChapter();
@@ -1665,7 +1616,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
      */
     @Override
     public void upMenu() {
-        /*if (menu == null) return;*/
         boolean onLine = (mPresenter.getBookShelf() != null) &&
                 !mPresenter.getBookShelf().getTag().equals(BookShelfBean.LOCAL_TAG);
         boolean isTxt = (mPresenter.getBookShelf() != null)
@@ -1682,36 +1632,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
         } else {
             binding.appBarTxt.setVisibility(View.GONE);
         }
-        /*for (int i = 0; i < menu.size(); i++) {
-            // 设置基本
-            switch (menu.getItem(i).getGroupId()) {
-                case R.id.menuOnline:
-                case R.id.menuOnline1:
-                    menu.getItem(i).setVisible(onLine);
-                    menu.getItem(i).setEnabled(onLine);
-                    break;
-                case R.id.menuLocal:
-                    menu.getItem(i).setVisible(!onLine);
-                    menu.getItem(i).setEnabled(!onLine);
-                    break;
-                case R.id.menu_text:
-                    boolean isTxt = mPresenter.getBookShelf() != null
-                            && mPresenter.getBookShelf().getNoteUrl().toLowerCase().endsWith(".txt");
-                    menu.getItem(i).setVisible(isTxt);
-                    menu.getItem(i).setEnabled(isTxt);
-                    break;
-            }
-            // 设置选择按钮
-            switch (menu.getItem(i).getItemId()) {
-                case R.id.enable_replace:
-                    menu.getItem(i).setChecked(mPresenter.getBookShelf() != null
-                            && mPresenter.getBookShelf().getReplaceEnable());
-                    break;
-                case R.id.light_novel_paragraph:
-                    menu.getItem(i).setChecked(readBookControl != null
-                            && readBookControl.getLightNovelParagraph());
-                    break;
-            }*/
     }
 
     /**

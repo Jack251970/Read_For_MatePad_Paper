@@ -1,88 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ll_content"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/dialog_width"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
     android:orientation="vertical"
     android:padding="10dp">
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
         android:text="@string/bookmark"
-        android:textSize="20sp" />
-
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
     <TextView
         android:id="@+id/tvChapterName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="@string/bookmark" />
-
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        tools:text="第一章"/>
     <com.jack.bookshelf.widget.views.ATETextInputLayout
         android:id="@+id/til_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/content"
         android:padding="10dp">
-
         <com.jack.bookshelf.widget.views.ATEEditText
             android:id="@+id/tie_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:maxLines="3" />
     </com.jack.bookshelf.widget.views.ATETextInputLayout>
-
+    <!-- 按钮 -->
     <TextView
         android:id="@+id/tv_ok"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/selector_fillet_btn_bg"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
         android:padding="5dp"
-        android:text="@string/ok"
-        android:textColor="@color/tv_text_default" />
-
+        android:text="@string/confirm"
+        android:textSize="16sp"
+        android:textColor="@color/tv_text_default"
+        android:textStyle="bold"/>
     <LinearLayout
         android:id="@+id/llEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        tools:visibility="gone">
         <TextView
             android:id="@+id/tv_save"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:background="@drawable/selector_fillet_btn_bg"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
-            android:padding="5dp"
-            android:text="@string/action_save"
-            android:textColor="@color/tv_text_default" />
-
+            android:text="@string/save"
+            android:textSize="16sp"
+            style="@style/PaperTextButton"/>
         <TextView
             android:id="@+id/tv_del"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:background="@drawable/selector_fillet_btn_bg"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
-            android:padding="5dp"
-            android:text="@string/action_del"
-            android:textColor="@color/tv_text_default" />
-
+            android:text="@string/delete"
+            android:textSize="16sp"
+            style="@style/PaperTextButton"/>
     </LinearLayout>
-
 </LinearLayout>
