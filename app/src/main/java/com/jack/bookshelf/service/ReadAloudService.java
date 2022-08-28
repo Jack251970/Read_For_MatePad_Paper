@@ -575,9 +575,9 @@ public class ReadAloudService extends Service implements Player.Listener {
                 .setContentText(text)
                 .setContentIntent(getReadBookActivityPendingIntent());
         if (pause) {
-            builder.addAction(R.drawable.ic_play_24dp, getString(R.string.resume), getThisServicePendingIntent(ActionResumeService));
+            builder.addAction(R.drawable.ic_play_white, getString(R.string.resume), getThisServicePendingIntent(ActionResumeService));
         } else {
-            builder.addAction(R.drawable.ic_pause_24dp, getString(R.string.pause), getThisServicePendingIntent(ActionPauseService));
+            builder.addAction(R.drawable.ic_pause_white, getString(R.string.pause), getThisServicePendingIntent(ActionPauseService));
         }
         builder.addAction(R.drawable.ic_stop_white, getString(R.string.stop), getThisServicePendingIntent(ActionDoneService));
         builder.addAction(R.drawable.ic_time_add_24dp, getString(R.string.set_timer), getThisServicePendingIntent(ActionSetTimer));

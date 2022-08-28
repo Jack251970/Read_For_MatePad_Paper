@@ -56,7 +56,7 @@
                     android:src="@drawable/ic_remove"
                     android:tint="@color/tv_text_default" />
 
-                <com.jack.bookshelf.widget.views.ATESeekBar
+                <com.jack.bookshelf.widget.views.PaperSeekBar
                     android:id="@+id/hpb_mr_rm"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/adjust_margin_barH"
@@ -108,7 +108,7 @@
                     android:src="@drawable/ic_remove"
                     android:tint="@color/tv_text_default" />
 
-                <com.jack.bookshelf.widget.views.ATESeekBar
+                <com.jack.bookshelf.widget.views.PaperSeekBar
                     android:id="@+id/hpb_mr_dm"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/adjust_margin_barH"
@@ -160,7 +160,7 @@
                     android:src="@drawable/ic_remove"
                     android:tint="@color/tv_text_default" />
 
-                <com.jack.bookshelf.widget.views.ATESeekBar
+                <com.jack.bookshelf.widget.views.PaperSeekBar
                     android:id="@+id/hpb_mr_f"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/adjust_margin_barH"
@@ -212,7 +212,7 @@
                     android:src="@drawable/ic_remove"
                     android:tint="@color/tv_text_default" />
 
-                <com.jack.bookshelf.widget.views.ATESeekBar
+                <com.jack.bookshelf.widget.views.PaperSeekBar
                     android:id="@+id/hpb_mr_z_t"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/adjust_margin_barH"
@@ -264,7 +264,7 @@
                     android:src="@drawable/ic_remove"
                     android:tint="@color/tv_text_default" />
 
-                <com.jack.bookshelf.widget.views.ATESeekBar
+                <com.jack.bookshelf.widget.views.PaperSeekBar
                     android:id="@+id/hpb_mr_z_l"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/adjust_margin_barH"
@@ -316,7 +316,7 @@
                     android:src="@drawable/ic_remove"
                     android:tint="@color/tv_text_default" />
 
-                <com.jack.bookshelf.widget.views.ATESeekBar
+                <com.jack.bookshelf.widget.views.PaperSeekBar
                     android:id="@+id/hpb_mr_z_r"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/adjust_margin_barH"
@@ -368,7 +368,7 @@
                     android:src="@drawable/ic_remove"
                     android:tint="@color/tv_text_default" />
 
-                <com.jack.bookshelf.widget.views.ATESeekBar
+                <com.jack.bookshelf.widget.views.PaperSeekBar
                     android:id="@+id/hpb_mr_z_b"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/adjust_margin_barH"
@@ -420,7 +420,7 @@
                     android:src="@drawable/ic_remove"
                     android:tint="@color/tv_text_default" />
 
-                <com.jack.bookshelf.widget.views.ATESeekBar
+                <com.jack.bookshelf.widget.views.PaperSeekBar
                     android:id="@+id/hpb_mr_t_t"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/adjust_margin_barH"
@@ -472,7 +472,7 @@
                     android:src="@drawable/ic_remove"
                     android:tint="@color/tv_text_default" />
 
-                <com.jack.bookshelf.widget.views.ATESeekBar
+                <com.jack.bookshelf.widget.views.PaperSeekBar
                     android:id="@+id/hpb_mr_t_l"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/adjust_margin_barH"
@@ -524,7 +524,7 @@
                     android:src="@drawable/ic_remove"
                     android:tint="@color/tv_text_default" />
 
-                <com.jack.bookshelf.widget.views.ATESeekBar
+                <com.jack.bookshelf.widget.views.PaperSeekBar
                     android:id="@+id/hpb_mr_t_r"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/adjust_margin_barH"
@@ -576,7 +576,7 @@
                     android:src="@drawable/ic_remove"
                     android:tint="@color/tv_text_default" />
 
-                <com.jack.bookshelf.widget.views.ATESeekBar
+                <com.jack.bookshelf.widget.views.PaperSeekBar
                     android:id="@+id/hpb_mr_t_b"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/adjust_margin_barH"

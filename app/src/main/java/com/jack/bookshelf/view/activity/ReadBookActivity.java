@@ -1446,21 +1446,21 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
                 }
                 break;
             case PLAY:
-                binding.readMenuBottom.setFabReadAloudImage(R.drawable.ic_pause_outline_24dp);
+                binding.readMenuBottom.setFabReadAloudImage(R.drawable.ic_pause_black);
                 binding.readMenuBottom.setReadAloudTimer(true);
-                binding.mediaPlayerPop.setFabReadAloudImage(R.drawable.ic_pause_24dp);
+                binding.mediaPlayerPop.setFabReadAloudImage(R.drawable.ic_pause_white);
                 binding.mediaPlayerPop.setSeekBarEnable(true);
                 break;
             case PAUSE:
-                binding.readMenuBottom.setFabReadAloudImage(R.drawable.ic_play_outline_24dp);
+                binding.readMenuBottom.setFabReadAloudImage(R.drawable.ic_play_black);
                 binding.readMenuBottom.setReadAloudTimer(true);
-                binding.mediaPlayerPop.setFabReadAloudImage(R.drawable.ic_play_24dp);
+                binding.mediaPlayerPop.setFabReadAloudImage(R.drawable.ic_play_white);
                 binding.mediaPlayerPop.setSeekBarEnable(false);
                 break;
             default:
                 binding.readMenuBottom.setFabReadAloudImage(R.drawable.ic_read_aloud);
                 binding.readMenuBottom.setReadAloudTimer(false);
-                binding.mediaPlayerPop.setFabReadAloudImage(R.drawable.ic_play_24dp);
+                binding.mediaPlayerPop.setFabReadAloudImage(R.drawable.ic_play_white);
                 binding.pageView.drawPage(0);
                 binding.pageView.invalidate();
                 binding.pageView.drawPage(-1);

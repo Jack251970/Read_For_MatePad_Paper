@@ -11,13 +11,15 @@ import com.jack.bookshelf.databinding.PopReadMenuBinding;
 import com.jack.bookshelf.service.ReadAloudService;
 
 /**
- * 阅读界面->菜单界面（底部）
+ * Read Bottom Menu
+ * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
 public class ReadBottomMenu extends FrameLayout {
 
-    private final PopReadMenuBinding binding = PopReadMenuBinding.inflate(LayoutInflater.from(getContext()), this, true);
+    private final PopReadMenuBinding binding = PopReadMenuBinding
+            .inflate(LayoutInflater.from(getContext()), this, true);
     private Callback callback;
 
     public ReadBottomMenu(Context context) {
@@ -47,31 +49,23 @@ public class ReadBottomMenu extends FrameLayout {
     private void bindEvent() {
         binding.llReadAloudTimer.setOnClickListener(view -> callback.dismiss());
         binding.llFloatingButton.setOnClickListener(view -> callback.dismiss());
-
         // 阅读进度
         binding.hpbReadProgress.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-
-            }
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {}
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 callback.skipToPage(seekBar.getProgress());
             }
         });
-
         // 朗读定时
         binding.fabReadAloudTimer.setOnClickListener(view -> ReadAloudService.setTimer(getContext(), 10));
-
         // 朗读
         binding.fabReadAloud.setOnClickListener(view -> callback.onMediaButton());
-
         // 长按停止朗读
         binding.fabReadAloud.setOnLongClickListener(view -> {
             if (ReadAloudService.running) {
@@ -82,32 +76,28 @@ public class ReadBottomMenu extends FrameLayout {
             }
             return true;
         });
-
         // 自动翻页
         binding.fabAutoPage.setOnClickListener(view -> callback.autoPage());
         binding.fabAutoPage.setOnLongClickListener(view -> {
             callback.toast(R.string.auto_next_page);
             return true;
         });
-
         // 上一章
         binding.tvPre.setOnClickListener(view -> callback.skipPreChapter());
-
         // 下一章
         binding.tvNext.setOnClickListener(view -> callback.skipNextChapter());
-
-        // 目录
-        binding.llCatalog.setOnClickListener(view -> callback.openChapterList());
-
-        // 界面
-        binding.llFont.setOnClickListener(view -> callback.openReadInterface());
-
-        // 设置
-        binding.llSetting.setOnClickListener(view -> callback.openMoreSetting());
-
+        // 目录书签
+        binding.ivChapterList.setOnClickListener(view -> callback.openChapterList());
+        // 界面设置
+        binding.ivInterfaceSetting.setOnClickListener(view -> callback.openReadInterface());
+        // 阅读设置
+        binding.ivReadSetting.setOnClickListener(view -> callback.openMoreSetting());
         binding.tvReadAloudTimer.setOnClickListener(null);
     }
 
+    /**
+     * 设置播放状态图标
+     */
     public void setFabReadAloudImage(int id) {
         binding.fabReadAloud.setImageResource(id);
     }
@@ -171,5 +161,4 @@ public class ReadBottomMenu extends FrameLayout {
 
         void dismiss();
     }
-
 }

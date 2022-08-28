@@ -41,7 +41,6 @@
         android:theme="@style/CAppTheme"
         tools:ignore="AllowBackup,UnusedAttribute"
         tools:replace="android:theme">
-
         <activity
             android:name=".view.activity.WelcomeActivity"
             android:exported="true">
@@ -94,7 +93,7 @@
             android:alwaysRetainTaskState="true"
             android:configChanges="locale|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".view.activity.SearchBookActivity"
             android:configChanges="locale|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
@@ -104,7 +103,7 @@
             android:name=".view.activity.BookDetailActivity"
             android:configChanges="locale|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
             android:launchMode="singleTask"
-            android:screenOrientation="behind"/>
+            android:screenOrientation="behind" />
         <activity
             android:name=".view.activity.ImportBookActivity"
             android:configChanges="locale|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"

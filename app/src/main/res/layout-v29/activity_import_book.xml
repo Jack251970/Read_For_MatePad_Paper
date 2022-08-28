@@ -105,8 +105,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:gravity="center_vertical"
-        android:layout_marginLeft="110dp"
-        android:layout_marginRight="110dp"
+        android:layout_marginLeft="@dimen/content_margin_left_and_right"
+        android:layout_marginRight="@dimen/content_margin_left_and_right"
         android:orientation="horizontal">
         <LinearLayout
             android:id="@+id/file_system_btn_add_book"
@@ -164,13 +164,12 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
     <com.jack.bookshelf.widget.viewpager.ViewPager
         android:id="@+id/tab_vp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/rl_bottom"
         android:layout_below="@id/anchor_for_vp"
-        android:layout_marginLeft="110dp"
-        android:layout_marginRight="110dp"/>
+        android:layout_marginLeft="@dimen/content_margin_left_and_right"
+        android:layout_marginRight="@dimen/content_margin_left_and_right" />
 </RelativeLayout>

@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 tools:ignore="RtlSymmetry" />
 
-            <com.jack.bookshelf.widget.views.ATESeekBar
+            <com.jack.bookshelf.widget.views.PaperSeekBar
                 android:id="@+id/seek_bar"
                 android:layout_width="0dp"
                 android:layout_height="25dp"
@@ -83,7 +83,7 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:contentDescription="@string/set_timer"
-                android:src="@drawable/ic_timer_black_24dp" />
+                android:src="@drawable/ic_timer_black" />
 
             <View
                 android:layout_width="0dp"
@@ -103,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:contentDescription="@string/read_aloud"
-                android:src="@drawable/ic_play_24dp"
+                android:src="@drawable/ic_play_white"
                 android:tint="@color/tv_text_default"
                 app:backgroundTint="@color/background_menu"
                 app:elevation="2dp"

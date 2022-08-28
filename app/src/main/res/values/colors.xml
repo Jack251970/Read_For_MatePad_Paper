@@ -4,7 +4,7 @@
     <color name="transparent">#00000000</color>
     <color name="black">@color/md_black_1000</color>
     <color name="white">@color/md_white_1000</color>
-
+    <color name="paper_gray">#afafaf</color>
     <!-- Matepad Paper Color -->
     <!-- Base color-->
     <color name="text_light">#cccccc</color>

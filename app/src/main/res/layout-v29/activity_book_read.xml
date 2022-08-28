@@ -35,16 +35,14 @@
         android:layout_height="wrap_content"
         android:contentDescription="@null"
         android:src="@drawable/ic_cursor_left"
-        android:visibility="invisible"
-        tools:visibility="visible"/>
+        android:visibility="invisible"/>
     <ImageView
         android:id="@+id/cursor_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@null"
         android:src="@drawable/ic_cursor_right"
-        android:visibility="invisible"
-        tools:visibility="visible"/>
+        android:visibility="invisible"/>
 
     <com.jack.bookshelf.view.popupwindow.ReadLongPressPop
         android:id="@+id/readLongPress"
@@ -264,9 +262,10 @@
             android:id="@+id/read_menu_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/content_margin_left_and_right"
+            android:layout_marginEnd="@dimen/content_margin_left_and_right"
             android:layout_gravity="bottom"
-            android:visibility="invisible"
-            tools:visibility="visible"/>
+            android:visibility="invisible"/>
         <com.jack.bookshelf.view.popupwindow.ReadInterfacePop
             android:id="@+id/readInterfacePop"
             android:layout_width="match_parent"

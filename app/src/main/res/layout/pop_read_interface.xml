@@ -67,7 +67,7 @@
                         app:duration="150" />
                 </LinearLayout>
 
-                <com.jack.bookshelf.widget.views.ATESeekBar
+                <com.jack.bookshelf.widget.views.PaperSeekBar
                     android:id="@+id/hpb_light"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"

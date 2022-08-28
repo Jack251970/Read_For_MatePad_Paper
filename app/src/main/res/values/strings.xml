@@ -316,6 +316,15 @@
         <string name="str_share">字符串分享</string>
         <string name="rule_summary">规则说明</string>
 
+    <!-- Pop Menu -->
+        <!-- Pop Read Menu -->
+        <string name="aloud_stop">朗读停止</string>
+        <string name="read_aloud">朗读</string>
+        <string name="auto_next_page">自动翻页</string>
+        <string name="auto_next_page_stop">停止自动翻页</string>
+        <string name="previous_chapter">上一章</string>
+        <string name="next_chapter">下一章</string>
+
     <!-- Shortcuts -->
     <string name="enter_bookshelf">进入书架</string>
     <string name="last_read">最后阅读</string>
@@ -389,9 +398,6 @@
     <string name="all_chapter_num">共%d章</string>
     <string name="interface_setting">界面</string>
     <string name="brightness">亮度</string>
-    <string name="next_chapter">下一章</string>
-    <string name="previous_chapter">上一章</string>
-    <string name="read_aloud">朗读</string>
     <string name="read_aloud_t">正在朗读</string>
     <string name="read_aloud_s">点击打开阅读界面</string>
     <string name="text_return">返回</string>
@@ -413,9 +419,7 @@
     <string name="add_url">添加网址</string>
     <string name="background">背景</string>
     <string name="analyze_error">站点暂时不支持解析，请反馈</string>
-    <string name="aloud_stop">朗读停止</string>
     <string name="book_file_selector">添加书籍</string>
-    <string name="scan_book_source">扫描</string>
     <string name="source_rule_s">书源规则说明</string>
     <string name="scan_image">扫描本地图片</string>
     <string name="share">分享</string>
@@ -460,7 +464,6 @@
     <string name="select_text">长按选择文本</string>
     <string name="showLine">显示分隔线</string>
     <string name="darkStatusIcon">设置状态栏图标颜色（开启为深色，关闭为浅色）</string>
-
     <string name="copy_text">拷贝内容</string>
     <string name="content_sl">这是一段测试文字：\n\u3000\u3000只是让你看看你设置的阅读样式的效果</string>
     <string name="text_bg_style">文字颜色和背景(长按自定义)</string>
@@ -514,11 +517,8 @@
     <string name="paragraph_size">段距</string>
     <string name="edit">编辑</string>
     <string name="to_top">置顶</string>
-    <string name="auto_expand_find">自动展开发现</string>
     <string name="default_expand_first">默认展开第一组发现</string>
     <string name="read_aloud_speed">朗读语速</string>
-    <string name="auto_next_page">自动翻页</string>
-    <string name="auto_next_page_stop">停止自动翻页</string>
     <string name="auto_next_page_speed">自动翻页时每分钟阅读字数(CPM)</string>
     <string name="menu_action_group">分组</string>
     <string name="download_path">书籍缓存路径</string>

@@ -8,6 +8,7 @@
         <dimen name="action_bar_title_text_size">22sp</dimen>
         <!-- Content Padding -->
         <dimen name="content_padding">10dp</dimen>
+        <dimen name="content_margin_left_and_right">110dp</dimen>
         <!-- Button -->
         <dimen name="button_width">280dp</dimen>
         <dimen name="button_height">42dp</dimen>
@@ -17,6 +18,8 @@
             <dimen name="text_view_button_radius">6px</dimen>
             <dimen name="text_view_button_stroke_width">3px</dimen>
             <dimen name="text_view_button_padding">12px</dimen>
+            <!-- Float Image Button -->
+            <dimen name="float_image_button_padding">8dp</dimen>
         <!-- ViewPager -->
         <dimen name="viewpager_radius">16dp</dimen>
         <dimen name="viewpager_stroke_width">1dp</dimen>
