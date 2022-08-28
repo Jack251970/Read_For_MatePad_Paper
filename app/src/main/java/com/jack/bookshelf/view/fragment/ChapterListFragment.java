@@ -28,7 +28,7 @@ import com.jack.bookshelf.view.adapter.ChapterListAdapter;
 import java.util.List;
 
 /**
- * Chapter List Item Fragment
+ * Chapter List Fragment
  * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */

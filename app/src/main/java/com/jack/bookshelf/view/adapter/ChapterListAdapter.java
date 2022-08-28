@@ -100,7 +100,7 @@ public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.
     public void onBindViewHolder(@NonNull ThisViewHolder holder, int position, @NonNull List<Object> payloads) {
         int realPosition = holder.getLayoutPosition();
         if (realPosition == 0) {
-            holder.lineBottom.setVisibility(View.VISIBLE);
+            holder.lineTop.setVisibility(View.VISIBLE);
         } else if (realPosition == getItemCount() - 1) {
             holder.lineBottom.setVisibility(View.GONE);
         } else {

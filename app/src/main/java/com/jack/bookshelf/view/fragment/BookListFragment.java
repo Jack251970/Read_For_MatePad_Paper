@@ -50,8 +50,7 @@ import io.reactivex.SingleOnSubscribe;
  * Edited by Jack251970
  */
 
-public class BookListFragment
-        extends MBaseFragment<BookListContract.Presenter>
+public class BookListFragment extends MBaseFragment<BookListContract.Presenter>
         implements BookListContract.View {
 
     private CallbackValue callbackValue;
