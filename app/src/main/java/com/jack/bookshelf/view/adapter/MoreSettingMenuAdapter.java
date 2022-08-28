@@ -20,6 +20,7 @@ import java.util.List;
 
 @SuppressLint("DefaultLocale")
 public class MoreSettingMenuAdapter extends BaseAdapter{
+
     private final Context mContext;
     private final List<String> menuList;
 

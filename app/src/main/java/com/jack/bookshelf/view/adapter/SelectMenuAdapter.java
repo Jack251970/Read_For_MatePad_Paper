@@ -21,6 +21,7 @@ import java.util.List;
 
 @SuppressLint("DefaultLocale")
 public class SelectMenuAdapter extends BaseAdapter{
+
     private final Context mContext;
     private final List<String> menuList;
     private final int lastChoose;
@@ -63,6 +64,19 @@ public class SelectMenuAdapter extends BaseAdapter{
         } else if (position == lastChoose) {
             holder.iv_indicator_select_menu_item.setImageResource(R.drawable.ic_select_menu_selected);
         }
+        /* Use ViewHolder
+        ViewHolder holder;
+        if (convertView == null) {
+            holder = new ViewHolder();
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_select_menu, null);
+            holder.tv_name_select_menu_item = convertView.findViewById(R.id.mpp_tv_name_select_menu_item);
+            holder.iv_indicator_select_menu_item = convertView.findViewById(R.id.mpp_iv_indicator_select_menu_item);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+        String menuName = menuList.get(position);
+        holder.tv_name_select_menu_item.setText(menuName);*/
         return convertView;
     }
 

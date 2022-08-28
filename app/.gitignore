@@ -1,2 +1,4 @@
 /build
 /src/main/java/com/jack/bookshelf/dao/
+/app/release/
+/app/debug/

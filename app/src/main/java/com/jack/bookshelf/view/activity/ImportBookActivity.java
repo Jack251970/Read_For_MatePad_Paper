@@ -78,6 +78,11 @@ public class ImportBookActivity extends BaseViewPagerActivity<ImportBookContract
     }
 
     @Override
+    protected List<String> createTabTitles() {
+        return null;
+    }
+
+    @Override
     protected void bindEvent() {
         // 返回事件
         binding.ivBack.setOnClickListener(v -> finish());

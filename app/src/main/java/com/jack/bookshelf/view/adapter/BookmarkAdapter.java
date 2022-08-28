@@ -1,6 +1,6 @@
-//Copyright (c) 2017. 章钦豪. All rights reserved.
 package com.jack.bookshelf.view.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +24,13 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * Bookmark Item Adapter
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
+@SuppressLint("NotifyDataSetChanged")
 public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ThisViewHolder> {
 
     private final BookShelfBean bookShelfBean;
@@ -60,7 +67,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ThisVi
                 emitter.onComplete();
             }).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new MyObserver<Boolean>() {
+                    .subscribe(new MyObserver<>() {
                         @Override
                         public void onNext(Boolean aBoolean) {
                             isSearch = true;
@@ -68,9 +75,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ThisVi
                         }
 
                         @Override
-                        public void onError(Throwable e) {
-
-                        }
+                        public void onError(Throwable e) {}
                     });
         }
     }
@@ -82,30 +87,26 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ThisVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ThisViewHolder holder, final int position) {
-
-    }
+    public void onBindViewHolder(@NonNull ThisViewHolder holder, final int position) {}
 
     @Override
     public void onBindViewHolder(@NonNull ThisViewHolder holder, int position, @NonNull List<Object> payloads) {
         int realPosition = holder.getLayoutPosition();
-        if (realPosition == getItemCount() - 1) {
-            holder.line.setVisibility(View.GONE);
+        if (realPosition == 0) {
+            holder.lineTop.setVisibility(View.VISIBLE);
+        } else if (realPosition == getItemCount() - 1) {
+            holder.lineBottom.setVisibility(View.GONE);
         } else {
-            holder.line.setVisibility(View.VISIBLE);
+            holder.lineBottom.setVisibility(View.VISIBLE);
         }
 
         BookmarkBean bookmarkBean = isSearch ? bookmarkBeans.get(realPosition) : allBookmark.get(realPosition);
-        holder.tvName.setText(StringUtils.isTrimEmpty(bookmarkBean.getContent()) ? bookmarkBean.getChapterName() : bookmarkBean.getContent());
-        holder.llName.setOnClickListener(v -> {
-            if (itemClickListener != null) {
-                itemClickListener.itemClick(bookmarkBean.getChapterIndex(), bookmarkBean.getPageIndex());
-            }
-        });
+        holder.tvName.setText(StringUtils.isTrimEmpty(bookmarkBean.getContent()) ?
+                bookmarkBean.getChapterName() : bookmarkBean.getContent());
+        holder.llName.setOnClickListener(v ->
+                itemClickListener.itemClick(bookmarkBean.getChapterIndex(), bookmarkBean.getPageIndex()));
         holder.llName.setOnLongClickListener(view -> {
-            if (itemClickListener != null) {
-                itemClickListener.itemLongClick(bookmarkBean);
-            }
+            itemClickListener.itemLongClick(bookmarkBean);
             return true;
         });
     }
@@ -124,13 +125,15 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ThisVi
 
     static class ThisViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvName;
-        private final View line;
+        private final View lineTop;
+        private final View lineBottom;
         private final View llName;
 
         ThisViewHolder(View itemView) {
             super(itemView);
+            lineTop = itemView.findViewById(R.id.v_line_top);
             tvName = itemView.findViewById(R.id.tv_name);
-            line = itemView.findViewById(R.id.v_line);
+            lineBottom = itemView.findViewById(R.id.v_line_bottom);
             llName = itemView.findViewById(R.id.ll_name);
         }
     }

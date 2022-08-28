@@ -2,17 +2,18 @@
 <resources>
     <!-- Android Base Color -->
     <color name="transparent">#00000000</color>
-    <color name="black">@color/md_black_1000</color>
-    <color name="white">@color/md_white_1000</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
     <color name="paper_gray">#afafaf</color>
     <!-- Matepad Paper Color -->
     <!-- Base color-->
     <color name="text_light">#cccccc</color>
     <!-- Main Color -->
-    <color name="colorPrimary">@color/md_white_1000</color>
-    <color name="background">@color/md_white_1000</color>
-    <color name="colorAccent">@color/md_black_1000</color>
-    <color name="tv_text_default">@color/md_black_1000</color>
+    <color name="colorPrimary">@color/white</color>
+    <color name="background">@color/white</color>
+    <color name="colorAccent">@color/black</color>
+    <color name="tv_text_default">@color/black</color>
+    <color name="tv_text_secondary">#b2000000</color>
     <!-- NavigationBar-->
     <color name="mpp_navigation_bar_line">#dcdcdc</color>
     <!-- Button Color -->
@@ -46,7 +47,6 @@
 
     <color name="tv_btn_normal_black">#737373</color>
     <color name="tv_btn_press_black">#adadad</color>
-    <color name="tv_text_secondary">#b2000000</color>
     <color name="tv_text_summary">#8a000000</color>
     <color name="tv_text_book_detail">#dfdfdf</color>
     <color name="menu_color_default">#383838</color>

@@ -13,11 +13,19 @@ import com.jack.bookshelf.MApplication;
 
 public class SoftInputUtil {
 
-    //隐藏输入法
+    // 隐藏输入法
     public static void hideIMM(View view) {
         InputMethodManager imm = (InputMethodManager) MApplication.getInstance().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null && view != null) {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    // 显示输入法
+    public static void openIMM(View view) {
+        InputMethodManager imm = (InputMethodManager) MApplication.getInstance().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null && view != null) {
+            imm.showSoftInput(view,0);
         }
     }
 

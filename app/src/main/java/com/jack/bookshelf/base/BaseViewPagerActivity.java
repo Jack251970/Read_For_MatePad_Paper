@@ -18,14 +18,19 @@ import java.util.List;
  */
 
 public abstract class BaseViewPagerActivity<T extends IPresenter> extends MBaseActivity<T> {
-
+    // View
     protected ViewPager mVp;
+    // Adapter
     protected TabFragmentPageAdapter tabFragmentPageAdapter;
+    // Params
     protected List<Fragment> mFragmentList;
+    private List<String> mTitleList;
     // private List<ImageView> mIndicatorList;
     // private int lastChoose;
 
+    // Abstract
     protected abstract List<Fragment> createTabFragments();
+    protected abstract List<String> createTabTitles();
     // private abstract List<ImageView> createTabIndicators();
 
     @Override
@@ -37,6 +42,7 @@ public abstract class BaseViewPagerActivity<T extends IPresenter> extends MBaseA
 
     private void setUpViewPager() {
         mFragmentList = createTabFragments();
+        mTitleList = createTabTitles();
         // mIndicatorList = createTabIndicators();
         tabFragmentPageAdapter = new TabFragmentPageAdapter(getSupportFragmentManager());
         mVp.setAdapter(tabFragmentPageAdapter);
@@ -45,12 +51,14 @@ public abstract class BaseViewPagerActivity<T extends IPresenter> extends MBaseA
     }
 
     public void setCurrentItem(int item) {
-        if (mVp.getCurrentItem() != item) {
+        if (getCurrentItem() != item) {
             mVp.setCurrentItem(item);
         }
         //
         //
     }
+
+    public int getCurrentItem() { return mVp.getCurrentItem(); }
 
     public class TabFragmentPageAdapter extends FragmentPagerAdapter {
 
@@ -67,6 +75,11 @@ public abstract class BaseViewPagerActivity<T extends IPresenter> extends MBaseA
         @Override
         public int getCount() {
             return mFragmentList.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mTitleList.get(position);
         }
     }
 }

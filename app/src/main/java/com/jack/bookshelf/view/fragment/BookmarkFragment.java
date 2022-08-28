@@ -1,5 +1,6 @@
 package com.jack.bookshelf.view.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,12 @@ import java.util.List;
 import io.reactivex.Single;
 import io.reactivex.SingleOnSubscribe;
 
+/**
+ * Bookmark Fragment
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
 public class BookmarkFragment extends MBaseFragment<IPresenter> {
 
     private FragmentBookmarkListBinding binding;
@@ -56,9 +63,6 @@ public class BookmarkFragment extends MBaseFragment<IPresenter> {
         RxBus.get().register(this);
     }
 
-    /**
-     * 数据初始化
-     */
     @Override
     protected void initData() {
         super.initData();
@@ -67,9 +71,6 @@ public class BookmarkFragment extends MBaseFragment<IPresenter> {
         }
     }
 
-    /**
-     * 控件绑定
-     */
     @Override
     protected void bindView() {
         super.bindView();
@@ -108,7 +109,7 @@ public class BookmarkFragment extends MBaseFragment<IPresenter> {
                 emitter.onSuccess(false);
             }
         }).compose(RxUtils::toSimpleSingle)
-                .subscribe(new MySingleObserver<Boolean>() {
+                .subscribe(new MySingleObserver<>() {
                     @Override
                     public void onSuccess(Boolean aBoolean) {
                         if (aBoolean) {
@@ -129,9 +130,11 @@ public class BookmarkFragment extends MBaseFragment<IPresenter> {
         adapter.search(key);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void showBookmark(BookmarkBean bookmarkBean) {
         BookmarkDialog.builder(getContext(), bookmarkBean, false)
                 .setPositiveButton(new BookmarkDialog.Callback() {
+
                     @Override
                     public void saveBookmark(BookmarkBean bookmarkBean) {
                         DbHelper.getDaoSession().getBookmarkBeanDao().insertOrReplace(bookmarkBean);
@@ -140,13 +143,9 @@ public class BookmarkFragment extends MBaseFragment<IPresenter> {
 
                     @Override
                     public void delBookmark(BookmarkBean bookmarkBean) {
-//                        Log.d("delBookmark","before="+bookmarkBeanList.size());
                         DbHelper.getDaoSession().getBookmarkBeanDao().delete(bookmarkBean);
-//                        Log.d("delBookmark","after="+bookmarkBeanList.size());
                         bookmarkBeanList = BookshelfHelp.getBookmarkList(bookShelf.getBookInfoBean().getName());
-//                        Log.d("delBookmark","fine="+bookmarkBeanList.size());
                         adapter.setAllBookmark(bookmarkBeanList);
-//                        adapter.notifyDataSetChanged();
                     }
 
                     @Override
@@ -162,5 +161,4 @@ public class BookmarkFragment extends MBaseFragment<IPresenter> {
     private ChapterListActivity getFatherActivity() {
         return (ChapterListActivity) getActivity();
     }
-
 }

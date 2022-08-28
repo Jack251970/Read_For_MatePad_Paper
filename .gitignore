@@ -8,7 +8,7 @@
 /build
 /captures
 /app/release/
-/app/debug
+/app/debug/
 /app/proguardMapping.txt
 google-services.json
 

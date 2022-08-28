@@ -149,6 +149,8 @@
         <!-- Source Login Activity -->
         <string name="click_check_after_success">登录成功后请点击右上角图标进行首页访问测试</string>
         <string name="check_host_cookie">正在打开首页，成功自动返回主界面</string>
+        <!-- Chapter List Activity -->
+        <string name="chapter_list">目录</string>
 
     <!-- Fragment -->
         <!-- BookList Fragment-->
@@ -208,6 +210,8 @@
         <string name="ps_web_dav_password">输入你的WebDav授权密码</string>
         <string name="pt_web_dav_restore">WebDav 恢复</string>
         <string name="ps_web_dav_restore">从你的WebDav恢复数据</string>
+        <!-- Chapter List Fragment -->
+        <string name="chapter_info_format">%s（%d/%d章）</string>
 
     <!-- Service -->
         <!-- WebService -->
@@ -370,7 +374,6 @@
     <string name="net_error_10001">没有网络</string>
     <string name="net_error_10002">网络连接超时</string>
     <string name="net_error_10003">数据解析失败</string>
-    <string name="chapter_list">目录</string>
     <string name="check_add_bookshelf">是否将《%s》放入书架？</string>
     <string name="import_books_count">共%s个Text文件</string>
     <string name="is_loading">加载中…</string>
@@ -531,8 +534,6 @@
     <string name="set_charset">设置编码</string>
     <string name="swap_sort">倒序-顺序</string>
     <string name="sort">排序</string>
-    <string name="go_to_top">滚动到顶部</string>
-    <string name="go_to_bottom">滚动到底部</string>
     <string name="read_y">已读: %s</string>
     <string name="all_book">所有书籍</string>
     <string name="pursue_more">追更</string>

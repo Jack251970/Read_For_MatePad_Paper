@@ -171,5 +171,5 @@
         android:layout_above="@id/rl_bottom"
         android:layout_below="@id/anchor_for_vp"
         android:layout_marginLeft="@dimen/content_margin_left_and_right"
-        android:layout_marginRight="@dimen/content_margin_left_and_right"/>
+        android:layout_marginRight="@dimen/content_margin_left_and_right" />
 </RelativeLayout>

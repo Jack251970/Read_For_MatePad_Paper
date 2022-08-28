@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:descendantFocusability="blocksDescendants">
-
+    <!-- 目录列表 -->
     <com.jack.bookshelf.widget.recycler.scroller.FastScrollRecyclerView
         android:id="@+id/rv_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/ll_chapter_base_info"
         android:overScrollMode="never" />
-
+    <!-- 菜单栏 -->
     <LinearLayout
         android:id="@+id/ll_chapter_base_info"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:layout_alignParentBottom="true"
         android:gravity="center_vertical"
         android:orientation="horizontal">
-
         <TextView
             android:id="@+id/tv_current_chapter_info"
             android:layout_width="0dp"
@@ -33,29 +32,29 @@
             android:singleLine="true"
             android:gravity="center_vertical"
             android:textColor="@color/tv_text_default"
-            android:textSize="12sp" />
-
-        <androidx.appcompat.widget.AppCompatImageView
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="1、第一章（1/896章）"/>
+        <ImageView
             android:id="@+id/iv_chapter_top"
-            android:layout_width="36dp"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/go_to_top"
-            android:src="@drawable/ic_arrow_drop_up"
-            app:tint="@color/tv_text_default" />
-
-        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:padding="2dp"
+            android:contentDescription="滚动到顶部"
+            android:src="@drawable/ic_arrow_drop_up"/>
+        <ImageView
             android:id="@+id/iv_chapter_bottom"
-            android:layout_width="36dp"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/go_to_bottom"
-            android:src="@drawable/ic_arrow_drop_down"
-            app:tint="@color/tv_text_default" />
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="10dp"
+            android:padding="2dp"
+            android:contentDescription="滚动到底部"
+            android:src="@drawable/ic_arrow_drop_down"/>
     </LinearLayout>
-
+    <!-- 分割线 -->
     <View
-        android:id="@+id/v_shadow"
-        android:layout_height="1px"
+        android:layout_height="1dp"
         android:layout_width="match_parent"
-        android:background="@color/bg_divider_line"
+        android:background="@color/mpp_navigation_bar_line"
         android:layout_above="@id/ll_chapter_base_info" />
 </RelativeLayout>

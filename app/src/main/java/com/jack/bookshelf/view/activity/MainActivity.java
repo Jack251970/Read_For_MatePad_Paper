@@ -154,6 +154,11 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
         return List.of(bookListFragment);
     }
 
+    @Override
+    protected List<String> createTabTitles() {
+        return null;
+    }
+
     public BookListFragment getBookListFragment() {
         try {
             return (BookListFragment) mFragmentList.get(0);

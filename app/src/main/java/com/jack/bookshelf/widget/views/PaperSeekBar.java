@@ -7,7 +7,6 @@ import android.util.AttributeSet;
 import androidx.appcompat.widget.AppCompatSeekBar;
 
 import com.jack.bookshelf.R;
-import com.jack.bookshelf.utils.DrawableUtilKt;
 
 /**
  * Paper SeekBar

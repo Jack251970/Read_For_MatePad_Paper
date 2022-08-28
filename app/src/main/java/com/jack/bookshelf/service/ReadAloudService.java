@@ -3,6 +3,7 @@ package com.jack.bookshelf.service;
 import static android.text.TextUtils.isEmpty;
 import static com.jack.bookshelf.constant.AppConstant.ActionDoneService;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -18,7 +19,6 @@ import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
@@ -31,7 +31,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
 import com.google.android.exoplayer2.PlaybackException;
@@ -56,6 +55,7 @@ import java.util.Locale;
  * Created by GKF on 2018/1/2.
  * 朗读服务
  */
+
 public class ReadAloudService extends Service implements Player.Listener {
     private static final String TAG = ReadAloudService.class.getSimpleName();
     public static final String ActionMediaPlay = "mediaBtnPlay";
@@ -203,9 +203,7 @@ public class ReadAloudService extends Service implements Player.Listener {
         mediaManager.setStream(TextToSpeech.Engine.DEFAULT_STREAM);
         fadeTts = preference.getBoolean("fadeTTS", false);
         dsRunnable = this::doDs;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            initFocusRequest();
-        }
+        initFocusRequest();
         initMediaSession();
         initBroadcastReceiver();
         mediaSessionCompat.setActive(true);
@@ -421,17 +419,9 @@ public class ReadAloudService extends Service implements Player.Listener {
             map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "content");
             for (int i = nowSpeak; i < contentList.size(); i++) {
                 if (i == 0) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        textToSpeech.speak(contentList.get(i), TextToSpeech.QUEUE_FLUSH, null, "content");
-                    } else {
-                        textToSpeech.speak(contentList.get(i), TextToSpeech.QUEUE_FLUSH, map);
-                    }
+                    textToSpeech.speak(contentList.get(i), TextToSpeech.QUEUE_FLUSH, null, "content");
                 } else {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        textToSpeech.speak(contentList.get(i), TextToSpeech.QUEUE_ADD, null, "content");
-                    } else {
-                        textToSpeech.speak(contentList.get(i), TextToSpeech.QUEUE_ADD, map);
-                    }
+                    textToSpeech.speak(contentList.get(i), TextToSpeech.QUEUE_ADD, null, "content");
                 }
             }
         }
@@ -533,12 +523,14 @@ public class ReadAloudService extends Service implements Player.Listener {
         }
     }
 
+    @SuppressLint("UnspecifiedImmutableFlag")
     private PendingIntent getReadBookActivityPendingIntent() {
         Intent intent = new Intent(this, ReadBookActivity.class);
         intent.setAction(ReadAloudService.ActionReadActivity);
         return PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
+    @SuppressLint("UnspecifiedImmutableFlag")
     private PendingIntent getThisServicePendingIntent(String actionStr) {
         Intent intent = new Intent(this, this.getClass());
         intent.setAction(actionStr);
@@ -546,7 +538,7 @@ public class ReadAloudService extends Service implements Player.Listener {
     }
 
     /**
-     * 更新通知
+     * 更新书籍语音播放通知
      */
     private void updateNotification() {
         if (text == null)
@@ -638,15 +630,10 @@ public class ReadAloudService extends Service implements Player.Listener {
             MediaManager.playSilentSound(this);
         }
         int request;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            request = audioManager.requestAudioFocus(mFocusRequest);
-        } else {
-            request = audioManager.requestAudioFocus(audioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
-        }
+        request = audioManager.requestAudioFocus(mFocusRequest);
         return (request == AudioManager.AUDIOFOCUS_REQUEST_GRANTED);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private void initFocusRequest() {
         AudioAttributes mPlaybackAttributes = new AudioAttributes.Builder()
                 .setUsage(AudioAttributes.USAGE_MEDIA)
@@ -662,13 +649,13 @@ public class ReadAloudService extends Service implements Player.Listener {
     /**
      * 初始化MediaSession
      */
+    @SuppressLint("UnspecifiedImmutableFlag")
     private void initMediaSession() {
         ComponentName mComponent = new ComponentName(getPackageName(), MediaButtonIntentReceiver.class.getName());
         Intent mediaButtonIntent = new Intent(Intent.ACTION_MEDIA_BUTTON);
         mediaButtonIntent.setComponent(mComponent);
         PendingIntent mediaButtonReceiverPendingIntent = PendingIntent.getBroadcast(this, 0,
                 mediaButtonIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-
         mediaSessionCompat = new MediaSessionCompat(this, TAG, mComponent, mediaButtonReceiverPendingIntent);
         mediaSessionCompat.setCallback(new MediaSessionCompat.Callback() {
             @Override

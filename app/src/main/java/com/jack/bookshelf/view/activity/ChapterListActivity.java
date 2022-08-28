@@ -1,17 +1,16 @@
 package com.jack.bookshelf.view.activity;
 
 import static android.view.View.GONE;
+import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
@@ -19,26 +18,28 @@ import com.hwangjr.rxbus.RxBus;
 import com.jack.basemvplib.BitIntentDataManager;
 import com.jack.basemvplib.impl.IPresenter;
 import com.jack.bookshelf.R;
-import com.jack.bookshelf.base.BaseViewPagerWithTabActivity;
+import com.jack.bookshelf.base.BaseViewPagerActivity;
 import com.jack.bookshelf.bean.BookChapterBean;
 import com.jack.bookshelf.bean.BookShelfBean;
-import com.jack.bookshelf.databinding.ActivityChapterlistBinding;
+import com.jack.bookshelf.databinding.ActivityChapterListBinding;
 import com.jack.bookshelf.help.ReadBookControl;
-import com.jack.bookshelf.utils.ColorUtils;
-import com.jack.bookshelf.utils.theme.ATH;
-import com.jack.bookshelf.utils.theme.MaterialValueHelper;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.fragment.BookmarkFragment;
 import com.jack.bookshelf.view.fragment.ChapterListFragment;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class ChapterListActivity extends BaseViewPagerWithTabActivity<IPresenter> {
+/**
+ * Chapter List Page & Bookmark List Page
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
-    private ActivityChapterlistBinding binding;
+public class ChapterListActivity extends BaseViewPagerActivity<IPresenter> {
+
+    private ActivityChapterListBinding binding;
+    SearchView.SearchAutoComplete mSearchAutoComplete;
     private final ReadBookControl readBookControl = ReadBookControl.getInstance();
-    private SearchView searchView;
     private BookShelfBean bookShelf;
     private List<BookChapterBean> chapterBeanList;
 
@@ -88,18 +89,62 @@ public class ChapterListActivity extends BaseViewPagerWithTabActivity<IPresenter
 
     @Override
     protected void onCreateActivity() {
-        getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
-        binding = ActivityChapterlistBinding.inflate(getLayoutInflater());
+        binding = ActivityChapterListBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setupActionBar();
     }
 
     @Override
     protected void bindView() {
         super.bindView();
-        mTlIndicator.setSelectedTabIndicatorColor(ThemeStore.accentColor(this));
-        mTlIndicator.setTabTextColors(ColorUtils.isColorLight(ThemeStore.primaryColor(this)) ? Color.BLACK : Color.WHITE,
-                ThemeStore.accentColor(this));
+        initSearchView();
+        binding.ivBack.setOnClickListener(v -> onBackPressed());
+        binding.tvBookTitleChapterList.setText(bookShelf.getBookInfoBean().getName());
+        binding.ivChapterListIndicator.setVisibility(VISIBLE);
+        binding.tvChapterList.setOnClickListener(v -> {
+            setCurrentItem(0);
+            binding.ivChapterListIndicator.setVisibility(VISIBLE);
+            binding.ivBookmarkIndicator.setVisibility(INVISIBLE);
+        });
+        binding.tvBookmark.setOnClickListener(v -> {
+            setCurrentItem(1);
+            binding.ivChapterListIndicator.setVisibility(INVISIBLE);
+            binding.ivBookmarkIndicator.setVisibility(VISIBLE);
+        });
+        binding.ivSearch.setOnClickListener(v -> {
+            binding.tvBookTitleChapterList.setVisibility(GONE);
+            binding.ivSearch.setVisibility(GONE);
+            binding.searchView.setVisibility(VISIBLE);
+        });
+    }
+
+    /**
+     * 初始化搜索框
+     */
+    private void initSearchView() {
+        mSearchAutoComplete = binding.searchView.findViewById(R.id.search_src_text);
+        mSearchAutoComplete.setTextSize(16);
+        ImageView closeButton = binding.searchView.findViewById(R.id.search_close_btn);
+        closeButton.setBackgroundColor(Color.TRANSPARENT);
+        closeButton.setImageResource(R.drawable.ic_close);
+        closeButton.setOnClickListener(v -> searchViewCollapsed());
+        binding.searchView.onActionViewExpanded();
+        binding.searchView.clearFocus();
+        binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (getCurrentItem() == 1) {
+                    ((BookmarkFragment) mFragmentList.get(1)).startSearch(newText);
+                } else {
+                    ((ChapterListFragment) mFragmentList.get(0)).startSearch(newText);
+                }
+                return false;
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -111,7 +156,6 @@ public class ChapterListActivity extends BaseViewPagerWithTabActivity<IPresenter
         chapterBeanList = (List<BookChapterBean>) BitIntentDataManager.getInstance().getData(chapterListKey);
     }
 
-    /**************abstract***********/
     @Override
     protected List<Fragment> createTabFragments() {
         ChapterListFragment chapterListFragment = new ChapterListFragment();
@@ -125,61 +169,12 @@ public class ChapterListActivity extends BaseViewPagerWithTabActivity<IPresenter
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_search_view, menu);
-        MenuItem search = menu.findItem(R.id.action_search);
-        searchView = (SearchView) search.getActionView();
-        ATH.setTint(searchView, MaterialValueHelper.getPrimaryTextColor(this, ColorUtils.isColorLight(ThemeStore.primaryColor(this))));
-        searchView.setMaxWidth(getResources().getDisplayMetrics().widthPixels);
-        searchView.onActionViewCollapsed();
-        searchView.setOnCloseListener(() -> {
-            mTlIndicator.setVisibility(VISIBLE);
-            return false;
-        });
-        searchView.setOnSearchClickListener(view -> mTlIndicator.setVisibility(GONE));
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                if (mTlIndicator.getSelectedTabPosition() == 1) {
-                    ((BookmarkFragment) mFragmentList.get(1)).startSearch(newText);
-                } else {
-                    ((ChapterListFragment) mFragmentList.get(0)).startSearch(newText);
-                }
-                return false;
-            }
-        });
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onBackPressed() {
-        if (mTlIndicator.getVisibility() != VISIBLE) {
+        if (binding.searchView.getVisibility() == VISIBLE) {
             searchViewCollapsed();
+            return;
         }
         finish();
-    }
-
-    //设置ToolBar
-    private void setupActionBar() {
-        setSupportActionBar(binding.toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
     }
 
     public BookShelfBean getBookShelf() {
@@ -191,8 +186,9 @@ public class ChapterListActivity extends BaseViewPagerWithTabActivity<IPresenter
     }
 
     public void searchViewCollapsed() {
-        searchView.onActionViewCollapsed();
-        mTlIndicator.setVisibility(VISIBLE);
+        mSearchAutoComplete.setText("");
+        binding.tvBookTitleChapterList.setVisibility(VISIBLE);
+        binding.ivSearch.setVisibility(VISIBLE);
+        binding.searchView.setVisibility(GONE);
     }
-
 }

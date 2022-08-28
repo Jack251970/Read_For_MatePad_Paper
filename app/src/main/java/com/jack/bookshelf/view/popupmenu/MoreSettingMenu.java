@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.utils.popupwindow.PopupWindowsUtil;
 import com.jack.bookshelf.view.adapter.MoreSettingMenuAdapter;
-import com.jack.bookshelf.view.dialog.AlertDialog;
 
 import java.util.Arrays;
 import java.util.List;

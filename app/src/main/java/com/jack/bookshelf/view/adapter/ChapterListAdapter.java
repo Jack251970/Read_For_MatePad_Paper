@@ -1,6 +1,7 @@
-//Copyright (c) 2017. 章钦豪. All rights reserved.
 package com.jack.bookshelf.view.adapter;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.observer.MyObserver;
 import com.jack.bookshelf.bean.BookChapterBean;
@@ -24,6 +24,12 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+
+/**
+ * Chapter List Item Adapter
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
 public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.ThisViewHolder> {
 
@@ -40,7 +46,7 @@ public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.
         this.bookShelfBean = bookShelfBean;
         this.allChapter = allChapter;
         this.itemClickListener = itemClickListener;
-        highlightColor = ThemeStore.accentColor(MApplication.getInstance());
+        highlightColor = Color.BLACK;
     }
 
     public void upChapter(int index) {
@@ -49,6 +55,7 @@ public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void search(final String key) {
         bookChapterBeans.clear();
         if (Objects.equals(key, "")) {
@@ -65,7 +72,7 @@ public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.
                 emitter.onComplete();
             }).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new MyObserver<Boolean>() {
+                    .subscribe(new MyObserver<>() {
                         @Override
                         public void onNext(Boolean aBoolean) {
                             isSearch = true;
@@ -73,9 +80,7 @@ public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.
                         }
 
                         @Override
-                        public void onError(Throwable e) {
-
-                        }
+                        public void onError(Throwable e) {}
                     });
         }
     }
@@ -84,35 +89,38 @@ public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.
     @Override
     public ThisViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         normalColor = ThemeStore.textColorSecondary(parent.getContext());
-        return new ThisViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chapter_list, parent, false));
+        return new ThisViewHolder(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_chapter_list, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ThisViewHolder holder, final int position) {
-
-    }
+    public void onBindViewHolder(@NonNull ThisViewHolder holder, final int position) {}
 
     @Override
     public void onBindViewHolder(@NonNull ThisViewHolder holder, int position, @NonNull List<Object> payloads) {
         int realPosition = holder.getLayoutPosition();
-        if (realPosition == getItemCount() - 1) {
-            holder.line.setVisibility(View.GONE);
+        if (realPosition == 0) {
+            holder.lineBottom.setVisibility(View.VISIBLE);
+        } else if (realPosition == getItemCount() - 1) {
+            holder.lineBottom.setVisibility(View.GONE);
         } else {
-            holder.line.setVisibility(View.VISIBLE);
+            holder.lineBottom.setVisibility(View.VISIBLE);
         }
-        if (payloads.size() > 0) {
+        /*if (payloads.size() > 0) {
             holder.tvName.setSelected(true);
             holder.tvName.getPaint().setFakeBoldText(true);
             return;
-        }
+        }*/
         BookChapterBean bookChapterBean = isSearch ? bookChapterBeans.get(realPosition) : allChapter.get(realPosition);
+        // 当前位置章节的字体颜色为黑色；其余为深黑色
         if (bookChapterBean.getDurChapterIndex() == index) {
             holder.tvName.setTextColor(highlightColor);
         } else {
             holder.tvName.setTextColor(normalColor);
         }
-
+        // 设置章节名称
         holder.tvName.setText(bookChapterBean.getDisplayTitle(holder.tvName.getContext()));
+        // 缓存章节的字体为粗体；其余为细体
         if (Objects.equals(bookShelfBean.getTag(), BookShelfBean.LOCAL_TAG) || bookChapterBean.getHasCache(bookShelfBean.getBookInfoBean())) {
             holder.tvName.setSelected(true);
             holder.tvName.getPaint().setFakeBoldText(true);
@@ -120,7 +128,7 @@ public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.
             holder.tvName.setSelected(false);
             holder.tvName.getPaint().setFakeBoldText(false);
         }
-
+        // 点击跳转到对应章节
         holder.llName.setOnClickListener(v -> {
             setIndex(realPosition);
             itemClickListener.itemClick(bookChapterBean.getDurChapterIndex(), 0);
@@ -150,13 +158,15 @@ public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.
 
     static class ThisViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvName;
-        private final View line;
+        private final View lineTop;
+        private final View lineBottom;
         private final View llName;
 
         ThisViewHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_name);
-            line = itemView.findViewById(R.id.v_line);
+            lineTop = itemView.findViewById(R.id.v_line_top);
+            lineBottom = itemView.findViewById(R.id.v_line_bottom);
             llName = itemView.findViewById(R.id.ll_name);
         }
     }

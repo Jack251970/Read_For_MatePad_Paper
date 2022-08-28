@@ -14,6 +14,7 @@ import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
 import com.hwangjr.rxbus.thread.EventThread;
 import com.jack.basemvplib.impl.IPresenter;
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.MBaseFragment;
 import com.jack.bookshelf.bean.BookChapterBean;
 import com.jack.bookshelf.bean.BookContentBean;
@@ -25,14 +26,17 @@ import com.jack.bookshelf.view.activity.ChapterListActivity;
 import com.jack.bookshelf.view.adapter.ChapterListAdapter;
 
 import java.util.List;
-import java.util.Locale;
+
+/**
+ * Chapter List Item Fragment
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
 public class ChapterListFragment extends MBaseFragment<IPresenter> {
 
     private FragmentChapterListBinding binding;
-
     private ChapterListAdapter chapterListAdapter;
-
     private LinearLayoutManager layoutManager;
 
     private BookShelfBean bookShelf;
@@ -59,9 +63,6 @@ public class ChapterListFragment extends MBaseFragment<IPresenter> {
         RxBus.get().register(this);
     }
 
-    /**
-     * 数据初始化
-     */
     @Override
     protected void initData() {
         super.initData();
@@ -72,9 +73,6 @@ public class ChapterListFragment extends MBaseFragment<IPresenter> {
         isChapterReverse = preferences.getBoolean("isChapterReverse", false);
     }
 
-    /**
-     * 控件绑定
-     */
     @Override
     protected void bindView() {
         super.bindView();
@@ -96,9 +94,6 @@ public class ChapterListFragment extends MBaseFragment<IPresenter> {
         }
     }
 
-    /**
-     * 事件触发绑定
-     */
     @Override
     protected void bindEvent() {
         super.bindEvent();
@@ -125,7 +120,8 @@ public class ChapterListFragment extends MBaseFragment<IPresenter> {
             if (chapterListAdapter.getItemCount() == 0) {
                 binding.tvCurrentChapterInfo.setText(bookShelf.getDurChapterName());
             } else {
-                binding.tvCurrentChapterInfo.setText(String.format(Locale.getDefault(), "%s (%d/%d章)", bookShelf.getDurChapterName(), bookShelf.getDurChapter() + 1, bookShelf.getChapterListSize()));
+                binding.tvCurrentChapterInfo.setText(requireContext().getString(R.string.chapter_info_format,
+                        bookShelf.getDurChapterName(), bookShelf.getDurChapter() + 1, bookShelf.getChapterListSize()));
             }
         }
     }

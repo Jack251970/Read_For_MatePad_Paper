@@ -5,11 +5,9 @@
     android:layout_below="@id/action_bar"
     android:layout_alignParentStart="true"
     android:descendantFocusability="blocksDescendants">
-
     <com.jack.bookshelf.widget.recycler.scroller.FastScrollRecyclerView
         android:id="@+id/rv_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never" />
-
 </RelativeLayout>
