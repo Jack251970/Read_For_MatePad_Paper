@@ -94,12 +94,9 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ThisVi
         int realPosition = holder.getLayoutPosition();
         if (realPosition == 0) {
             holder.lineTop.setVisibility(View.VISIBLE);
-        } else if (realPosition == getItemCount() - 1) {
-            holder.lineBottom.setVisibility(View.GONE);
         } else {
             holder.lineBottom.setVisibility(View.VISIBLE);
         }
-
         BookmarkBean bookmarkBean = isSearch ? bookmarkBeans.get(realPosition) : allBookmark.get(realPosition);
         holder.tvName.setText(StringUtils.isTrimEmpty(bookmarkBean.getContent()) ?
                 bookmarkBean.getChapterName() : bookmarkBean.getContent());
