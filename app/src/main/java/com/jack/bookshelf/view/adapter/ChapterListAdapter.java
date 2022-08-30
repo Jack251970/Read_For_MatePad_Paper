@@ -90,7 +90,7 @@ public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.
     public ThisViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         normalColor = ThemeStore.textColorSecondary(parent.getContext());
         return new ThisViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_chapter_list, parent, false));
+                .inflate(R.layout.item_chapter_and_bookmark, parent, false));
     }
 
     @Override

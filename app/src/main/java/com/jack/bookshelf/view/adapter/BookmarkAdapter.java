@@ -83,7 +83,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ThisVi
     @NonNull
     @Override
     public ThisViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ThisViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chapter_list, parent, false));
+        return new ThisViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chapter_and_bookmark, parent, false));
     }
 
     @Override
