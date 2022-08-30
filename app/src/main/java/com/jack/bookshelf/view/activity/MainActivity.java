@@ -40,7 +40,7 @@ import com.jack.bookshelf.view.dialog.InputDialog;
 import com.jack.bookshelf.view.fragment.BookListFragment;
 import com.jack.bookshelf.view.popupmenu.MoreSettingMenu;
 import com.jack.bookshelf.view.popupmenu.SelectMenu;
-import com.jack.bookshelf.widget.viewpager.ViewPager;
+import com.jack.bookshelf.widget.viewpager.PaperViewPager;
 
 import java.util.List;
 import java.util.Objects;
@@ -139,7 +139,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
     public int getGroup() { return group; }
 
     @Override
-    public ViewPager getViewPager() { return mVp; }
+    public PaperViewPager getViewPager() { return mVp; }
 
     @Override
     protected List<Fragment> createTabFragments() {

@@ -164,7 +164,7 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-    <com.jack.bookshelf.widget.viewpager.ViewPager
+    <com.jack.bookshelf.widget.viewpager.PaperViewPager
         android:id="@+id/tab_vp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

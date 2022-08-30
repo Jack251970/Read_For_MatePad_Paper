@@ -20,10 +20,10 @@
             <dimen name="text_view_button_padding">12px</dimen>
             <!-- Float Image Button -->
             <dimen name="float_image_button_padding">8dp</dimen>
-        <!-- ViewPager -->
+        <!-- PaperViewPager -->
         <dimen name="viewpager_radius">16dp</dimen>
         <dimen name="viewpager_stroke_width">1dp</dimen>
-        <!-- ViewPager Indicator -->
+        <!-- PaperViewPager Indicator -->
         <dimen name="viewpager_indicator_height">4dp</dimen>
         <dimen name="viewpager_indicator_stroke_width">1dp</dimen>
         <dimen name="viewpager_indicator_radius">1dp</dimen>

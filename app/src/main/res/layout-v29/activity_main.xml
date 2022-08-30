@@ -546,7 +546,7 @@
             android:layout_height="0dp"
             android:layout_weight="158"
             android:orientation="vertical">
-            <com.jack.bookshelf.widget.viewpager.ViewPager
+            <com.jack.bookshelf.widget.viewpager.PaperViewPager
                 android:id="@+id/tab_vp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

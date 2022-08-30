@@ -328,6 +328,9 @@
         <string name="auto_next_page_stop">停止自动翻页</string>
         <string name="previous_chapter">上一章</string>
         <string name="next_chapter">下一章</string>
+        <!-- Pop Read Long Press Menu -->
+        <string name="replace">替换</string>
+        <string name="advertisement">广告</string>
 
     <!-- Shortcuts -->
     <string name="enter_bookshelf">进入书架</string>

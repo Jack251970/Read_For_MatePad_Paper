@@ -99,8 +99,8 @@ public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.
     @Override
     public void onBindViewHolder(@NonNull ThisViewHolder holder, int position, @NonNull List<Object> payloads) {
         int realPosition = holder.getLayoutPosition();
-        if (realPosition == 0) {
-            holder.lineTop.setVisibility(View.VISIBLE);
+        if (realPosition == getItemCount() - 1) {
+            holder.lineBottom.setVisibility(View.GONE);
         } else {
             holder.lineBottom.setVisibility(View.VISIBLE);
         }
@@ -156,14 +156,12 @@ public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.
 
     static class ThisViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvName;
-        private final View lineTop;
         private final View lineBottom;
         private final View llName;
 
         ThisViewHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_name);
-            lineTop = itemView.findViewById(R.id.v_line_top);
             lineBottom = itemView.findViewById(R.id.v_line_bottom);
             llName = itemView.findViewById(R.id.ll_name);
         }

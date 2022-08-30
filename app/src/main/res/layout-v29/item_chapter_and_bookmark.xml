@@ -5,17 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-    <View
-        android:id="@+id/v_line_top"
-        android:layout_width="match_parent"
-        android:layout_height="1.5dp"
-        android:layout_gravity="bottom"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/item_chapter_list_divider"
-        android:layerType="software"
-        android:paddingBottom="1dp"
-        android:visibility="gone" />
     <LinearLayout
         android:id="@+id/ll_name"
         android:layout_width="match_parent"

@@ -9,18 +9,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
- * ViewPager Without SmoothScroll Animation and Scroll Function
+ * PaperViewPager Without SmoothScroll Animation and Scroll Function
  * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
-public class ViewPager extends androidx.viewpager.widget.ViewPager {
+public class PaperViewPager extends androidx.viewpager.widget.ViewPager {
 
-    public ViewPager(@NonNull Context context) {
+    public PaperViewPager(@NonNull Context context) {
         super(context);
     }
 
-    public ViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {super(context, attrs);}
+    public PaperViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {super(context, attrs);}
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {

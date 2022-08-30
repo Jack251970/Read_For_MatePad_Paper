@@ -16,12 +16,19 @@ import com.jack.bookshelf.databinding.PopReadLongPressBinding;
 import com.jack.bookshelf.help.ReadBookControl;
 import com.jack.bookshelf.utils.DensityUtil;
 
+/**
+ * Read LongPress Pop Menu
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
 public class ReadLongPressPop extends FrameLayout {
 
-    private final PopReadLongPressBinding binding = PopReadLongPressBinding.inflate(LayoutInflater.from(getContext()), this, true);
-    //private ReadBookActivity activity;
-    private final ReadBookControl readBookControl = ReadBookControl.getInstance();
+    private final PopReadLongPressBinding binding = PopReadLongPressBinding
+            .inflate(LayoutInflater.from(getContext()), this, true);
     private OnBtnClickListener clickListener;
+    // private ReadBookActivity activity;
+    // private final ReadBookControl readBookControl = ReadBookControl.getInstance();
 
     public ReadLongPressPop(Context context) {
         super(context);
@@ -38,44 +45,35 @@ public class ReadLongPressPop extends FrameLayout {
         init(context);
     }
 
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        Path path = new Path();
-        path.addRoundRect(new RectF(0, 0, getMeasuredWidth(), getMeasuredHeight()), DensityUtil.dp2px(getContext(), 4), DensityUtil.dp2px(getContext(), 4), Path.Direction.CW);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            canvas.clipPath(path);
-        } else {
-            canvas.clipPath(path, Region.Op.REPLACE);
-        }
-
-        super.dispatchDraw(canvas);
-    }
-
     private void init(Context context) {
         binding.getRoot().setOnClickListener(null);
     }
 
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        Path path = new Path();
+        path.addRoundRect(new RectF(0,0, getMeasuredWidth(), getMeasuredHeight()),
+                DensityUtil.dp2px(getContext(),4), DensityUtil.dp2px(getContext(),4), Path.Direction.CW);
+        canvas.clipPath(path);
+        super.dispatchDraw(canvas);
+    }
+
     public void setListener(@NonNull OnBtnClickListener clickListener) {
-        //this.activity = readBookActivity;
+        // this.activity = readBookActivity;
         this.clickListener = clickListener;
         initData();
         bindEvent();
     }
 
-    private void initData() {
-
-    }
+    private void initData() {}
 
     private void bindEvent() {
-
-        //复制
-        binding.flCp.setOnClickListener(v -> clickListener.copySelect());
-
-        //替换
-        binding.flReplace.setOnClickListener(v -> clickListener.replaceSelect());
-
-        //标记广告
-        binding.flReplaceAd.setOnClickListener(v -> clickListener.replaceSelectAd());
+        // 复制
+        binding.tvCp.setOnClickListener(v -> clickListener.copySelect());
+        // 替换
+        binding.tvReplace.setOnClickListener(v -> clickListener.replaceSelect());
+        // 标记广告
+        binding.tvReplaceAd.setOnClickListener(v -> clickListener.replaceSelectAd());
     }
 
     public interface OnBtnClickListener {
@@ -84,6 +82,5 @@ public class ReadLongPressPop extends FrameLayout {
         void replaceSelect();
 
         void replaceSelectAd();
-
     }
 }

@@ -13,7 +13,7 @@ import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.fragment.BaseFileFragment;
 import com.jack.bookshelf.view.fragment.LocalDirectoryFragment;
 import com.jack.bookshelf.view.fragment.SmartImportFragment;
-import com.jack.bookshelf.widget.viewpager.ViewPager;
+import com.jack.bookshelf.widget.viewpager.PaperViewPager;
 
 import java.io.File;
 import java.util.Arrays;
@@ -98,7 +98,7 @@ public class ImportBookActivity extends BaseViewPagerActivity<ImportBookContract
             binding.ivSmartImportIndicator.setVisibility(View.VISIBLE);
         });
         // 界面改变事件监听
-        mVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mVp.addOnPageChangeListener(new PaperViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
 

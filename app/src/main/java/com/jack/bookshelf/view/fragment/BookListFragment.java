@@ -37,7 +37,7 @@ import com.jack.bookshelf.view.adapter.BookShelfGridAdapter;
 import com.jack.bookshelf.view.adapter.BookShelfListAdapter;
 import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
 import com.jack.bookshelf.view.dialog.AlertDialog;
-import com.jack.bookshelf.widget.viewpager.ViewPager;
+import com.jack.bookshelf.widget.viewpager.PaperViewPager;
 
 import java.util.List;
 
@@ -299,6 +299,6 @@ public class BookListFragment extends MBaseFragment<BookListContract.Presenter>
 
         int getGroup();
 
-        ViewPager getViewPager();
+        PaperViewPager getViewPager();
     }
 }

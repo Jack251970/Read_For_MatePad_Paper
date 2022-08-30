@@ -28,37 +28,36 @@
             android:visibility="invisible"
             app:seekBarRotation="CW270" />
     </com.jack.bookshelf.widget.seekbar.VerticalSeekBarWrapper>
-    <!-- 长按文本出现光标（开启长按选择文本功能后） -->
+    <!-- 阅读长按光标 -->
     <ImageView
         android:id="@+id/cursor_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@null"
+        android:contentDescription="阅读长按左光标"
         android:src="@drawable/ic_cursor_left"
         android:visibility="invisible"/>
     <ImageView
         android:id="@+id/cursor_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@null"
+        android:contentDescription="阅读长按右光标"
         android:src="@drawable/ic_cursor_right"
         android:visibility="invisible"/>
-
+    <!-- 阅读长按菜单 -->
     <com.jack.bookshelf.view.popupwindow.ReadLongPressPop
         android:id="@+id/readLongPress"
         android:layout_width="190dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:visibility="invisible"
-        tools:visibility="visible"/>
-
+        android:visibility="invisible"/>
+    <!-- 语言播放界面 -->
     <com.jack.bookshelf.view.popupwindow.MediaPlayerPop
         android:id="@+id/mediaPlayerPop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:visibility="gone"
-        tools:visibility="visible"/>
+        tools:visibility="invisible"/>
     <!-- 菜单 -->
     <FrameLayout
         android:id="@+id/fl_menu"
@@ -272,14 +271,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            tools:visibility="visible"/>
         <com.jack.bookshelf.view.popupwindow.MoreSettingPop
             android:id="@+id/moreSettingPop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:visibility="invisible" />
-
         <com.jack.bookshelf.view.popupwindow.ReadAdjustMarginPop
             android:id="@+id/readAdjustMarginPop"
             android:layout_width="match_parent"

@@ -7,19 +7,19 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.jack.basemvplib.impl.IPresenter;
 import com.jack.bookshelf.R;
-import com.jack.bookshelf.widget.viewpager.ViewPager;
+import com.jack.bookshelf.widget.viewpager.PaperViewPager;
 
 import java.util.List;
 
 /**
- * ViewPager Base Without TabLayout
+ * PaperViewPager Base Without TabLayout
  * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
 public abstract class BaseViewPagerActivity<T extends IPresenter> extends MBaseActivity<T> {
     // View
-    protected ViewPager mVp;
+    protected PaperViewPager mVp;
     // Adapter
     protected TabFragmentPageAdapter tabFragmentPageAdapter;
     // Params

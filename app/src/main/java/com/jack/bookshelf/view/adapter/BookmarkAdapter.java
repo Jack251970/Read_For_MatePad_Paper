@@ -83,7 +83,8 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ThisVi
     @NonNull
     @Override
     public ThisViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ThisViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chapter_and_bookmark, parent, false));
+        return new ThisViewHolder(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_chapter_and_bookmark, parent, false));
     }
 
     @Override
@@ -92,8 +93,8 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ThisVi
     @Override
     public void onBindViewHolder(@NonNull ThisViewHolder holder, int position, @NonNull List<Object> payloads) {
         int realPosition = holder.getLayoutPosition();
-        if (realPosition == 0) {
-            holder.lineTop.setVisibility(View.VISIBLE);
+        if (realPosition == getItemCount() - 1) {
+            holder.lineBottom.setVisibility(View.GONE);
         } else {
             holder.lineBottom.setVisibility(View.VISIBLE);
         }
@@ -122,13 +123,11 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ThisVi
 
     static class ThisViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvName;
-        private final View lineTop;
         private final View lineBottom;
         private final View llName;
 
         ThisViewHolder(View itemView) {
             super(itemView);
-            lineTop = itemView.findViewById(R.id.v_line_top);
             tvName = itemView.findViewById(R.id.tv_name);
             lineBottom = itemView.findViewById(R.id.v_line_bottom);
             llName = itemView.findViewById(R.id.ll_name);
