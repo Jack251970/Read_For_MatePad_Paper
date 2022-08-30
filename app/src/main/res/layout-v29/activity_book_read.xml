@@ -265,6 +265,7 @@
             android:layout_marginStart="@dimen/content_margin_left_and_right"
             android:layout_marginEnd="@dimen/content_margin_left_and_right"
             android:layout_gravity="bottom"
+            android:layout_marginBottom="-1dp"
             android:visibility="invisible"/>
         <com.jack.bookshelf.view.popupwindow.ReadInterfacePop
             android:id="@+id/readInterfacePop"
