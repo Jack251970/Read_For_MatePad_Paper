@@ -30,8 +30,8 @@ import timber.log.Timber
 
 /**
  * Read Interface Pop Menu
- * Copyright (c) 2017. 章钦豪. All rights reserved.
- * Edited by Jack Ye
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
  */
 
 class ReadInterfacePop : FrameLayout {
