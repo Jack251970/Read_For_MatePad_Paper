@@ -40,7 +40,9 @@ public class MoDialogView extends LinearLayout {
         setOrientation(VERTICAL);
     }
 
-    // 转圈的载入
+    /**
+     * 转圈载入
+     */
     public void showLoading(String text) {
         removeAllViews();
         LayoutInflater.from(getContext()).inflate(R.layout.mo_dialog_loading, this, true);
@@ -48,50 +50,8 @@ public class MoDialogView extends LinearLayout {
         if (text != null && text.length() > 0) {
             msgTv.setText(text);
         }
-
         RotateLoading rlLoading = findViewById(R.id.rl_loading);
         rlLoading.start();
-    }
-
-    // 单个按钮的信息提示框
-    public void showInfo(String msg, final OnClickListener listener) {
-        removeAllViews();
-        LayoutInflater.from(getContext()).inflate(R.layout.mo_dialog_infor, this, true);
-        View llContent = findViewById(R.id.ll_content);
-        llContent.setOnClickListener(null);
-        TextView msgTv = findViewById(R.id.msg_tv);
-        msgTv.setText(msg);
-        TextView tvClose = findViewById(R.id.tv_close);
-        tvClose.setOnClickListener(listener);
-    }
-
-    // 单个按钮的信息提示框
-    public void showInfo(String msg, String btnText, final OnClickListener listener) {
-        removeAllViews();
-        LayoutInflater.from(getContext()).inflate(R.layout.mo_dialog_infor, this, true);
-        View llContent = findViewById(R.id.ll_content);
-        llContent.setOnClickListener(null);
-        TextView msgTv = findViewById(R.id.msg_tv);
-        msgTv.setText(msg);
-        TextView tvClose = findViewById(R.id.tv_close);
-        tvClose.setText(btnText);
-        tvClose.setOnClickListener(listener);
-    }
-
-    // 两个不同等级的按钮
-    public void showTwoButton(String title, String msg, String b_f, OnClickListener c_f, String b_s, OnClickListener c_s) {
-        removeAllViews();
-        LayoutInflater.from(getContext()).inflate(R.layout.mo_dialog_two, this, true);
-        TextView tvTitle = findViewById(R.id.tv_title);
-        TextView tvMsg = findViewById(R.id.tv_msg);
-        TextView tvCancel = findViewById(R.id.tv_cancel);
-        TextView tvDone = findViewById(R.id.tv_done);
-        tvTitle.setText(title);
-        tvMsg.setText(msg);
-        tvCancel.setText(b_f);
-        tvCancel.setOnClickListener(c_f);
-        tvDone.setText(b_s);
-        tvDone.setOnClickListener(c_s);
     }
 
     /**
@@ -112,22 +72,5 @@ public class MoDialogView extends LinearLayout {
         LayoutInflater.from(getContext()).inflate(R.layout.mo_dialog_markdown, this, true);
         TextView tvMarkdown = findViewById(R.id.tv_markdown);
         Markwon.create(tvMarkdown.getContext()).setMarkdown(tvMarkdown, ReadAssets.getText(context, assetFileName));
-    }
-
-    /**
-     * 显示图像和文本
-     */
-    public void showImageText(Bitmap bitmap, String text) {
-        removeAllViews();
-        LayoutInflater.from(getContext()).inflate(R.layout.mo_dialog_image_text, this, true);
-        CardView cardView = findViewById(R.id.cv_content);
-        cardView.setOnClickListener(null);
-        ImageView imageView = findViewById(R.id.image_view);
-        TextView tvCanCopy = findViewById(R.id.tv_can_copy);
-        int imageWidth = Math.min(cardView.getWidth(), cardView.getHeight());
-        imageView.setMaxWidth(imageWidth - 20);
-        imageView.setMaxHeight(imageWidth - 20);
-        imageView.setImageBitmap(bitmap);
-        tvCanCopy.setText(text);
     }
 }

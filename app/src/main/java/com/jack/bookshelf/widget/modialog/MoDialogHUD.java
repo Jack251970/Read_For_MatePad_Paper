@@ -23,7 +23,6 @@ public class MoDialogHUD {
     private ViewGroup rootView;     // mSharedView的根View
     private MoDialogView mSharedView;
     private OnDismissListener dismissListener;
-
     private Boolean canBack = false;    // 是否可以用系统返回键返回
 
     public MoDialogHUD(Context context) {
@@ -73,20 +72,14 @@ public class MoDialogHUD {
      */
     private void initViews() {
         decorView = ((Activity) context).getWindow().getDecorView().findViewById(android.R.id.content);
-        // decorView.setBackground(context.getResources().getDrawable(R.drawable.dialog_background));
         rootView = new FrameLayout(context);
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
-        );
-        rootView.setLayoutParams(layoutParams);
+        rootView.setLayoutParams(new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         rootView.setClickable(true);
         rootView.setBackgroundColor(Color.TRANSPARENT);
         mSharedView = new MoDialogView(context);
     }
 
-    /**
-     * 是否显示
-     */
     private boolean isShowing() {
         return rootView.getParent() != null;
     }
@@ -146,44 +139,6 @@ public class MoDialogHUD {
         mSharedView.showLoading(msg);
     }
 
-    /**
-     * 单个按钮的提示信息
-     */
-    public void showInfo(String msg) {
-        initCenter();
-        canBack = true;
-        rootView.setOnClickListener(null);
-        mSharedView.showInfo(msg, v -> dismiss());
-        if (!isShowing()) {
-            onAttached();
-        }
-    }
-
-    /**
-     * 单个按钮的提示信息
-     */
-    public void showInfo(String msg, String btnText, View.OnClickListener listener) {
-        initCenter();
-        canBack = true;
-        rootView.setOnClickListener(null);
-        mSharedView.showInfo(msg, btnText, listener);
-        if (!isShowing()) {
-            onAttached();
-        }
-    }
-
-    /**
-     * 两个不同等级的按钮
-     */
-    public void showTwoButton(String title,String msg, String b_f, View.OnClickListener c_f, String b_s, View.OnClickListener c_s, boolean canBack) {
-        initCenter();
-        this.canBack = canBack;
-        rootView.setOnClickListener(v -> dismiss());
-        mSharedView.showTwoButton(title, msg, b_f, c_f, b_s, c_s);
-        if (!isShowing()) {
-            onAttached();
-        }
-    }
 
     /**
      * 显示一段文本
@@ -210,16 +165,6 @@ public class MoDialogHUD {
         rootView.setOnClickListener(v -> dismiss());
         // 显示Markdown文档
         mSharedView.showAssetMarkdown(assetFileName);
-        if (!isShowing()) {
-            onAttached();
-        }
-    }
-
-    public void showImageText(Bitmap bitmap, String text) {
-        initCenter();
-        canBack = true;
-        rootView.setOnClickListener(v -> dismiss());
-        mSharedView.showImageText(bitmap, text);
         if (!isShowing()) {
             onAttached();
         }

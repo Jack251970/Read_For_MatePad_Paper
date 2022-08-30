@@ -20,6 +20,7 @@ import com.jack.bookshelf.R;
  * RotateLoading
  * Created by Victor on 2015/4/28.
  */
+
 public class RotateLoading extends View {
 
     private static final int DEFAULT_WIDTH = 6;
