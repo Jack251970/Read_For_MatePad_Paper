@@ -63,7 +63,7 @@
         android:max="100"
         style="@android:style/Widget.ProgressBar.Horizontal" />
 
-    <com.jack.bookshelf.widget.views.ATEStrokeTextView
+    <com.jack.bookshelf.widget.views.PaperStrokeTextView
         android:id="@+id/tv_install_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

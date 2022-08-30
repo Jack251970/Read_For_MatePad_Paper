@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
-    <declare-styleable name="ATEStrokeTextView">
+    <declare-styleable name="PaperStrokeTextView">
         <attr name="cornerRadius" format="dimension" />
     </declare-styleable>
 

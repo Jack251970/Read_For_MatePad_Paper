@@ -82,7 +82,12 @@
         <item name="cornerRadius">@dimen/dialog_radius</item>
     </style>
 
-
+    <!-- Pop Menu Text Style -->
+    <style name="PaperTextStylePopReadMenu">
+        <item name="android:textColor">@color/tv_text_default</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 
 
 

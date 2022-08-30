@@ -75,6 +75,7 @@
             android:id="@+id/vw_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+        <!-- 菜单面板 -->
         <LinearLayout
             android:id="@+id/llNavigationBar"
             android:layout_width="match_parent"

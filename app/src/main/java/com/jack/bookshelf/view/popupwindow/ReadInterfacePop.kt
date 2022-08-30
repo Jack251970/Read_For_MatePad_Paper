@@ -29,7 +29,7 @@ import com.jack.bookshelf.widget.page.animation.PageAnimation
 import timber.log.Timber
 
 /**
- * 书本阅读界面下方菜单栏
+ * Read Interface Pop Menu
  * Copyright (c) 2017. 章钦豪. All rights reserved.
  * Edited by Jack Ye
  */
@@ -99,7 +99,7 @@ class ReadInterfacePop : FrameLayout {
         var value = value
         if (value < 1) value = 1
         val params = activity!!.window.attributes
-        params.screenBrightness = value * 1.0f / 255f
+        params.screenBrightness = value * 1.0f / 32f
         activity!!.window.attributes = params
     }
 
@@ -109,20 +109,15 @@ class ReadInterfacePop : FrameLayout {
     @SuppressLint("DefaultLocale")
     private fun bindEvent() {
         // 亮度调节
-        binding.llFollowSys.setOnClickListener {
-            binding.scbFollowSys.setChecked(
-                !binding.scbFollowSys.isChecked,
-                true
-            )
-        }
+        binding.scbFollowSys.isChecked = !binding.scbFollowSys.isChecked
         binding.scbFollowSys.setOnCheckedChangeListener { checkBox, isChecked ->
             readBookControl.lightFollowSys = isChecked
             if (isChecked) {
-                //跟随系统
+                // 跟随系统
                 binding.hpbLight.isEnabled = false
                 setScreenBrightness()
             } else {
-                //不跟随系统
+                // 不跟随系统
                 binding.hpbLight.isEnabled = true
                 setScreenBrightness(readBookControl.light)
             }
@@ -214,7 +209,6 @@ class ReadInterfacePop : FrameLayout {
         }
         // 间距设置选项
         binding.tvSpace.setOnClickListener { activity!!.readAdjustMarginIn() }
-
         // 背景选择
         binding.civBgWhite.setOnClickListener {
             updateBg(0)

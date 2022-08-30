@@ -178,8 +178,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
         upGroup(group);
         // 初始化一级菜单
         initMenu();
-        // 左侧边栏事件
-        binding.mppLlMineMain.setOnClickListener(null);
+        // 左侧边栏菜单
         binding.mppLlBookSourceMain.setOnClickListener(view ->
                 BookSourceActivity.startThis(this, requestSource));
         binding.mppLlReplaceMain.setOnClickListener(view ->
@@ -192,24 +191,24 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
                 BackupRestoreUi.INSTANCE.restore(this,binding.getRoot()));
         binding.mppIvSettingMain.setOnClickListener(view ->
                 SettingActivity.startThis(this));
-        // 主界面搜索栏事件
+        // 搜索栏
         binding.mppLlSearchMain.setOnClickListener(view -> MainActivity.this
                 .startActivity(new Intent(MainActivity.this, SearchBookActivity.class)));
-        // 主界面导入书籍事件
+        // 导入书籍
         binding.mppIvImportOnlineMain.setOnClickListener(view -> {
             if (!selectMenu.isShowing()) {
                 selectMenu.show();
             }
         });
-        // 主界面选择书架布局事件
+        // 选择书架布局
         binding.mppIvSelectLayoutMain.setOnClickListener(view -> changeBookshelfLayout());
-        // 主界面更多选项事件
+        // 更多选项
         binding.mppIvMoreSettingsMain.setOnClickListener(view -> {
             if (!moreSettingMenu.isShowing()) {
                 moreSettingMenu.show(binding.getRoot(), binding.mppIvMoreSettingsMain);
             }
         });
-        // 书籍类别切换事件
+        // 书籍类别切换
         binding.mppTvAllBooksMain.setOnClickListener(view -> upGroup(0));
         binding.mppTvChaseBookMain.setOnClickListener(view -> upGroup(1));
         binding.mppTvFattenBookMain.setOnClickListener(view -> upGroup(2));
