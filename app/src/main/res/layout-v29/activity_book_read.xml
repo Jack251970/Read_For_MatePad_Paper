@@ -276,11 +276,15 @@
             android:layout_marginEnd="@dimen/content_margin_left_and_right"
             android:layout_marginBottom="-1dp"
             android:visibility="invisible"/>
+        <!-- 更多设置菜单 -->
         <com.jack.bookshelf.view.popupwindow.MoreSettingPop
             android:id="@+id/moreSettingPop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/content_margin_left_and_right"
+            android:layout_marginEnd="@dimen/content_margin_left_and_right"
+            android:layout_marginBottom="-1dp"
             android:visibility="invisible" />
         <!-- 间距设置菜单 -->
         <com.jack.bookshelf.view.popupwindow.ReadAdjustMarginPop
