@@ -109,11 +109,11 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
             }
             return
         }
-        SelectMenu.builder(activity, mainView)
+        SelectMenu.builder(activity)
             .setTitle(getString(R.string.select_folder))
             .setBottomButton(getString(R.string.cancel))
             .setMenu(activity.resources.getStringArray(R.array.select_folder))
-            .setOnclick(object : SelectMenu.OnItemClickListener {
+            .setListener(object : SelectMenu.OnItemClickListener {
                 override fun forBottomButton() {}
                 override fun forListItem(lastChoose: Int, position: Int) {
                     when (position) {
@@ -142,7 +142,7 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
                         }
                     }
                 }
-            }).show()
+            }).show(mainView)
     }
 
     private fun selectBackupFolderApp(activity: Activity, isRestore: Boolean) {
@@ -213,11 +213,11 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
             }
             return
         }
-        SelectMenu.builder(activity, mainView)
+        SelectMenu.builder(activity)
             .setTitle(getString(R.string.select_folder))
             .setBottomButton(getString(R.string.cancel))
             .setMenu(activity.resources.getStringArray(R.array.select_folder))
-            .setOnclick(object : SelectMenu.OnItemClickListener {
+            .setListener(object : SelectMenu.OnItemClickListener {
                 override fun forBottomButton() {}
                 override fun forListItem(lastChoose: Int, position: Int) {
                     when (position) {
@@ -243,7 +243,7 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
                         2 -> restoreUsePermission(activity)
                     }
                 }
-            }).show()
+            }).show(mainView)
     }
 
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -27,15 +27,14 @@ import java.util.List;
 
 public class SelectMenu extends PopupWindow{
     private final Context context;
-    private final View mainView;
     private TextView tvTitle;
     private LinearLayout llBottomButton;
     private TextView tvBottomButton;
     private ListView lvMenu;
     private OnItemClickListener itemClick;
 
-    public static SelectMenu builder(Context context, View mainView) {
-        return new SelectMenu(context, mainView);
+    public static SelectMenu builder(Context context) {
+        return new SelectMenu(context);
     }
 
     public SelectMenu setTitle (String title) {
@@ -94,16 +93,15 @@ public class SelectMenu extends PopupWindow{
         return this;
     }
 
-    public SelectMenu setOnclick(@NonNull OnItemClickListener itemClick) {
+    public SelectMenu setListener(@NonNull OnItemClickListener itemClick) {
         this.itemClick = itemClick;
         return this;
     }
 
     @SuppressLint({"InflateParams"})
-    public SelectMenu(Context context, View mainView) {
+    public SelectMenu(Context context) {
         super(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         this.context = context;
-        this.mainView = mainView;
         View view = LayoutInflater.from(context).inflate(R.layout.select_menu, null);
         this.setContentView(view);
         bindView(view);
@@ -118,7 +116,7 @@ public class SelectMenu extends PopupWindow{
         lvMenu = view.findViewById(R.id.mpp_lv_arrange_rule_main);
     }
 
-    public void show() {
+    public void show(View mainView) {
         showAtLocation(mainView, Gravity.CENTER, 0, 0);
     }
 

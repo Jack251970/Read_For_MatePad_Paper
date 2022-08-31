@@ -197,7 +197,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
         // 导入书籍
         binding.mppIvImportOnlineMain.setOnClickListener(view -> {
             if (!selectMenu.isShowing()) {
-                selectMenu.show();
+                selectMenu.show(binding.getRoot());
             }
         });
         // 选择书架布局
@@ -232,12 +232,12 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
                             }
                             break;
                         case 1:
-                            SelectMenu.builder(MainActivity.this, binding.getRoot())
+                            SelectMenu.builder(MainActivity.this)
                                     .setTitle(getString(R.string.sequence_book))
                                     .setBottomButton(getString(R.string.cancel))
                                     .setMenu(getResources().getStringArray(R.array.sequence_book),
                                             preferences.getInt(getString(R.string.pk_bookshelf_px), 0))
-                                    .setOnclick(new SelectMenu.OnItemClickListener() {
+                                    .setListener(new SelectMenu.OnItemClickListener() {
                                         @Override
                                         public void forBottomButton() {}
 
@@ -248,7 +248,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
                                                 RxBus.get().post(RxBusTag.RECREATE, true);
                                             }
                                         }
-                                    }).show();
+                                    }).show(binding.getRoot());
                             break;
                         case 2:
                             if (getBookListFragment() != null) {
@@ -263,11 +263,11 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
                             break;
                     }
                 });
-        selectMenu = SelectMenu.builder(this, binding.getRoot())
+        selectMenu = SelectMenu.builder(this)
                 .setTitle(getString(R.string.import_book))
                 .setBottomButton(getString(R.string.cancel))
                 .setMenu(getResources().getStringArray(R.array.import_book))
-                .setOnclick(new SelectMenu.OnItemClickListener() {
+                .setListener(new SelectMenu.OnItemClickListener() {
                     @Override
                     public void forBottomButton() {}
 

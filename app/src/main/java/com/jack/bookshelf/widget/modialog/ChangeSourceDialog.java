@@ -84,7 +84,7 @@ public class ChangeSourceDialog extends BaseDialog implements ChangeSourceAdapte
     }
 
     private ChangeSourceDialog(@NonNull Context context, BookShelfBean bookShelfBean) {
-        super(context, R.style.alertDialogTheme);
+        super(context, R.style.PaperAlertDialogTheme);
         this.context = context;
         init(bookShelfBean);
     }

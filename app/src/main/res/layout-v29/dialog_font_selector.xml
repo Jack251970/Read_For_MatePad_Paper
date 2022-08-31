@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="@dimen/alert_dialog_width"
+    android:background="@drawable/alert_dialog_background"
+    android:paddingStart="@dimen/alert_dialog_radius"
+    android:paddingEnd="@dimen/alert_dialog_radius"
+    android:paddingTop="@dimen/alert_dialog_padding_top"
+    android:paddingBottom="@dimen/alert_dialog_padding_bottom"
+    android:orientation="vertical">
+    <!-- 标题 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/select_font"
+        android:textColor="@color/black"
+        android:textSize="@dimen/alert_dialog_title_text_size"
+        android:textStyle="bold" />
+    <!-- 字体 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_font_select"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/alert_dialog_message_margin_bottom"
+        android:layout_marginBottom="@dimen/alert_dialog_message_margin_bottom"/>
+    <!-- 按钮 -->
+    <TextView
+        android:id="@+id/tv_reset_default_font"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/alert_dialog_button_layout_height"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/reset_default_font"
+        android:textColor="@color/black"
+        android:textSize="@dimen/alert_dialog_button_text_size"
+        android:textStyle="bold"/>
+</LinearLayout>

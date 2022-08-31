@@ -32,7 +32,7 @@ public class DownLoadDialog extends BaseDialog {
 
     @SuppressLint("InflateParams")
     private DownLoadDialog(Context context, int startIndex, int endIndex, final int all) {
-        super(context, R.style.alertDialogTheme);
+        super(context, R.style.PaperAlertDialogTheme);
         this.context = context;
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_download_choice, null);
         bindView(view, startIndex, endIndex, all);

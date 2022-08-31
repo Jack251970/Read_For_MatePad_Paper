@@ -34,7 +34,7 @@ public class TxtChapterRuleDialog {
         if (txtChapterRuleBean != null) {
             this.txtChapterRuleBean = txtChapterRuleBean.copy();
         }
-        dialog = new BaseDialog(context, R.style.alertDialogTheme);
+        dialog = new BaseDialog(context, R.style.PaperAlertDialogTheme);
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_txt_chpater_rule, null);
         bindView(view);
         dialog.setContentView(view);

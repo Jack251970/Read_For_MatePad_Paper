@@ -121,11 +121,11 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
         binding.ivQuickSearchBookSource.setOnClickListener(v -> {
             List<String> groupList = BookSourceManager.getGroupList();
             groupList.add(0,getString(R.string.enabled_book_source));
-            SelectMenu.builder(getContext(), binding.getRoot())
+            SelectMenu.builder(getContext())
                     .setTitle(getString(R.string.quick_search))
                     .setBottomButton(getString(R.string.cancel))
                     .setMenu(groupList)
-                    .setOnclick(new SelectMenu.OnItemClickListener() {
+                    .setListener(new SelectMenu.OnItemClickListener() {
                         @Override
                         public void forBottomButton() {}
 
@@ -137,17 +137,17 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
                                 binding.searchView.setQuery(groupList.get(position), true);
                             }
                         }
-                    }).show();
+                    }).show(binding.getRoot());
         });
         // 全选
         binding.ivSelectAllBookSource.setOnClickListener(v -> selectAllDataS());
         // 书源排序
-        binding.ivUpGroupBookSource.setOnClickListener(v -> {
-            SelectMenu.builder(this, binding.getRoot())
+        binding.ivUpGroupBookSource.setOnClickListener(v ->
+                SelectMenu.builder(this)
                     .setTitle(getString(R.string.book_source_sequence))
                     .setBottomButton(getString(R.string.cancel))
                     .setMenu(getResources().getStringArray(R.array.book_source_sequence), getSort())
-                    .setOnclick(new SelectMenu.OnItemClickListener() {
+                    .setListener(new SelectMenu.OnItemClickListener() {
                         @Override
                         public void forBottomButton() {}
 
@@ -167,8 +167,7 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
                                 }
                             }
                         }
-                    }).show();
-        });
+                    }).show(binding.getRoot()));
         // 更多选项
         binding.ivMoreSettingsBookSource.setOnClickListener(v -> {
             if (!moreSettingMenu.isShowing()) {

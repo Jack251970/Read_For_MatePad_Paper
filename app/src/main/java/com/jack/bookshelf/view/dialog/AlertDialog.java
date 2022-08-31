@@ -111,7 +111,7 @@ public class AlertDialog extends PopupWindow{
     public AlertDialog(Context context) {
         super(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         this.context = context;
-        View view = LayoutInflater.from(context).inflate(R.layout.alert_dialog_paper, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.alert_dialog, null);
         this.setContentView(view);
         bindView(view);
         setFocusable(true);

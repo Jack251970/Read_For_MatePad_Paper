@@ -49,7 +49,7 @@
     </style>
 
     <!-- MatepadPaper Dialog Theme -->
-    <style name="alertDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+    <style name="PaperAlertDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowIsTranslucent">false</item>

@@ -2,17 +2,14 @@ package com.jack.bookshelf.view.popupwindow
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
-import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.SeekBar
-import androidx.appcompat.app.AlertDialog
 import androidx.documentfile.provider.DocumentFile
 import com.jack.bookshelf.R
 import com.jack.bookshelf.databinding.PopReadInterfaceBinding
@@ -20,11 +17,11 @@ import com.jack.bookshelf.help.ReadBookControl
 import com.jack.bookshelf.help.permission.Permissions
 import com.jack.bookshelf.help.permission.PermissionsCompat
 import com.jack.bookshelf.utils.*
-import com.jack.bookshelf.utils.theme.ATH
 import com.jack.bookshelf.view.activity.ReadBookActivity
 import com.jack.bookshelf.view.activity.ReadStyleActivity
-import com.jack.bookshelf.widget.font.FontSelector
-import com.jack.bookshelf.widget.font.FontSelector.OnThisListener
+import com.jack.bookshelf.view.popupmenu.SelectMenu
+import com.jack.bookshelf.widget.font.FontSelectorDialog
+import com.jack.bookshelf.widget.font.FontSelectorDialog.OnThisListener
 import com.jack.bookshelf.widget.page.animation.PageAnimation
 import timber.log.Timber
 
@@ -44,25 +41,17 @@ class ReadInterfacePop : FrameLayout {
     private val readBookControl = ReadBookControl.getInstance()
     private var callback: Callback? = null
 
-    constructor(context: Context) : super(context) {
-        init()
-    }
+    constructor(context: Context) : super(context) {init()}
 
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        init()
-    }
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {init()}
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context,
         attrs,
         defStyleAttr
-    ) {
-        init()
-    }
+    ) {init()}
 
-    private fun init() {
-        binding.vwBg.setOnClickListener(null)
-    }
+    private fun init() {binding.vwBg.setOnClickListener(null)}
 
     fun setListener(readBookActivity: ReadBookActivity, callback: Callback) {
         activity = readBookActivity
@@ -81,7 +70,7 @@ class ReadInterfacePop : FrameLayout {
 
     fun show() {initLight()}
 
-    fun initLight() {
+    private fun initLight() {
         binding.hpbLight.progress = readBookControl.light
         binding.scbFollowSys.isChecked = readBookControl.lightFollowSys
         if (!readBookControl.lightFollowSys) {
@@ -110,7 +99,7 @@ class ReadInterfacePop : FrameLayout {
     private fun bindEvent() {
         // 亮度调节
         binding.scbFollowSys.isChecked = !binding.scbFollowSys.isChecked
-        binding.scbFollowSys.setOnCheckedChangeListener { checkBox, isChecked ->
+        binding.scbFollowSys.setOnCheckedChangeListener { _, isChecked ->
             readBookControl.lightFollowSys = isChecked
             if (isChecked) {
                 // 跟随系统
@@ -156,32 +145,35 @@ class ReadInterfacePop : FrameLayout {
         }
         // 缩进
         binding.flIndent.setOnClickListener {
-            val dialog = AlertDialog.Builder(context)
-                .setTitle(context.getString(R.string.page_mode))
-                .setSingleChoiceItems(
-                    resources.getStringArray(R.array.indent),
-                    readBookControl.indent
-                ) { dialogInterface: DialogInterface, i: Int ->
-                    readBookControl.indent = i
-                    callback!!.refresh()
-                    dialogInterface.dismiss()
-                }
-                .create()
-            dialog.show()
-            ATH.setAlertDialogTint(dialog)
+            SelectMenu.builder(context)
+                .setTitle(context.getString(R.string.indent))
+                .setBottomButton(context.getString(R.string.cancel))
+                .setMenu(resources.getStringArray(R.array.indent), readBookControl.indent)
+                .setListener(object : SelectMenu.OnItemClickListener {
+                    override fun forBottomButton() {}
+                    override fun forListItem(lastChoose: Int, position: Int) {
+                        if (position != lastChoose) {
+                            readBookControl.indent = position
+                            callback!!.refresh()
+                        }
+                    }
+                }).show(binding.root)
         }
         // 繁简转换
         binding.llJFConvert.setOnClickListener {
-            val dialog = AlertDialog.Builder(context)
+            SelectMenu.builder(context)
                 .setTitle(context.getString(R.string.jf_convert))
-                .setSingleChoiceItems(context.resources.getStringArray(R.array.convert_s), readBookControl.textConvert) { dialogInterface: DialogInterface, i: Int ->
-                    readBookControl.textConvert = i
-                    dialogInterface.dismiss()
-                    callback?.refresh()
-                }
-                .create()
-            dialog.show()
-            ATH.setAlertDialogTint(dialog)
+                .setBottomButton(context.getString(R.string.cancel))
+                .setMenu(resources.getStringArray(R.array.convert_s), readBookControl.textConvert)
+                .setListener(object : SelectMenu.OnItemClickListener {
+                    override fun forBottomButton() {}
+                    override fun forListItem(lastChoose: Int, position: Int) {
+                        if (position != lastChoose) {
+                            readBookControl.textConvert = position
+                            callback!!.refresh()
+                        }
+                    }
+                }).show(binding.root)
         }
         // 行距单倍
         binding.tvRowDef0.setOnClickListener {
@@ -232,94 +224,83 @@ class ReadInterfacePop : FrameLayout {
         }
         // 翻页动画
         binding.tvPageMode.setOnClickListener {
-            val dialog = AlertDialog.Builder(context)
+            SelectMenu.builder(context)
                 .setTitle(context.getString(R.string.page_mode))
-                .setSingleChoiceItems(
-                    PageAnimation.Mode.getAllPageMode(),
-                    readBookControl.pageMode
-                ) { dialogInterface: DialogInterface, i: Int ->
-                    readBookControl.pageMode = i
-                    callback!!.upPageMode()
-                    dialogInterface.dismiss()
-                }
-                .create()
-            dialog.show()
-            ATH.setAlertDialogTint(dialog)
+                .setBottomButton(context.getString(R.string.cancel))
+                .setMenu(PageAnimation.Mode.getAllPageMode(), readBookControl.pageMode)
+                .setListener(object : SelectMenu.OnItemClickListener {
+                    override fun forBottomButton() {}
+                    override fun forListItem(lastChoose: Int, position: Int) {
+                        if (position != lastChoose) {
+                            readBookControl.pageMode = position
+                            callback!!.upPageMode()
+                        }
+                    }
+                }).show(binding.root)
         }
         // 正文标题
         binding.tvPageTitle.setOnClickListener {
-            val dialog = AlertDialog.Builder(context)
+            SelectMenu.builder(context)
                 .setTitle(context.getString(R.string.page_title))
-                .setSingleChoiceItems(
-                    arrayOf(
-                        context.getString(R.string.show),
-                        context.getString(R.string.hide)
-                    ),
-                    readBookControl.showTitle
-                ) { dialogInterface: DialogInterface, i: Int ->
-                    readBookControl.showTitle = i
-                    callback!!.refresh()
-                    dialogInterface.dismiss()
-                }
-                .create()
-            dialog.show()
-            ATH.setAlertDialogTint(dialog)
+                .setBottomButton(context.getString(R.string.cancel))
+                .setMenu(resources.getStringArray(R.array.read_book_show_and_hide), readBookControl.showTitle)
+                .setListener(object : SelectMenu.OnItemClickListener {
+                    override fun forBottomButton() {}
+                    override fun forListItem(lastChoose: Int, position: Int) {
+                        if (position != lastChoose) {
+                            readBookControl.showTitle = position
+                            callback!!.refresh()
+                        }
+                    }
+                }).show(binding.root)
         }
         // 页眉
         binding.tvPageHeader.setOnClickListener {
-            val dialog = AlertDialog.Builder(context)
+            SelectMenu.builder(context)
                 .setTitle(context.getString(R.string.ad_page_header))
-                .setSingleChoiceItems(
-                    arrayOf(
-                        context.getString(R.string.header_occasion_show),
-                    ),
-                    readBookControl.showTimeBattery
-                ) { dialogInterface: DialogInterface, i: Int ->
-                    readBookControl.showTimeBattery = i
-                    callback!!.refresh()
-                    dialogInterface.dismiss()
-                }
-                .create()
-            dialog.show()
-            ATH.setAlertDialogTint(dialog)
+                .setBottomButton(context.getString(R.string.cancel))
+                .setMenu(arrayOf(context.getString(R.string.header_occasion_show)), readBookControl.showTimeBattery)
+                .setListener(object : SelectMenu.OnItemClickListener {
+                    override fun forBottomButton() {}
+                    override fun forListItem(lastChoose: Int, position: Int) {
+                        if (position != lastChoose) {
+                            readBookControl.showTimeBattery = position
+                            callback!!.refresh()
+                        }
+                    }
+                }).show(binding.root)
         }
         // 页脚
         binding.tvPageFooter.setOnClickListener {
-            val dialog = AlertDialog.Builder(context)
+            SelectMenu.builder(context)
                 .setTitle(context.getString(R.string.ad_page_footer))
-                .setSingleChoiceItems(
-                    arrayOf(
-                        context.getString(R.string.show),
-                        context.getString(R.string.hide),
-                    ),
-                    readBookControl.showFooter
-                ) { dialogInterface: DialogInterface, i: Int ->
-                    readBookControl.showFooter = i
-                    callback!!.refresh()
-                    dialogInterface.dismiss()
-                }
-                .create()
-            dialog.show()
-            ATH.setAlertDialogTint(dialog)
+                .setBottomButton(context.getString(R.string.cancel))
+                .setMenu(resources.getStringArray(R.array.read_book_show_and_hide), readBookControl.showFooter)
+                .setListener(object : SelectMenu.OnItemClickListener {
+                    override fun forBottomButton() {}
+                    override fun forListItem(lastChoose: Int, position: Int) {
+                        if (position != lastChoose) {
+                            readBookControl.showFooter = position
+                            callback!!.refresh()
+                        }
+                    }
+                }).show(binding.root)
         }
         // 页脚分割线
         binding.tvPageCutOffLine.setOnClickListener {
-            val dialog = AlertDialog.Builder(context)
+            SelectMenu.builder(context)
                 .setTitle(context.getString(R.string.ad_page_cut_off_line))
-                .setSingleChoiceItems(
-                    arrayOf(
-                        context.getString(R.string.show),
-                        context.getString(R.string.hide),
-                    ),
-                    readBookControl.showLine
-                ) { dialogInterface: DialogInterface, i: Int ->
-                    readBookControl.showLine = i
-                    callback!!.refresh()
-                    dialogInterface.dismiss()
-                }
-                .create()
-            dialog.show()
-            ATH.setAlertDialogTint(dialog)
+                .setBottomButton(context.getString(R.string.cancel))
+                .setMenu(resources.getStringArray(R.array.read_book_show_and_hide), readBookControl.showLine)
+                .setListener(object : SelectMenu.OnItemClickListener {
+                    override fun forBottomButton() {}
+                    override fun forListItem(lastChoose: Int, position: Int) {
+                        if (position != lastChoose) {
+                            readBookControl.showLine = position
+                            callback!!.refresh()
+                        }
+                    }
+                }).show(binding.root)
         }
         // 自定义阅读样式
         binding.civBgWhite.setOnLongClickListener { customReadStyle(0) }
@@ -330,28 +311,24 @@ class ReadInterfacePop : FrameLayout {
         binding.tvCustomReadingMode.setOnClickListener { customReadStyle(readBookControl.textDrawableIndex) }
         // 选择字体
         binding.flTextFont.setOnClickListener {
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
-                activity!!.selectFontDir()
-            } else {
-                PermissionsCompat.Builder(activity!!)
-                    .addPermissions(
-                        Permissions.READ_EXTERNAL_STORAGE,
-                        Permissions.WRITE_EXTERNAL_STORAGE
-                    )
-                    .rationale(R.string.need_storage_permission_to_backup_book_information)
-                    .onGranted {
-                        kotlin.runCatching {
-                            selectFont(
-                                DocumentUtils.listFiles(FileUtils.getSdCardPath() + "/Fonts") {
-                                    it.name.matches(FontSelector.fontRegex)
-                                }
-                            )
-                        }.onFailure {
-                            context.toastOnUi("获取文件出错\n${it.localizedMessage}")
-                        }
+            PermissionsCompat.Builder(activity!!)
+                .addPermissions(
+                    Permissions.READ_EXTERNAL_STORAGE,
+                    Permissions.WRITE_EXTERNAL_STORAGE
+                )
+                .rationale(R.string.need_storage_permission_to_backup_book_information)
+                .onGranted {
+                    kotlin.runCatching {
+                        selectFont(
+                            DocumentUtils.listFiles(FileUtils.getSdCardPath() + "/Fonts") {
+                                it.name.matches(FontSelectorDialog.fontRegex)
+                            }
+                        )
+                    }.onFailure {
+                        context.toastOnUi("获取文件出错\n${it.localizedMessage}")
                     }
-                    .request()
-            }
+                }
+                .request()
         }
         // 长按清除字体
         binding.flTextFont.setOnLongClickListener {
@@ -365,7 +342,7 @@ class ReadInterfacePop : FrameLayout {
         kotlin.runCatching {
             val doc = DocumentFile.fromTreeUri(context, uri)
             DocumentUtils.listFiles(doc!!.uri) {
-                it.name.matches(FontSelector.fontRegex)
+                it.name.matches(FontSelectorDialog.fontRegex)
             }.let {
                 selectFont(it)
             }
@@ -376,7 +353,8 @@ class ReadInterfacePop : FrameLayout {
     }
 
     private fun selectFont(docItems: List<FileDoc?>?) {
-        FontSelector(context, readBookControl.fontPath)
+        FontSelectorDialog(context)
+            .setFile(readBookControl.fontPath, docItems)
             .setListener(object : OnThisListener {
                 override fun setDefault() {
                     clearFontPath()
@@ -386,8 +364,7 @@ class ReadInterfacePop : FrameLayout {
                     setReadFonts(fileDoc)
                 }
             })
-            .create(docItems)
-            .show()
+            .show(binding.root)
     }
 
     // 自定义阅读样式

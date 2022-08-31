@@ -1288,11 +1288,11 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
             if (checkedItem < 0) {
                 checkedItem = 0;
             }
-            SelectMenu.builder(this, binding.getRoot())
+            SelectMenu.builder(this)
                     .setTitle("选择目录正则")
                     .setBottomButton("管理目录正则")
                     .setMenu(ruleNameList, checkedItem)
-                    .setOnclick(new SelectMenu.OnItemClickListener() {
+                    .setListener(new SelectMenu.OnItemClickListener() {
                         @Override
                         public void forBottomButton() {
                             TxtChapterRuleActivity.startThis(ReadBookActivity.this);
@@ -1308,7 +1308,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
                                 }
                             }
                         }
-                    }).show();
+                    }).show(binding.getRoot());
         }
     }
 
@@ -1735,18 +1735,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
             default:
                 ReadBookActivity.this.popMenuOut();
                 readAloud();
-        }
-    }
-
-    public void selectFontDir() {
-        try {
-            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            //noinspection deprecation
-            startActivityForResult(intent, fontDirRequest);
-        } catch (Exception e) {
-            e.printStackTrace();
-            toast(e.getLocalizedMessage());
         }
     }
 

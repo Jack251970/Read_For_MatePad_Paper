@@ -48,7 +48,7 @@ public class ReplaceRuleDialog extends BaseDialog {
 
     @SuppressLint("InflateParams")
     private ReplaceRuleDialog(Context context, ReplaceRuleBean replaceRuleBean, BookShelfBean bookShelfBean) {
-        super(context, R.style.alertDialogTheme);
+        super(context, R.style.PaperAlertDialogTheme);
         this.replaceRuleBean = replaceRuleBean;
         this.bookShelfBean = bookShelfBean;
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_replace_rule, null);
@@ -58,7 +58,7 @@ public class ReplaceRuleDialog extends BaseDialog {
 
     @SuppressLint("InflateParams")
     private ReplaceRuleDialog(Context context, ReplaceRuleBean replaceRuleBean, BookShelfBean bookShelfBean, int replaceUIMod) {
-        super(context, R.style.alertDialogTheme);
+        super(context, R.style.PaperAlertDialogTheme);
         this.replaceRuleBean = replaceRuleBean;
         this.bookShelfBean = bookShelfBean;
         this.ReplaceUIMode = replaceUIMod;

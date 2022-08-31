@@ -314,12 +314,12 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
         });
         // 分组点击事件
         binding.tvManageGroups.setOnClickListener(v ->
-                SelectMenu.builder(this, binding.getRoot())
+                SelectMenu.builder(this)
                 .setTitle(getString(R.string.manage_groups))
                 .setBottomButton(getString(R.string.cancel))
                 .setMenu(getResources().getStringArray(R.array.book_groups),
                         bookShelfBean.getGroup())
-                .setOnclick(new SelectMenu.OnItemClickListener() {
+                .setListener(new SelectMenu.OnItemClickListener() {
                     @Override
                     public void forBottomButton() {}
 
@@ -332,7 +332,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
                             mPresenter.addToBookShelf();
                         }
                     }
-                }).show());
+                }).show(binding.getRoot()));
     }
 
     @Override

@@ -114,11 +114,11 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
                     }
                 }
             }
-            SelectMenu.builder(getContext(), binding.getRoot())
+            SelectMenu.builder(getContext())
                     .setTitle(getString(R.string.book_source_search_range))
                     .setBottomButton(getString(R.string.cancel))
                     .setMenu(groupList,last_choose)
-                    .setOnclick(new SelectMenu.OnItemClickListener() {
+                    .setListener(new SelectMenu.OnItemClickListener() {
                         @Override
                         public void forBottomButton() {}
 
@@ -133,7 +133,7 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
                                 mPresenter.initSearchEngineS(MApplication.SEARCH_GROUP);
                             }
                         }
-                    }).show();
+                    }).show(binding.getRoot());
         });
         // 主界面无事件
         binding.llSearchHistory.setOnClickListener(null);

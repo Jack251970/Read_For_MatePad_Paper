@@ -3,7 +3,6 @@ package com.jack.bookshelf.widget.font;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.utils.FileDoc;
-import com.jack.bookshelf.utils.RealPathUtil;
 
 import java.io.File;
 import java.io.FileDescriptor;
@@ -23,13 +21,18 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Item Font Selector Adapter
+ * Edited by Jack251970
+ */
+
 public class FontAdapter extends RecyclerView.Adapter<FontAdapter.MyViewHolder> {
     private final List<FileDoc> docList = new ArrayList<>();
-    private final FontSelector.OnThisListener thisListener;
+    private final FontSelectorDialog.OnThisListener thisListener;
     private final Context context;
     private String selectName;
 
-    FontAdapter(Context context, String selectPath, FontSelector.OnThisListener thisListener) {
+    FontAdapter(Context context, String selectPath, FontSelectorDialog.OnThisListener thisListener) {
         this.context = context;
         try {
             String[] x = URLDecoder.decode(selectPath, "utf-8")
@@ -54,13 +57,9 @@ public class FontAdapter extends RecyclerView.Adapter<FontAdapter.MyViewHolder> 
             try {
                 Typeface typeface;
                 if (docItem.isContentScheme()) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        FileDescriptor fd = context.getContentResolver().openFileDescriptor(docItem.getUri(), "r")
-                                .getFileDescriptor();
-                        typeface = new Typeface.Builder(fd).build();
-                    } else {
-                        typeface = Typeface.createFromFile(RealPathUtil.getPath(context, docItem.getUri()));
-                    }
+                    FileDescriptor fd = context.getContentResolver().openFileDescriptor(docItem.getUri(), "r")
+                            .getFileDescriptor();
+                    typeface = new Typeface.Builder(fd).build();
                 } else {
                     typeface = Typeface.createFromFile(docItem.getUri().toString());
                 }
@@ -109,5 +108,4 @@ public class FontAdapter extends RecyclerView.Adapter<FontAdapter.MyViewHolder> 
             ivChecked = itemView.findViewById(R.id.iv_checked);
         }
     }
-
 }

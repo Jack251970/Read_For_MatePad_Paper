@@ -34,7 +34,7 @@ public class BookmarkDialog extends BaseDialog {
 
     @SuppressLint("InflateParams")
     private BookmarkDialog(Context context, @NonNull BookmarkBean bookmarkBean, boolean isAdd) {
-        super(context, R.style.alertDialogTheme);
+        super(context, R.style.PaperAlertDialogTheme);
         this.context = context;
         this.bookmarkBean = bookmarkBean;
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_bookmark, null);

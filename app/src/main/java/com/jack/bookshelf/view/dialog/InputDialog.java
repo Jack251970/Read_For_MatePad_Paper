@@ -43,7 +43,7 @@ public class InputDialog extends BaseDialog {
 
     @SuppressLint("InflateParams")
     private InputDialog(Context context) {
-        super(context, R.style.alertDialogTheme);
+        super(context, R.style.PaperAlertDialogTheme);
         this.context = context;
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_input, null);
         setContentView(view);

@@ -516,7 +516,7 @@
     <string name="nb_file_add_shelves">加入书架(%1$d)</string>
     <string name="nb_file_add_succeed">成功添加%1$d本书</string>
     <string name="fonts_folder">请将字体文件放到SD根目录Fonts文件夹下重新选择</string>
-    <string name="default_font">默认字体</string>
+    <string name="reset_default_font">恢复默认字体</string>
     <string name="select_font">选择字体</string>
     <string name="text_size">字号</string>
     <string name="line_size">行距</string>
