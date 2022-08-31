@@ -383,8 +383,6 @@
     <string name="web_edit_source">web编辑书源</string>
     <string name="download_offline_t">离线下载</string>
     <string name="download_offline_s">下载选择的章节到本地</string>
-    <string name="pt_hide_status_bar">隐藏状态栏</string>
-    <string name="ps_hide_status_bar">阅读界面隐藏状态栏</string>
     <string name="pt_read_line_adjust">阅读行数调整</string>
     <string name="ps_read_line_adjust">阅读行数减一行,如阅读界面显示不全可启用</string>
     <string name="backup_permission">备份请给与存储权限</string>
@@ -418,9 +416,6 @@
     <string name="read_aloud_timerremaining">%d分钟</string>
     <string name="read_aloud_timerremaininglong">"%d小时%d分"</string>
     <string name="read_aloud_timerstop">"计时已取消"</string>
-    <string name="ps_hide_navigation_bar">阅读界面隐藏虚拟按键</string>
-    <string name="pt_hide_navigation_bar">隐藏导航栏</string>
-    <string name="re_navigation_bar_color">导航栏颜色</string>
     <string name="no_chapter">无章节</string>
     <string name="add_url">添加网址</string>
     <string name="background">背景</string>
@@ -439,11 +434,11 @@
     <string name="volume_open_page">音量键翻页</string>
     <string name="click_open_page">点击翻页</string>
     <string name="click_all_next_page">点击总是翻下一页</string>
-    <string name="keep_light">屏幕超时</string>
+    <string name="keep_light_time">屏幕关闭时间</string>
     <string name="menu">菜单</string>
-    <string name="parameter_adjust">参数调节</string>
-    <string name="screen_display">屏幕显示</string>
-    <string name="interface_interact">界面交互</string>
+    <string name="parameter_setting">参数设置</string>
+    <string name="display_setting">显示设置</string>
+    <string name="operation_setting">操作设置</string>
     <string name="scroll_bar">滚动条</string>
     <string name="clear_all_content">清除缓存会删除所有已保存章节,是否确认删除?</string>
     <string name="book_source_share_url">书源共享</string>
@@ -581,7 +576,6 @@
     <string name="no_find">没有发现，可以在书源里添加。</string>
     <string name="restore_default">恢复默认</string>
     <string name="set_download_per">自定义缓存路径需要存储权限</string>
-    <string name="black">黑色</string>
     <string name="content_empty">文章内容为空</string>
     <string name="on_change_source">正在换源请等待…</string>
     <string name="chapter_list_empty">目录列表为空</string>

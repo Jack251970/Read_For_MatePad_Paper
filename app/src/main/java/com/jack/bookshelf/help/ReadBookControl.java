@@ -44,11 +44,8 @@ public class ReadBookControl {
     private float paragraphSize;
     private int pageMode;
     private Boolean lightNovelParagraph;
-    private Boolean hideStatusBar;
-    private Boolean hideNavigationBar;
     private String fontPath;
     private int textConvert;
-    private int navBarColor;
     private Boolean textBold;
     private Boolean canKeyReturn;
     private Boolean canClickTurn;
@@ -79,7 +76,7 @@ public class ReadBookControl {
 
     private final SharedPreferences preferences;
 
-    private static ReadBookControl readBookControl;
+    private static volatile ReadBookControl readBookControl;
 
     public static ReadBookControl getInstance() {
         if (readBookControl == null) {
@@ -100,8 +97,6 @@ public class ReadBookControl {
 
     public void updateReaderSettings() {
         this.lightNovelParagraph = preferences.getBoolean("light_novel_paragraph", false);
-        this.hideStatusBar = preferences.getBoolean("hide_status_bar", false);
-        this.hideNavigationBar = preferences.getBoolean("hide_navigation_bar", false);
         this.indent = preferences.getInt("indent", 2);
         this.textSize = preferences.getInt("textSize", 20);
         this.canKeyReturn = preferences.getBoolean("canKeyReturn", false); //禁用返回键
@@ -133,7 +128,6 @@ public class ReadBookControl {
         this.tipPaddingBottom = preferences.getInt("tipPaddingBottom", 0);
         this.pageMode = preferences.getInt("pageMode", 0);
         this.screenDirection = preferences.getInt("screenDirection", 0);
-        this.navBarColor = preferences.getInt("navBarColorInt", 0);
         this.textLetterSpacing = preferences.getFloat("textLetterSpacing", 0);
         this.canSelectText = preferences.getBoolean("canSelectText", false);
         initTextDrawableIndex();
@@ -378,18 +372,6 @@ public class ReadBookControl {
                 .apply();
     }
 
-    public void setNavBarColor(int navBarColor) {
-        this.navBarColor = navBarColor;
-        preferences.edit()
-                .putInt("navBarColorInt", navBarColor)
-                .apply();
-    }
-
-    public int getNavBarColor() {
-        return navBarColor;
-    }
-
-
     public void setTextBold(boolean textBold) {
         this.textBold = textBold;
         preferences.edit()
@@ -587,38 +569,6 @@ public class ReadBookControl {
         this.lightNovelParagraph = lightNovelParagraph;
         preferences.edit()
                 .putBoolean("light_novel_paragraph", lightNovelParagraph)
-                .apply();
-    }
-
-    public Boolean getHideStatusBar() {
-        return hideStatusBar;
-    }
-
-    public void setHideStatusBar(Boolean hideStatusBar) {
-        this.hideStatusBar = hideStatusBar;
-        preferences.edit()
-                .putBoolean("hide_status_bar", hideStatusBar)
-                .apply();
-    }
-
-    public Boolean getToLh() {
-        return preferences.getBoolean("toLh", false);
-    }
-
-    public void setToLh(Boolean toLh) {
-        preferences.edit()
-                .putBoolean("toLh", toLh)
-                .apply();
-    }
-
-    public Boolean getHideNavigationBar() {
-        return hideNavigationBar;
-    }
-
-    public void setHideNavigationBar(Boolean hideNavigationBar) {
-        this.hideNavigationBar = hideNavigationBar;
-        preferences.edit()
-                .putBoolean("hide_navigation_bar", hideNavigationBar)
                 .apply();
     }
 

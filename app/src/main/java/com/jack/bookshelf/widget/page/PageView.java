@@ -142,9 +142,6 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
     void setPageMode(PageAnimation.Mode pageMode, int marginTop, int marginBottom) {
         //视图未初始化的时候，禁止调用
         if (mViewWidth == 0 || mViewHeight == 0 || mPageLoader == null) return;
-        if (!readBookControl.getHideStatusBar()) {
-            marginTop = marginTop + statusBarHeight;
-        }
         switch (pageMode) {
             case COVER:
                 mPageAnim = new CoverPageAnim(mViewWidth, mViewHeight, this, this);

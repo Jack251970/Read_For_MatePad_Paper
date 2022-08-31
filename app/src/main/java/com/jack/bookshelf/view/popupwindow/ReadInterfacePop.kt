@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.SeekBar
@@ -36,6 +37,7 @@ class ReadInterfacePop : FrameLayout {
         .inflate(LayoutInflater.from(context), this, true)
     private var activity: ReadBookActivity? = null
     private val readBookControl = ReadBookControl.getInstance()
+    private var mainView: View? = null
     private var callback: Callback? = null
 
     constructor(context: Context) : super(context) {init()}
@@ -50,8 +52,9 @@ class ReadInterfacePop : FrameLayout {
 
     private fun init() {binding.vwBg.setOnClickListener(null)}
 
-    fun setListener(readBookActivity: ReadBookActivity, callback: Callback) {
+    fun setListener(readBookActivity: ReadBookActivity, mainView: View, callback: Callback) {
         activity = readBookActivity
+        this.mainView = mainView
         this.callback = callback
         initData()
         bindEvent()
@@ -154,7 +157,7 @@ class ReadInterfacePop : FrameLayout {
                             callback!!.refresh()
                         }
                     }
-                }).show(binding.root)
+                }).show(mainView)
         }
         // 繁简转换
         binding.llJFConvert.setOnClickListener {
@@ -170,7 +173,7 @@ class ReadInterfacePop : FrameLayout {
                             callback!!.refresh()
                         }
                     }
-                }).show(binding.root)
+                }).show(mainView)
         }
         // 行距单倍
         binding.tvRowDef0.setOnClickListener {
@@ -233,7 +236,7 @@ class ReadInterfacePop : FrameLayout {
                             callback!!.upPageMode()
                         }
                     }
-                }).show(binding.root)
+                }).show(mainView)
         }
         // 正文标题
         binding.tvPageTitle.setOnClickListener {
@@ -249,7 +252,7 @@ class ReadInterfacePop : FrameLayout {
                             callback!!.refresh()
                         }
                     }
-                }).show(binding.root)
+                }).show(mainView)
         }
         // 页眉
         binding.tvPageHeader.setOnClickListener {
@@ -265,7 +268,7 @@ class ReadInterfacePop : FrameLayout {
                             callback!!.refresh()
                         }
                     }
-                }).show(binding.root)
+                }).show(mainView)
         }
         // 页脚
         binding.tvPageFooter.setOnClickListener {
@@ -281,7 +284,7 @@ class ReadInterfacePop : FrameLayout {
                             callback!!.refresh()
                         }
                     }
-                }).show(binding.root)
+                }).show(mainView)
         }
         // 页脚分割线
         binding.tvPageCutOffLine.setOnClickListener {
@@ -297,7 +300,7 @@ class ReadInterfacePop : FrameLayout {
                             callback!!.refresh()
                         }
                     }
-                }).show(binding.root)
+                }).show(mainView)
         }
         // 自定义阅读样式
         binding.civBgWhite.setOnLongClickListener { customReadStyle(0) }
@@ -355,7 +358,7 @@ class ReadInterfacePop : FrameLayout {
                     setReadFonts(fileDoc)
                 }
             })
-            .show(binding.root)
+            .show(mainView)
     }
 
     // 自定义阅读样式

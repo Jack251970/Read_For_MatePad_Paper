@@ -43,12 +43,10 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * 页面加载器
- * 最后修改20220730
  * Edited by Jack251970
  */
 
 public abstract class PageLoader{
-    private static final String TAG = "PageLoader";
 
     // 默认的显示参数配置
     private static final int DEFAULT_MARGIN_HEIGHT = 20;
@@ -122,27 +120,17 @@ public abstract class PageLoader{
     private float tipMarginLeft;
     private float displayRightEnd;
     private float tipVisibleWidth;
-
-    private boolean hideStatusBar;
-    private boolean showTimeBattery;
-
-    //电池的百分比
-    private int mBatteryLevel;
-
-    // 当前章
-    int mCurChapterPos;
+    private int mBatteryLevel; //电池的百分比
+    int mCurChapterPos; // 当前章
     private int mCurPagePos;
     private int readTextLength; //已读字符数
     private boolean resetReadAloud; //是否重新朗读
     private int readAloudParagraph; //正在朗读章节
-
     Bitmap cover;
     private int linePos = 0;
     private boolean isLastPage = false;
-
     CompositeDisposable compositeDisposable;
-    //翻页时间
-    private long skipPageTime = 0;
+    private long skipPageTime = 0;  //翻页时间
 
     /*****************************init params*******************************/
     PageLoader(PageView pageView, BookShelfBean book, Callback callback) {
@@ -163,17 +151,8 @@ public abstract class PageLoader{
         initPaint();
     }
 
-    private boolean ifShowTimeBattery(boolean ifHideStatusBar, int showTimeBattery){
-        switch (showTimeBattery) {
-            default:
-                return ifHideStatusBar;
-        }
-    }
-
     private void initData() {
         // 获取配置参数
-        hideStatusBar = readBookControl.getHideStatusBar();
-        showTimeBattery = ifShowTimeBattery(hideStatusBar,readBookControl.getShowTimeBattery());
         mPageMode = PageAnimation.Mode.getPageMode(readBookControl.getPageMode());
         // 初始化参数
         indent = StringUtils.repeat(StringUtils.halfToFull(" "), readBookControl.getIndent());
@@ -190,9 +169,7 @@ public abstract class PageLoader{
         mDisplayHeight = h;
 
         // 设置边距
-        mMarginTop = hideStatusBar ?
-                ScreenUtils.dpToPx(readBookControl.getTipPaddingTop() + readBookControl.getPaddingTop() + DEFAULT_MARGIN_HEIGHT)
-                : ScreenUtils.dpToPx(readBookControl.getPaddingTop());
+        mMarginTop = ScreenUtils.dpToPx(readBookControl.getTipPaddingTop() + readBookControl.getPaddingTop() + DEFAULT_MARGIN_HEIGHT);
         mMarginBottom = ScreenUtils.dpToPx(readBookControl.getTipPaddingBottom() + readBookControl.getPaddingBottom() + DEFAULT_MARGIN_HEIGHT);
         mMarginLeft = ScreenUtils.dpToPx(readBookControl.getPaddingLeft());
         mMarginRight = ScreenUtils.dpToPx(readBookControl.getPaddingRight());
@@ -213,9 +190,7 @@ public abstract class PageLoader{
 
         // 获取内容显示位置的大小
         mVisibleWidth = mDisplayWidth - mMarginLeft - mMarginRight;
-        mVisibleHeight = readBookControl.getHideStatusBar()
-                ? mDisplayHeight - mMarginTop - mMarginBottom
-                : mDisplayHeight - mMarginTop - mMarginBottom - mPageView.getStatusBarHeight();
+        mVisibleHeight = mDisplayHeight - mMarginTop - mMarginBottom;
 
         // 设置翻页模式
         mPageView.setPageMode(mPageMode, mMarginTop, mMarginBottom);
@@ -470,14 +445,12 @@ public abstract class PageLoader{
      * 更新时间
      */
     public void updateTime() {
-        if (ifShowTimeBattery(readBookControl.getHideStatusBar(),readBookControl.getShowTimeBattery())) {
-            if (mPageMode == PageAnimation.Mode.SCROLL) {
-                mPageView.drawBackground(0);
-            } else {
-                upPage();
-            }
-            mPageView.invalidate();
+        if (mPageMode == PageAnimation.Mode.SCROLL) {
+            mPageView.drawBackground(0);
+        } else {
+            upPage();
         }
+        mPageView.invalidate();
     }
 
     /**
@@ -488,16 +461,13 @@ public abstract class PageLoader{
             return false;
         }
         mBatteryLevel = level;
-        if (ifShowTimeBattery(readBookControl.getHideStatusBar(),readBookControl.getShowTimeBattery())) {
-            if (mPageMode == PageAnimation.Mode.SCROLL) {
-                mPageView.drawBackground(0);
-            } else if (curChapter().txtChapter != null) {
-                upPage();
-            }
-            mPageView.invalidate();
-            return true;
+        if (mPageMode == PageAnimation.Mode.SCROLL) {
+            mPageView.drawBackground(0);
+        } else if (curChapter().txtChapter != null) {
+            upPage();
         }
-        return false;
+        mPageView.invalidate();
+        return true;
     }
 
     /**
@@ -873,105 +843,60 @@ public abstract class PageLoader{
                     : String.format("%d/%d", txtPage.getPosition() + 1, txtChapter.getPageSize());
             String progress = (txtChapter.getStatus() != TxtChapter.Status.FINISH) ? ""
                     : BookshelfHelp.getReadProgress(mCurChapterPos, book.getChapterListSize(), mCurPagePos, curChapter().txtChapter.getPageSize());
-
-            float tipBottom;
-            float tipLeft;
             //初始化标题的参数
             //需要注意的是:绘制text的y的起始点是text的基准线的位置，而不是从text的头部的位置
-            if (!hideStatusBar) { //显示状态栏
-                if (readBookControl.getShowFooter() == 0) { //选择显示页脚
-                    if (txtChapter.getStatus() != TxtChapter.Status.FINISH) {
-                        if (isChapterListPrepare) {
-                            //绘制页脚标题
-                            title = TextUtils.ellipsize(title, mTipPaint, tipVisibleWidth, TextUtils.TruncateAt.END).toString();
-                            canvas.drawText(title, tipMarginLeft, tipBottomBot, mTipPaint);
-                        }
-                    } else {
-                        //绘制总进度
-                        tipLeft = displayRightEnd - mTipPaint.measureText(progress);
-                        canvas.drawText(progress, tipLeft, tipBottomBot, mTipPaint);
-                        //绘制页码
-                        tipLeft = tipLeft - tipDistance - mTipPaint.measureText(page);
-                        canvas.drawText(page, tipLeft, tipBottomBot, mTipPaint);
-                        //绘制页脚标题
-                        title = TextUtils.ellipsize(title, mTipPaint, tipLeft - tipDistance, TextUtils.TruncateAt.END).toString();
-                        canvas.drawText(title, tipMarginLeft, tipBottomBot, mTipPaint);
-                    }
-                    if (readBookControl.getShowLine() == 0) {
-                        //绘制分隔线
-                        tipBottom = mDisplayHeight - tipMarginBottom;
-                        canvas.drawRect(tipMarginLeft, tipBottom, displayRightEnd, tipBottom + 2, mTipPaint);
-                    }
+            if (getPageStatus() != TxtChapter.Status.FINISH) {
+                if (isChapterListPrepare) {
+                    //绘制页脚标题
+                    title = TextUtils.ellipsize(title, mTipPaint, tipVisibleWidth, TextUtils.TruncateAt.END).toString();
+                    canvas.drawText(title, tipMarginLeft, tipBottomTop, mTipPaint);
                 }
-            } else { //隐藏状态栏
-                if (readBookControl.getShowFooter() == 0) { //选择显示页脚
-                    if (getPageStatus() != TxtChapter.Status.FINISH) {
-                        if (isChapterListPrepare) {
-                            //绘制页脚标题
-                            title = TextUtils.ellipsize(title, mTipPaint, tipVisibleWidth, TextUtils.TruncateAt.END).toString();
-                            canvas.drawText(title, tipMarginLeft, tipBottomTop, mTipPaint);
-                        }
-                    } else {
-                        //绘制页脚标题
-                        float titleTipLength = showTimeBattery ? tipVisibleWidth - mTipPaint.measureText(progress) - tipDistance : tipVisibleWidth;
-                        title = TextUtils.ellipsize(title, mTipPaint, titleTipLength, TextUtils.TruncateAt.END).toString();
-                        canvas.drawText(title, tipMarginLeft, tipBottomTop, mTipPaint);
-                        // 绘制页码
-                        canvas.drawText(page, tipMarginLeft, tipBottomBot, mTipPaint);
-                        //绘制总进度
-                        float progressTipLeft = displayRightEnd - mTipPaint.measureText(progress);
-                        float progressTipBottom = showTimeBattery ? tipBottomTop : tipBottomBot;
-                        canvas.drawText(progress, progressTipLeft, progressTipBottom, mTipPaint);
-                    }
-                    if (readBookControl.getShowLine() == 0) {
-                        //绘制分隔线
-                        tipBottom = tipMarginTop - 2;
-                        canvas.drawRect(tipMarginLeft, tipBottom, displayRightEnd, tipBottom + 2, mTipPaint);
-                    }
-                }
+            } else {
+                //绘制页脚标题
+                float titleTipLength = tipVisibleWidth - mTipPaint.measureText(progress) - tipDistance;
+                title = TextUtils.ellipsize(title, mTipPaint, titleTipLength, TextUtils.TruncateAt.END).toString();
+                canvas.drawText(title, tipMarginLeft, tipBottomTop, mTipPaint);
+                // 绘制页码
+                canvas.drawText(page, tipMarginLeft, tipBottomBot, mTipPaint);
+                //绘制总进度
+                float progressTipLeft = displayRightEnd - mTipPaint.measureText(progress);
+                float progressTipBottom = tipBottomTop;
+                canvas.drawText(progress, progressTipLeft, progressTipBottom, mTipPaint);
             }
         }
 
         int visibleRight = (int) displayRightEnd;
-        if (showTimeBattery) {
-            //绘制当前时间
-            String time = StringUtils.dateConvert(System.currentTimeMillis(), AppConstant.FORMAT_TIME);
-            float timeTipLeft = (mDisplayWidth - mTipPaint.measureText(time)) / 2;
-            canvas.drawText(time, timeTipLeft, tipBottomBot, mTipPaint);
-
-            //绘制电池
-            int polarHeight = ScreenUtils.dpToPx(4);
-            int polarWidth = ScreenUtils.dpToPx(2);
-            int border = 2;
-            int outFrameWidth = (int) mBatteryPaint.measureText("0000") + polarWidth;
-            int outFrameHeight = (int) mBatteryPaint.getTextSize() + oneSpPx;
-            int visibleBottom = mDisplayHeight - (tipMarginBottom - outFrameHeight) / 2;
-
-            //电极的制作
-            int polarLeft = visibleRight - polarWidth;
-            int polarTop = visibleBottom - (outFrameHeight + polarHeight) / 2;
-            Rect polar = new Rect(polarLeft, polarTop, visibleRight, polarTop + polarHeight);
-
-            mBatteryPaint.setStyle(Paint.Style.FILL);
-            canvas.drawRect(polar, mBatteryPaint);
-
-            //外框的制作
-            int outFrameLeft = polarLeft - outFrameWidth;
-            int outFrameTop = visibleBottom - outFrameHeight;
-            Rect outFrame = new Rect(outFrameLeft, outFrameTop, polarLeft, visibleBottom);
-
-            mBatteryPaint.setStyle(Paint.Style.STROKE);
-            mBatteryPaint.setStrokeWidth(border);
-            canvas.drawRect(outFrame, mBatteryPaint);
-
-            //绘制电量
-            mBatteryPaint.setStyle(Paint.Style.FILL);
-            Paint.FontMetrics fontMetrics = mBatteryPaint.getFontMetrics();
-            String batteryLevel = String.valueOf(mBatteryLevel);
-            float batTextLeft = outFrameLeft + (outFrameWidth - mBatteryPaint.measureText(batteryLevel)) / 2;
-            float batTextBaseLine = visibleBottom - outFrameHeight / 2f - fontMetrics.top / 2 - fontMetrics.bottom / 2;
-            canvas.drawText(batteryLevel, batTextLeft, batTextBaseLine, mBatteryPaint);
-        }
+        // 绘制电池
+        int polarHeight = ScreenUtils.dpToPx(4);
+        int polarWidth = ScreenUtils.dpToPx(2);
+        int border = 2;
+        int outFrameWidth = (int) mBatteryPaint.measureText("0000") + polarWidth;
+        int outFrameHeight = (int) mBatteryPaint.getTextSize() + oneSpPx;
+        int visibleBottom = mDisplayHeight - (tipMarginBottom - outFrameHeight) / 2;
+        // 制作电极
+        int polarLeft = visibleRight - polarWidth;
+        int polarTop = visibleBottom - (outFrameHeight + polarHeight) / 2;
+        Rect polar = new Rect(polarLeft, polarTop, visibleRight, polarTop + polarHeight);
+        mBatteryPaint.setStyle(Paint.Style.FILL);
+        canvas.drawRect(polar, mBatteryPaint);
+        // 制作外框
+        int outFrameLeft = polarLeft - outFrameWidth;
+        int outFrameTop = visibleBottom - outFrameHeight;
+        Rect outFrame = new Rect(outFrameLeft, outFrameTop, polarLeft, visibleBottom);
+        mBatteryPaint.setStyle(Paint.Style.STROKE);
+        mBatteryPaint.setStrokeWidth(border);
+        canvas.drawRect(outFrame, mBatteryPaint);
+        // 绘制电量
+        mBatteryPaint.setStyle(Paint.Style.FILL);
+        Paint.FontMetrics fontMetrics = mBatteryPaint.getFontMetrics();
+        String batteryLevel = String.valueOf(mBatteryLevel);
+        float batTextLeft = outFrameLeft + (outFrameWidth - mBatteryPaint.measureText(batteryLevel)) / 2;
+        float batTextBaseLine = visibleBottom - outFrameHeight / 2f - fontMetrics.top / 2 - fontMetrics.bottom / 2;
+        canvas.drawText(batteryLevel, batTextLeft, batTextBaseLine, mBatteryPaint);
+        // 绘制时间
+        String time = StringUtils.dateConvert(System.currentTimeMillis(), AppConstant.FORMAT_TIME);
+        float timeTipLeft = outFrameLeft - mTipPaint.measureText(time) - 10;
+        canvas.drawText(time, timeTipLeft, tipBottomBot - 1, mTipPaint);
     }
 
 
@@ -995,7 +920,7 @@ public abstract class PageLoader{
         } else {
             float top = contentMarginHeight - fontMetrics.ascent;
             if (mPageMode != PageAnimation.Mode.SCROLL) {
-                top += readBookControl.getHideStatusBar() ? mMarginTop : mPageView.getStatusBarHeight() + mMarginTop;
+                top += mMarginTop;
             }
             int ppp = 0;//pzl,文字位置
             //对标题进行绘制

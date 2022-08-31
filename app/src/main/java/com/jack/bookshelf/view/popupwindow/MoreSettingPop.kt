@@ -1,20 +1,16 @@
 package com.jack.bookshelf.view.popupwindow
 
 import android.content.Context
-import android.content.DialogInterface
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.FrameLayout
 import android.widget.SeekBar
-import androidx.appcompat.app.AlertDialog
 import com.jack.bookshelf.R
 import com.jack.bookshelf.databinding.PopMoreSettingBinding
 import com.jack.bookshelf.help.ReadBookControl
-import com.jack.bookshelf.utils.theme.ATH
-import com.jack.bookshelf.widget.modialog.PageKeyDialog
-import org.jetbrains.anko.sdk27.listeners.onClick
+import com.jack.bookshelf.view.popupmenu.SelectMenu
 
 /**
  * 阅读界面->更多设置界面
@@ -23,7 +19,6 @@ import org.jetbrains.anko.sdk27.listeners.onClick
  */
 
 class MoreSettingPop : FrameLayout {
-
     private val readBookControl = ReadBookControl.getInstance()
     private var callback: Callback? = null
     private val binding = PopMoreSettingBinding.inflate(LayoutInflater.from(context),
@@ -45,14 +40,9 @@ class MoreSettingPop : FrameLayout {
 
     private fun bindEvent() {
         setOnClickListener { this.visibility = View.GONE }
-        //朗读语速调节
-        binding.llTtsSpeechRate.setOnClickListener { v ->
-            binding.scbTtsFollowSys.setChecked(
-                !binding.scbTtsFollowSys.isChecked,
-                true
-            )
-        }
-        binding.scbTtsFollowSys.setOnCheckedChangeListener { checkBox, isChecked ->
+        // 朗读语速调节
+        binding.scbTtsFollowSys.isChecked = !binding.scbTtsFollowSys.isChecked
+        binding.scbTtsFollowSys.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 //跟随系统
                 binding.hpbTtsSpeechRate.isEnabled = false
@@ -86,25 +76,6 @@ class MoreSettingPop : FrameLayout {
             override fun onStartTrackingTouch(seekBar: SeekBar) {}
             override fun onStopTrackingTouch(seekBar: SeekBar) {}
         })
-        binding.sbHideStatusBar.setOnCheckedChangeListener { buttonView: CompoundButton, isChecked: Boolean ->
-            if (buttonView.isPressed) {
-                readBookControl.hideStatusBar = isChecked
-                callback?.recreate()
-            }
-        }
-        binding.sbToLh.setOnCheckedChangeListener { buttonView: CompoundButton, isChecked: Boolean ->
-            if (buttonView.isPressed) {
-                readBookControl.toLh = isChecked
-                callback?.recreate()
-            }
-        }
-        binding.sbHideNavigationBar.setOnCheckedChangeListener { buttonView: CompoundButton, isChecked: Boolean ->
-            if (buttonView.isPressed) {
-                readBookControl.hideNavigationBar = isChecked
-                initData()
-                callback?.recreate()
-            }
-        }
         binding.swVolumeNextPage.setOnCheckedChangeListener { compoundButton: CompoundButton, b: Boolean ->
             if (compoundButton.isPressed) {
                 readBookControl.canKeyTurn = b
@@ -134,62 +105,52 @@ class MoreSettingPop : FrameLayout {
                 readBookControl.clickAllNext = isChecked
             }
         }
+        // 屏幕关闭时间
         binding.llScreenTimeOut.setOnClickListener {
-            val dialog = AlertDialog.Builder(context)
-                    .setTitle(context.getString(R.string.keep_light))
-                    .setSingleChoiceItems(
-                            context.resources.getStringArray(R.array.screen_time_out),
-                            readBookControl.screenTimeOut
-                    ) { dialogInterface: DialogInterface, i: Int ->
-                        readBookControl.screenTimeOut = i
-                        upScreenTimeOut(i)
-                        callback?.keepScreenOnChange(i)
-                        dialogInterface.dismiss()
+            SelectMenu.builder(context)
+                .setTitle(context.getString(R.string.keep_light_time))
+                .setBottomButton(context.getString(R.string.cancel))
+                .setMenu(context.resources.getStringArray(R.array.screen_time_out), readBookControl.screenTimeOut)
+                .setListener(object : SelectMenu.OnItemClickListener {
+                    override fun forBottomButton() {}
+
+                    override fun forListItem(last: Int, i: Int) {
+                        if (i != last) {
+                            readBookControl.screenTimeOut = i
+                            upScreenTimeOut(i)
+                            callback!!.keepScreenOnChange(i)
+                        }
                     }
-                    .create()
-            dialog.show()
-            ATH.setAlertDialogTint(dialog)
+                }).show(binding.root)
         }
+        // 屏幕方向
         binding.llScreenDirection.setOnClickListener {
-            val dialog = AlertDialog.Builder(context)
-                    .setTitle(context.getString(R.string.screen_direction))
-                    .setSingleChoiceItems(context.resources.getStringArray(R.array.screen_direction_list_title), readBookControl.screenDirection) { dialogInterface: DialogInterface, i: Int ->
-                        readBookControl.screenDirection = i
-                        upScreenDirection(i)
-                        dialogInterface.dismiss()
-                        callback?.recreate()
+            SelectMenu.builder(context)
+                .setTitle(context.getString(R.string.screen_direction))
+                .setBottomButton(context.getString(R.string.cancel))
+                .setMenu(context.resources.getStringArray(R.array.screen_direction_list_title), readBookControl.screenDirection)
+                .setListener(object : SelectMenu.OnItemClickListener {
+                    override fun forBottomButton() {}
+
+                    override fun forListItem(last: Int, i: Int) {
+                        if (i != last) {
+                            readBookControl.screenDirection = i
+                            upScreenDirection(i)
+                            callback!!.recreate()
+                        }
                     }
-                    .create()
-            dialog.show()
-            ATH.setAlertDialogTint(dialog)
-        }
-        binding.llNavigationBarColor.setOnClickListener {
-            val dialog = AlertDialog.Builder(context)
-                    .setTitle(context.getString(R.string.re_navigation_bar_color))
-                    .setSingleChoiceItems(context.resources.getStringArray(R.array.NavBarColors), readBookControl.navBarColor) { dialogInterface: DialogInterface, i: Int ->
-                        readBookControl.navBarColor = i
-                        upNavBarColor(i)
-                        dialogInterface.dismiss()
-                        callback?.recreate()
-                    }
-                    .create()
-            dialog.show()
-            ATH.setAlertDialogTint(dialog)
+                }).show(binding.root)
         }
         binding.sbSelectText.setOnCheckedChangeListener { buttonView: CompoundButton, isChecked: Boolean ->
             if (buttonView.isPressed) {
                 readBookControl.isCanSelectText = isChecked
             }
         }
-        binding.llClickKeyCode.onClick {
-            PageKeyDialog(context).show()
-        }
     }
 
     private fun initData() {
         upScreenDirection(readBookControl.screenDirection)
         upScreenTimeOut(readBookControl.screenTimeOut)
-        upNavBarColor(readBookControl.navBarColor)
         // 朗读语速调节 默认跟随系统
         binding.scbTtsFollowSys.isChecked = readBookControl.isSpeechRateFollowSys
         binding.hpbTtsSpeechRate.isEnabled = !readBookControl.isSpeechRateFollowSys
@@ -204,9 +165,6 @@ class MoreSettingPop : FrameLayout {
         binding.swVolumeNextPage.isChecked = readBookControl.canKeyTurn
         // 点击翻页
         binding.sbClick.isChecked = readBookControl.canClickTurn
-        binding.sbHideStatusBar.isChecked = readBookControl.hideStatusBar
-        binding.sbToLh.isChecked = readBookControl.toLh
-        binding.sbHideNavigationBar.isChecked = readBookControl.hideNavigationBar
         upView()
     }
 
@@ -215,14 +173,6 @@ class MoreSettingPop : FrameLayout {
         binding.swReadAloudKey.isEnabled = readBookControl.canKeyTurn
         // 点击总是翻下一页,canClickTurn是另一个处理函数,不是错误!
         binding.sbClickAllNext.isEnabled = readBookControl.canClickTurn
-        // 状态栏、导航栏设置
-        if (readBookControl.hideNavigationBar) {
-            binding.llNavigationBarColor.isEnabled = false
-            binding.reNavBarColorVal.isEnabled = false
-        } else {
-            binding.llNavigationBarColor.isEnabled = true
-            binding.reNavBarColorVal.isEnabled = true
-        }
     }
 
     private fun upScreenTimeOut(screenTimeOut: Int) {
@@ -238,16 +188,11 @@ class MoreSettingPop : FrameLayout {
         }
     }
 
-    private fun upNavBarColor(nColor: Int) {
-        binding.reNavBarColorVal.text = context.resources.getStringArray(R.array.NavBarColors)[nColor]
-    }
-
     interface Callback {
         fun upBar()
         fun keepScreenOnChange(keepScreenOn: Int)
         fun recreate()
         fun refreshPage()
-        // 朗读语速调节
         fun changeSpeechRate(speechRate: Int)
         fun speechRateFollowSys()
     }

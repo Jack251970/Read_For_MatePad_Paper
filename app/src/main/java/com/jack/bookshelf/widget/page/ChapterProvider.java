@@ -82,15 +82,12 @@ class ChapterProvider {
         }
         String[] allLine = content.split("\n");
         List<String> lines = new ArrayList<>();
-        List<TxtLine> txtLists = new ArrayList<>();//记录每个字的位置 //pzl
+        List<TxtLine> txtLists = new ArrayList<>(); //记录每个字的位置
         int rHeight = pageLoader.mVisibleHeight - pageLoader.contentMarginHeight * 2;
         int titleLinesCount = 0;
-        boolean ifShowTitle = (pageLoader.readBookControl.getShowTitle() == 0);  // 是否显示标题
-        String paragraph = null;
-        if (ifShowTitle) { // 获取内容
-            paragraph = contentHelper.replaceContent(pageLoader.book.getBookInfoBean().getName(), pageLoader.book.getTag(), chapter.getDurChapterName(), pageLoader.book.getReplaceEnable());
-            paragraph = paragraph.trim() + "\n";
-        }
+        boolean ifShowTitle = true;
+        String paragraph = contentHelper.replaceContent(pageLoader.book.getBookInfoBean().getName(), pageLoader.book.getTag(), chapter.getDurChapterName(), pageLoader.book.getReplaceEnable());
+        paragraph = paragraph.trim() + "\n";
         int i = 1;
         while (ifShowTitle || i < allLine.length) {
             // 在显示完标题后重置段落

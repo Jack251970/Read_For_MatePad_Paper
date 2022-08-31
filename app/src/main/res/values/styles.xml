@@ -89,6 +89,13 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <!-- Pop Menu More Setting Text Style -->
+    <style name="PaperTextStylePopReadMenuMoreSetting">
+        <item name="android:textColor">@color/tv_text_default</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
 
 
 
