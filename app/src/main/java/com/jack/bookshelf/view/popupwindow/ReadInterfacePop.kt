@@ -26,17 +26,14 @@ import com.jack.bookshelf.widget.page.animation.PageAnimation
 import timber.log.Timber
 
 /**
- * Read Interface Pop Menu
+ * Read Interface Menu
  * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
 class ReadInterfacePop : FrameLayout {
-    private val binding = PopReadInterfaceBinding.inflate(
-        LayoutInflater.from(
-            context
-        ), this, true
-    )
+    private val binding = PopReadInterfaceBinding
+        .inflate(LayoutInflater.from(context), this, true)
     private var activity: ReadBookActivity? = null
     private val readBookControl = ReadBookControl.getInstance()
     private var callback: Callback? = null
@@ -329,12 +326,6 @@ class ReadInterfacePop : FrameLayout {
                     }
                 }
                 .request()
-        }
-        // 长按清除字体
-        binding.flTextFont.setOnLongClickListener {
-            clearFontPath()
-            activity!!.toast(R.string.clear_font)
-            true
         }
     }
 

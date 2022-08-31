@@ -1,4 +1,3 @@
-//Copyright (c) 2017. 章钦豪. All rights reserved.
 package com.jack.bookshelf.view.popupwindow
 
 import android.app.Activity
@@ -12,8 +11,13 @@ import com.jack.bookshelf.databinding.PopReadAdjustMarginBinding
 import com.jack.bookshelf.help.ReadBookControl
 import org.jetbrains.anko.sdk27.listeners.onClick
 
-class ReadAdjustMarginPop : FrameLayout {
+/**
+ * Read Adjust Margin Menu
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
+class ReadAdjustMarginPop : FrameLayout {
     val binding = PopReadAdjustMarginBinding.inflate(LayoutInflater.from(context), this, true)
     private var activity: Activity? = null
     private val readBookControl = ReadBookControl.getInstance()
@@ -25,9 +29,7 @@ class ReadAdjustMarginPop : FrameLayout {
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
-    init {
-        binding.vwBg.setOnClickListener(null)
-    }
+    init {binding.vwBg.setOnClickListener(null)}
 
     fun setListener(activity: Activity, callback: Callback) {
         this.activity = activity
@@ -36,9 +38,7 @@ class ReadAdjustMarginPop : FrameLayout {
         bindEvent()
     }
 
-    fun show() {
-        initData(0)
-    }
+    fun show() {initData(0) }
 
     private fun initData(flag: Int) {
         if (flag == 0) {
@@ -51,22 +51,22 @@ class ReadAdjustMarginPop : FrameLayout {
         }
         if (flag == 0 || flag == 1) {
             // 正文边距
-            setSeekBarView(binding.hpbMrZT, binding.tvHpbMrZT, 0, 100, readBookControl.paddingTop)
-            setSeekBarView(binding.hpbMrZL, binding.tvHpbMrZL, 0, 100, readBookControl.paddingLeft)
-            setSeekBarView(binding.hpbMrZR, binding.tvHpbMrZR, 0, 100, readBookControl.paddingRight)
-            setSeekBarView(binding.hpbMrZB, binding.tvHpbMrZB, 0, 100, readBookControl.paddingBottom)
+            setSeekBarView(binding.hpbMrZT, binding.tvHpbMrZT, readBookControl.paddingTop)
+            setSeekBarView(binding.hpbMrZL, binding.tvHpbMrZL, readBookControl.paddingLeft)
+            setSeekBarView(binding.hpbMrZR, binding.tvHpbMrZR, readBookControl.paddingRight)
+            setSeekBarView(binding.hpbMrZB, binding.tvHpbMrZB, readBookControl.paddingBottom)
         }
         if (flag == 0 || flag == 2) {
             // Tip边距
-            setSeekBarView(binding.hpbMrTT, binding.tvHpbMrTT, 0, 100, readBookControl.tipPaddingTop)
-            setSeekBarView(binding.hpbMrTL, binding.tvHpbMrTL, 0, 100, readBookControl.tipPaddingLeft)
-            setSeekBarView(binding.hpbMrTR, binding.tvHpbMrTR, 0, 100, readBookControl.tipPaddingRight)
-            setSeekBarView(binding.hpbMrTB, binding.tvHpbMrTB, 0, 100, readBookControl.tipPaddingBottom)
+            setSeekBarView(binding.hpbMrTT, binding.tvHpbMrTT, readBookControl.tipPaddingTop)
+            setSeekBarView(binding.hpbMrTL, binding.tvHpbMrTL, readBookControl.tipPaddingLeft)
+            setSeekBarView(binding.hpbMrTR, binding.tvHpbMrTR, readBookControl.tipPaddingRight)
+            setSeekBarView(binding.hpbMrTB, binding.tvHpbMrTB, readBookControl.tipPaddingBottom)
         }
     }
 
     private fun bindEvent() = with(binding) {
-        //字距调节
+        // 字距调节
         hpbMrF.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
                 readBookControl.textLetterSpacing = i / 100.0f - 0.5f
@@ -79,8 +79,7 @@ class ReadAdjustMarginPop : FrameLayout {
         })
         ivMrFAdd.onClick { hpbMrF.progress = hpbMrF.progress + 1 }
         ivMrFRemove.onClick { hpbMrF.progress = hpbMrF.progress - 1 }
-
-        //行距调节
+        // 行距调节
         hpbMrRm.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
                 readBookControl.lineMultiplier = i / 10.0f + 0.5f
@@ -93,8 +92,7 @@ class ReadAdjustMarginPop : FrameLayout {
         })
         ivMrRmAdd.onClick { hpbMrRm.progress = hpbMrRm.progress + 1 }
         ivMrRmRemove.onClick { hpbMrRm.progress = hpbMrRm.progress - 1 }
-
-        //段距调节
+        // 段距调节
         hpbMrDm.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
                 readBookControl.paragraphSize = i / 10.0f + 1.0f
@@ -107,8 +105,7 @@ class ReadAdjustMarginPop : FrameLayout {
         })
         ivMrDmAdd.onClick { hpbMrDm.progress = hpbMrDm.progress + 1 }
         ivMrDmRemove.onClick { hpbMrDm.progress = hpbMrDm.progress - 1 }
-
-        //段距调节
+        // 段距调节
         val pdChange = object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
                 var flag = 1
@@ -172,7 +169,7 @@ class ReadAdjustMarginPop : FrameLayout {
         }
     }
 
-    private fun setSeekBarView(hpb: SeekBar, tv: TextView, min: Int, max: Int, value: Int) {
+    private fun setSeekBarView(hpb: SeekBar, tv: TextView, value: Int, min: Int = 0, max: Int = 100) {
         hpb.max = max - min
         hpb.progress = value - min
         tv.text = String.format("%d", value)

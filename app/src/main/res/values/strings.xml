@@ -459,7 +459,6 @@
     <string name="read_type">阅读方式</string>
     <string name="del_all_msg">是否确认删除所有内容?</string>
     <string name="del_select_msg">是否确认删除所选内容?</string>
-    <string name="clear_font">默认字体</string>
     <string name="find_on_www">发现</string>
     <string name="find_source_manage">发现管理</string>
     <string name="find_empty">没有内容,去书源里自定义吧!</string>

@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/pop_menu_read_book_layout_height"
+    android:background="@drawable/pop_read_menu_background"
+    tools:layout_marginStart="110dp"
+    tools:layout_marginEnd="110dp"
+    tools:ignore="ContentDescription">
+    <!-- 点击区域 -->
+    <View
+        android:id="@+id/vw_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <!-- 菜单选项 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="20dp"
+        android:paddingBottom="15dp"
+        android:paddingStart="25dp"
+        android:paddingEnd="25dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/custom_mr"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+        <!-- 行间距 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:paddingBottom="1dp">
+            <TextView
+                android:layout_width="@dimen/read_menu_adjust_margin_left"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/custom_mr_rm"
+                style="@style/PaperTextStylePopReadMenu"/>
+            <ImageView
+                android:id="@+id/iv_mr_rm_remove"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_minus" />
+            <com.jack.bookshelf.widget.views.PaperSeekBar
+                android:id="@+id/hpb_mr_rm"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/read_menu_adjust_margin_seekbar_layout_height"
+                android:layout_weight="1"
+                android:max="255" />
+            <ImageView
+                android:id="@+id/iv_mr_rm_add"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_plus" />
+            <TextView
+                android:id="@+id/tv_hpb_mr_rm"
+                android:layout_width="@dimen/read_menu_adjust_margin_right"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="%dS"
+                android:gravity="end"
+                style="@style/PaperTextStylePopReadMenu"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+        <!-- 段间距 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingBottom="1dp">
+            <TextView
+                android:layout_width="@dimen/read_menu_adjust_margin_left"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/custom_mr_dm"
+                style="@style/PaperTextStylePopReadMenu" />
+            <ImageView
+                android:id="@+id/iv_mr_dm_remove"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_minus" />
+            <com.jack.bookshelf.widget.views.PaperSeekBar
+                android:id="@+id/hpb_mr_dm"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/read_menu_adjust_margin_seekbar_layout_height"
+                android:layout_weight="1"
+                android:max="255" />
+            <ImageView
+                android:id="@+id/iv_mr_dm_add"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_plus" />
+            <TextView
+                android:id="@+id/tv_hpb_mr_dm"
+                android:layout_width="@dimen/read_menu_adjust_margin_right"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="%dS"
+                android:gravity="end"
+                style="@style/PaperTextStylePopReadMenu"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+        <!-- 字间距 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingBottom="1dp">
+            <TextView
+                android:layout_width="@dimen/read_menu_adjust_margin_left"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/custom_mr_f"
+                style="@style/PaperTextStylePopReadMenu" />
+            <ImageView
+                android:id="@+id/iv_mr_f_remove"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_minus" />
+            <com.jack.bookshelf.widget.views.PaperSeekBar
+                android:id="@+id/hpb_mr_f"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/read_menu_adjust_margin_seekbar_layout_height"
+                android:layout_weight="1"
+                android:max="255" />
+            <ImageView
+                android:id="@+id/iv_mr_f_add"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_plus" />
+            <TextView
+                android:id="@+id/tv_hpb_mr_f"
+                android:layout_width="@dimen/read_menu_adjust_margin_right"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="%dS"
+                android:gravity="end"
+                style="@style/PaperTextStylePopReadMenu"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+        <!-- 上边距 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingBottom="1dp">
+            <TextView
+                android:layout_width="@dimen/read_menu_adjust_margin_left"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/custom_mr_z_t"
+                style="@style/PaperTextStylePopReadMenu" />
+            <ImageView
+                android:id="@+id/iv_mr_z_t_remove"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_minus" />
+            <com.jack.bookshelf.widget.views.PaperSeekBar
+                android:id="@+id/hpb_mr_z_t"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/read_menu_adjust_margin_seekbar_layout_height"
+                android:layout_weight="1"
+                android:max="255" />
+            <ImageView
+                android:id="@+id/iv_mr_z_t_add"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_plus" />
+            <TextView
+                android:id="@+id/tv_hpb_mr_z_t"
+                android:layout_width="@dimen/read_menu_adjust_margin_right"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="%dS"
+                android:gravity="end"
+                style="@style/PaperTextStylePopReadMenu"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+        <!-- 下边距 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingBottom="1dp">
+            <TextView
+                android:layout_width="@dimen/read_menu_adjust_margin_left"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/custom_mr_z_b"
+                style="@style/PaperTextStylePopReadMenu" />
+            <ImageView
+                android:id="@+id/iv_mr_z_b_remove"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_minus" />
+            <com.jack.bookshelf.widget.views.PaperSeekBar
+                android:id="@+id/hpb_mr_z_b"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/read_menu_adjust_margin_seekbar_layout_height"
+                android:layout_weight="1"
+                android:max="255" />
+            <ImageView
+                android:id="@+id/iv_mr_z_b_add"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_plus" />
+            <TextView
+                android:id="@+id/tv_hpb_mr_z_b"
+                android:layout_width="@dimen/read_menu_adjust_margin_right"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="%dS"
+                style="@style/PaperTextStylePopReadMenu"
+                android:gravity="end"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+        <!-- 左边距 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingBottom="1dp">
+            <TextView
+                android:layout_width="@dimen/read_menu_adjust_margin_left"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/custom_mr_z_l"
+                style="@style/PaperTextStylePopReadMenu" />
+            <ImageView
+                android:id="@+id/iv_mr_z_l_remove"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_minus" />
+            <com.jack.bookshelf.widget.views.PaperSeekBar
+                android:id="@+id/hpb_mr_z_l"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/read_menu_adjust_margin_seekbar_layout_height"
+                android:layout_weight="1"
+                android:max="255" />
+            <ImageView
+                android:id="@+id/iv_mr_z_l_add"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_plus" />
+            <TextView
+                android:id="@+id/tv_hpb_mr_z_l"
+                android:layout_width="@dimen/read_menu_adjust_margin_right"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="%dS"
+                android:gravity="end"
+                style="@style/PaperTextStylePopReadMenu"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+        <!-- 右边距 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingBottom="1dp">
+            <TextView
+                android:layout_width="@dimen/read_menu_adjust_margin_left"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/custom_mr_z_r"
+                style="@style/PaperTextStylePopReadMenu" />
+            <ImageView
+                android:id="@+id/iv_mr_z_r_remove"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_minus" />
+            <com.jack.bookshelf.widget.views.PaperSeekBar
+                android:id="@+id/hpb_mr_z_r"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/read_menu_adjust_margin_seekbar_layout_height"
+                android:layout_weight="1"
+                android:max="255" />
+            <ImageView
+                android:id="@+id/iv_mr_z_r_add"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_plus" />
+            <TextView
+                android:id="@+id/tv_hpb_mr_z_r"
+                android:layout_width="@dimen/read_menu_adjust_margin_right"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="%dS"
+                android:gravity="end"
+                style="@style/PaperTextStylePopReadMenu"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+        <!-- 上Tip -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingBottom="1dp">
+            <TextView
+                android:layout_width="@dimen/read_menu_adjust_margin_left"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/custom_mr_t_t"
+                style="@style/PaperTextStylePopReadMenu" />
+            <ImageView
+                android:id="@+id/iv_mr_t_t_remove"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_minus" />
+            <com.jack.bookshelf.widget.views.PaperSeekBar
+                android:id="@+id/hpb_mr_t_t"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/read_menu_adjust_margin_seekbar_layout_height"
+                android:layout_weight="1"
+                android:max="255" />
+            <ImageView
+                android:id="@+id/iv_mr_t_t_add"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_plus" />
+            <TextView
+                android:id="@+id/tv_hpb_mr_t_t"
+                android:layout_width="@dimen/read_menu_adjust_margin_right"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="%dS"
+                style="@style/PaperTextStylePopReadMenu"
+                android:gravity="end"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+        <!-- 下Tip -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingBottom="1dp">
+            <TextView
+                android:layout_width="@dimen/read_menu_adjust_margin_left"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/custom_mr_t_b"
+                style="@style/PaperTextStylePopReadMenu" />
+            <ImageView
+                android:id="@+id/iv_mr_t_b_remove"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_minus" />
+            <com.jack.bookshelf.widget.views.PaperSeekBar
+                android:id="@+id/hpb_mr_t_b"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/read_menu_adjust_margin_seekbar_layout_height"
+                android:layout_weight="1"
+                android:max="255" />
+            <ImageView
+                android:id="@+id/iv_mr_t_b_add"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_plus" />
+            <TextView
+                android:id="@+id/tv_hpb_mr_t_b"
+                android:layout_width="@dimen/read_menu_adjust_margin_right"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="%dS"
+                style="@style/PaperTextStylePopReadMenu"
+                android:gravity="end"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+        <!-- 左Tip -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingBottom="1dp">
+            <TextView
+                android:layout_width="@dimen/read_menu_adjust_margin_left"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/custom_mr_t_l"
+                style="@style/PaperTextStylePopReadMenu" />
+            <ImageView
+                android:id="@+id/iv_mr_t_l_remove"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_minus" />
+            <com.jack.bookshelf.widget.views.PaperSeekBar
+                android:id="@+id/hpb_mr_t_l"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/read_menu_adjust_margin_seekbar_layout_height"
+                android:layout_weight="1"
+                android:max="255" />
+            <ImageView
+                android:id="@+id/iv_mr_t_l_add"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_plus" />
+            <TextView
+                android:id="@+id/tv_hpb_mr_t_l"
+                android:layout_width="@dimen/read_menu_adjust_margin_right"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="%dS"
+                style="@style/PaperTextStylePopReadMenu"
+                android:gravity="end"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+        <!-- 右Tip -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:layout_width="@dimen/read_menu_adjust_margin_left"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/custom_mr_t_r"
+                style="@style/PaperTextStylePopReadMenu" />
+            <ImageView
+                android:id="@+id/iv_mr_t_r_remove"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_minus" />
+            <com.jack.bookshelf.widget.views.PaperSeekBar
+                android:id="@+id/hpb_mr_t_r"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/read_menu_adjust_margin_seekbar_layout_height"
+                android:layout_weight="1"
+                android:max="255" />
+            <ImageView
+                android:id="@+id/iv_mr_t_r_add"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_plus" />
+            <TextView
+                android:id="@+id/tv_hpb_mr_t_r"
+                android:layout_width="@dimen/read_menu_adjust_margin_right"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="%dS"
+                style="@style/PaperTextStylePopReadMenu"
+                android:gravity="end"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
