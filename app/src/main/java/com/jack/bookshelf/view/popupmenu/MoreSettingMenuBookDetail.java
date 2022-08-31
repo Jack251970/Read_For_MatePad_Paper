@@ -26,7 +26,7 @@ public class MoreSettingMenuBookDetail extends PopupWindow {
     @SuppressLint({"InflateParams", "UseCompatLoadingForDrawables"})
     public MoreSettingMenuBookDetail(Context context, Boolean ifAllowUpdate, @NonNull OnItemClickListener itemClick) {
         super(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        this.view = LayoutInflater.from(context).inflate(R.layout.more_setting_menu_book_detail, null);
+        this.view = LayoutInflater.from(context).inflate(R.layout.menu_more_setting_book_detail, null);
         // 菜单文字初始化
         if (!ifAllowUpdate) {
             ((TextView) view.findViewById(R.id.mpp_tv_manage_update_book_detail)).setText(R.string.allow_update);

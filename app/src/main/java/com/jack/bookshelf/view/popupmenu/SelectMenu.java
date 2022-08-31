@@ -102,7 +102,7 @@ public class SelectMenu extends PopupWindow{
     public SelectMenu(Context context) {
         super(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         this.context = context;
-        View view = LayoutInflater.from(context).inflate(R.layout.select_menu, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.menu_select, null);
         this.setContentView(view);
         bindView(view);
         setFocusable(true);

@@ -1,15 +1,10 @@
 package com.jack.bookshelf.widget.modialog;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import androidx.cardview.widget.CardView;
 
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.utils.ReadAssets;

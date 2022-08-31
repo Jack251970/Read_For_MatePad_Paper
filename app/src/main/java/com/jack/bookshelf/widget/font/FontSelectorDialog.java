@@ -7,15 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.utils.FileDoc;
-import com.jack.bookshelf.utils.theme.ATH;
 
 import java.util.List;
 

@@ -36,7 +36,7 @@ import com.jack.bookshelf.view.adapter.BookShelfAdapter;
 import com.jack.bookshelf.view.adapter.BookShelfGridAdapter;
 import com.jack.bookshelf.view.adapter.BookShelfListAdapter;
 import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
-import com.jack.bookshelf.view.dialog.AlertDialog;
+import com.jack.bookshelf.view.dialog.PaperAlertDialog;
 import com.jack.bookshelf.widget.viewpager.PaperViewPager;
 
 import java.util.List;
@@ -140,12 +140,12 @@ public class BookListFragment extends MBaseFragment<BookListContract.Presenter>
         binding.ivBack.setOnClickListener(v -> setArrange(false));
         binding.llDelete.setOnClickListener(v -> {
             if (bookShelfAdapter.getSelected().size() != 0) {
-                AlertDialog.builder(requireContext())
-                        .setType(AlertDialog.ONLY_CENTER_TITLE)
+                PaperAlertDialog.builder(requireContext())
+                        .setType(PaperAlertDialog.ONLY_CENTER_TITLE)
                         .setTitle(R.string.sure_del_book)
                         .setNegativeButton(R.string.cancel)
                         .setPositiveButton(R.string.delete)
-                        .setOnclick(new AlertDialog.OnItemClickListener() {
+                        .setOnclick(new PaperAlertDialog.OnItemClickListener() {
                             @Override
                             public void forNegativeButton() {}
 

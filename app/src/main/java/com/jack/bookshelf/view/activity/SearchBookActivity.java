@@ -38,7 +38,7 @@ import com.jack.bookshelf.utils.SoftInputUtil;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.SearchBookAdapter;
 import com.jack.bookshelf.view.adapter.SearchBookshelfAdapter;
-import com.jack.bookshelf.view.dialog.AlertDialog;
+import com.jack.bookshelf.view.dialog.PaperAlertDialog;
 import com.jack.bookshelf.view.popupmenu.SelectMenu;
 import com.jack.bookshelf.widget.recycler.refresh.OnLoadMoreListener;
 
@@ -250,12 +250,12 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
     protected void bindEvent() {
         // 搜索历史的清除按钮
         binding.ivSearchHistoryClean.setOnClickListener(v -> {
-            AlertDialog.builder(this)
-                    .setType(AlertDialog.ONLY_CENTER_TITLE)
+            PaperAlertDialog.builder(this)
+                    .setType(PaperAlertDialog.ONLY_CENTER_TITLE)
                     .setTitle(R.string.delete_all_history)
                     .setNegativeButton(R.string.cancel)
                     .setPositiveButton(R.string.delete)
-                    .setOnclick(new AlertDialog.OnItemClickListener() {
+                    .setOnclick(new PaperAlertDialog.OnItemClickListener() {
                         @Override
                         public void forNegativeButton() {}
 

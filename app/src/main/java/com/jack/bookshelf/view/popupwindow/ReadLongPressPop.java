@@ -4,8 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.graphics.Region;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
@@ -13,7 +11,6 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 
 import com.jack.bookshelf.databinding.PopReadLongPressBinding;
-import com.jack.bookshelf.help.ReadBookControl;
 import com.jack.bookshelf.utils.DensityUtil;
 
 /**

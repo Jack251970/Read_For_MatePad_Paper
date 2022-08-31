@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jack.bookshelf.base.adapter.ItemViewHolder
 import com.jack.bookshelf.base.adapter.RecyclerAdapter
 import com.jack.bookshelf.databinding.ItemPopupKeyboardToolBinding
-import com.jack.bookshelf.databinding.PopupKeyboardToolBinding
+import com.jack.bookshelf.databinding.PopKeyboardToolBinding
 import org.jetbrains.anko.sdk27.listeners.onClick
 
 /**
@@ -24,7 +24,7 @@ class KeyboardToolPop(
         val callBack: CallBack?
 ) : PopupWindow(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT) {
 
-    private val binding = PopupKeyboardToolBinding.inflate(LayoutInflater.from(context))
+    private val binding = PopKeyboardToolBinding.inflate(LayoutInflater.from(context))
 
     init {
         isTouchable = true
@@ -42,8 +42,7 @@ class KeyboardToolPop(
         adapter.setItems(chars)
     }
 
-    inner class Adapter(context: Context) :
-            RecyclerAdapter<String, ItemPopupKeyboardToolBinding>(context) {
+    inner class Adapter(context: Context) : RecyclerAdapter<String, ItemPopupKeyboardToolBinding>(context) {
 
         override fun getViewBinding(parent: ViewGroup): ItemPopupKeyboardToolBinding {
             return ItemPopupKeyboardToolBinding.inflate(inflater, parent, false)
@@ -56,9 +55,7 @@ class KeyboardToolPop(
             }
         }
 
-        override fun registerListener(holder: ItemViewHolder, binding: ItemPopupKeyboardToolBinding) {
-
-        }
+        override fun registerListener(holder: ItemViewHolder, binding: ItemPopupKeyboardToolBinding) {}
     }
 
     interface CallBack {

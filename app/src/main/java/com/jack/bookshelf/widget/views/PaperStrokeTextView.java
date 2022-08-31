@@ -3,7 +3,6 @@ package com.jack.bookshelf.widget.views;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatTextView;

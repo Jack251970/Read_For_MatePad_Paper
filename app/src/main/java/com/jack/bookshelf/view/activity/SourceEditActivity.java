@@ -37,7 +37,7 @@ import com.jack.bookshelf.utils.SoftInputUtil;
 import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.SourceEditAdapter;
-import com.jack.bookshelf.view.dialog.AlertDialog;
+import com.jack.bookshelf.view.dialog.PaperAlertDialog;
 import com.jack.bookshelf.view.dialog.SourceLoginDialog;
 import com.jack.bookshelf.view.popupmenu.MoreSettingMenu;
 import com.jack.bookshelf.view.popupwindow.KeyboardToolPop;
@@ -181,12 +181,12 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
                             }
                             break;
                         case 1:
-                            AlertDialog.builder(this)
-                                    .setType(AlertDialog.ONLY_CENTER_TITLE)
+                            PaperAlertDialog.builder(this)
+                                    .setType(PaperAlertDialog.ONLY_CENTER_TITLE)
                                     .setTitle(R.string.if_copy_find_content)
                                     .setNegativeButton(R.string.no)
                                     .setPositiveButton(R.string.yes)
-                                    .setOnclick(new AlertDialog.OnItemClickListener() {
+                                    .setOnclick(new PaperAlertDialog.OnItemClickListener() {
                                         @Override
                                         public void forNegativeButton() { mPresenter.copySource(getBookSourceStr(false)); }
 
@@ -556,12 +556,12 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
             bookSourceBean = new BookSourceBean();
         }
         if (!getBookSource(true).equals(bookSourceBean)) {
-            AlertDialog.builder(this)
-                    .setType(AlertDialog.ONLY_CENTER_TITLE)
+            PaperAlertDialog.builder(this)
+                    .setType(PaperAlertDialog.ONLY_CENTER_TITLE)
                     .setTitle(R.string.exit_no_save)
                     .setNegativeButton(R.string.no)
                     .setPositiveButton(R.string.yes)
-                    .setOnclick(new AlertDialog.OnItemClickListener() {
+                    .setOnclick(new PaperAlertDialog.OnItemClickListener() {
                         @Override
                         public void forNegativeButton() { finish(); }
 

@@ -65,7 +65,7 @@ public class MoreSettingMenu extends PopupWindow {
     public MoreSettingMenu(Context context) {
         super(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         this.context = context;
-        view = LayoutInflater.from(context).inflate(R.layout.more_setting_menu, null);
+        view = LayoutInflater.from(context).inflate(R.layout.menu_more_setting, null);
         this.setContentView(view);
         lvMenu = view.findViewById(R.id.lv_more_setting_menu);
         setFocusable(true);

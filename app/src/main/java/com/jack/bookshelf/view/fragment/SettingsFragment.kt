@@ -19,7 +19,7 @@ import com.jack.bookshelf.help.storage.BackupRestoreUi.selectBackupFolder
 import com.jack.bookshelf.service.WebService
 import com.jack.bookshelf.view.activity.AboutActivity
 import com.jack.bookshelf.view.activity.SettingActivity
-import com.jack.bookshelf.view.dialog.AlertDialog
+import com.jack.bookshelf.view.dialog.PaperAlertDialog
 
 /**
  * Setting Fragment
@@ -97,12 +97,12 @@ class SettingsFragment : PreferenceFragment(), OnSharedPreferenceChangeListener 
                 settingActivity?.let { selectBackupFolder(activity, it.root) }
             }
             "clearCache" -> {
-                AlertDialog.builder(activity)
-                    .setType(AlertDialog.ONLY_CENTER_TITLE)
+                PaperAlertDialog.builder(activity)
+                    .setType(PaperAlertDialog.ONLY_CENTER_TITLE)
                     .setTitle(R.string.sure_delete_download_book)
                     .setNegativeButton(R.string.cancel)
                     .setPositiveButton(R.string.delete)
-                    .setOnclick(object : AlertDialog.OnItemClickListener {
+                    .setOnclick(object : PaperAlertDialog.OnItemClickListener {
                         override fun forNegativeButton() {
                             BookshelfHelp.clearCaches(false)
                         }

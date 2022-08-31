@@ -51,7 +51,7 @@ public class MoreSettingMenuReadBook extends PopupWindow {
     @SuppressLint("InflateParams")
     public MoreSettingMenuReadBook(Context context, boolean online) {
         super(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        this.view = LayoutInflater.from(context).inflate(R.layout.more_setting_menu_book_read, null);
+        this.view = LayoutInflater.from(context).inflate(R.layout.menu_more_setting_book_read, null);
         this.setContentView(view);
         bindView(online);
         bindEvent(online);

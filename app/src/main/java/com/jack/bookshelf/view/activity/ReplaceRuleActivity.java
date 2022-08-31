@@ -33,8 +33,8 @@ import com.jack.bookshelf.utils.RealPathUtil;
 import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.ReplaceRuleAdapter;
-import com.jack.bookshelf.view.dialog.AlertDialog;
 import com.jack.bookshelf.view.dialog.InputDialog;
+import com.jack.bookshelf.view.dialog.PaperAlertDialog;
 import com.jack.bookshelf.view.popupmenu.MoreSettingMenu;
 import com.jack.bookshelf.widget.filepicker.picker.FilePicker;
 import com.jack.bookshelf.widget.modialog.MoDialogHUD;
@@ -200,12 +200,12 @@ public class ReplaceRuleActivity extends MBaseActivity<ReplaceRuleContract.Prese
      * 删除所有规则
      */
     private void deleteAllDialog() {
-        AlertDialog.builder(this)
-                .setType(AlertDialog.ONLY_CENTER_TITLE)
+        PaperAlertDialog.builder(this)
+                .setType(PaperAlertDialog.ONLY_CENTER_TITLE)
                 .setTitle(R.string.del_delete_all_replace_rule)
                 .setNegativeButton(R.string.cancel)
                 .setPositiveButton(R.string.delete)
-                .setOnclick(new AlertDialog.OnItemClickListener() {
+                .setOnclick(new PaperAlertDialog.OnItemClickListener() {
                     @Override
                     public void forNegativeButton() {}
 

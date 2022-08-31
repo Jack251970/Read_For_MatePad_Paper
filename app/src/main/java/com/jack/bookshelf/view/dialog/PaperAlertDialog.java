@@ -16,12 +16,12 @@ import androidx.annotation.NonNull;
 import com.jack.bookshelf.R;
 
 /**
- * Alert Dialog
+ * Paper Alert Dialog
  * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
-public class AlertDialog extends PopupWindow{
+public class PaperAlertDialog extends PopupWindow{
     private final Context context;
     private TextView tvTitle;
     private TextView tvMessage;
@@ -32,9 +32,9 @@ public class AlertDialog extends PopupWindow{
 
     public static final int NO_APPEND_MESSAGE = 0, ONLY_CENTER_TITLE = 1, ALL = 2;
 
-    public static AlertDialog builder(Context context) { return new AlertDialog(context); }
+    public static PaperAlertDialog builder(Context context) { return new PaperAlertDialog(context); }
 
-    public AlertDialog setType(int type) {
+    public PaperAlertDialog setType(int type) {
         switch (type) {
             case ONLY_CENTER_TITLE:
                 tvTitle.setGravity(Gravity.CENTER);
@@ -49,38 +49,38 @@ public class AlertDialog extends PopupWindow{
         return this;
     }
 
-    public AlertDialog setTitle(int strId) {
+    public PaperAlertDialog setTitle(int strId) {
         return setTitle(getString(strId));
     }
 
-    public AlertDialog setTitle(String title) {
+    public PaperAlertDialog setTitle(String title) {
         tvTitle.setText(title);
         return this;
     }
 
-    public AlertDialog setMessage(int strId) {
+    public PaperAlertDialog setMessage(int strId) {
         return setMessage(getString(strId));
     }
 
-    public AlertDialog setMessage(String message) {
+    public PaperAlertDialog setMessage(String message) {
         tvMessage.setText(message);
         return this;
     }
 
-    public AlertDialog setAppendMessage(int strId) {
+    public PaperAlertDialog setAppendMessage(int strId) {
         return setAppendMessage(getString(strId));
     }
 
-    public AlertDialog setAppendMessage(String appendMessage) {
+    public PaperAlertDialog setAppendMessage(String appendMessage) {
         tvAppendMessage.setText(appendMessage);
         return this;
     }
 
-    public AlertDialog setNegativeButton (int strId) {
+    public PaperAlertDialog setNegativeButton (int strId) {
         return setNegativeButton(getString(strId));
     }
 
-    public AlertDialog setNegativeButton (String text) {
+    public PaperAlertDialog setNegativeButton (String text) {
         tvNegativeButton.setText(text);
         tvNegativeButton.setOnClickListener(v -> {
             dismiss();
@@ -89,11 +89,11 @@ public class AlertDialog extends PopupWindow{
         return this;
     }
 
-    public AlertDialog setPositiveButton (int strId) {
+    public PaperAlertDialog setPositiveButton (int strId) {
         return setPositiveButton(getString(strId));
     }
 
-    public AlertDialog setPositiveButton (String text) {
+    public PaperAlertDialog setPositiveButton (String text) {
         tvPositiveButton.setText(text);
         tvPositiveButton.setOnClickListener(v -> {
             dismiss();
@@ -102,16 +102,16 @@ public class AlertDialog extends PopupWindow{
         return this;
     }
 
-    public AlertDialog setOnclick(@NonNull OnItemClickListener itemClick) {
+    public PaperAlertDialog setOnclick(@NonNull OnItemClickListener itemClick) {
         this.itemClick = itemClick;
         return this;
     }
 
     @SuppressLint({"InflateParams"})
-    public AlertDialog(Context context) {
+    public PaperAlertDialog(Context context) {
         super(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         this.context = context;
-        View view = LayoutInflater.from(context).inflate(R.layout.alert_dialog, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_alert_paper, null);
         this.setContentView(view);
         bindView(view);
         setFocusable(true);

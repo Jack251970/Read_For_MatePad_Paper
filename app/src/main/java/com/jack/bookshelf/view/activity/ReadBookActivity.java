@@ -58,8 +58,8 @@ import com.jack.bookshelf.utils.SoftInputUtil;
 import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.SystemUtil;
 import com.jack.bookshelf.utils.theme.ThemeStore;
-import com.jack.bookshelf.view.dialog.AlertDialog;
 import com.jack.bookshelf.view.dialog.InputDialog;
+import com.jack.bookshelf.view.dialog.PaperAlertDialog;
 import com.jack.bookshelf.view.dialog.SourceLoginDialog;
 import com.jack.bookshelf.view.popupmenu.MoreSettingMenuReadBook;
 import com.jack.bookshelf.view.popupmenu.SelectMenu;
@@ -1412,12 +1412,12 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter>
             mPresenter.removeFromShelf();
             return true;
         } else {
-            AlertDialog.builder(this)
-                    .setType(AlertDialog.ONLY_CENTER_TITLE)
+            PaperAlertDialog.builder(this)
+                    .setType(PaperAlertDialog.ONLY_CENTER_TITLE)
                     .setTitle(getString(R.string.check_add_bookshelf, bookName))
                     .setNegativeButton(R.string.no)
                     .setPositiveButton(R.string.confirm)
-                    .setOnclick(new AlertDialog.OnItemClickListener() {
+                    .setOnclick(new PaperAlertDialog.OnItemClickListener() {
                         @Override
                         public void forNegativeButton() { mPresenter.removeFromShelf(); }
 
