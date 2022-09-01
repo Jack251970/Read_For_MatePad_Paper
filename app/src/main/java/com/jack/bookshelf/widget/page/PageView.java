@@ -21,7 +21,6 @@ import com.jack.bookshelf.help.ReadBookControl;
 import com.jack.bookshelf.utils.ContextExtensionsKt;
 import com.jack.bookshelf.utils.ScreenUtils;
 import com.jack.bookshelf.view.activity.ReadBookActivity;
-import com.jack.bookshelf.widget.page.animation.HorizonPageAnim;
 import com.jack.bookshelf.widget.page.animation.NonePageAnim;
 import com.jack.bookshelf.widget.page.animation.PageAnimation;
 import com.jack.bookshelf.widget.page.animation.ScrollPageAnim;
@@ -189,7 +188,7 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
 
             mPageAnim.setDirection(direction);
             if (!hasNext) {
-                ((HorizonPageAnim) mPageAnim).setNoNext(true);
+                ((NonePageAnim) mPageAnim).setNoNext(true);
                 return;
             }
         } else if (direction == PageAnimation.Direction.PREV) {
@@ -203,14 +202,14 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
             //设置方向方向
             boolean hashPrev = hasPrevPage();
             if (!hashPrev) {
-                ((HorizonPageAnim) mPageAnim).setNoNext(true);
+                ((NonePageAnim) mPageAnim).setNoNext(true);
                 return;
             }
         } else {
             return;
         }
-        ((HorizonPageAnim) mPageAnim).setNoNext(false);
-        ((HorizonPageAnim) mPageAnim).setCancel(false);
+        ((NonePageAnim) mPageAnim).setNoNext(false);
+        ((NonePageAnim) mPageAnim).setCancel(false);
         mPageAnim.startAnim();
     }
 
