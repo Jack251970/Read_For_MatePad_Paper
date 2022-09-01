@@ -76,7 +76,7 @@ public class PageLoaderNet extends PageLoader {
                             if (e instanceof WebBook.NoSourceThrowable) {
                                 mPageView.autoChangeSource();
                             } else {
-                                durDhapterError(e.getMessage());
+                                loadChapterError(e.getMessage());
                             }
                         }
                     });
@@ -130,7 +130,7 @@ public class PageLoaderNet extends PageLoader {
                                 if (e instanceof WebBook.NoSourceThrowable) {
                                     mPageView.autoChangeSource();
                                 } else {
-                                    durDhapterError(e.getMessage());
+                                    loadChapterError(e.getMessage());
                                 }
                             }
                         }
@@ -261,7 +261,7 @@ public class PageLoaderNet extends PageLoader {
 
                     @Override
                     public void onError(Throwable e) {
-                        durDhapterError(e.getMessage());
+                        loadChapterError(e.getMessage());
                     }
 
                     @Override
@@ -300,7 +300,7 @@ public class PageLoaderNet extends PageLoader {
 
                     @Override
                     public void onError(Throwable e) {
-                        durDhapterError(e.getMessage());
+                        loadChapterError(e.getMessage());
                     }
 
                     @Override

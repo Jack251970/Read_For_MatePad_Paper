@@ -7,58 +7,53 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Scroller;
 
-import androidx.annotation.NonNull;
-
-import com.jack.bookshelf.MApplication;
-import com.jack.bookshelf.R;
 import com.jack.bookshelf.help.ReadBookControl;
 
 /**
- * 翻页动画抽象类
+ * Abstract Page Animation Class
+ * Edited by Jack251970
  */
 
 public abstract class PageAnimation {
-    //动画速度
-    static final int animationSpeed = 300;
-    //正在使用的View
+    // 正在使用的View
     protected View mView;
     protected ReadBookControl readBookControl = ReadBookControl.getInstance();
-    //滑动装置
+    // 滑动装置
     Scroller mScroller;
-    //监听器
+    // 监听器
     protected OnPageChangeListener mListener;
-    //移动方向
+    // 移动方向
     Direction mDirection = Direction.NONE;
 
-    //屏幕的尺寸
+    // 屏幕尺寸
     int mScreenWidth;
     int mScreenHeight;
     int mMarginTop;
-    //视图的尺寸
+    // 视图尺寸
     int mViewWidth;
     int mViewHeight;
-    //起始点
+    // 起始点
     float mStartX;
     float mStartY;
-    //触碰点
+    // 触碰点
     float mTouchX;
     float mTouchY;
-    //上一个触碰点
+    // 上一个触碰点
     float mLastX;
     float mLastY;
     private boolean isMoving = false;
     boolean isRunning = false;
     private boolean touchInit = false;
-    //是否取消翻页
+    // 是否取消翻页
     boolean isCancel = false;
-    //可以使用 mLast代替
+    // 可以使用 mLast代替
     int mMoveX = 0;
     int mMoveY = 0;
-    //是否移动了
+    // 是否移动了
     boolean isMove = false;
-    //是否翻阅下一页。true表示翻到下一页，false表示上一页。
+    // 是否翻阅下一页（true表示翻到下一页，false表示上一页）
     boolean isNext = false;
-    //是否没下一页或者上一页
+    // 是否没下一页或者上一页
     boolean noNext = false;
 
     PageAnimation(int w, int h, View view, OnPageChangeListener listener) {
@@ -88,7 +83,6 @@ public abstract class PageAnimation {
     public void setStartPoint(float x, float y) {
         mStartX = x;
         mStartY = y;
-
         mLastX = mStartX;
         mLastY = mStartY;
     }
@@ -96,7 +90,6 @@ public abstract class PageAnimation {
     public void setTouchPoint(float x, float y) {
         mLastX = mTouchX;
         mLastY = mTouchY;
-
         mTouchX = x;
         mTouchY = y;
     }
@@ -107,20 +100,20 @@ public abstract class PageAnimation {
 
     public void initTouch(int x, int y) {
         if (!touchInit) {
-            //移动的点击位置
+            // 移动的点击位置
             mMoveX = 0;
             mMoveY = 0;
-            //是否移动
+            // 是否移动
             isMove = false;
-            //是否存在下一章
+            // 是否存在下一章
             noNext = false;
-            //是下一章还是前一章
+            // 是下一章还是前一章
             isNext = false;
-            //是否正在执行动画
+            // 是否正在执行动画
             isRunning = false;
-            //取消
+            // 取消
             isCancel = false;
-            //设置起始位置的触摸点
+            // 设置起始位置的触摸点
             setStartPoint(x, y);
             touchInit = true;
         }
@@ -197,28 +190,6 @@ public abstract class PageAnimation {
     public abstract Bitmap getBgBitmap(int pageOnCur);
 
     /**
-     * 翻页模式
-     */
-    public enum Mode {
-        SCROLL(MApplication.getAppResources().getString(R.string.page_mode_SCROLL)),
-        NONE(MApplication.getAppResources().getString(R.string.page_mode_NONE));
-
-        private final String name;
-
-        Mode(String name) {
-            this.name = name;
-        }
-
-        public static Mode getPageMode() {return NONE;}
-
-        @NonNull
-        @Override
-        public String toString() {
-            return this.name;
-        }
-    }
-
-    /**
      * 翻页方向
      */
     public enum Direction {
@@ -232,15 +203,9 @@ public abstract class PageAnimation {
     }
 
     public interface OnPageChangeListener {
-        void resetScroll();
-
         boolean hasPrev();
 
         boolean hasNext(int pageOnCur);
-
-        void drawContent(Canvas canvas, float offset);
-
-        void drawBackground(Canvas canvas);
 
         void changePage(Direction direction);
     }

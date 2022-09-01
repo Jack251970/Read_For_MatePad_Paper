@@ -96,7 +96,7 @@ public class PageLoaderText extends PageLoader {
 
                     @Override
                     public void onError(Throwable e) {
-                        durDhapterError(e.getMessage());
+                        loadChapterError(e.getMessage());
                     }
                 });
     }
@@ -154,7 +154,7 @@ public class PageLoaderText extends PageLoader {
 
                     @Override
                     public void onError(Throwable e) {
-                        durDhapterError(e.getMessage());
+                        loadChapterError(e.getMessage());
                     }
                 });
     }
@@ -195,7 +195,7 @@ public class PageLoaderText extends PageLoader {
 
                     @Override
                     public void onError(Throwable e) {
-                        durDhapterError(e.getMessage());
+                        loadChapterError(e.getMessage());
                     }
                 });
     }

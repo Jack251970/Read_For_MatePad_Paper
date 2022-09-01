@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -34,6 +33,7 @@ import com.jack.bookshelf.widget.page.animation.PageAnimation;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
@@ -80,8 +80,6 @@ public abstract class PageLoader{
     // 判断章节列表是否加载完成
     boolean isChapterListPrepare;
     private boolean isClose;
-    // 页面的翻页效果模式
-    private PageAnimation.Mode mPageMode;
     //书籍绘制区域的宽高
     int mVisibleWidth;
     int mVisibleHeight;
@@ -90,11 +88,9 @@ public abstract class PageLoader{
     private int mDisplayHeight;
     //间距
     private int mMarginTop;
-    private int mMarginBottom;
     private int mMarginLeft;
     private int mMarginRight;
     int contentMarginHeight;
-    private int tipMarginTop;
     private int tipMarginBottom;
     private final int oneSpPx;
     //标题的大小
@@ -126,7 +122,6 @@ public abstract class PageLoader{
     private boolean resetReadAloud; //是否重新朗读
     private int readAloudParagraph; //正在朗读章节
     Bitmap cover;
-    private int linePos = 0;
     private boolean isLastPage = false;
     CompositeDisposable compositeDisposable;
     private long skipPageTime = 0;  //翻页时间
@@ -150,13 +145,12 @@ public abstract class PageLoader{
         initPaint();
     }
 
+    /**
+     * 初始化参数
+     */
     private void initData() {
-        // 获取配置参数
-        mPageMode = PageAnimation.Mode.NONE;
-        // 初始化参数
         indent = StringUtils.repeat(StringUtils.halfToFull(" "), readBookControl.getIndent());
-        // 配置文字有关的参数
-        setUpTextParams();
+        setUpTextParams();  // 配置文字有关的参数
     }
 
     /**
@@ -169,11 +163,11 @@ public abstract class PageLoader{
 
         // 设置边距
         mMarginTop = ScreenUtils.dpToPx(readBookControl.getTipPaddingTop() + readBookControl.getPaddingTop() + DEFAULT_MARGIN_HEIGHT);
-        mMarginBottom = ScreenUtils.dpToPx(readBookControl.getTipPaddingBottom() + readBookControl.getPaddingBottom() + DEFAULT_MARGIN_HEIGHT);
+        int mMarginBottom = ScreenUtils.dpToPx(readBookControl.getTipPaddingBottom() + readBookControl.getPaddingBottom() + DEFAULT_MARGIN_HEIGHT);
         mMarginLeft = ScreenUtils.dpToPx(readBookControl.getPaddingLeft());
         mMarginRight = ScreenUtils.dpToPx(readBookControl.getPaddingRight());
         contentMarginHeight = oneSpPx;
-        tipMarginTop = ScreenUtils.dpToPx(readBookControl.getTipPaddingTop() + DEFAULT_MARGIN_HEIGHT);
+        int tipMarginTop = ScreenUtils.dpToPx(readBookControl.getTipPaddingTop() + DEFAULT_MARGIN_HEIGHT);
         tipMarginBottom = ScreenUtils.dpToPx(readBookControl.getTipPaddingBottom() + DEFAULT_MARGIN_HEIGHT);
 
         Paint.FontMetrics fontMetrics = mTipPaint.getFontMetrics();
@@ -435,11 +429,7 @@ public abstract class PageLoader{
      * 更新时间
      */
     public void updateTime() {
-        if (mPageMode == PageAnimation.Mode.SCROLL) {
-            mPageView.drawBackground(0);
-        } else {
-            upPage();
-        }
+        upPage();
         mPageView.invalidate();
     }
 
@@ -451,9 +441,7 @@ public abstract class PageLoader{
             return false;
         }
         mBatteryLevel = level;
-        if (mPageMode == PageAnimation.Mode.SCROLL) {
-            mPageView.drawBackground(0);
-        } else if (curChapter().txtChapter != null) {
+        if (curChapter().txtChapter != null) {
             upPage();
         }
         mPageView.invalidate();
@@ -486,20 +474,14 @@ public abstract class PageLoader{
     /**
      * 加载错误
      */
-    void durDhapterError(String msg) {
+    void loadChapterError(String msg) {
         if (curChapter().txtChapter == null) {
             curChapter().txtChapter = new TxtChapter(mCurChapterPos);
         }
         if (curChapter().txtChapter.getStatus() == TxtChapter.Status.FINISH) return;
         curChapter().txtChapter.setStatus(TxtChapter.Status.ERROR);
         curChapter().txtChapter.setMsg(msg);
-        if (mPageMode != PageAnimation.Mode.SCROLL) {
-            ToastsKt.toast(mContext,"加载错误1",Toast.LENGTH_SHORT);
-            upPage();
-        } else {
-            ToastsKt.toast(mContext,"加载错误2",Toast.LENGTH_SHORT);
-            mPageView.drawPage(0);
-        }
+        upPage();
         mPageView.invalidate();
     }
 
@@ -518,6 +500,7 @@ public abstract class PageLoader{
         if (curChapter().txtChapter.getPageSize() == 0) return null;
         TxtPage txtPage = curChapter().txtChapter.getPage(mCurPagePos);
         StringBuilder s = new StringBuilder();
+        assert txtPage != null;
         int size = txtPage.size();
         for (int i = 0; i < size; i++) {
             s.append(txtPage.getLine(i));
@@ -542,13 +525,6 @@ public abstract class PageLoader{
             s.append(content);
         }
         readTextLength = mCurPagePos > 0 ? curChapter().txtChapter.getPageLength(mCurPagePos - 1) : 0;
-        ToastsKt.toast(mContext,"检测到",Toast.LENGTH_SHORT);
-        if (mPageMode == PageAnimation.Mode.SCROLL) {
-            ToastsKt.toast(mContext,"执行了",Toast.LENGTH_SHORT);
-            for (int i = 0; i < Math.min(Math.max(0, linePos), curChapter().txtChapter.getPage(mCurPagePos).size() - 1); i++) {
-                readTextLength += curChapter().txtChapter.getPage(mCurPagePos).getLine(i).length();
-            }
-        }
         return s.toString();
     }
 
@@ -580,7 +556,7 @@ public abstract class PageLoader{
         StringBuilder s = new StringBuilder();
         if (curChapter().txtChapter.getPageSize() > page) {
             for (int i = page; i < curChapter().txtChapter.getPageSize(); i++) {
-                s.append(curChapter().txtChapter.getPage(i).getContent());
+                s.append(Objects.requireNonNull(curChapter().txtChapter.getPage(i)).getContent());
             }
         }
         return s.toString();
@@ -675,27 +651,18 @@ public abstract class PageLoader{
     /**
      * 重置页面
      */
-    private void resetPage() {
-        if (mPageMode == PageAnimation.Mode.SCROLL) {
-            resetPageOffset();
-            mPageView.invalidate();
-        } else {
-            upPage();
-        }
-    }
+    private void resetPage() {upPage();}
 
     /**
      * 更新页面
      */
     private void upPage() {
-        if (mPageMode != PageAnimation.Mode.SCROLL) {
-            mPageView.drawPage(0);
-            if (mCurPagePos > 0 || curChapter().txtChapter.getPosition() > 0) {
-                mPageView.drawPage(-1);
-            }
-            if (mCurPagePos < curChapter().txtChapter.getPageSize() - 1 || curChapter().txtChapter.getPosition() < callback.getChapterList().size() - 1) {
-                mPageView.drawPage(1);
-            }
+        mPageView.drawPage(0);
+        if (mCurPagePos > 0 || curChapter().txtChapter.getPosition() > 0) {
+            mPageView.drawPage(-1);
+        }
+        if (mCurPagePos < curChapter().txtChapter.getPageSize() - 1 || curChapter().txtChapter.getPosition() < callback.getChapterList().size() - 1) {
+            mPageView.drawPage(1);
         }
     }
 
@@ -703,9 +670,7 @@ public abstract class PageLoader{
      * 翻页完成
      */
     void pagingEnd(PageAnimation.Direction direction) {
-        if (!isChapterListPrepare) {
-            return;
-        }
+        if (!isChapterListPrepare) {return;}
         switch (direction) {
             case NEXT:
                 if (mCurPagePos < curChapter().txtChapter.getPageSize() - 1) {
@@ -719,9 +684,7 @@ public abstract class PageLoader{
                     parseNextChapter();
                     chapterChangeCallback();
                 }
-                if (mPageMode != PageAnimation.Mode.SCROLL) {
-                    mPageView.drawPage(1);
-                }
+                mPageView.drawPage(1);
                 break;
             case PREV:
                 if (mCurPagePos > 0) {
@@ -735,9 +698,7 @@ public abstract class PageLoader{
                     parsePrevChapter();
                     chapterChangeCallback();
                 }
-                if (mPageMode != PageAnimation.Mode.SCROLL) {
-                    mPageView.drawPage(-1);
-                }
+                mPageView.drawPage(-1);
                 break;
         }
         mPageView.setContentDescription(getContent());
@@ -899,9 +860,6 @@ public abstract class PageLoader{
     private synchronized void drawContent(Bitmap bitmap, TxtChapter txtChapter, TxtPage txtPage) {
         if (bitmap == null) return;
         Canvas canvas = new Canvas(bitmap);
-        if (mPageMode == PageAnimation.Mode.SCROLL) {
-            bitmap.eraseColor(Color.TRANSPARENT);
-        }
 
         Paint.FontMetrics fontMetricsForTitle = mTitlePaint.getFontMetrics();
         Paint.FontMetrics fontMetrics = mTextPaint.getFontMetrics();
@@ -911,10 +869,7 @@ public abstract class PageLoader{
             String tip = getStatusText(txtChapter);
             drawErrorMsg(canvas, tip, 0);
         } else {
-            float top = contentMarginHeight - fontMetrics.ascent;
-            if (mPageMode != PageAnimation.Mode.SCROLL) {
-                top += mMarginTop;
-            }
+            float top = contentMarginHeight - fontMetrics.ascent + mMarginTop;
             int ppp = 0;//pzl,文字位置
             // 对标题进行绘制
             String str;
@@ -930,37 +885,37 @@ public abstract class PageLoader{
                 canvas.drawText(str, mDisplayWidth / 2f, top, mTitlePaint);
 
                 //pzl
-                float leftposition = mDisplayWidth / 2;
-                float rightposition = 0;
-                float bottomposition = top + mTitlePaint.getFontMetrics().descent;
+                float leftPosition = (float) (mDisplayWidth / 2.0);
+                float rightPosition;
+                float bottomPosition = top + mTitlePaint.getFontMetrics().descent;
                 float TextHeight = Math.abs(fontMetricsForTitle.ascent) + Math.abs(fontMetricsForTitle.descent);
 
                 if (txtPage.getTxtLists() != null) {
-                    for (TxtChar c : txtPage.getTxtLists().get(i).getCharsData()) {
-                        rightposition = leftposition + c.getCharWidth();
+                    for (TxtChar c : Objects.requireNonNull(txtPage.getTxtLists().get(i).getCharsData())) {
+                        rightPosition = leftPosition + c.getCharWidth();
                         Point tlp = new Point();
                         c.setTopLeftPosition(tlp);
-                        tlp.x = (int) leftposition;
-                        tlp.y = (int) (bottomposition - TextHeight);
+                        tlp.x = (int) leftPosition;
+                        tlp.y = (int) (bottomPosition - TextHeight);
 
                         Point blp = new Point();
                         c.setBottomLeftPosition(blp);
-                        blp.x = (int) leftposition;
-                        blp.y = (int) bottomposition;
+                        blp.x = (int) leftPosition;
+                        blp.y = (int) bottomPosition;
 
                         Point trp = new Point();
                         c.setTopRightPosition(trp);
-                        trp.x = (int) rightposition;
-                        trp.y = (int) (bottomposition - TextHeight);
+                        trp.x = (int) rightPosition;
+                        trp.y = (int) (bottomPosition - TextHeight);
 
                         Point brp = new Point();
                         c.setBottomRightPosition(brp);
-                        brp.x = (int) rightposition;
-                        brp.y = (int) bottomposition;
+                        brp.x = (int) rightPosition;
+                        brp.y = (int) bottomPosition;
                         ppp++;
                         c.setIndex(ppp);
 
-                        leftposition = rightposition;
+                        leftPosition = rightPosition;
                     }
                 }
 
@@ -983,7 +938,10 @@ public abstract class PageLoader{
                 int paragraphLength = txtPage.getPosition() == 0 ? strLength : txtChapter.getPageLength(txtPage.getPosition() - 1) + strLength;
                 isLight = ReadAloudService.running && readAloudParagraph == txtChapter.getParagraphIndex(paragraphLength);
                 mTextPaint.setColor(isLight ? ThemeStore.accentColor(mContext) : readBookControl.getTextColor());
-                Layout tempLayout = new StaticLayout(str, mTextPaint, mVisibleWidth, Layout.Alignment.ALIGN_NORMAL, 0, 0, false);
+                Layout tempLayout = StaticLayout.Builder.obtain(str, 0, str.length(), mTextPaint, mVisibleWidth)
+                        .setAlignment(Layout.Alignment.ALIGN_NORMAL)
+                        .setLineSpacing(0,0)
+                        .setIncludePad(false).build();
                 float width = StaticLayout.getDesiredWidth(str, tempLayout.getLineStart(0), tempLayout.getLineEnd(0), mTextPaint);
                 if (needScale(str)) {
                     drawScaledText(canvas, str, width, mTextPaint, top, i, txtPage.getTxtLists());
@@ -992,41 +950,41 @@ public abstract class PageLoader{
                 }
 
                 //记录文字位置 --开始 pzl
-                float leftposition = mMarginLeft;
+                float leftPosition = mMarginLeft;
                 if (isFirstLineOfParagraph(str)) {
                     String blanks = StringUtils.halfToFull("  ");
                     //canvas.drawText(blanks, x, top, mTextPaint);
                     float bw = StaticLayout.getDesiredWidth(blanks, mTextPaint);
-                    leftposition += bw;
+                    leftPosition += bw;
                 }
-                float rightposition = 0;
-                float bottomposition = top + mTextPaint.getFontMetrics().descent;
+                float rightPosition;
+                float bottomPosition = top + mTextPaint.getFontMetrics().descent;
                 float textHeight = Math.abs(fontMetrics.ascent) + Math.abs(fontMetrics.descent);
 
                 if (txtPage.getTxtLists() != null) {
-                    for (TxtChar c : txtPage.getTxtLists().get(i).getCharsData()) {
-                        rightposition = leftposition + c.getCharWidth();
+                    for (TxtChar c : Objects.requireNonNull(txtPage.getTxtLists().get(i).getCharsData())) {
+                        rightPosition = leftPosition + c.getCharWidth();
                         Point tlp = new Point();
                         c.setTopLeftPosition(tlp);
-                        tlp.x = (int) leftposition;
-                        tlp.y = (int) (bottomposition - textHeight);
+                        tlp.x = (int) leftPosition;
+                        tlp.y = (int) (bottomPosition - textHeight);
 
                         Point blp = new Point();
                         c.setBottomLeftPosition(blp);
-                        blp.x = (int) leftposition;
-                        blp.y = (int) bottomposition;
+                        blp.x = (int) leftPosition;
+                        blp.y = (int) bottomPosition;
 
                         Point trp = new Point();
                         c.setTopRightPosition(trp);
-                        trp.x = (int) rightposition;
-                        trp.y = (int) (bottomposition - textHeight);
+                        trp.x = (int) rightPosition;
+                        trp.y = (int) (bottomPosition - textHeight);
 
                         Point brp = new Point();
                         c.setBottomRightPosition(brp);
-                        brp.x = (int) rightposition;
-                        brp.y = (int) bottomposition;
+                        brp.x = (int) rightPosition;
+                        brp.y = (int) bottomPosition;
 
-                        leftposition = rightposition;
+                        leftPosition = rightPosition;
 
                         ppp++;
                         c.setIndex(ppp);
@@ -1119,12 +1077,10 @@ public abstract class PageLoader{
             pagePos = 0;
         }
         String str;
-        linePos = 0;
         boolean linePosSet = false;
         boolean bookEnd = false;
         float startHeight = -2 * titleInterval;
         if (pageOffset < mTextPaint.getTextSize()) {
-            linePos = 0;
             linePosSet = true;
         }
         while (top < totalHeight) {
@@ -1140,8 +1096,8 @@ public abstract class PageLoader{
             }
             if (chapter.getPageSize() == 0) break;
             TxtPage page = chapter.getPage(pagePos);
+            assert page != null;
             if (page.getLines().isEmpty()) break;
-            if (top > totalHeight) break;
             float topi = top;
             int strLength = 0;
             isLight = ReadAloudService.running && readAloudParagraph == 0;
@@ -1155,22 +1111,22 @@ public abstract class PageLoader{
                     //进行绘制
                     canvas.drawText(str, mDisplayWidth / 2f, top, mTitlePaint);
                     //pzl
-                    float leftposition = mDisplayWidth / 2f;
-                    float rightPosition = 0;
+                    float leftPosition = mDisplayWidth / 2f;
+                    float rightPosition;
                     float bottomPosition = top + mTitlePaint.getFontMetrics().descent;
                     float TextHeight = Math.abs(fontMetricsForTitle.ascent) + Math.abs(fontMetricsForTitle.descent);
 
                     if (page.getTxtLists() != null) {
-                        for (TxtChar c : page.getTxtLists().get(i).getCharsData()) {
-                            rightPosition = leftposition + c.getCharWidth();
+                        for (TxtChar c : Objects.requireNonNull(page.getTxtLists().get(i).getCharsData())) {
+                            rightPosition = leftPosition + c.getCharWidth();
                             Point tlp = new Point();
                             c.setTopLeftPosition(tlp);
-                            tlp.x = (int) leftposition;
+                            tlp.x = (int) leftPosition;
                             tlp.y = (int) (bottomPosition - TextHeight);
 
                             Point blp = new Point();
                             c.setBottomLeftPosition(blp);
-                            blp.x = (int) leftposition;
+                            blp.x = (int) leftPosition;
                             blp.y = (int) bottomPosition;
 
                             Point trp = new Point();
@@ -1185,14 +1141,13 @@ public abstract class PageLoader{
                             ppp++;
                             c.setIndex(ppp);
 
-                            leftposition = rightPosition;
+                            leftPosition = rightPosition;
                         }
                     }
                     //pzl
                 }
                 top += (i == page.getTitleLines() - 1) ? titlePara : titleInterval;
                 if (!linePosSet && chapterPos == mCurChapterPos && top > titlePara) {
-                    linePos = i;
                     linePosSet = true;
                 }
             }
@@ -1212,7 +1167,10 @@ public abstract class PageLoader{
                 if (top > totalHeight) {
                     break;
                 } else if (top > startHeight) {
-                    Layout tempLayout = new StaticLayout(str, mTextPaint, mVisibleWidth, Layout.Alignment.ALIGN_NORMAL, 0, 0, false);
+                    Layout tempLayout = StaticLayout.Builder.obtain(str, 0, str.length(), mTextPaint, mVisibleWidth)
+                            .setAlignment(Layout.Alignment.ALIGN_NORMAL)
+                            .setLineSpacing(0,0)
+                            .setIncludePad(false).build();
                     float width = StaticLayout.getDesiredWidth(str, tempLayout.getLineStart(0), tempLayout.getLineEnd(0), mTextPaint);
                     if (needScale(str)) {
                         drawScaledText(canvas, str, width, mTextPaint, top, i, page.getTxtLists());
@@ -1221,44 +1179,44 @@ public abstract class PageLoader{
                     }
                     //记录文字位置 --开始 pzl
 
-                    float leftposition = mMarginLeft;
+                    float leftPosition = mMarginLeft;
 
                     if (isFirstLineOfParagraph(str)) {
                         String blanks = StringUtils.halfToFull("  ");
                         //canvas.drawText(blanks, x, top, mTextPaint);
                         float bw = StaticLayout.getDesiredWidth(blanks, mTextPaint);
-                        leftposition += bw;
+                        leftPosition += bw;
                     }
 
-                    float rightposition = 0;
-                    float bottomposition = top + mTextPaint.getFontMetrics().descent;
+                    float rightPosition;
+                    float bottomPosition = top + mTextPaint.getFontMetrics().descent;
                     float textHeight = Math.abs(fontMetrics.ascent) + Math.abs(fontMetrics.descent);
 
                     if (page.getTxtLists() != null) {
-                        for (TxtChar c : page.getTxtLists().get(i).getCharsData()) {
+                        for (TxtChar c : Objects.requireNonNull(page.getTxtLists().get(i).getCharsData())) {
 
-                            rightposition = leftposition + c.getCharWidth();
+                            rightPosition = leftPosition + c.getCharWidth();
                             Point tlp = new Point();
                             c.setTopLeftPosition(tlp);
-                            tlp.x = (int) leftposition;
-                            tlp.y = (int) (bottomposition - textHeight);
+                            tlp.x = (int) leftPosition;
+                            tlp.y = (int) (bottomPosition - textHeight);
 
                             Point blp = new Point();
                             c.setBottomLeftPosition(blp);
-                            blp.x = (int) leftposition;
-                            blp.y = (int) bottomposition;
+                            blp.x = (int) leftPosition;
+                            blp.y = (int) bottomPosition;
 
                             Point trp = new Point();
                             c.setTopRightPosition(trp);
-                            trp.x = (int) rightposition;
-                            trp.y = (int) (bottomposition - textHeight);
+                            trp.x = (int) rightPosition;
+                            trp.y = (int) (bottomPosition - textHeight);
 
                             Point brp = new Point();
                             c.setBottomRightPosition(brp);
-                            brp.x = (int) rightposition;
-                            brp.y = (int) bottomposition;
+                            brp.x = (int) rightPosition;
+                            brp.y = (int) bottomPosition;
 
-                            leftposition = rightposition;
+                            leftPosition = rightPosition;
 
                             ppp++;
                             c.setIndex(ppp);
@@ -1268,7 +1226,6 @@ public abstract class PageLoader{
                 }
                 top += str.endsWith("\n") ? textPara : textInterval;
                 if (!linePosSet && chapterPos == mCurChapterPos && top >= textPara) {
-                    linePos = i;
                     linePosSet = true;
                 }
             }
@@ -1309,7 +1266,6 @@ public abstract class PageLoader{
 
     void resetPageOffset() {
         pageOffset = 0;
-        linePos = 0;
         isLastPage = false;
     }
 
@@ -1376,7 +1332,7 @@ public abstract class PageLoader{
             return height;
         }
         if (pagePos >= 0 && pagePos < chapter.getPageSize()) {
-            height = getPageHeight(chapter.getPage(pagePos));
+            height = getPageHeight(Objects.requireNonNull(chapter.getPage(pagePos)));
         }
         if (chapter.getPosition() == 0 && pagePos == 0) {
             height += getCoverHeight();
@@ -1397,7 +1353,10 @@ public abstract class PageLoader{
     }
 
     private void drawErrorMsg(Canvas canvas, String msg, float offset) {
-        Layout tempLayout = new StaticLayout(msg, mTextPaint, mVisibleWidth, Layout.Alignment.ALIGN_NORMAL, 0, 0, false);
+        Layout tempLayout = StaticLayout.Builder.obtain(msg, 0, msg.length(), mTextPaint, mVisibleWidth)
+                .setAlignment(Layout.Alignment.ALIGN_NORMAL)
+                .setLineSpacing(0,0)
+                .setIncludePad(false).build();
         List<String> linesData = new ArrayList<>();
         for (int i = 0; i < tempLayout.getLineCount(); i++) {
             linesData.add(msg.substring(tempLayout.getLineStart(i), tempLayout.getLineEnd(i)));
@@ -1480,7 +1439,7 @@ public abstract class PageLoader{
                 e.onSuccess(txtChapter);
             })
                     .compose(RxUtils::toSimpleSingle)
-                    .subscribe(new SingleObserver<TxtChapter>() {
+                    .subscribe(new SingleObserver<>() {
                         @Override
                         public void onSubscribe(Disposable d) {
                             compositeDisposable.add(d);
@@ -1525,7 +1484,7 @@ public abstract class PageLoader{
             e.onSuccess(txtChapter);
         })
                 .compose(RxUtils::toSimpleSingle)
-                .subscribe(new SingleObserver<TxtChapter>() {
+                .subscribe(new SingleObserver<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);
@@ -1567,7 +1526,7 @@ public abstract class PageLoader{
             e.onSuccess(txtChapter);
         })
                 .compose(RxUtils::toSimpleSingle)
-                .subscribe(new SingleObserver<TxtChapter>() {
+                .subscribe(new SingleObserver<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);
@@ -1592,11 +1551,7 @@ public abstract class PageLoader{
     private void upTextChapter(TxtChapter txtChapter) {
         if (txtChapter.getPosition() == mCurChapterPos - 1) {
             prevChapter().txtChapter = txtChapter;
-            if (mPageMode == PageAnimation.Mode.SCROLL) {
-                mPageView.drawContent(-1);
-            } else {
-                mPageView.drawPage(-1);
-            }
+            mPageView.drawPage(-1);
         } else if (txtChapter.getPosition() == mCurChapterPos) {
             curChapter().txtChapter = txtChapter;
             resetPage();
@@ -1604,11 +1559,7 @@ public abstract class PageLoader{
             pagingEnd(PageAnimation.Direction.NONE);
         } else if (txtChapter.getPosition() == mCurChapterPos + 1) {
             nextChapter().txtChapter = txtChapter;
-            if (mPageMode == PageAnimation.Mode.SCROLL) {
-                mPageView.drawContent(1);
-            } else {
-                mPageView.drawPage(1);
-            }
+            mPageView.drawPage(1);
         }
     }
 
@@ -1640,7 +1591,7 @@ public abstract class PageLoader{
             txtChar.setCharWidth(cw + d);
             //字宽
             //txtChar.Index = y;//每页每个字的位置
-            txtList.getCharsData().add(txtChar);
+            Objects.requireNonNull(txtList.getCharsData()).add(txtChar);
             //pzl
             x += cw + d;
         }
@@ -1649,12 +1600,17 @@ public abstract class PageLoader{
         }
     }
 
-    //判断是不是d'hou
+    /**
+     * 判断是不是第一行
+     */
     private boolean isFirstLineOfParagraph(String line) {
         return line.length() > 3 && line.charAt(0) == (char) 12288 && line.charAt(1) == (char) 12288;
     }
 
-    private boolean needScale(String line) {//判断不是空行
+    /**
+     * 判断不是空行
+     */
+    private boolean needScale(String line) {
         return line != null && line.length() != 0 && line.charAt(line.length() - 1) != '\n';
     }
 
@@ -1719,7 +1675,7 @@ public abstract class PageLoader{
      * --------------------
      * 检测获取按压坐标所在位置的字符，没有的话返回null
      * --------------------
-     * author: huangwei
+     * author: HuangWei
      * 2017年7月4日上午10:23:19
      */
     TxtChar detectPressTxtChar(float down_X2, float down_Y2) {

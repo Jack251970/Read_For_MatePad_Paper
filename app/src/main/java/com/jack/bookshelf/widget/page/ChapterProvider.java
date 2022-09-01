@@ -2,7 +2,6 @@ package com.jack.bookshelf.widget.page;
 
 import android.text.Layout;
 import android.text.StaticLayout;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -12,6 +11,7 @@ import com.jack.bookshelf.utils.NetworkUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 class ChapterProvider {
     private final PageLoader pageLoader;
@@ -69,7 +69,6 @@ class ChapterProvider {
             txtChapter.addPage(page);
             return txtChapter;
         }
-        Log.i("content-1",chapter.getDurChapterName()+"\n"+content.substring(content.length()/3*2));
         content = contentHelper.replaceContent(pageLoader.book.getBookInfoBean().getName(), pageLoader.book.getTag(), content, pageLoader.book.getReplaceEnable());
 
 //        Log.i("chapterName",chapter.getDurChapterName());
@@ -125,13 +124,19 @@ class ChapterProvider {
                     continue;
                 }
                 // 测量一行占用的字节数
+                Layout tempLayout;
                 if (ifShowTitle) {
-                    Layout tempLayout = new StaticLayout(paragraph, pageLoader.mTitlePaint, pageLoader.mVisibleWidth, Layout.Alignment.ALIGN_NORMAL, 0, 0, false);
-                    wordCount = tempLayout.getLineEnd(0);
+                    tempLayout = StaticLayout.Builder.obtain(paragraph, 0, paragraph.length(), pageLoader.mTitlePaint, pageLoader.mVisibleWidth)
+                            .setAlignment(Layout.Alignment.ALIGN_NORMAL)
+                            .setLineSpacing(0, 0)
+                            .setIncludePad(false).build();
                 } else {
-                    Layout tempLayout = new StaticLayout(paragraph, pageLoader.mTextPaint, pageLoader.mVisibleWidth, Layout.Alignment.ALIGN_NORMAL, 0, 0, false);
-                    wordCount = tempLayout.getLineEnd(0);
+                    tempLayout = StaticLayout.Builder.obtain(paragraph, 0, paragraph.length(), pageLoader.mTextPaint, pageLoader.mVisibleWidth)
+                            .setAlignment(Layout.Alignment.ALIGN_NORMAL)
+                            .setLineSpacing(0, 0)
+                            .setIncludePad(false).build();
                 }
+                wordCount = tempLayout.getLineEnd(0);
                 // 取用能在一行显示下的字
                 subStr = paragraph.substring(0, wordCount);
                 // 显示所取用的内容
@@ -142,18 +147,18 @@ class ChapterProvider {
                     // 记录每个字的位置
                     char[] cs = subStr.toCharArray();
                     TxtLine txtList = new TxtLine();//每一行
-                    txtList.setCharsData(new ArrayList<TxtChar>());
+                    txtList.setCharsData(new ArrayList<>());
                     for (char c : cs) {
-                        String mesasrustr = String.valueOf(c);
-                        float charwidth = pageLoader.mTextPaint.measureText(mesasrustr);
+                        String charValue = String.valueOf(c);
+                        float charWidth = pageLoader.mTextPaint.measureText(charValue);
                         if (ifShowTitle) {
-                            charwidth = pageLoader.mTitlePaint.measureText(mesasrustr);
+                            charWidth = pageLoader.mTitlePaint.measureText(charValue);
                         }
                         TxtChar txtChar = new TxtChar();
                         txtChar.setChardata(c);
-                        txtChar.setCharWidth(charwidth);//字宽
+                        txtChar.setCharWidth(charWidth);//字宽
                         txtChar.setIndex(66);//每页每个字的位置
-                        txtList.getCharsData().add(txtChar);
+                        Objects.requireNonNull(txtList.getCharsData()).add(txtChar);
                     }
                     txtLists.add(txtList);
                     //end pzl

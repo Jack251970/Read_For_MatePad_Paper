@@ -23,7 +23,6 @@ import com.jack.bookshelf.utils.ScreenUtils;
 import com.jack.bookshelf.view.activity.ReadBookActivity;
 import com.jack.bookshelf.widget.page.animation.NonePageAnim;
 import com.jack.bookshelf.widget.page.animation.PageAnimation;
-import com.jack.bookshelf.widget.page.animation.ScrollPageAnim;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +34,6 @@ import java.util.Objects;
  */
 
 public class PageView extends View implements PageAnimation.OnPageChangeListener {
-
     private ReadBookActivity activity;
 
     private int mViewWidth = 0; // 当前View的宽
@@ -82,7 +80,7 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
     //长按时间
     private static final int LONG_PRESS_TIMEOUT = 1000;
     //选择的列
-    private final List<TxtLine> mSelectLines = new ArrayList<TxtLine>();
+    private final List<TxtLine> mSelectLines = new ArrayList<>();
 
     public PageView(Context context) {
         this(context, null);
@@ -157,19 +155,11 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
     }
 
     public void autoPrevPage() {
-        if (mPageAnim instanceof ScrollPageAnim) {
-            ((ScrollPageAnim) mPageAnim).startAnim(PageAnimation.Direction.PREV);
-        } else {
-            startHorizonPageAnim(PageAnimation.Direction.PREV);
-        }
+        startHorizonPageAnim(PageAnimation.Direction.PREV);
     }
 
     public void autoNextPage() {
-        if (mPageAnim instanceof ScrollPageAnim) {
-            ((ScrollPageAnim) mPageAnim).startAnim(PageAnimation.Direction.NEXT);
-        } else {
-            startHorizonPageAnim(PageAnimation.Direction.NEXT);
-        }
+        startHorizonPageAnim(PageAnimation.Direction.NEXT);
     }
 
     private synchronized void startHorizonPageAnim(PageAnimation.Direction direction) {
@@ -221,63 +211,10 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
         invalidate();
     }
 
-    /**
-     * 绘制滚动背景
-     */
-    @Override
-    public void drawBackground(Canvas canvas) {
-        if (!isPrepare) return;
-        if (mPageLoader != null) {
-            mPageLoader.drawBackground(canvas);
-        }
-    }
-
-    /**
-     * 绘制滚动内容
-     */
-    @Override
-    public void drawContent(Canvas canvas, float offset) {
-        if (!isPrepare) return;
-        if (mPageLoader != null) {
-            mPageLoader.drawContent(canvas, offset);
-        }
-    }
-
-    /**
-     * 绘制横翻背景
-     */
-    public void drawBackground(int pageOnCur) {
-        if (!isPrepare) return;
-        if (mPageLoader != null) {
-            mPageLoader.drawPage(getBgBitmap(pageOnCur), pageOnCur);
-        }
-        invalidate();
-    }
-
-    /**
-     * 绘制横翻内容
-     *
-     * @param pageOnCur 相对当前页的位置
-     */
-    public void drawContent(int pageOnCur) {
-        if (!isPrepare) return;
-        if (mPageLoader != null) {
-            mPageLoader.drawPage(getBgBitmap(pageOnCur), pageOnCur);
-        }
-        invalidate();
-    }
-
     @Override
     protected void onDraw(Canvas canvas) {
-        if (mPageAnim instanceof ScrollPageAnim)
-            super.onDraw(canvas);
-        //绘制动画
-        if (mPageAnim != null) {
-            mPageAnim.draw(canvas);
-        }
-        if (selectMode != SelectMode.Normal && !isRunning() && !isMove) {
-            DrawSelectText(canvas);
-        }
+        if (mPageAnim != null) {mPageAnim.draw(canvas);}
+        if (selectMode != SelectMode.Normal && !isRunning() && !isMove) {DrawSelectText(canvas);}
     }
 
     private void DrawSelectText(Canvas canvas) {
@@ -292,62 +229,56 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
 
 
     private void drawPressSelectText(Canvas canvas) {
-        if (lastSelectTxtChar != null) {// 找到了选择的字符
+        if (lastSelectTxtChar != null) {    // 找到了选择的字符
             mSelectTextPath.reset();
-            mSelectTextPath.moveTo(firstSelectTxtChar.getTopLeftPosition().x, firstSelectTxtChar.getTopLeftPosition().y);
-            mSelectTextPath.lineTo(firstSelectTxtChar.getTopRightPosition().x, firstSelectTxtChar.getTopRightPosition().y);
-            mSelectTextPath.lineTo(firstSelectTxtChar.getBottomRightPosition().x, firstSelectTxtChar.getBottomRightPosition().y);
-            mSelectTextPath.lineTo(firstSelectTxtChar.getBottomLeftPosition().x, firstSelectTxtChar.getBottomLeftPosition().y);
+            mSelectTextPath.moveTo(Objects.requireNonNull(firstSelectTxtChar.getTopLeftPosition()).x, firstSelectTxtChar.getTopLeftPosition().y);
+            mSelectTextPath.lineTo(Objects.requireNonNull(firstSelectTxtChar.getTopRightPosition()).x, firstSelectTxtChar.getTopRightPosition().y);
+            mSelectTextPath.lineTo(Objects.requireNonNull(firstSelectTxtChar.getBottomRightPosition()).x, firstSelectTxtChar.getBottomRightPosition().y);
+            mSelectTextPath.lineTo(Objects.requireNonNull(firstSelectTxtChar.getBottomLeftPosition()).x, firstSelectTxtChar.getBottomLeftPosition().y);
             canvas.drawPath(mSelectTextPath, mTextSelectPaint);
         }
     }
 
-
     public String getSelectStr() {
-
         if (mSelectLines.size() == 0) {
             return String.valueOf(firstSelectTxtChar.getChardata());
         }
         StringBuilder sb = new StringBuilder();
         for (TxtLine l : mSelectLines) {
-            //Log.e("selectline", l.getLineData() + "");
             sb.append(l.getLineData());
         }
-
         return sb.toString();
     }
 
-
     private void drawMoveSelectText(Canvas canvas) {
-        if (firstSelectTxtChar == null || lastSelectTxtChar == null)
-            return;
+        if (firstSelectTxtChar == null || lastSelectTxtChar == null) {return;}
         getSelectData();
         drawSelectLines(canvas);
     }
 
-    List<TxtLine> mLinseData = null;
+    List<TxtLine> mLineData = null;
 
     private void getSelectData() {
         TxtPage txtPage = mPageLoader.curChapter().txtChapter.getPage(mPageLoader.getCurPagePos());
         if (txtPage != null) {
-            mLinseData = txtPage.getTxtLists();
+            mLineData = txtPage.getTxtLists();
 
-            Boolean Started = false;
-            Boolean Ended = false;
+            boolean Started = false;
+            boolean Ended = false;
 
             mSelectLines.clear();
 
             // 找到选择的字符数据，转化为选择的行，然后将行选择背景画出来
-            for (TxtLine l : mLinseData) {
+            for (TxtLine l : mLineData) {
 
-                TxtLine selectline = new TxtLine();
-                selectline.setCharsData(new ArrayList<>());
+                TxtLine selectLine = new TxtLine();
+                selectLine.setCharsData(new ArrayList<>());
 
-                for (TxtChar c : l.getCharsData()) {
+                for (TxtChar c : Objects.requireNonNull(l.getCharsData())) {
                     if (!Started) {
                         if (c.getIndex() == firstSelectTxtChar.getIndex()) {
                             Started = true;
-                            selectline.getCharsData().add(c);
+                            Objects.requireNonNull(selectLine.getCharsData()).add(c);
                             if (c.getIndex() == lastSelectTxtChar.getIndex()) {
                                 Ended = true;
                                 break;
@@ -356,17 +287,17 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
                     } else {
                         if (c.getIndex() == lastSelectTxtChar.getIndex()) {
                             Ended = true;
-                            if (!selectline.getCharsData().contains(c)) {
-                                selectline.getCharsData().add(c);
+                            if (!Objects.requireNonNull(selectLine.getCharsData()).contains(c)) {
+                                selectLine.getCharsData().add(c);
                             }
                             break;
                         } else {
-                            selectline.getCharsData().add(c);
+                            Objects.requireNonNull(selectLine.getCharsData()).add(c);
                         }
                     }
                 }
 
-                mSelectLines.add(selectline);
+                mSelectLines.add(selectLine);
 
                 if (Started && Ended) {
                     break;
@@ -375,16 +306,14 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
         }
     }
 
-    public SelectMode getSelectMode() {
-        return selectMode;
-    }
+    public SelectMode getSelectMode() {return selectMode;}
 
     public void setSelectMode(SelectMode mCurrentMode) {
         this.selectMode = mCurrentMode;
     }
 
     private void drawSelectLines(Canvas canvas) {
-        drawOaleSeletLinesBg(canvas);
+        drawOvalSelectLinesBg(canvas);
     }
 
     public void clearSelect() {
@@ -396,24 +325,28 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
 
     }
 
-
-    //根据当前坐标返回文字
+    /**
+     * 根据当前坐标返回文字
+     */
     public TxtChar getCurrentTxtChar(float x, float y) {
         return mPageLoader.detectPressTxtChar(x, y);
     }
 
-    private void drawOaleSeletLinesBg(Canvas canvas) {// 绘制椭圆型的选中背景
+    /**
+     * 绘制椭圆型的选中背景
+     */
+    private void drawOvalSelectLinesBg(Canvas canvas) {
         for (TxtLine l : mSelectLines) {
             if (l.getCharsData() != null && l.getCharsData().size() > 0) {
 
-                TxtChar fistchar = l.getCharsData().get(0);
-                TxtChar lastchar = l.getCharsData().get(l.getCharsData().size() - 1);
+                TxtChar fistChar = l.getCharsData().get(0);
+                TxtChar lastChar = l.getCharsData().get(l.getCharsData().size() - 1);
 
-                float fw = fistchar.getCharWidth();
-                float lw = lastchar.getCharWidth();
+                float fw = fistChar.getCharWidth();
+                float lw = lastChar.getCharWidth();
 
-                RectF rect = new RectF(fistchar.getTopLeftPosition().x, fistchar.getTopLeftPosition().y,
-                        lastchar.getTopRightPosition().x, lastchar.getBottomRightPosition().y);
+                RectF rect = new RectF(Objects.requireNonNull(fistChar.getTopLeftPosition()).x, fistChar.getTopLeftPosition().y,
+                        Objects.requireNonNull(lastChar.getTopRightPosition()).x, Objects.requireNonNull(lastChar.getBottomRightPosition()).y);
 
                 canvas.drawRoundRect(rect, fw / 4,
                         textHeight /4, mTextSelectPaint);
@@ -538,13 +471,9 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
                     if (!readBookControl.getCanClickTurn()) {
                         return true;
                     }
-
-                    if (mPageAnim instanceof ScrollPageAnim && readBookControl.disableScrollClickTurn()) {
-                        return true;
-                    }
                 }
 
-                if (firstSelectTxtChar == null || isMove) {//长安选择删除选中状态
+                if (firstSelectTxtChar == null || isMove) { // 长按选择删除选中状态
                     mPageAnim.onTouchEvent(event);
                 } else {
                     if (!isLongPress) {
@@ -605,14 +534,8 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
             mPageAnim.abortAnim();
             mPageAnim.clear();
         }
-
         mPageLoader = null;
         mPageAnim = null;
-    }
-
-    @Override
-    public void resetScroll() {
-        mPageLoader.resetPageOffset();
     }
 
     @Override
