@@ -28,12 +28,11 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * 网络页面加载器
+ * Net Page Loader
  * Edited by Jack251970
  */
 
 public class PageLoaderNet extends PageLoader {
-    private static final String TAG = "PageLoaderNet";
     private final List<String> downloadingChapterList = new ArrayList<>();
     private final ExecutorService executorService;
     private final Scheduler scheduler;
@@ -53,7 +52,7 @@ public class PageLoaderNet extends PageLoader {
         } else {
             WebBookModel.getInstance().getChapterList(book)
                     .compose(RxUtils::toSimpleSingle)
-                    .subscribe(new MyObserver<List<BookChapterBean>>() {
+                    .subscribe(new MyObserver<>() {
                         @Override
                         public void onSubscribe(Disposable d) {
                             compositeDisposable.add(d);
@@ -110,7 +109,7 @@ public class PageLoaderNet extends PageLoader {
                     .flatMap(index -> WebBookModel.getInstance().getBookContent(book, callback.getChapterList().get(chapterIndex), null))
                     .subscribeOn(scheduler)
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new MyObserver<BookContentBean>() {
+                    .subscribe(new MyObserver<>() {
                         @Override
                         public void onSubscribe(Disposable d) {
                             compositeDisposable.add(d);
@@ -149,7 +148,7 @@ public class PageLoaderNet extends PageLoader {
             downloadingChapterList.remove(value);
             return true;
         } else {
-            return downloadingChapterList.indexOf(value) != -1;
+            return downloadingChapterList.contains(value);
         }
     }
 
@@ -233,7 +232,7 @@ public class PageLoaderNet extends PageLoader {
         WebBookModel.getInstance().getChapterList(book)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<List<BookChapterBean>>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);
@@ -244,15 +243,13 @@ public class PageLoaderNet extends PageLoader {
                         isChapterListPrepare = true;
 
                         if (chapterBeanList.size() > callback.getChapterList().size()) {
-                            mPageView.getActivity().toast("更新完成,有新章节");
+                            mPageView.getActivity().toast("更新完成，有新章节");
                             callback.onCategoryFinish(chapterBeanList);
                         } else {
-                            mPageView.getActivity().toast("更新完成,无新章节");
+                            mPageView.getActivity().toast("更新完成，无新章节");
                         }
-
                         // 加载并显示当前章节
                         skipToChapter(book.getDurChapter(), book.getDurChapterPage());
-
                         // 刷新显示内容
                         if (binding.tvChapterName.getVisibility() == View.VISIBLE) {
                             binding.tvChapterName.setText(chapterBeanList.get(mPageLoader.getCurChapterPos()).getDurChapterName());
@@ -265,9 +262,7 @@ public class PageLoaderNet extends PageLoader {
                     }
 
                     @Override
-                    public void onComplete() {
-
-                    }
+                    public void onComplete() {}
                 });
     }
 
@@ -277,7 +272,7 @@ public class PageLoaderNet extends PageLoader {
         WebBookModel.getInstance().getChapterList(book)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<List<BookChapterBean>>() {
+                .subscribe(new Observer<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);

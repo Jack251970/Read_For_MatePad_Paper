@@ -35,7 +35,6 @@ import io.reactivex.disposables.Disposable;
  */
 
 public class PageLoaderText extends PageLoader {
-    private static final String TAG = "PageLoaderText";
     //默认从文件中获取数据的长度
     private final static int BUFFER_SIZE = 512 * 1024;
     //没有标题的时候，每个章节的最大长度
@@ -64,7 +63,7 @@ public class PageLoaderText extends PageLoader {
             }
             mCharset = Charset.forName(book.getBookInfoBean().getCharset());
 
-            Long lastModified = mBookFile.lastModified();
+            long lastModified = mBookFile.lastModified();
             if (book.getFinalRefreshData() < lastModified) {
                 book.setFinalRefreshData(lastModified);
                 book.setHasUpdate(true);
@@ -77,7 +76,7 @@ public class PageLoaderText extends PageLoader {
                 e.onSuccess(new ArrayList<>());
             }
         }).compose(RxUtils::toSimpleSingle)
-                .subscribe(new SingleObserver<List<BookChapterBean>>() {
+                .subscribe(new SingleObserver<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);
@@ -126,7 +125,7 @@ public class PageLoaderText extends PageLoader {
                     e.onSuccess(loadChapters());
                 })
                 .compose(RxUtils::toSimpleSingle)
-                .subscribe(new SingleObserver<List<BookChapterBean>>() {
+                .subscribe(new SingleObserver<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);
@@ -172,7 +171,7 @@ public class PageLoaderText extends PageLoader {
             e.onSuccess(loadChapters());
         })
                 .compose(RxUtils::toSimpleSingle)
-                .subscribe(new SingleObserver<List<BookChapterBean>>() {
+                .subscribe(new SingleObserver<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);

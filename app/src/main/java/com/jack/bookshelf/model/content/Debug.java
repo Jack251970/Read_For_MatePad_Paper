@@ -188,7 +188,7 @@ public class Debug {
         printLog(String.format("\n%s ≡开始获取目录页", getDoTime()));
         WebBookModel.getInstance().getChapterList(bookShelfBean)
                 .compose(RxUtils::toSimpleSingle)
-                .subscribe(new Observer<List<BookChapterBean>>() {
+                .subscribe(new Observer<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);
