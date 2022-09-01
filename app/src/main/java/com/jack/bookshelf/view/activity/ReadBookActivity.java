@@ -320,9 +320,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
             binding.pay.setVisibility(View.GONE);
         }
         binding.vMenuBg.setOnClickListener(v -> popMenuOut());
-        // 刷新阅读界面中的目录
-        binding.tvChapterName.setText(mPresenter.getChapterList().get(mPageLoader.getCurChapterPos())
-                .getDurChapterName());
     }
 
     /**
@@ -700,10 +697,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                         if (mPresenter.getChapterList().isEmpty()) return;
                         if (pos >= mPresenter.getChapterList().size()) return;
                         mPresenter.getBookShelf().setDurChapterName(mPresenter.getChapterList().get(pos).getDurChapterName());
-
                         binding.tvBookTitle.setText(mPresenter.getBookShelf().getBookInfoBean().getName());
-                        // actionBar.setTitle(mPresenter.getBookShelf().getBookInfoBean().getName());
-
                         if (mPresenter.getBookShelf().getChapterListSize() > 0) {
                             BookChapterBean chapter = mPresenter.getChapterList().get(pos);
                             if (chapter.getIsVip() && !chapter.getIsPay()) {

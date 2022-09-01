@@ -479,7 +479,7 @@ public abstract class PageLoader{
      */
     public void setStatus(TxtChapter.Status status) {
         curChapter().txtChapter.setStatus(status);
-        reSetPage();
+        resetPage();
         mPageView.invalidate();
     }
 
@@ -644,9 +644,9 @@ public abstract class PageLoader{
 
         if (curChapter().txtChapter == null) {
             curChapter().txtChapter = new TxtChapter(mCurChapterPos);
-            reSetPage();
+            resetPage();
         } else if (curChapter().txtChapter.getStatus() == TxtChapter.Status.FINISH) {
-            reSetPage();
+            resetPage();
             mPageView.invalidate();
             pagingEnd(PageAnimation.Direction.NONE);
             return;
@@ -655,7 +655,7 @@ public abstract class PageLoader{
         // 如果章节目录没有准备好
         if (!isChapterListPrepare) {
             curChapter().txtChapter.setStatus(TxtChapter.Status.LOADING);
-            reSetPage();
+            resetPage();
             mPageView.invalidate();
             return;
         }
@@ -663,7 +663,7 @@ public abstract class PageLoader{
         // 如果获取到的章节目录为空
         if (callback.getChapterList().isEmpty()) {
             curChapter().txtChapter.setStatus(TxtChapter.Status.CATEGORY_EMPTY);
-            reSetPage();
+            resetPage();
             mPageView.invalidate();
             return;
         }
@@ -675,7 +675,7 @@ public abstract class PageLoader{
     /**
      * 重置页面
      */
-    private void reSetPage() {
+    private void resetPage() {
         if (mPageMode == PageAnimation.Mode.SCROLL) {
             resetPageOffset();
             mPageView.invalidate();
@@ -1599,7 +1599,7 @@ public abstract class PageLoader{
             }
         } else if (txtChapter.getPosition() == mCurChapterPos) {
             curChapter().txtChapter = txtChapter;
-            reSetPage();
+            resetPage();
             chapterChangeCallback();
             pagingEnd(PageAnimation.Direction.NONE);
         } else if (txtChapter.getPosition() == mCurChapterPos + 1) {
