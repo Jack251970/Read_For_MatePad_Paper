@@ -33,14 +33,14 @@
         android:id="@+id/cursor_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="阅读长按左光标"
+        android:contentDescription="左光标"
         android:src="@drawable/ic_cursor_left"
         android:visibility="invisible"/>
     <ImageView
         android:id="@+id/cursor_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="阅读长按右光标"
+        android:contentDescription="右光标"
         android:src="@drawable/ic_cursor_right"
         android:visibility="invisible"/>
     <!-- 阅读长按菜单 -->

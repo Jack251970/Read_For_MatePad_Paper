@@ -42,11 +42,7 @@ class ReadInterfacePop : FrameLayout {
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {init()}
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    ) {init()}
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {init()}
 
     private fun init() {binding.vwBg.setOnClickListener(null)}
 

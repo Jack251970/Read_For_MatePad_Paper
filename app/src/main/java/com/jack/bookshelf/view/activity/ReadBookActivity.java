@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.BatteryManager;
 import android.os.Bundle;
@@ -373,8 +372,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         initMediaPlayer();
         initReadLongPressPop();
         binding.pageView.setBackground(readBookControl.getTextBackground(this));
-        binding.cursorLeft.getDrawable().setColorFilter(ThemeStore.accentColor(this), PorterDuff.Mode.SRC_ATOP);
-        binding.cursorRight.getDrawable().setColorFilter(ThemeStore.accentColor(this), PorterDuff.Mode.SRC_ATOP);
     }
 
     /**

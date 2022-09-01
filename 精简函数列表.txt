@@ -127,3 +127,7 @@ case android.R.id.home:
                 break;
 5.
 private MoDialogHUD moDialogHUD;
+6.
+ThemeStore
+7.
+TintHelper
