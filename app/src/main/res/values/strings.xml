@@ -500,11 +500,6 @@
     <string name="jf_convert_o">关闭</string>
     <string name="jf_convert_f">简转繁</string>
     <string name="jf_convert_j">繁转简</string>
-    <string name="page_mode">翻页动画</string>
-    <string name="page_title">正文标题</string>
-    <string name="page_header">页眉</string>
-    <string name="page_footer">页脚</string>
-    <string name="page_cut_off_line">分割线</string>
     <string name="nb_file_sub_count">%1$d 项</string>
     <string name="nb_file_add_shelf">加入书架</string>
     <string name="nb_file_add_shelves">加入书架(%1$d)</string>
@@ -590,9 +585,6 @@
     <string name="music">音乐</string>
     <string name="audio">音频</string>
     <string name="is_enable">启用</string>
-    <string name="to_lh">扩展到刘海</string>
-    <string name="c_page_key">自定义翻页按键</string>
-    <string name="custom_page_key">自定义翻页按键</string>
     <string name="prev_page_key">上一页按键</string>
     <string name="next_page_key">下一页按键</string>
     <string name="chapter_pay">购买</string>
@@ -603,14 +595,6 @@
     <string name="open_browser">在浏览器中打开</string>
     <string name="brightness_auto">自动亮度 %s</string>
     <string name="text_space">间距</string>
-    <string name="title_left">靠左</string>
-    <string name="title_center">居中</string>
-    <string name="hide">隐藏</string>
-    <string name="ad_page_header">页眉显示时间与电量</string>
-    <string name="header_occasion_show">状态栏显示时隐藏</string>
-    <string name="show">显示</string>
-    <string name="ad_page_footer">页脚显示章节、页数与进度</string>
-    <string name="ad_page_cut_off_line">页脚分割线</string>
     <string name="disable_return_key">禁用返回键</string>
     <string name="text_color">文字颜色</string>
     <string name="background_color">背景颜色</string>

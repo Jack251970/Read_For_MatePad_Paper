@@ -23,7 +23,6 @@ import com.jack.bookshelf.view.activity.ReadStyleActivity
 import com.jack.bookshelf.view.popupmenu.SelectMenu
 import com.jack.bookshelf.widget.font.FontSelectorDialog
 import com.jack.bookshelf.widget.font.FontSelectorDialog.OnThisListener
-import com.jack.bookshelf.widget.page.animation.PageAnimation
 import timber.log.Timber
 
 /**
@@ -33,8 +32,7 @@ import timber.log.Timber
  */
 
 class ReadInterfacePop : FrameLayout {
-    private val binding = PopReadInterfaceBinding
-        .inflate(LayoutInflater.from(context), this, true)
+    private val binding = PopReadInterfaceBinding.inflate(LayoutInflater.from(context), this, true)
     private var activity: ReadBookActivity? = null
     private val readBookControl = ReadBookControl.getInstance()
     private var mainView: View? = null
@@ -84,6 +82,7 @@ class ReadInterfacePop : FrameLayout {
         activity!!.window.attributes = params
     }
 
+    @Suppress("NAME_SHADOWING")
     fun setScreenBrightness(value: Int) {
         var value = value
         if (value < 1) value = 1
@@ -221,70 +220,6 @@ class ReadInterfacePop : FrameLayout {
         binding.civBgBlack.setOnClickListener {
             updateBg(4)
             callback!!.bgChange()
-        }
-        // 正文标题
-        binding.tvPageTitle.setOnClickListener {
-            SelectMenu.builder(context)
-                .setTitle(context.getString(R.string.page_title))
-                .setBottomButton(context.getString(R.string.cancel))
-                .setMenu(resources.getStringArray(R.array.read_book_show_and_hide), readBookControl.showTitle)
-                .setListener(object : SelectMenu.OnItemClickListener {
-                    override fun forBottomButton() {}
-                    override fun forListItem(lastChoose: Int, position: Int) {
-                        if (position != lastChoose) {
-                            readBookControl.showTitle = position
-                            callback!!.refresh()
-                        }
-                    }
-                }).show(mainView)
-        }
-        // 页眉
-        binding.tvPageHeader.setOnClickListener {
-            SelectMenu.builder(context)
-                .setTitle(context.getString(R.string.ad_page_header))
-                .setBottomButton(context.getString(R.string.cancel))
-                .setMenu(arrayOf(context.getString(R.string.header_occasion_show)), readBookControl.showTimeBattery)
-                .setListener(object : SelectMenu.OnItemClickListener {
-                    override fun forBottomButton() {}
-                    override fun forListItem(lastChoose: Int, position: Int) {
-                        if (position != lastChoose) {
-                            readBookControl.showTimeBattery = position
-                            callback!!.refresh()
-                        }
-                    }
-                }).show(mainView)
-        }
-        // 页脚
-        binding.tvPageFooter.setOnClickListener {
-            SelectMenu.builder(context)
-                .setTitle(context.getString(R.string.ad_page_footer))
-                .setBottomButton(context.getString(R.string.cancel))
-                .setMenu(resources.getStringArray(R.array.read_book_show_and_hide), readBookControl.showFooter)
-                .setListener(object : SelectMenu.OnItemClickListener {
-                    override fun forBottomButton() {}
-                    override fun forListItem(lastChoose: Int, position: Int) {
-                        if (position != lastChoose) {
-                            readBookControl.showFooter = position
-                            callback!!.refresh()
-                        }
-                    }
-                }).show(mainView)
-        }
-        // 页脚分割线
-        binding.tvPageCutOffLine.setOnClickListener {
-            SelectMenu.builder(context)
-                .setTitle(context.getString(R.string.ad_page_cut_off_line))
-                .setBottomButton(context.getString(R.string.cancel))
-                .setMenu(resources.getStringArray(R.array.read_book_show_and_hide), readBookControl.showLine)
-                .setListener(object : SelectMenu.OnItemClickListener {
-                    override fun forBottomButton() {}
-                    override fun forListItem(lastChoose: Int, position: Int) {
-                        if (position != lastChoose) {
-                            readBookControl.showLine = position
-                            callback!!.refresh()
-                        }
-                    }
-                }).show(mainView)
         }
         // 自定义阅读样式
         binding.civBgWhite.setOnLongClickListener { customReadStyle(0) }

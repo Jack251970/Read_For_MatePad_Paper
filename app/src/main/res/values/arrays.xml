@@ -79,11 +79,6 @@
             <item>@string/sort_auto</item>
             <item>@string/sort_pin_yin</item>
         </string-array>
-        <!-- Read Book Menu Interface -->
-        <string-array name="read_book_show_and_hide">
-            <item>@string/show</item>
-            <item>@string/hide</item>
-        </string-array>
 
     <!-- FilePicker -->
     <string-array name="text_suffix">
