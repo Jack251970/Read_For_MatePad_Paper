@@ -42,12 +42,11 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 /**
- * 页面加载器
+ * Page Loader
  * Edited by Jack251970
  */
 
 public abstract class PageLoader{
-
     // 默认的显示参数配置
     private static final int DEFAULT_MARGIN_HEIGHT = 20;
     public static final int DEFAULT_MARGIN_WIDTH = 15;
@@ -153,7 +152,7 @@ public abstract class PageLoader{
 
     private void initData() {
         // 获取配置参数
-        mPageMode = PageAnimation.Mode.getPageMode(readBookControl.getPageMode());
+        mPageMode = PageAnimation.Mode.getPageMode();
         // 初始化参数
         indent = StringUtils.repeat(StringUtils.halfToFull(" "), readBookControl.getIndent());
         // 配置文字有关的参数
@@ -193,7 +192,7 @@ public abstract class PageLoader{
         mVisibleHeight = mDisplayHeight - mMarginTop - mMarginBottom;
 
         // 设置翻页模式
-        mPageView.setPageMode(mPageMode, mMarginTop, mMarginBottom);
+        mPageView.setPageMode();
         skipToChapter(mCurChapterPos, mCurPagePos);
     }
 
@@ -310,15 +309,6 @@ public abstract class PageLoader{
     }
 
     /**
-     * 设置翻页动画
-     */
-    public void setPageMode(PageAnimation.Mode pageMode) {
-        mPageMode = pageMode;
-        mPageView.setPageMode(mPageMode, mMarginTop, mMarginBottom);
-        skipToChapter(mCurChapterPos, mCurPagePos);
-    }
-
-    /**
      * 设置内容与屏幕的间距 单位为 px
      */
     public void upMargin() {
@@ -331,7 +321,7 @@ public abstract class PageLoader{
     public void refreshUi() {
         initData();
         initPaint();
-        mPageView.setPageMode(mPageMode, mMarginTop, mMarginBottom);
+        mPageView.setPageMode();
         skipToChapter(mCurChapterPos, mCurPagePos);
     }
 

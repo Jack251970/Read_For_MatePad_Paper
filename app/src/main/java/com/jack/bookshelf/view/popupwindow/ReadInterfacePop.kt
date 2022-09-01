@@ -222,22 +222,6 @@ class ReadInterfacePop : FrameLayout {
             updateBg(4)
             callback!!.bgChange()
         }
-        // 翻页动画
-        binding.tvPageMode.setOnClickListener {
-            SelectMenu.builder(context)
-                .setTitle(context.getString(R.string.page_mode))
-                .setBottomButton(context.getString(R.string.cancel))
-                .setMenu(PageAnimation.Mode.getAllPageMode(), readBookControl.pageMode)
-                .setListener(object : SelectMenu.OnItemClickListener {
-                    override fun forBottomButton() {}
-                    override fun forListItem(lastChoose: Int, position: Int) {
-                        if (position != lastChoose) {
-                            readBookControl.pageMode = position
-                            callback!!.upPageMode()
-                        }
-                    }
-                }).show(mainView)
-        }
         // 正文标题
         binding.tvPageTitle.setOnClickListener {
             SelectMenu.builder(context)
@@ -417,7 +401,6 @@ class ReadInterfacePop : FrameLayout {
     }
 
     interface Callback {
-        fun upPageMode()
         fun upTextSize()
         fun upMargin()
         fun bgChange()

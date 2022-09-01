@@ -516,13 +516,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     private void initReadInterfacePop() {
         binding.readInterfacePop.setListener(this, binding.getRoot(), new ReadInterfacePop.Callback() {
             @Override
-            public void upPageMode() {
-                if (mPageLoader != null) {
-                    mPageLoader.setPageMode(PageAnimation.Mode.getPageMode(readBookControl.getPageMode()));
-                }
-            }
-
-            @Override
             public void upTextSize() {
                 if (mPageLoader != null) {
                     mPageLoader.setTextSize();

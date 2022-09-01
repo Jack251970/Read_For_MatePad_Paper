@@ -42,7 +42,6 @@ public class ReadBookControl {
     private int bgColor;
     private float lineMultiplier;
     private float paragraphSize;
-    private int pageMode;
     private Boolean lightNovelParagraph;
     private String fontPath;
     private int textConvert;
@@ -126,7 +125,6 @@ public class ReadBookControl {
         this.tipPaddingTop = preferences.getInt("tipPaddingTop", 0);
         this.tipPaddingRight = preferences.getInt("tipPaddingRight", DEFAULT_MARGIN_WIDTH);
         this.tipPaddingBottom = preferences.getInt("tipPaddingBottom", 0);
-        this.pageMode = preferences.getInt("pageMode", 0);
         this.screenDirection = preferences.getInt("screenDirection", 0);
         this.textLetterSpacing = preferences.getFloat("textLetterSpacing", 0);
         this.canSelectText = preferences.getBoolean("canSelectText", false);
@@ -705,17 +703,6 @@ public class ReadBookControl {
         this.tipPaddingBottom = tipPaddingBottom;
         preferences.edit()
                 .putInt("tipPaddingBottom", tipPaddingBottom)
-                .apply();
-    }
-
-    public int getPageMode() {
-        return pageMode;
-    }
-
-    public void setPageMode(int pageMode) {
-        this.pageMode = pageMode;
-        preferences.edit()
-                .putInt("pageMode", pageMode)
                 .apply();
     }
 

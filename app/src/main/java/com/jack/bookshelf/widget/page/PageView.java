@@ -21,22 +21,20 @@ import com.jack.bookshelf.help.ReadBookControl;
 import com.jack.bookshelf.utils.ContextExtensionsKt;
 import com.jack.bookshelf.utils.ScreenUtils;
 import com.jack.bookshelf.view.activity.ReadBookActivity;
-import com.jack.bookshelf.widget.page.animation.CoverPageAnim;
 import com.jack.bookshelf.widget.page.animation.HorizonPageAnim;
 import com.jack.bookshelf.widget.page.animation.NonePageAnim;
 import com.jack.bookshelf.widget.page.animation.PageAnimation;
 import com.jack.bookshelf.widget.page.animation.ScrollPageAnim;
-import com.jack.bookshelf.widget.page.animation.SimulationPageAnim;
-import com.jack.bookshelf.widget.page.animation.SlidePageAnim;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
 /**
- * 绘制页面显示内容的类
+ * Page Viewer
+ * Edited by Jack251970
  */
+
 public class PageView extends View implements PageAnimation.OnPageChangeListener {
 
     private ReadBookActivity activity;
@@ -87,7 +85,6 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
     //选择的列
     private final List<TxtLine> mSelectLines = new ArrayList<TxtLine>();
 
-
     public PageView(Context context) {
         this(context, null);
     }
@@ -133,32 +130,18 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
         if (mPageLoader != null) {
             mPageLoader.prepareDisplay(width, height);
         }
-        //设置中间区域范围
+        // 设置中间区域范围
         mCenterRect = new RectF(mViewWidth / 3f, mViewHeight / 3f,
                 mViewWidth * 2f / 3, mViewHeight * 2f / 3);
     }
 
-    //设置翻页的模式
-    void setPageMode(PageAnimation.Mode pageMode, int marginTop, int marginBottom) {
-        //视图未初始化的时候，禁止调用
+    /**
+     * 设置翻页的模式
+     */
+    void setPageMode() {
+        // 视图未初始化的时候，禁止调用
         if (mViewWidth == 0 || mViewHeight == 0 || mPageLoader == null) return;
-        switch (pageMode) {
-            case COVER:
-                mPageAnim = new CoverPageAnim(mViewWidth, mViewHeight, this, this);
-                break;
-            case SLIDE:
-                mPageAnim = new SlidePageAnim(mViewWidth, mViewHeight, this, this);
-                break;
-            case NONE:
-                mPageAnim = new NonePageAnim(mViewWidth, mViewHeight, this, this);
-                break;
-            case SCROLL:
-                mPageAnim = new ScrollPageAnim(mViewWidth, mViewHeight, 0,
-                        marginTop, marginBottom, this, this);
-                break;
-            default:
-                mPageAnim = new SimulationPageAnim(mViewWidth, mViewHeight, this, this);
-        }
+        mPageAnim = new NonePageAnim(mViewWidth, mViewHeight, this, this);
     }
 
     public ReadBookActivity getActivity() {
