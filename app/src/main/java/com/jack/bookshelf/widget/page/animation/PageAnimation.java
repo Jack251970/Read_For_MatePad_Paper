@@ -232,7 +232,6 @@ public abstract class PageAnimation {
     }
 
     public interface OnPageChangeListener {
-
         void resetScroll();
 
         boolean hasPrev();
