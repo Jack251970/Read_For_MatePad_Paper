@@ -907,7 +907,7 @@ public abstract class PageLoader{
         Paint.FontMetrics fontMetrics = mTextPaint.getFontMetrics();
 
         if (txtChapter.getStatus() != TxtChapter.Status.FINISH) {
-            //绘制字体
+            // 绘制字体
             String tip = getStatusText(txtChapter);
             drawErrorMsg(canvas, tip, 0);
         } else {
@@ -916,7 +916,7 @@ public abstract class PageLoader{
                 top += mMarginTop;
             }
             int ppp = 0;//pzl,文字位置
-            //对标题进行绘制
+            // 对标题进行绘制
             String str;
             int strLength = 0;
             boolean isLight;
