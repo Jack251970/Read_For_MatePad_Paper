@@ -152,7 +152,7 @@ public abstract class PageLoader{
 
     private void initData() {
         // 获取配置参数
-        mPageMode = PageAnimation.Mode.getPageMode();
+        mPageMode = PageAnimation.Mode.NONE;
         // 初始化参数
         indent = StringUtils.repeat(StringUtils.halfToFull(" "), readBookControl.getIndent());
         // 配置文字有关的参数
@@ -494,8 +494,10 @@ public abstract class PageLoader{
         curChapter().txtChapter.setStatus(TxtChapter.Status.ERROR);
         curChapter().txtChapter.setMsg(msg);
         if (mPageMode != PageAnimation.Mode.SCROLL) {
+            ToastsKt.toast(mContext,"加载错误1",Toast.LENGTH_SHORT);
             upPage();
         } else {
+            ToastsKt.toast(mContext,"加载错误2",Toast.LENGTH_SHORT);
             mPageView.drawPage(0);
         }
         mPageView.invalidate();
@@ -517,8 +519,7 @@ public abstract class PageLoader{
         TxtPage txtPage = curChapter().txtChapter.getPage(mCurPagePos);
         StringBuilder s = new StringBuilder();
         int size = txtPage.size();
-        int start = mPageMode == PageAnimation.Mode.SCROLL ? Math.min(Math.max(0, linePos), size - 1) : 0;
-        for (int i = start; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             s.append(txtPage.getLine(i));
         }
         return s.toString();
@@ -541,7 +542,9 @@ public abstract class PageLoader{
             s.append(content);
         }
         readTextLength = mCurPagePos > 0 ? curChapter().txtChapter.getPageLength(mCurPagePos - 1) : 0;
+        ToastsKt.toast(mContext,"检测到",Toast.LENGTH_SHORT);
         if (mPageMode == PageAnimation.Mode.SCROLL) {
+            ToastsKt.toast(mContext,"执行了",Toast.LENGTH_SHORT);
             for (int i = 0; i < Math.min(Math.max(0, linePos), curChapter().txtChapter.getPage(mCurPagePos).size() - 1); i++) {
                 readTextLength += curChapter().txtChapter.getPage(mCurPagePos).getLine(i).length();
             }
