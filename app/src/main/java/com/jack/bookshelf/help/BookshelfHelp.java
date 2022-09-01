@@ -382,17 +382,14 @@ public class BookshelfHelp {
         if (chapterAll == 0 || (durPageAll == 0 && durChapterIndex == 0)) {
             return "0%";
         } else if (durPageAll == 0) {
-            return df.format((durChapterIndex + 1.0f) / chapterAll);
+            String percent = df.format((durChapterIndex + 1.0f) / chapterAll);
+            return percent.equals("100.0%") ? "100%" : percent;
         }
         String percent = df.format(durChapterIndex * 1.0f / chapterAll + 1.0f / chapterAll * (durPageIndex + 1) / durPageAll);
-        if (percent.equals("100.0%")) {
-            if ((durChapterIndex + 1 != chapterAll || durPageIndex + 1 != durPageAll)) {
-                return "99.9%";
-            } else {
-                return "100%";
-            }
+        if (percent.equals("100.0%") && (durChapterIndex + 1 != chapterAll || durPageIndex + 1 != durPageAll)) {
+            return "99.9%";
         }
-        return percent;
+        return percent.equals("100.0%") ? "100%" : percent;
     }
 
     public static String formatAuthor(String author) {
