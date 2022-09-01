@@ -1,9 +1,10 @@
-//Copyright (c) 2017. 章钦豪. All rights reserved.
 package com.jack.bookshelf.bean;
 
 import static com.jack.bookshelf.constant.AppConstant.MAP_STRING;
 
 import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.jack.bookshelf.MApplication;
@@ -19,7 +20,8 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * 书架item Bean
+ * Bookshelf Bean Class
+ * Copyright (c) 2017. 章钦豪. All rights reserved.
  */
 
 @Entity
@@ -87,7 +89,7 @@ public class BookShelfBean implements Cloneable, BaseBookBean {
     }
 
     @Override
-    public Object clone() {
+    public @NonNull Object clone() {
         try {
             Gson gson = new Gson();
             String json = gson.toJson(this);
@@ -259,11 +261,6 @@ public class BookShelfBean implements Cloneable, BaseBookBean {
 
     public void setLastChapterName(String lastChapterName) {
         this.lastChapterName = lastChapterName;
-    }
-
-    public int getUnreadChapterNum() {
-        int num = getChapterListSize() - getDurChapter() - 1;
-        return Math.max(num, 0);
     }
 
     public int getChapterListSize() {

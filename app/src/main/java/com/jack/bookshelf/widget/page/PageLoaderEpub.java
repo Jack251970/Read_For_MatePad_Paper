@@ -1,8 +1,5 @@
 package com.jack.bookshelf.widget.page;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.text.TextUtils;
 
 import com.jack.bookshelf.base.observer.MyObserver;
@@ -44,7 +41,7 @@ import nl.siegmann.epublib.epub.EpubReader;
 import nl.siegmann.epublib.service.MediatypeService;
 
 /**
- * 加载书籍
+ * Epub Page Loader
  * Edited by Jack251970
  */
 
@@ -83,7 +80,7 @@ public class PageLoaderEpub extends PageLoader {
         }).subscribeOn(Schedulers.single())
                 .flatMap(this::checkChapterList)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<BookShelfBean>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);
@@ -118,33 +115,6 @@ public class PageLoaderEpub extends PageLoader {
         } catch (Exception e) {
             return null;
         }
-    }
-
-    private void extractScaledCoverImage() {
-        try {
-            byte[] data = epubBook.getCoverImage().getData();
-            Bitmap rawCover = BitmapFactory.decodeByteArray(data, 0, data.length);
-            int width = rawCover.getWidth();
-            int height = rawCover.getHeight();
-            if (width <= mVisibleWidth && width >= 0.8 * mVisibleWidth) {
-                cover = rawCover;
-                return;
-            }
-            height = Math.round(mVisibleWidth * 1.0f * height / width);
-            cover = Bitmap.createScaledBitmap(rawCover, mVisibleWidth, height, true);
-        } catch (Exception ignored) {
-        }
-    }
-
-    @Override
-    public void drawCover(Canvas canvas, float top) {
-        if (cover == null) {
-            extractScaledCoverImage();
-        }
-        if (cover == null)
-            return;
-        int left = (mDisplayWidth - cover.getWidth()) / 2;
-        canvas.drawBitmap(cover, left, top, mTextPaint);
     }
 
     private List<BookChapterBean> loadChapters() {
@@ -289,7 +259,7 @@ public class PageLoaderEpub extends PageLoader {
             e.onComplete();
         }).flatMap(this::checkChapterList)
                 .compose(RxUtils::toSimpleSingle)
-                .subscribe(new Observer<BookShelfBean>() {
+                .subscribe(new Observer<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);

@@ -30,7 +30,7 @@ import io.reactivex.SingleOnSubscribe;
 import io.reactivex.disposables.Disposable;
 
 /**
- * 加载本地书籍
+ * Text Page Loader
  * Edited by Jack251970
  */
 

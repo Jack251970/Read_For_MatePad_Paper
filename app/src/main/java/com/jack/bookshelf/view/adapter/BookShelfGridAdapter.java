@@ -34,6 +34,7 @@ import java.util.Objects;
  * Edited by Jack251970
  */
 
+@SuppressLint("NotifyDataSetChanged")
 public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdapter.MyViewHolder> implements BookShelfAdapter {
     private boolean isArrange;
     private List<BookShelfBean> books;
@@ -165,19 +166,15 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
             });
         } else if (bookShelfBean.getSerialNumber() != index) {
             bookShelfBean.setSerialNumber(index);
-            new Thread() {
-                public void run() {
-                    DbHelper.getDaoSession().getBookShelfBeanDao().insertOrReplace(bookShelfBean);
-                }
-            }.start();
+            new Thread(() -> DbHelper.getDaoSession().getBookShelfBeanDao().insertOrReplace(bookShelfBean)).start();
         }
         if (bookShelfBean.isLoading()) {
-            holder.bvUnread.setVisibility(View.INVISIBLE);
+            holder.bvProgress.setVisibility(View.INVISIBLE);
             holder.rotateLoading.setVisibility(View.VISIBLE);
             holder.rotateLoading.start();
         } else {
-            holder.bvUnread.setBadgeCount(bookShelfBean.getUnreadChapterNum());
-            holder.bvUnread.setBackground();
+            holder.bvProgress.setBadgeProgress(BookshelfHelp.getReadProgress(bookShelfBean));
+            holder.bvProgress.setBackground();
             holder.rotateLoading.setVisibility(View.INVISIBLE);
             holder.rotateLoading.stop();
         }
@@ -217,7 +214,7 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
     static class MyViewHolder extends RecyclerView.ViewHolder {
         CoverImageView ivCover;
         TextView tvName;
-        BadgeView bvUnread;
+        BadgeView bvProgress;
         RotateLoading rotateLoading;
         View vwSelect;
         ATECheckBox checkBox;
@@ -225,7 +222,7 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
             super(itemView);
             ivCover = itemView.findViewById(R.id.iv_cover);
             tvName = itemView.findViewById(R.id.tv_name);
-            bvUnread = itemView.findViewById(R.id.bv_unread);
+            bvProgress = itemView.findViewById(R.id.bv_progress);
             rotateLoading = itemView.findViewById(R.id.rl_loading);
             rotateLoading.setLoadingColor(ThemeStore.accentColor(itemView.getContext()));
             vwSelect = itemView.findViewById(R.id.vw_select);

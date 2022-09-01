@@ -28,18 +28,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * Bookshelf Helper
  * Created by GKF on 2018/1/18.
- * 添加删除Book
+ * Edited by Jack251970
  */
 
 public class BookshelfHelp {
-
     private static final Pattern chapterNamePattern = Pattern.compile("^(.*?第([\\d零〇一二两三四五六七八九十百千万壹贰叁肆伍陆柒捌玖拾佰仟０-９\\s]+)[章节篇回集])[、，。　：:.\\s]*");
 
     public static String getCachePathName(String bookName, String tag) {
@@ -278,6 +278,7 @@ public class BookshelfHelp {
             try {
                 File file = FileHelp.getFolder(AppConstant.BOOK_CACHE_PATH);
                 String[] bookCaches = file.list((dir, name) -> new File(dir, name).isDirectory() && name.startsWith(bookName + "-"));
+                assert bookCaches != null;
                 for (String bookPath : bookCaches) {
                     FileHelp.deleteFile(AppConstant.BOOK_CACHE_PATH + bookPath);
                 }
@@ -379,13 +380,17 @@ public class BookshelfHelp {
     public static String getReadProgress(int durChapterIndex, int chapterAll, int durPageIndex, int durPageAll) {
         DecimalFormat df = new DecimalFormat("0.0%");
         if (chapterAll == 0 || (durPageAll == 0 && durChapterIndex == 0)) {
-            return "0.0%";
+            return "0%";
         } else if (durPageAll == 0) {
             return df.format((durChapterIndex + 1.0f) / chapterAll);
         }
         String percent = df.format(durChapterIndex * 1.0f / chapterAll + 1.0f / chapterAll * (durPageIndex + 1) / durPageAll);
-        if (percent.equals("100.0%") && (durChapterIndex + 1 != chapterAll || durPageIndex + 1 != durPageAll)) {
-            percent = "99.9%";
+        if (percent.equals("100.0%")) {
+            if ((durChapterIndex + 1 != chapterAll || durPageIndex + 1 != durPageAll)) {
+                return "99.9%";
+            } else {
+                return "100%";
+            }
         }
         return percent;
     }
@@ -416,13 +421,13 @@ public class BookshelfHelp {
         }
         switch (bookshelfOrder) {
             case 0:
-                Collections.sort(books, (o1, o2) -> Long.compare(o2.getFinalDate(), o1.getFinalDate()));
+                books.sort((o1, o2) -> Long.compare(o2.getFinalDate(), o1.getFinalDate()));
                 break;
             case 1:
-                Collections.sort(books, (o1, o2) -> Long.compare(o2.getFinalRefreshData(), o1.getFinalRefreshData()));
+                books.sort((o1, o2) -> Long.compare(o2.getFinalRefreshData(), o1.getFinalRefreshData()));
                 break;
             case 2:
-                Collections.sort(books, (o1, o2) -> Integer.compare(o1.getSerialNumber(), o2.getSerialNumber()));
+                books.sort(Comparator.comparingInt(BookShelfBean::getSerialNumber));
                 break;
         }
     }
@@ -435,5 +440,4 @@ public class BookshelfHelp {
         DbHelper.getDaoSession().getBookInfoBeanDao().deleteAll();
         DbHelper.getDaoSession().getBookChapterBeanDao().deleteAll();
     }
-
 }

@@ -38,6 +38,7 @@ import java.util.Objects;
  * Edited by Jack251970
  */
 
+@SuppressLint("NotifyDataSetChanged")
 public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdapter.MyViewHolder> implements BookShelfAdapter {
     private boolean isArrange;
     private final Activity activity;
@@ -176,12 +177,12 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
             AsyncTask.execute(() -> DbHelper.getDaoSession().getBookShelfBeanDao().insertOrReplace(bookShelfBean));
         }
         if (bookShelfBean.isLoading()) {
-            holder.bvUnread.setVisibility(View.INVISIBLE);
+            holder.bvProgress.setVisibility(View.INVISIBLE);
             holder.rotateLoading.setVisibility(View.VISIBLE);
             holder.rotateLoading.start();
         } else {
-            holder.bvUnread.setBadgeCount(bookShelfBean.getUnreadChapterNum());
-            holder.bvUnread.setBackground();
+            holder.bvProgress.setBadgeProgress(BookshelfHelp.getReadProgress(bookShelfBean));
+            holder.bvProgress.setBackground();
             holder.rotateLoading.setVisibility(View.INVISIBLE);
             holder.rotateLoading.stop();
         }
@@ -221,7 +222,7 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
     static class MyViewHolder extends RecyclerView.ViewHolder {
         ConstraintLayout flContent;
         CoverImageView ivCover;
-        BadgeView bvUnread;
+        BadgeView bvProgress;
         TextView tvName;
         TextView tvAuthor;
         TextView tvRead;
@@ -235,7 +236,7 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
             super(itemView);
             flContent = itemView.findViewById(R.id.cv_content);
             ivCover = itemView.findViewById(R.id.iv_cover);
-            bvUnread = itemView.findViewById(R.id.bv_unread);
+            bvProgress = itemView.findViewById(R.id.bv_progress);
             tvName = itemView.findViewById(R.id.tv_name);
             tvRead = itemView.findViewById(R.id.tv_read);
             tvLast = itemView.findViewById(R.id.tv_last);
