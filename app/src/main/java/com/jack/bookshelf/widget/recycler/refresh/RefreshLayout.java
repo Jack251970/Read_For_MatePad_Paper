@@ -25,7 +25,6 @@ public class RefreshLayout extends FrameLayout {
     protected static final int STATUS_FINISH = 1;
     protected static final int STATUS_ERROR = 2;
     protected static final int STATUS_EMPTY = 3;
-    private static final String TAG = "RefreshLayout";
     private final Context mContext;
 
     private int mEmptyViewId;
@@ -65,16 +64,13 @@ public class RefreshLayout extends FrameLayout {
     }
 
     private void initView() {
-
         //添加在empty、error、loading 情况下的布局
         mEmptyView = inflateView(mEmptyViewId);
         mErrorView = inflateView(mErrorViewId);
         mLoadingView = inflateView(mLoadingViewId);
-
         addView(mEmptyView);
         addView(mErrorView);
         addView(mLoadingView);
-
         //设置监听器
         mErrorView.setOnClickListener(
                 (view) -> {
@@ -236,7 +232,7 @@ public class RefreshLayout extends FrameLayout {
 
     static class SavedState extends BaseSavedState {
         public static final Creator<SavedState> CREATOR
-                = new Creator<SavedState>() {
+                = new Creator<>() {
             public SavedState createFromParcel(Parcel in) {
                 return new SavedState(in);
             }
