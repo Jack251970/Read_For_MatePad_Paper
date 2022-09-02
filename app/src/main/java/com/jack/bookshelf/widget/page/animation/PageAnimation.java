@@ -24,7 +24,6 @@ public abstract class PageAnimation {
     protected OnPageChangeListener mListener;
     // 移动方向
     Direction mDirection = Direction.NONE;
-
     // 屏幕尺寸
     int mScreenWidth;
     int mScreenHeight;
@@ -63,16 +62,12 @@ public abstract class PageAnimation {
     PageAnimation(int w, int h, int marginWidth, int marginTop, int marginBottom, View view, OnPageChangeListener listener) {
         mScreenWidth = w;
         mScreenHeight = h;
-
         //屏幕的间距
         mMarginTop = marginTop;
-
         mViewWidth = mScreenWidth - marginWidth * 2;
         mViewHeight = mScreenHeight - mMarginTop - marginBottom;
-
         mView = view;
         mListener = listener;
-
         mScroller = new Scroller(mView.getContext(), new LinearInterpolator());
     }
 

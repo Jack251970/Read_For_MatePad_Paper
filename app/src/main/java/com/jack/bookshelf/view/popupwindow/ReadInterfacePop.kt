@@ -261,7 +261,6 @@ class ReadInterfacePop : FrameLayout {
     interface Callback {
         fun upTextSize()
         fun upMargin()
-        fun bgChange()
         fun refresh()
     }
 }

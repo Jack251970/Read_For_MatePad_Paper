@@ -198,10 +198,8 @@ class MoreSettingPop : FrameLayout {
     }
 
     interface Callback {
-        fun upBar()
         fun keepScreenOnChange(keepScreenOn: Int)
         fun recreate()
-        fun refreshPage()
         fun changeSpeechRate(speechRate: Int)
         fun speechRateFollowSys()
     }

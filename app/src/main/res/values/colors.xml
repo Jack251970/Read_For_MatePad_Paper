@@ -22,6 +22,8 @@
     <color name="status_bar_background">@color/white</color>
     <!-- Navigation Background-->
     <color name="navigation_bar_background">@color/white</color>
+    <!-- Read Activity Select Text Background Color -->
+    <color name="text_selector_background_color">#77afafaf</color>
 
 
 

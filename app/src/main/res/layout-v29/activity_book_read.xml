@@ -57,7 +57,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:visibility="gone"
-        tools:visibility="invisible"/>
+        tools:visibility="invisible" />
     <!-- 菜单 -->
     <FrameLayout
         android:id="@+id/fl_menu"
@@ -256,7 +256,7 @@
                 android:layout_height="1dp"
                 android:background="@color/black"/>
         </LinearLayout>
-        <!-- 底部菜单 -->
+        <!-- 底部主菜单 -->
         <com.jack.bookshelf.view.popupwindow.ReadBottomMenu
             android:id="@+id/read_menu_bottom"
             android:layout_width="match_parent"
@@ -295,6 +295,8 @@
             android:layout_marginStart="@dimen/content_margin_left_and_right"
             android:layout_marginEnd="@dimen/content_margin_left_and_right"
             android:layout_marginBottom="-1dp"
-            android:visibility="invisible" />
+            android:paddingBottom="100dp"
+            android:visibility="invisible"
+            tools:visibility="visible"/>
     </FrameLayout>
 </FrameLayout>

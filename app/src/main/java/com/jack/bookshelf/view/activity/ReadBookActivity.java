@@ -18,7 +18,6 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
@@ -87,14 +86,13 @@ import javax.script.SimpleBindings;
 import kotlin.Unit;
 
 /**
- * Read Page
- * Copyright (c) 2017. 章钦豪. All rights reserved.
+ * Read Book Page
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
  */
 
 public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> implements ReadBookContract.View, View.OnTouchListener {
-    private final int payActivityRequest = 1234;
     public final int fontDirRequest = 24345;
-
     private ActivityBookReadBinding binding;
     private PageLoader mPageLoader;
     private final Handler mHandler = new Handler();
@@ -160,31 +158,30 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
-            // 手动设置状态栏颜色
-            initImmersionStatusBar();
-            screenOffTimerStart();
+            initImmersionBar();
         }
     }
 
     /**
      * 沉浸状态栏
      */
-    @Override
-    protected void initImmersionBar() {
+    private void initImmersionBar(boolean ifBottomMenuShow) {
         ActivityExtensionsKt.fullScreen(this);
-        int flag = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        int flag = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 | View.SYSTEM_UI_FLAG_IMMERSIVE
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
-        if (binding.readMenuBottom.getVisibility() != View.VISIBLE) {
-            flag = flag | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        if (ifBottomMenuShow) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+        } else {
+            getWindow().getDecorView().setSystemUiVisibility(flag);
         }
-        if (binding.readMenuBottom.getVisibility() != View.VISIBLE) {
-            flag = flag | View.SYSTEM_UI_FLAG_FULLSCREEN;
-        }
-        getWindow().getDecorView().setSystemUiVisibility(flag);
-        if (binding.readMenuBottom.getVisibility() == View.VISIBLE) {
+        if (ifBottomMenuShow) {
             ActivityExtensionsKt.setStatusBarColorAuto(this,
                     ThemeStore.primaryColor(this), false, true);
         } else {
@@ -196,16 +193,16 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         screenOffTimerStart();
     }
 
-    /**
-     * 沉浸状态栏为透明
-     */
-    protected void initImmersionStatusBar() {
-        // 状态栏修复
-        Window window = getWindow();
-        // 设置修改状态栏
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        // 设置状态栏的颜色
-        window.setStatusBarColor(ThemeStore.primaryColor(this));
+    @Override
+    protected void initImmersionBar() {
+        initImmersionBar(ifBottomMenuShow());
+    }
+
+    private boolean ifBottomMenuShow() {
+        return binding.readMenuBottom.getVisibility() == View.VISIBLE
+                | binding.readInterfacePop.getVisibility() == View.VISIBLE
+                | binding.moreSettingPop.getVisibility() == View.VISIBLE
+                | binding.readAdjustMarginPop.getVisibility() == View.VISIBLE;
     }
 
     /**
@@ -216,7 +213,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     }
 
     /**
-     * @param keepScreenOn 是否保持亮屏
+     * 设置亮屏
      */
     public void keepScreenOn(boolean keepScreenOn) {
         if (keepScreenOn) {
@@ -252,7 +249,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         mHandler.removeCallbacks(autoPageRunnable);
         if (autoPage) {
             binding.pbNextPage.setVisibility(View.VISIBLE);
-            //每页按字数计算一次时间
+            // 每页按字数计算一次时间
             nextPageTime = mPageLoader.curPageLength() * 60 * 1000 / readBookControl.getCPM();
             if (0 == nextPageTime) nextPageTime = 1000;
             binding.pbNextPage.setMax(nextPageTime);
@@ -297,8 +294,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
      * 顶部菜单显示
      */
     private void menuTopIn () {
-        // 手动设置状态栏颜色
-        initImmersionStatusBar();
+        initImmersionBar(true);
         BookChapterBean durChapter = mPresenter.getDurChapter();
         BookSourceBean source = mPresenter.getBookSource();
         if (durChapter != null && source != null) {
@@ -330,7 +326,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         binding.readAdjustMarginPop.setVisibility(View.INVISIBLE);
         binding.readInterfacePop.setVisibility(View.INVISIBLE);
         binding.moreSettingPop.setVisibility(View.INVISIBLE);
-        initImmersionBar();
     }
 
     /**
@@ -361,7 +356,11 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     @Override
     protected void bindView() {
         upMenu();
-        binding.appBar.setPadding(0, ScreenUtils.getStatusBarHeight(), 0, 0);
+        binding.appBar.setPadding(0, ScreenUtils.getStatusBarHeight(),0,0);
+        binding.readMenuBottom.setPadding(0,0,0,ScreenUtils.getNavigationBarHeight());
+        binding.readInterfacePop.setPadding(0,0,0,ScreenUtils.getNavigationBarHeight());
+        binding.moreSettingPop.setPadding(0,0,0,ScreenUtils.getNavigationBarHeight());
+        binding.readAdjustMarginPop.setPadding(0,0,0,ScreenUtils.getNavigationBarHeight());
         mPresenter.initData(this);
         moDialogHUD = new MoDialogHUD(this);
         initBottomMenu();
@@ -461,8 +460,8 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
             }
 
             @Override
-            public void toast(int id) {
-                ReadBookActivity.this.toast(id);
+            public void toast(int strId) {
+                ReadBookActivity.this.toast(strId);
             }
 
             @Override
@@ -522,16 +521,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
             }
 
             @Override
-            public void bgChange() {
-                binding.pageView.setBackground(readBookControl.getTextBackground());
-                // 自定义样式时沉浸状态栏
-                initImmersionBar();
-                if (mPageLoader != null) {
-                    mPageLoader.refreshUi();
-                }
-            }
-
-            @Override
             public void refresh() {
                 if (mPageLoader != null) {
                     mPageLoader.refreshUi();
@@ -561,11 +550,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
             }
 
             @Override
-            public void upBar() {
-                initImmersionBar();
-            }
-
-            @Override
             public void keepScreenOnChange(int keepScreenOn) {
                 screenTimeOut = getResources().getIntArray(R.array.screen_time_out_value)[keepScreenOn];
                 screenOffTimerStart();
@@ -573,13 +557,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
 
             @Override
             public void recreate() {ReadBookActivity.this.recreate();}
-
-            @Override
-            public void refreshPage() {
-                if (mPageLoader != null) {
-                    mPageLoader.refreshUi();
-                }
-            }
         });
     }
 
@@ -782,7 +759,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                                 return;
                             }
                         }
-
                         // 启动朗读
                         if (getIntent().getBooleanExtra("readAloud", false)
                                 && pageIndex >= 0 && mPageLoader.getContent() != null) {
@@ -876,7 +852,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     }
 
     public void showAction(View clickView) {
-
         binding.readLongPress.setVisibility(View.VISIBLE);
         // 如果太靠右，则靠左
         int[] aa = ScreenUtils.getScreenSize(this);
@@ -915,7 +890,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     private void cursorShow() {
         binding.cursorLeft.setVisibility(View.VISIBLE);
         binding.cursorRight.setVisibility(View.VISIBLE);
-        int hh = binding.cursorLeft.getHeight();
         int ww = binding.cursorLeft.getWidth();
         if (binding.pageView.getFirstSelectTxtChar() != null) {
             binding.cursorLeft.setX(binding.pageView.getFirstSelectTxtChar().getTopLeftPosition().x - ww);
@@ -966,11 +940,8 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                                                 binding.cursorLeft.setVisibility(View.INVISIBLE);
                                                 binding.cursorRight.setVisibility(View.INVISIBLE);
                                                 binding.readLongPress.setVisibility(View.INVISIBLE);
-
                                                 binding.pageView.setSelectMode(PageView.SelectMode.Normal);
-
                                                 moDialogHUD.dismiss();
-
                                                 refresh(false);
                                             }
                                         })).show();
@@ -1020,11 +991,8 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                                                 binding.cursorLeft.setVisibility(View.INVISIBLE);
                                                 binding.cursorRight.setVisibility(View.INVISIBLE);
                                                 binding.readLongPress.setVisibility(View.INVISIBLE);
-
                                                 binding.pageView.setSelectMode(PageView.SelectMode.Normal);
-
                                                 moDialogHUD.dismiss();
-
                                                 refresh(false);
                                             }
                                         })).show();
@@ -1073,6 +1041,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                 }
             }
             if (result.startsWith("http")) {
+                final int payActivityRequest = 1234;
                 Intent webIntent = new Intent(this, WebViewActivity.class);
                 webIntent.putExtra("url", result);
                 webIntent.putExtra("title", "购买");
@@ -1280,17 +1249,10 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     }
 
     /**
-     * 显示调节
-     */
-    private void readAdjustIn() {
-        binding.flMenu.setVisibility(View.VISIBLE);
-        binding.readInterfacePop.show();
-    }
-
-    /**
      * 显示自定义边界调节
      */
     public void readAdjustMarginIn() {
+        initImmersionBar(true);
         binding.flMenu.setVisibility(View.VISIBLE);
         binding.readAdjustMarginPop.show();
         binding.readAdjustMarginPop.setVisibility(View.VISIBLE);
@@ -1298,9 +1260,10 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     }
 
     /**
-     * 显示界面设置
+     * 显示设置
      */
     private void readInterfaceIn() {
+        initImmersionBar(true);
         binding.flMenu.setVisibility(View.VISIBLE);
         binding.readInterfacePop.setVisibility(View.VISIBLE);
         menuBottomIn();
@@ -1310,6 +1273,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
      * 显示更多设置
      */
     private void moreSettingIn() {
+        initImmersionBar(true);
         binding.flMenu.setVisibility(View.VISIBLE);
         binding.moreSettingPop.setVisibility(View.VISIBLE);
         menuBottomIn();
@@ -1332,11 +1296,13 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
      */
     private void popMenuOut() {
         if (binding.flMenu.getVisibility() == View.VISIBLE) {
-            if (binding.llMenuTop.getVisibility() == View.VISIBLE) { menuTopOut(); }
-            if (binding.readMenuBottom.getVisibility() == View.VISIBLE) { menuBottomOut(); }
-            if (binding.moreSettingPop.getVisibility() == View.VISIBLE) { menuBottomOut(); }
-            if (binding.readInterfacePop.getVisibility() == View.VISIBLE) { menuBottomOut(); }
-            if (binding.readAdjustMarginPop.getVisibility() == View.VISIBLE) { menuBottomOut(); }
+            initImmersionBar(false);
+            if (binding.llMenuTop.getVisibility() == View.VISIBLE) {
+                menuTopOut();
+            }
+            if (ifBottomMenuShow()) {
+                menuBottomOut();
+            }
         }
     }
 

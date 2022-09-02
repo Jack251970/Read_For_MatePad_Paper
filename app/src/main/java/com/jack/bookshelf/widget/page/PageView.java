@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
@@ -15,10 +14,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BookShelfBean;
 import com.jack.bookshelf.help.FileHelp;
 import com.jack.bookshelf.help.ReadBookControl;
-import com.jack.bookshelf.utils.ContextExtensionsKt;
 import com.jack.bookshelf.utils.ScreenUtils;
 import com.jack.bookshelf.view.activity.ReadBookActivity;
 import com.jack.bookshelf.widget.page.animation.NonePageAnim;
@@ -35,11 +34,8 @@ import java.util.Objects;
 
 public class PageView extends View implements PageAnimation.OnPageChangeListener {
     private ReadBookActivity activity;
-
     private int mViewWidth = 0; // 当前View的宽
     private int mViewHeight = 0; // 当前View的高
-    private int statusBarHeight = 0; //状态栏高度
-
     private boolean actionFromEdge = false;
     // 初始化参数
     private final ReadBookControl readBookControl = ReadBookControl.getInstance();
@@ -50,14 +46,11 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
     private TouchListener mTouchListener;
     //内容加载器
     private PageLoader mPageLoader;
-
     //文字选择画笔
     private Paint mTextSelectPaint = null;
     //文字选择画笔颜色
-    private final int TextSelectColor = Color.parseColor("#77fadb08");
-
+    private final int TextSelectColor = getResources().getColor(R.color.text_selector_background_color);
     private final Path mSelectTextPath = new Path();
-
     //触摸到起始位置
     private int mStartX = 0;
     private int mStartY = 0;
@@ -101,7 +94,6 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
         mTextSelectPaint.setAntiAlias(true);
         mTextSelectPaint.setTextSize(19);
         mTextSelectPaint.setColor(TextSelectColor);
-
         mLongPressRunnable = () -> {
             if (mPageLoader == null) return;
             performLongClick();
@@ -121,15 +113,12 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
         super.onSizeChanged(width, height, oldWidth, oldHeight);
         mViewWidth = width;
         mViewHeight = height;
-
         isPrepare = true;
-
         if (mPageLoader != null) {
             mPageLoader.prepareDisplay(width, height);
         }
-        // 设置中间区域范围
-        mCenterRect = new RectF(mViewWidth / 3f, mViewHeight / 3f,
-                mViewWidth * 2f / 3, mViewHeight * 2f / 3);
+        // 设置中间区域范围（打开菜单）
+        mCenterRect = new RectF(mViewWidth / 3f, 0, mViewWidth * 2f / 3, mViewHeight);
     }
 
     /**
@@ -143,10 +132,6 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
 
     public ReadBookActivity getActivity() {
         return activity;
-    }
-
-    public int getStatusBarHeight() {
-        return statusBarHeight;
     }
 
     public Bitmap getBgBitmap(int pageOnCur) {
@@ -227,7 +212,6 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
         }
     }
 
-
     private void drawPressSelectText(Canvas canvas) {
         if (lastSelectTxtChar != null) {    // 找到了选择的字符
             mSelectTextPath.reset();
@@ -262,18 +246,13 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
         TxtPage txtPage = mPageLoader.curChapter().txtChapter.getPage(mPageLoader.getCurPagePos());
         if (txtPage != null) {
             mLineData = txtPage.getTxtLists();
-
             boolean Started = false;
             boolean Ended = false;
-
             mSelectLines.clear();
-
             // 找到选择的字符数据，转化为选择的行，然后将行选择背景画出来
             for (TxtLine l : mLineData) {
-
                 TxtLine selectLine = new TxtLine();
                 selectLine.setCharsData(new ArrayList<>());
-
                 for (TxtChar c : Objects.requireNonNull(l.getCharsData())) {
                     if (!Started) {
                         if (c.getIndex() == firstSelectTxtChar.getIndex()) {
@@ -296,17 +275,13 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
                         }
                     }
                 }
-
                 mSelectLines.add(selectLine);
-
                 if (Started && Ended) {
                     break;
                 }
             }
         }
     }
-
-    public SelectMode getSelectMode() {return selectMode;}
 
     public void setSelectMode(SelectMode mCurrentMode) {
         this.selectMode = mCurrentMode;
@@ -338,18 +313,12 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
     private void drawOvalSelectLinesBg(Canvas canvas) {
         for (TxtLine l : mSelectLines) {
             if (l.getCharsData() != null && l.getCharsData().size() > 0) {
-
                 TxtChar fistChar = l.getCharsData().get(0);
                 TxtChar lastChar = l.getCharsData().get(l.getCharsData().size() - 1);
-
                 float fw = fistChar.getCharWidth();
-                float lw = lastChar.getCharWidth();
-
                 RectF rect = new RectF(Objects.requireNonNull(fistChar.getTopLeftPosition()).x, fistChar.getTopLeftPosition().y,
                         Objects.requireNonNull(lastChar.getTopRightPosition()).x, Objects.requireNonNull(lastChar.getBottomRightPosition()).y);
-
-                canvas.drawRoundRect(rect, fw / 4,
-                        textHeight /4, mTextSelectPaint);
+                canvas.drawRoundRect(rect, fw / 4, textHeight /4, mTextSelectPaint);
             }
         }
     }
@@ -385,19 +354,15 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
         super.onTouchEvent(event);
         if (mPageAnim == null) return true;
         if (mPageLoader == null) return true;
-
         Paint.FontMetrics fontMetrics = mPageLoader.mTextPaint.getFontMetrics();
         textHeight = Math.abs(fontMetrics.ascent) + Math.abs(fontMetrics.descent);
-
         if (actionFromEdge) {
             if (event.getAction() == MotionEvent.ACTION_UP)
                 actionFromEdge = false;
             return true;
         }
-
         int x = (int) event.getX();
         int y = (int) event.getY();
-
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 mPageAnim.initTouch(x, y);
@@ -408,31 +373,23 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
                 mStartX = x;
                 mStartY = y;
                 isMove = false;
-
-                //
                 if (readBookControl.isCanSelectText() && mPageLoader.getPageStatus() == TxtChapter.Status.FINISH) {
                     postDelayed(mLongPressRunnable, LONG_PRESS_TIMEOUT);
                 }
-
-                //
                 isLongPress = false;
                 mTouchListener.onTouch();
                 mPageAnim.onTouchEvent(event);
-
                 selectMode = SelectMode.Normal;
-
                 mTouchListener.onTouchClearCursor();
-
                 break;
             case MotionEvent.ACTION_MOVE:
                 mPageAnim.initTouch(x, y);
-                // 判断是否大于最小滑动值。
+                // 判断是否大于最小滑动值
                 int slop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
                 if (!isMove) {
                     isMove = Math.abs(mStartX - event.getX()) > slop || Math.abs(mStartY - event.getY()) > slop;
                 }
-
-                // 如果滑动了,且不是长按，则进行翻页。
+                // 如果滑动了，且不是长按，则进行翻页
                 if (isMove) {
                     if (readBookControl.isCanSelectText()) {
                         removeCallbacks(mLongPressRunnable);
@@ -448,36 +405,33 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
                     if (readBookControl.isCanSelectText()) {
                         removeCallbacks(mLongPressRunnable);
                     }
-
-                    //是否点击了中间
+                    // 是否点击了中间
                     if (mCenterRect.contains(x, y)) {
                         if (firstSelectTxtChar == null) {
                             if (mTouchListener != null) {
                                 mTouchListener.center();
                             }
                         } else {
-                            if (mSelectTextPath != null) {//长安选择删除选中状态
+                            if (mSelectTextPath != null) {  // 长按选择删除选中状态
                                 if (!isLongPress) {
                                     firstSelectTxtChar = null;
                                     mSelectTextPath.reset();
                                     invalidate();
                                 }
                             }
-                            //清除移动选择状态
+                            // 清除移动选择状态
                         }
                         return true;
                     }
-
                     if (!readBookControl.getCanClickTurn()) {
                         return true;
                     }
                 }
-
                 if (firstSelectTxtChar == null || isMove) { // 长按选择删除选中状态
                     mPageAnim.onTouchEvent(event);
                 } else {
                     if (!isLongPress) {
-                        //释放了
+                        // 释放
                         if (LONG_PRESS_TIMEOUT != 0) {
                             removeCallbacks(mLongPressRunnable);
                         }
@@ -554,11 +508,10 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
     }
 
     /**
-     * 获取 PageLoader
+     * 获取PageLoader
      */
     public PageLoader getPageLoader(ReadBookActivity activity, BookShelfBean bookShelfBean, PageLoader.Callback callback) {
         this.activity = activity;
-        this.statusBarHeight = ContextExtensionsKt.getStatusBarHeight(activity);
         // 判是否已经存在
         if (mPageLoader != null) {
             return mPageLoader;
@@ -579,7 +532,6 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
             // 初始化 PageLoader 的屏幕大小
             mPageLoader.prepareDisplay(mViewWidth, mViewHeight);
         }
-
         return mPageLoader;
     }
 
