@@ -30,5 +30,5 @@
         android:layout_gravity="center"
         android:contentDescription="删除"
         android:padding="8dp"
-        android:src="@drawable/mpp_ic_clear"/>
+        android:src="@drawable/ic_clear"/>
 </LinearLayout>

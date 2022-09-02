@@ -87,7 +87,7 @@
                 android:layout_margin="10dp"
                 android:padding="16dp"
                 android:background="@drawable/float_button_background"
-                android:src="@drawable/ic_start_black"
+                android:src="@drawable/ic_start"
                 android:contentDescription="@string/read_aloud" />
             <ImageView
                 android:id="@+id/iv_skip_next"

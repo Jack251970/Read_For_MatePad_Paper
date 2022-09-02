@@ -152,7 +152,7 @@
                     android:layout_width="30dp"
                     android:layout_height="28dp"
                     android:contentDescription="全选"
-                    android:src="@drawable/mpp_ic_select_all"/>
+                    android:src="@drawable/ic_select_all"/>
                 <TextView
                     android:id="@+id/tv_file_system_cb_selected_all"
                     android:layout_width="wrap_content"

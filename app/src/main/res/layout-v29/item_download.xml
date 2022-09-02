@@ -52,7 +52,7 @@
             android:layout_gravity="center"
             android:padding="4dp"
             android:layout_margin="16dp"
-            android:src="@drawable/mpp_ic_clear"/>
+            android:src="@drawable/ic_clear"/>
     </LinearLayout>
     <View
         android:layout_width="match_parent"

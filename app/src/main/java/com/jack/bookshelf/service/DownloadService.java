@@ -63,7 +63,7 @@ public class DownloadService extends Service {
         //创建 Notification.Builder 对象
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MApplication.channelIdDownload)
                 .setSmallIcon(R.drawable.ic_download)
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.book_launcher_matepad_paper))
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher))
                 .setOngoing(false)
                 .setContentTitle(getString(R.string.download_offline_t))
                 .setContentText(getString(R.string.download_offline_s));
@@ -288,7 +288,7 @@ public class DownloadService extends Service {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MApplication.channelIdDownload)
                 .setSmallIcon(R.drawable.ic_download)
                 //通知栏大图标
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.book_launcher_matepad_paper))
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher))
                 //点击通知后自动清除
                 .setAutoCancel(true)
                 .setContentTitle("正在下载：" + downloadChapterBean.getBookName())
@@ -341,5 +341,4 @@ public class DownloadService extends Service {
         intent.setAction(obtainDownloadListAction);
         context.startService(intent);
     }
-
 }

@@ -116,7 +116,7 @@ public class SourceDebugActivity extends MBaseActivity<IPresenter> {
         goButton.setScaleY(0.8f);
         goButton.setPadding(0, 0, 0, 0);
         goButton.setBackgroundColor(Color.TRANSPARENT);
-        goButton.setImageResource(R.drawable.mpp_ic_search);
+        goButton.setImageResource(R.drawable.ic_search);
         binding.searchView.setQueryHint(getString(R.string.debug_hint));
         binding.searchView.setSubmitButtonEnabled(true);
         binding.searchView.onActionViewExpanded();

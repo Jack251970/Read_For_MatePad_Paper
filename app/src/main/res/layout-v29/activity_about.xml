@@ -117,7 +117,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/mpp_ic_update"/>
+                    android:src="@drawable/ic_update"/>
                 <TextView
                     android:id="@+id/tv_update"
                     android:layout_width="match_parent"

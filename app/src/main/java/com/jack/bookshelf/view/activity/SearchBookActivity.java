@@ -191,7 +191,7 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
         goButton.setScaleY(0.8f);
         goButton.setPadding(0, 0, 0, 0);
         goButton.setBackgroundColor(Color.TRANSPARENT);
-        goButton.setImageResource(R.drawable.mpp_ic_search);
+        goButton.setImageResource(R.drawable.ic_search);
         binding.searchView.setSubmitButtonEnabled(true);
         binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

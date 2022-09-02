@@ -193,7 +193,7 @@ public class ImportBookActivity extends BaseViewPagerActivity<ImportBookContract
         if (count > 0) {
             binding.fileSystemCbSelectedAll.setClickable(true);
             binding.fileSystemCbSelectedAll.setEnabled(true);
-            binding.ivFileSystemCbSelectedAll.setImageResource(R.drawable.mpp_ic_select_all);
+            binding.ivFileSystemCbSelectedAll.setImageResource(R.drawable.ic_select_all);
             binding.tvFileSystemCbSelectedAll.setTextColor(getColor(R.color.black));
         } else {
             binding.fileSystemCbSelectedAll.setClickable(false);

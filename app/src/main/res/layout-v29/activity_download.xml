@@ -40,7 +40,7 @@
             android:layout_height="@dimen/action_bar_icon_height_and_width"
             android:layout_marginStart="@dimen/action_bar_padding_and_margin"
             android:contentDescription="取消下载"
-            android:src="@drawable/mpp_ic_stop"/>
+            android:src="@drawable/ic_stop"/>
     </LinearLayout>
     <!-- Recycler View -->
     <RelativeLayout

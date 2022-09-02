@@ -40,14 +40,14 @@
             android:layout_height="@dimen/action_bar_icon_height_and_width"
             android:layout_marginStart="@dimen/action_bar_padding_and_margin"
             android:contentDescription="添加替换规则"
-            android:src="@drawable/mpp_ic_add"/>
+            android:src="@drawable/ic_add"/>
         <ImageView
             android:id="@+id/iv_select_all_replace_rule"
             android:layout_width="@dimen/action_bar_icon_height_and_width"
             android:layout_height="@dimen/action_bar_icon_height_and_width"
             android:layout_marginStart="@dimen/action_bar_padding_and_margin"
             android:contentDescription="全选"
-            android:src="@drawable/mpp_ic_select_all"/>
+            android:src="@drawable/ic_select_all"/>
         <ImageView
             android:id="@+id/iv_more_settings_replace_rule"
             android:layout_width="@dimen/action_bar_icon_height_and_width"

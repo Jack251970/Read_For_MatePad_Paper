@@ -55,7 +55,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:contentDescription="@string/back"
-                android:src="@drawable/mpp_ic_cancel"/>
+                android:src="@drawable/ic_cancel"/>
             <TextView
                 android:id="@+id/tv_select_count"
                 android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:contentDescription="全选"
-                    android:src="@drawable/mpp_ic_select_all"/>
+                    android:src="@drawable/ic_select_all"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -561,18 +561,18 @@ public class ReadAloudService extends Service implements Player.Listener {
         RxBus.get().post(RxBusTag.ALOUD_TIMER, nTitle);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MApplication.channelIdReadAloud)
                 .setSmallIcon(R.drawable.ic_volume_up)
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_read_book))
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher))
                 .setOngoing(true)
                 .setContentTitle(nTitle)
                 .setContentText(text)
                 .setContentIntent(getReadBookActivityPendingIntent());
         if (pause) {
-            builder.addAction(R.drawable.ic_play_white, getString(R.string.resume), getThisServicePendingIntent(ActionResumeService));
+            builder.addAction(R.drawable.ic_start, getString(R.string.resume), getThisServicePendingIntent(ActionResumeService));
         } else {
-            builder.addAction(R.drawable.ic_pause_white, getString(R.string.pause), getThisServicePendingIntent(ActionPauseService));
+            builder.addAction(R.drawable.ic_pause, getString(R.string.pause), getThisServicePendingIntent(ActionPauseService));
         }
-        builder.addAction(R.drawable.ic_stop_white, getString(R.string.stop), getThisServicePendingIntent(ActionDoneService));
-        builder.addAction(R.drawable.ic_time_add_24dp, getString(R.string.set_timer), getThisServicePendingIntent(ActionSetTimer));
+        builder.addAction(R.drawable.ic_stop, getString(R.string.stop), getThisServicePendingIntent(ActionDoneService));
+        builder.addAction(R.drawable.ic_time_add, getString(R.string.set_timer), getThisServicePendingIntent(ActionSetTimer));
         builder.setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
                 .setMediaSession(mediaSessionCompat.getSessionToken())
                 .setShowActionsInCompactView(0, 1, 2));

@@ -32,7 +32,7 @@
                 <ImageView
                     android:layout_width="42dp"
                     android:layout_height="49dp"
-                    android:src="@drawable/mpp_ic_book_source" />
+                    android:src="@drawable/ic_book_source" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                     android:layout_width="42dp"
                     android:layout_height="42dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/mpp_ic_replace"/>
+                    android:src="@drawable/ic_replace"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
                     android:layout_width="42dp"
                     android:layout_height="42dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/mpp_ic_backup"/>
+                    android:src="@drawable/ic_backup"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
                     android:layout_width="42dp"
                     android:layout_height="42dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/mpp_ic_restore"/>
+                    android:src="@drawable/ic_restore"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
                 android:layout_width="42dp"
                 android:layout_height="42dp"
                 android:layout_gravity="center"
-                android:src="@drawable/mpp_ic_setting"/>
+                android:src="@drawable/ic_setting"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -212,7 +212,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center_vertical"
-                            android:src="@drawable/mpp_ic_search"
+                            android:src="@drawable/ic_search"
                             android:contentDescription="搜索栏" />
                     </LinearLayout>
                     <Space

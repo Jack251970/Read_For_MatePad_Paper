@@ -26,7 +26,7 @@
                 android:layout_width="@dimen/more_setting_menu_iv_width_and_height"
                 android:layout_height="@dimen/more_setting_menu_iv_width_and_height"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/mpp_ic_cancel_with_circle"
+                android:src="@drawable/ic_cancel_with_circle"
                 android:contentDescription="禁用书源" />
             <TextView
                 android:layout_width="0dp"
@@ -191,7 +191,7 @@
             android:layout_width="@dimen/more_setting_menu_iv_width_and_height"
             android:layout_height="@dimen/more_setting_menu_iv_width_and_height"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/mpp_ic_update"
+            android:src="@drawable/ic_update"
             android:contentDescription="更新目录" />
         <TextView
             android:layout_width="0dp"
