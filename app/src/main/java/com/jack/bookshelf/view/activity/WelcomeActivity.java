@@ -19,8 +19,8 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * 欢迎界面
- * Copyright (c) 2017. 章钦豪. All rights reserved.
+ * Welcome Page
+ * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
@@ -46,11 +46,12 @@ public class WelcomeActivity extends MBaseActivity<IPresenter>{
         initData();
     }
 
-    private void startBookshelfActivity() {startActivity(new Intent(this, MainActivity.class));}
+    private void startBookshelfActivity() {
+        startActivity(new Intent(this, MainActivity.class));
+    }
 
     private void startReadActivity() {
-        startActivity(new Intent(this,ReadBookActivity.class).
-                putExtra("openFrom", ReadBookPresenter.OPEN_FROM_APP));
+        startActivity(new Intent(this,ReadBookActivity.class).putExtra("openFrom", ReadBookPresenter.OPEN_FROM_APP));
     }
 
     /**

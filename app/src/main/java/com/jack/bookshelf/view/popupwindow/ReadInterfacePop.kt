@@ -2,8 +2,6 @@ package com.jack.bookshelf.view.popupwindow
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -19,7 +17,6 @@ import com.jack.bookshelf.help.permission.Permissions
 import com.jack.bookshelf.help.permission.PermissionsCompat
 import com.jack.bookshelf.utils.*
 import com.jack.bookshelf.view.activity.ReadBookActivity
-import com.jack.bookshelf.view.activity.ReadStyleActivity
 import com.jack.bookshelf.view.popupmenu.SelectMenu
 import com.jack.bookshelf.widget.font.FontSelectorDialog
 import com.jack.bookshelf.widget.font.FontSelectorDialog.OnThisListener
@@ -55,12 +52,7 @@ class ReadInterfacePop : FrameLayout {
         initLight()
     }
 
-    @SuppressLint("DefaultLocale")
-    private fun initData() {
-        setBg()
-        updateBg(readBookControl.textDrawableIndex)
-        binding.nbTextSize.text = String.format("%d", readBookControl.textSize)
-    }
+    private fun initData() {binding.nbTextSize.text = String.format("%d", readBookControl.textSize)}
 
     fun show() {initLight()}
 
@@ -196,34 +188,6 @@ class ReadInterfacePop : FrameLayout {
         }
         // 间距设置选项
         binding.tvSpace.setOnClickListener { activity!!.readAdjustMarginIn() }
-        // 背景选择
-        binding.civBgWhite.setOnClickListener {
-            updateBg(0)
-            callback!!.bgChange()
-        }
-        binding.civBgYellow.setOnClickListener {
-            updateBg(1)
-            callback!!.bgChange()
-        }
-        binding.civBgGreen.setOnClickListener {
-            updateBg(2)
-            callback!!.bgChange()
-        }
-        binding.civBgBlue.setOnClickListener {
-            updateBg(3)
-            callback!!.bgChange()
-        }
-        binding.civBgBlack.setOnClickListener {
-            updateBg(4)
-            callback!!.bgChange()
-        }
-        // 自定义阅读样式
-        binding.civBgWhite.setOnLongClickListener { customReadStyle(0) }
-        binding.civBgYellow.setOnLongClickListener { customReadStyle(1) }
-        binding.civBgGreen.setOnLongClickListener { customReadStyle(2) }
-        binding.civBgBlue.setOnLongClickListener { customReadStyle(3) }
-        binding.civBgBlack.setOnLongClickListener { customReadStyle(4) }
-        binding.tvCustomReadingMode.setOnClickListener { customReadStyle(readBookControl.textDrawableIndex) }
         // 选择字体
         binding.flTextFont.setOnClickListener {
             PermissionsCompat.Builder(activity!!)
@@ -276,14 +240,6 @@ class ReadInterfacePop : FrameLayout {
             .show(mainView)
     }
 
-    // 自定义阅读样式
-    private fun customReadStyle(index: Int): Boolean {
-        val intent = Intent(activity, ReadStyleActivity::class.java)
-        intent.putExtra("index", index)
-        activity!!.startActivity(intent)
-        return false
-    }
-
     // 设置字体
     fun setReadFonts(fileDoc: FileDoc) {
         if (fileDoc.isContentScheme) {
@@ -300,35 +256,6 @@ class ReadInterfacePop : FrameLayout {
     fun clearFontPath() {
         readBookControl.setReadBookFont(null)
         callback!!.refresh()
-    }
-
-    fun setBg() {
-        binding.tv0.setTextColor(readBookControl.getTextColor(0))
-        binding.tv1.setTextColor(readBookControl.getTextColor(1))
-        binding.tv2.setTextColor(readBookControl.getTextColor(2))
-        binding.tv3.setTextColor(readBookControl.getTextColor(3))
-        binding.tv4.setTextColor(readBookControl.getTextColor(4))
-        binding.civBgWhite.setImageDrawable(readBookControl.getBgDrawable(0, activity, 100, 180))
-        binding.civBgYellow.setImageDrawable(readBookControl.getBgDrawable(1, activity, 100, 180))
-        binding.civBgGreen.setImageDrawable(readBookControl.getBgDrawable(2, activity, 100, 180))
-        binding.civBgBlue.setImageDrawable(readBookControl.getBgDrawable(3, activity, 100, 180))
-        binding.civBgBlack.setImageDrawable(readBookControl.getBgDrawable(4, activity, 100, 180))
-    }
-
-    private fun updateBg(index: Int) {
-        binding.civBgWhite.borderColor = activity!!.getCompatColor(R.color.tv_text_default)
-        binding.civBgYellow.borderColor = activity!!.getCompatColor(R.color.tv_text_default)
-        binding.civBgGreen.borderColor = activity!!.getCompatColor(R.color.tv_text_default)
-        binding.civBgBlack.borderColor = activity!!.getCompatColor(R.color.tv_text_default)
-        binding.civBgBlue.borderColor = activity!!.getCompatColor(R.color.tv_text_default)
-        when (index) {
-            0 -> binding.civBgWhite.borderColor = Color.parseColor("#F3B63F")
-            1 -> binding.civBgYellow.borderColor = Color.parseColor("#F3B63F")
-            2 -> binding.civBgGreen.borderColor = Color.parseColor("#F3B63F")
-            3 -> binding.civBgBlue.borderColor = Color.parseColor("#F3B63F")
-            4 -> binding.civBgBlack.borderColor = Color.parseColor("#F3B63F")
-        }
-        readBookControl.textDrawableIndex = index
     }
 
     interface Callback {

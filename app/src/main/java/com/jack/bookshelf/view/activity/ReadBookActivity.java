@@ -126,7 +126,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
             noteUrl = savedInstanceState.getString("noteUrl");
             isAdd = savedInstanceState.getBoolean("isAdd");
         }
-        readBookControl.initTextDrawableIndex();
         super.onCreate(savedInstanceState);
         screenTimeOut = getResources().getIntArray(R.array.screen_time_out_value)[readBookControl.getScreenTimeOut()];
         keepScreenRunnable = this::unKeepScreenOn;
@@ -190,7 +189,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                     ThemeStore.primaryColor(this), false, true);
         } else {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
-            ActivityExtensionsKt.setLightStatusBar(this, readBookControl.getDarkStatusIcon());
+            ActivityExtensionsKt.setLightStatusBar(this, true);
         }
         ActivityExtensionsKt.setNavigationBarColorAuto(this,
                 ThemeStore.primaryColor(this));
@@ -371,7 +370,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         initMoreSettingPop();
         initMediaPlayer();
         initReadLongPressPop();
-        binding.pageView.setBackground(readBookControl.getTextBackground(this));
+        binding.pageView.setBackground(readBookControl.getTextBackground());
     }
 
     /**
@@ -524,8 +523,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
 
             @Override
             public void bgChange() {
-                readBookControl.initTextDrawableIndex();
-                binding.pageView.setBackground(readBookControl.getTextBackground(ReadBookActivity.this));
+                binding.pageView.setBackground(readBookControl.getTextBackground());
                 // 自定义样式时沉浸状态栏
                 initImmersionBar();
                 if (mPageLoader != null) {
@@ -1475,11 +1473,10 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         if (recreate) {
             recreate();
         } else {
-            binding.flContent.setBackground(readBookControl.getTextBackground(this));
+            binding.flContent.setBackground(readBookControl.getTextBackground());
             if (mPageLoader != null) {
                 mPageLoader.refreshUi();
             }
-            binding.readInterfacePop.setBg();
             initImmersionBar();
         }
     }

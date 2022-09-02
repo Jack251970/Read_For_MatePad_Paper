@@ -759,12 +759,7 @@ public abstract class PageLoader{
     private synchronized void drawBackground(Bitmap bitmap, TxtChapter txtChapter, TxtPage txtPage) {
         if (bitmap == null) return;
         Canvas canvas = new Canvas(bitmap);
-        if (!readBookControl.bgIsColor() && !readBookControl.bgBitmapIsNull()) {
-            Rect mDestRect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-            canvas.drawBitmap(readBookControl.getBgBitmap(), null, mDestRect, null);
-        } else {
-            canvas.drawColor(readBookControl.getBgColor());
-        }
+        canvas.drawColor(readBookControl.getBgColor());
         drawBackground(canvas, txtChapter, txtPage);
     }
 

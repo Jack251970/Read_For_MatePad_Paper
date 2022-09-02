@@ -131,3 +131,5 @@ private MoDialogHUD moDialogHUD;
 ThemeStore
 7.
 TintHelper
+8.
+setColorFilter

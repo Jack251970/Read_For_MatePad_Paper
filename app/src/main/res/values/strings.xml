@@ -463,7 +463,6 @@
     <string name="showTimeBattery">显示时间和电量</string>
     <string name="select_text">长按选择文本</string>
     <string name="showLine">显示分隔线</string>
-    <string name="darkStatusIcon">设置状态栏图标颜色（开启为深色，关闭为浅色）</string>
     <string name="copy_text">拷贝内容</string>
     <string name="content_sl">这是一段测试文字：\n\u3000\u3000只是让你看看你设置的阅读样式的效果</string>
     <string name="text_bg_style">文字颜色和背景(长按自定义)</string>

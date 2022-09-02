@@ -64,7 +64,7 @@
             <!-- Item More Setting Menu -->
             <dimen name="item_more_setting_menu_width">82dp</dimen>
             <!-- Read Book Menu -->
-            <dimen name="pop_menu_read_book_layout_height">300dp</dimen>
+            <dimen name="pop_menu_read_book_layout_height">240dp</dimen>
             <!-- Adjust Margin Read Book Menu -->
             <dimen name="read_menu_adjust_margin_left">55dp</dimen>
             <dimen name="read_menu_adjust_margin_right">45dp</dimen>

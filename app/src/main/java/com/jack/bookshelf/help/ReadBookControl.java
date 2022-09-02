@@ -3,42 +3,26 @@ package com.jack.bookshelf.help;
 import static com.jack.bookshelf.widget.page.PageLoader.DEFAULT_MARGIN_WIDTH;
 
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.provider.Settings;
-import android.util.DisplayMetrics;
 
 import com.jack.bookshelf.MApplication;
-import com.jack.bookshelf.utils.BitmapUtil;
-import com.jack.bookshelf.utils.MeUtils;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
+ * Read Book Control
  * Copyright (c) 2017. 章钦豪. All rights reserved.
- * 阅读模式相关参数
+ * Edited by Jack251970
  */
 
 public class ReadBookControl {
-    private static final int DEFAULT_BG = 0;
-    private int textDrawableIndex = DEFAULT_BG;
-    private List<Map<String, Integer>> textDrawable;
-    private Bitmap bgBitmap;
     private int screenDirection;
     private int speechRate;
     private boolean speechRateFollowSys;
     private int textSize;
     private int textColor;
-    private boolean bgIsColor;
     private int bgColor;
     private float lineMultiplier;
     private float paragraphSize;
@@ -52,11 +36,6 @@ public class ReadBookControl {
     private Boolean readAloudCanKeyTurn;
     private int CPM;
     private Boolean clickAllNext;
-    private int showTitle;
-    private int showTimeBattery;
-    private int showFooter;
-    private int showLine;
-    private Boolean darkStatusIcon;
     private int indent;
     private int screenTimeOut;
     private int paddingLeft;
@@ -72,9 +51,7 @@ public class ReadBookControl {
     public int minCPM = 200;
     public int maxCPM = 2000;
     private final int defaultCPM = 500;
-
     private final SharedPreferences preferences;
-
     private static volatile ReadBookControl readBookControl;
 
     public static ReadBookControl getInstance() {
@@ -94,28 +71,28 @@ public class ReadBookControl {
         updateReaderSettings();
     }
 
+    private void initTextDrawable() {
+        this.textColor = Color.BLACK;
+        this.bgColor = Color.WHITE;
+    }
+
     public void updateReaderSettings() {
         this.lightNovelParagraph = preferences.getBoolean("light_novel_paragraph", false);
         this.indent = preferences.getInt("indent", 2);
         this.textSize = preferences.getInt("textSize", 20);
-        this.canKeyReturn = preferences.getBoolean("canKeyReturn", false); //禁用返回键
+        this.canKeyReturn = preferences.getBoolean("canKeyReturn", false);
         this.canClickTurn = preferences.getBoolean("canClickTurn", true);
         this.canKeyTurn = preferences.getBoolean("canKeyTurn", true);
         this.readAloudCanKeyTurn = preferences.getBoolean("readAloudCanKeyTurn", false);
         this.lineMultiplier = preferences.getFloat("lineMultiplier", 1);
         this.paragraphSize = preferences.getFloat("paragraphSize", 1);
-        this.CPM = preferences.getInt("CPM", defaultCPM) > maxCPM
-                ? minCPM : preferences.getInt("CPM", defaultCPM);
+        this.CPM = preferences.getInt("CPM", defaultCPM) > maxCPM ? minCPM : preferences.getInt("CPM", defaultCPM);
         this.clickAllNext = preferences.getBoolean("clickAllNext", false);
         this.fontPath = preferences.getString("fontPath", null);
         this.textConvert = preferences.getInt("textConvertInt", 0);
         this.textBold = preferences.getBoolean("textBold", false);
         this.speechRate = preferences.getInt("speechRate", 10);
         this.speechRateFollowSys = preferences.getBoolean("speechRateFollowSys", true);
-        this.showTitle = preferences.getInt("showTitle", 0);    // 0:显示 1:隐藏
-        this.showTimeBattery = preferences.getInt("showTimeBattery", 0); // 0:状态栏显示时隐藏 1:始终显示 2:始终隐藏
-        this.showFooter = preferences.getInt("showFooter", 0); // 0:显示 1:隐藏
-        this.showLine = preferences.getInt("showLine", 0);   // 0:显示 1:隐藏
         this.screenTimeOut = preferences.getInt("screenTimeOut", 0);
         this.paddingLeft = preferences.getInt("paddingLeft", DEFAULT_MARGIN_WIDTH);
         this.paddingTop = preferences.getInt("paddingTop", 0);
@@ -128,189 +105,6 @@ public class ReadBookControl {
         this.screenDirection = preferences.getInt("screenDirection", 0);
         this.textLetterSpacing = preferences.getFloat("textLetterSpacing", 0);
         this.canSelectText = preferences.getBoolean("canSelectText", false);
-        initTextDrawableIndex();
-    }
-
-    // 阅读背景
-    private void initTextDrawable() {
-        if (null == textDrawable) {
-            textDrawable = new ArrayList<>();
-            Map<String, Integer> temp1 = new HashMap<>();
-            temp1.put("textColor", Color.parseColor("#3E3D3B"));
-            temp1.put("bgIsColor", 1);
-            temp1.put("textBackground", Color.parseColor("#F3F3F3"));
-            temp1.put("darkStatusIcon", 1);
-            textDrawable.add(temp1);
-
-            Map<String, Integer> temp2 = new HashMap<>();
-            temp2.put("textColor", Color.parseColor("#5E432E"));
-            temp2.put("bgIsColor", 1);
-            temp2.put("textBackground", Color.parseColor("#C6BAA1"));
-            temp2.put("darkStatusIcon", 1);
-            textDrawable.add(temp2);
-
-            Map<String, Integer> temp3 = new HashMap<>();
-            temp3.put("textColor", Color.parseColor("#22482C"));
-            temp3.put("bgIsColor", 1);
-            temp3.put("textBackground", Color.parseColor("#E1F1DA"));
-            temp3.put("darkStatusIcon", 1);
-            textDrawable.add(temp3);
-
-            Map<String, Integer> temp4 = new HashMap<>();
-            temp4.put("textColor", Color.parseColor("#FFFFFF"));
-            temp4.put("bgIsColor", 1);
-            temp4.put("textBackground", Color.parseColor("#015A86"));
-            temp4.put("darkStatusIcon", 0);
-            textDrawable.add(temp4);
-
-            Map<String, Integer> temp5 = new HashMap<>();
-            temp5.put("textColor", Color.parseColor("#808080"));
-            temp5.put("bgIsColor", 1);
-            temp5.put("textBackground", Color.parseColor("#000000"));
-            temp5.put("darkStatusIcon", 0);
-            textDrawable.add(temp5);
-        }
-    }
-
-    public void initTextDrawableIndex() {
-        textDrawableIndex = preferences.getInt("textDrawableIndex", DEFAULT_BG);
-        if (textDrawableIndex == -1) {
-            textDrawableIndex = DEFAULT_BG;
-        }
-        initPageStyle();
-        setTextDrawable();
-    }
-
-    @SuppressWarnings("ConstantConditions")
-    private void initPageStyle() {
-        int bgCustom = getBgCustom(textDrawableIndex);
-        if ((bgCustom == 2 || bgCustom == 3) && getBgPath(textDrawableIndex) != null) {
-            bgIsColor = false;
-            String bgPath = getBgPath(textDrawableIndex);
-            Resources resources = MApplication.getInstance().getResources();
-            DisplayMetrics dm = resources.getDisplayMetrics();
-            int width = dm.widthPixels;
-            int height = dm.heightPixels;
-            if (bgCustom == 2) {
-                bgBitmap = BitmapUtil.getFitSampleBitmap(bgPath, width, height);
-            } else {
-                bgBitmap = MeUtils.getFitAssetsSampleBitmap(MApplication.getInstance().getAssets(), bgPath, width, height);
-            }
-            if (bgBitmap != null) {
-                return;
-            }
-        } else if (getBgCustom(textDrawableIndex) == 1) {
-            bgIsColor = true;
-            bgColor = getBgColor(textDrawableIndex);
-            return;
-        }
-        bgIsColor = true;
-        bgColor = textDrawable.get(textDrawableIndex).get("textBackground");
-    }
-
-    private void setTextDrawable() {
-        darkStatusIcon = getDarkStatusIcon(textDrawableIndex);
-        textColor = getTextColor(textDrawableIndex);
-    }
-
-    public int getTextColor(int textDrawableIndex) {
-        if (preferences.getInt("textColor" + textDrawableIndex, 0) != 0) {
-            return preferences.getInt("textColor" + textDrawableIndex, 0);
-        } else {
-            return getDefaultTextColor(textDrawableIndex);
-        }
-    }
-
-    public void setTextColor(int textDrawableIndex, int textColor) {
-        preferences.edit()
-                .putInt("textColor" + textDrawableIndex, textColor)
-                .apply();
-    }
-
-    @SuppressWarnings("ConstantConditions")
-    public Drawable getBgDrawable(int textDrawableIndex, Context context, int width, int height) {
-        int color;
-        try {
-            Bitmap bitmap = null;
-            switch (getBgCustom(textDrawableIndex)) {
-                case 3:
-                    bitmap = MeUtils.getFitAssetsSampleBitmap(context.getAssets(), getBgPath(textDrawableIndex), width, height);
-                    if (bitmap != null) {
-                        return new BitmapDrawable(context.getResources(), bitmap);
-                    }
-                case 2:
-                    bitmap = BitmapUtil.getFitSampleBitmap(getBgPath(textDrawableIndex), width, height);
-                    if (bitmap != null) {
-                        return new BitmapDrawable(context.getResources(), bitmap);
-                    }
-                    break;
-                case 1:
-                    color = getBgColor(textDrawableIndex);
-                    return new ColorDrawable(color);
-            }
-            if (textDrawable.get(textDrawableIndex).get("bgIsColor") != 0) {
-                color = textDrawable.get(textDrawableIndex).get("textBackground");
-                return new ColorDrawable(color);
-            } else {
-                return getDefaultBgDrawable(textDrawableIndex, context);
-            }
-        } catch (Exception e) {
-            if (textDrawable.get(textDrawableIndex).get("bgIsColor") != 0) {
-                color = textDrawable.get(textDrawableIndex).get("textBackground");
-                return new ColorDrawable(color);
-            } else {
-                return getDefaultBgDrawable(textDrawableIndex, context);
-            }
-        }
-    }
-
-    @SuppressWarnings("ConstantConditions")
-    public Drawable getDefaultBgDrawable(int textDrawableIndex, Context context) {
-        if (textDrawable.get(textDrawableIndex).get("bgIsColor") != 0) {
-            return new ColorDrawable(textDrawable.get(textDrawableIndex).get("textBackground"));
-        } else {
-            return context.getResources().getDrawable(getDefaultBg(textDrawableIndex));
-        }
-    }
-
-    public int getBgCustom(int textDrawableIndex) {
-        return preferences.getInt("bgCustom" + textDrawableIndex, 0);
-    }
-
-    public void setBgCustom(int textDrawableIndex, int bgCustom) {
-        preferences.edit()
-                .putInt("bgCustom" + textDrawableIndex, bgCustom)
-                .apply();
-    }
-
-    public String getBgPath(int textDrawableIndex) {
-        return preferences.getString("bgPath" + textDrawableIndex, null);
-    }
-
-    public void setBgPath(int textDrawableIndex, String bgUri) {
-        preferences.edit()
-                .putString("bgPath" + textDrawableIndex, bgUri)
-                .apply();
-    }
-
-    @SuppressWarnings("ConstantConditions")
-    public int getDefaultTextColor(int textDrawableIndex) {
-        return textDrawable.get(textDrawableIndex).get("textColor");
-    }
-
-    @SuppressWarnings("ConstantConditions")
-    private int getDefaultBg(int textDrawableIndex) {
-        return textDrawable.get(textDrawableIndex).get("textBackground");
-    }
-
-    public int getBgColor(int index) {
-        return preferences.getInt("bgColor" + index, Color.parseColor("#1e1e1e"));
-    }
-
-    public void setBgColor(int index, int bgColor) {
-        preferences.edit()
-                .putInt("bgColor" + index, bgColor)
-                .apply();
     }
 
     public int getTextSize() {
@@ -319,69 +113,34 @@ public class ReadBookControl {
 
     public void setTextSize(int textSize) {
         this.textSize = textSize;
-        preferences.edit()
-                .putInt("textSize", textSize)
-                .apply();
+        preferences.edit().putInt("textSize", textSize).apply();
     }
 
     public int getTextColor() {
         return textColor;
     }
 
-    public boolean bgIsColor() {
-        return bgIsColor;
-    }
-
-    public Drawable getTextBackground(Context context) {
-        if (bgIsColor) {
-            return new ColorDrawable(bgColor);
-        }
-        return new BitmapDrawable(context.getResources(), bgBitmap);
+    public Drawable getTextBackground() {
+        return new ColorDrawable(bgColor);
     }
 
     public int getBgColor() {
         return bgColor;
     }
 
-    public boolean bgBitmapIsNull() {
-        return bgBitmap == null || bgBitmap.isRecycled();
-    }
-
-    public Bitmap getBgBitmap() {
-        return bgBitmap.copy(Bitmap.Config.ARGB_8888, true);
-    }
-
-    public int getTextDrawableIndex() {
-        return textDrawableIndex;
-    }
-
-    public void setTextDrawableIndex(int textDrawableIndex) {
-        this.textDrawableIndex = textDrawableIndex;
-        preferences.edit()
-                .putInt("textDrawableIndex", textDrawableIndex)
-                .apply();
-        setTextDrawable();
-    }
-
     public void setTextConvert(int textConvert) {
         this.textConvert = textConvert;
-        preferences.edit()
-                .putInt("textConvertInt", textConvert)
-                .apply();
+        preferences.edit().putInt("textConvertInt", textConvert).apply();
     }
 
     public void setTextBold(boolean textBold) {
         this.textBold = textBold;
-        preferences.edit()
-                .putBoolean("textBold", textBold)
-                .apply();
+        preferences.edit().putBoolean("textBold", textBold).apply();
     }
 
     public void setReadBookFont(String fontPath) {
         this.fontPath = fontPath;
-        preferences.edit()
-                .putString("fontPath", fontPath)
-                .apply();
+        preferences.edit().putString("fontPath", fontPath).apply();
     }
 
     public String getFontPath() {
@@ -412,9 +171,7 @@ public class ReadBookControl {
 
     public void setCanKeyReturn(Boolean canKeyReturn) {
         this.canKeyReturn = canKeyReturn;
-        preferences.edit()
-                .putBoolean("canKeyReturn", canKeyReturn)
-                .apply();
+        preferences.edit().putBoolean("canKeyReturn", canKeyReturn).apply();
     }
 
     public Boolean getCanKeyTurn() {
@@ -423,9 +180,7 @@ public class ReadBookControl {
 
     public void setCanKeyTurn(Boolean canKeyTurn) {
         this.canKeyTurn = canKeyTurn;
-        preferences.edit()
-                .putBoolean("canKeyTurn", canKeyTurn)
-                .apply();
+        preferences.edit().putBoolean("canKeyTurn", canKeyTurn).apply();
     }
 
     public Boolean getAloudCanKeyTurn() {
@@ -434,9 +189,7 @@ public class ReadBookControl {
 
     public void setAloudCanKeyTurn(Boolean AloudCanKeyTurn) {
         this.readAloudCanKeyTurn = AloudCanKeyTurn;
-        preferences.edit()
-                .putBoolean("readAloudCanKeyTurn", AloudCanKeyTurn)
-                .apply();
+        preferences.edit().putBoolean("readAloudCanKeyTurn", AloudCanKeyTurn).apply();
     }
 
     public Boolean getCanClickTurn() {
@@ -445,9 +198,7 @@ public class ReadBookControl {
 
     public void setCanClickTurn(Boolean canClickTurn) {
         this.canClickTurn = canClickTurn;
-        preferences.edit()
-                .putBoolean("canClickTurn", canClickTurn)
-                .apply();
+        preferences.edit().putBoolean("canClickTurn", canClickTurn).apply();
     }
 
     public float getTextLetterSpacing() {
@@ -456,9 +207,7 @@ public class ReadBookControl {
 
     public void setTextLetterSpacing(float textLetterSpacing) {
         this.textLetterSpacing = textLetterSpacing;
-        preferences.edit()
-                .putFloat("textLetterSpacing", textLetterSpacing)
-                .apply();
+        preferences.edit().putFloat("textLetterSpacing", textLetterSpacing).apply();
     }
 
     public float getLineMultiplier() {
@@ -467,9 +216,7 @@ public class ReadBookControl {
 
     public void setLineMultiplier(float lineMultiplier) {
         this.lineMultiplier = lineMultiplier;
-        preferences.edit()
-                .putFloat("lineMultiplier", lineMultiplier)
-                .apply();
+        preferences.edit().putFloat("lineMultiplier", lineMultiplier).apply();
     }
 
     public float getParagraphSize() {
@@ -478,9 +225,7 @@ public class ReadBookControl {
 
     public void setParagraphSize(float paragraphSize) {
         this.paragraphSize = paragraphSize;
-        preferences.edit()
-                .putFloat("paragraphSize", paragraphSize)
-                .apply();
+        preferences.edit().putFloat("paragraphSize", paragraphSize).apply();
     }
 
     public int getCPM() {
@@ -490,9 +235,7 @@ public class ReadBookControl {
     public void setCPM(int cpm) {
         if (cpm < minCPM || cpm > maxCPM) cpm = defaultCPM;
         this.CPM = cpm;
-        preferences.edit()
-                .putInt("CPM", cpm)
-                .apply();
+        preferences.edit().putInt("CPM", cpm).apply();
     }
 
     public Boolean getClickAllNext() {
@@ -501,9 +244,7 @@ public class ReadBookControl {
 
     public void setClickAllNext(Boolean clickAllNext) {
         this.clickAllNext = clickAllNext;
-        preferences.edit()
-                .putBoolean("clickAllNext", clickAllNext)
-                .apply();
+        preferences.edit().putBoolean("clickAllNext", clickAllNext).apply();
     }
 
     public int getSpeechRate() {
@@ -512,9 +253,7 @@ public class ReadBookControl {
 
     public void setSpeechRate(int speechRate) {
         this.speechRate = speechRate;
-        preferences.edit()
-                .putInt("speechRate", speechRate)
-                .apply();
+        preferences.edit().putInt("speechRate", speechRate).apply();
     }
 
     public boolean isSpeechRateFollowSys() {
@@ -523,77 +262,14 @@ public class ReadBookControl {
 
     public void setSpeechRateFollowSys(boolean speechRateFollowSys) {
         this.speechRateFollowSys = speechRateFollowSys;
-        preferences.edit()
-                .putBoolean("speechRateFollowSys", speechRateFollowSys)
-                .apply();
-    }
-
-    public int getShowTitle() {
-        return showTitle;
-    }
-
-    public void setShowTitle(int showTitle) {
-        this.showTitle = showTitle;
-        preferences.edit()
-                .putInt("showTitle", showTitle)
-                .apply();
-    }
-
-    public int getShowTimeBattery() {
-        return showTimeBattery;
-    }
-
-    public void setShowTimeBattery(int showTimeBattery) {
-        this.showTimeBattery = showTimeBattery;
-        preferences.edit()
-                .putInt("showTimeBattery", showTimeBattery)
-                .apply();
-    }
-
-    public int getShowFooter() {
-        return showFooter;
-    }
-
-    public void setShowFooter(int showFooter) {
-        this.showFooter = showFooter;
-        preferences.edit()
-                .putInt("showFooter", showFooter)
-                .apply();
+        preferences.edit().putBoolean("speechRateFollowSys", speechRateFollowSys).apply();
     }
 
     public Boolean getLightNovelParagraph(){return lightNovelParagraph;}
 
     public void setLightNovelParagraph(Boolean lightNovelParagraph) {
         this.lightNovelParagraph = lightNovelParagraph;
-        preferences.edit()
-                .putBoolean("light_novel_paragraph", lightNovelParagraph)
-                .apply();
-    }
-
-    public int getShowLine() {
-        return showLine;
-    }
-
-    public void setShowLine(int showLine) {
-        this.showLine = showLine;
-        preferences.edit()
-                .putInt("showLine", showLine)
-                .apply();
-    }
-
-    public boolean getDarkStatusIcon() {
-        return darkStatusIcon;
-    }
-
-    @SuppressWarnings("ConstantConditions")
-    public boolean getDarkStatusIcon(int textDrawableIndex) {
-        return preferences.getBoolean("darkStatusIcon" + textDrawableIndex, textDrawable.get(textDrawableIndex).get("darkStatusIcon") != 0);
-    }
-
-    public void setDarkStatusIcon(int textDrawableIndex, Boolean darkStatusIcon) {
-        preferences.edit()
-                .putBoolean("darkStatusIcon" + textDrawableIndex, darkStatusIcon)
-                .apply();
+        preferences.edit().putBoolean("light_novel_paragraph", lightNovelParagraph).apply();
     }
 
     public int getScreenTimeOut() {
@@ -602,9 +278,7 @@ public class ReadBookControl {
 
     public void setScreenTimeOut(int screenTimeOut) {
         this.screenTimeOut = screenTimeOut;
-        preferences.edit()
-                .putInt("screenTimeOut", screenTimeOut)
-                .apply();
+        preferences.edit().putInt("screenTimeOut", screenTimeOut).apply();
     }
 
     public int getPaddingLeft() {
@@ -613,9 +287,7 @@ public class ReadBookControl {
 
     public void setPaddingLeft(int paddingLeft) {
         this.paddingLeft = paddingLeft;
-        preferences.edit()
-                .putInt("paddingLeft", paddingLeft)
-                .apply();
+        preferences.edit().putInt("paddingLeft", paddingLeft).apply();
     }
 
     public int getPaddingTop() {
@@ -624,9 +296,7 @@ public class ReadBookControl {
 
     public void setPaddingTop(int paddingTop) {
         this.paddingTop = paddingTop;
-        preferences.edit()
-                .putInt("paddingTop", paddingTop)
-                .apply();
+        preferences.edit().putInt("paddingTop", paddingTop).apply();
     }
 
     public int getPaddingRight() {
@@ -635,9 +305,7 @@ public class ReadBookControl {
 
     public void setPaddingRight(int paddingRight) {
         this.paddingRight = paddingRight;
-        preferences.edit()
-                .putInt("paddingRight", paddingRight)
-                .apply();
+        preferences.edit().putInt("paddingRight", paddingRight).apply();
     }
 
     public int getPaddingBottom() {
@@ -646,9 +314,7 @@ public class ReadBookControl {
 
     public void setPaddingBottom(int paddingBottom) {
         this.paddingBottom = paddingBottom;
-        preferences.edit()
-                .putInt("paddingBottom", paddingBottom)
-                .apply();
+        preferences.edit().putInt("paddingBottom", paddingBottom).apply();
     }
 
     public int getTipPaddingLeft() {
@@ -657,9 +323,7 @@ public class ReadBookControl {
 
     public void setTipPaddingLeft(int tipPaddingLeft) {
         this.tipPaddingLeft = tipPaddingLeft;
-        preferences.edit()
-                .putInt("tipPaddingLeft", tipPaddingLeft)
-                .apply();
+        preferences.edit().putInt("tipPaddingLeft", tipPaddingLeft).apply();
     }
 
     public boolean isCanSelectText() {
@@ -668,9 +332,7 @@ public class ReadBookControl {
 
     public void setCanSelectText(boolean canSelectText) {
         this.canSelectText = canSelectText;
-        preferences.edit()
-                .putBoolean("canSelectText", canSelectText)
-                .apply();
+        preferences.edit().putBoolean("canSelectText", canSelectText).apply();
     }
 
     public int getTipPaddingTop() {
@@ -679,9 +341,7 @@ public class ReadBookControl {
 
     public void setTipPaddingTop(int tipPaddingTop) {
         this.tipPaddingTop = tipPaddingTop;
-        preferences.edit()
-                .putInt("tipPaddingTop", tipPaddingTop)
-                .apply();
+        preferences.edit().putInt("tipPaddingTop", tipPaddingTop).apply();
     }
 
     public int getTipPaddingRight() {
@@ -690,9 +350,7 @@ public class ReadBookControl {
 
     public void setTipPaddingRight(int tipPaddingRight) {
         this.tipPaddingRight = tipPaddingRight;
-        preferences.edit()
-                .putInt("tipPaddingRight", tipPaddingRight)
-                .apply();
+        preferences.edit().putInt("tipPaddingRight", tipPaddingRight).apply();
     }
 
     public int getTipPaddingBottom() {
@@ -701,9 +359,7 @@ public class ReadBookControl {
 
     public void setTipPaddingBottom(int tipPaddingBottom) {
         this.tipPaddingBottom = tipPaddingBottom;
-        preferences.edit()
-                .putInt("tipPaddingBottom", tipPaddingBottom)
-                .apply();
+        preferences.edit().putInt("tipPaddingBottom", tipPaddingBottom).apply();
     }
 
     public int getScreenDirection() {
@@ -712,16 +368,12 @@ public class ReadBookControl {
 
     public void setScreenDirection(int screenDirection) {
         this.screenDirection = screenDirection;
-        preferences.edit()
-                .putInt("screenDirection", screenDirection)
-                .apply();
+        preferences.edit().putInt("screenDirection", screenDirection).apply();
     }
 
     public void setIndent(int indent) {
         this.indent = indent;
-        preferences.edit()
-                .putInt("indent", indent)
-                .apply();
+        preferences.edit().putInt("indent", indent).apply();
     }
 
     public int getIndent() {
@@ -733,9 +385,7 @@ public class ReadBookControl {
     }
 
     public void setLight(int light) {
-        preferences.edit()
-                .putInt("light", light)
-                .apply();
+        preferences.edit().putInt("light", light).apply();
     }
 
     public Boolean getLightFollowSys() {
@@ -743,9 +393,7 @@ public class ReadBookControl {
     }
 
     public void setLightFollowSys(boolean isFollowSys) {
-        preferences.edit()
-                .putBoolean("lightFollowSys", isFollowSys)
-                .apply();
+        preferences.edit().putBoolean("lightFollowSys", isFollowSys).apply();
     }
 
     private int getScreenBrightness() {
@@ -756,9 +404,5 @@ public class ReadBookControl {
         } catch (Settings.SettingNotFoundException ignored) {
         }
         return value;
-    }
-
-    public boolean disableScrollClickTurn() {
-        return preferences.getBoolean("disableScrollClickTurn", false);
     }
 }

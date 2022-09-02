@@ -13,9 +13,9 @@ import com.jack.bookshelf.help.ReadBookControl
 import com.jack.bookshelf.view.popupmenu.SelectMenu
 
 /**
- * 阅读界面->更多设置界面
- * Copyright (c) 2017. 章钦豪. All rights reserved.
- * Edited by Jack Ye
+ * Read More Setting Menu
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
  */
 
 class MoreSettingPop : FrameLayout {
@@ -30,7 +30,9 @@ class MoreSettingPop : FrameLayout {
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {init(context)}
 
-    private fun init(context: Context) {binding.vwBg.setOnClickListener(null)}
+    private fun init(@Suppress("UNUSED_PARAMETER")context: Context) {
+        binding.vwBg.setOnClickListener(null)
+    }
 
     fun setListener(callback: Callback) {
         this.callback = callback
@@ -149,8 +151,6 @@ class MoreSettingPop : FrameLayout {
     }
 
     private fun initData() {
-        upScreenDirection(readBookControl.screenDirection)
-        upScreenTimeOut(readBookControl.screenTimeOut)
         // 朗读语速调节 默认跟随系统
         binding.scbTtsFollowSys.isChecked = readBookControl.isSpeechRateFollowSys
         binding.hpbTtsSpeechRate.isEnabled = !readBookControl.isSpeechRateFollowSys
@@ -159,20 +159,29 @@ class MoreSettingPop : FrameLayout {
         binding.hpbClick.max = readBookControl.maxCPM - readBookControl.minCPM
         binding.hpbClick.progress = readBookControl.cpm
         binding.tvAutoPage.text = String.format("%sCPM", readBookControl.cpm)
+        // 屏幕方向
+        upScreenDirection(readBookControl.screenDirection)
+        // 屏幕关闭时间
+        upScreenTimeOut(readBookControl.screenTimeOut)
         // 禁用返回键
         binding.swDisableReturnKey.isChecked = readBookControl.canKeyReturn
-        // 音量键翻页
-        binding.swVolumeNextPage.isChecked = readBookControl.canKeyTurn
         // 点击翻页
         binding.sbClick.isChecked = readBookControl.canClickTurn
-        upView()
+        // 点击总是翻下一页
+        binding.sbClickAllNext.isChecked = readBookControl.clickAllNext
+        // 音量键翻页
+        binding.swVolumeNextPage.isChecked = readBookControl.canKeyTurn
+        // 朗读时音量键翻页
+        binding.swReadAloudKey.isChecked = readBookControl.aloudCanKeyTurn
+        // 长按选择文本
+        binding.sbSelectText.isChecked = readBookControl.isCanSelectText
     }
 
     private fun upView() {
-        // 朗读时音量键翻页,canKeyTurn是另一个处理函数,不是错误!
-        binding.swReadAloudKey.isEnabled = readBookControl.canKeyTurn
-        // 点击总是翻下一页,canClickTurn是另一个处理函数,不是错误!
+        // 点击总是翻下一页
         binding.sbClickAllNext.isEnabled = readBookControl.canClickTurn
+        // 朗读时音量键翻页
+        binding.swReadAloudKey.isEnabled = readBookControl.canKeyTurn
     }
 
     private fun upScreenTimeOut(screenTimeOut: Int) {
