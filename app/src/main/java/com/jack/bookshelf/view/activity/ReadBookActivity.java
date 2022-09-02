@@ -378,7 +378,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     private void initMediaPlayer() {
         binding.mediaPlayerPop.setIvChapterClickListener(v -> ChapterListActivity.startThis(ReadBookActivity.this, mPresenter.getBookShelf(), mPresenter.getChapterList()));
         binding.mediaPlayerPop.setIvTimerClickListener(v -> ReadAloudService.setTimer(getContext(), 10));
-        binding.mediaPlayerPop.setIvCoverBgClickListener(v -> {
+        binding.mediaPlayerPop.setLlCoverBgClickListener(v -> {
             binding.flMenu.setVisibility(View.VISIBLE);
             binding.llMenuTop.setVisibility(View.VISIBLE);
             menuTopIn();

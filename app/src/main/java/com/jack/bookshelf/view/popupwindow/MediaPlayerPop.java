@@ -11,29 +11,29 @@ import android.widget.SeekBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.databinding.PopMediaPlayerBinding;
-import com.jack.bookshelf.help.BlurTransformation;
 import com.jack.bookshelf.help.glide.ImageLoader;
-import com.jack.bookshelf.utils.ColorUtils;
 import com.jack.bookshelf.utils.TimeUtils;
-import com.jack.bookshelf.utils.theme.MaterialValueHelper;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
+/**
+ * Media Player Menu
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
 public class MediaPlayerPop extends FrameLayout {
     @SuppressLint("ConstantLocale")
     private final DateFormat timeFormat = new SimpleDateFormat("mm:ss", Locale.getDefault());
 
     private final PopMediaPlayerBinding binding = PopMediaPlayerBinding.inflate(LayoutInflater.from(getContext()), this, true);
-    private int primaryTextColor;
     private Callback callback;
 
     public MediaPlayerPop(@NonNull Context context) {
@@ -51,15 +51,9 @@ public class MediaPlayerPop extends FrameLayout {
         init(context);
     }
 
-    public MediaPlayerPop(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        init(context);
-    }
-
     private void init(Context context) {
         binding.getRoot().setBackgroundColor(ThemeStore.primaryColor(context));
         binding.vwBg.setOnClickListener(null);
-        primaryTextColor = MaterialValueHelper.getPrimaryTextColor(context, ColorUtils.isColorLight(ThemeStore.primaryColor(context)));
         setColor(binding.ivSkipPrevious.getDrawable());
         setColor(binding.ivSkipNext.getDrawable());
         setColor(binding.ivChapter.getDrawable());
@@ -107,8 +101,8 @@ public class MediaPlayerPop extends FrameLayout {
         binding.tvDurTime.setText(TimeUtils.millis2String(audioDur, timeFormat));
     }
 
-    public void setIvCoverBgClickListener(OnClickListener onClickListener) {
-        binding.ivCoverBg.setOnClickListener(onClickListener);
+    public void setLlCoverBgClickListener(OnClickListener onClickListener) {
+        binding.llCoverBg.setOnClickListener(onClickListener);
     }
 
     public void setPlayClickListener(OnClickListener onClickListener) {
@@ -140,21 +134,9 @@ public class MediaPlayerPop extends FrameLayout {
                 .apply(new RequestOptions().dontAnimate().diskCacheStrategy(DiskCacheStrategy.RESOURCE).centerCrop()
                         .placeholder(R.drawable.image_cover_default))
                 .into(binding.ivCover);
-        ImageLoader.INSTANCE.load(getContext(), coverPath)
-                .transition(DrawableTransitionOptions.withCrossFade(1500))
-                .thumbnail(defaultCover())
-                .centerCrop()
-                .apply(RequestOptions.bitmapTransform(new BlurTransformation(getContext(), 25)))
-                .into(binding.ivCoverBg);
-    }
-
-    private RequestBuilder<Drawable> defaultCover() {
-        return ImageLoader.INSTANCE.load(getContext(), R.drawable.image_cover_default)
-                .apply(RequestOptions.bitmapTransform(new BlurTransformation(getContext(), 25)));
     }
 
     public interface Callback {
-
         void onStopTrackingTouch(int dur);
     }
 }

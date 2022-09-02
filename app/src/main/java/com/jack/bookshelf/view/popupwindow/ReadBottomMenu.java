@@ -17,9 +17,7 @@ import com.jack.bookshelf.service.ReadAloudService;
  */
 
 public class ReadBottomMenu extends FrameLayout {
-
-    private final PopReadMenuBinding binding = PopReadMenuBinding
-            .inflate(LayoutInflater.from(getContext()), this, true);
+    private final PopReadMenuBinding binding = PopReadMenuBinding.inflate(LayoutInflater.from(getContext()), this, true);
     private Callback callback;
 
     public ReadBottomMenu(Context context) {

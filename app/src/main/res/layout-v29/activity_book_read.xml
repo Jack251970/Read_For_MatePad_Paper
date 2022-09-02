@@ -50,14 +50,13 @@
         android:layout_height="30dp"
         android:layout_gravity="center"
         android:visibility="invisible"/>
-    <!-- 语言播放界面 -->
+    <!-- 听书播放界面 -->
     <com.jack.bookshelf.view.popupwindow.MediaPlayerPop
         android:id="@+id/mediaPlayerPop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:visibility="gone"
-        tools:visibility="invisible" />
+        android:visibility="gone" />
     <!-- 菜单 -->
     <FrameLayout
         android:id="@+id/fl_menu"

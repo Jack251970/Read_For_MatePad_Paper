@@ -42,17 +42,16 @@
     <TextView
         android:id="@+id/tv_ok"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_height="@dimen/alert_dialog_button_layout_height"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
         android:clickable="true"
         android:focusable="true"
-        android:gravity="center"
-        android:padding="@dimen/text_view_button_padding"
-        android:background="@drawable/textview_button_background"
-        android:layout_margin="5dp"
+        android:layout_margin="12dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:text="@string/confirm"
-        android:textFontWeight="800"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:textSize="14sp"/>
+        android:textSize="16sp"/>
 </LinearLayout>

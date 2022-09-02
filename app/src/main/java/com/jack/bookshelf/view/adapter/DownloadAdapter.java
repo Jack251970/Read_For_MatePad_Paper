@@ -1,7 +1,6 @@
 package com.jack.bookshelf.view.adapter;
 
 import android.annotation.SuppressLint;
-import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +21,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Download Item Adapter
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
 public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.MyViewHolder> {
     private final DownloadActivity activity;
     private final List<DownloadBookBean> data;
@@ -32,7 +37,7 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.MyView
         data = new ArrayList<>();
     }
 
-
+    @SuppressLint("NotifyDataSetChanged")
     public void upDataS(List<DownloadBookBean> dataS) {
         synchronized (mLock) {
             this.data.clear();
@@ -95,9 +100,7 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-
-    }
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {}
 
 
     @SuppressLint("StringFormatMatches")
@@ -109,7 +112,6 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.MyView
             holder.tvDownload.setText(activity.getString(R.string.un_download, payloads.get(0)));
         } else {
             holder.ivDel.getDrawable().mutate();
-            holder.ivDel.getDrawable().setColorFilter(activity.getResources().getColor(R.color.tv_text_default), PorterDuff.Mode.SRC_ATOP);
             holder.ivCover.load(item.getCoverUrl(), item.getName(), null);
             if (item.getSuccessCount() > 0) {
                 holder.tvName.setText(String.format(Locale.getDefault(), "%s(正在下载)", item.getName()));
@@ -120,7 +122,6 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.MyView
             holder.ivDel.setOnClickListener(view -> DownloadService.removeDownload(activity, item.getNoteUrl()));
         }
     }
-
 
     @Override
     public int getItemCount() {
