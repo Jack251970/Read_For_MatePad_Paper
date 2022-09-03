@@ -1,6 +1,7 @@
 package com.jack.bookshelf.widget.prefs;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.preference.SwitchPreference;
 import android.util.AttributeSet;
 import android.view.View;
@@ -8,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Switch;
 
 import com.jack.bookshelf.utils.theme.ATH;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 
 import java.util.LinkedList;
 
@@ -45,7 +45,7 @@ public class ATESwitchPreference extends SwitchPreference {
                 ViewGroup current = queue.removeFirst();
                 for (int i = 0; i < current.getChildCount(); i++) {
                     if (current.getChildAt(i) instanceof Switch) {
-                        ATH.setTint(current.getChildAt(i), ThemeStore.accentColor(view.getContext()));
+                        ATH.setTint(current.getChildAt(i), Color.BLACK);
                         return;
                     } else if (current.getChildAt(i) instanceof ViewGroup) {
                         queue.addLast((ViewGroup) current.getChildAt(i));

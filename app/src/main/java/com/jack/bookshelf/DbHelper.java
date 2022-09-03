@@ -26,7 +26,7 @@ import java.util.Locale;
  */
 
 public class DbHelper {
-    private static DbHelper instance;
+    private static volatile DbHelper instance;
     private final SQLiteDatabase db;
     private final DaoSession mDaoSession;
 

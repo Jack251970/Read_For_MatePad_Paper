@@ -168,8 +168,9 @@
     <string name="sure_delete_download_book">是否同时删除已下载的书籍目录？</string>
     <string name="launcher_setting">启动设置</string>
     <string name="ps_default_read">打开阅读时将自动前往上一次阅读位置</string>
-    <string name="pt_default_read">默认跳转最近阅读</string>
+    <string name="default_read">默认跳转最近阅读</string>
     <string name="backup_setting">备份设置</string>
+    <string name="webdav_setting">WebDav配置</string>
     <string name="ps_webdav_setting">WebDav服务器与账号设置</string>
     <string name="backup_path">本地备份路径</string>
     <string name="update_setting">更新设置</string>

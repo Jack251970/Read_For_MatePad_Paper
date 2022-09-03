@@ -10,6 +10,7 @@ import android.preference.ListPreference
 import android.preference.Preference
 import android.preference.PreferenceFragment
 import android.preference.PreferenceScreen
+
 import com.jack.bookshelf.MApplication
 import com.jack.bookshelf.R
 import com.jack.bookshelf.help.BookshelfHelp
@@ -27,7 +28,6 @@ import com.jack.bookshelf.view.dialog.PaperAlertDialog
  * Edited by Jack251970
  */
 
-@Suppress("DEPRECATION")
 class SettingsFragment : PreferenceFragment(), OnSharedPreferenceChangeListener {
     private var settingActivity: SettingActivity? = null
 
@@ -91,7 +91,7 @@ class SettingsFragment : PreferenceFragment(), OnSharedPreferenceChangeListener 
         when (preference.key) {
             "webDavSetting" -> {
                 val webDavSettingsFragment = WebDavSettingsFragment()
-                fragmentManager.beginTransaction().replace(R.id.settingsFrameLayout, webDavSettingsFragment, "webDavSettings").commit()
+                // fragmentManager.beginTransaction().replace(R.id.settingsFrameLayout, webDavSettingsFragment, "webDavSettings").commit()
             }
             "backupPath" -> {
                 settingActivity?.let { selectBackupFolder(activity, it.root) }

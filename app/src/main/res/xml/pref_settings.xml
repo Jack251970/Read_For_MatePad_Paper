@@ -6,7 +6,7 @@
             android:defaultValue="false"
             android:key="@string/pk_default_read"
             android:summary="@string/ps_default_read"
-            android:title="@string/pt_default_read" />
+            android:title="@string/default_read" />
     </com.jack.bookshelf.widget.prefs.ATEPreferenceCategory>
     <com.jack.bookshelf.widget.prefs.ATEPreferenceCategory android:title="@string/backup_setting">
         <Preference

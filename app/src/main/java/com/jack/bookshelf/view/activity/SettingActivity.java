@@ -11,7 +11,6 @@ import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.MBaseActivity;
 import com.jack.bookshelf.databinding.ActivitySettingsBinding;
 import com.jack.bookshelf.help.storage.BackupRestoreUi;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.fragment.SettingsFragment;
 
 /**
@@ -35,7 +34,6 @@ public class SettingActivity extends MBaseActivity<IPresenter> {
 
     @Override
     protected void onCreateActivity() {
-        getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivitySettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getFragmentManager().beginTransaction()

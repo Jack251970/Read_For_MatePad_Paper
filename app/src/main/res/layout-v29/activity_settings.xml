@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_content"
     android:fitsSystemWindows="true"
@@ -37,9 +38,90 @@
             android:textColor="@color/black"
             android:textStyle="bold"/>
     </LinearLayout>
-    <LinearLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/content_margin_left_and_right"
+        android:paddingEnd="@dimen/content_margin_left_and_right"
+        tools:paddingStart="0dp"
+        tools:paddingEnd="0dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- 启动设置 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/launcher_setting"
+                style="@style/PaperTextStyleSettingTitle" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_launcher_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/setting_preference_margin_title"
+                android:paddingTop="@dimen/setting_category_padding_up_and_bottom"
+                android:paddingBottom="@dimen/setting_category_padding_up_and_bottom"
+                android:paddingStart="@dimen/setting_preference_padding_left_and_right"
+                android:paddingEnd="@dimen/setting_preference_padding_left_and_right"
+                android:background="@drawable/preference_category_background">
+                <TextView
+                    android:id="@+id/tv_default_read"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:gravity="center_vertical"
+                    android:text="@string/default_read"
+                    style="@style/PaperTextStyleSettingPreference"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_launcher_setting"
+                    app:layout_constraintTop_toTopOf="@id/cl_launcher_setting"/>
+                <com.jack.bookshelf.widget.PaperSwitch
+                    android:id="@+id/sw_default_read"
+                    android:layout_width="@dimen/setting_preference_layout_height"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:src="@drawable/ic_switch_unchecked"
+                    app:layout_constraintRight_toRightOf="@id/cl_launcher_setting"
+                    app:layout_constraintTop_toTopOf="@id/cl_launcher_setting"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- 备份设置 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/setting_preference_margin_title"
+                android:text="@string/launcher_setting"
+                style="@style/PaperTextStyleSettingTitle" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_backup_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/setting_preference_margin_title"
+                android:paddingTop="@dimen/setting_category_padding_up_and_bottom"
+                android:paddingBottom="@dimen/setting_category_padding_up_and_bottom"
+                android:paddingStart="@dimen/setting_preference_padding_left_and_right"
+                android:paddingEnd="@dimen/setting_preference_padding_left_and_right"
+                android:background="@drawable/preference_category_background">
+                <TextView
+                    android:id="@+id/tv_webdav_setting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:gravity="center_vertical"
+                    android:text="@string/webdav_setting"
+                    style="@style/PaperTextStyleSettingPreference"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_backup_setting"
+                    app:layout_constraintTop_toTopOf="@id/cl_backup_setting"/>
+                <ImageView
+                    android:id="@+id/iv_webdav_setting"
+                    android:layout_width="@dimen/setting_preference_layout_height"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:src="@drawable/ic_next"
+                    app:layout_constraintRight_toRightOf="@id/cl_backup_setting"
+                    app:layout_constraintTop_toTopOf="@id/cl_backup_setting"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+    <!--<LinearLayout
         android:id="@+id/settingsFrameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" />
+        android:orientation="vertical"
+        android:padding="@dimen/content_padding"/>-->
 </LinearLayout>
