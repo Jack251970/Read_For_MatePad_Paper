@@ -43,7 +43,8 @@
         tools:replace="android:theme">
         <activity
             android:name=".view.activity.WelcomeActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/CAppWelcomeTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

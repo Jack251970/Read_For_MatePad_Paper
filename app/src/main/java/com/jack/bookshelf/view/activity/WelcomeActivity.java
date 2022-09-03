@@ -2,14 +2,17 @@ package com.jack.bookshelf.view.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.os.Bundle;
 
-import com.jack.basemvplib.impl.IPresenter;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.jack.bookshelf.DbHelper;
 import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
-import com.jack.bookshelf.base.MBaseActivity;
 import com.jack.bookshelf.bean.BookSourceBean;
 import com.jack.bookshelf.bean.TxtChapterRuleBean;
+import com.jack.bookshelf.databinding.ActivityWelcomeBinding;
 import com.jack.bookshelf.presenter.ReadBookPresenter;
 import com.jack.bookshelf.utils.GsonUtils;
 import com.jack.bookshelf.utils.IOUtils;
@@ -24,26 +27,39 @@ import java.util.List;
  * Edited by Jack251970
  */
 
-public class WelcomeActivity extends MBaseActivity<IPresenter>{
+public class WelcomeActivity extends AppCompatActivity {
     private final SharedPreferences preferences = MApplication.getConfigPreferences();
 
     @Override
-    protected IPresenter initInjector() {return null;}
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_welcome);
+        onCreateActivity();
+        initData();
+    }
 
-    @Override
-    protected void onCreateActivity() {
+    private void onCreateActivity() {
         // 避免从桌面启动程序后，会重新实例化入口类的activity
         if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
             finish();
             return;
         }
-        if (preferences.getBoolean(getString(R.string.pk_default_read), false)) {
-            startReadActivity();
-        } else {
-            startBookshelfActivity();
-        }
-        finish();
-        initData();
+        ActivityWelcomeBinding binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        AsyncTask.execute(DbHelper::getDaoSession);
+        new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+            }catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (preferences.getBoolean(getString(R.string.pk_default_read), false)) {
+                startReadActivity();
+            } else {
+                startBookshelfActivity();
+            }
+            finish();
+        }).start();
     }
 
     private void startBookshelfActivity() {
@@ -54,10 +70,7 @@ public class WelcomeActivity extends MBaseActivity<IPresenter>{
         startActivity(new Intent(this,ReadBookActivity.class).putExtra("openFrom", ReadBookPresenter.OPEN_FROM_APP));
     }
 
-    /**
-     * 导入书源、目录正则信息
-     */
-    public void initData() {
+    private void initData() {
         if (!preferences.getBoolean("importDefaultBookSource", false)) {
             String json = null;
             try {

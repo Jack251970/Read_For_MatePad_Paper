@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,9 +19,7 @@ import com.jack.basemvplib.impl.IPresenter;
 import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.utils.ActivityExtensionsKt;
-import com.jack.bookshelf.utils.ColorUtils;
 import com.jack.bookshelf.utils.SoftInputUtil;
-import com.jack.bookshelf.utils.theme.MaterialValueHelper;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 
 import java.lang.reflect.Method;
@@ -34,7 +31,6 @@ import java.util.ArrayList;
  */
 
 public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T> {
-    private static final String TAG = MBaseActivity.class.getSimpleName();
     public final SharedPreferences preferences = MApplication.getConfigPreferences();
     private Snackbar snackbar;
 
@@ -79,12 +75,10 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        int primaryTextColor = MaterialValueHelper.getPrimaryTextColor(this, ColorUtils.isColorLight(ThemeStore.primaryColor(this)));
         for (int i = 0; i < menu.size(); i++) {
             Drawable drawable = menu.getItem(i).getIcon();
             if (drawable != null) {
                 drawable.mutate();
-                drawable.setColorFilter(primaryTextColor, PorterDuff.Mode.SRC_ATOP);
             }
         }
         return super.onCreateOptionsMenu(menu);
@@ -103,12 +97,12 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
                     method.invoke(menu, true);
                     method = menu.getClass().getDeclaredMethod("getNonActionItems");
                     ArrayList<MenuItem> menuItems = (ArrayList<MenuItem>) method.invoke(menu);
+                    assert menuItems != null;
                     if (!menuItems.isEmpty()) {
                         for (MenuItem menuItem : menuItems) {
                             Drawable drawable = menuItem.getIcon();
                             if (drawable != null) {
                                 drawable.mutate();
-                                drawable.setColorFilter(getResources().getColor(R.color.tv_text_default), PorterDuff.Mode.SRC_ATOP);
                             }
                         }
                     }
