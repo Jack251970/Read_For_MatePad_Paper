@@ -36,7 +36,6 @@ class SettingsFragment : PreferenceFragment(), OnSharedPreferenceChangeListener 
         super.onCreate(savedInstanceState)
         preferenceManager.sharedPreferencesName = "CONFIG"
         settingActivity = activity as? SettingActivity
-        settingActivity?.setTile(R.string.setting)
         addPreferencesFromResource(R.xml.pref_settings)
         val sharedPreferences = preferenceManager.sharedPreferences
         val editor = sharedPreferences.edit()
@@ -92,9 +91,6 @@ class SettingsFragment : PreferenceFragment(), OnSharedPreferenceChangeListener 
             "webDavSetting" -> {
                 val webDavSettingsFragment = WebDavSettingsFragment()
                 // fragmentManager.beginTransaction().replace(R.id.settingsFrameLayout, webDavSettingsFragment, "webDavSettings").commit()
-            }
-            "backupPath" -> {
-                settingActivity?.let { selectBackupFolder(activity, it.root) }
             }
             "clearCache" -> {
                 PaperAlertDialog.builder(activity)

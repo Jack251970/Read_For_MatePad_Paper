@@ -11,7 +11,6 @@ import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.MBaseActivity;
 import com.jack.bookshelf.databinding.ActivitySettingsBinding;
 import com.jack.bookshelf.help.storage.BackupRestoreUi;
-import com.jack.bookshelf.view.fragment.SettingsFragment;
 
 /**
  * Setting Page
@@ -21,7 +20,6 @@ import com.jack.bookshelf.view.fragment.SettingsFragment;
 
 public class SettingActivity extends MBaseActivity<IPresenter> {
     private ActivitySettingsBinding binding;
-    private final SettingsFragment settingsFragment = new SettingsFragment();
 
     public static void startThis(Context context) {
         context.startActivity(new Intent(context, SettingActivity.class));
@@ -36,15 +34,14 @@ public class SettingActivity extends MBaseActivity<IPresenter> {
     protected void onCreateActivity() {
         binding = ActivitySettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        getFragmentManager().beginTransaction()
-                .replace(R.id.settingsFrameLayout, settingsFragment, "settings")
-                .commit();
     }
 
     @Override
     protected void bindView() {
         super.bindView();
         binding.ivBackSetting.setOnClickListener(v -> finish());
+        binding.swDefaultRead.setOnClickListener(v -> binding.swDefaultRead.setChecked(!binding.swDefaultRead.getChecked()));
+        binding.tvBackPath.setOnClickListener(v -> BackupRestoreUi.INSTANCE.selectBackupFolder(this,binding.getRoot()));
     }
 
     /**
@@ -62,17 +59,13 @@ public class SettingActivity extends MBaseActivity<IPresenter> {
     }
 
     @Override
-    protected void initData() {}
+    protected void initData() {
+        binding.swDefaultRead.initPreferenceKey(R.string.pk_default_read,false);
+    }
 
     @Override
     public void finish() {
-        if (getFragmentManager().findFragmentByTag("settings") == null) {
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.settingsFrameLayout, settingsFragment, "settings")
-                    .commit();
-        } else {
-            super.finish();
-        }
+        super.finish();
     }
 
     @Override

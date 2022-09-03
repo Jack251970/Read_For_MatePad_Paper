@@ -10,6 +10,12 @@ import androidx.annotation.Nullable;
 import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 
+/**
+ * Switch
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
 public class PaperSwitch extends androidx.appcompat.widget.AppCompatImageView {
     private boolean checked = false;
     private String preferenceKey = null;
@@ -25,6 +31,11 @@ public class PaperSwitch extends androidx.appcompat.widget.AppCompatImageView {
 
     public PaperSwitch(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+    }
+
+    public void initPreferenceKey(int idPreferenceKey, boolean defaultValue) {
+        setChecked(prefer.getBoolean(MApplication.getAppResources().getString(idPreferenceKey), defaultValue));
+        this.preferenceKey = MApplication.getAppResources().getString(idPreferenceKey);
     }
 
     public void initPreferenceKey(String preferenceKey, boolean defaultValue) {
