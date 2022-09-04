@@ -37,26 +37,10 @@ public class NumberPickerDialog extends PopupWindow {
 
     public static NumberPickerDialog builder(Context context) { return new NumberPickerDialog(context); }
 
-    public static NumberPickerDialog builder(Context context,View bindTextView) { return new NumberPickerDialog(context, bindTextView); }
-
     @SuppressLint({"InflateParams"})
     public NumberPickerDialog(Context context) {
         super(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         this.context = context;
-        View view = LayoutInflater.from(context).inflate(R.layout.dialog_number_picker, null);
-        this.setContentView(view);
-        bindView(view);
-        setFocusable(true);
-        setTouchable(true);
-    }
-
-    @SuppressLint({"InflateParams"})
-    public NumberPickerDialog(Context context, View bindTextView) {
-        super(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        this.context = context;
-        if (bindTextView instanceof TextView) {
-            this.bindTextView = (TextView) bindTextView;
-        }
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_number_picker, null);
         this.setContentView(view);
         bindView(view);
@@ -69,6 +53,13 @@ public class NumberPickerDialog extends PopupWindow {
         view.findViewById(R.id.tv_dialog_number_picker_negative_button).setOnClickListener(v -> dismiss());
         tvPositiveButton = view.findViewById(R.id.tv_dialog_number_picker_positive_button);
         numberPicker = view.findViewById(R.id.number_picker);
+    }
+
+    public NumberPickerDialog setBindTextView(View view) {
+        if (view instanceof TextView) {
+            this.bindTextView = (TextView) view;
+        }
+        return this;
     }
 
     public NumberPickerDialog setPreferenceKey(int idPreferenceKey, int defaultValue) {

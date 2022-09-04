@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="ContentDescription" >
     <!-- WebDav配置 -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/setting_preference_margin_title"
-        android:text="@string/webdav_config"
+        android:text="@string/web_dav_config"
         style="@style/PaperTextStyleSettingTitle" />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_webdav_config"
@@ -26,7 +28,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/setting_preference_with_summary_layout_height"
             android:gravity="center_vertical"
-            android:text="@string/pt_web_dav_url"
+            android:text="@string/web_dav_url"
             style="@style/PaperTextStyleSettingPreference"
             app:layout_constraintLeft_toLeftOf="@id/cl_webdav_config"
             app:layout_constraintRight_toRightOf="@id/cl_webdav_config"
@@ -40,7 +42,7 @@
             android:clickable="false"
             app:layout_constraintRight_toRightOf="@id/cl_webdav_config"
             app:layout_constraintTop_toTopOf="@id/tv_web_dav_url"
-            app:layout_constraintBottom_toBottomOf="@id/tv_web_dav_url"/>
+            app:layout_constraintBottom_toBottomOf="@id/tv_web_dav_url"  />
         <View
             android:id="@+id/line1"
             android:layout_width="match_parent"
@@ -53,7 +55,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/setting_preference_with_summary_layout_height"
             android:gravity="center_vertical"
-            android:text="@string/pt_web_dav_account"
+            android:text="@string/web_dav_account"
             style="@style/PaperTextStyleSettingPreference"
             app:layout_constraintLeft_toLeftOf="@id/cl_webdav_config"
             app:layout_constraintRight_toRightOf="@id/cl_webdav_config"
@@ -79,7 +81,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/setting_preference_with_summary_layout_height"
             android:gravity="center_vertical"
-            android:text="@string/pt_web_dav_password"
+            android:text="@string/web_dav_password"
             style="@style/PaperTextStyleSettingPreference"
             app:layout_constraintLeft_toLeftOf="@id/cl_webdav_config"
             app:layout_constraintRight_toRightOf="@id/cl_webdav_config"
@@ -99,7 +101,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/setting_preference_margin_title"
-        android:text="@string/webdav_backup_and_restore"
+        android:text="@string/web_dav_backup_and_restore"
         style="@style/PaperTextStyleSettingTitle" />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_webdav_backup_and_restore"

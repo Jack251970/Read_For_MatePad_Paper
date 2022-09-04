@@ -3,17 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools">
     <EditTextPreference
         android:key="web_dav_url"
-        android:title="@string/pt_web_dav_url"
+        android:title="@string/web_dav_url"
         android:summary="@string/ps_web_dav_url"
         android:singleLine="true"/>
     <EditTextPreference
         android:key="web_dav_account"
-        android:title="@string/pt_web_dav_account"
+        android:title="@string/web_dav_account"
         android:summary="@string/ps_web_dav_account"
         android:singleLine="true"/>
     <EditTextPreference
         android:key="web_dav_password"
-        android:title="@string/pt_web_dav_password"
+        android:title="@string/web_dav_password"
         android:summary="@string/ps_web_dav_password"
         android:singleLine="true"
         android:password="true"

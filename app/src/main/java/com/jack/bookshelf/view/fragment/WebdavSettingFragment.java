@@ -1,5 +1,7 @@
 package com.jack.bookshelf.view.fragment;
 
+import static com.jack.bookshelf.constant.AppConstant.DEFAULT_WEB_DAV_URL;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,6 +22,7 @@ import com.jack.bookshelf.help.storage.BackupRestoreUi;
 import com.jack.bookshelf.help.storage.WebDavHelp;
 import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.view.activity.SettingActivity;
+import com.jack.bookshelf.view.dialog.InputDialog;
 
 import java.util.ArrayList;
 
@@ -65,54 +68,22 @@ public class WebdavSettingFragment extends Fragment {
     }
 
     private void bindView() {
+        binding.tvWebDavUrl.setOnClickListener(v ->
+                InputDialog.builder(settingActivity)
+                        .setTitle(getString(R.string.web_dav_url))
+                        .setPreferenceKey("web_dav_url",DEFAULT_WEB_DAV_URL).show()
+                );
+        binding.tvWebDavAccount.setOnClickListener(v ->
+                InputDialog.builder(settingActivity)
+                        .setTitle(getString(R.string.web_dav_account))
+                        .setPreferenceKey("web_dav_account","").show()
+                );
+        binding.tvWebDavPassword.setOnClickListener(v ->
+                InputDialog.builder(settingActivity)
+                        .setTitle(getString(R.string.web_dav_password))
+                        .setPreferenceKey("web_dav_password","").show()
+                );
         binding.tvWebDavRestore.setOnClickListener(v -> restore());
-        /*binding.tvWebdavSetting.setOnClickListener(null);
-        binding.tvBackPath.setOnClickListener(v -> BackupRestoreUi.INSTANCE.selectBackupFolder(settingActivity,binding.getRoot()));
-        binding.tvFilterGradeNumber.setText(String.valueOf());
-        binding.tvSearchResultFilterGrade.setOnClickListener(v ->
-                NumberPickerDialog.builder(settingActivity,binding.tvFilterGradeNumber)
-                        .setTitle(R.string.search_result_filter_grade)
-                        .setMinValue(0)
-                        .setMaxValue(9)
-                        .setPreferenceKey(R.string.pk_search_result_filter_grade,0)
-                        .show(binding.getRoot()));
-        binding.tvUpdateSearchThreadsNum.setOnClickListener(v ->
-                NumberPickerDialog.builder(settingActivity,binding.tvThreadsNumber)
-                        .setTitle(R.string.update_search_threads_num)
-                        .setMinValue(1)
-                        .setMaxValue(1024)
-                        .setPreferenceKey(R.string.pk_threads_num,16)
-                        .show(binding.getRoot()));
-        binding.tvWebPort.setOnClickListener(v ->
-                NumberPickerDialog.builder(settingActivity,binding.tvWebPortNumber)
-                        .setTitle(R.string.web_port_title)
-                        .setMinValue(1024)
-                        .setMaxValue(60000)
-                        .setPreferenceKey("webPort",1122)
-                        .setAddedListener((oldValue, value) -> {
-                            if (value != oldValue) {
-                                WebService.upHttpServer(settingActivity);
-                            }
-                        })
-                        .show(binding.getRoot()));
-        binding.tvClearCache.setOnClickListener(v ->
-                PaperAlertDialog.builder(settingActivity)
-                    .setType(PaperAlertDialog.ONLY_CENTER_TITLE)
-                    .setTitle(R.string.sure_delete_download_book)
-                    .setNegativeButton(R.string.cancel)
-                    .setPositiveButton(R.string.delete)
-                    .setOnclick(new PaperAlertDialog.OnItemClickListener() {
-                        @Override
-                        public void forNegativeButton() {
-                            BookshelfHelp.clearCaches(false);
-                        }
-
-                        @Override
-                        public void forPositiveButton() {
-                            BookshelfHelp.clearCaches(true);
-                        }
-                    }).show(binding.getRoot()));
-        binding.tvAboutRead.setOnClickListener(v -> AboutActivity.startThis(settingActivity));*/
     }
 
     private void restore() {

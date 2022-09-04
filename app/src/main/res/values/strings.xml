@@ -171,8 +171,8 @@
     <string name="default_read">默认跳转最近阅读</string>
     <string name="backup_setting">备份设置</string>
     <string name="webdav_setting">WebDav设置</string>
-    <string name="webdav_config">WebDav配置</string>
-    <string name="webdav_backup_and_restore">WebDav备份与恢复</string>
+    <string name="web_dav_config">WebDav配置</string>
+    <string name="web_dav_backup_and_restore">WebDav备份与恢复</string>
     <string name="ps_webdav_setting">WebDav服务器与账号设置</string>
     <string name="backup_path">本地备份路径</string>
     <string name="update_setting">更新设置</string>
@@ -205,11 +205,11 @@
     <!-- WebDav Fragment -->
     <string name="webdav">WebDav</string>
     <string name="no_backup">没有备份</string>
-    <string name="pt_web_dav_url">WebDav 服务器</string>
+    <string name="web_dav_url">WebDav 服务器地址</string>
     <string name="ps_web_dav_url">输入你的服务器地址</string>
-    <string name="pt_web_dav_account">WebDav 账号</string>
+    <string name="web_dav_account">WebDav 账号</string>
     <string name="ps_web_dav_account">输入你的WebDav账号</string>
-    <string name="pt_web_dav_password">WebDav 密码</string>
+    <string name="web_dav_password">WebDav 密码</string>
     <string name="ps_web_dav_password">输入你的WebDav授权密码</string>
     <string name="web_dav_restore">WebDav 恢复</string>
     <string name="ps_web_dav_restore">从你的WebDav恢复数据</string>

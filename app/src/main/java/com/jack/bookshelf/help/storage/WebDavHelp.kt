@@ -21,6 +21,12 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.min
 
+/**
+ * WebDav Helper
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
 object WebDavHelp {
     private val zipFilePath = FileHelp.getCachePath() + "/backup" + ".zip"
     private val unzipFilesPath by lazy {
@@ -51,7 +57,7 @@ object WebDavHelp {
         val names = arrayListOf<String>()
         try {
             if (initWebDav()) {
-                var files = WebDav(url + "YueDu/").listFiles()
+                var files = WebDav(url + "Read/").listFiles()
                 files = files.reversed()
                 for (index: Int in 0 until min(10, files.size)) {
                     files[index].displayName?.let {
@@ -81,7 +87,7 @@ object WebDavHelp {
     private fun restoreWebDav(name: String, callBack: Restore.CallBack?) {
         Single.create(SingleOnSubscribe<Boolean> { e ->
             getWebDavUrl().let {
-                val file = WebDav(it + "YueDu/" + name)
+                val file = WebDav(it + "Read/" + name)
                 file.downloadTo(zipFilePath, true)
                 @Suppress("BlockingMethodInNonBlockingContext")
                 ZipUtils.unzipFile(zipFilePath, unzipFilesPath)
@@ -105,8 +111,8 @@ object WebDavHelp {
                 }
                 FileHelp.deleteFile(zipFilePath)
                 if (ZipUtils.zipFiles(paths, zipFilePath)) {
-                    WebDav(getWebDavUrl() + "YueDu").makeAsDir()
-                    val putUrl = getWebDavUrl() + "YueDu/backup" +
+                    WebDav(getWebDavUrl() + "Read").makeAsDir()
+                    val putUrl = getWebDavUrl() + "Read/backup" +
                             SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                                     .format(Date(System.currentTimeMillis())) + ".zip"
                     WebDav(putUrl).upload(zipFilePath)

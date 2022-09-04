@@ -64,7 +64,8 @@ public class GeneralSettingFragment extends Fragment {
         binding.tvBackPath.setOnClickListener(v -> BackupRestoreUi.INSTANCE.selectBackupFolder(settingActivity,settingActivity.getRoot()));
         binding.tvFilterGradeNumber.setText(String.valueOf(pref.getInt(getString(R.string.pk_search_result_filter_grade),0)));
         binding.tvSearchResultFilterGrade.setOnClickListener(v ->
-                NumberPickerDialog.builder(settingActivity,binding.tvFilterGradeNumber)
+                NumberPickerDialog.builder(settingActivity)
+                        .setBindTextView(binding.tvFilterGradeNumber)
                         .setTitle(R.string.search_result_filter_grade)
                         .setMinValue(0)
                         .setMaxValue(9)
@@ -72,7 +73,8 @@ public class GeneralSettingFragment extends Fragment {
                         .show(settingActivity.getRoot()));
         binding.tvThreadsNumber.setText(String.valueOf(pref.getInt(getString(R.string.pk_threads_num),16)));
         binding.tvUpdateSearchThreadsNum.setOnClickListener(v ->
-                NumberPickerDialog.builder(settingActivity,binding.tvThreadsNumber)
+                NumberPickerDialog.builder(settingActivity)
+                        .setBindTextView(binding.tvThreadsNumber)
                         .setTitle(R.string.update_search_threads_num)
                         .setMinValue(1)
                         .setMaxValue(1024)
@@ -80,7 +82,8 @@ public class GeneralSettingFragment extends Fragment {
                         .show(settingActivity.getRoot()));
         binding.tvThreadsNumber.setText(String.valueOf(pref.getInt("webPort",1122)));
         binding.tvWebPort.setOnClickListener(v ->
-                NumberPickerDialog.builder(settingActivity,binding.tvWebPortNumber)
+                NumberPickerDialog.builder(settingActivity)
+                        .setBindTextView(binding.tvWebPortNumber)
                         .setTitle(R.string.web_port_title)
                         .setMinValue(1024)
                         .setMaxValue(60000)
