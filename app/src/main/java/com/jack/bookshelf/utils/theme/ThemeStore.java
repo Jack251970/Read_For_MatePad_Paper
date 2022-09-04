@@ -161,11 +161,11 @@ public final class ThemeStore implements ThemeStorePrefKeys, ThemeStoreInterface
     }
 
     @SuppressLint("CommitPrefEdits")
-    public static boolean isConfigured(Context context, @IntRange(from = 0, to = Integer.MAX_VALUE) int version) {
+    public static boolean isConfigured(Context context, @IntRange(from = 0, to = Integer.MAX_VALUE) long version) {
         final SharedPreferences prefs = prefs(context);
-        final int lastVersion = prefs.getInt(IS_CONFIGURED_VERSION_KEY, -1);
+        final long lastVersion = prefs.getLong(IS_CONFIGURED_VERSION_KEY, -1);
         if (version > lastVersion) {
-            prefs.edit().putInt(IS_CONFIGURED_VERSION_KEY, version).apply();
+            prefs.edit().putLong(IS_CONFIGURED_VERSION_KEY, version).apply();
             return false;
         }
         return true;

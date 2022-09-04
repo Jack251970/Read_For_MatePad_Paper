@@ -33,14 +33,15 @@ public class PaperSwitch extends androidx.appcompat.widget.AppCompatImageView {
         super(context, attrs, defStyleAttr);
     }
 
-    public void initPreferenceKey(int idPreferenceKey, boolean defaultValue) {
-        setChecked(prefer.getBoolean(MApplication.getAppResources().getString(idPreferenceKey), defaultValue));
-        this.preferenceKey = MApplication.getAppResources().getString(idPreferenceKey);
+    public PaperSwitch setPreferenceKey(int idPreferenceKey, boolean defaultValue) {
+        return setPreferenceKey(MApplication.getAppResources().getString(idPreferenceKey), defaultValue);
     }
 
-    public void initPreferenceKey(String preferenceKey, boolean defaultValue) {
-        setChecked(prefer.getBoolean(preferenceKey, defaultValue));
+    public PaperSwitch setPreferenceKey(String preferenceKey, boolean defaultValue) {
+        this.setChecked(prefer.getBoolean(preferenceKey, defaultValue));
         this.preferenceKey = preferenceKey;
+        this.setOnClickListener(v -> setChecked(!checked));
+        return this;
     }
 
     public void setChecked(boolean checked) {
@@ -56,7 +57,18 @@ public class PaperSwitch extends androidx.appcompat.widget.AppCompatImageView {
         }
     }
 
+    public void setAddedListener(@NonNull OnItemClickListener itemClick) {
+        this.setOnClickListener(v -> {
+            setChecked(!checked);
+            itemClick.forPositiveButton(checked);
+        });
+    }
+
     public boolean getChecked() {
         return this.checked;
+    }
+
+    public interface OnItemClickListener {
+        void forPositiveButton(boolean checked);
     }
 }

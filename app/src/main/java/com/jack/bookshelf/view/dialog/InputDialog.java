@@ -28,7 +28,8 @@ public class InputDialog extends BaseDialog {
     private boolean showDel = false;
     private TextView tvTitle;
     private ATEAutoCompleteTextView etInput;
-    private TextView tvOk;
+    private TextView tvCancel;
+    private TextView tvConfirm;
     private Callback callback = null;
     private final Context context;
 
@@ -73,18 +74,19 @@ public class InputDialog extends BaseDialog {
     }
 
     private void bindView(View view) {
-        View llContent = view.findViewById(R.id.ll_content);
-        llContent.setOnClickListener(null);
-        tvTitle = view.findViewById(R.id.tv_title);
-        etInput = view.findViewById(R.id.et_input);
-        tvOk = view.findViewById(R.id.tv_ok);
+        view.findViewById(R.id.ll_content).setOnClickListener(null);
+        tvTitle = view.findViewById(R.id.tv_title_dialog_input);
+        etInput = view.findViewById(R.id.atv_input_dialog_input);
+        tvCancel = view.findViewById(R.id.tv_cancel_dialog_input);
+        tvConfirm = view.findViewById(R.id.tv_confirm_dialog_input);
     }
 
     public InputDialog setCallback(Callback callback) {
         this.callback = callback;
-        tvOk.setOnClickListener(view -> {
-            callback.setInputText(etInput.getText().toString());
+        tvCancel.setOnClickListener(v -> dismiss());
+        tvConfirm.setOnClickListener(view -> {
             dismiss();
+            callback.setInputText(etInput.getText().toString());
         });
         return this;
     }

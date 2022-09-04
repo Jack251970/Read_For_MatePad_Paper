@@ -9,27 +9,9 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceScreen;
 import android.text.TextUtils;
-import android.widget.Toast;
 
 import com.jack.bookshelf.R;
-import com.jack.bookshelf.base.observer.MySingleObserver;
-import com.jack.bookshelf.help.FileHelp;
-import com.jack.bookshelf.help.ProcessTextHelp;
-import com.jack.bookshelf.help.storage.BackupRestoreUi;
-import com.jack.bookshelf.help.storage.WebDavHelp;
-import com.jack.bookshelf.utils.ToastsKt;
-import com.jack.bookshelf.view.activity.SettingActivity;
-
-import java.util.ArrayList;
-import java.util.Objects;
-
-import io.reactivex.Single;
-import io.reactivex.SingleOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * WebDav Settings
@@ -37,24 +19,12 @@ import io.reactivex.schedulers.Schedulers;
  * Edited by Jack251970
  */
 
-public class WebDavSettingsFragment extends PreferenceFragment
-        implements SharedPreferences.OnSharedPreferenceChangeListener {
-    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
+public class WebDavSettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getPreferenceManager().setSharedPreferencesName("CONFIG");
-        SettingActivity settingActivity = (SettingActivity) this.getActivity();
-        settingActivity.setTile(R.string.webdav);
-        SharedPreferences sharedPreferences = getPreferenceManager().getSharedPreferences();
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        boolean processTextEnabled = ProcessTextHelp.isProcessTextEnabled();
-        editor.putBoolean("process_text", processTextEnabled);
-        if (Objects.equals(sharedPreferences.getString("downloadPath", ""), "")) {
-            editor.putString("downloadPath", FileHelp.getCachePath());
-        }
-        editor.apply();
         addPreferencesFromResource(R.xml.pref_settings_web_dav);
         bindPreferenceSummaryToValue(findPreference("web_dav_url"));
         bindPreferenceSummaryToValue(findPreference("web_dav_account"));
@@ -113,40 +83,19 @@ public class WebDavSettingsFragment extends PreferenceFragment
         super.onPause();
     }
 
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {}
-
-    @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference.getKey().equals("web_dav_restore")) {
-            restore();
-        }
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
-    }
-
-    private void restore() {
-        Single.create((SingleOnSubscribe<ArrayList<String>>) emitter -> {
-            emitter.onSuccess(WebDavHelp.INSTANCE.getWebDavFileNames());
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MySingleObserver<ArrayList<String>>() {
-                    @Override
-                    public void onSuccess(ArrayList<String> strings) {
-                        if (!WebDavHelp.INSTANCE.showRestoreDialog(getActivity(), strings, BackupRestoreUi.INSTANCE)) {
-                            ToastsKt.toast(getActivity(),R.string.no_backup,Toast.LENGTH_SHORT);
-                        }
-                    }
-                });
-    }
 
     @Override
     public void onDestroy() {
-        compositeDisposable.dispose();
         super.onDestroy();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
     }
 }

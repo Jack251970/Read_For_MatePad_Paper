@@ -9,6 +9,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.jack.bookshelf.utils.ToastsKt;
 
 import java.io.File;
@@ -21,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import timber.log.Timber;
 
@@ -83,13 +86,13 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
      * uncaughtException 回调函数
      */
     @Override
-    public void uncaughtException(Thread thread, Throwable ex) {
+    public void uncaughtException(@NonNull Thread thread, @NonNull Throwable ex) {
         if (!handleException(ex) && mDefaultHandler != null) {
-            //如果自己没处理交给系统处理
+            // 如果自己没处理交给系统处理
             mDefaultHandler.uncaughtException(thread, ex);
         } else {
-            //自己处理
-            try {//延迟3秒杀进程
+            // 自己处理
+            try {   // 延迟3秒杀进程
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
                 Timber.tag(TAG).e(e, "error : ");
@@ -107,17 +110,17 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         if (ex == null) {
             return false;
         }
-        //收集设备参数信息
+        // 收集设备参数信息
         collectDeviceInfo(mContext);
-        //添加自定义信息
+        // 添加自定义信息
         addCustomInfo();
         try {
-            //使用Toast来显示异常信息
+            // 使用Toast来显示异常信息
             new Handler(Looper.getMainLooper()).post(() ->
                     ToastsKt.toast(mContext, ex.getMessage(), Toast.LENGTH_LONG));
         } catch (Exception ignored) {
         }
-        //保存日志文件
+        // 保存日志文件
         saveCrashInfo2File(ex);
         return false;
     }
@@ -127,25 +130,25 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
      * 收集设备参数信息
      */
     private void collectDeviceInfo(Context ctx) {
-        //获取versionName,versionCode
+        // 获取versionName,versionCode
         try {
             PackageManager pm = ctx.getPackageManager();
             PackageInfo pi = pm.getPackageInfo(ctx.getPackageName(), PackageManager.GET_ACTIVITIES);
             if (pi != null) {
                 String versionName = pi.versionName == null ? "null" : pi.versionName;
-                String versionCode = pi.versionCode + "";
+                String versionCode = pi.getLongVersionCode() + "";
                 paramsMap.put("versionName", versionName);
                 paramsMap.put("versionCode", versionCode);
             }
         } catch (PackageManager.NameNotFoundException e) {
             Timber.tag(TAG).e(e, "an error occurred when collect package info");
         }
-        //获取所有系统信息
+        // 获取所有系统信息
         Field[] fields = Build.class.getDeclaredFields();
         for (Field field : fields) {
             try {
                 field.setAccessible(true);
-                paramsMap.put(field.getName(), field.get(null).toString());
+                paramsMap.put(field.getName(), Objects.requireNonNull(field.get(null)).toString());
             } catch (Exception e) {
                 Timber.tag(TAG).e(e, "an error occurred when collect crash info");
             }

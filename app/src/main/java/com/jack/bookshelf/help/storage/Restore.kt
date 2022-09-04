@@ -112,7 +112,7 @@ object Restore {
                     is String -> edit.putString(it.key, value)
                     else -> Unit
                 }
-                edit.putInt("versionCode", MApplication.getVersionCode())
+                edit.putLong("versionCode", MApplication.getVersionCode())
                 edit.apply()
             }
             e.onSuccess(true)

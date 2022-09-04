@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import com.jack.basemvplib.BasePresenterImpl;
 import com.jack.basemvplib.impl.IView;
 import com.jack.bookshelf.MApplication;
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BookSourceBean;
 import com.jack.bookshelf.bean.FindKindBean;
 import com.jack.bookshelf.bean.FindKindGroupBean;
@@ -44,7 +45,7 @@ public class FindBookPresenter extends BasePresenterImpl<FindBookContract.View> 
         ACache aCache = ACache.get(mView.getContext(), "findCache");
         Single.create((SingleOnSubscribe<List<RecyclerViewData>>) e -> {
             List<RecyclerViewData> group = new ArrayList<>();
-            boolean showAllFind = MApplication.getConfigPreferences().getBoolean("showAllFind", true);
+            boolean showAllFind = MApplication.getConfigPreferences().getBoolean(MApplication.getAppResources().getString(R.string.pk_show_all_find), true);
             List<BookSourceBean> sourceBeans = new ArrayList<>(showAllFind ? BookSourceManager.getAllBookSourceBySerialNumber() : BookSourceManager.getSelectedBookSourceBySerialNumber());
             for (BookSourceBean sourceBean : sourceBeans) {
                 Pair<FindKindGroupBean, List<FindKindBean>> pair = sourceBean.getFindList();

@@ -20,6 +20,6 @@
         tools:ignore="Deprecated"/>
     <Preference
         android:key="web_dav_restore"
-        android:title="@string/pt_web_dav_restore"
+        android:title="@string/web_dav_restore"
         android:summary="@string/ps_web_dav_restore"/>
 </PreferenceScreen>

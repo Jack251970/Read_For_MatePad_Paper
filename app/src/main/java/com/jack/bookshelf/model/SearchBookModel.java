@@ -53,7 +53,7 @@ public class SearchBookModel {
         executorService = Executors.newFixedThreadPool(threadsNum);
         scheduler = Schedulers.from(executorService);
         compositeDisposable = new CompositeDisposable();
-        search_result_filter_grade = MApplication.getConfigPreferences().getInt(MApplication.getInstance().getString(R.string.pk_search_result_filter_grade), 7);
+        search_result_filter_grade = MApplication.getConfigPreferences().getInt(MApplication.getInstance().getString(R.string.pk_search_result_filter_grade), 0);
         if (sourceBeanList == null) {
             initSearchEngineS(BookSourceManager.getSelectedBookSource());
         } else {

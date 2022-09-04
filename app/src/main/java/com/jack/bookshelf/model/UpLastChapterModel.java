@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import com.hwangjr.rxbus.RxBus;
 import com.jack.bookshelf.DbHelper;
 import com.jack.bookshelf.MApplication;
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BookChapterBean;
 import com.jack.bookshelf.bean.BookShelfBean;
 import com.jack.bookshelf.bean.BookSourceBean;
@@ -58,7 +59,7 @@ public class UpLastChapterModel {
     }
 
     public void startUpdate() {
-        if (!MApplication.getConfigPreferences().getBoolean("upChangeSourceLastChapter", false))
+        if (!MApplication.getConfigPreferences().getBoolean(MApplication.getAppResources().getString(R.string.pk_change_source_update_chapter), false))
             return;
         if (compositeDisposable.size() > 0) return;
         List<SearchBookBean> beanList = new ArrayList<>();

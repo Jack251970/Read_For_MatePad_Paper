@@ -5,7 +5,7 @@ import android.provider.Settings;
 
 import com.google.gson.reflect.TypeToken;
 import com.jack.bookshelf.BuildConfig;
-import com.jack.bookshelf.MApplication;
+import com.jack.bookshelf.help.FileHelp;
 
 import java.io.File;
 import java.lang.reflect.Type;
@@ -18,7 +18,6 @@ import javax.script.ScriptEngineManager;
 import okhttp3.MediaType;
 
 public class AppConstant {
-
     public static final String ActionStartService = "startService";
     public static final String ActionDoneService = "doneService";
 
@@ -28,7 +27,7 @@ public class AppConstant {
     public static final String FORMAT_TIME = "HH:mm";
     public static final String FORMAT_FILE_DATE = "yyyy-MM-dd";
     //BookCachePath (因为getCachePath引用了Context，所以必须是静态变量，不能够是静态常量)
-    public static String BOOK_CACHE_PATH = MApplication.downloadPath + File.separator + "book_cache" + File.separator;
+    public static String BOOK_CACHE_PATH = FileHelp.getFilesPath() + File.separator + "book_cache" + File.separator;
 
     public static Type MAP_STRING = new TypeToken<Map<String, String>>() {
     }.getType();

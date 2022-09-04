@@ -75,6 +75,7 @@
         <dimen name="setting_category_padding_up_and_bottom">3dp</dimen>
         <dimen name="setting_preference_padding_left_and_right">24dp</dimen>
         <dimen name="setting_preference_margin_title">10dp</dimen>
+        <dimen name="setting_preference_with_summary_layout_height">68dp</dimen>
 
 
 

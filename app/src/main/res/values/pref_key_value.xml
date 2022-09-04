@@ -4,13 +4,15 @@
     <string name="pk_bookshelf_px">bookshelf_px</string>
     <string name="pk_auto_refresh">auto_refresh</string>
     <string name="pk_screen_direction">list_screen_direction</string>
-    <string name="pk_full_screen">full_screen</string>
     <string name="pk_threads_num">threads_num</string>
     <string name="pk_user_agent">user_agent</string>
     <string name="pk_read_type">read_type</string>
     <string name="pk_find_expand_group">expandGroupFind</string>
     <string name="pk_default_read">defaultToRead</string>
     <string name="pk_auto_download">autoDownload</string>
+    <string name="pk_change_source_update_chapter">upChangeSourceLastChapter</string>
+    <string name="pk_default_purify">replaceEnableDefault</string>
+    <string name="pk_show_all_find">showAllFind</string>
     <string name="pk_check_update">checkUpdate</string>
     <string name="pk_search_result_filter_grade">search_result_filter_grade</string>
     <!-- Websites -->

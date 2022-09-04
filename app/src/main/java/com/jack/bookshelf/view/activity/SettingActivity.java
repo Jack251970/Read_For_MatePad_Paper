@@ -11,6 +11,7 @@ import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.MBaseActivity;
 import com.jack.bookshelf.databinding.ActivitySettingsBinding;
 import com.jack.bookshelf.help.storage.BackupRestoreUi;
+import com.jack.bookshelf.view.fragment.GeneralSettingFragment;
 
 /**
  * Setting Page
@@ -19,7 +20,11 @@ import com.jack.bookshelf.help.storage.BackupRestoreUi;
  */
 
 public class SettingActivity extends MBaseActivity<IPresenter> {
+
     private ActivitySettingsBinding binding;
+    private final GeneralSettingFragment settingsFragment = new GeneralSettingFragment();
+    private final String generalSettingTag = "general";
+    public final String webdavSettingTag = "webdav";
 
     public static void startThis(Context context) {
         context.startActivity(new Intent(context, SettingActivity.class));
@@ -34,38 +39,34 @@ public class SettingActivity extends MBaseActivity<IPresenter> {
     protected void onCreateActivity() {
         binding = ActivitySettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        getSupportFragmentManager().beginTransaction().replace(R.id.settingFragment, settingsFragment,generalSettingTag).commit();
     }
 
     @Override
     protected void bindView() {
         super.bindView();
         binding.ivBackSetting.setOnClickListener(v -> finish());
-        binding.swDefaultRead.setOnClickListener(v -> binding.swDefaultRead.setChecked(!binding.swDefaultRead.getChecked()));
-        binding.tvBackPath.setOnClickListener(v -> BackupRestoreUi.INSTANCE.selectBackupFolder(this,binding.getRoot()));
     }
 
-    /**
-     * 设置界面标题
-     */
     public void setTile(int strId) {
         binding.tvSettingTitle.setText(strId);
     }
 
-    /**
-     * 获得根View
-     */
     public View getRoot() {
         return binding.getRoot();
     }
 
     @Override
     protected void initData() {
-        binding.swDefaultRead.initPreferenceKey(R.string.pk_default_read,false);
     }
 
     @Override
     public void finish() {
-        super.finish();
+        if (getSupportFragmentManager().findFragmentByTag(generalSettingTag) == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.settingFragment, settingsFragment,generalSettingTag).commit();
+        } else {
+            super.finish();
+        }
     }
 
     @Override

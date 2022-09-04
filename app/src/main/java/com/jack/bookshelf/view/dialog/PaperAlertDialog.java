@@ -76,11 +76,11 @@ public class PaperAlertDialog extends PopupWindow{
         return this;
     }
 
-    public PaperAlertDialog setNegativeButton (int strId) {
+    public PaperAlertDialog setNegativeButton(int strId) {
         return setNegativeButton(getString(strId));
     }
 
-    public PaperAlertDialog setNegativeButton (String text) {
+    public PaperAlertDialog setNegativeButton(String text) {
         tvNegativeButton.setText(text);
         tvNegativeButton.setOnClickListener(v -> {
             dismiss();
@@ -89,11 +89,11 @@ public class PaperAlertDialog extends PopupWindow{
         return this;
     }
 
-    public PaperAlertDialog setPositiveButton (int strId) {
+    public PaperAlertDialog setPositiveButton(int strId) {
         return setPositiveButton(getString(strId));
     }
 
-    public PaperAlertDialog setPositiveButton (String text) {
+    public PaperAlertDialog setPositiveButton(String text) {
         tvPositiveButton.setText(text);
         tvPositiveButton.setOnClickListener(v -> {
             dismiss();

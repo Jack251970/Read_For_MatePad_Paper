@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <!-- WebDav配置 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/setting_preference_margin_title"
+        android:text="@string/webdav_config"
+        style="@style/PaperTextStyleSettingTitle" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_webdav_config"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/setting_preference_margin_title"
+        android:paddingTop="@dimen/setting_category_padding_up_and_bottom"
+        android:paddingBottom="@dimen/setting_category_padding_up_and_bottom"
+        android:paddingStart="@dimen/setting_preference_padding_left_and_right"
+        android:paddingEnd="@dimen/setting_preference_padding_left_and_right"
+        android:background="@drawable/preference_category_background">
+        <TextView
+            android:id="@+id/tv_web_dav_url"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/setting_preference_with_summary_layout_height"
+            android:gravity="center_vertical"
+            android:text="@string/pt_web_dav_url"
+            style="@style/PaperTextStyleSettingPreference"
+            app:layout_constraintLeft_toLeftOf="@id/cl_webdav_config"
+            app:layout_constraintRight_toRightOf="@id/cl_webdav_config"
+            app:layout_constraintTop_toTopOf="@id/cl_webdav_config" />
+        <ImageView
+            android:id="@+id/iv_web_dav_url"
+            android:layout_width="@dimen/setting_preference_layout_height"
+            android:layout_height="@dimen/setting_preference_layout_height"
+            android:src="@drawable/ic_next"
+            android:focusable="false"
+            android:clickable="false"
+            app:layout_constraintRight_toRightOf="@id/cl_webdav_config"
+            app:layout_constraintTop_toTopOf="@id/tv_web_dav_url"
+            app:layout_constraintBottom_toBottomOf="@id/tv_web_dav_url"/>
+        <View
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/tv_web_dav_url"
+            app:layout_constraintLeft_toLeftOf="@id/cl_webdav_config" />
+        <TextView
+            android:id="@+id/tv_web_dav_account"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/setting_preference_with_summary_layout_height"
+            android:gravity="center_vertical"
+            android:text="@string/pt_web_dav_account"
+            style="@style/PaperTextStyleSettingPreference"
+            app:layout_constraintLeft_toLeftOf="@id/cl_webdav_config"
+            app:layout_constraintRight_toRightOf="@id/cl_webdav_config"
+            app:layout_constraintTop_toBottomOf="@id/line1" />
+        <ImageView
+            android:id="@+id/iv_web_dav_account"
+            android:layout_width="@dimen/setting_preference_layout_height"
+            android:layout_height="@dimen/setting_preference_layout_height"
+            android:src="@drawable/ic_next"
+            android:focusable="false"
+            android:clickable="false"
+            app:layout_constraintRight_toRightOf="@id/cl_webdav_config"
+            app:layout_constraintTop_toBottomOf="@id/line1"/>
+        <View
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/tv_web_dav_account"
+            app:layout_constraintLeft_toLeftOf="@id/cl_webdav_config" />
+        <TextView
+            android:id="@+id/tv_web_dav_password"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/setting_preference_with_summary_layout_height"
+            android:gravity="center_vertical"
+            android:text="@string/pt_web_dav_password"
+            style="@style/PaperTextStyleSettingPreference"
+            app:layout_constraintLeft_toLeftOf="@id/cl_webdav_config"
+            app:layout_constraintRight_toRightOf="@id/cl_webdav_config"
+            app:layout_constraintTop_toBottomOf="@id/line2" />
+        <ImageView
+            android:id="@+id/iv_web_dav_password"
+            android:layout_width="@dimen/setting_preference_layout_height"
+            android:layout_height="@dimen/setting_preference_layout_height"
+            android:src="@drawable/ic_next"
+            android:focusable="false"
+            android:clickable="false"
+            app:layout_constraintRight_toRightOf="@id/cl_webdav_config"
+            app:layout_constraintTop_toBottomOf="@id/line2"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- WebDav备份与恢复 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/setting_preference_margin_title"
+        android:text="@string/webdav_backup_and_restore"
+        style="@style/PaperTextStyleSettingTitle" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_webdav_backup_and_restore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/setting_preference_margin_title"
+        android:paddingTop="@dimen/setting_category_padding_up_and_bottom"
+        android:paddingBottom="@dimen/setting_category_padding_up_and_bottom"
+        android:paddingStart="@dimen/setting_preference_padding_left_and_right"
+        android:paddingEnd="@dimen/setting_preference_padding_left_and_right"
+        android:background="@drawable/preference_category_background">
+        <TextView
+            android:id="@+id/tv_web_dav_restore"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/setting_preference_layout_height"
+            android:gravity="center_vertical"
+            android:text="@string/web_dav_restore"
+            style="@style/PaperTextStyleSettingPreference"
+            app:layout_constraintLeft_toLeftOf="@id/cl_webdav_backup_and_restore"
+            app:layout_constraintRight_toRightOf="@id/cl_webdav_backup_and_restore"
+            app:layout_constraintTop_toTopOf="@id/cl_webdav_backup_and_restore" />
+        <ImageView
+            android:id="@+id/iv_web_dav_restore"
+            android:layout_width="@dimen/setting_preference_layout_height"
+            android:layout_height="@dimen/setting_preference_layout_height"
+            android:src="@drawable/ic_next"
+            android:focusable="false"
+            android:clickable="false"
+            app:layout_constraintRight_toRightOf="@id/cl_webdav_backup_and_restore"
+            app:layout_constraintTop_toTopOf="@id/cl_webdav_backup_and_restore"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

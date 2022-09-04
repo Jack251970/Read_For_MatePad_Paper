@@ -24,7 +24,6 @@ import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.BaseViewPagerActivity;
 import com.jack.bookshelf.constant.RxBusTag;
 import com.jack.bookshelf.databinding.ActivityMainBinding;
-import com.jack.bookshelf.help.FileHelp;
 import com.jack.bookshelf.help.ProcessTextHelp;
 import com.jack.bookshelf.help.permission.Permissions;
 import com.jack.bookshelf.help.permission.PermissionsCompat;
@@ -43,7 +42,6 @@ import com.jack.bookshelf.view.popupmenu.SelectMenu;
 import com.jack.bookshelf.widget.viewpager.PaperViewPager;
 
 import java.util.List;
-import java.util.Objects;
 
 import kotlin.Unit;
 
@@ -406,10 +404,8 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
      * 检查并记录版本号
      */
     private void versionUp() {
-        if (preferences.getInt("versionCode", 0) != MApplication.getVersionCode()) {
-            preferences.edit()
-                    .putInt("versionCode", MApplication.getVersionCode())
-                    .apply();
+        if (preferences.getLong("versionCode", 0) != MApplication.getVersionCode()) {
+            preferences.edit().putLong("versionCode", MApplication.getVersionCode()).apply();
         }
     }
 
@@ -417,12 +413,6 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
     protected void firstRequest() {
         if (!isRecreate) {
             versionUp();
-        }
-        if (!Objects.equals(MApplication.downloadPath, FileHelp.getFilesPath())) {
-            new PermissionsCompat.Builder(this)
-                    .addPermissions(Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE)
-                    .rationale(R.string.need_storage_permission_to_backup_book_information)
-                    .request();
         }
         handler.postDelayed(() -> {
             UpLastChapterModel.getInstance().startUpdate();

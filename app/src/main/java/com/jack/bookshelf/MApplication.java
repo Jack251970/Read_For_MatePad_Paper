@@ -7,20 +7,16 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.text.TextUtils;
+import android.graphics.Color;
 
 import androidx.multidex.MultiDex;
 
-import com.jack.bookshelf.constant.AppConstant;
 import com.jack.bookshelf.help.AppFrontBackHelper;
 import com.jack.bookshelf.help.CrashHandler;
-import com.jack.bookshelf.help.FileHelp;
 import com.jack.bookshelf.model.UpLastChapterModel;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 
-import java.io.File;
 import java.util.Arrays;
-import java.util.Objects;
 
 import io.reactivex.internal.functions.Functions;
 import io.reactivex.plugins.RxJavaPlugins;
@@ -36,18 +32,17 @@ public class MApplication extends Application {
     public final static String channelIdDownload = "channel_download";
     public final static String channelIdReadAloud = "channel_read_aloud";
     public final static String channelIdWeb = "channel_web";
-    public static String downloadPath;
     public static String SEARCH_GROUP = null;
     private static MApplication instance;
     private static String versionName;
-    private static int versionCode;
+    private static long versionCode;
     private SharedPreferences configPreferences;
 
     public static MApplication getInstance() {
         return instance;
     }
 
-    public static int getVersionCode() {
+    public static long getVersionCode() {
         return versionCode;
     }
 
@@ -67,7 +62,7 @@ public class MApplication extends Application {
         Timber.plant(new Timber.DebugTree());
         RxJavaPlugins.setErrorHandler(Functions.emptyConsumer());
         try {
-            versionCode = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
+            versionCode = getPackageManager().getPackageInfo(getPackageName(), 0).getLongVersionCode();
             versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
         } catch (PackageManager.NameNotFoundException e) {
             versionCode = 0;
@@ -75,10 +70,6 @@ public class MApplication extends Application {
         }
         createChannelId();
         configPreferences = getSharedPreferences("CONFIG", 0);
-        downloadPath = configPreferences.getString("downloadPath", "");
-        if (TextUtils.isEmpty(downloadPath) | Objects.equals(downloadPath, FileHelp.getCachePath())) {
-            setDownloadPath(null);
-        }
         if (!ThemeStore.isConfigured(this, versionCode)) {
             upThemeStore(); // 初始化主题商店
         }
@@ -104,24 +95,9 @@ public class MApplication extends Application {
      */
     public void upThemeStore() {
         ThemeStore.editTheme(this)
-                .primaryColor(getResources().getColor(R.color.md_white_1000))
-                .accentColor(getResources().getColor(R.color.md_black_1000))
-                .backgroundColor(getResources().getColor(R.color.md_white_1000))
-                .apply();
-    }
-
-    /**
-     * 设置下载地址
-     */
-    public void setDownloadPath(String path) {
-        if (TextUtils.isEmpty(path)) {
-            downloadPath = FileHelp.getFilesPath();
-        } else {
-            downloadPath = path;
-        }
-        AppConstant.BOOK_CACHE_PATH = downloadPath + File.separator + "book_cache" + File.separator;
-        configPreferences.edit()
-                .putString("downloadPath", path)
+                .primaryColor(Color.WHITE)
+                .accentColor(Color.BLACK)
+                .backgroundColor(Color.WHITE)
                 .apply();
     }
 

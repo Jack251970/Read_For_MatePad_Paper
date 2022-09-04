@@ -23,32 +23,19 @@ import com.jack.bookshelf.view.activity.SettingActivity
 import com.jack.bookshelf.view.dialog.PaperAlertDialog
 
 /**
- * Setting Fragment
+ * Setting Fragment Deprecation
  * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
 class SettingsFragment : PreferenceFragment(), OnSharedPreferenceChangeListener {
-    private var settingActivity: SettingActivity? = null
 
     @Deprecated("Deprecated in Java")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        preferenceManager.sharedPreferencesName = "CONFIG"
-        settingActivity = activity as? SettingActivity
-        addPreferencesFromResource(R.xml.pref_settings)
         val sharedPreferences = preferenceManager.sharedPreferences
-        val editor = sharedPreferences.edit()
-        val processTextEnabled = ProcessTextHelp.isProcessTextEnabled()
-        editor.putBoolean("process_text", processTextEnabled)
-        if (sharedPreferences.getString("downloadPath", "") == "") {
-            editor.putString("downloadPath", FileHelp.getCachePath())
-        }
-        editor.apply()
-        upPreferenceSummary("downloadPath", MApplication.downloadPath)
         upPreferenceSummary("backupPath", sharedPreferences.getString("backupPath", null))
         preferenceManager.sharedPreferences.registerOnSharedPreferenceChangeListener(this)
-        settingActivity?.initImmersionBar()
     }
 
     @Deprecated("Deprecated in Java")
@@ -62,8 +49,6 @@ class SettingsFragment : PreferenceFragment(), OnSharedPreferenceChangeListener 
      */
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
         when (key) {
-            "process_text" -> ProcessTextHelp.setProcessTextEnable(sharedPreferences.getBoolean("process_text", true))
-            "webPort" -> WebService.upHttpServer(activity)
             "backupPath" -> upPreferenceSummary(key, sharedPreferences.getString(key, null))
         }
     }
@@ -80,38 +65,6 @@ class SettingsFragment : PreferenceFragment(), OnSharedPreferenceChangeListener 
         } else {
             preference.summary = value
         }
-    }
-
-    /**
-     * 按钮点击事件
-     */
-    @Deprecated("Deprecated in Java")
-    override fun onPreferenceTreeClick(preferenceScreen: PreferenceScreen, preference: Preference): Boolean {
-        when (preference.key) {
-            "webDavSetting" -> {
-                val webDavSettingsFragment = WebDavSettingsFragment()
-                // fragmentManager.beginTransaction().replace(R.id.settingsFrameLayout, webDavSettingsFragment, "webDavSettings").commit()
-            }
-            "clearCache" -> {
-                PaperAlertDialog.builder(activity)
-                    .setType(PaperAlertDialog.ONLY_CENTER_TITLE)
-                    .setTitle(R.string.sure_delete_download_book)
-                    .setNegativeButton(R.string.cancel)
-                    .setPositiveButton(R.string.delete)
-                    .setOnclick(object : PaperAlertDialog.OnItemClickListener {
-                        override fun forNegativeButton() {
-                            BookshelfHelp.clearCaches(false)
-                        }
-                        override fun forPositiveButton() {
-                            BookshelfHelp.clearCaches(true)
-                        }
-                    }).show(settingActivity!!.root)
-            }
-            "aboutRead" -> {
-                AboutActivity.startThis(activity)
-            }
-        }
-        return super.onPreferenceTreeClick(preferenceScreen, preference)
     }
 
     @Deprecated("Deprecated in Java", ReplaceWith(
