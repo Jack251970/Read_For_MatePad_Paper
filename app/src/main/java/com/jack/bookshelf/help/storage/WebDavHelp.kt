@@ -23,7 +23,6 @@ import kotlin.math.min
 
 /**
  * WebDav Helper
- * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
