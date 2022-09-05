@@ -33,8 +33,8 @@ import com.jack.bookshelf.presenter.BookDetailPresenter;
 import com.jack.bookshelf.presenter.ReadBookPresenter;
 import com.jack.bookshelf.presenter.contract.BookDetailContract;
 import com.jack.bookshelf.utils.StringUtils;
-import com.jack.bookshelf.view.popupmenu.MoreSettingMenuBookDetail;
-import com.jack.bookshelf.view.popupmenu.SelectMenu;
+import com.jack.bookshelf.view.popupwindow.MoreSettingMenuBookDetail;
+import com.jack.bookshelf.view.popupwindow.SelectMenu;
 import com.jack.bookshelf.widget.modialog.ChangeSourceDialog;
 import com.jack.bookshelf.widget.modialog.MoDialogHUD;
 

@@ -39,8 +39,8 @@ import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.SourceEditAdapter;
 import com.jack.bookshelf.view.dialog.PaperAlertDialog;
 import com.jack.bookshelf.view.dialog.SourceLoginDialog;
-import com.jack.bookshelf.view.popupmenu.MoreSettingMenu;
 import com.jack.bookshelf.view.popupwindow.KeyboardToolPop;
+import com.jack.bookshelf.view.popupwindow.MoreSettingMenu;
 
 import org.jetbrains.annotations.NotNull;
 

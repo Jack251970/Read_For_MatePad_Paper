@@ -10,7 +10,6 @@ import android.widget.SeekBar
 import com.jack.bookshelf.R
 import com.jack.bookshelf.databinding.PopMoreSettingBinding
 import com.jack.bookshelf.help.ReadBookControl
-import com.jack.bookshelf.view.popupmenu.SelectMenu
 
 /**
  * Read More Setting Menu

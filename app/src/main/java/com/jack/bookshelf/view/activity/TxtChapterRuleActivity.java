@@ -27,7 +27,7 @@ import com.jack.bookshelf.utils.RealPathUtil;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.TxtChapterRuleAdapter;
 import com.jack.bookshelf.view.dialog.PaperAlertDialog;
-import com.jack.bookshelf.view.popupmenu.MoreSettingMenu;
+import com.jack.bookshelf.view.popupwindow.MoreSettingMenu;
 import com.jack.bookshelf.widget.filepicker.picker.FilePicker;
 import com.jack.bookshelf.widget.modialog.TxtChapterRuleDialog;
 

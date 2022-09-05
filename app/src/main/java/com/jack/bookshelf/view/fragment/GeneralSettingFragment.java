@@ -80,7 +80,7 @@ public class GeneralSettingFragment extends Fragment {
                         .setMaxValue(1024)
                         .setPreferenceKey(R.string.pk_threads_num,16)
                         .show(settingActivity.getRoot()));
-        binding.tvThreadsNumber.setText(String.valueOf(pref.getInt("webPort",1122)));
+        binding.tvWebPortNumber.setText(String.valueOf(pref.getInt("webPort",1122)));
         binding.tvWebPort.setOnClickListener(v ->
                 NumberPickerDialog.builder(settingActivity)
                         .setBindTextView(binding.tvWebPortNumber)

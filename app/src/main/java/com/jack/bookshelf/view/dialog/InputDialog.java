@@ -37,7 +37,8 @@ public class InputDialog extends BaseDialog {
     private Callback callback = null;
 
     private TextView bindTextView = null;
-    private String defaultValue;
+    private String tvDefaultValue;
+    private String prefDefaultValue;
     private String oldValue;
     private String preferenceKey = null;
     private final SharedPreferences prefer = MApplication.getConfigPreferences();
@@ -46,25 +47,26 @@ public class InputDialog extends BaseDialog {
         return new InputDialog(context);
     }
 
-    public InputDialog setBindTextView(View view) {
+    public InputDialog setBindTextView(View view, String tvDefaultValue) {
         if (view instanceof TextView) {
             this.bindTextView = (TextView) view;
+            this.tvDefaultValue = tvDefaultValue;
         }
         return this;
     }
 
-    public InputDialog setPreferenceKey(String preferenceKey, String defaultValue) {
+    public InputDialog setPreferenceKey(String preferenceKey, String prefDefaultValue) {
         this.preferenceKey = preferenceKey;
-        this.defaultValue = defaultValue;
-        this.oldValue = prefer.getString(preferenceKey,defaultValue);
+        this.prefDefaultValue = prefDefaultValue;
+        this.oldValue = prefer.getString(preferenceKey,prefDefaultValue);
         tvConfirm.setOnClickListener(view -> {
             dismiss();
             String value = etInput.getText().toString();
             if (value.equals("")) {
                 if (bindTextView != null) {
-                    bindTextView.setText(defaultValue);
+                    bindTextView.setText(prefDefaultValue);
                 }
-                prefer.edit().putString(preferenceKey,defaultValue).apply();
+                prefer.edit().putString(preferenceKey,prefDefaultValue).apply();
             } else if (!value.equals(oldValue)) {
                 if (bindTextView != null) {
                     bindTextView.setText(value);
@@ -127,10 +129,10 @@ public class InputDialog extends BaseDialog {
             callback.setInputText(value);
             if (value.equals("")) {
                 if (bindTextView != null) {
-                    bindTextView.setText(defaultValue);
+                    bindTextView.setText(prefDefaultValue);
                 }
                 if (preferenceKey != null) {
-                    prefer.edit().putString(preferenceKey,defaultValue).apply();
+                    prefer.edit().putString(preferenceKey, prefDefaultValue).apply();
                 }
             } else if (!value.equals(oldValue)) {
                 if (bindTextView != null) {
