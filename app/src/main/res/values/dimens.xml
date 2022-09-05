@@ -72,6 +72,8 @@
             <dimen name="read_menu_adjust_margin_text_size">14sp</dimen>
         <!-- Setting Preference -->
         <dimen name="setting_preference_layout_height">50dp</dimen>
+        <dimen name="setting_preference_title_margin_top">14dp</dimen>
+        <dimen name="setting_preference_bind_tv_margin_top">6dp</dimen>
         <dimen name="setting_category_padding_up_and_bottom">3dp</dimen>
         <dimen name="setting_preference_padding_left_and_right">24dp</dimen>
         <dimen name="setting_preference_margin_title">10dp</dimen>
@@ -116,7 +118,7 @@
 
     <dimen name="fastscroll_bubble_radius">44dp</dimen>
     <dimen name="fastscroll_bubble_size">88dp</dimen>
-    <dimen name="fastscroll_bubble_textsize">48sp</dimen>
+    <dimen name="fastscroll_bubble_text_size">48sp</dimen>
     <dimen name="fastscroll_bubble_padding">16dp</dimen>
 
     <dimen name="fastscroll_handle_height">40dp</dimen>

@@ -2,5 +2,4 @@
     tools:ignore="MissingTranslation">
     <string name="app_name">阅读测试版</string>
     <string name="about_read">关于阅读测试版</string>
-    <string name="ps_about_read">关于阅读测试版的更多信息</string>
 </resources>

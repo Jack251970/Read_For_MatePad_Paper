@@ -19,6 +19,7 @@ import com.jack.bookshelf.widget.modialog.BaseDialog;
 import com.jack.bookshelf.widget.views.ATEAutoCompleteTextView;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Input Dialog
@@ -37,7 +38,8 @@ public class InputDialog extends BaseDialog {
     private Callback callback = null;
 
     private TextView bindTextView = null;
-    private String tvDefaultValue;
+    private String tvDefaultValue = null;
+    private boolean isPassWord = false;
     private String prefDefaultValue;
     private String oldValue;
     private String preferenceKey = null;
@@ -47,11 +49,13 @@ public class InputDialog extends BaseDialog {
         return new InputDialog(context);
     }
 
-    public InputDialog setBindTextView(View view, String tvDefaultValue) {
+    public InputDialog setBindTextView(View view, String tvDefaultValue, boolean isPassWord) {
         if (view instanceof TextView) {
             this.bindTextView = (TextView) view;
-            this.tvDefaultValue = tvDefaultValue;
+            bindTextView.setText(tvDefaultValue);
         }
+        this.tvDefaultValue = tvDefaultValue;
+        this.isPassWord = isPassWord;
         return this;
     }
 
@@ -64,16 +68,33 @@ public class InputDialog extends BaseDialog {
             String value = etInput.getText().toString();
             if (value.equals("")) {
                 if (bindTextView != null) {
-                    bindTextView.setText(prefDefaultValue);
+                    bindTextView.setText(Objects.requireNonNullElse(tvDefaultValue, value));
                 }
                 prefer.edit().putString(preferenceKey,prefDefaultValue).apply();
             } else if (!value.equals(oldValue)) {
                 if (bindTextView != null) {
-                    bindTextView.setText(value);
+                    if (isPassWord) {
+                        bindTextView.setText("************");
+                    } else {
+                        bindTextView.setText(value);
+                    }
                 }
                 prefer.edit().putString(preferenceKey,value).apply();
             }
         });
+        if (oldValue.equals(prefDefaultValue)) {
+            if (bindTextView != null) {
+                bindTextView.setText(Objects.requireNonNullElse(tvDefaultValue, ""));
+            }
+        } else {
+            if (bindTextView != null) {
+                if (isPassWord) {
+                    bindTextView.setText("************");
+                } else {
+                    bindTextView.setText(oldValue);
+                }
+            }
+        }
         return this;
     }
 
@@ -129,14 +150,18 @@ public class InputDialog extends BaseDialog {
             callback.setInputText(value);
             if (value.equals("")) {
                 if (bindTextView != null) {
-                    bindTextView.setText(prefDefaultValue);
+                    bindTextView.setText(Objects.requireNonNullElse(tvDefaultValue, value));
                 }
                 if (preferenceKey != null) {
                     prefer.edit().putString(preferenceKey, prefDefaultValue).apply();
                 }
             } else if (!value.equals(oldValue)) {
                 if (bindTextView != null) {
-                    bindTextView.setText(value);
+                    if (isPassWord) {
+                        bindTextView.setText("************");
+                    } else {
+                        bindTextView.setText(value);
+                    }
                 }
                 if (preferenceKey != null) {
                     prefer.edit().putString(preferenceKey,value).apply();

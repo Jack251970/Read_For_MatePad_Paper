@@ -46,12 +46,16 @@ public class WebdavSettingFragment extends Fragment {
     private final SharedPreferences pref = MApplication.getConfigPreferences();
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
+    private InputDialog inputDialogUrl;
+    private InputDialog inputDialogAccount;
+    private InputDialog inputDialogPassWord;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         settingActivity = (SettingActivity) getActivity();
         assert settingActivity != null;
-        settingActivity.setTile(R.string.webdav_setting);
+        settingActivity.setTile(R.string.web_dav_setting);
         initData();
     }
 
@@ -59,6 +63,7 @@ public class WebdavSettingFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentWebdavSettingBinding.inflate(inflater, container, false);
+        initDialog();
         bindView();
         return binding.getRoot();
     }
@@ -67,22 +72,25 @@ public class WebdavSettingFragment extends Fragment {
         pref.edit().putBoolean("process_text", ProcessTextHelp.isProcessTextEnabled()).apply();
     }
 
+    private void initDialog() {
+        inputDialogUrl = InputDialog.builder(settingActivity)
+                .setTitle(getString(R.string.web_dav_url))
+                .setBindTextView(binding.tvWebDavUrlBindTv,DEFAULT_WEB_DAV_URL,false)
+                .setPreferenceKey("web_dav_url",DEFAULT_WEB_DAV_URL);
+        inputDialogAccount = InputDialog.builder(settingActivity)
+                .setTitle(getString(R.string.web_dav_account))
+                .setBindTextView(binding.tvWebDavAccountBindTv,getString(R.string.input_web_dav_account),false)
+                .setPreferenceKey("web_dav_account","");
+        inputDialogPassWord = InputDialog.builder(settingActivity)
+                .setTitle(getString(R.string.web_dav_password))
+                .setBindTextView(binding.tvWebDavPasswordBindTv,getString(R.string.input_web_dav_password),true)
+                .setPreferenceKey("web_dav_password","");
+    }
+
     private void bindView() {
-        binding.tvWebDavUrl.setOnClickListener(v ->
-                InputDialog.builder(settingActivity)
-                        .setTitle(getString(R.string.web_dav_url))
-                        .setPreferenceKey("web_dav_url",DEFAULT_WEB_DAV_URL).show()
-                );
-        binding.tvWebDavAccount.setOnClickListener(v ->
-                InputDialog.builder(settingActivity)
-                        .setTitle(getString(R.string.web_dav_account))
-                        .setPreferenceKey("web_dav_account","").show()
-                );
-        binding.tvWebDavPassword.setOnClickListener(v ->
-                InputDialog.builder(settingActivity)
-                        .setTitle(getString(R.string.web_dav_password))
-                        .setPreferenceKey("web_dav_password","").show()
-                );
+        binding.tvWebDavUrl.setOnClickListener(v -> inputDialogUrl.show());
+        binding.tvWebDavAccount.setOnClickListener(v -> inputDialogAccount.show());
+        binding.tvWebDavPassword.setOnClickListener(v -> inputDialogPassWord.show());
         binding.tvWebDavRestore.setOnClickListener(v -> restore());
     }
 

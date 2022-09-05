@@ -28,11 +28,34 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/setting_preference_with_summary_layout_height"
             android:gravity="center_vertical"
-            android:text="@string/web_dav_url"
-            style="@style/PaperTextStyleSettingPreference"
             app:layout_constraintLeft_toLeftOf="@id/cl_webdav_config"
             app:layout_constraintRight_toRightOf="@id/cl_webdav_config"
             app:layout_constraintTop_toTopOf="@id/cl_webdav_config" />
+        <TextView
+            android:id="@+id/tv_web_dav_url_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/setting_preference_title_margin_top"
+            android:gravity="center_vertical"
+            android:text="@string/web_dav_url"
+            android:focusable="false"
+            android:clickable="false"
+            style="@style/PaperTextStyleSettingPreference"
+            app:layout_constraintLeft_toLeftOf="@id/cl_webdav_config"
+            app:layout_constraintTop_toTopOf="@id/cl_webdav_config" />
+        <TextView
+            android:id="@+id/tv_web_dav_url_bind_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/setting_preference_bind_tv_margin_top"
+            android:gravity="center_vertical"
+            android:text="https://dav.jianguoyun.com/dav/"
+            android:focusable="false"
+            android:clickable="false"
+            style="@style/PaperTextStyleSettingBindTvPreference"
+            app:layout_constraintLeft_toLeftOf="@id/cl_webdav_config"
+            app:layout_constraintTop_toBottomOf="@id/tv_web_dav_url_title"
+            tools:ignore="HardcodedText" />
         <ImageView
             android:id="@+id/iv_web_dav_url"
             android:layout_width="@dimen/setting_preference_layout_height"
@@ -55,11 +78,33 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/setting_preference_with_summary_layout_height"
             android:gravity="center_vertical"
-            android:text="@string/web_dav_account"
-            style="@style/PaperTextStyleSettingPreference"
             app:layout_constraintLeft_toLeftOf="@id/cl_webdav_config"
             app:layout_constraintRight_toRightOf="@id/cl_webdav_config"
             app:layout_constraintTop_toBottomOf="@id/line1" />
+        <TextView
+            android:id="@+id/tv_web_dav_account_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/setting_preference_title_margin_top"
+            android:gravity="center_vertical"
+            android:text="@string/web_dav_account"
+            android:focusable="false"
+            android:clickable="false"
+            style="@style/PaperTextStyleSettingPreference"
+            app:layout_constraintLeft_toLeftOf="@id/cl_webdav_config"
+            app:layout_constraintTop_toBottomOf="@id/line1" />
+        <TextView
+            android:id="@+id/tv_web_dav_account_bind_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/setting_preference_bind_tv_margin_top"
+            android:gravity="center_vertical"
+            android:text="@string/input_web_dav_account"
+            android:focusable="false"
+            android:clickable="false"
+            style="@style/PaperTextStyleSettingBindTvPreference"
+            app:layout_constraintLeft_toLeftOf="@id/cl_webdav_config"
+            app:layout_constraintTop_toBottomOf="@id/tv_web_dav_account_title" />
         <ImageView
             android:id="@+id/iv_web_dav_account"
             android:layout_width="@dimen/setting_preference_layout_height"
@@ -81,11 +126,33 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/setting_preference_with_summary_layout_height"
             android:gravity="center_vertical"
-            android:text="@string/web_dav_password"
-            style="@style/PaperTextStyleSettingPreference"
             app:layout_constraintLeft_toLeftOf="@id/cl_webdav_config"
             app:layout_constraintRight_toRightOf="@id/cl_webdav_config"
             app:layout_constraintTop_toBottomOf="@id/line2" />
+        <TextView
+            android:id="@+id/tv_web_dav_password_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/setting_preference_title_margin_top"
+            android:gravity="center_vertical"
+            android:text="@string/web_dav_password"
+            android:focusable="false"
+            android:clickable="false"
+            style="@style/PaperTextStyleSettingPreference"
+            app:layout_constraintLeft_toLeftOf="@id/cl_webdav_config"
+            app:layout_constraintTop_toBottomOf="@id/line2" />
+        <TextView
+            android:id="@+id/tv_web_dav_password_bind_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/setting_preference_bind_tv_margin_top"
+            android:gravity="center_vertical"
+            android:text="@string/input_web_dav_password"
+            android:focusable="false"
+            android:clickable="false"
+            style="@style/PaperTextStyleSettingBindTvPreference"
+            app:layout_constraintLeft_toLeftOf="@id/cl_webdav_config"
+            app:layout_constraintTop_toBottomOf="@id/tv_web_dav_password_title" />
         <ImageView
             android:id="@+id/iv_web_dav_password"
             android:layout_width="@dimen/setting_preference_layout_height"

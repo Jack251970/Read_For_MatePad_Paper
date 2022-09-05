@@ -61,7 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/setting_preference_layout_height"
             android:gravity="center_vertical"
-            android:text="@string/webdav_setting"
+            android:text="@string/web_dav_setting"
             style="@style/PaperTextStyleSettingPreference"
             app:layout_constraintLeft_toLeftOf="@id/cl_backup_setting"
             app:layout_constraintRight_toRightOf="@id/iv_webdav_setting"
@@ -277,7 +277,7 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/setting_preference_layout_height"
             android:gravity="center_vertical"
-            android:text="@string/pt_show_all_find"
+            android:text="@string/show_all_find"
             style="@style/PaperTextStyleSettingPreference"
             app:layout_constraintLeft_toLeftOf="@id/cl_search_setting"
             app:layout_constraintTop_toTopOf="@id/line4"/>

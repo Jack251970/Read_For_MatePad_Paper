@@ -163,56 +163,43 @@
     <!-- File Category Fragment -->
     <string name="default_file_path">内部存储</string>
     <string name="parent">上级</string>
-    <!-- Setting Fragment -->
+    <!-- General Setting Fragment -->
     <string name="setting">设置</string>
     <string name="sure_delete_download_book">是否同时删除已下载的书籍目录？</string>
     <string name="launcher_setting">启动设置</string>
-    <string name="ps_default_read">打开阅读时将自动前往上一次阅读位置</string>
     <string name="default_read">默认跳转最近阅读</string>
     <string name="backup_setting">备份设置</string>
-    <string name="webdav_setting">WebDav设置</string>
+    <string name="web_dav_setting">WebDav设置</string>
     <string name="web_dav_config">WebDav配置</string>
     <string name="web_dav_backup_and_restore">WebDav备份与恢复</string>
-    <string name="ps_webdav_setting">WebDav服务器与账号设置</string>
     <string name="backup_path">本地备份路径</string>
     <string name="update_setting">更新设置</string>
     <string name="auto_update">自动更新书籍</string>
-    <string name="ps_auto_update">打开阅读时自动更新书籍</string>
     <string name="auto_download">自动下载最新章节</string>
-    <string name="ps_auto_download">刷新书籍时自动下载最新章节</string>
     <string name="auto_change_source_update_chapter">后台换源更新最新章节</string>
-    <string name="ps_up_change_source_last_chapter_s">打开阅读后1分钟后自动换源更新书籍</string>
     <string name="purify_setting">净化设置</string>
     <string name="default_enable_purify">默认启用替换净化</string>
-    <string name="ps_replace">新加入的书籍自动启用替换净化</string>
     <string name="search_setting">搜索设置</string>
     <string name="search_result_filter_grade">搜索结果过滤等级</string>
-    <string name="search_result_filter_grade_tip">\n当前过滤等级 %s
-                \n调高过滤等级可以避免看到书名/作者无关的搜索结果。
-                \n等级1-9：搜索关键字需要出现到书名/作者中，但是允许有8-0个字（空格不计）没有出现（避免误输入的影响）。</string>
-    <string name="pt_show_all_find">显示所有发现内容</string>
-    <string name="ps_show_all_find">关闭则只显示勾选源的发现内容</string>
-    <string name="process_text_show_search">文字操作显示搜索</string>
-    <string name="ps_process_text_show_search">长按文字在操作菜单中显示阅读·搜索</string>
+    <string name="search_result_filter_grade_tip">调高过滤等级可以避免看到书名/作者无关的搜索结果。
+                \n等级1-9：搜索关键字需要出现到书名/作者中，但是允许有8-0个字（空格不计）没有出现。</string>
+    <string name="show_all_find">显示所有发现内容</string>
+    <string name="process_text_show_search">文字操作显示阅读·搜索</string>
     <string name="other_setting">其他设置</string>
     <string name="update_search_threads_num">更新和搜索线程数</string>
     <string name="threads_num">当前线程数 %s</string>
     <string name="web_port_title">Web端口</string>
     <string name="web_port_summary">当前端口 %s</string>
     <string name="clear_cache">清除应用缓存</string>
-    <string name="ps_clear_cache">清除字体缓存并选择是否清除已下载书籍</string>
-    <string name="ps_about_read">关于阅读的更多信息</string>
-    <!-- WebDav Fragment -->
+    <!-- WebDav Setting Fragment -->
     <string name="webdav">WebDav</string>
     <string name="no_backup">没有备份</string>
     <string name="web_dav_url">WebDav 服务器地址</string>
-    <string name="ps_web_dav_url">输入你的服务器地址</string>
     <string name="web_dav_account">WebDav 账号</string>
-    <string name="ps_web_dav_account">输入你的WebDav账号</string>
+    <string name="input_web_dav_account">输入你的WebDav账号</string>
     <string name="web_dav_password">WebDav 密码</string>
-    <string name="ps_web_dav_password">输入你的WebDav授权密码</string>
+    <string name="input_web_dav_password">输入你的WebDav授权密码</string>
     <string name="web_dav_restore">WebDav 恢复</string>
-    <string name="ps_web_dav_restore">从你的WebDav恢复数据</string>
     <!-- Chapter List Fragment -->
     <string name="chapter_info_format">%s（%d/%d章）</string>
 
