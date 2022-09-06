@@ -63,7 +63,7 @@ public class GeneralSettingFragment extends Fragment {
         });
         binding.tvBackPath.setOnClickListener(v -> BackupRestoreUi.INSTANCE.selectBackupFolder(settingActivity,settingActivity.getRoot()));
         binding.tvFilterGradeNumber.setText(String.valueOf(pref.getInt(getString(R.string.pk_search_result_filter_grade),0)));
-        binding.tvSearchResultFilterGrade.setOnClickListener(v ->
+        binding.clSearchResultFilterGrade.setOnClickListener(v ->
                 NumberPickerDialog.builder(settingActivity)
                         .setBindTextView(binding.tvFilterGradeNumber)
                         .setTitle(R.string.search_result_filter_grade)
@@ -71,6 +71,10 @@ public class GeneralSettingFragment extends Fragment {
                         .setMaxValue(9)
                         .setPreferenceKey(R.string.pk_search_result_filter_grade,0)
                         .show(settingActivity.getRoot()));
+        binding.ivFilterGradeTip.setOnClickListener(v -> {
+            binding.tvSearchResultFilterGradeTip.setVisibility(View.VISIBLE);
+            binding.ivFilterGradeTip.setVisibility(View.GONE);
+        });
         binding.tvThreadsNumber.setText(String.valueOf(pref.getInt(getString(R.string.pk_threads_num),16)));
         binding.tvUpdateSearchThreadsNum.setOnClickListener(v ->
                 NumberPickerDialog.builder(settingActivity)

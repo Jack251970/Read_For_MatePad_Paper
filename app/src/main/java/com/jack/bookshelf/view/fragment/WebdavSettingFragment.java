@@ -73,15 +73,15 @@ public class WebdavSettingFragment extends Fragment {
     }
 
     private void initDialog() {
-        inputDialogUrl = InputDialog.builder(settingActivity)
+        inputDialogUrl = InputDialog.builder(settingActivity, InputDialog.PREF_WITH_BIND_TV)
                 .setTitle(getString(R.string.web_dav_url))
-                .setBindTextView(binding.tvWebDavUrlBindTv,DEFAULT_WEB_DAV_URL,false)
-                .setPreferenceKey("web_dav_url",DEFAULT_WEB_DAV_URL);
-        inputDialogAccount = InputDialog.builder(settingActivity)
+                .setBindTextView(binding.tvWebDavUrlBindTv, DEFAULT_WEB_DAV_URL,false)
+                .setPreferenceKey("web_dav_url", DEFAULT_WEB_DAV_URL);
+        inputDialogAccount = InputDialog.builder(settingActivity, InputDialog.PREF_WITH_BIND_TV)
                 .setTitle(getString(R.string.web_dav_account))
                 .setBindTextView(binding.tvWebDavAccountBindTv,getString(R.string.input_web_dav_account),false)
                 .setPreferenceKey("web_dav_account","");
-        inputDialogPassWord = InputDialog.builder(settingActivity)
+        inputDialogPassWord = InputDialog.builder(settingActivity, InputDialog.PREF_WITH_BIND_TV)
                 .setTitle(getString(R.string.web_dav_password))
                 .setBindTextView(binding.tvWebDavPasswordBindTv,getString(R.string.input_web_dav_password),true)
                 .setPreferenceKey("web_dav_password","");

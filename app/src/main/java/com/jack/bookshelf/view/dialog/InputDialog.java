@@ -45,8 +45,78 @@ public class InputDialog extends BaseDialog {
     private String preferenceKey = null;
     private final SharedPreferences prefer = MApplication.getConfigPreferences();
 
+    public static final int WITHOUT_PREF = 0, PREF_WITH_BIND_TV = 1, PREF_WITHOUT_BIND_TV = 2;
+    // WITHOUT_PREF一般需要setCallback
+    // PREF_WITH_BIND_TV必须setPreference以及setBindTextView
+    // PREF_WITHOUT_BIND_TV必须setPreference
+
     public static InputDialog builder(Context context) {
-        return new InputDialog(context);
+        return new InputDialog(context, WITHOUT_PREF);
+    }
+
+    public static InputDialog builder(Context context,int type) {
+        return new InputDialog(context, type);
+    }
+
+    @SuppressLint("InflateParams")
+    private InputDialog(Context context,int type) {
+        super(context, R.style.PaperAlertDialogTheme);
+        this.context = context;
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_input, null);
+        setContentView(view);
+        bindView(view);
+        bindEvent(type);
+    }
+
+    private void bindView(View view) {
+        view.findViewById(R.id.ll_content).setOnClickListener(null);
+        tvTitle = view.findViewById(R.id.tv_title_dialog_input);
+        etInput = view.findViewById(R.id.atv_input_dialog_input);
+        view.findViewById(R.id.tv_cancel_dialog_input).setOnClickListener(v -> dismiss());
+        tvConfirm = view.findViewById(R.id.tv_confirm_dialog_input);
+    }
+
+    private void bindEvent(int type) {
+        switch (type) {
+            case PREF_WITH_BIND_TV:
+                tvConfirm.setOnClickListener(view -> {
+                    dismiss();
+                    String value = etInput.getText().toString();
+                    callback.setInputText(value);
+                    if (value.equals("")) {
+                        bindTextView.setText(Objects.requireNonNullElse(tvDefaultValue, value));
+                        prefer.edit().putString(preferenceKey, prefDefaultValue).apply();
+                    } else if (!value.equals(oldValue)) {
+                        if (isPassWord) {
+                            bindTextView.setText("************");
+                        } else {
+                            bindTextView.setText(value);
+                        }
+                        prefer.edit().putString(preferenceKey,value).apply();
+                    }
+                });
+                break;
+            case PREF_WITHOUT_BIND_TV:
+                tvConfirm.setOnClickListener(view -> {
+                    dismiss();
+                    String value = etInput.getText().toString();
+                    callback.setInputText(value);
+                    if (value.equals("")) {
+                        prefer.edit().putString(preferenceKey, prefDefaultValue).apply();
+                    } else if (!value.equals(oldValue)) {
+                        prefer.edit().putString(preferenceKey,value).apply();
+                    }
+                });
+                break;
+            case WITHOUT_PREF:
+            default:
+                tvConfirm.setOnClickListener(view -> {
+                    dismiss();
+                    String value = etInput.getText().toString();
+                    callback.setInputText(value);
+                });
+                break;
+        }
     }
 
     public InputDialog setBindTextView(View view, String tvDefaultValue, boolean isPassWord) {
@@ -63,25 +133,6 @@ public class InputDialog extends BaseDialog {
         this.preferenceKey = preferenceKey;
         this.prefDefaultValue = prefDefaultValue;
         this.oldValue = prefer.getString(preferenceKey,prefDefaultValue);
-        tvConfirm.setOnClickListener(view -> {
-            dismiss();
-            String value = etInput.getText().toString();
-            if (value.equals("")) {
-                if (bindTextView != null) {
-                    bindTextView.setText(Objects.requireNonNullElse(tvDefaultValue, value));
-                }
-                prefer.edit().putString(preferenceKey,prefDefaultValue).apply();
-            } else if (!value.equals(oldValue)) {
-                if (bindTextView != null) {
-                    if (isPassWord) {
-                        bindTextView.setText("************");
-                    } else {
-                        bindTextView.setText(value);
-                    }
-                }
-                prefer.edit().putString(preferenceKey,value).apply();
-            }
-        });
         if (oldValue.equals(prefDefaultValue)) {
             if (bindTextView != null) {
                 bindTextView.setText(Objects.requireNonNullElse(tvDefaultValue, ""));
@@ -101,15 +152,6 @@ public class InputDialog extends BaseDialog {
     public InputDialog setTitle(String title) {
         tvTitle.setText(title);
         return this;
-    }
-
-    @SuppressLint("InflateParams")
-    private InputDialog(Context context) {
-        super(context, R.style.PaperAlertDialogTheme);
-        this.context = context;
-        View view = LayoutInflater.from(context).inflate(R.layout.dialog_input, null);
-        setContentView(view);
-        bindView(view);
     }
 
     public InputDialog setShowDel(boolean showDel) {
@@ -134,40 +176,8 @@ public class InputDialog extends BaseDialog {
         return this;
     }
 
-    private void bindView(View view) {
-        view.findViewById(R.id.ll_content).setOnClickListener(null);
-        tvTitle = view.findViewById(R.id.tv_title_dialog_input);
-        etInput = view.findViewById(R.id.atv_input_dialog_input);
-        view.findViewById(R.id.tv_cancel_dialog_input).setOnClickListener(v -> dismiss());
-        tvConfirm = view.findViewById(R.id.tv_confirm_dialog_input);
-    }
-
     public InputDialog setCallback(Callback callback) {
         this.callback = callback;
-        tvConfirm.setOnClickListener(view -> {
-            dismiss();
-            String value = etInput.getText().toString();
-            callback.setInputText(value);
-            if (value.equals("")) {
-                if (bindTextView != null) {
-                    bindTextView.setText(Objects.requireNonNullElse(tvDefaultValue, value));
-                }
-                if (preferenceKey != null) {
-                    prefer.edit().putString(preferenceKey, prefDefaultValue).apply();
-                }
-            } else if (!value.equals(oldValue)) {
-                if (bindTextView != null) {
-                    if (isPassWord) {
-                        bindTextView.setText("************");
-                    } else {
-                        bindTextView.setText(value);
-                    }
-                }
-                if (preferenceKey != null) {
-                    prefer.edit().putString(preferenceKey,value).apply();
-                }
-            }
-        });
         return this;
     }
 

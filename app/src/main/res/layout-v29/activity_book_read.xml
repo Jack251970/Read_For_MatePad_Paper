@@ -130,7 +130,7 @@
                             android:layout_height="@dimen/action_bar_icon_height_and_width"
                             android:layout_marginStart="@dimen/action_bar_padding_and_margin"
                             android:contentDescription="设置目录正则"
-                            android:src="@drawable/ic_book"/>
+                            android:src="@drawable/ic_txt_chapter_rule"/>
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/appBar_local"

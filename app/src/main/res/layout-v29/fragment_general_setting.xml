@@ -233,44 +233,76 @@
         android:paddingStart="@dimen/setting_preference_padding_left_and_right"
         android:paddingEnd="@dimen/setting_preference_padding_left_and_right"
         android:background="@drawable/preference_category_background">
-        <TextView
-            android:id="@+id/tv_search_result_filter_grade"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_search_result_filter_grade"
             android:layout_width="0dp"
-            android:layout_height="@dimen/setting_preference_layout_height"
-            android:gravity="center_vertical"
-            android:text="@string/search_result_filter_grade"
-            style="@style/PaperTextStyleSettingPreference"
-            app:layout_constraintLeft_toLeftOf="@id/cl_search_setting"
-            app:layout_constraintRight_toRightOf="@id/cl_search_setting"
-            app:layout_constraintTop_toTopOf="@id/cl_search_setting"/>
-        <ImageView
-            android:id="@+id/iv_search_result_filter_grade"
-            android:layout_width="@dimen/setting_preference_layout_height"
-            android:layout_height="@dimen/setting_preference_layout_height"
-            android:src="@drawable/ic_next"
-            android:focusable="false"
-            android:clickable="false"
-            app:layout_constraintRight_toRightOf="@id/cl_search_setting"
-            app:layout_constraintTop_toTopOf="@id/cl_search_setting"/>
-        <TextView
-            android:id="@+id/tv_filter_grade_number"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/setting_preference_layout_height"
-            android:layout_marginEnd="28dp"
-            android:layout_marginTop="-1dp"
-            android:gravity="center_vertical"
-            style="@style/PaperTextStyleSettingPreference"
-            android:focusable="false"
-            android:clickable="false"
-            app:layout_constraintRight_toRightOf="@id/cl_search_setting"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="@id/cl_search_setting"
-            tools:text="0"/>
+            app:layout_constraintLeft_toLeftOf="@id/cl_search_setting"
+            app:layout_constraintRight_toRightOf="@id/cl_search_setting">
+            <TextView
+                android:id="@+id/tv_search_result_filter_grade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/setting_preference_title_margin_top"
+                android:text="@string/search_result_filter_grade"
+                style="@style/PaperTextStyleSettingPreference"
+                android:focusable="false"
+                android:clickable="false"
+                app:layout_constraintLeft_toLeftOf="@id/cl_search_result_filter_grade"
+                app:layout_constraintTop_toTopOf="@id/cl_search_result_filter_grade"/>
+
+            <TextView
+                android:id="@+id/tv_search_result_filter_grade_tip"
+                style="@style/PaperTextStyleSettingBindTvPreference"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/setting_preference_bind_tv_margin_top"
+                android:layout_marginBottom="@dimen/setting_preference_title_margin_top"
+                android:clickable="false"
+                android:focusable="false"
+                android:text="@string/search_result_filter_grade_tip"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/cl_search_result_filter_grade"
+                app:layout_constraintLeft_toLeftOf="@id/cl_search_result_filter_grade"
+                app:layout_constraintTop_toBottomOf="@id/tv_search_result_filter_grade"
+                tools:visibility="visible" />
+            <ImageView
+                android:id="@+id/iv_search_result_filter_grade"
+                android:layout_width="@dimen/setting_preference_layout_height"
+                android:layout_height="@dimen/setting_preference_layout_height"
+                android:src="@drawable/ic_next"
+                android:focusable="false"
+                android:clickable="false"
+                app:layout_constraintRight_toRightOf="@id/cl_search_result_filter_grade"
+                app:layout_constraintTop_toTopOf="@id/cl_search_result_filter_grade"
+                app:layout_constraintBottom_toBottomOf="@id/cl_search_result_filter_grade"/>
+            <TextView
+                android:id="@+id/tv_filter_grade_number"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/setting_preference_layout_height"
+                android:layout_marginEnd="28dp"
+                android:gravity="center_vertical"
+                style="@style/PaperTextStyleSettingPreference"
+                android:focusable="false"
+                android:clickable="false"
+                app:layout_constraintRight_toRightOf="@id/cl_search_result_filter_grade"
+                app:layout_constraintTop_toTopOf="@id/iv_search_result_filter_grade"
+                tools:text="0"/>
+            <ImageView
+                android:id="@+id/iv_filter_grade_tip"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_expand_more"
+                app:layout_constraintRight_toLeftOf="@id/iv_search_result_filter_grade"
+                app:layout_constraintBottom_toBottomOf="@id/tv_search_result_filter_grade"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <View
             android:id="@+id/line4"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/tv_search_result_filter_grade"
+            app:layout_constraintTop_toBottomOf="@id/cl_search_result_filter_grade"
             app:layout_constraintLeft_toLeftOf="@id/cl_search_setting" />
         <TextView
             android:id="@+id/tv_show_all_find"
@@ -353,13 +385,12 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/setting_preference_layout_height"
             android:layout_marginEnd="28dp"
-            android:layout_marginTop="-1dp"
             android:gravity="center_vertical"
             style="@style/PaperTextStyleSettingPreference"
             android:focusable="false"
             android:clickable="false"
             app:layout_constraintRight_toRightOf="@id/cl_other_setting"
-            app:layout_constraintTop_toTopOf="@id/cl_other_setting"
+            app:layout_constraintTop_toTopOf="@id/iv_update_search_threads_num"
             tools:text="16"/>
         <View
             android:id="@+id/line9"
@@ -397,7 +428,7 @@
             android:focusable="false"
             android:clickable="false"
             app:layout_constraintRight_toRightOf="@id/cl_other_setting"
-            app:layout_constraintTop_toTopOf="@id/line9"
+            app:layout_constraintTop_toTopOf="@id/iv_web_port"
             tools:text="1122"/>
         <View
             android:id="@+id/line10"

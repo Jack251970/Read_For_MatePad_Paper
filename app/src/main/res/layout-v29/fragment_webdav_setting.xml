@@ -10,7 +10,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/setting_preference_margin_title"
         android:text="@string/web_dav_config"
         style="@style/PaperTextStyleSettingTitle" />
     <androidx.constraintlayout.widget.ConstraintLayout
