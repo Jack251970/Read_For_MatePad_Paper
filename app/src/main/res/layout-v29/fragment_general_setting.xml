@@ -251,7 +251,6 @@
                 android:clickable="false"
                 app:layout_constraintLeft_toLeftOf="@id/cl_search_result_filter_grade"
                 app:layout_constraintTop_toTopOf="@id/cl_search_result_filter_grade"/>
-
             <TextView
                 android:id="@+id/tv_search_result_filter_grade_tip"
                 style="@style/PaperTextStyleSettingBindTvPreference"
