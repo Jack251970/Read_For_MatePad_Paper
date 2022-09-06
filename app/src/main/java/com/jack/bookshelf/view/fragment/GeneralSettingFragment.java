@@ -14,7 +14,6 @@ import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.databinding.FragmentGeneralSettingBinding;
 import com.jack.bookshelf.help.BookshelfHelp;
-import com.jack.bookshelf.help.ProcessTextHelp;
 import com.jack.bookshelf.help.storage.BackupRestoreUi;
 import com.jack.bookshelf.service.WebService;
 import com.jack.bookshelf.view.activity.AboutActivity;
@@ -40,7 +39,6 @@ public class GeneralSettingFragment extends Fragment {
         settingActivity = (SettingActivity) getActivity();
         assert settingActivity != null;
         settingActivity.setTile(R.string.setting);
-        initData();
     }
 
     @Nullable
@@ -49,10 +47,6 @@ public class GeneralSettingFragment extends Fragment {
         binding = FragmentGeneralSettingBinding.inflate(inflater, container, false);
         bindView();
         return binding.getRoot();
-    }
-
-    private void initData() {
-        pref.edit().putBoolean("process_text", ProcessTextHelp.isProcessTextEnabled()).apply();
     }
 
     private void bindView() {
@@ -125,7 +119,5 @@ public class GeneralSettingFragment extends Fragment {
         binding.swUpChangeSourceLastChapter.setPreferenceKey(R.string.pk_change_source_update_chapter,false);
         binding.swDefaultPurify.setPreferenceKey(R.string.pk_default_purify,true);
         binding.swShowAllFind.setPreferenceKey(R.string.pk_show_all_find,true);
-        binding.swProcessTextShowSearch.setPreferenceKey("process_text_show_search",true)
-                .setAddedListener(ProcessTextHelp::setProcessTextEnable);
     }
 }

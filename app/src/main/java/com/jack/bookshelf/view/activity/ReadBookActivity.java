@@ -9,6 +9,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.BatteryManager;
@@ -136,6 +137,12 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         setOrientation(readBookControl.getScreenDirection());
         binding = ActivityBookReadBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        // 扩展到刘海
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            WindowManager.LayoutParams lp = getWindow().getAttributes();
+            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+            getWindow().setAttributes(lp);
+        }
     }
 
     @Override

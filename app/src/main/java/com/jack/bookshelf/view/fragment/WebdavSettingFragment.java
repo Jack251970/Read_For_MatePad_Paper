@@ -17,7 +17,6 @@ import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.observer.MySingleObserver;
 import com.jack.bookshelf.databinding.FragmentWebdavSettingBinding;
-import com.jack.bookshelf.help.ProcessTextHelp;
 import com.jack.bookshelf.help.storage.BackupRestoreUi;
 import com.jack.bookshelf.help.storage.WebDavHelp;
 import com.jack.bookshelf.utils.ToastsKt;
@@ -56,7 +55,6 @@ public class WebdavSettingFragment extends Fragment {
         settingActivity = (SettingActivity) getActivity();
         assert settingActivity != null;
         settingActivity.setTile(R.string.web_dav_setting);
-        initData();
     }
 
     @Nullable
@@ -66,10 +64,6 @@ public class WebdavSettingFragment extends Fragment {
         initDialog();
         bindView();
         return binding.getRoot();
-    }
-
-    private void initData() {
-        pref.edit().putBoolean("process_text", ProcessTextHelp.isProcessTextEnabled()).apply();
     }
 
     private void initDialog() {

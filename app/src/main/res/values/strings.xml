@@ -25,7 +25,7 @@
     <string name="fattening">养肥</string>
     <string name="finish">完结</string>
     <string name="local_book">本地书籍</string>
-    <string name="double_click_exit">再按一次退出程序</string>
+    <string name="double_click_exit_read">再按一次退出阅读</string>
     <!-- BookDetailActivity -->
     <string name="book_info">书籍信息</string>
     <string name="book_name">书名</string>
@@ -182,9 +182,8 @@
     <string name="search_setting">搜索设置</string>
     <string name="search_result_filter_grade">搜索结果过滤等级</string>
     <string name="search_result_filter_grade_tip">调高过滤等级可以避免看到书名/作者无关的搜索结果。
-                \n等级1-9：搜索关键字需要出现到书名/作者中，但是允许有8-0个字（空格不计）没有出现。</string>
+        \n等级1-9：搜索关键字需要出现到书名/作者中，但是允许有8-0个字（空格不计）没有出现。</string>
     <string name="show_all_find">显示所有发现内容</string>
-    <string name="process_text_show_search">文字操作显示阅读·搜索</string>
     <string name="other_setting">其他设置</string>
     <string name="update_search_threads_num">更新和搜索线程数</string>
     <string name="threads_num">当前线程数 %s</string>
@@ -233,8 +232,8 @@
     <string name="use_regex">使用正则表达式</string>
     <string name="replace_to">替换为</string>
     <string name="use_to">替换范围（选填书名或者源名）</string>
-    <string name="replace_ad_intro">广告话术功能使用了自动优化的算法，不需要使用正则表达式，
-            只需要多次标记不想看的文字，就可以获得较好的广告替换效果。
+    <string name="replace_ad_intro">广告话术功能使用了自动优化的算法，无需正则表达式，
+            只需多次标记不想看的文字，就可以获得较好的广告替换效果。
             同个网站的广告话术自动保存在一个规则内，避免了列表中有太多规则。</string>
     <string name="replace_ad">广告话术</string>
     <string name="replace_ad_title">编辑广告话术规则</string>

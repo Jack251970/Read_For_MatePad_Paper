@@ -319,29 +319,6 @@
             android:src="@drawable/ic_switch_unchecked"
             app:layout_constraintRight_toRightOf="@id/cl_search_setting"
             app:layout_constraintTop_toTopOf="@id/line4"/>
-        <View
-            android:id="@+id/line5"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/tv_show_all_find"
-            app:layout_constraintLeft_toLeftOf="@id/cl_search_setting"/>
-        <TextView
-            android:id="@+id/tv_process_text_show_search"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/setting_preference_layout_height"
-            android:gravity="center_vertical"
-            android:text="@string/process_text_show_search"
-            style="@style/PaperTextStyleSettingPreference"
-            app:layout_constraintLeft_toLeftOf="@id/cl_search_setting"
-            app:layout_constraintTop_toTopOf="@id/line5"/>
-        <com.jack.bookshelf.widget.PaperSwitch
-            android:id="@+id/sw_process_text_show_search"
-            android:layout_width="@dimen/setting_preference_layout_height"
-            android:layout_height="@dimen/setting_preference_layout_height"
-            android:src="@drawable/ic_switch_unchecked"
-            app:layout_constraintRight_toRightOf="@id/cl_search_setting"
-            app:layout_constraintTop_toTopOf="@id/line5"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- 其他设置 -->
     <TextView
@@ -392,7 +369,7 @@
             app:layout_constraintTop_toTopOf="@id/iv_update_search_threads_num"
             tools:text="16"/>
         <View
-            android:id="@+id/line9"
+            android:id="@+id/line5"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/black"
@@ -407,7 +384,7 @@
             style="@style/PaperTextStyleSettingPreference"
             app:layout_constraintLeft_toLeftOf="@id/cl_other_setting"
             app:layout_constraintRight_toRightOf="@id/cl_other_setting"
-            app:layout_constraintTop_toBottomOf="@id/line9" />
+            app:layout_constraintTop_toBottomOf="@id/line5" />
         <ImageView
             android:id="@+id/iv_web_port"
             android:layout_width="@dimen/setting_preference_layout_height"
@@ -416,7 +393,7 @@
             android:focusable="false"
             android:clickable="false"
             app:layout_constraintRight_toRightOf="@id/cl_other_setting"
-            app:layout_constraintTop_toBottomOf="@id/line9"/>
+            app:layout_constraintTop_toBottomOf="@id/line5"/>
         <TextView
             android:id="@+id/tv_web_port_number"
             android:layout_width="wrap_content"
@@ -430,7 +407,7 @@
             app:layout_constraintTop_toTopOf="@id/iv_web_port"
             tools:text="1122"/>
         <View
-            android:id="@+id/line10"
+            android:id="@+id/line6"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/black"
@@ -445,7 +422,7 @@
             style="@style/PaperTextStyleSettingPreference"
             app:layout_constraintLeft_toLeftOf="@id/cl_other_setting"
             app:layout_constraintRight_toRightOf="@id/cl_other_setting"
-            app:layout_constraintTop_toBottomOf="@id/line10" />
+            app:layout_constraintTop_toBottomOf="@id/line6" />
         <ImageView
             android:id="@+id/iv_clear_cache"
             android:layout_width="@dimen/setting_preference_layout_height"
@@ -454,9 +431,9 @@
             android:focusable="false"
             android:clickable="false"
             app:layout_constraintRight_toRightOf="@id/cl_other_setting"
-            app:layout_constraintTop_toBottomOf="@id/line10"/>
+            app:layout_constraintTop_toBottomOf="@id/line6"/>
         <View
-            android:id="@+id/line11"
+            android:id="@+id/line7"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/black"
@@ -471,7 +448,7 @@
             style="@style/PaperTextStyleSettingPreference"
             app:layout_constraintLeft_toLeftOf="@id/cl_other_setting"
             app:layout_constraintRight_toRightOf="@id/cl_other_setting"
-            app:layout_constraintTop_toBottomOf="@id/line11" />
+            app:layout_constraintTop_toBottomOf="@id/line7" />
         <ImageView
             android:id="@+id/iv_about_read"
             android:layout_width="@dimen/setting_preference_layout_height"
@@ -480,6 +457,6 @@
             android:focusable="false"
             android:clickable="false"
             app:layout_constraintRight_toRightOf="@id/cl_other_setting"
-            app:layout_constraintTop_toBottomOf="@id/line11"/>
+            app:layout_constraintTop_toBottomOf="@id/line7"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

@@ -17,14 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.hwangjr.rxbus.RxBus;
-import com.jack.bookshelf.BuildConfig;
 import com.jack.bookshelf.DbHelper;
 import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.BaseViewPagerActivity;
 import com.jack.bookshelf.constant.RxBusTag;
 import com.jack.bookshelf.databinding.ActivityMainBinding;
-import com.jack.bookshelf.help.ProcessTextHelp;
 import com.jack.bookshelf.help.permission.Permissions;
 import com.jack.bookshelf.help.permission.PermissionsCompat;
 import com.jack.bookshelf.help.storage.BackupRestoreUi;
@@ -414,12 +412,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
         if (!isRecreate) {
             versionUp();
         }
-        handler.postDelayed(() -> {
-            UpLastChapterModel.getInstance().startUpdate();
-            if (BuildConfig.DEBUG) {
-                ProcessTextHelp.setProcessTextEnable(false);
-            }
-        }, 60 * 1000);
+        handler.postDelayed(() -> UpLastChapterModel.getInstance().startUpdate(), 60 * 1000);
     }
 
     @SuppressLint("RtlHardcoded")
@@ -437,7 +430,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
      */
     public void exit() {
         if ((System.currentTimeMillis() - exitTime) > 2000) {
-            ToastsKt.toast(MainActivity.this, getString(R.string.double_click_exit),Toast.LENGTH_SHORT);
+            ToastsKt.toast(MainActivity.this, getString(R.string.double_click_exit_read),Toast.LENGTH_SHORT);
             exitTime = System.currentTimeMillis();
         } else {
             finish();

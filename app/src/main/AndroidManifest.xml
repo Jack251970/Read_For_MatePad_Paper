@@ -70,26 +70,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activity.ReceivingSharedActivity"
-            android:enabled="true"
-            android:exported="true"
-            android:label="@string/receiving_shared_label">
-            <intent-filter>
-                <action android:name="android.intent.action.PROCESS_TEXT" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:mimeType="text/plain" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:mimeType="text/plain" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".view.activity.MainActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="locale|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
