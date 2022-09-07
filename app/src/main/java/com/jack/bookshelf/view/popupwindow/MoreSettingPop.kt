@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.FrameLayout
-import android.widget.SeekBar
 import com.jack.bookshelf.R
 import com.jack.bookshelf.databinding.PopMoreSettingBinding
 import com.jack.bookshelf.help.ReadBookControl
+import com.jack.bookshelf.service.WebService
+import com.jack.bookshelf.view.activity.ReadBookActivity
 
 /**
  * Read More Setting Menu
@@ -42,7 +43,7 @@ class MoreSettingPop : FrameLayout {
     private fun bindEvent() {
         setOnClickListener { this.visibility = View.GONE }
         // 朗读语速调节
-        binding.scbTtsFollowSys.isChecked = !binding.scbTtsFollowSys.isChecked
+        /*binding.scbTtsFollowSys.isChecked = !binding.scbTtsFollowSys.isChecked
         binding.scbTtsFollowSys.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 //跟随系统
@@ -76,7 +77,7 @@ class MoreSettingPop : FrameLayout {
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {}
             override fun onStopTrackingTouch(seekBar: SeekBar) {}
-        })
+        })*/
         binding.swVolumeNextPage.setOnCheckedChangeListener { compoundButton: CompoundButton, b: Boolean ->
             if (compoundButton.isPressed) {
                 readBookControl.canKeyTurn = b
@@ -90,11 +91,8 @@ class MoreSettingPop : FrameLayout {
             }
         }
         // 禁用返回键
-        binding.swDisableReturnKey.setOnCheckedChangeListener { compoundButton: CompoundButton, b: Boolean ->
-            if (compoundButton.isPressed) {
-                readBookControl.canKeyReturn = b
-            }
-        }
+        binding.swDisableReturnKey.setPreferenceKey("canKeyReturn", false)
+            .setAddedListener { checked: Boolean -> readBookControl.setCanKeyReturn(checked) }
         binding.sbClick.setOnCheckedChangeListener { buttonView: CompoundButton, isChecked: Boolean ->
             if (buttonView.isPressed) {
                 readBookControl.canClickTurn = isChecked
@@ -151,19 +149,17 @@ class MoreSettingPop : FrameLayout {
 
     private fun initData() {
         // 朗读语速调节 默认跟随系统
-        binding.scbTtsFollowSys.isChecked = readBookControl.isSpeechRateFollowSys
+        /*binding.scbTtsFollowSys.isChecked = readBookControl.isSpeechRateFollowSys
         binding.hpbTtsSpeechRate.isEnabled = !readBookControl.isSpeechRateFollowSys
         binding.hpbTtsSpeechRate.progress = readBookControl.speechRate - 5
         //CPM范围设置 每分钟阅读200字到2000字 默认500字/分钟
         binding.hpbClick.max = readBookControl.maxCPM - readBookControl.minCPM
         binding.hpbClick.progress = readBookControl.cpm
-        binding.tvAutoPage.text = String.format("%sCPM", readBookControl.cpm)
+        binding.tvAutoPage.text = String.format("%sCPM", readBookControl.cpm)*/
         // 屏幕方向
         upScreenDirection(readBookControl.screenDirection)
         // 屏幕关闭时间
         upScreenTimeOut(readBookControl.screenTimeOut)
-        // 禁用返回键
-        binding.swDisableReturnKey.isChecked = readBookControl.canKeyReturn
         // 点击翻页
         binding.sbClick.isChecked = readBookControl.canClickTurn
         // 点击总是翻下一页

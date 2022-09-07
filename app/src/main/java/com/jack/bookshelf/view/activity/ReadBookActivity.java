@@ -356,6 +356,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         binding.readMenuBottom.setPadding(0,0,0,ScreenUtils.getNavigationBarHeight());
         binding.readInterfacePop.setPadding(0,0,0,ScreenUtils.getNavigationBarHeight());
         binding.readAdjustMarginPop.setPadding(0,0,0,ScreenUtils.getNavigationBarHeight());
+        binding.moreSettingPop.setPadding(0,ScreenUtils.getStatusBarHeight(),0,ScreenUtils.getNavigationBarHeight());
         mPresenter.initData(this);
         moDialogHUD = new MoDialogHUD(this);
         initBottomMenu();
@@ -1478,7 +1479,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                     }
                     return true;
                 } else {
-                    if (!preferences.getBoolean("canKeyReturn", false)) {
+                    if (!ReadBookControl.getCanKeyReturn()) {
                         finish();
                     }
                     return true;

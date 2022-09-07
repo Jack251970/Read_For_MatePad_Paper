@@ -27,7 +27,7 @@ public class ReadBookControl {
     private String fontPath;
     private int textConvert;
     private Boolean textBold;
-    private Boolean canKeyReturn;
+    private static Boolean canKeyReturn;
     private Boolean canClickTurn;
     private Boolean canKeyTurn;
     private Boolean readAloudCanKeyTurn;
@@ -153,13 +153,13 @@ public class ReadBookControl {
         }
     }
 
-    public Boolean getCanKeyReturn() {
+    // 禁用返回键
+    public static Boolean getCanKeyReturn() {
         return canKeyReturn;
     }
 
     public void setCanKeyReturn(Boolean canKeyReturn) {
-        this.canKeyReturn = canKeyReturn;
-        preferences.edit().putBoolean("canKeyReturn", canKeyReturn).apply();
+        ReadBookControl.canKeyReturn = canKeyReturn;
     }
 
     public Boolean getCanKeyTurn() {

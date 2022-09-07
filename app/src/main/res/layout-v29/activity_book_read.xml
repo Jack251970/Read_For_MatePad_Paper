@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fl_content"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -11,6 +12,7 @@
         android:id="@+id/pageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:clickable="true"
         android:focusable="true"
         tools:visibility="gone"/>
@@ -276,7 +278,7 @@
             android:layout_marginBottom="-1dp"
             android:visibility="invisible"/>
         <!-- 更多设置菜单 -->
-        <com.jack.bookshelf.view.popupwindow.MoreSettingPop
+        <!--<com.jack.bookshelf.view.popupwindow.MoreSettingPop
             android:id="@+id/moreSettingPop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -284,6 +286,14 @@
             android:layout_marginStart="@dimen/content_margin_left_and_right"
             android:layout_marginEnd="@dimen/content_margin_left_and_right"
             android:layout_marginBottom="-1dp"
+            android:visibility="invisible" />-->
+        <!-- 更多设置菜单 -->
+        <com.jack.bookshelf.view.popupwindow.MoreSettingPop
+            android:id="@+id/moreSettingPop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginStart="@dimen/content_margin_left_and_right"
             android:visibility="invisible" />
         <!-- 间距设置菜单 -->
         <com.jack.bookshelf.view.popupwindow.ReadAdjustMarginPop
