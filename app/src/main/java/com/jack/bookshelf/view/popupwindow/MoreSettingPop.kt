@@ -1,15 +1,18 @@
 package com.jack.bookshelf.view.popupwindow
 
 import android.content.Context
+import android.content.DialogInterface
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.jack.bookshelf.R
 import com.jack.bookshelf.databinding.PopMoreSettingBinding
 import com.jack.bookshelf.help.ReadBookControl
+import com.jack.bookshelf.utils.theme.ATH
 
 /**
  * Read More Setting Menu
@@ -54,6 +57,23 @@ class MoreSettingPop : FrameLayout {
                             readBookControl.screenDirection = i
                             upScreenDirection(i)
                             callback!!.recreate()
+                        }
+                    }
+                }).show(binding.root)
+        }
+        binding.tvKeepLightTime.setOnClickListener{
+            SelectMenu.builder(context)
+                .setTitle(context.getString(R.string.keep_light_time))
+                .setBottomButton(context.getString(R.string.cancel))
+                .setMenu(context.resources.getStringArray(R.array.screen_time_out), readBookControl.screenTimeOut)
+                .setListener(object : SelectMenu.OnItemClickListener {
+                    override fun forBottomButton() {}
+
+                    override fun forListItem(last: Int, i: Int) {
+                        if (i != last) {
+                            readBookControl.screenTimeOut = i
+                            upScreenTimeOut(i)
+                            callback?.keepScreenOnChange(i)
                         }
                     }
                 }).show(binding.root)
