@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.FrameLayout
+import android.widget.Toast
 import com.jack.bookshelf.R
 import com.jack.bookshelf.databinding.PopMoreSettingBinding
 import com.jack.bookshelf.help.ReadBookControl
-import com.jack.bookshelf.service.WebService
-import com.jack.bookshelf.view.activity.ReadBookActivity
 
 /**
  * Read More Setting Menu
@@ -42,6 +41,47 @@ class MoreSettingPop : FrameLayout {
 
     private fun bindEvent() {
         setOnClickListener { this.visibility = View.GONE }
+        binding.tvScreenDirection.setOnClickListener {
+            SelectMenu.builder(context)
+                .setTitle(context.getString(R.string.screen_direction))
+                .setBottomButton(context.getString(R.string.cancel))
+                .setMenu(context.resources.getStringArray(R.array.screen_direction_list_title), readBookControl.screenDirection)
+                .setListener(object : SelectMenu.OnItemClickListener {
+                    override fun forBottomButton() {}
+
+                    override fun forListItem(last: Int, i: Int) {
+                        if (i != last) {
+                            readBookControl.screenDirection = i
+                            upScreenDirection(i)
+                            callback!!.recreate()
+                        }
+                    }
+                }).show(binding.root)
+        }
+        binding.swDisableReturnKey.setPreferenceKey("canKeyReturn", false)
+            .setAddedListener { checked: Boolean -> readBookControl.setCanKeyReturn(checked) }
+        binding.swClickOpenPage.setPreferenceKey("canClickTurn",true)
+            .setAddedListener {
+                checked: Boolean -> readBookControl.canClickTurn = checked
+            }
+            .setBindSwitch(binding.swClickAllNextPage);
+        binding.swClickAllNextPage.setPreferenceKey("clickAllNext",false)
+            .setAddedListener {
+                checked: Boolean -> readBookControl.clickAllNext = checked
+            }
+        binding.swVolumeOpenPage.setPreferenceKey("canKeyTurn",false)
+            .setAddedListener {
+                checked: Boolean -> readBookControl.canVolumeKeyTurn = checked
+            }
+            .setBindSwitch(binding.swAloudVolumePage);
+        binding.swAloudVolumePage.setPreferenceKey("readAloudCanKeyTurn",false)
+            .setAddedListener {
+                checked: Boolean -> readBookControl.aloudCanKeyTurn = checked
+            }
+        binding.swSelectText.setPreferenceKey("canSelectText",false)
+            .setAddedListener {
+                checked: Boolean -> readBookControl.isCanSelectText = checked
+            }
         // 朗读语速调节
         /*binding.scbTtsFollowSys.isChecked = !binding.scbTtsFollowSys.isChecked
         binding.scbTtsFollowSys.setOnCheckedChangeListener { _, isChecked ->
@@ -78,76 +118,11 @@ class MoreSettingPop : FrameLayout {
             override fun onStartTrackingTouch(seekBar: SeekBar) {}
             override fun onStopTrackingTouch(seekBar: SeekBar) {}
         })*/
-        binding.swVolumeNextPage.setOnCheckedChangeListener { compoundButton: CompoundButton, b: Boolean ->
-            if (compoundButton.isPressed) {
-                readBookControl.canKeyTurn = b
-                upView()
-            }
-        }
-        // 朗读时音量键翻页
-        binding.swReadAloudKey.setOnCheckedChangeListener { compoundButton: CompoundButton, b: Boolean ->
-            if (compoundButton.isPressed) {
-                readBookControl.aloudCanKeyTurn = b
-            }
-        }
-        // 禁用返回键
-        binding.swDisableReturnKey.setPreferenceKey("canKeyReturn", false)
-            .setAddedListener { checked: Boolean -> readBookControl.setCanKeyReturn(checked) }
-        binding.sbClick.setOnCheckedChangeListener { buttonView: CompoundButton, isChecked: Boolean ->
-            if (buttonView.isPressed) {
-                readBookControl.canClickTurn = isChecked
-                upView()
-            }
-        }
-        binding.sbClickAllNext.setOnCheckedChangeListener { buttonView: CompoundButton, isChecked: Boolean ->
-            if (buttonView.isPressed) {
-                readBookControl.clickAllNext = isChecked
-            }
-        }
-        // 屏幕关闭时间
-        binding.llScreenTimeOut.setOnClickListener {
-            SelectMenu.builder(context)
-                .setTitle(context.getString(R.string.keep_light_time))
-                .setBottomButton(context.getString(R.string.cancel))
-                .setMenu(context.resources.getStringArray(R.array.screen_time_out), readBookControl.screenTimeOut)
-                .setListener(object : SelectMenu.OnItemClickListener {
-                    override fun forBottomButton() {}
-
-                    override fun forListItem(last: Int, i: Int) {
-                        if (i != last) {
-                            readBookControl.screenTimeOut = i
-                            upScreenTimeOut(i)
-                            callback!!.keepScreenOnChange(i)
-                        }
-                    }
-                }).show(binding.root)
-        }
-        // 屏幕方向
-        binding.llScreenDirection.setOnClickListener {
-            SelectMenu.builder(context)
-                .setTitle(context.getString(R.string.screen_direction))
-                .setBottomButton(context.getString(R.string.cancel))
-                .setMenu(context.resources.getStringArray(R.array.screen_direction_list_title), readBookControl.screenDirection)
-                .setListener(object : SelectMenu.OnItemClickListener {
-                    override fun forBottomButton() {}
-
-                    override fun forListItem(last: Int, i: Int) {
-                        if (i != last) {
-                            readBookControl.screenDirection = i
-                            upScreenDirection(i)
-                            callback!!.recreate()
-                        }
-                    }
-                }).show(binding.root)
-        }
-        binding.sbSelectText.setOnCheckedChangeListener { buttonView: CompoundButton, isChecked: Boolean ->
-            if (buttonView.isPressed) {
-                readBookControl.isCanSelectText = isChecked
-            }
-        }
     }
 
     private fun initData() {
+        upScreenDirection(readBookControl.screenDirection)
+        upScreenTimeOut(readBookControl.screenTimeOut)
         // 朗读语速调节 默认跟随系统
         /*binding.scbTtsFollowSys.isChecked = readBookControl.isSpeechRateFollowSys
         binding.hpbTtsSpeechRate.isEnabled = !readBookControl.isSpeechRateFollowSys
@@ -156,39 +131,18 @@ class MoreSettingPop : FrameLayout {
         binding.hpbClick.max = readBookControl.maxCPM - readBookControl.minCPM
         binding.hpbClick.progress = readBookControl.cpm
         binding.tvAutoPage.text = String.format("%sCPM", readBookControl.cpm)*/
-        // 屏幕方向
-        upScreenDirection(readBookControl.screenDirection)
-        // 屏幕关闭时间
-        upScreenTimeOut(readBookControl.screenTimeOut)
-        // 点击翻页
-        binding.sbClick.isChecked = readBookControl.canClickTurn
-        // 点击总是翻下一页
-        binding.sbClickAllNext.isChecked = readBookControl.clickAllNext
-        // 音量键翻页
-        binding.swVolumeNextPage.isChecked = readBookControl.canKeyTurn
-        // 朗读时音量键翻页
-        binding.swReadAloudKey.isChecked = readBookControl.aloudCanKeyTurn
-        // 长按选择文本
-        binding.sbSelectText.isChecked = readBookControl.isCanSelectText
-    }
-
-    private fun upView() {
-        // 点击总是翻下一页
-        binding.sbClickAllNext.isEnabled = readBookControl.canClickTurn
-        // 朗读时音量键翻页
-        binding.swReadAloudKey.isEnabled = readBookControl.canKeyTurn
     }
 
     private fun upScreenTimeOut(screenTimeOut: Int) {
-        binding.tvScreenTimeOut.text = context.resources.getStringArray(R.array.screen_time_out)[screenTimeOut]
+        binding.tvKeepLightTimeNum.text = context.resources.getStringArray(R.array.screen_time_out)[screenTimeOut]
     }
 
     private fun upScreenDirection(screenDirection: Int) {
         val screenDirectionListTitle = context.resources.getStringArray(R.array.screen_direction_list_title)
         if (screenDirection >= screenDirectionListTitle.size) {
-            binding.tvScreenDirection.text = screenDirectionListTitle[0]
+            binding.tvScreenDirectionCurrent.text = screenDirectionListTitle[0]
         } else {
-            binding.tvScreenDirection.text = screenDirectionListTitle[screenDirection]
+            binding.tvScreenDirectionCurrent.text = screenDirectionListTitle[screenDirection]
         }
     }
 

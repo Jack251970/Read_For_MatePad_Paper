@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    <path
+        android:name="轨道"
+        android:fillColor="#fff"
+        android:pathData="m31 33h28c8.84 0 16 7.16 16 16v2c0 8.84 -7.16 16 -16 16h-28c-8.84 0 -16 -7.16 -16 -16v-2c0 -8.84 7.16 -16 16 -16z" />
+    <path
+        android:name="轨道"
+        android:pathData="m59 34c8.28 0 15 6.72 15 15v2c0 8.28 -6.72 15 -15 15h-28c-8.28 0 -15 -6.72 -15 -15v-2c0 -8.28 6.72 -15 15 -15zm-28 -1c-8.84 0 -16 7.16 -16 16v2c0 8.84 7.16 16 16 16h28c8.84 0 16 -7.16 16 -16v-2c0 -8.84 -7.16 -16 -16 -16z"
+        android:fillColor="@color/paper_gray" />
+    <path
+        android:fillColor="#fff"
+        android:name="按钮"
+        android:pathData="m31 36c7.73 0 14 6.27 14 14c0 7.73 -6.27 14 -14 14c-7.73 0 -14 -6.27 -14 -14c0 -7.73 6.27 -14 14 -14z" />
+    <path
+        android:name="按钮"
+        android:pathData="m31 37c7.18 0 13 5.82 13 13c0 7.18 -5.82 13 -13 13c-7.18 0 -13 -5.82 -13 -13c0 -7.18 5.82 -13 13 -13zm0 -1c-7.73 0 -14 6.27 -14 14c0 7.73 6.27 14 14 14c7.73 0 14 -6.27 14 -14c0 -7.73 -6.27 -14 -14 -14z"
+        android:fillColor="@color/paper_gray" />
+</vector>

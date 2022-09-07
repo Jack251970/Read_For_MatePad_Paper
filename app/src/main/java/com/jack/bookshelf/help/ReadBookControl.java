@@ -29,7 +29,7 @@ public class ReadBookControl {
     private Boolean textBold;
     private static Boolean canKeyReturn;
     private Boolean canClickTurn;
-    private Boolean canKeyTurn;
+    private Boolean canVolumeKeyTurn;
     private Boolean readAloudCanKeyTurn;
     private int CPM;
     private Boolean clickAllNext;
@@ -76,9 +76,9 @@ public class ReadBookControl {
         this.lightNovelParagraph = preferences.getBoolean("light_novel_paragraph", false);
         this.indent = preferences.getInt("indent", 2);
         this.textSize = preferences.getInt("textSize", 20);
-        this.canKeyReturn = preferences.getBoolean("canKeyReturn", false);
+        canKeyReturn = preferences.getBoolean("canKeyReturn", false);
         this.canClickTurn = preferences.getBoolean("canClickTurn", true);
-        this.canKeyTurn = preferences.getBoolean("canKeyTurn", true);
+        this.canVolumeKeyTurn = preferences.getBoolean("canKeyTurn", false);
         this.readAloudCanKeyTurn = preferences.getBoolean("readAloudCanKeyTurn", false);
         this.lineMultiplier = preferences.getFloat("lineMultiplier", 1);
         this.paragraphSize = preferences.getFloat("paragraphSize", 1);
@@ -144,7 +144,7 @@ public class ReadBookControl {
     }
 
     public Boolean getCanKeyTurn(Boolean isPlay) {
-        if (!canKeyTurn) {
+        if (!canVolumeKeyTurn) {
             return false;
         } else if (readAloudCanKeyTurn) {
             return true;
@@ -153,7 +153,6 @@ public class ReadBookControl {
         }
     }
 
-    // 禁用返回键
     public static Boolean getCanKeyReturn() {
         return canKeyReturn;
     }
@@ -162,13 +161,12 @@ public class ReadBookControl {
         ReadBookControl.canKeyReturn = canKeyReturn;
     }
 
-    public Boolean getCanKeyTurn() {
-        return canKeyTurn;
+    public Boolean getCanVolumeKeyTurn() {
+        return canVolumeKeyTurn;
     }
 
-    public void setCanKeyTurn(Boolean canKeyTurn) {
-        this.canKeyTurn = canKeyTurn;
-        preferences.edit().putBoolean("canKeyTurn", canKeyTurn).apply();
+    public void setCanVolumeKeyTurn(Boolean canVolumeKeyTurn) {
+        this.canVolumeKeyTurn = canVolumeKeyTurn;
     }
 
     public Boolean getAloudCanKeyTurn() {
@@ -177,7 +175,6 @@ public class ReadBookControl {
 
     public void setAloudCanKeyTurn(Boolean AloudCanKeyTurn) {
         this.readAloudCanKeyTurn = AloudCanKeyTurn;
-        preferences.edit().putBoolean("readAloudCanKeyTurn", AloudCanKeyTurn).apply();
     }
 
     public Boolean getCanClickTurn() {
@@ -186,7 +183,6 @@ public class ReadBookControl {
 
     public void setCanClickTurn(Boolean canClickTurn) {
         this.canClickTurn = canClickTurn;
-        preferences.edit().putBoolean("canClickTurn", canClickTurn).apply();
     }
 
     public float getTextLetterSpacing() {
@@ -232,7 +228,6 @@ public class ReadBookControl {
 
     public void setClickAllNext(Boolean clickAllNext) {
         this.clickAllNext = clickAllNext;
-        preferences.edit().putBoolean("clickAllNext", clickAllNext).apply();
     }
 
     public int getSpeechRate() {
@@ -320,7 +315,6 @@ public class ReadBookControl {
 
     public void setCanSelectText(boolean canSelectText) {
         this.canSelectText = canSelectText;
-        preferences.edit().putBoolean("canSelectText", canSelectText).apply();
     }
 
     public int getTipPaddingTop() {

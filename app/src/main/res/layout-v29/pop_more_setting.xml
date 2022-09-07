@@ -107,25 +107,21 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="25dp"
-        android:paddingBottom="15dp"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp">
+        android:paddingStart="55dp"
+        android:paddingEnd="55dp" >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:padding="@dimen/content_padding"
             android:orientation="vertical">
-            <!-- 更新设置 -->
+            <!-- 显示设置 -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/setting_preference_margin_title"
-                android:text="@string/operation_setting"
+                android:text="@string/display_setting"
                 style="@style/PaperTextStyleSettingTitle" />
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_update_setting"
+                android:id="@+id/cl_display_setting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/setting_preference_margin_title"
@@ -135,170 +131,224 @@
                 android:paddingEnd="@dimen/setting_preference_padding_left_and_right"
                 android:background="@drawable/shape_preference_category_background">
                 <TextView
-                    android:id="@+id/tv_auto_update"
+                    android:id="@+id/tv_screen_direction"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:gravity="center_vertical"
+                    android:text="@string/screen_direction"
+                    style="@style/PaperTextStyleSettingPreference"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_display_setting"
+                    app:layout_constraintRight_toRightOf="@id/cl_display_setting"
+                    app:layout_constraintTop_toTopOf="@id/cl_display_setting" />
+                <ImageView
+                    android:id="@+id/iv_screen_direction"
+                    android:layout_width="@dimen/setting_preference_layout_height"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:src="@drawable/ic_next"
+                    android:focusable="false"
+                    android:clickable="false"
+                    app:layout_constraintRight_toRightOf="@id/cl_display_setting"
+                    app:layout_constraintTop_toTopOf="@id/cl_display_setting" />
+                <TextView
+                    android:id="@+id/tv_screen_direction_current"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:layout_marginEnd="@dimen/setting_preference_bind_number_margin_end"
+                    android:gravity="center_vertical"
+                    style="@style/PaperTextStyleSettingPreference"
+                    android:focusable="false"
+                    android:clickable="false"
+                    app:layout_constraintRight_toRightOf="@id/cl_display_setting"
+                    app:layout_constraintTop_toTopOf="@id/iv_screen_direction"
+                    tools:text="跟随系统"/>
+                <View
+                    android:id="@+id/line1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/tv_screen_direction"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_display_setting" />
+                <TextView
+                    android:id="@+id/tv_keep_light_time"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:gravity="center_vertical"
+                    android:text="@string/keep_light_time"
+                    style="@style/PaperTextStyleSettingPreference"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_display_setting"
+                    app:layout_constraintRight_toRightOf="@id/cl_display_setting"
+                    app:layout_constraintTop_toBottomOf="@id/line1" />
+                <ImageView
+                    android:id="@+id/iv_keep_light_time"
+                    android:layout_width="@dimen/setting_preference_layout_height"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:src="@drawable/ic_next"
+                    android:focusable="false"
+                    android:clickable="false"
+                    app:layout_constraintRight_toRightOf="@id/cl_display_setting"
+                    app:layout_constraintTop_toBottomOf="@id/line1"/>
+                <TextView
+                    android:id="@+id/tv_keep_light_time_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:layout_marginEnd="@dimen/setting_preference_bind_number_margin_end"
+                    android:gravity="center_vertical"
+                    style="@style/PaperTextStyleSettingPreference"
+                    android:focusable="false"
+                    android:clickable="false"
+                    app:layout_constraintRight_toRightOf="@id/cl_display_setting"
+                    app:layout_constraintTop_toTopOf="@id/iv_keep_light_time"
+                    tools:text="常亮"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- 操作设置 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/setting_preference_margin_title"
+                android:text="@string/operation_setting"
+                style="@style/PaperTextStyleSettingTitle" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_operation_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/setting_preference_margin_title"
+                android:paddingTop="@dimen/setting_category_padding_up_and_bottom"
+                android:paddingBottom="@dimen/setting_category_padding_up_and_bottom"
+                android:paddingStart="@dimen/setting_preference_padding_left_and_right"
+                android:paddingEnd="@dimen/setting_preference_padding_left_and_right"
+                android:background="@drawable/shape_preference_category_background">
+                <TextView
+                    android:id="@+id/tv_disable_return_key"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/setting_preference_layout_height"
                     android:gravity="center_vertical"
                     android:text="@string/disable_return_key"
                     style="@style/PaperTextStyleSettingPreference"
-                    app:layout_constraintLeft_toLeftOf="@id/cl_update_setting"
-                    app:layout_constraintTop_toTopOf="@id/cl_update_setting"/>
+                    app:layout_constraintLeft_toLeftOf="@id/cl_operation_setting"
+                    app:layout_constraintTop_toTopOf="@id/cl_operation_setting"/>
                 <com.jack.bookshelf.widget.PaperSwitch
                     android:id="@+id/sw_disable_return_key"
                     android:layout_width="@dimen/setting_preference_layout_height"
                     android:layout_height="@dimen/setting_preference_layout_height"
                     android:src="@drawable/ic_switch_unchecked"
-                    app:layout_constraintRight_toRightOf="@id/cl_update_setting"
-                    app:layout_constraintTop_toTopOf="@id/cl_update_setting" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-            <LinearLayout
-                android:id="@+id/ll_screen_direction"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:orientation="horizontal">
+                    app:layout_constraintRight_toRightOf="@id/cl_operation_setting"
+                    app:layout_constraintTop_toTopOf="@id/cl_operation_setting" />
+                <View
+                    android:id="@+id/line2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/tv_disable_return_key"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_operation_setting" />
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:text="@string/screen_direction"
-                    style="@style/PaperTextStylePopReadMenuMoreSetting"/>
-                <TextView
-                    android:id="@+id/tv_screen_direction"
+                    android:id="@+id/tv_click_open_page"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="@string/screen_unspecified"
-                    style="@style/PaperTextStylePopReadMenuMoreSetting"/>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:id="@+id/llScreenTimeOut"
-                    android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:text="@string/keep_light_time"
-                        style="@style/PaperTextStylePopReadMenuMoreSetting"/>
-                    <TextView
-                        android:id="@+id/tv_screen_time_out"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        style="@style/PaperTextStylePopReadMenuMoreSetting"
-                        tools:text="常亮"/>
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/black" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <!--<com.jack.bookshelf.widget.views.ATESwitch
-                    android:id="@+id/sw_disable_return_key"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="18dp"
-                    android:paddingBottom="18dp"
-                    android:text="@string/disable_return_key"
-                    style="@style/PaperTextStylePopReadMenuMoreSetting"/>-->
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <com.jack.bookshelf.widget.views.ATESwitch
-                    android:id="@+id/sb_click"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="18dp"
-                    android:paddingBottom="18dp"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:gravity="center_vertical"
                     android:text="@string/click_open_page"
-                    style="@style/PaperTextStylePopReadMenuMoreSetting" />
+                    style="@style/PaperTextStyleSettingPreference"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_operation_setting"
+                    app:layout_constraintTop_toTopOf="@id/line2"/>
+                <com.jack.bookshelf.widget.PaperSwitch
+                    android:id="@+id/sw_click_open_page"
+                    android:layout_width="@dimen/setting_preference_layout_height"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:src="@drawable/ic_switch_unchecked"
+                    app:layout_constraintRight_toRightOf="@id/cl_operation_setting"
+                    app:layout_constraintTop_toTopOf="@id/line2"/>
                 <View
+                    android:id="@+id/line3"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/black" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <com.jack.bookshelf.widget.views.ATESwitch
-                    android:id="@+id/sb_click_all_next"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="18dp"
-                    android:paddingBottom="18dp"
+                    android:background="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/tv_click_open_page"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_operation_setting" />
+                <TextView
+                    android:id="@+id/tv_click_all_next_page"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:gravity="center_vertical"
                     android:text="@string/click_all_next_page"
-                    style="@style/PaperTextStylePopReadMenuMoreSetting"
-                    />
+                    style="@style/PaperTextStyleSettingPreference"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_operation_setting"
+                    app:layout_constraintTop_toTopOf="@id/line3"/>
+                <com.jack.bookshelf.widget.PaperSwitch
+                    android:id="@+id/sw_click_all_next_page"
+                    android:layout_width="@dimen/setting_preference_layout_height"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:src="@drawable/ic_switch_unchecked"
+                    app:layout_constraintRight_toRightOf="@id/cl_operation_setting"
+                    app:layout_constraintTop_toTopOf="@id/line3"/>
                 <View
+                    android:id="@+id/line4"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/black" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <com.jack.bookshelf.widget.views.ATESwitch
-                    android:id="@+id/sw_volume_next_page"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="18dp"
-                    android:paddingBottom="18dp"
+                    android:background="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/tv_click_all_next_page"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_operation_setting" />
+                <TextView
+                    android:id="@+id/tv_volume_open_page"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:gravity="center_vertical"
                     android:text="@string/volume_open_page"
-                    style="@style/PaperTextStylePopReadMenuMoreSetting"/>
+                    style="@style/PaperTextStyleSettingPreference"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_operation_setting"
+                    app:layout_constraintTop_toTopOf="@id/line4"/>
+                <com.jack.bookshelf.widget.PaperSwitch
+                    android:id="@+id/sw_volume_open_page"
+                    android:layout_width="@dimen/setting_preference_layout_height"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:src="@drawable/ic_switch_unchecked"
+                    app:layout_constraintRight_toRightOf="@id/cl_operation_setting"
+                    app:layout_constraintTop_toTopOf="@id/line4"/>
                 <View
+                    android:id="@+id/line5"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/black" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <com.jack.bookshelf.widget.views.ATESwitch
-                    android:id="@+id/sw_read_aloud_key"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="18dp"
-                    android:paddingBottom="18dp"
+                    android:background="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/tv_volume_open_page"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_operation_setting" />
+                <TextView
+                    android:id="@+id/tv_aloud_volume_page"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:gravity="center_vertical"
                     android:text="@string/aloud_volume_page"
-                    style="@style/PaperTextStylePopReadMenuMoreSetting" />
+                    style="@style/PaperTextStyleSettingPreference"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_operation_setting"
+                    app:layout_constraintTop_toTopOf="@id/line5"/>
+                <com.jack.bookshelf.widget.PaperSwitch
+                    android:id="@+id/sw_aloud_volume_page"
+                    android:layout_width="@dimen/setting_preference_layout_height"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:src="@drawable/ic_switch_unchecked"
+                    app:layout_constraintRight_toRightOf="@id/cl_operation_setting"
+                    app:layout_constraintTop_toTopOf="@id/line5"/>
                 <View
+                    android:id="@+id/line6"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/black" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <com.jack.bookshelf.widget.views.ATESwitch
-                    android:id="@+id/sb_select_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="18dp"
-                    android:paddingBottom="18dp"
+                    android:background="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/tv_aloud_volume_page"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_operation_setting" />
+                <TextView
+                    android:id="@+id/tv_select_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:gravity="center_vertical"
                     android:text="@string/select_text"
-                    style="@style/PaperTextStylePopReadMenuMoreSetting" />
-            </LinearLayout>
+                    style="@style/PaperTextStyleSettingPreference"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_operation_setting"
+                    app:layout_constraintTop_toTopOf="@id/line6"/>
+                <com.jack.bookshelf.widget.PaperSwitch
+                    android:id="@+id/sw_select_text"
+                    android:layout_width="@dimen/setting_preference_layout_height"
+                    android:layout_height="@dimen/setting_preference_layout_height"
+                    android:src="@drawable/ic_switch_unchecked"
+                    app:layout_constraintRight_toRightOf="@id/cl_operation_setting"
+                    app:layout_constraintTop_toTopOf="@id/line6"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

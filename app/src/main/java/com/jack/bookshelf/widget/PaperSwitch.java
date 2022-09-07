@@ -6,20 +6,23 @@ import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 
 /**
- * Switch
+ * Paper Switch
  * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
-public class PaperSwitch extends androidx.appcompat.widget.AppCompatImageView {
+public class PaperSwitch extends AppCompatImageView {
     private boolean checked = false;
+    private boolean enabled = true;
     private String preferenceKey = null;
     private final SharedPreferences prefer = MApplication.getConfigPreferences();
+    private PaperSwitch bindSwitch = null;
 
     public PaperSwitch(@NonNull Context context) {
         super(context);
@@ -38,10 +41,48 @@ public class PaperSwitch extends androidx.appcompat.widget.AppCompatImageView {
     }
 
     public PaperSwitch setPreferenceKey(String preferenceKey, boolean defaultValue) {
-        this.setChecked(prefer.getBoolean(preferenceKey, defaultValue));
         this.preferenceKey = preferenceKey;
-        this.setOnClickListener(v -> setChecked(!checked));
+        if (prefer.getBoolean(preferenceKey, defaultValue)) {
+            this.checked = true;
+            if (enabled) {
+                setImageResource(R.drawable.ic_switch_checked);
+            } else {
+                setImageResource(R.drawable.ic_switch_checked_unabled);
+            }
+        } else {
+            this.checked = false;
+            if (enabled) {
+                setImageResource(R.drawable.ic_switch_unchecked);
+            } else {
+                setImageResource(R.drawable.ic_switch_unchecked_unabled);
+            }
+        }
+        setOnClickListener(v -> {
+            if (enabled) {
+                setChecked(!checked);
+                if (bindSwitch != null) {
+                    bindSwitch.setEnabled(checked);
+                }
+            }
+        });
         return this;
+    }
+
+    public PaperSwitch setAddedListener(@NonNull OnItemClickListener itemClick) {
+        setOnClickListener(v -> {
+            if (enabled) {
+                setChecked(!checked);
+                itemClick.forPositiveButton(checked);
+                if (bindSwitch != null) {
+                    bindSwitch.setEnabled(checked);
+                }
+            }
+        });
+        return this;
+    }
+
+    public boolean getChecked() {
+        return this.checked;
     }
 
     public void setChecked(boolean checked) {
@@ -57,15 +98,31 @@ public class PaperSwitch extends androidx.appcompat.widget.AppCompatImageView {
         }
     }
 
-    public void setAddedListener(@NonNull OnItemClickListener itemClick) {
-        this.setOnClickListener(v -> {
-            setChecked(!checked);
-            itemClick.forPositiveButton(checked);
-        });
+    public boolean getEnabled() {
+        return this.enabled;
     }
 
-    public boolean getChecked() {
-        return this.checked;
+    public void setEnabled(boolean enabled) {
+        if (enabled) {
+            if (checked) {
+                setImageResource(R.drawable.ic_switch_checked);
+            } else {
+                setImageResource(R.drawable.ic_switch_unchecked);
+            }
+        } else {
+            if (checked) {
+                setImageResource(R.drawable.ic_switch_checked_unabled);
+            } else {
+                setImageResource(R.drawable.ic_switch_unchecked_unabled);
+            }
+        }
+        this.enabled = enabled;
+    }
+
+    public PaperSwitch setBindSwitch(PaperSwitch bindSwitch) {
+        this.bindSwitch = bindSwitch;
+        bindSwitch.setEnabled(checked);
+        return this;
     }
 
     public interface OnItemClickListener {
