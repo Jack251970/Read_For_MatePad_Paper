@@ -202,10 +202,10 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
 
     @Override
     protected void initImmersionBar() {
-        initImmersionBar(ifBottomMenuShow());
+        initImmersionBar(ifPopMenuShow());
     }
 
-    private boolean ifBottomMenuShow() {
+    private boolean ifPopMenuShow() {
         return binding.readMenuBottom.getVisibility() == View.VISIBLE
                 | binding.readInterfacePop.getVisibility() == View.VISIBLE
                 | binding.moreSettingPop.getVisibility() == View.VISIBLE
@@ -323,9 +323,12 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     }
 
     /**
-     * 顶部菜单隐藏
+     * 菜单隐藏
      */
-    private void menuTopOut() {
+    private void menuOut(boolean ifTimeStart) {
+        if (ifTimeStart) {
+            screenOffTimerStart();
+        }
         binding.vMenuBg.setOnClickListener(null);
         binding.flMenu.setVisibility(View.INVISIBLE);
         binding.llMenuTop.setVisibility(View.INVISIBLE);
@@ -343,20 +346,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         binding.vMenuBg.setOnClickListener(v -> popMenuOut());
     }
 
-    /**
-     * 底部菜单隐藏
-     */
-    private void menuBottomOut() {
-        screenOffTimerStart();
-        binding.vMenuBg.setOnClickListener(null);
-        binding.flMenu.setVisibility(View.INVISIBLE);
-        binding.llMenuTop.setVisibility(View.INVISIBLE);
-        binding.readMenuBottom.setVisibility(View.INVISIBLE);
-        binding.readAdjustMarginPop.setVisibility(View.INVISIBLE);
-        binding.readInterfacePop.setVisibility(View.INVISIBLE);
-        binding.moreSettingPop.setVisibility(View.INVISIBLE);
-    }
-
     @Override
     protected void initData() { mPresenter.saveProgress(); }
 
@@ -366,7 +355,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         binding.appBar.setPadding(0, ScreenUtils.getStatusBarHeight(),0,0);
         binding.readMenuBottom.setPadding(0,0,0,ScreenUtils.getNavigationBarHeight());
         binding.readInterfacePop.setPadding(0,0,0,ScreenUtils.getNavigationBarHeight());
-        binding.moreSettingPop.setPadding(0,0,0,ScreenUtils.getNavigationBarHeight());
         binding.readAdjustMarginPop.setPadding(0,0,0,ScreenUtils.getNavigationBarHeight());
         mPresenter.initData(this);
         moDialogHUD = new MoDialogHUD(this);
@@ -376,7 +364,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         initMoreSettingPop();
         initMediaPlayer();
         initReadLongPressPop();
-        binding.pageView.setBackground(readBookControl.getTextBackground());
     }
 
     /**
@@ -1305,10 +1292,10 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         if (binding.flMenu.getVisibility() == View.VISIBLE) {
             initImmersionBar(false);
             if (binding.llMenuTop.getVisibility() == View.VISIBLE) {
-                menuTopOut();
+                menuOut(false);
             }
-            if (ifBottomMenuShow()) {
-                menuBottomOut();
+            if (ifPopMenuShow()) {
+                menuOut(true);
             }
         }
     }
@@ -1446,7 +1433,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         if (recreate) {
             recreate();
         } else {
-            binding.flContent.setBackground(readBookControl.getTextBackground());
             if (mPageLoader != null) {
                 mPageLoader.refreshUi();
             }

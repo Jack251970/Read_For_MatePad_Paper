@@ -5,8 +5,6 @@ import static com.jack.bookshelf.widget.page.PageLoader.DEFAULT_MARGIN_WIDTH;
 import android.content.ContentResolver;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.provider.Settings;
 
 import com.jack.bookshelf.MApplication;
@@ -23,7 +21,6 @@ public class ReadBookControl {
     private boolean speechRateFollowSys;
     private int textSize;
     private int textColor;
-    private int bgColor;
     private float lineMultiplier;
     private float paragraphSize;
     private Boolean lightNovelParagraph;
@@ -73,7 +70,6 @@ public class ReadBookControl {
 
     private void initTextDrawable() {
         this.textColor = Color.BLACK;
-        this.bgColor = Color.WHITE;
     }
 
     public void updateReaderSettings() {
@@ -118,14 +114,6 @@ public class ReadBookControl {
 
     public int getTextColor() {
         return textColor;
-    }
-
-    public Drawable getTextBackground() {
-        return new ColorDrawable(bgColor);
-    }
-
-    public int getBgColor() {
-        return bgColor;
     }
 
     public void setTextConvert(int textConvert) {

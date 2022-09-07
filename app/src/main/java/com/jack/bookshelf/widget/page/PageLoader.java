@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -207,6 +208,7 @@ public abstract class PageLoader{
      */
     private void initPaint() {
         Typeface typeface;
+        // 改变字体
         try {
             if (!TextUtils.isEmpty(readBookControl.getFontPath())) {
                 typeface = Typeface.createFromFile(readBookControl.getFontPath());
@@ -218,6 +220,7 @@ public abstract class PageLoader{
             readBookControl.setReadBookFont(null);
             typeface = Typeface.SANS_SERIF;
         }
+
         // 绘制提示的画笔
         mTipPaint = new TextPaint();
         mTipPaint.setColor(readBookControl.getTextColor());
@@ -311,7 +314,6 @@ public abstract class PageLoader{
     public void refreshUi() {
         initData();
         initPaint();
-        mPageView.setPageMode();
         skipToChapter(mCurChapterPos, mCurPagePos);
     }
 
@@ -759,7 +761,7 @@ public abstract class PageLoader{
     private synchronized void drawBackground(Bitmap bitmap, TxtChapter txtChapter, TxtPage txtPage) {
         if (bitmap == null) return;
         Canvas canvas = new Canvas(bitmap);
-        canvas.drawColor(readBookControl.getBgColor());
+        canvas.drawColor(Color.WHITE);
         drawBackground(canvas, txtChapter, txtPage);
     }
 
