@@ -50,9 +50,6 @@
         <dimen name="searchbar_stroke_width">1dp</dimen>
         <dimen name="searchbar_radius">21dp</dimen>
         <!-- SearchBar-->
-        <dimen name="card_margin">12dp</dimen>
-        <dimen name="card_item_padding">3dp</dimen>
-        <dimen name="card_text_margin">10dp</dimen>
         <dimen name="card_stroke_width">1dp</dimen>
         <dimen name="card_radius">16dp</dimen>
         <!-- More Setting Menu-->
@@ -71,17 +68,23 @@
             <dimen name="read_menu_adjust_margin_seekbar_layout_height">25dp</dimen>
             <dimen name="read_menu_adjust_margin_text_size">14sp</dimen>
         <!-- Setting Preference -->
+        <!-- background -->
         <dimen name="preference_category_background_radius">13dp</dimen>
-        <dimen name="setting_preference_layout_height">50dp</dimen>
-        <dimen name="setting_preference_title_margin_top">14dp</dimen>
-        <dimen name="setting_preference_bind_tv_margin_top">6dp</dimen>
         <dimen name="setting_category_padding_up_and_bottom">3dp</dimen>
+        <!-- preference -->
+        <dimen name="setting_preference_layout_height">50dp</dimen>
         <dimen name="setting_preference_padding_left_and_right">24dp</dimen>
+        <!-- title -->
+        <dimen name="setting_preference_title_margin_top">14dp</dimen>
         <dimen name="setting_preference_margin_title">10dp</dimen>
-    <dimen name="setting_preference_bind_number_margin_end">28dp</dimen>
-    <dimen name="setting_preference_tip_icon_layout_height_and_width">20dp</dimen>
-    <dimen name="setting_preference_tip_icon_margin_start">10dp</dimen>
-        <dimen name="setting_preference_with_summary_layout_height">68dp</dimen>
+            <!-- bind textview -->
+            <dimen name="setting_preference_bind_tv_margin_top">6dp</dimen>
+            <!-- summary -->
+            <dimen name="setting_preference_with_summary_layout_height">68dp</dimen>
+            <!-- tip -->
+            <dimen name="setting_preference_bind_number_margin_end">28dp</dimen>
+            <dimen name="setting_preference_tip_icon_layout_height_and_width">20dp</dimen>
+            <dimen name="setting_preference_tip_icon_margin_start">10dp</dimen>
         <!-- About Fragment -->
         <dimen name="preference_with_icon_padding_start">42dp</dimen>
         <dimen name="preference_icon_layout_height_and_width">24dp</dimen>

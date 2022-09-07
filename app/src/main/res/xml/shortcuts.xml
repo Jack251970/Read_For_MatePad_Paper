@@ -4,7 +4,7 @@
     <shortcut
         android:shortcutId="bookRead"
         android:enabled="true"
-        android:icon="@drawable/ic_shortcuts_last_read"
+        android:icon="@drawable/image_shortcuts_last_read"
         android:shortcutShortLabel="@string/last_read"
         android:shortcutLongLabel="@string/last_read"
         android:shortcutDisabledMessage="@string/last_read"
@@ -28,7 +28,7 @@
     <shortcut
         android:shortcutId="bookshelf"
         android:enabled="true"
-        android:icon="@drawable/ic_shortcuts_bookshelf"
+        android:icon="@drawable/image_shortcuts_bookshelf"
         android:shortcutShortLabel="@string/enter_bookshelf"
         android:shortcutLongLabel="@string/enter_bookshelf"
         android:shortcutDisabledMessage="@string/enter_bookshelf"
