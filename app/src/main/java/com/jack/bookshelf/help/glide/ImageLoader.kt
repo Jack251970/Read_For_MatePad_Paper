@@ -46,5 +46,4 @@ object ImageLoader {
     fun load(context: Context, bytes: ByteArray?): RequestBuilder<Drawable> {
         return Glide.with(context).load(bytes)
     }
-
 }

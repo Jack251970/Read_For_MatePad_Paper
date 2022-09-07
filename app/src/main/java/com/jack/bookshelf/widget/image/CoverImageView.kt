@@ -100,8 +100,8 @@ class CoverImageView : androidx.appcompat.widget.AppCompatImageView {
         super.onDraw(canvas)
         if (!loadFailed) return
         // 绘制边框
-        val rectOut: RectF = RectF(0f, 0f, width, height)
-        val rectIn: RectF = RectF(3f, 3f, width - 3, height - 3)
+        val rectOut = RectF(0f, 0f, width, height)
+        val rectIn = RectF(3f, 3f, width - 3, height - 3)
         canvas.drawDoubleRoundRect(rectOut, coverRadius, coverRadius,
             rectIn, coverRadius, coverRadius, paint)
         name?.let {
@@ -120,11 +120,6 @@ class CoverImageView : androidx.appcompat.widget.AppCompatImageView {
             authorPaint.style = Paint.Style.FILL
             canvas.drawText(it, width / 2, authorHeight, authorPaint)
         }
-    }
-
-    fun setHeight(height: Int) {
-        val width = height * 5 / 7
-        minimumWidth = width
     }
 
     private fun setText(name: String?, author: String?) {
