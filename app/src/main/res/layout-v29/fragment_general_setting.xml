@@ -280,7 +280,7 @@
                 android:id="@+id/tv_filter_grade_number"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/setting_preference_layout_height"
-                android:layout_marginEnd="28dp"
+                android:layout_marginEnd="@dimen/setting_preference_bind_number_margin_end"
                 android:gravity="center_vertical"
                 style="@style/PaperTextStyleSettingPreference"
                 android:focusable="false"
@@ -290,10 +290,11 @@
                 tools:text="0"/>
             <ImageView
                 android:id="@+id/iv_filter_grade_tip"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="@dimen/setting_preference_tip_icon_layout_height_and_width"
+                android:layout_height="@dimen/setting_preference_tip_icon_layout_height_and_width"
+                android:layout_marginStart="@dimen/setting_preference_tip_icon_margin_start"
                 android:src="@drawable/ic_expand_more"
-                app:layout_constraintRight_toLeftOf="@id/iv_search_result_filter_grade"
+                app:layout_constraintLeft_toRightOf="@id/tv_search_result_filter_grade"
                 app:layout_constraintBottom_toBottomOf="@id/tv_search_result_filter_grade"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
         <View
@@ -360,7 +361,7 @@
             android:id="@+id/tv_threads_number"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/setting_preference_layout_height"
-            android:layout_marginEnd="28dp"
+            android:layout_marginEnd="@dimen/setting_preference_bind_number_margin_end"
             android:gravity="center_vertical"
             style="@style/PaperTextStyleSettingPreference"
             android:focusable="false"
@@ -398,7 +399,7 @@
             android:id="@+id/tv_web_port_number"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/setting_preference_layout_height"
-            android:layout_marginEnd="28dp"
+            android:layout_marginEnd="@dimen/setting_preference_bind_number_margin_end"
             android:gravity="center_vertical"
             style="@style/PaperTextStyleSettingPreference"
             android:focusable="false"

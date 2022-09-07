@@ -16,7 +16,6 @@ import com.jack.bookshelf.databinding.FragmentGeneralSettingBinding;
 import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.help.storage.BackupRestoreUi;
 import com.jack.bookshelf.service.WebService;
-import com.jack.bookshelf.view.activity.AboutActivity;
 import com.jack.bookshelf.view.activity.SettingActivity;
 import com.jack.bookshelf.view.dialog.PaperAlertDialog;
 import com.jack.bookshelf.widget.number.NumberPickerDialog;
@@ -53,7 +52,7 @@ public class GeneralSettingFragment extends Fragment {
         bindSwitch();
         binding.tvWebdavSetting.setOnClickListener(v -> {
             WebdavSettingFragment webDavSettingFragment = new WebdavSettingFragment();
-            settingActivity.getSupportFragmentManager().beginTransaction().replace(R.id.settingFragment, webDavSettingFragment,settingActivity.webdavSettingTag).commit();
+            settingActivity.getSupportFragmentManager().beginTransaction().replace(R.id.settingFragment, webDavSettingFragment, settingActivity.webdavSettingTag).commit();
         });
         binding.tvBackPath.setOnClickListener(v -> BackupRestoreUi.INSTANCE.selectBackupFolder(settingActivity,settingActivity.getRoot()));
         binding.tvFilterGradeNumber.setText(String.valueOf(pref.getInt(getString(R.string.pk_search_result_filter_grade),0)));
@@ -109,7 +108,10 @@ public class GeneralSettingFragment extends Fragment {
                             BookshelfHelp.clearCaches(true);
                         }
                     }).show(settingActivity.getRoot()));
-        binding.tvAboutRead.setOnClickListener(v -> AboutActivity.startThis(settingActivity));
+        binding.tvAboutRead.setOnClickListener(v -> {
+            AboutFragment aboutFragment = new AboutFragment();
+            settingActivity.getSupportFragmentManager().beginTransaction().replace(R.id.settingFragment, aboutFragment, settingActivity.aboutTag).commit();
+        });
     }
 
     private void bindSwitch() {

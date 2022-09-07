@@ -2,7 +2,6 @@ package com.jack.bookshelf.view.fragment;
 
 import static com.jack.bookshelf.constant.AppConstant.DEFAULT_WEB_DAV_URL;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.observer.MySingleObserver;
 import com.jack.bookshelf.databinding.FragmentWebdavSettingBinding;
@@ -42,7 +40,6 @@ public class WebdavSettingFragment extends Fragment {
     private FragmentWebdavSettingBinding binding;
     private SettingActivity settingActivity;
 
-    private final SharedPreferences pref = MApplication.getConfigPreferences();
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     private InputDialog inputDialogUrl;
