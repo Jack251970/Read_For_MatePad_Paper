@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="360dp"
-    android:background="@drawable/pop_read_menu_background"
+    android:background="@drawable/shape_pop_read_menu_background"
     tools:ignore="ContentDescription">
     <!-- 点击区域 -->
     <View

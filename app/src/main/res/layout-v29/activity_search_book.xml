@@ -28,7 +28,7 @@
             android:layout_height="@dimen/action_bar_icon_height_and_width"
             android:layout_weight="1"
             android:layout_marginLeft="@dimen/action_bar_padding_and_margin"
-            android:background="@drawable/searchbar_background"
+            android:background="@drawable/shape_searchbar_background"
             android:imeOptions="actionSearch"
             app:iconifiedByDefault="false"
             app:showDividers="none"

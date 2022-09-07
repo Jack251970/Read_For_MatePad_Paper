@@ -21,7 +21,7 @@
         android:paddingBottom="@dimen/setting_category_padding_up_and_bottom"
         android:paddingStart="@dimen/setting_preference_padding_left_and_right"
         android:paddingEnd="@dimen/setting_preference_padding_left_and_right"
-        android:background="@drawable/preference_category_background">
+        android:background="@drawable/shape_preference_category_background">
         <TextView
             android:id="@+id/tv_web_dav_url"
             android:layout_width="0dp"
@@ -178,7 +178,7 @@
         android:paddingBottom="@dimen/setting_category_padding_up_and_bottom"
         android:paddingStart="@dimen/setting_preference_padding_left_and_right"
         android:paddingEnd="@dimen/setting_preference_padding_left_and_right"
-        android:background="@drawable/preference_category_background">
+        android:background="@drawable/shape_preference_category_background">
         <TextView
             android:id="@+id/tv_web_dav_restore"
             android:layout_width="0dp"

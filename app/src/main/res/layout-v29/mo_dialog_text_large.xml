@@ -7,7 +7,7 @@
     android:layout_marginBottom="20dp"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
-    android:background="@drawable/card_background"
+    android:background="@drawable/shape_card_background"
     android:scrollbars="vertical"
     android:fillViewport="true">
     <TextView

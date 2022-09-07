@@ -6,7 +6,7 @@
     android:paddingBottom="10dp"
     android:paddingLeft="18dp"
     android:paddingRight="18dp"
-    android:background="@drawable/more_setting_menu_background"
+    android:background="@drawable/shape_more_setting_menu_background"
     android:orientation="vertical">
     <LinearLayout
         android:id="@+id/ll_more_setting_menu_book_read_online1"

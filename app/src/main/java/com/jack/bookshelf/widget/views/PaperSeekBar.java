@@ -34,10 +34,10 @@ public class PaperSeekBar extends AppCompatSeekBar {
     @SuppressLint("UseCompatLoadingForDrawables")
     private void init(Context context, AttributeSet attrs) {
         // 自定义Thumb
-        setThumb(context.getDrawable(R.drawable.paper_seekbar_thumb));
+        setThumb(context.getDrawable(R.drawable.shape_seekbar_thumb));
         // 去除Thumb点按效果
         setDuplicateParentStateEnabled(true);
         // 设置进度条
-        setProgressDrawable(context.getDrawable(R.drawable.paper_seekbar_progress_background));
+        setProgressDrawable(context.getDrawable(R.drawable.shape_seekbar_progress_background));
     }
 }

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="50dp"
-        android:background="@drawable/preference_category_background"
+        android:background="@drawable/shape_preference_category_background"
         app:layout_constraintTop_toTopOf="@id/cl_about_fragment">
         <ImageView
             android:id="@+id/iv_app_card_icon"
@@ -56,7 +56,7 @@
         android:layout_marginTop="@dimen/setting_preference_margin_title"
         android:gravity="center_vertical"
         android:paddingStart="@dimen/preference_with_icon_padding_start"
-        android:background="@drawable/preference_category_background"
+        android:background="@drawable/shape_preference_category_background"
         android:text="@string/version_name"
         style="@style/PaperTextStyleSettingPreference"
         app:layout_constraintTop_toBottomOf="@id/cl_app_card" />
@@ -78,7 +78,7 @@
         android:layout_marginTop="@dimen/setting_preference_margin_title"
         android:gravity="center_vertical"
         android:paddingStart="@dimen/preference_with_icon_padding_start"
-        android:background="@drawable/preference_category_background"
+        android:background="@drawable/shape_preference_category_background"
         android:text="@string/check_update"
         style="@style/PaperTextStyleSettingPreference"
         app:layout_constraintTop_toBottomOf="@id/tv_version" />
@@ -100,7 +100,7 @@
         android:layout_marginTop="@dimen/setting_preference_margin_title"
         android:gravity="center_vertical"
         android:paddingStart="@dimen/preference_with_icon_padding_start"
-        android:background="@drawable/preference_category_background"
+        android:background="@drawable/shape_preference_category_background"
         android:text="@string/update_log"
         style="@style/PaperTextStyleSettingPreference"
         app:layout_constraintTop_toBottomOf="@id/tv_update" />
@@ -122,7 +122,7 @@
         android:layout_marginTop="@dimen/setting_preference_margin_title"
         android:gravity="center_vertical"
         android:paddingStart="@dimen/preference_with_icon_padding_start"
-        android:background="@drawable/preference_category_background"
+        android:background="@drawable/shape_preference_category_background"
         android:text="@string/git_hub"
         style="@style/PaperTextStyleSettingPreference"
         app:layout_constraintTop_toBottomOf="@id/tv_update_log" />
@@ -144,7 +144,7 @@
         android:layout_marginTop="@dimen/setting_preference_margin_title"
         android:gravity="center_vertical"
         android:paddingStart="@dimen/preference_with_icon_padding_start"
-        android:background="@drawable/preference_category_background"
+        android:background="@drawable/shape_preference_category_background"
         android:text="@string/disclaimer"
         style="@style/PaperTextStyleSettingPreference"
         app:layout_constraintTop_toBottomOf="@id/tv_github" />

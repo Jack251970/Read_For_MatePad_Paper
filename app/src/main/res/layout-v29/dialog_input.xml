@@ -3,7 +3,7 @@
     android:id="@+id/ll_content"
     android:layout_height="wrap_content"
     android:layout_width="@dimen/alert_dialog_width"
-    android:background="@drawable/alert_dialog_background"
+    android:background="@drawable/shape_alert_dialog_background"
     android:paddingStart="@dimen/alert_dialog_radius"
     android:paddingEnd="@dimen/alert_dialog_radius"
     android:paddingTop="@dimen/alert_dialog_padding_top"

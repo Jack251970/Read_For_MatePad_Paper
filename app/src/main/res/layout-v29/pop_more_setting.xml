@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/pop_menu_read_book_layout_height"
-    android:background="@drawable/pop_read_menu_background"
+    android:background="@drawable/shape_pop_read_menu_background"
     tools:layout_height="match_parent">
     <!-- 点击范围 -->
     <View

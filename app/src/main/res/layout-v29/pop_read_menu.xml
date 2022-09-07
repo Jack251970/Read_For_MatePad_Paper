@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:padding="@dimen/float_image_button_padding"
-            android:background="@drawable/float_button_background"
+            android:background="@drawable/shape_float_button_background"
             android:src="@drawable/ic_timer_black"
             android:contentDescription="朗读状态" />
         <TextView
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/read_info_background"
+            android:background="@drawable/shape_read_info_background"
             android:clickable="true"
             android:focusable="true"
             android:padding="10dp"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:padding="@dimen/float_image_button_padding"
-            android:background="@drawable/float_button_background"
+            android:background="@drawable/shape_float_button_background"
             android:src="@drawable/ic_read_aloud"
             android:contentDescription="朗读" />
         <Space
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:padding="@dimen/float_image_button_padding"
-            android:background="@drawable/float_button_background"
+            android:background="@drawable/shape_float_button_background"
             android:src="@drawable/ic_auto_page"
             android:contentDescription="自动翻页" />
     </LinearLayout>
@@ -69,7 +69,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="140dp"
-        android:background="@drawable/pop_read_menu_background">
+        android:background="@drawable/shape_pop_read_menu_background">
         <!-- 背景点击区域 -->
         <View
             android:id="@+id/vw_bg"
@@ -111,8 +111,8 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
-                    tools:thumb="@drawable/paper_seekbar_thumb"
-                    tools:progressDrawable="@drawable/paper_seekbar_progress_background"/>
+                    tools:thumb="@drawable/shape_seekbar_thumb"
+                    tools:progressDrawable="@drawable/shape_seekbar_progress_background"/>
                 <TextView
                     android:id="@+id/tv_next"
                     android:layout_width="wrap_content"

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dialog_background">
+    android:background="@drawable/shape_dialog_background">
     <LinearLayout
         android:id="@+id/ll_content"
         android:layout_width="match_parent"
@@ -87,7 +87,7 @@
             android:focusable="true"
             android:gravity="center"
             android:padding="@dimen/text_view_button_padding"
-            android:background="@drawable/textview_button_background"
+            android:background="@drawable/shape_textview_button_background"
             android:layout_margin="5dp"
             android:text="@string/confirm"
             android:textFontWeight="800"

@@ -21,7 +21,7 @@
         android:paddingBottom="@dimen/setting_category_padding_up_and_bottom"
         android:paddingStart="@dimen/setting_preference_padding_left_and_right"
         android:paddingEnd="@dimen/setting_preference_padding_left_and_right"
-        android:background="@drawable/preference_category_background">
+        android:background="@drawable/shape_preference_category_background">
         <TextView
             android:id="@+id/tv_default_read"
             android:layout_width="wrap_content"
@@ -55,7 +55,7 @@
         android:paddingBottom="@dimen/setting_category_padding_up_and_bottom"
         android:paddingStart="@dimen/setting_preference_padding_left_and_right"
         android:paddingEnd="@dimen/setting_preference_padding_left_and_right"
-        android:background="@drawable/preference_category_background">
+        android:background="@drawable/shape_preference_category_background">
         <TextView
             android:id="@+id/tv_webdav_setting"
             android:layout_width="0dp"
@@ -118,7 +118,7 @@
         android:paddingBottom="@dimen/setting_category_padding_up_and_bottom"
         android:paddingStart="@dimen/setting_preference_padding_left_and_right"
         android:paddingEnd="@dimen/setting_preference_padding_left_and_right"
-        android:background="@drawable/preference_category_background">
+        android:background="@drawable/shape_preference_category_background">
         <TextView
             android:id="@+id/tv_auto_update"
             android:layout_width="wrap_content"
@@ -198,7 +198,7 @@
         android:paddingBottom="@dimen/setting_category_padding_up_and_bottom"
         android:paddingStart="@dimen/setting_preference_padding_left_and_right"
         android:paddingEnd="@dimen/setting_preference_padding_left_and_right"
-        android:background="@drawable/preference_category_background">
+        android:background="@drawable/shape_preference_category_background">
         <TextView
             android:id="@+id/tv_default_purify"
             android:layout_width="wrap_content"
@@ -232,7 +232,7 @@
         android:paddingBottom="@dimen/setting_category_padding_up_and_bottom"
         android:paddingStart="@dimen/setting_preference_padding_left_and_right"
         android:paddingEnd="@dimen/setting_preference_padding_left_and_right"
-        android:background="@drawable/preference_category_background">
+        android:background="@drawable/shape_preference_category_background">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_search_result_filter_grade"
             android:layout_width="0dp"
@@ -337,7 +337,7 @@
         android:paddingBottom="@dimen/setting_category_padding_up_and_bottom"
         android:paddingStart="@dimen/setting_preference_padding_left_and_right"
         android:paddingEnd="@dimen/setting_preference_padding_left_and_right"
-        android:background="@drawable/preference_category_background">
+        android:background="@drawable/shape_preference_category_background">
         <TextView
             android:id="@+id/tv_update_search_threads_num"
             android:layout_width="0dp"

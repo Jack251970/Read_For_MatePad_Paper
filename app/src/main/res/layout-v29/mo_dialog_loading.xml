@@ -10,7 +10,7 @@
     android:paddingEnd="30dp"
     android:paddingTop="5dp"
     android:paddingBottom="5dp"
-    android:background="@drawable/card_background"
+    android:background="@drawable/shape_card_background"
     android:orientation="horizontal">
     <TextView
         android:id="@+id/msg_tv"

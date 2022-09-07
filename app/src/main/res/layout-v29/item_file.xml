@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:background="@drawable/file_type_background"
+            android:background="@drawable/shape_file_type_background"
             android:text="TXT"
             android:textColor="@color/black"
             android:textSize="11sp"

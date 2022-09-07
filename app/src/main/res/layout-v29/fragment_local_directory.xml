@@ -55,5 +55,5 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/viewpager_import_local_background"/>
+        android:background="@drawable/shape_viewpager_import_local_background"/>
 </LinearLayout>

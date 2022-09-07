@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:padding="16dp"
-                android:background="@drawable/float_button_background"
+                android:background="@drawable/shape_float_button_background"
                 android:src="@drawable/ic_start"
                 android:contentDescription="@string/read_aloud" />
             <ImageView
