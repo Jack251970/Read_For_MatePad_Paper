@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:layout_height="match_parent">
+    tools:ignore="ContentDescription" >
     <!-- 分割线 -->
     <View
         android:layout_width="1dp"
@@ -103,12 +103,45 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/black" />-->
-    <!-- 菜单选项 -->
+    <!-- 标题 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+        <!-- 分割线 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        <ImageView
+            android:id="@+id/iv_back_pop_more_setting_menu"
+            android:layout_width="@dimen/action_bar_icon_height_and_width"
+            android:layout_height="@dimen/action_bar_icon_height_and_width"
+            android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tv_title_pop_more_setting_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+            android:text="@string/read_setting"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/action_bar_title_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/iv_back_pop_more_setting_menu"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- 阅读设置 -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
         android:paddingStart="55dp"
-        android:paddingEnd="55dp" >
+        android:paddingEnd="55dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -186,7 +219,7 @@
                     android:focusable="false"
                     android:clickable="false"
                     app:layout_constraintRight_toRightOf="@id/cl_display_setting"
-                    app:layout_constraintTop_toBottomOf="@id/line1"/>
+                    app:layout_constraintTop_toBottomOf="@id/line1" />
                 <TextView
                     android:id="@+id/tv_keep_light_time_num"
                     android:layout_width="wrap_content"

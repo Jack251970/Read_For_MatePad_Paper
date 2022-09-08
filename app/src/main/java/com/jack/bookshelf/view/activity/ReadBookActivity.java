@@ -551,7 +551,14 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
             }
 
             @Override
-            public void recreate() {ReadBookActivity.this.recreate();}
+            public void recreate() {
+                ReadBookActivity.this.recreate();
+            }
+
+            @Override
+            public void back() {
+                popMenuOut();
+            }
         });
     }
 
@@ -1294,6 +1301,10 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
             initImmersionBar(false);
             if (binding.llMenuTop.getVisibility() == View.VISIBLE) {
                 menuOut(false);
+                if (ifPopMenuShow()) {
+                    screenOffTimerStart();
+                    return;
+                }
             }
             if (ifPopMenuShow()) {
                 menuOut(true);

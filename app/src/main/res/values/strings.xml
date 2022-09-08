@@ -310,16 +310,32 @@
     <string name="rule_summary">规则说明</string>
 
     <!-- Pop Menu -->
-    <!-- Pop Read Menu -->
-    <string name="aloud_stop">朗读停止</string>
-    <string name="read_aloud">朗读</string>
-    <string name="auto_next_page">自动翻页</string>
-    <string name="auto_next_page_stop">停止自动翻页</string>
-    <string name="previous_chapter">上一章</string>
-    <string name="next_chapter">下一章</string>
-    <!-- Pop Read Long Press Menu -->
-    <string name="replace">替换</string>
-    <string name="advertisement">广告</string>
+        <!-- Pop Read Menu -->
+        <string name="aloud_stop">朗读停止</string>
+        <string name="read_aloud">朗读</string>
+        <string name="auto_next_page">自动翻页</string>
+        <string name="auto_next_page_stop">停止自动翻页</string>
+        <string name="previous_chapter">上一章</string>
+        <string name="next_chapter">下一章</string>
+        <!-- Pop Read Long Press Menu -->
+        <string name="replace">替换</string>
+        <string name="advertisement">广告</string>
+        <!-- Pop More Setting Menu -->
+        <string name="read_setting">阅读设置</string>
+        <string name="display_setting">显示设置</string>
+        <string name="operation_setting">操作设置</string>
+        <string name="screen_direction">屏幕方向</string>
+        <string name="screen_sensor">跟随传感器</string>
+        <string name="screen_landscape">横向</string>
+        <string name="screen_portrait">竖向</string>
+        <string name="screen_unspecified">跟随系统</string>
+        <string name="keep_light_time">屏幕关闭时间</string>
+        <string name="disable_return_key">禁用返回键</string>
+        <string name="click_open_page">点击翻页</string>
+        <string name="click_all_next_page">点击总是翻下一页</string>
+        <string name="volume_open_page">音量键翻页</string>
+        <string name="aloud_volume_page">朗读时音量键翻页</string>
+        <string name="select_text">长按选择文本</string>
 
     <!-- Shortcuts -->
     <string name="enter_bookshelf">进入书架</string>
@@ -374,11 +390,6 @@
     <string name="backup_fail">备份失败</string>
     <string name="on_restore">正在恢复</string>
     <string name="restore_fail">恢复失败</string>
-    <string name="screen_direction">屏幕方向</string>
-    <string name="screen_sensor">跟随传感器</string>
-    <string name="screen_landscape">横向</string>
-    <string name="screen_portrait">竖向</string>
-    <string name="screen_unspecified">跟随系统</string>
     <string name="all_chapter_num">共%d章</string>
     <string name="interface_setting">界面</string>
     <string name="light">灯光</string>
@@ -411,46 +422,24 @@
     <string name="light_novel_paragraph">重新分段</string>
     <string name="img_cover">封面</string>
     <string name="book">书</string>
-    <string name="volume_open_page">音量键翻页</string>
-    <string name="click_open_page">点击翻页</string>
-    <string name="click_all_next_page">点击总是翻下一页</string>
-    <string name="keep_light_time">屏幕关闭时间</string>
     <string name="menu">菜单</string>
-    <string name="parameter_setting">参数设置</string>
-    <string name="display_setting">显示设置</string>
-    <string name="operation_setting">操作设置</string>
     <string name="scroll_bar">滚动条</string>
     <string name="clear_all_content">清除缓存会删除所有已保存章节,是否确认删除?</string>
     <string name="book_source_share_url">书源共享</string>
-    <string name="night_theme">夜间模式</string>
     <string name="welcome">启动页</string>
     <string name="download_start">开始下载</string>
     <string name="download_cancel">取消下载</string>
     <string name="no_download">暂无任务</string>
     <string name="import_select_book">导入选择书籍</string>
-    <string name="change_icon">切换图标</string>
     <string name="open_from_other">打开外部书籍</string>
     <string name="check_update_interval">检查更新间隔</string>
     <string name="read_type">阅读方式</string>
     <string name="del_all_msg">是否确认删除所有内容?</string>
     <string name="del_select_msg">是否确认删除所选内容?</string>
-    <string name="find_on_www">发现</string>
-    <string name="find_source_manage">发现管理</string>
     <string name="find_empty">没有内容,去书源里自定义吧!</string>
-    <string name="showTitle">正文显示标题</string>
     <string name="refresh_default">书源同步</string>
     <string name="no_last_chapter">无最新章节信息</string>
-    <string name="showTimeBattery">显示时间和电量</string>
-    <string name="select_text">长按选择文本</string>
-    <string name="showLine">显示分隔线</string>
-    <string name="copy_text">拷贝内容</string>
-    <string name="content_sl">这是一段测试文字：\n\u3000\u3000只是让你看看你设置的阅读样式的效果</string>
-    <string name="text_bg_style">文字颜色和背景(长按自定义)</string>
-    <string name="immersion_status_bar">沉浸式状态栏</string>
     <string name="un_download">还剩%d章未下载</string>
-    <string name="long_click_input_color">长按输入颜色值</string>
-    <string name="group_zg">追更区</string>
-    <string name="group_yf">养肥区</string>
     <string name="bookmark_add">添加书签</string>
     <string name="load_over_time">加载超时</string>
     <string name="join_group">关注:%s</string>
@@ -460,7 +449,6 @@
     <string name="text_bold">粗/细</string>
     <string name="custom_font">字体</string>
     <string name="text">文字</string>
-    <string name="home_page">软件主页</string>
     <string name="right">右</string>
     <string name="left">左</string>
     <string name="bottom">下</string>
@@ -491,14 +479,11 @@
     <string name="paragraph_size">段距</string>
     <string name="edit">编辑</string>
     <string name="to_top">置顶</string>
-    <string name="default_expand_first">默认展开第一组发现</string>
     <string name="read_aloud_speed">朗读语速</string>
     <string name="auto_next_page_speed">自动翻页时每分钟阅读字数(CPM)</string>
     <string name="menu_action_group">分组</string>
     <string name="download_path">书籍缓存路径</string>
-    <string name="new_version">新版本</string>
     <string name="download_update">下载更新</string>
-    <string name="aloud_volume_page">朗读时音量键翻页</string>
     <string name="tip_margin_change">Tip边距跟随边距调整</string>
     <string name="faq">常见问题</string>
     <string name="update_chapter">更新目录</string>
@@ -506,19 +491,6 @@
     <string name="swap_sort">倒序-顺序</string>
     <string name="sort">排序</string>
     <string name="read_y">已读: %s</string>
-    <string name="all_book">所有书籍</string>
-    <string name="pursue_more">追更</string>
-    <string name="pursue_more_book">追更书籍</string>
-    <string name="fattening_book">养肥书籍</string>
-    <string name="finish_book">完结书籍</string>
-    <string name="status_bar_immersion">顶部状态栏颜色透明</string>
-    <string name="navigation_bar_color_change">沉浸式导航栏</string>
-    <string name="navigation_bar_color_change_s">底部导航栏颜色透明</string>
-    <string name="page_mode_COVER">覆盖</string>
-    <string name="page_mode_SIMULATION">仿真</string>
-    <string name="page_mode_SLIDE">滑动</string>
-    <string name="page_mode_SCROLL">滚动</string>
-    <string name="page_mode_NONE">无动画</string>
     <string name="success">成功</string>
     <string name="debug_source">调试书源</string>
     <string name="click_on_selected_show_menu">选中时点击可弹出菜单</string>
@@ -537,7 +509,6 @@
     <string name="get_web_content_error">访问网站失败:%s</string>
     <string name="no_book_name">未获取到书名</string>
     <string name="get_book_list_success">搜索列表获取成功%d</string>
-    <string name="gallery">图库</string>
     <string name="non_update_url">没有获取到更新地址</string>
     <string name="chapter">章</string>
     <string name="indent">缩进</string>
@@ -546,9 +517,6 @@
     <string name="indent_2">二字符缩进</string>
     <string name="indent_3">三字符缩进</string>
     <string name="indent_4">四字符缩进</string>
-    <string name="select_sd_file">选择SD卡</string>
-    <string name="no_find">没有发现，可以在书源里添加。</string>
-    <string name="restore_default">恢复默认</string>
     <string name="set_download_per">自定义缓存路径需要存储权限</string>
     <string name="content_empty">文章内容为空</string>
     <string name="on_change_source">正在换源请等待…</string>
@@ -564,21 +532,9 @@
     <string name="music">音乐</string>
     <string name="audio">音频</string>
     <string name="is_enable">启用</string>
-    <string name="prev_page_key">上一页按键</string>
-    <string name="next_page_key">下一页按键</string>
     <string name="chapter_pay">购买</string>
-    <string name="import_txt_chapter_rule_default">导入默认</string>
-    <string name="import_txt_chapter_rule_local">导入本地</string>
-    <string name="output_book_source_local">导出本地</string>
     <string name="custom_your_reading_mode">自定义样式</string>
     <string name="open_browser">在浏览器中打开</string>
     <string name="brightness_auto">自动亮度 %s</string>
     <string name="text_space">间距</string>
-    <string name="disable_return_key">禁用返回键</string>
-    <string name="text_color">文字颜色</string>
-    <string name="background_color">背景颜色</string>
-    <string name="reset_default">恢复默认</string>
-    <string name="save_figuration">保存配置</string>
-    <string name="background_image">背景图片</string>
-    <string name="select_image">选择背景</string>
 </resources>

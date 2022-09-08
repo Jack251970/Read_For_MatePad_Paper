@@ -1,18 +1,14 @@
 package com.jack.bookshelf.view.popupwindow
 
 import android.content.Context
-import android.content.DialogInterface
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.CompoundButton
 import android.widget.FrameLayout
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import com.jack.bookshelf.R
 import com.jack.bookshelf.databinding.PopMoreSettingBinding
 import com.jack.bookshelf.help.ReadBookControl
-import com.jack.bookshelf.utils.theme.ATH
+import com.jack.bookshelf.view.activity.ReadBookActivity
 
 /**
  * Read More Setting Menu
@@ -21,10 +17,10 @@ import com.jack.bookshelf.utils.theme.ATH
  */
 
 class MoreSettingPop : FrameLayout {
+
     private val readBookControl = ReadBookControl.getInstance()
     private var callback: Callback? = null
-    private val binding = PopMoreSettingBinding.inflate(LayoutInflater.from(context),
-        this, true)
+    private val binding = PopMoreSettingBinding.inflate(LayoutInflater.from(context), this, true)
 
     constructor(context: Context) : super(context) {init(context)}
 
@@ -44,6 +40,7 @@ class MoreSettingPop : FrameLayout {
 
     private fun bindEvent() {
         setOnClickListener { this.visibility = View.GONE }
+        binding.ivBackPopMoreSettingMenu.setOnClickListener{ callback?.back() }
         binding.tvScreenDirection.setOnClickListener {
             SelectMenu.builder(context)
                 .setTitle(context.getString(R.string.screen_direction))
@@ -171,5 +168,6 @@ class MoreSettingPop : FrameLayout {
         fun recreate()
         fun changeSpeechRate(speechRate: Int)
         fun speechRateFollowSys()
+        fun back()
     }
 }
