@@ -1495,26 +1495,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                     }
                     return true;
                 }
-            } else if (keyCode == KeyEvent.KEYCODE_MENU) {
-                if (binding.flMenu.getVisibility() == View.VISIBLE) {
-                    popMenuOut();
-                } else {
-                    popMenuIn();
-                }
-                return true;
             } else if (binding.flMenu.getVisibility() != View.VISIBLE) {
-                if (keyCode == preferences.getInt("nextKeyCode", 0)) {
-                    if (mPageLoader != null && keyCode != 0) {
-                        mPageLoader.skipToNextPage();
-                    }
-                    return true;
-                }
-                if (keyCode == preferences.getInt("prevKeyCode", 0)) {
-                    if (mPageLoader != null && keyCode != 0) {
-                        mPageLoader.skipToPrePage();
-                    }
-                    return true;
-                }
                 if (readBookControl.getCanKeyTurn(aloudStatus == ReadAloudService.Status.PLAY) && keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
                     if (mPageLoader != null) {
                         mPageLoader.skipToNextPage();
@@ -1524,9 +1505,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                     if (mPageLoader != null) {
                         mPageLoader.skipToPrePage();
                     }
-                    return true;
-                } else if (keyCode == KeyEvent.KEYCODE_SPACE) {
-                    nextPage();
                     return true;
                 }
             }
@@ -1538,11 +1516,8 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (binding.flMenu.getVisibility() != View.VISIBLE) {
             if (readBookControl.getCanKeyTurn(aloudStatus == ReadAloudService.Status.PLAY)
-                    && keyCode != 0
                     && (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN
-                    || keyCode == KeyEvent.KEYCODE_VOLUME_UP
-                    || keyCode == preferences.getInt("nextKeyCode", 0)
-                    || keyCode == preferences.getInt("prevKeyCode", 0))) {
+                    || keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
                 return true;
             }
         }
@@ -1554,10 +1529,8 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
      */
     @Override
     public void upMenu() {
-        boolean onLine = (mPresenter.getBookShelf() != null) &&
-                !mPresenter.getBookShelf().getTag().equals(BookShelfBean.LOCAL_TAG);
-        boolean isTxt = (mPresenter.getBookShelf() != null)
-                && mPresenter.getBookShelf().getNoteUrl().toLowerCase().endsWith(".txt");
+        boolean onLine = (mPresenter.getBookShelf() != null) && !mPresenter.getBookShelf().getTag().equals(BookShelfBean.LOCAL_TAG);
+        boolean isTxt = (mPresenter.getBookShelf() != null) && mPresenter.getBookShelf().getNoteUrl().toLowerCase().endsWith(".txt");
         if (onLine) {
             binding.appBarOnline.setVisibility(View.VISIBLE);
             binding.appBarLocal.setVisibility(View.GONE);

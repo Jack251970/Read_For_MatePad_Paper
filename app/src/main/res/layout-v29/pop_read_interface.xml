@@ -154,7 +154,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:text="@string/jf_convert_lite"
+                android:text="@string/chinese_convert_title"
                 style="@style/PaperTextStylePopReadMenu"
                 app:cornerRadius="16dp" />
         </LinearLayout>
@@ -172,7 +172,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:text="@string/row_0"
+                android:text="@string/row_1_time"
                 style="@style/PaperTextStylePopReadMenu"
                 app:cornerRadius="16dp"
                 tools:ignore="HardcodedText" />
@@ -187,7 +187,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:text="@string/row_1"
+                android:text="@string/row_2_time"
                 style="@style/PaperTextStylePopReadMenu"
                 app:cornerRadius="16dp"
                 tools:ignore="HardcodedText" />
@@ -202,7 +202,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:text="@string/row_2"
+                android:text="@string/row_3_time"
                 style="@style/PaperTextStylePopReadMenu"
                 app:cornerRadius="16dp"
                 tools:ignore="HardcodedText" />
@@ -217,7 +217,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:text="@string/row_def"
+                android:text="@string/_default"
                 style="@style/PaperTextStylePopReadMenu"
                 app:cornerRadius="16dp"
                 tools:ignore="HardcodedText" />

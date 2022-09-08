@@ -8,7 +8,6 @@ import android.widget.FrameLayout
 import com.jack.bookshelf.R
 import com.jack.bookshelf.databinding.PopMoreSettingBinding
 import com.jack.bookshelf.help.ReadBookControl
-import com.jack.bookshelf.view.activity.ReadBookActivity
 
 /**
  * Read More Setting Menu
@@ -43,9 +42,9 @@ class MoreSettingPop : FrameLayout {
         binding.ivBackPopMoreSettingMenu.setOnClickListener{ callback?.back() }
         binding.tvScreenDirection.setOnClickListener {
             SelectMenu.builder(context)
-                .setTitle(context.getString(R.string.screen_direction))
+                .setTitle(context.getString(R.string.screen_orientation))
                 .setBottomButton(context.getString(R.string.cancel))
-                .setMenu(context.resources.getStringArray(R.array.screen_direction_list_title), readBookControl.screenDirection)
+                .setMenu(context.resources.getStringArray(R.array.screen_orientation), readBookControl.screenDirection)
                 .setListener(object : SelectMenu.OnItemClickListener {
                     override fun forBottomButton() {}
 
@@ -155,7 +154,7 @@ class MoreSettingPop : FrameLayout {
     }
 
     private fun upScreenDirection(screenDirection: Int) {
-        val screenDirectionListTitle = context.resources.getStringArray(R.array.screen_direction_list_title)
+        val screenDirectionListTitle = context.resources.getStringArray(R.array.screen_orientation)
         if (screenDirection >= screenDirectionListTitle.size) {
             binding.tvScreenDirectionCurrent.text = screenDirectionListTitle[0]
         } else {

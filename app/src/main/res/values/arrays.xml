@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- More Setting Menu-->
         <!-- More Setting Menu Main-->
         <string-array name="more_setting_menu_main">
@@ -79,6 +80,40 @@
             <item>@string/sort_auto</item>
             <item>@string/sort_pin_yin</item>
         </string-array>
+        <!-- Read Interface Pop Menu Indent -->
+        <string-array name="indent">
+            <item>@string/indent_0_char</item>
+            <item>@string/indent_1_char</item>
+            <item>@string/indent_2_char</item>
+            <item>@string/indent_3_char</item>
+            <item>@string/indent_4_char</item>
+        </string-array>
+        <!-- Read Interface Pop Menu Chinese Convert -->
+        <string-array name="chinese_convert">
+            <item>@string/chinese_convert_off</item>
+            <item>@string/chinese_convert_to_simplified</item>
+            <item>@string/chinese_convert_to_traditional</item>
+        </string-array>
+        <!-- Read More Setting Pop Menu Screen Orientation -->
+        <string-array name="screen_orientation">
+            <item>@string/screen_portrait</item>
+            <item>@string/screen_landscape</item>
+        </string-array>
+        <!-- Read More Setting Pop Menu Screen Time Out -->
+        <string-array name="screen_time_out">
+            <item>@string/system</item>
+            <item>@string/light_time_1_minute</item>
+            <item>@string/light_time_2_minute</item>
+            <item>@string/light_time_3_minute</item>
+            <item>@string/light_always</item>
+        </string-array>
+        <integer-array name="screen_time_out_value">
+            <item>0</item>
+            <item>60</item>
+            <item>120</item>
+            <item>180</item>
+            <item>-1</item>
+        </integer-array>
 
     <!-- FilePicker -->
     <string-array name="text_suffix">
@@ -86,66 +121,4 @@
         <item>.json</item>
         <item>.xml</item>
     </string-array>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <string-array name="indent">
-        <item>@string/indent_0</item>
-        <item>@string/indent_1</item>
-        <item>@string/indent_2</item>
-        <item>@string/indent_3</item>
-        <item>@string/indent_4</item>
-    </string-array>
-
-    <string-array name="convert_s">
-        <item>@string/jf_convert_o</item>
-        <item>@string/jf_convert_j</item>
-        <item>@string/jf_convert_f</item>
-    </string-array>
-
-    <string-array name="screen_time_out">
-        <item>默认</item>
-        <item>1分钟</item>
-        <item>2分钟</item>
-        <item>3分钟</item>
-        <item>常亮</item>
-    </string-array>
-
-    <integer-array name="screen_time_out_value">
-        <item>0</item>
-        <item>60</item>
-        <item>120</item>
-        <item>180</item>
-        <item>-1</item>
-    </integer-array>
-
-    <string-array name="screen_direction_list_title">
-        <item>@string/screen_unspecified</item>
-        <item>@string/screen_portrait</item>
-        <item>@string/screen_landscape</item>
-        <item>@string/screen_sensor</item>
-    </string-array>
-
-    <declare-styleable name="Battery">
-        <attr name="batteryOrientation">
-            <enum name="horizontal" value="0"/>
-            <enum name="vertical" value="1"/>
-        </attr>
-        <attr name="batteryColor" format="color"/>
-        <attr name="batteryPower" format="integer"/>
-    </declare-styleable>
 </resources>

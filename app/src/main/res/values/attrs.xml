@@ -5,7 +5,12 @@
         <attr name="cornerRadius" format="dimension" />
     </declare-styleable>
 
-
+    <!-- Number Picker Dialog -->
+    <declare-styleable name="NumberPickerPreference">
+        <attr name="MinValue" format="integer" />
+        <attr name="MaxValue" format="integer" />
+        <attr name="android:summary" />
+    </declare-styleable>
 
 
 
@@ -27,12 +32,6 @@
         <attr name="color_checked" format="color"/>
         <attr name="color_unchecked" format="color"/>
         <attr name="color_unchecked_stroke" format="color"/>
-    </declare-styleable>
-
-    <declare-styleable name="NumberPickerPreference">
-        <attr name="MinValue" format="integer" />
-        <attr name="MaxValue" format="integer" />
-        <attr name="android:summary" />
     </declare-styleable>
 
     <declare-styleable name="RefreshLayout">

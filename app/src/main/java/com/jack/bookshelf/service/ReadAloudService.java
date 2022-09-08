@@ -262,20 +262,20 @@ public class ReadAloudService extends Service implements Player.Listener {
                         }
                         break;
                     case ActionUITimerStop:
-                        sText = getString(R.string.read_aloud_timerstop);
+                        sText = getString(R.string.read_aloud_timer_stop);
                         textToSpeech_ui.speak(sText, TextToSpeech.QUEUE_FLUSH, mParams);
                         break;
                     case ActionUITimerRemaining:
                         if (timeMinute > 0 && timeMinute <= maxTimeMinute) {
                             if (timeMinute <= 60) {
-                                sText = getString(R.string.read_aloud_timerremaining, timeMinute);
+                                sText = getString(R.string.read_aloud_timer_remaining, timeMinute);
                             } else {
                                 int hours = timeMinute / 60;
                                 int minutes = timeMinute % 60;
-                                sText = getString(R.string.read_aloud_timerremaininglong, hours, minutes);
+                                sText = getString(R.string.read_aloud_timer_remaining_length, hours, minutes);
                             }
                         } else {
-                            sText = getString(R.string.read_aloud_timerstop);
+                            sText = getString(R.string.read_aloud_timer_stop);
                         }
                         pauseReadAloud(false);
                         textToSpeech_ui.speak(sText, TextToSpeech.QUEUE_FLUSH, mParams);
@@ -552,7 +552,7 @@ public class ReadAloudService extends Service implements Player.Listener {
             } else {
                 int hours = timeMinute / 60;
                 int minutes = timeMinute % 60;
-                nTitle = getString(R.string.read_aloud_timerlong, hours, minutes);
+                nTitle = getString(R.string.read_aloud_timer_long, hours, minutes);
             }
         } else {
             nTitle = getString(R.string.read_aloud_t);

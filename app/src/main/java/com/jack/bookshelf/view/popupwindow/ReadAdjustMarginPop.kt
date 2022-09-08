@@ -18,6 +18,7 @@ import org.jetbrains.anko.sdk27.listeners.onClick
  */
 
 class ReadAdjustMarginPop : FrameLayout {
+
     val binding = PopReadAdjustMarginBinding.inflate(LayoutInflater.from(context), this, true)
     private var activity: Activity? = null
     private val readBookControl = ReadBookControl.getInstance()

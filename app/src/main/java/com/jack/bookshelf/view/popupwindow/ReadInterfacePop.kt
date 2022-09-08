@@ -28,19 +28,28 @@ import timber.log.Timber
  */
 
 class ReadInterfacePop : FrameLayout {
+
     private val binding = PopReadInterfaceBinding.inflate(LayoutInflater.from(context), this, true)
     private var activity: ReadBookActivity? = null
     private val readBookControl = ReadBookControl.getInstance()
     private var mainView: View? = null
     private var callback: Callback? = null
 
-    constructor(context: Context) : super(context) {init()}
+    constructor(context: Context) : super(context) {
+        init()
+    }
 
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {init()}
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
+        init()
+    }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {init()}
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        init()
+    }
 
-    private fun init() {binding.vwBg.setOnClickListener(null)}
+    private fun init() {
+        binding.vwBg.setOnClickListener(null)
+    }
 
     fun setListener(readBookActivity: ReadBookActivity, mainView: View, callback: Callback) {
         activity = readBookActivity
@@ -51,9 +60,9 @@ class ReadInterfacePop : FrameLayout {
         initLight()
     }
 
-    private fun initData() {binding.nbTextSize.text = String.format("%d", readBookControl.textSize)}
-
-    fun show() {initLight()}
+    private fun initData() {
+        binding.nbTextSize.text = String.format("%d", readBookControl.textSize)
+    }
 
     private fun initLight() {
         binding.hpbLight.progress = readBookControl.light
@@ -78,9 +87,6 @@ class ReadInterfacePop : FrameLayout {
         activity!!.window.attributes = params
     }
 
-    /**
-     * 控件事件
-     */
     @SuppressLint("DefaultLocale")
     private fun bindEvent() {
         // 亮度调节
@@ -148,9 +154,9 @@ class ReadInterfacePop : FrameLayout {
         // 繁简转换
         binding.llJFConvert.setOnClickListener {
             SelectMenu.builder(context)
-                .setTitle(context.getString(R.string.jf_convert))
+                .setTitle(context.getString(R.string.chinese_convert))
                 .setBottomButton(context.getString(R.string.cancel))
-                .setMenu(resources.getStringArray(R.array.convert_s), readBookControl.textConvert)
+                .setMenu(resources.getStringArray(R.array.chinese_convert), readBookControl.textConvert)
                 .setListener(object : SelectMenu.OnItemClickListener {
                     override fun forBottomButton() {}
                     override fun forListItem(lastChoose: Int, position: Int) {
@@ -203,7 +209,7 @@ class ReadInterfacePop : FrameLayout {
                             }
                         )
                     }.onFailure {
-                        context.toastOnUi("获取文件出错\n${it.localizedMessage}")
+                        context.toastOnUi(context.getString(R.string.get_file_list_error,it.localizedMessage))
                     }
                 }
                 .request()
@@ -219,7 +225,7 @@ class ReadInterfacePop : FrameLayout {
                 selectFont(it)
             }
         }.onFailure {
-            context.toastOnUi("获取文件列表出错\n${it.localizedMessage}")
+            context.toastOnUi(context.getString(R.string.get_file_list_error,it.localizedMessage))
             Timber.e(it)
         }
     }
@@ -239,7 +245,6 @@ class ReadInterfacePop : FrameLayout {
             .show(mainView)
     }
 
-    // 设置字体
     fun setReadFonts(fileDoc: FileDoc) {
         if (fileDoc.isContentScheme) {
             val file = FileUtils.createFileIfNotExist(context.externalFiles, "Fonts", fileDoc.name)
@@ -251,7 +256,6 @@ class ReadInterfacePop : FrameLayout {
         callback!!.refresh()
     }
 
-    // 清除字体
     fun clearFontPath() {
         readBookControl.setReadBookFont(null)
         callback!!.refresh()

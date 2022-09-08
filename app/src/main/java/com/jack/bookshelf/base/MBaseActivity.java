@@ -121,7 +121,6 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
         try {
             View actionBar = findViewById(R.id.action_bar);
             ActivityExtensionsKt.fullScreen(this);
-            // 根据目前是否显示了actionBar确定是否使用透明任务栏
             boolean isShowActionBar = (getSupportActionBar() != null) && (actionBar != null)
                     && (actionBar.getVisibility() == View.VISIBLE);
             ActivityExtensionsKt.setStatusBarColorAuto(this
@@ -143,16 +142,13 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
     public void setOrientation(int screenDirection) {
         switch (screenDirection) {
             case 0:
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-                break;
-            case 1:
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 break;
-            case 2:
+            case 1:
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 break;
-            case 3:
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+            default:
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
                 break;
         }
     }

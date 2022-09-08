@@ -168,7 +168,7 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/setting_preference_layout_height"
                     android:gravity="center_vertical"
-                    android:text="@string/screen_direction"
+                    android:text="@string/screen_orientation"
                     style="@style/PaperTextStyleSettingPreference"
                     app:layout_constraintLeft_toLeftOf="@id/cl_display_setting"
                     app:layout_constraintRight_toRightOf="@id/cl_display_setting"
