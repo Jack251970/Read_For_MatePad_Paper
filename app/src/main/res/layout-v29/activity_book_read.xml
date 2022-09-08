@@ -277,24 +277,6 @@
             android:layout_marginEnd="@dimen/content_margin_left_and_right"
             android:layout_marginBottom="-1dp"
             android:visibility="invisible"/>
-        <!-- 更多设置菜单 -->
-        <!--<com.jack.bookshelf.view.popupwindow.MoreSettingPop
-            android:id="@+id/moreSettingPop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginStart="@dimen/content_margin_left_and_right"
-            android:layout_marginEnd="@dimen/content_margin_left_and_right"
-            android:layout_marginBottom="-1dp"
-            android:visibility="invisible" />-->
-        <!-- 更多设置菜单 -->
-        <com.jack.bookshelf.view.popupwindow.MoreSettingPop
-            android:id="@+id/moreSettingPop"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="end"
-            android:layout_marginStart="@dimen/content_margin_left_and_right"
-            android:visibility="invisible" />
         <!-- 间距设置菜单 -->
         <com.jack.bookshelf.view.popupwindow.ReadAdjustMarginPop
             android:id="@+id/readAdjustMarginPop"
@@ -307,5 +289,21 @@
             android:paddingBottom="100dp"
             android:visibility="invisible"
             tools:visibility="visible"/>
+        <!-- 更多设置菜单 -->
+        <com.jack.bookshelf.view.popupwindow.MoreSettingPop
+            android:id="@+id/moreSettingPop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginStart="@dimen/content_margin_left_and_right"
+            android:visibility="invisible" />
+        <!-- 目录菜单 -->
+        <com.jack.bookshelf.view.popupwindow.ReadChapterBookmarkPop
+            android:id="@+id/chapterBookmarkPop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/content_margin_left_and_right"
+            android:visibility="invisible" />
     </FrameLayout>
 </FrameLayout>
