@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:ignore="ContentDescription" >
+    <!-- 分割线 -->
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="@color/black"/>
+    <!-- 点击范围 -->
+    <View
+        android:id="@+id/vw_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <!-- 标题 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp">
+        <!-- 分割线 -->
+        <View
+            android:id="@+id/v_divide_action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="80dp"
+            android:background="@color/black"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <!-- Action Bar -->
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/action_bar_icon_height_and_width"
+            android:layout_height="@dimen/action_bar_icon_height_and_width"
+            android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/v_divide_action_bar" />
+        <TextView
+            android:id="@+id/tv_book_title_chapter_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/action_bar_title_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/iv_back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/v_divide_action_bar"
+            tools:text="哑舍" />
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="@dimen/action_bar_icon_height_and_width"
+            android:layout_height="@dimen/action_bar_icon_height_and_width"
+            android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/v_divide_action_bar" />
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/action_bar_icon_height_and_width"
+            android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+            android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+            android:layout_weight="1"
+            android:background="@drawable/shape_searchbar_background"
+            android:imeOptions="actionSearch"
+            android:visibility="gone"
+            app:defaultQueryHint="@string/search"
+            app:iconifiedByDefault="false"
+            app:layout_constraintLeft_toRightOf="@id/iv_back"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/v_divide_action_bar"
+            app:queryBackground="@null"
+            app:searchIcon="@null"
+            app:showDividers="none"
+            app:submitBackground="@null"
+            tools:ignore="RtlHardcoded"/>
+        <!-- 切换器 -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_center_horizontal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"/>
+        <TextView
+            android:id="@+id/tv_chapter_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:padding="15dp"
+            android:text="@string/chapter_list"
+            android:textColor="@color/md_black_1000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintRight_toRightOf="@id/gl_center_horizontal"
+            app:layout_constraintTop_toBottomOf="@id/v_divide_action_bar"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        <ImageView
+            android:id="@+id/iv_chapter_list_indicator"
+            android:layout_width="32sp"
+            android:layout_height="2dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/shape_viewpager_indicator"
+            android:focusable="false"
+            android:clickable="false"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/tv_chapter_list"
+            app:layout_constraintRight_toRightOf="@id/tv_chapter_list"/>
+        <TextView
+            android:id="@+id/tv_bookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:padding="15dp"
+            android:text="@string/bookmark"
+            android:textColor="@color/md_black_1000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/gl_center_horizontal"
+            app:layout_constraintTop_toBottomOf="@id/v_divide_action_bar"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        <ImageView
+            android:id="@+id/iv_bookmark_indicator"
+            android:layout_width="32sp"
+            android:layout_height="2dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/shape_viewpager_indicator"
+            android:focusable="false"
+            android:clickable="false"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/tv_bookmark"
+            app:layout_constraintRight_toRightOf="@id/tv_bookmark"
+            tools:visibility="visible"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- 目录/书签列表 -->
+    <com.jack.bookshelf.widget.viewpager.PaperViewPager
+        android:id="@+id/tab_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="140dp"
+        android:padding="@dimen/content_padding"/>
+</FrameLayout>

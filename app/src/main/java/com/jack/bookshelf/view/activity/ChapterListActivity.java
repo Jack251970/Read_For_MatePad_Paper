@@ -158,8 +158,8 @@ public class ChapterListActivity extends BaseViewPagerActivity<IPresenter> {
 
     @Override
     protected List<Fragment> createTabFragments() {
-        ChapterListFragment chapterListFragment = new ChapterListFragment();
-        BookmarkFragment bookmarkFragment = new BookmarkFragment();
+        ChapterListFragment chapterListFragment = new ChapterListFragment(bookShelf,chapterBeanList);
+        BookmarkFragment bookmarkFragment = new BookmarkFragment(bookShelf);
         return Arrays.asList(chapterListFragment, bookmarkFragment);
     }
 

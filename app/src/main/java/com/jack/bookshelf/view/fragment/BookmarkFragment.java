@@ -23,6 +23,7 @@ import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.utils.RxUtils;
 import com.jack.bookshelf.view.activity.ChapterListActivity;
 import com.jack.bookshelf.view.adapter.BookmarkAdapter;
+import com.jack.bookshelf.view.popupwindow.ReadChapterBookmarkPop;
 import com.jack.bookshelf.widget.modialog.BookmarkDialog;
 
 import java.util.List;
@@ -42,6 +43,11 @@ public class BookmarkFragment extends MBaseFragment<IPresenter> {
     private BookShelfBean bookShelf;
     private List<BookmarkBean> bookmarkBeanList;
     private BookmarkAdapter adapter;
+
+    public BookmarkFragment(BookShelfBean bookShelf) {
+        super();
+        this.bookShelf = bookShelf;
+    }
 
     @Override
     protected View createView(LayoutInflater inflater, ViewGroup container) {
@@ -64,14 +70,6 @@ public class BookmarkFragment extends MBaseFragment<IPresenter> {
     }
 
     @Override
-    protected void initData() {
-        super.initData();
-        if (getFatherActivity() != null) {
-            bookShelf = getFatherActivity().getBookShelf();
-        }
-    }
-
-    @Override
     protected void bindView() {
         super.bindView();
         adapter = new BookmarkAdapter(bookShelf, new BookmarkAdapter.OnItemClickListener() {
@@ -80,17 +78,20 @@ public class BookmarkFragment extends MBaseFragment<IPresenter> {
                 if (index != bookShelf.getDurChapter()) {
                     RxBus.get().post(RxBusTag.SKIP_TO_CHAPTER, new OpenChapterBean(index, page));
                 }
-                if (getFatherActivity() != null) {
-                    getFatherActivity().searchViewCollapsed();
-                    getFatherActivity().finish();
-                }
+                /*if (getFatherView() != null) {
+                    getFatherView().searchViewCollapsed();
+                    getFatherView().finish();
+                }*/
+                getFatherActivity().searchViewCollapsed();
+                getFatherActivity().finish();
             }
 
             @Override
             public void itemLongClick(BookmarkBean bookmarkBean) {
-                if (getFatherActivity() != null) {
-                    getFatherActivity().searchViewCollapsed();
-                }
+                /*if (getFatherView() != null) {
+                    getFatherView().searchViewCollapsed();
+                }*/
+                getFatherActivity().searchViewCollapsed();
                 showBookmark(bookmarkBean);
             }
         });
@@ -151,11 +152,16 @@ public class BookmarkFragment extends MBaseFragment<IPresenter> {
                     @Override
                     public void openChapter(int chapterIndex, int pageIndex) {
                         RxBus.get().post(RxBusTag.OPEN_BOOK_MARK, bookmarkBean);
-                        if (getFatherActivity() != null) {
-                            getFatherActivity().finish();
-                        }
+                        /*if (getFatherView() != null) {
+                            getFatherView().finish();
+                        }*/
+                        getFatherActivity().finish();
                     }
                 }).show();
+    }
+
+    private ReadChapterBookmarkPop getFatherView() {
+        return (ReadChapterBookmarkPop) getView();
     }
 
     private ChapterListActivity getFatherActivity() {

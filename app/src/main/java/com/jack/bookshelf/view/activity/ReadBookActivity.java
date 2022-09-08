@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 
 import com.jack.basemvplib.AppActivityManager;
 import com.jack.basemvplib.BitIntentDataManager;
@@ -63,6 +64,7 @@ import com.jack.bookshelf.view.popupwindow.MoreSettingMenuReadBook;
 import com.jack.bookshelf.view.popupwindow.MoreSettingPop;
 import com.jack.bookshelf.view.popupwindow.ReadAdjustMarginPop;
 import com.jack.bookshelf.view.popupwindow.ReadBottomMenu;
+import com.jack.bookshelf.view.popupwindow.ReadChapterBookmarkPop;
 import com.jack.bookshelf.view.popupwindow.ReadInterfacePop;
 import com.jack.bookshelf.view.popupwindow.ReadLongPressPop;
 import com.jack.bookshelf.view.popupwindow.SelectMenu;
@@ -209,6 +211,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         return binding.readMenuBottom.getVisibility() == View.VISIBLE
                 | binding.readInterfacePop.getVisibility() == View.VISIBLE
                 | binding.moreSettingPop.getVisibility() == View.VISIBLE
+                | binding.chapterBookmarkPop.getVisibility() == View.VISIBLE
                 | binding.readAdjustMarginPop.getVisibility() == View.VISIBLE;
     }
 
@@ -336,6 +339,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         binding.readAdjustMarginPop.setVisibility(View.INVISIBLE);
         binding.readInterfacePop.setVisibility(View.INVISIBLE);
         binding.moreSettingPop.setVisibility(View.INVISIBLE);
+        binding.chapterBookmarkPop.setVisibility(View.INVISIBLE);
     }
 
     /**
@@ -357,12 +361,14 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         binding.readInterfacePop.setPadding(0,0,0,ScreenUtils.getNavigationBarHeight());
         binding.readAdjustMarginPop.setPadding(0,0,0,ScreenUtils.getNavigationBarHeight());
         binding.moreSettingPop.setPadding(0,ScreenUtils.getStatusBarHeight(),0,ScreenUtils.getNavigationBarHeight());
+        binding.chapterBookmarkPop.setPadding(0,ScreenUtils.getStatusBarHeight(),0,ScreenUtils.getNavigationBarHeight());
         mPresenter.initData(this);
         moDialogHUD = new MoDialogHUD(this);
         initBottomMenu();
         initReadInterfacePop();
         initReadAdjustMarginPop();
         initMoreSettingPop();
+        initChapterBookmarkPop();
         initMediaPlayer();
         initReadLongPressPop();
     }
@@ -435,6 +441,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
             public void openChapterList() {
                 ReadBookActivity.this.popMenuOut();
                 if (!mPresenter.getChapterList().isEmpty()) {
+                    /*mHandler.postDelayed(ReadBookActivity.this::chapterBookmarkIn, 0);*/
                     mHandler.postDelayed(() ->
                             ChapterListActivity.startThis(ReadBookActivity.this,
                                     mPresenter.getBookShelf(),
@@ -558,6 +565,24 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
             @Override
             public void back() {
                 popMenuOut();
+            }
+        });
+    }
+
+    /**
+     * 初始化目录书签
+     */
+    private void initChapterBookmarkPop() {
+        binding.chapterBookmarkPop.setCallback(new ReadChapterBookmarkPop.Callback() {
+            @Override
+            public void back() {
+                popMenuOut();
+            }
+
+            @NonNull
+            @Override
+            public FragmentManager getSupportFragmentManager() {
+                return getSupportFragmentManager();
             }
         });
     }
@@ -1278,6 +1303,17 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         initImmersionBar(true);
         binding.flMenu.setVisibility(View.VISIBLE);
         binding.moreSettingPop.setVisibility(View.VISIBLE);
+        menuBottomIn();
+    }
+
+    /**
+     * 显示目录书签
+     */
+    private void chapterBookmarkIn() {
+        initImmersionBar(true);
+        binding.flMenu.setVisibility(View.VISIBLE);
+        binding.chapterBookmarkPop.setData(mPresenter.getBookShelf(), mPresenter.getChapterList());
+        binding.chapterBookmarkPop.setVisibility(View.VISIBLE);
         menuBottomIn();
     }
 

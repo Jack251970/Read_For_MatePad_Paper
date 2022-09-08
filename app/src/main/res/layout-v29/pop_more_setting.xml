@@ -10,6 +10,7 @@
     <View
         android:layout_width="1dp"
         android:layout_height="match_parent"
+        android:layout_gravity="start"
         android:background="@color/black"/>
     <!-- 点击范围 -->
     <View

@@ -24,6 +24,7 @@ import com.jack.bookshelf.constant.RxBusTag;
 import com.jack.bookshelf.databinding.FragmentChapterListBinding;
 import com.jack.bookshelf.view.activity.ChapterListActivity;
 import com.jack.bookshelf.view.adapter.ChapterListAdapter;
+import com.jack.bookshelf.view.popupwindow.ReadChapterBookmarkPop;
 
 import java.util.List;
 
@@ -42,6 +43,12 @@ public class ChapterListFragment extends MBaseFragment<IPresenter> {
     private BookShelfBean bookShelf;
     private List<BookChapterBean> chapterBeanList;
     private boolean isChapterReverse;
+
+    public ChapterListFragment(BookShelfBean bookShelf, List<BookChapterBean> chapterList) {
+        super();
+        this.bookShelf = bookShelf;
+        this.chapterBeanList = chapterList;
+    }
 
     @Override
     protected View createView(LayoutInflater inflater, ViewGroup container) {
@@ -66,10 +73,6 @@ public class ChapterListFragment extends MBaseFragment<IPresenter> {
     @Override
     protected void initData() {
         super.initData();
-        if (getFatherActivity() != null) {
-            bookShelf = getFatherActivity().getBookShelf();
-            chapterBeanList = getFatherActivity().getChapterBeanList();
-        }
         isChapterReverse = preferences.getBoolean("isChapterReverse", false);
     }
 
@@ -82,10 +85,12 @@ public class ChapterListFragment extends MBaseFragment<IPresenter> {
             if (index != bookShelf.getDurChapter()) {
                 RxBus.get().post(RxBusTag.SKIP_TO_CHAPTER, new OpenChapterBean(index, page));
             }
-            if (getFatherActivity() != null) {
-                getFatherActivity().searchViewCollapsed();
-                getFatherActivity().finish();
-            }
+            /*if (getFatherView() != null) {
+                getFatherView().searchViewCollapsed();
+                getFatherView().finish();
+            }*/
+            getFatherActivity().searchViewCollapsed();
+            getFatherActivity().finish();
         });
         if (bookShelf != null) {
             binding.rvList.setAdapter(chapterListAdapter);
@@ -126,10 +131,6 @@ public class ChapterListFragment extends MBaseFragment<IPresenter> {
         }
     }
 
-    private ChapterListActivity getFatherActivity() {
-        return (ChapterListActivity) getActivity();
-    }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -142,5 +143,13 @@ public class ChapterListFragment extends MBaseFragment<IPresenter> {
         if (bookShelf != null && bookShelf.getNoteUrl().equals(bookContentBean.getNoteUrl())) {
             chapterListAdapter.upChapter(bookContentBean.getDurChapterIndex());
         }
+    }
+
+    private ReadChapterBookmarkPop getFatherView() {
+        return (ReadChapterBookmarkPop) getView();
+    }
+
+    private ChapterListActivity getFatherActivity() {
+        return (ChapterListActivity) getActivity();
     }
 }
