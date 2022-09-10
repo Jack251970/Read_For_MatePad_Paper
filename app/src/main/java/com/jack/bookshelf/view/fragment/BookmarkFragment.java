@@ -23,7 +23,6 @@ import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.utils.RxUtils;
 import com.jack.bookshelf.view.activity.ChapterListActivity;
 import com.jack.bookshelf.view.adapter.BookmarkAdapter;
-import com.jack.bookshelf.view.popupwindow.ReadChapterBookmarkPop;
 import com.jack.bookshelf.widget.modialog.BookmarkDialog;
 
 import java.util.List;
@@ -78,20 +77,24 @@ public class BookmarkFragment extends MBaseFragment<IPresenter> {
                 if (index != bookShelf.getDurChapter()) {
                     RxBus.get().post(RxBusTag.SKIP_TO_CHAPTER, new OpenChapterBean(index, page));
                 }
-                if (getFatherView() != null) {
+                /*if (getFatherView() != null) {
                     getFatherView().searchViewCollapsed();
                     getFatherView().finish();
+                }*/
+                if (getFatherActivity() != null) {
+                    getFatherActivity().searchViewCollapsed();
+                    getFatherActivity().finish();
                 }
-                getFatherActivity().searchViewCollapsed();
-                getFatherActivity().finish();
             }
 
             @Override
             public void itemLongClick(BookmarkBean bookmarkBean) {
-                if (getFatherView() != null) {
+                /*if (getFatherView() != null) {
                     getFatherView().searchViewCollapsed();
+                }*/
+                if (getFatherActivity() != null) {
+                    getFatherActivity().searchViewCollapsed();
                 }
-                /*getFatherActivity().searchViewCollapsed();*/
                 showBookmark(bookmarkBean);
             }
         });
@@ -152,17 +155,19 @@ public class BookmarkFragment extends MBaseFragment<IPresenter> {
                     @Override
                     public void openChapter(int chapterIndex, int pageIndex) {
                         RxBus.get().post(RxBusTag.OPEN_BOOK_MARK, bookmarkBean);
-                        if (getFatherView() != null) {
+                        /*if (getFatherView() != null) {
                             getFatherView().finish();
+                        }*/
+                        if (getFatherActivity() != null) {
+                            getFatherActivity().finish();
                         }
-                        /*getFatherActivity().finish();*/
                     }
                 }).show();
     }
 
-    private ReadChapterBookmarkPop getFatherView() {
+    /*private ReadChapterBookmarkPop getFatherView() {
         return (ReadChapterBookmarkPop) getView();
-    }
+    }*/
 
     private ChapterListActivity getFatherActivity() {
         return (ChapterListActivity) getActivity();

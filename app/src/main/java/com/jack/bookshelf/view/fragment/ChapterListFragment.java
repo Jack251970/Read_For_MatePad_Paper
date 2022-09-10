@@ -24,7 +24,6 @@ import com.jack.bookshelf.constant.RxBusTag;
 import com.jack.bookshelf.databinding.FragmentChapterListBinding;
 import com.jack.bookshelf.view.activity.ChapterListActivity;
 import com.jack.bookshelf.view.adapter.ChapterListAdapter;
-import com.jack.bookshelf.view.popupwindow.ReadChapterBookmarkPop;
 
 import java.util.List;
 
@@ -85,12 +84,14 @@ public class ChapterListFragment extends MBaseFragment<IPresenter> {
             if (index != bookShelf.getDurChapter()) {
                 RxBus.get().post(RxBusTag.SKIP_TO_CHAPTER, new OpenChapterBean(index, page));
             }
-            if (getFatherView() != null) {
+            /*if (getFatherView() != null) {
                 getFatherView().searchViewCollapsed();
                 getFatherView().finish();
+            }*/
+            if (getFatherActivity() != null) {
+                getFatherActivity().searchViewCollapsed();
+                getFatherActivity().finish();
             }
-            /*getFatherActivity().searchViewCollapsed();
-            getFatherActivity().finish();*/
         });
         if (bookShelf != null) {
             binding.rvList.setAdapter(chapterListAdapter);
@@ -145,9 +146,9 @@ public class ChapterListFragment extends MBaseFragment<IPresenter> {
         }
     }
 
-    private ReadChapterBookmarkPop getFatherView() {
+    /*private ReadChapterBookmarkPop getFatherView() {
         return (ReadChapterBookmarkPop) getView();
-    }
+    }*/
 
     private ChapterListActivity getFatherActivity() {
         return (ChapterListActivity) getActivity();

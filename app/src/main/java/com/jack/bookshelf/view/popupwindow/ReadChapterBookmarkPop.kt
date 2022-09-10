@@ -91,8 +91,8 @@ class ReadChapterBookmarkPop : FrameLayout {
         binding.ivChapterListIndicator.visibility = VISIBLE
         binding.ivBookmarkIndicator.visibility = INVISIBLE
         mFragmentList = createTabFragments()
-        /*tabFragmentPageAdapter = TabFragmentPageAdapter(callback?.getSupportFragmentManager())
-        mVp.adapter = tabFragmentPageAdapter*/
+        tabFragmentPageAdapter = TabFragmentPageAdapter(callback?.getSupportFragmentManager())
+        mVp.adapter = tabFragmentPageAdapter
     }
 
     private fun getCurrentItem(): Int {
