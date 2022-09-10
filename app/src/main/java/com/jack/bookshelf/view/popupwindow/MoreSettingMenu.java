@@ -13,20 +13,20 @@ import androidx.annotation.NonNull;
 
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.utils.popupwindow.PopupWindowsUtil;
-import com.jack.bookshelf.view.adapter.MoreSettingMenuAdapter;
+import com.jack.bookshelf.view.adapter.popupwindow.MoreSettingMenuAdapter;
 
 import java.util.Arrays;
 import java.util.List;
 
 /**
- * MoreSetting Menu
+ * More Setting Menu
  * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
 public class MoreSettingMenu extends PopupWindow {
     private final Context context;
-    private View view = null;
+    private final View view;
     private final ListView lvMenu;
     private OnItemClickListener itemClick;
 

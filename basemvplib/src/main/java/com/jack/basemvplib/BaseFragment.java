@@ -12,6 +12,10 @@ import androidx.fragment.app.Fragment;
 import com.jack.basemvplib.impl.IPresenter;
 import com.jack.basemvplib.impl.IView;
 
+/**
+ * Base Fragment
+ */
+
 public abstract class BaseFragment<T extends IPresenter> extends Fragment implements IView {
     protected View view;
     protected Bundle savedInstanceState;

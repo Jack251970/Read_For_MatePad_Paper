@@ -13,7 +13,7 @@ import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.utils.ToastsKt;
 
 /**
- * MBaseActivity
+ * MBase Fragment
  * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
@@ -58,7 +58,9 @@ public abstract class MBaseFragment<T extends IPresenter> extends BaseFragment<T
         }
     }
 
-    public void toast(String msg) { ToastsKt.toast(this.getActivity(),msg,Toast.LENGTH_SHORT); }
+    public void toast(String msg) {
+        ToastsKt.toast(this.getActivity(),msg,Toast.LENGTH_SHORT);
+    }
 
     public void toast(int strId) {
         ToastsKt.toast(this.getActivity(),strId,Toast.LENGTH_SHORT);

@@ -36,7 +36,6 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class WebdavSettingFragment extends Fragment {
-
     private FragmentWebdavSettingBinding binding;
     private SettingActivity settingActivity;
 

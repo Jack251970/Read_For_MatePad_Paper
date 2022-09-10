@@ -31,7 +31,7 @@ public class DbHelper {
     private final DaoSession mDaoSession;
 
     private DbHelper() {
-        DaoOpenHelper mHelper = new DaoOpenHelper(MApplication.getInstance(), "monkebook_db", null);
+        DaoOpenHelper mHelper = new DaoOpenHelper(MApplication.getInstance(), "jack_ebook_db", null);
         db = mHelper.getWritableDatabase();
         db.setLocale(Locale.CHINESE);
         // 注意：该数据库连接属于 DaoMaster，所以多个 Session 指的是相同的数据库连接。

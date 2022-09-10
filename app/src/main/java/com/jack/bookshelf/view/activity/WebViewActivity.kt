@@ -1,13 +1,17 @@
 package com.jack.bookshelf.view.activity
 
-import android.R
 import android.annotation.SuppressLint
-import android.view.MenuItem
 import com.jack.basemvplib.BitIntentDataManager
 import com.jack.basemvplib.impl.IPresenter
 import com.jack.bookshelf.base.MBaseActivity
 import com.jack.bookshelf.databinding.ActivityWebViewBinding
 import com.jack.bookshelf.utils.theme.ThemeStore
+
+/**
+ * WebView Page
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
 class WebViewActivity : MBaseActivity<IPresenter>() {
 
@@ -22,8 +26,8 @@ class WebViewActivity : MBaseActivity<IPresenter>() {
     override fun onCreateActivity() {
         window.decorView.setBackgroundColor(ThemeStore.backgroundColor(this))
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
-        setupActionBar()
+        binding.ivBackWebView.setOnClickListener{ finish() }
+        binding.tvTitleWebView.text = intent.getStringExtra("title")
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -42,23 +46,5 @@ class WebViewActivity : MBaseActivity<IPresenter>() {
                 binding.webView.loadUrl(url, header)
             }
         }
-    }
-
-    //设置ToolBar
-    private fun setupActionBar() {
-        val actionBar = supportActionBar
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true)
-            actionBar.title = intent.getStringExtra("title")
-        }
-    }
-
-    //菜单
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        if (id == R.id.home) {
-            finish()
-        }
-        return super.onOptionsItemSelected(item)
     }
 }

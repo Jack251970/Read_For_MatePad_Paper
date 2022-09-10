@@ -1,18 +1,12 @@
 package com.jack.basemvplib;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.jack.basemvplib.impl.IPresenter;
 import com.jack.basemvplib.impl.IView;
-import com.monke.basemvplib.R;
 
 /**
  * BaseActivity
@@ -21,21 +15,16 @@ import com.monke.basemvplib.R;
  */
 
 public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivity implements IView {
-    public final static String START_SHEAR_ELE = "start_with_share_ele";
-    public static final int SUCCESS = 1;
-    public static final int ERROR = -1;
     protected Bundle savedInstanceState;
     protected T mPresenter;
     protected boolean isRecreate;
-    private Boolean startShareAnim = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.savedInstanceState = savedInstanceState;
-        if(getIntent()!=null){
+        if(getIntent() != null){
             isRecreate = getIntent().getBooleanExtra("isRecreate", false);
-            startShareAnim = getIntent().getBooleanExtra(START_SHEAR_ELE, false);
         }
         AppActivityManager.getInstance().add(this);
         initSDK();
@@ -129,38 +118,5 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
 
     public Context getContext(){
         return this;
-    }
-
-    public Boolean getStart_share_ele() {
-        return startShareAnim;
-    }
-
-    /******************************************Toast***********************************************/
-
-    public void toast(String msg) {
-        toast(msg, Toast.LENGTH_SHORT, 0);
-    }
-
-    public void toast(String msg, int state) {
-        toast(msg, Toast.LENGTH_LONG, state);
-    }
-
-    public void toast(int strId) {
-        toast(getString(strId), Toast.LENGTH_SHORT, 0);
-    }
-
-    public void toast(int strId, int state) {
-        toast(getString(strId), Toast.LENGTH_LONG, state);
-    }
-
-    @SuppressLint("InflateParams")
-    public void toast(String msg, int length, int state) {
-        Toast toast = new Toast(this);
-        LayoutInflater inflater = LayoutInflater.from(this);
-        View view = inflater.inflate(R.layout.dialog_toast,null);
-        ((TextView)view.findViewById(R.id.mpp_tv_toast)).setText(msg);
-        toast.setView(view);
-        toast.setDuration(length);
-        toast.show();
     }
 }

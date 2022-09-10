@@ -1,4 +1,4 @@
-package com.jack.bookshelf.view.fragment;
+package com.jack.bookshelf.view.fragment.base;
 
 import com.jack.basemvplib.impl.IPresenter;
 import com.jack.bookshelf.base.MBaseFragment;

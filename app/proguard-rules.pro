@@ -195,7 +195,6 @@ public static java.lang.String TABLENAME;
 -keep class com.gyf.barlibrary.* {*;}
 ##JSOUP
 -keep class org.jsoup.**{*;}
--keep class com.monke.mprogressbar.**{ *;}
 
 -keep class org.slf4j.**{*;}
 -dontwarn org.slf4j.**

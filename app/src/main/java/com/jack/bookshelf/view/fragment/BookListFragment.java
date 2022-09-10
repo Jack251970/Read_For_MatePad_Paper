@@ -36,7 +36,7 @@ import com.jack.bookshelf.view.adapter.BookShelfAdapter;
 import com.jack.bookshelf.view.adapter.BookShelfGridAdapter;
 import com.jack.bookshelf.view.adapter.BookShelfListAdapter;
 import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
-import com.jack.bookshelf.view.dialog.PaperAlertDialog;
+import com.jack.bookshelf.view.popupwindow.PaperAlertDialog;
 import com.jack.bookshelf.widget.viewpager.PaperViewPager;
 
 import java.util.List;

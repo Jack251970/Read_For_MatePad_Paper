@@ -21,11 +21,11 @@ private var toast: Toast? = null
 private val inflater = LayoutInflater.from(MApplication.getInstance())
 
 fun toast(context: Context?, msg: String?, length: Int) {
-    val view = inflater.inflate(com.monke.basemvplib.R.layout.dialog_toast, null)
+    val view = inflater.inflate(R.layout.dialog_toast, null)
     if (toast == null) {
         toast = Toast(context)
     }
-    (view.findViewById<View>(com.monke.basemvplib.R.id.mpp_tv_toast) as TextView).text = msg
+    (view.findViewById<View>(R.id.mpp_tv_toast) as TextView).text = msg
     toast!!.view = view
     toast!!.duration = length
     toast?.show()
@@ -37,7 +37,7 @@ fun toast(context: Context?, strId: Int, length: Int) {
 
 fun Context.toastOnUi(message: Int) {
     runOnUI {
-        val view: View = inflater.inflate(com.monke.basemvplib.R.layout.dialog_toast, null)
+        val view: View = inflater.inflate(R.layout.dialog_toast, null)
         if (toast == null) {
             toast = Toast(this)
         }
@@ -50,7 +50,7 @@ fun Context.toastOnUi(message: Int) {
 
 fun Context.toastOnUi(message: CharSequence?) {
     runOnUI {
-        val view: View = inflater.inflate(com.monke.basemvplib.R.layout.dialog_toast, null)
+        val view: View = inflater.inflate(R.layout.dialog_toast, null)
         if (toast == null) {
             toast = Toast(this)
         }
@@ -63,7 +63,7 @@ fun Context.toastOnUi(message: CharSequence?) {
 
 fun Context.longToastOnUi(message: Int) {
     runOnUI {
-        val view: View = inflater.inflate(com.monke.basemvplib.R.layout.dialog_toast, null)
+        val view: View = inflater.inflate(R.layout.dialog_toast, null)
         if (toast == null) {
             toast = Toast(this)
         }
@@ -77,7 +77,7 @@ fun Context.longToastOnUi(message: Int) {
 fun Context.longToastOnUi(message: CharSequence?) {
     runOnUI {
         if (toast == null) {
-            val view: View = inflater.inflate(com.monke.basemvplib.R.layout.dialog_toast, null)
+            val view: View = inflater.inflate(R.layout.dialog_toast, null)
             toast = Toast(this)
             (view.findViewById<View>(R.id.mpp_tv_toast) as TextView).text = message
             toast!!.view = view

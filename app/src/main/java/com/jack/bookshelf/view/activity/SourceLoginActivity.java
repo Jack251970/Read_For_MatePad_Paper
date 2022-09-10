@@ -10,7 +10,6 @@ import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 import com.jack.basemvplib.BitIntentDataManager;
 import com.jack.basemvplib.impl.IPresenter;
@@ -20,7 +19,6 @@ import com.jack.bookshelf.base.MBaseActivity;
 import com.jack.bookshelf.bean.BookSourceBean;
 import com.jack.bookshelf.bean.CookieBean;
 import com.jack.bookshelf.databinding.ActivitySourceLoginBinding;
-import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 
 /**
@@ -119,10 +117,5 @@ public class SourceLoginActivity extends MBaseActivity<IPresenter> {
                 binding.webView.loadUrl(bookSourceBean.getBookSourceUrl());
             }
         });
-    }
-
-    @Override
-    public void toast(int strId) {
-        ToastsKt.toast(this, strId, Toast.LENGTH_SHORT);
     }
 }

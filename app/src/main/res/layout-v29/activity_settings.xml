@@ -5,7 +5,8 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="ContentDescription">
     <!-- Custom ActionBar -->
     <LinearLayout
         android:id="@+id/action_bar"
@@ -22,8 +23,6 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:gravity="center_vertical"
-            android:contentDescription="返回"
-            android:paddingRight="2dp"
             android:src="@drawable/ic_arrow_back"
             tools:ignore="RtlHardcoded,RtlSymmetry"/>
         <TextView

@@ -12,7 +12,6 @@ import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.MBaseActivity;
 import com.jack.bookshelf.databinding.ActivitySettingsBinding;
 import com.jack.bookshelf.help.storage.BackupRestoreUi;
-import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.view.fragment.GeneralSettingFragment;
 import com.jack.bookshelf.widget.modialog.MoDialogHUD;
 
@@ -103,11 +102,6 @@ public class SettingActivity extends MBaseActivity<IPresenter> {
             return mo || super.onKeyDown(keyCode, event);
         }
         return super.onKeyDown(keyCode, event);
-    }
-
-    @Override
-    public void toast(int strId, int length) {
-        ToastsKt.toast(this, getString(strId), length);
     }
 
     @Override

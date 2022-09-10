@@ -14,7 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.jack.bookshelf.R;
-import com.jack.bookshelf.view.adapter.SelectMenuAdapter;
+import com.jack.bookshelf.view.adapter.popupwindow.SelectMenuAdapter;
 
 import java.util.Arrays;
 import java.util.List;

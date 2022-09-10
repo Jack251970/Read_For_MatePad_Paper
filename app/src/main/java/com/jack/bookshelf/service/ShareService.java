@@ -71,8 +71,7 @@ public class ShareService extends Service {
     public void onCreate() {
         super.onCreate();
         updateNotification(getString(R.string.shared_service_starting_short));
-        new Handler(Looper.getMainLooper()).post(() ->
-                ToastsKt.toast(this,R.string.shared_service_starting_long,Toast.LENGTH_SHORT));
+        new Handler(Looper.getMainLooper()).post(() -> ToastsKt.toast(this,R.string.shared_service_starting_long,Toast.LENGTH_SHORT));
     }
 
     @Override

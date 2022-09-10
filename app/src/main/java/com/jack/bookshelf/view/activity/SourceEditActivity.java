@@ -34,13 +34,12 @@ import com.jack.bookshelf.presenter.SourceEditPresenter;
 import com.jack.bookshelf.presenter.contract.SourceEditContract;
 import com.jack.bookshelf.service.ShareService;
 import com.jack.bookshelf.utils.SoftInputUtil;
-import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.SourceEditAdapter;
-import com.jack.bookshelf.view.dialog.PaperAlertDialog;
 import com.jack.bookshelf.view.dialog.SourceLoginDialog;
 import com.jack.bookshelf.view.popupwindow.KeyboardToolPop;
 import com.jack.bookshelf.view.popupwindow.MoreSettingMenu;
+import com.jack.bookshelf.view.popupwindow.PaperAlertDialog;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -287,7 +286,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
         binding.recyclerView.clearFocus();
         BookSourceBean bookSourceBean = getBookSource(true);
         if (isEmpty(bookSourceBean.getBookSourceName()) || isEmpty(bookSourceBean.getBookSourceUrl())) {
-            toast(R.string.non_null_source_name_url, ERROR);
+            toast(R.string.non_null_source_name_url, Toast.LENGTH_LONG);
             return false;
         }
         return true;
@@ -518,7 +517,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
             intent.setData(Uri.parse(getString(R.string.source_rule_url)));
             startActivity(intent);
         } catch (Exception e) {
-            toast(R.string.can_not_open, ERROR);
+            toast(R.string.can_not_open, Toast.LENGTH_LONG);
         }
     }
 
@@ -529,7 +528,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
             textIntent.putExtra(Intent.EXTRA_TEXT, text);
             startActivity(Intent.createChooser(textIntent, "Source Share"));
         } catch (Exception e) {
-            toast(R.string.can_not_share, ERROR);
+            toast(R.string.can_not_share, Toast.LENGTH_LONG);
         }
     }
 
@@ -627,11 +626,6 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
                 }
             }
         }
-    }
-
-    @Override
-    public void toast(int strId) {
-        ToastsKt.toast(this, strId, Toast.LENGTH_SHORT);
     }
 
     public static class SourceEdit {

@@ -359,11 +359,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
         intent.putExtra("bookKey", bookKey);
         BitIntentDataManager.getInstance().putData(bookKey, mPresenter.getBookShelf().clone());
         startActivity(intent);
-        if (getStart_share_ele()) {
-            finishAfterTransition();
-        } else {
-            finish();
-        }
+        finish();
     }
 
     @SuppressLint("DefaultLocale")

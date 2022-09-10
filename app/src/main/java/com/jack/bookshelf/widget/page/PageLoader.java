@@ -47,7 +47,7 @@ import io.reactivex.disposables.Disposable;
  * Edited by Jack251970
  */
 
-public abstract class PageLoader{
+public abstract class PageLoader {
     // 默认的显示参数配置
     private static final int DEFAULT_MARGIN_HEIGHT = 20;
     public static final int DEFAULT_MARGIN_WIDTH = 15;
@@ -216,7 +216,7 @@ public abstract class PageLoader{
                 typeface = Typeface.SANS_SERIF;
             }
         } catch (Exception e) {
-            ToastsKt.toast(mContext, "字体文件未找,到恢复默认字体", Toast.LENGTH_SHORT);
+            ToastsKt.toast(mContext, "字体文件未找，将恢复默认字体", Toast.LENGTH_SHORT);
             readBookControl.setReadBookFont(null);
             typeface = Typeface.SANS_SERIF;
         }

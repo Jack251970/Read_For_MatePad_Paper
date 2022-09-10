@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,7 +39,7 @@ import com.jack.bookshelf.utils.SoftInputUtil;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.SearchBookAdapter;
 import com.jack.bookshelf.view.adapter.SearchBookshelfAdapter;
-import com.jack.bookshelf.view.dialog.PaperAlertDialog;
+import com.jack.bookshelf.view.popupwindow.PaperAlertDialog;
 import com.jack.bookshelf.view.popupwindow.SelectMenu;
 import com.jack.bookshelf.widget.recycler.refresh.OnLoadMoreListener;
 
@@ -360,9 +361,9 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
                 break;
         }
         if (msg == null) {
-            toast("无法识别设置密码: " + code, 0, -1);
+            toast("无法识别设置密码: " + code, Toast.LENGTH_SHORT);
         } else {
-            toast(msg, 0, 1);
+            toast(msg, Toast.LENGTH_SHORT);
         }
     }
 

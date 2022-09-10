@@ -5,11 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -20,12 +18,11 @@ import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.utils.ActivityExtensionsKt;
 import com.jack.bookshelf.utils.SoftInputUtil;
+import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-
 /**
+ * MBase Activity
  * Copyright (c) 2017. 章钦豪. All rights reserved.
  * Edited by Jack251970
  */
@@ -38,14 +35,16 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
     protected void onCreate(Bundle savedInstanceState) {
         initTheme();
         super.onCreate(savedInstanceState);
-        getWindow().getDecorView()      // 禁用自动填充
-                .setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
+        // disable auto fill
+        getWindow().getDecorView().setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
         initImmersionBar();
     }
 
     @SuppressWarnings("NullableProblems")
     @Override
-    public void onConfigurationChanged(Configuration newConfig) { super.onConfigurationChanged(newConfig); }
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
 
     @Override
     protected void onDestroy() {
@@ -62,61 +61,12 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
         super.onPause();
     }
 
-    @Override
-    public void setSupportActionBar(@Nullable androidx.appcompat.widget.Toolbar toolbar) {
-        if (toolbar != null) {
-            toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
-        }
-        super.setSupportActionBar(toolbar);
+    protected void initTheme() {
+        setTheme(R.style.CAppTheme);
     }
 
-    /**
-     * 设置MENU图标颜色
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        for (int i = 0; i < menu.size(); i++) {
-            Drawable drawable = menu.getItem(i).getIcon();
-            if (drawable != null) {
-                drawable.mutate();
-            }
-        }
-        return super.onCreateOptionsMenu(menu);
-    }
+    /********************************************Bar***********************************************/
 
-    @SuppressLint("PrivateApi")
-    @SuppressWarnings("unchecked")
-    @Override
-    public boolean onMenuOpened(int featureId, Menu menu) {
-        if (menu != null) {
-            //展开菜单显示图标
-            if (menu.getClass().getSimpleName().equalsIgnoreCase("MenuBuilder")) {
-                try {
-                    Method method = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
-                    method.setAccessible(true);
-                    method.invoke(menu, true);
-                    method = menu.getClass().getDeclaredMethod("getNonActionItems");
-                    ArrayList<MenuItem> menuItems = (ArrayList<MenuItem>) method.invoke(menu);
-                    assert menuItems != null;
-                    if (!menuItems.isEmpty()) {
-                        for (MenuItem menuItem : menuItems) {
-                            Drawable drawable = menuItem.getIcon();
-                            if (drawable != null) {
-                                drawable.mutate();
-                            }
-                        }
-                    }
-                } catch (Exception ignored) {
-                }
-            }
-
-        }
-        return super.onMenuOpened(featureId, menu);
-    }
-
-    /**
-     * 沉浸状态栏和导航栏
-     */
     protected void initImmersionBar() {
         try {
             View actionBar = findViewById(R.id.action_bar);
@@ -135,9 +85,8 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
         }
     }
 
-    /**
-     * 设置屏幕方向
-     */
+    /******************************************Screen**********************************************/
+
     @SuppressLint("SourceLockedOrientationActivity")
     public void setOrientation(int screenDirection) {
         switch (screenDirection) {
@@ -153,9 +102,7 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
         }
     }
 
-    protected void initTheme() {
-        setTheme(R.style.CAppTheme);
-    }
+    /*****************************************SnackBar*********************************************/
 
     public void showSnackBar(View view, String msg, int length) {
         if (snackbar == null) {
@@ -172,6 +119,26 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
             snackbar.dismiss();
         }
     }
+
+    /******************************************Toast***********************************************/
+
+    public void toast(String msg) {
+        ToastsKt.toast(this, msg, Toast.LENGTH_SHORT);
+    }
+
+    public void toast(String msg, int length) {
+        ToastsKt.toast(this, msg, length);
+    }
+
+    public void toast(int strId) {
+        toast(getString(strId));
+    }
+
+    public void toast(int strId, int length) {
+        toast(getString(strId), length);
+    }
+
+    /*****************************************Activity*********************************************/
 
     @Override
     public void startActivity(Intent intent) {

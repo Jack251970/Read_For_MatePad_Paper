@@ -31,7 +31,6 @@ import com.jack.bookshelf.presenter.MainPresenter;
 import com.jack.bookshelf.presenter.contract.MainContract;
 import com.jack.bookshelf.service.WebService;
 import com.jack.bookshelf.utils.StringUtils;
-import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.dialog.InputDialog;
 import com.jack.bookshelf.view.fragment.BookListFragment;
@@ -222,7 +221,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
                     switch (position) {
                         case 0:
                             if (!isNetWorkAvailable()) {
-                                ToastsKt.toast(MainActivity.this, R.string.network_connection_unavailable, Toast.LENGTH_SHORT);
+                                toast(R.string.network_connection_unavailable, Toast.LENGTH_SHORT);
                             } else {
                                 RxBus.get().post(RxBusTag.DOWNLOAD_ALL, 10000);
                             }
@@ -254,7 +253,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
                         case 3:
                             boolean startedThisTime = WebService.startThis(MainActivity.this);
                             if (!startedThisTime) {
-                                ToastsKt.toast(MainActivity.this,getString(R.string.web_service_already_started),Toast.LENGTH_SHORT);
+                                toast(getString(R.string.web_service_already_started));
                             }
                             break;
                     }
@@ -430,7 +429,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
      */
     public void exit() {
         if ((System.currentTimeMillis() - exitTime) > 2000) {
-            ToastsKt.toast(MainActivity.this, getString(R.string.double_click_exit_read),Toast.LENGTH_SHORT);
+            toast( getString(R.string.double_click_exit_read));
             exitTime = System.currentTimeMillis();
         } else {
             finish();
