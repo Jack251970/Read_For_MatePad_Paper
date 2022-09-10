@@ -298,21 +298,13 @@
             android:layout_marginStart="@dimen/content_margin_left_and_right"
             android:visibility="invisible" />
         <!-- 目录菜单 -->
-        <com.jack.bookshelf.view.popupwindow.ReadChapterBookmarkPop
+        <!--<com.jack.bookshelf.view.popupwindow.ReadChapterBookmarkPop
             android:id="@+id/chapterBookmarkPop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="end"
             android:layout_marginEnd="@dimen/content_margin_left_and_right"
             android:visibility="invisible" >
-        </com.jack.bookshelf.view.popupwindow.ReadChapterBookmarkPop>
-        <!--<com.jack.bookshelf.widget.viewpager.PaperViewPager
-            android:id="@+id/tab_vp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="140dp"
-            android:layout_marginEnd="@dimen/content_margin_left_and_right"
-            android:background="@color/md_red_100"
-            android:padding="@dimen/content_padding"/>-->
+        </com.jack.bookshelf.view.popupwindow.ReadChapterBookmarkPop>-->
     </FrameLayout>
 </FrameLayout>

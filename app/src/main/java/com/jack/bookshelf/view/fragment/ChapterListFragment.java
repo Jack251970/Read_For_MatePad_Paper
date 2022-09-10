@@ -39,8 +39,8 @@ public class ChapterListFragment extends MBaseFragment<IPresenter> {
     private ChapterListAdapter chapterListAdapter;
     private LinearLayoutManager layoutManager;
 
-    private BookShelfBean bookShelf;
-    private List<BookChapterBean> chapterBeanList;
+    private final BookShelfBean bookShelf;
+    private final List<BookChapterBean> chapterBeanList;
     private boolean isChapterReverse;
 
     public ChapterListFragment(BookShelfBean bookShelf, List<BookChapterBean> chapterList) {

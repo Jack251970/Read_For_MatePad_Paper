@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.appcompat.widget.SearchView
+
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+
 import com.jack.bookshelf.R
 import com.jack.bookshelf.bean.BookChapterBean
 import com.jack.bookshelf.bean.BookShelfBean

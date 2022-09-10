@@ -21,7 +21,7 @@ public abstract class BaseViewPagerActivity<T extends IPresenter> extends MBaseA
     // View
     protected PaperViewPager mVp;
     // Adapter
-    protected TabFragmentPageAdapter tabFragmentPageAdapter;
+    protected TabFragmentPageAdapter fragmentPageAdapter;
     // Params
     protected List<Fragment> mFragmentList;
     private List<String> mTitleList;
@@ -44,8 +44,8 @@ public abstract class BaseViewPagerActivity<T extends IPresenter> extends MBaseA
         mFragmentList = createTabFragments();
         mTitleList = createTabTitles();
         // mIndicatorList = createTabIndicators();
-        tabFragmentPageAdapter = new TabFragmentPageAdapter(getSupportFragmentManager());
-        mVp.setAdapter(tabFragmentPageAdapter);
+        fragmentPageAdapter = new TabFragmentPageAdapter(getSupportFragmentManager());
+        mVp.setAdapter(fragmentPageAdapter);
         mVp.setOffscreenPageLimit(3);
         //
     }

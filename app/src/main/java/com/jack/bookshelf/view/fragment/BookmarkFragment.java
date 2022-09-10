@@ -39,7 +39,7 @@ import io.reactivex.SingleOnSubscribe;
 public class BookmarkFragment extends MBaseFragment<IPresenter> {
 
     private FragmentBookmarkListBinding binding;
-    private BookShelfBean bookShelf;
+    private final BookShelfBean bookShelf;
     private List<BookmarkBean> bookmarkBeanList;
     private BookmarkAdapter adapter;
 
