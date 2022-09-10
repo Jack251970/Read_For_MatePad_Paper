@@ -441,11 +441,11 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
             public void openChapterList() {
                 ReadBookActivity.this.popMenuOut();
                 if (!mPresenter.getChapterList().isEmpty()) {
-                    /*mHandler.postDelayed(ReadBookActivity.this::chapterBookmarkIn, 0);*/
-                    mHandler.postDelayed(() ->
+                    mHandler.postDelayed(() -> chapterBookmarkIn(), 0);
+                    /*mHandler.postDelayed(() ->
                             ChapterListActivity.startThis(ReadBookActivity.this,
                                     mPresenter.getBookShelf(),
-                                    mPresenter.getChapterList()), 0);
+                                    mPresenter.getChapterList()), 0);*/
                 }
             }
 
@@ -1312,8 +1312,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     private void chapterBookmarkIn() {
         initImmersionBar(true);
         binding.flMenu.setVisibility(View.VISIBLE);
-        binding.chapterBookmarkPop.setData(mPresenter.getBookShelf(), mPresenter.getChapterList());
-        binding.chapterBookmarkPop.setVisibility(View.VISIBLE);
+        binding.chapterBookmarkPop.setData(mPresenter.getBookShelf(), mPresenter.getChapterList()).setVisibility(View.VISIBLE);
         menuBottomIn();
     }
 

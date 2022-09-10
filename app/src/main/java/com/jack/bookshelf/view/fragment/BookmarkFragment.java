@@ -78,20 +78,20 @@ public class BookmarkFragment extends MBaseFragment<IPresenter> {
                 if (index != bookShelf.getDurChapter()) {
                     RxBus.get().post(RxBusTag.SKIP_TO_CHAPTER, new OpenChapterBean(index, page));
                 }
-                /*if (getFatherView() != null) {
+                if (getFatherView() != null) {
                     getFatherView().searchViewCollapsed();
                     getFatherView().finish();
-                }*/
+                }
                 getFatherActivity().searchViewCollapsed();
                 getFatherActivity().finish();
             }
 
             @Override
             public void itemLongClick(BookmarkBean bookmarkBean) {
-                /*if (getFatherView() != null) {
+                if (getFatherView() != null) {
                     getFatherView().searchViewCollapsed();
-                }*/
-                getFatherActivity().searchViewCollapsed();
+                }
+                /*getFatherActivity().searchViewCollapsed();*/
                 showBookmark(bookmarkBean);
             }
         });
@@ -152,10 +152,10 @@ public class BookmarkFragment extends MBaseFragment<IPresenter> {
                     @Override
                     public void openChapter(int chapterIndex, int pageIndex) {
                         RxBus.get().post(RxBusTag.OPEN_BOOK_MARK, bookmarkBean);
-                        /*if (getFatherView() != null) {
+                        if (getFatherView() != null) {
                             getFatherView().finish();
-                        }*/
-                        getFatherActivity().finish();
+                        }
+                        /*getFatherActivity().finish();*/
                     }
                 }).show();
     }

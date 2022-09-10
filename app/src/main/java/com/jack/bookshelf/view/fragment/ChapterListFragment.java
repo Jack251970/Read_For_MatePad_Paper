@@ -85,12 +85,12 @@ public class ChapterListFragment extends MBaseFragment<IPresenter> {
             if (index != bookShelf.getDurChapter()) {
                 RxBus.get().post(RxBusTag.SKIP_TO_CHAPTER, new OpenChapterBean(index, page));
             }
-            /*if (getFatherView() != null) {
+            if (getFatherView() != null) {
                 getFatherView().searchViewCollapsed();
                 getFatherView().finish();
-            }*/
-            getFatherActivity().searchViewCollapsed();
-            getFatherActivity().finish();
+            }
+            /*getFatherActivity().searchViewCollapsed();
+            getFatherActivity().finish();*/
         });
         if (bookShelf != null) {
             binding.rvList.setAdapter(chapterListAdapter);

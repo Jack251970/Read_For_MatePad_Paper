@@ -304,6 +304,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="end"
             android:layout_marginEnd="@dimen/content_margin_left_and_right"
-            android:visibility="invisible" />
+            android:visibility="invisible" >
+        </com.jack.bookshelf.view.popupwindow.ReadChapterBookmarkPop>
     </FrameLayout>
 </FrameLayout>

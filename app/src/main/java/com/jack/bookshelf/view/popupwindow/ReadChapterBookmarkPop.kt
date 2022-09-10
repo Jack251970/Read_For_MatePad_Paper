@@ -56,12 +56,13 @@ class ReadChapterBookmarkPop : FrameLayout {
         this.bookShelf = bookShelf
         this.chapterBeanList = chapterBeanList
         upView()
-        return this;
+        return this
     }
 
-    fun setCallback(callback: Callback) {
+    fun setCallback(callback: Callback): ReadChapterBookmarkPop {
         this.callback = callback
         initView()
+        return this
     }
 
     private fun initView() {
@@ -110,9 +111,6 @@ class ReadChapterBookmarkPop : FrameLayout {
         return listOf<Fragment>(chapterListFragment, bookmarkFragment)
     }
 
-    /**
-     * 初始化搜索框
-     */
     private fun initSearchView() {
         mSearchAutoComplete = binding.searchView.findViewById(R.id.search_src_text)
         mSearchAutoComplete!!.textSize = 16f
