@@ -93,6 +93,15 @@ public class ChapterListActivity extends BaseViewPagerActivity<IPresenter> {
         setContentView(binding.getRoot());
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
+    protected void initData() {
+        String bookKey = getIntent().getStringExtra("bookKey");
+        bookShelf = (BookShelfBean) BitIntentDataManager.getInstance().getData(bookKey);
+        String chapterListKey = getIntent().getStringExtra("chapterListKey");
+        chapterBeanList = (List<BookChapterBean>) BitIntentDataManager.getInstance().getData(chapterListKey);
+    }
+
     @Override
     protected void bindView() {
         super.bindView();
@@ -147,18 +156,9 @@ public class ChapterListActivity extends BaseViewPagerActivity<IPresenter> {
         });
     }
 
-    @SuppressWarnings("unchecked")
-    @Override
-    protected void initData() {
-        String bookKey = getIntent().getStringExtra("bookKey");
-        bookShelf = (BookShelfBean) BitIntentDataManager.getInstance().getData(bookKey);
-        String chapterListKey = getIntent().getStringExtra("chapterListKey");
-        chapterBeanList = (List<BookChapterBean>) BitIntentDataManager.getInstance().getData(chapterListKey);
-    }
-
     @Override
     protected List<Fragment> createTabFragments() {
-        ChapterListFragment chapterListFragment = new ChapterListFragment(bookShelf,chapterBeanList);
+        ChapterListFragment chapterListFragment = new ChapterListFragment(bookShelf, chapterBeanList);
         BookmarkFragment bookmarkFragment = new BookmarkFragment(bookShelf);
         return Arrays.asList(chapterListFragment, bookmarkFragment);
     }
@@ -175,14 +175,6 @@ public class ChapterListActivity extends BaseViewPagerActivity<IPresenter> {
             return;
         }
         finish();
-    }
-
-    public BookShelfBean getBookShelf() {
-        return bookShelf;
-    }
-
-    public List<BookChapterBean> getChapterBeanList() {
-        return chapterBeanList;
     }
 
     public void searchViewCollapsed() {
