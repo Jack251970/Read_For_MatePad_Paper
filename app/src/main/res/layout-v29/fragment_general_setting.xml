@@ -293,7 +293,7 @@
                 android:layout_width="@dimen/setting_preference_tip_icon_layout_height_and_width"
                 android:layout_height="@dimen/setting_preference_tip_icon_layout_height_and_width"
                 android:layout_marginStart="@dimen/setting_preference_tip_icon_margin_start"
-                android:src="@drawable/ic_expand_more"
+                android:src="@drawable/ic_open_tip"
                 app:layout_constraintLeft_toRightOf="@id/tv_search_result_filter_grade"
                 app:layout_constraintBottom_toBottomOf="@id/tv_search_result_filter_grade"/>
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.jack.bookshelf.view.activity;
 
 import static android.text.TextUtils.isEmpty;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -161,7 +162,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
      */
     private void initMenu() {
         moreSettingMenu = MoreSettingMenu.builder(this)
-                .setMenu(R.array.more_setting_menu_source_edit)
+                .setMenu(R.array.more_setting_menu_source_edit, R.array.icon_more_setting_menu_source_edit)
                 .setOnclick(position -> {
                     switch (position) {
                         case 0:
@@ -301,6 +302,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
         return gson.toJson(getBookSource(hasFind));
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void setText(BookSourceBean bookSourceBean) {
         sourceEditList.clear();

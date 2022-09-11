@@ -66,14 +66,14 @@
             <item>@string/wifi_share</item>
             <item>@string/rule_summary</item>
         </string-array>
-    <array name="icon_more_setting_menu_source_edit">
-        <item>@string/login</item>
-        <item>@string/copy_source</item>
-        <item>@string/paste_source</item>
-        <item>@string/str_share</item>
-        <item>@drawable/ic_share</item>
-        <item>@string/rule_summary</item>
-    </array>
+        <array name="icon_more_setting_menu_source_edit">
+            <item>@drawable/ic_login</item>
+            <item>@drawable/ic_copy</item>
+            <item>@drawable/ic_paste</item>
+            <item>@drawable/ic_share</item>
+            <item>@drawable/ic_web_service_phone</item>
+            <item>@drawable/ic_faq</item>
+        </array>
         <!-- More Setting Menu Change Source Dialog  -->
         <string-array name="more_setting_menu_change_source_dialog">
             <item>@string/disable_book_source</item>
@@ -85,7 +85,6 @@
             <item>@drawable/ic_delete</item>
             <item>@drawable/ic_edit</item>
         </array>
-    <!-- More Setting Menu -->
 
     <!-- Select Menu -->
         <!-- MainActivity -->
