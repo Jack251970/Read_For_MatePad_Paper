@@ -5,7 +5,7 @@
     android:fitsSystemWindows="true"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@color/md_white_1000"
+    android:background="@color/white"
     android:orientation="horizontal"
     tools:context=".view.activity.MainActivity">
     <!--左侧边栏-->
@@ -36,7 +36,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/md_black_1000"
+                    android:textColor="@color/black"
                     android:gravity="center"
                     android:textSize="14sp"
                     android:text="@string/book_source"
@@ -57,7 +57,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/md_black_1000"
+                    android:textColor="@color/black"
                     android:gravity="center"
                     android:textSize="14sp"
                     android:text="@string/purify"
@@ -78,7 +78,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/md_black_1000"
+                    android:textColor="@color/black"
                     android:gravity="center"
                     android:textSize="14sp"
                     android:text="@string/download"
@@ -99,7 +99,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/md_black_1000"
+                    android:textColor="@color/black"
                     android:gravity="center"
                     android:textSize="14sp"
                     android:text="@string/backup"
@@ -120,7 +120,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/md_black_1000"
+                    android:textColor="@color/black"
                     android:gravity="center"
                     android:textSize="14sp"
                     android:text="@string/restore"
@@ -172,7 +172,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/md_black_1000"
+                    android:textColor="@color/black"
                     android:textSize="40sp"
                     android:text="@string/bookshelf"
                     android:textStyle="bold"/>
@@ -318,7 +318,7 @@
                     android:id="@+id/mpp_tv_all_books_main"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/md_black_1000"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:text="@string/all_books" />
@@ -354,7 +354,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/md_black_1000"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:text="@string/pursue"/>
@@ -390,7 +390,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/md_black_1000"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:text="@string/fattening" />
@@ -426,7 +426,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/md_black_1000"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:text="@string/finish" />
@@ -465,7 +465,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/md_black_1000"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:text="@string/local_book"/>

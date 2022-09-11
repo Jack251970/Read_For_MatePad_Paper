@@ -22,7 +22,7 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:maxLines="1"
-        android:textColor="@color/md_black_1000"
+        android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
         tools:text="下载全部" />

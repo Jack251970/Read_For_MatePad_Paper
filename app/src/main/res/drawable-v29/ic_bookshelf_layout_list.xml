@@ -4,39 +4,39 @@
     android:viewportWidth="60"
     android:viewportHeight="60">
     <path
-        android:fillColor="@color/md_black_1000"
+        android:fillColor="@color/black"
         android:pathData="m12 15h2c0.55 0 1 0.45 1 1v2c0 0.55 -0.45 1 -1 1h-2c-0.55 0 -1 -0.45 -1 -1v-2c0 -0.55 0.45 -1 1 -1z" />
     <path
         android:pathData="m12 15c-0.55 0 -1 0.45 -1 1v2c0 0.55 0.45 1 1 1h2c0.55 0 1 -0.45 1 -1v-2c0 -0.55 -0.45 -1 -1 -1z"
-        android:fillColor="@color/md_black_1000" />
+        android:fillColor="@color/black" />
     <path
-        android:fillColor="@color/md_black_1000"
+        android:fillColor="@color/black"
         android:pathData="m12 28h2c0.55 0 1 0.45 1 1v2c0 0.55 -0.45 1 -1 1h-2c-0.55 0 -1 -0.45 -1 -1v-2c0 -0.55 0.45 -1 1 -1z" />
     <path
         android:pathData="m12 28c-0.55 0 -1 0.45 -1 1v2c0 0.55 0.45 1 1 1h2c0.55 0 1 -0.45 1 -1v-2c0 -0.55 -0.45 -1 -1 -1z"
-        android:fillColor="@color/md_black_1000" />
+        android:fillColor="@color/black" />
     <path
-        android:fillColor="@color/md_black_1000"
+        android:fillColor="@color/black"
         android:pathData="m12 41h2c0.55 0 1 0.45 1 1v2c0 0.55 -0.45 1 -1 1h-2c-0.55 0 -1 -0.45 -1 -1v-2c0 -0.55 0.45 -1 1 -1z" />
     <path
         android:pathData="m13 43v0h-0v-0zm-1 -2c-0.55 0 -1 0.45 -1 1v2c0 0.55 0.45 1 1 1h2c0.55 0 1 -0.45 1 -1v-2c0 -0.55 -0.45 -1 -1 -1z"
-        android:fillColor="@color/md_black_1000" />
+        android:fillColor="@color/black" />
     <path
-        android:fillColor="@color/md_black_1000"
+        android:fillColor="@color/black"
         android:pathData="m21 15h28c0.55 0 1 0.45 1 1v2c0 0.55 -0.45 1 -1 1h-28c-0.55 0 -1 -0.45 -1 -1v-2c0 -0.55 0.45 -1 1 -1z" />
     <path
         android:pathData="m21 15c-0.55 0 -1 0.45 -1 1v2c0 0.55 0.45 1 1 1h28c0.55 0 1 -0.45 1 -1v-2c0 -0.55 -0.45 -1 -1 -1z"
-        android:fillColor="@color/md_black_1000" />
+        android:fillColor="@color/black" />
     <path
-        android:fillColor="@color/md_black_1000"
+        android:fillColor="@color/black"
         android:pathData="m21 28h28c0.55 0 1 0.45 1 1v2c0 0.55 -0.45 1 -1 1h-28c-0.55 0 -1 -0.45 -1 -1v-2c0 -0.55 0.45 -1 1 -1z" />
     <path
         android:pathData="m21 28c-0.55 0 -1 0.45 -1 1v2c0 0.55 0.45 1 1 1h28c0.55 0 1 -0.45 1 -1v-2c0 -0.55 -0.45 -1 -1 -1z"
-        android:fillColor="@color/md_black_1000" />
+        android:fillColor="@color/black" />
     <path
-        android:fillColor="@color/md_black_1000"
+        android:fillColor="@color/black"
         android:pathData="m21 41h28c0.55 0 1 0.45 1 1v2c0 0.55 -0.45 1 -1 1h-28c-0.55 0 -1 -0.45 -1 -1v-2c0 -0.55 0.45 -1 1 -1z" />
     <path
         android:pathData="m48 43v0h-26v-0zm-27 -2c-0.55 0 -1 0.45 -1 1v2c0 0.55 0.45 1 1 1h28c0.55 0 1 -0.45 1 -1v-2c0 -0.55 -0.45 -1 -1 -1z"
-        android:fillColor="@color/md_black_1000" />
+        android:fillColor="@color/black" />
 </vector>

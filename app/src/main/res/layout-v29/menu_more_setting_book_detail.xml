@@ -11,7 +11,7 @@
     tools:ignore="ContentDescription">
     <LinearLayout
         android:id="@+id/ll_refresh_book_detail"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/item_more_setting_menu_width_with_icon"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -26,8 +26,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
-            android:textColor="@color/md_black_1000"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="@string/refresh" />
@@ -38,7 +39,7 @@
         android:background="@color/black"/>
     <LinearLayout
         android:id="@+id/ll_manage_update_book_detail"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/item_more_setting_menu_width_with_icon"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -54,8 +55,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
-            android:textColor="@color/md_black_1000"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="@string/disable_update" />
@@ -63,10 +65,10 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/md_black_1000"/>
+        android:background="@color/black"/>
     <LinearLayout
         android:id="@+id/ll_edit_book_source_book_detail"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/item_more_setting_menu_width_with_icon"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -81,8 +83,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
-            android:textColor="@color/md_black_1000"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="@string/edit_book_source" />
@@ -90,10 +93,10 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/md_black_1000"/>
+        android:background="@color/black"/>
     <LinearLayout
         android:id="@+id/ll_copy_book_url_detail"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/item_more_setting_menu_width_with_icon"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -108,8 +111,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
-            android:textColor="@color/md_black_1000"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="@string/copy_book_url" />

@@ -52,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/local_directory"
-                    android:textColor="@color/md_black_1000"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
                 <Space
@@ -80,7 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/smart_import"
-                    android:textColor="@color/md_black_1000"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
                 <Space

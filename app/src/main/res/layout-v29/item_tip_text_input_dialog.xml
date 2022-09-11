@@ -9,7 +9,7 @@
     tools:ignore="UseCompoundDrawables">
     <TextView
         android:id="@+id/text"
-        android:textColor="@color/md_black_1000"
+        android:textColor="@color/black"
         android:textSize="15sp"
         android:textStyle="bold"
         android:layout_width="0dp"
