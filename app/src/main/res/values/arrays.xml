@@ -71,7 +71,7 @@
         <item>@string/copy_source</item>
         <item>@string/paste_source</item>
         <item>@string/str_share</item>
-        <item>@string/wifi_share</item>
+        <item>@drawable/ic_share</item>
         <item>@string/rule_summary</item>
     </array>
         <!-- More Setting Menu Change Source Dialog  -->
