@@ -74,7 +74,7 @@
                     android:layout_width="42dp"
                     android:layout_height="42dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/mpp_ic_download"/>
+                    android:src="@drawable/ic_download"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -257,9 +257,8 @@
                         android:layout_width="36dp"
                         android:layout_height="32dp"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginTop="1dp"
-                        android:src="@drawable/mpp_ic_import"
-                        android:contentDescription="导入网络书籍" />
+                        android:src="@drawable/ic_import_local_book"
+                        android:contentDescription="导入本地书籍" />
                     <Space
                         android:layout_width="0dp"
                         android:layout_height="match_parent"

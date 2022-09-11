@@ -178,7 +178,7 @@
                             android:layout_height="@dimen/action_bar_icon_height_and_width"
                             android:layout_marginStart="@dimen/action_bar_padding_and_margin"
                             android:contentDescription="离线下载"
-                            android:src="@drawable/ic_download_line"/>
+                            android:src="@drawable/ic_download"/>
                     </LinearLayout>
                     <ImageView
                         android:id="@+id/iv_add_bookmark"

@@ -62,7 +62,7 @@ public class DownloadService extends Service {
         isRunning = true;
         //创建 Notification.Builder 对象
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MApplication.channelIdDownload)
-                .setSmallIcon(R.drawable.ic_download)
+                .setSmallIcon(R.drawable.ic_download_noti)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher))
                 .setOngoing(false)
                 .setContentTitle(getString(R.string.download_offline_t))
@@ -286,7 +286,7 @@ public class DownloadService extends Service {
         PendingIntent mainPendingIntent = PendingIntent.getActivity(this, 0, mainIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         //创建 Notification.Builder 对象
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MApplication.channelIdDownload)
-                .setSmallIcon(R.drawable.ic_download)
+                .setSmallIcon(R.drawable.ic_download_noti)
                 //通知栏大图标
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher))
                 //点击通知后自动清除

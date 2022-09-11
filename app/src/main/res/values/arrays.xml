@@ -9,7 +9,7 @@
             <item>@string/web_service</item>
         </string-array>
         <array name="icon_more_setting_menu_main">
-            <item>@drawable/ic_download_line</item>
+            <item>@drawable/ic_download</item>
             <item>@drawable/ic_book_order</item>
             <item>@drawable/ic_arrange</item>
             <item>@drawable/ic_web_service_phone</item>
