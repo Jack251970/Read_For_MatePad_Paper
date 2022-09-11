@@ -216,7 +216,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
      */
     private void initMenu() {
         moreSettingMenu = MoreSettingMenu.builder(this)
-                .setMenu(getResources().getStringArray(R.array.more_setting_menu_main))
+                .setMenu(R.array.more_setting_menu_main, R.array.icon_more_setting_menu_main)
                 .setOnclick(position -> {
                     switch (position) {
                         case 0:

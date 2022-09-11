@@ -1,6 +1,7 @@
-package com.jack.bookshelf.view.adapter;
+package com.jack.bookshelf.view.fragment.adapter;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.observer.MyObserver;
+import com.jack.bookshelf.bean.BookChapterBean;
 import com.jack.bookshelf.bean.BookShelfBean;
-import com.jack.bookshelf.bean.BookmarkBean;
-import com.jack.bookshelf.utils.StringUtils;
+import com.jack.bookshelf.utils.theme.ThemeStore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,42 +26,46 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Bookmark Item Adapter
+ * Chapter List Item Adapter
  * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
-@SuppressLint("NotifyDataSetChanged")
-public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ThisViewHolder> {
+public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.ThisViewHolder> {
 
     private final BookShelfBean bookShelfBean;
     private final OnItemClickListener itemClickListener;
-    private List<BookmarkBean> allBookmark = new ArrayList<>();
-    private final List<BookmarkBean> bookmarkBeans = new ArrayList<>();
+    private final List<BookChapterBean> allChapter;
+    private final List<BookChapterBean> bookChapterBeans = new ArrayList<>();
+    private int index = 0;
     private boolean isSearch = false;
+    private int normalColor;
+    private final int highlightColor;
 
-    public BookmarkAdapter(BookShelfBean bookShelfBean, @NonNull OnItemClickListener itemClickListener) {
+    public ChapterListAdapter(BookShelfBean bookShelfBean, List<BookChapterBean> allChapter, @NonNull OnItemClickListener itemClickListener) {
         this.bookShelfBean = bookShelfBean;
+        this.allChapter = allChapter;
         this.itemClickListener = itemClickListener;
+        highlightColor = Color.BLACK;
     }
 
-    public void setAllBookmark(List<BookmarkBean> allBookmark) {
-        this.allBookmark = allBookmark;
-        notifyDataSetChanged();
+    public void upChapter(int index) {
+        if (allChapter.size() > index) {
+            notifyItemChanged(index, 0);
+        }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void search(final String key) {
-        bookmarkBeans.clear();
+        bookChapterBeans.clear();
         if (Objects.equals(key, "")) {
             isSearch = false;
             notifyDataSetChanged();
         } else {
             Observable.create((ObservableOnSubscribe<Boolean>) emitter -> {
-                for (BookmarkBean bookmarkBean : allBookmark) {
-                    if (bookmarkBean.getChapterName().contains(key)) {
-                        bookmarkBeans.add(bookmarkBean);
-                    } else if (bookmarkBean.getContent().contains(key)) {
-                        bookmarkBeans.add(bookmarkBean);
+                for (BookChapterBean bookChapterBean : allChapter) {
+                    if (bookChapterBean.getDurChapterName().contains(key)) {
+                        bookChapterBeans.add(bookChapterBean);
                     }
                 }
                 emitter.onNext(true);
@@ -83,6 +88,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ThisVi
     @NonNull
     @Override
     public ThisViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        normalColor = ThemeStore.textColorSecondary(parent.getContext());
         return new ThisViewHolder(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_chapter_and_bookmark, parent, false));
     }
@@ -98,27 +104,54 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ThisVi
         } else {
             holder.lineBottom.setVisibility(View.VISIBLE);
         }
-        BookmarkBean bookmarkBean = isSearch ? bookmarkBeans.get(realPosition) : allBookmark.get(realPosition);
-        holder.tvName.setText(StringUtils.isTrimEmpty(bookmarkBean.getContent()) ?
-                bookmarkBean.getChapterName() : bookmarkBean.getContent());
-        holder.llName.setOnClickListener(v ->
-                itemClickListener.itemClick(bookmarkBean.getChapterIndex(), bookmarkBean.getPageIndex()));
-        holder.llName.setOnLongClickListener(view -> {
-            itemClickListener.itemLongClick(bookmarkBean);
-            return true;
+        /*if (payloads.size() > 0) {
+            holder.tvName.setSelected(true);
+            holder.tvName.getPaint().setFakeBoldText(true);
+            return;
+        }*/
+        BookChapterBean bookChapterBean = isSearch ? bookChapterBeans.get(realPosition) : allChapter.get(realPosition);
+        // 当前位置章节的字体颜色为黑色；其余为深黑色
+        if (bookChapterBean.getDurChapterIndex() == index) {
+            holder.tvName.setTextColor(highlightColor);
+        } else {
+            holder.tvName.setTextColor(normalColor);
+        }
+        // 设置章节名称
+        holder.tvName.setText(bookChapterBean.getDisplayTitle(holder.tvName.getContext()));
+        // 缓存章节的字体为粗体；其余为细体
+        if (Objects.equals(bookShelfBean.getTag(), BookShelfBean.LOCAL_TAG) || bookChapterBean.getHasCache(bookShelfBean.getBookInfoBean())) {
+            holder.tvName.setSelected(true);
+            holder.tvName.getPaint().setFakeBoldText(true);
+        } else {
+            holder.tvName.setSelected(false);
+            holder.tvName.getPaint().setFakeBoldText(false);
+        }
+        // 点击跳转到对应章节
+        holder.llName.setOnClickListener(v -> {
+            setIndex(realPosition);
+            itemClickListener.itemClick(bookChapterBean.getDurChapterIndex(), 0);
         });
     }
 
     @Override
     public int getItemCount() {
-        if (bookShelfBean == null)
+        if (bookShelfBean == null || allChapter == null)
             return 0;
         else {
             if (isSearch) {
-                return bookmarkBeans.size();
+                return bookChapterBeans.size();
             }
-            return allBookmark.size();
+            return allChapter.size();
         }
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+        notifyItemChanged(this.index, 0);
     }
 
     static class ThisViewHolder extends RecyclerView.ViewHolder {
@@ -136,7 +169,5 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ThisVi
 
     public interface OnItemClickListener {
         void itemClick(int index, int page);
-
-        void itemLongClick(BookmarkBean bookmarkBean);
     }
 }

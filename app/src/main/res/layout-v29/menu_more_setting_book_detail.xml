@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mpp_ll_more_setting_menu_book_detail"
     android:layout_height="wrap_content"
-    android:layout_width="@dimen/more_setting_menu_width"
+    android:layout_width="wrap_content"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
     android:paddingLeft="18dp"
@@ -10,7 +10,7 @@
     android:orientation="vertical">
     <TextView
         android:id="@+id/mpp_tv_refresh_book_detail"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/item_more_setting_menu_width"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -24,7 +24,7 @@
         android:background="@color/md_black_1000"/>
     <TextView
         android:id="@+id/mpp_tv_manage_update_book_detail"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/item_more_setting_menu_width"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -38,7 +38,7 @@
         android:background="@color/md_black_1000"/>
     <TextView
         android:id="@+id/mpp_tv_edit_book_source_book_detail"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/item_more_setting_menu_width"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -52,7 +52,7 @@
         android:background="@color/md_black_1000"/>
     <TextView
         android:id="@+id/mpp_tv_copy_book_url_detail"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/item_more_setting_menu_width"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"

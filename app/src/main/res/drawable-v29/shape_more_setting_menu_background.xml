@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <size
-        android:width="@dimen/more_setting_menu_width"/>
     <corners android:radius="@dimen/more_setting_menu_radius" />
     <stroke
         android:width="@dimen/more_setting_menu_stroke_width"

@@ -23,7 +23,7 @@ import com.jack.bookshelf.bean.OpenChapterBean;
 import com.jack.bookshelf.constant.RxBusTag;
 import com.jack.bookshelf.databinding.FragmentChapterListBinding;
 import com.jack.bookshelf.view.activity.ChapterListActivity;
-import com.jack.bookshelf.view.adapter.ChapterListAdapter;
+import com.jack.bookshelf.view.fragment.adapter.ChapterListAdapter;
 
 import java.util.List;
 

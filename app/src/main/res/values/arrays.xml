@@ -8,13 +8,12 @@
             <item>@string/organize_bookshelf</item>
             <item>@string/web_service</item>
         </string-array>
-        <!-- More Setting Menu BookDetail-->
-        <string-array name="book_groups">
-            <item>@string/pursue</item>
-            <item>@string/fattening</item>
-            <item>@string/finish</item>
-            <item>@string/local</item>
-        </string-array>
+        <array name="icon_more_setting_menu_main">
+            <item>@drawable/ic_download_line</item>
+            <item>@drawable/ic_book_order</item>
+            <item>@drawable/ic_arrange</item>
+            <item>@drawable/ic_web_service_phone</item>
+        </array>
         <!-- More Setting Menu BookSource -->
         <string-array name="more_setting_menu_book_source">
             <item>@string/add_book_source</item>
@@ -26,17 +25,37 @@
             <item>@string/check_select_source</item>
             <item>@string/wifi_share</item>
         </string-array>
+        <string-array name="icon_more_setting_menu_book_source">
+            <item>@drawable/ic_add</item>
+            <item>@drawable/ic_import</item>
+            <item>@drawable/ic_import</item>
+            <item>@drawable/ic_import</item>
+            <item>@drawable/ic_swap</item>
+            <item>@drawable/ic_delete</item>
+            <item>@drawable/ic_check_source</item>
+            <item>@drawable/ic_share</item>
+        </string-array>
         <!-- More Setting Menu Replace Rule-->
         <string-array name="more_setting_menu_replace_rule">
             <item>@string/import_local</item>
             <item>@string/import_online</item>
             <item>@string/del_all</item>
         </string-array>
+        <string-array name="icon_more_setting_menu_replace_rule">
+            <item>@drawable/ic_import</item>
+            <item>@drawable/ic_import</item>
+            <item>@drawable/ic_delete</item>
+        </string-array>
         <!-- More Setting Menu TxtChapter Rule -->
         <string-array name="more_setting_menu_txt_chapter_rule">
             <item>@string/import_local</item>
             <item>@string/import_default</item>
             <item>@string/del_all</item>
+        </string-array>
+        <string-array name="icon_more_setting_menu_txt_chapter_rule">
+            <item>@drawable/ic_import</item>
+            <item>@drawable/ic_import</item>
+            <item>@drawable/ic_delete</item>
         </string-array>
         <!-- More Setting Menu Book Source Edit -->
         <string-array name="more_setting_menu_source_edit">
@@ -60,6 +79,13 @@
         <string-array name="import_book">
             <item>@string/import_local_book</item>
             <item>@string/import_online_book</item>
+        </string-array>
+        <!-- Select Menu BookDetail-->
+        <string-array name="book_groups">
+            <item>@string/pursue</item>
+            <item>@string/fattening</item>
+            <item>@string/finish</item>
+            <item>@string/local</item>
         </string-array>
         <!-- Book Sequence Setting Main-->
         <string-array name="sequence_book">

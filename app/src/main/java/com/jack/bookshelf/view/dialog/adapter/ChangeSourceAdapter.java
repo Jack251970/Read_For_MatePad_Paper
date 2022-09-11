@@ -1,4 +1,4 @@
-package com.jack.bookshelf.view.adapter;
+package com.jack.bookshelf.view.dialog.adapter;
 
 import static android.text.TextUtils.isEmpty;
 

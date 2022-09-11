@@ -1,4 +1,4 @@
-package com.jack.bookshelf.view.adapter;
+package com.jack.bookshelf.view.fragment.adapter;
 
 import com.jack.bookshelf.bean.BookShelfBean;
 import com.jack.bookshelf.help.ItemTouchCallback;

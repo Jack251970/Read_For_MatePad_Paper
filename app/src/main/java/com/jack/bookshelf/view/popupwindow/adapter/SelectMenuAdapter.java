@@ -1,4 +1,4 @@
-package com.jack.bookshelf.view.adapter.popupwindow;
+package com.jack.bookshelf.view.popupwindow.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

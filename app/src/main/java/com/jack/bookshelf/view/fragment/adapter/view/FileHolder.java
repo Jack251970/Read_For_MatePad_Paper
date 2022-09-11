@@ -1,4 +1,4 @@
-package com.jack.bookshelf.view.adapter.view;
+package com.jack.bookshelf.view.fragment.adapter.view;
 
 import android.view.View;
 import android.widget.CheckBox;

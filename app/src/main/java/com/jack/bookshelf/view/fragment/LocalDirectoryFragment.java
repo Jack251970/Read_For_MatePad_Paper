@@ -15,7 +15,7 @@ import com.jack.bookshelf.databinding.FragmentLocalDirectoryBinding;
 import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.help.FileHelp;
 import com.jack.bookshelf.utils.FileStack;
-import com.jack.bookshelf.view.adapter.FileSystemAdapter;
+import com.jack.bookshelf.view.fragment.adapter.FileSystemAdapter;
 import com.jack.bookshelf.view.fragment.base.BaseFileFragment;
 import com.jack.bookshelf.widget.itemdecoration.DividerItemDecoration;
 

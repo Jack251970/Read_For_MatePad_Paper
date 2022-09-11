@@ -1,23 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
-    android:layout_width="@dimen/more_setting_menu_width"
+    android:layout_width="wrap_content"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
     android:paddingStart="18dp"
     android:paddingEnd="18dp"
     android:background="@drawable/shape_more_setting_menu_background"
-    android:orientation="vertical">
-    <!-- Bug! ListView cannot be that: android:layout_width="match_parent" -->
+    android:orientation="horizontal">
+    <!-- Bug?! ListView layout_width must be set with value -->
     <ListView
-        android:id="@+id/lv_more_setting_menu"
+        android:id="@+id/lv_more_setting_menu_without_icon"
         android:layout_width="@dimen/item_more_setting_menu_width"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:divider="@color/md_black_1000"
+        android:divider="@color/black"
         android:dividerHeight="1dp"
         android:listSelector="@color/transparent"
-        tools:listitem="@layout/item_more_setting_menu"/>
+        tools:listitem="@layout/item_more_setting_menu"
+        android:visibility="gone"/>
+    <ListView
+        android:id="@+id/lv_more_setting_menu_with_icon"
+        android:layout_width="@dimen/item_more_setting_menu_width_with_icon"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:divider="@color/black"
+        android:dividerHeight="1dp"
+        android:listSelector="@color/transparent"
+        tools:listitem="@layout/item_more_setting_menu"
+        android:visibility="gone"
+        tools:visibility="visible"/>
 </LinearLayout>

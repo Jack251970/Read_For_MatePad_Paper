@@ -187,7 +187,7 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
      */
     private void initMenu() {
         moreSettingMenu = MoreSettingMenu.builder(this)
-                .setMenu(getResources().getStringArray(R.array.more_setting_menu_book_source))
+                .setMenu(R.array.more_setting_menu_book_source, R.array.icon_more_setting_menu_book_source)
                 .setOnclick(position -> {
                     switch (position) {
                         case 0:

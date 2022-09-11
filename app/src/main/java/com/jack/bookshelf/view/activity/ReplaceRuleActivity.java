@@ -123,7 +123,7 @@ public class ReplaceRuleActivity extends MBaseActivity<ReplaceRuleContract.Prese
      */
     private void initMenu() {
         moreSettingMenu = MoreSettingMenu.builder(this)
-                .setMenu(getResources().getStringArray(R.array.more_setting_menu_replace_rule))
+                .setMenu(R.array.more_setting_menu_replace_rule, R.array.icon_more_setting_menu_replace_rule)
                 .setOnclick(position -> {
                     switch (position) {
                         case 0:

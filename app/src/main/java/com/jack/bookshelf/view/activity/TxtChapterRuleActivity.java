@@ -100,7 +100,7 @@ public class TxtChapterRuleActivity extends MBaseActivity<TxtChapterRuleContract
      */
     private void initMenu() {
         moreSettingMenu = MoreSettingMenu.builder(this)
-                .setMenu(getResources().getStringArray(R.array.more_setting_menu_txt_chapter_rule))
+                .setMenu(R.array.more_setting_menu_txt_chapter_rule, R.array.icon_more_setting_menu_txt_chapter_rule)
                 .setOnclick(position -> {
                     switch (position) {
                         case 0:

@@ -2,7 +2,7 @@ package com.jack.bookshelf.view.fragment.base;
 
 import com.jack.basemvplib.impl.IPresenter;
 import com.jack.bookshelf.base.MBaseFragment;
-import com.jack.bookshelf.view.adapter.FileSystemAdapter;
+import com.jack.bookshelf.view.fragment.adapter.FileSystemAdapter;
 
 import java.io.File;
 import java.util.List;

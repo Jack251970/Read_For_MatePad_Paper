@@ -1,4 +1,4 @@
-package com.jack.bookshelf.view.adapter;
+package com.jack.bookshelf.view.fragment.adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

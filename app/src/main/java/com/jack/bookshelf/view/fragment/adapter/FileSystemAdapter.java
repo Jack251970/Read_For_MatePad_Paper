@@ -1,9 +1,9 @@
-package com.jack.bookshelf.view.adapter;
+package com.jack.bookshelf.view.fragment.adapter;
 
 import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.view.adapter.base.BaseListAdapter;
 import com.jack.bookshelf.view.adapter.base.IViewHolder;
-import com.jack.bookshelf.view.adapter.view.FileHolder;
+import com.jack.bookshelf.view.fragment.adapter.view.FileHolder;
 
 import java.io.File;
 import java.util.ArrayList;

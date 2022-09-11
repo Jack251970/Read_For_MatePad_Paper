@@ -161,7 +161,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
      */
     private void initMenu() {
         moreSettingMenu = MoreSettingMenu.builder(this)
-                .setMenu(getResources().getStringArray(R.array.more_setting_menu_source_edit))
+                .setMenu(R.array.more_setting_menu_source_edit)
                 .setOnclick(position -> {
                     switch (position) {
                         case 0:

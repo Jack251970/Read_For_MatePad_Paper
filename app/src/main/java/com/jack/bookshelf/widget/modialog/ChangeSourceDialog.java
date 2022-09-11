@@ -39,7 +39,7 @@ import com.jack.bookshelf.utils.ScreenUtils;
 import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.view.activity.SourceEditActivity;
-import com.jack.bookshelf.view.adapter.ChangeSourceAdapter;
+import com.jack.bookshelf.view.dialog.adapter.ChangeSourceAdapter;
 import com.jack.bookshelf.view.popupwindow.MoreSettingMenu;
 import com.jack.bookshelf.widget.recycler.refresh.RefreshRecyclerView;
 
