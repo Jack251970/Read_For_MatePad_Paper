@@ -37,3 +37,8 @@ SourceEditAdapter.java
         app:showDividers="none"
         app:queryBackground="@null"
         app:submitBackground="@null" />-->
+7. adpter内置
+可以见BookCoverActivity
+8. refreshview
+加载动画
+点击背景

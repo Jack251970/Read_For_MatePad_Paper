@@ -117,11 +117,14 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int index) {
         final BookShelfBean bookShelfBean = books.get(index);
-        holder.itemView.setBackgroundColor(ThemeStore.backgroundColor(activity));
+        BookInfoBean bookInfoBean = bookShelfBean.getBookInfoBean();
         if (isArrange) {
+            // 启用选择按钮与选择背景
             holder.vwSelect.setVisibility(View.VISIBLE);
             holder.checkBox.setVisibility(View.VISIBLE);
+            // 刷新选择状态
             holder.checkBox.setChecked(selectList.contains(bookShelfBean.getNoteUrl()));
+            // 设置选择监听
             holder.vwSelect.setOnClickListener(v -> {
                 if (selectList.contains(bookShelfBean.getNoteUrl())) {
                     selectList.remove(bookShelfBean.getNoteUrl());
@@ -133,10 +136,10 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
                 itemClickListener.onClick(v, index);
             });
         } else {
+            // 启用选择按钮与选择背景
             holder.vwSelect.setVisibility(View.GONE);
             holder.checkBox.setVisibility(View.INVISIBLE);
         }
-        BookInfoBean bookInfoBean = bookShelfBean.getBookInfoBean();
         if (!activity.isFinishing()) {
             holder.ivCover.load(bookShelfBean.getCoverPath(), bookShelfBean.getName(), bookShelfBean.getAuthor());
         }

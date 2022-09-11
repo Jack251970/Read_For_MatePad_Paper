@@ -119,7 +119,6 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int index) {
         BookShelfBean bookShelfBean = books.get(index);
         BookInfoBean bookInfoBean = bookShelfBean.getBookInfoBean();
-
         if (isArrange) {
             // 启用选择按钮与选择背景
             holder.vwSelect.setVisibility(View.VISIBLE);

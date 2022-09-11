@@ -1,5 +1,6 @@
 package com.jack.bookshelf.view.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +53,7 @@ public class BookCoverEditActivity extends MBaseActivity<IPresenter> {
     protected void onCreateActivity() {
         getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivityBookCoverEditBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
     }
 
     @Override
@@ -60,7 +62,7 @@ public class BookCoverEditActivity extends MBaseActivity<IPresenter> {
         name = getIntent().getStringExtra("name");
         author = getIntent().getStringExtra("author");
         ChangeCoverAdapter changeCoverAdapter = new ChangeCoverAdapter();
-        binding.rfRvChangeCover.setLayoutManager(new GridLayoutManager(this, 3));
+        binding.rfRvChangeCover.setLayoutManager(new GridLayoutManager(this, 4));
         binding.rfRvChangeCover.setAdapter(changeCoverAdapter);
         SearchBookModel.OnSearchListener searchListener = new SearchBookModel.OnSearchListener() {
             @Override
@@ -132,7 +134,8 @@ public class BookCoverEditActivity extends MBaseActivity<IPresenter> {
             }
             e.onSuccess(true);
         }).compose(RxUtils::toSimpleSingle)
-                .subscribe(new MySingleObserver<Boolean>() {
+                .subscribe(new MySingleObserver<>() {
+                    @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onSuccess(Boolean aBoolean) {
                         if (urls.isEmpty()) {
@@ -160,7 +163,6 @@ public class BookCoverEditActivity extends MBaseActivity<IPresenter> {
     }
 
     public class ChangeCoverAdapter extends RefreshRecyclerViewAdapter {
-
         ChangeCoverAdapter() {
             super(false);
         }
@@ -187,7 +189,6 @@ public class BookCoverEditActivity extends MBaseActivity<IPresenter> {
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
-
             ImageView ivCover;
             TextView tvSourceName;
 
