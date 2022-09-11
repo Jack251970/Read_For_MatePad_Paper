@@ -104,7 +104,7 @@ public class ChangeSourceDialog extends BaseDialog implements ChangeSourceAdapte
         llContent = view.findViewById(R.id.ll_content_change_source_dialog);
         searchView = view.findViewById(R.id.searchView);
         initSearchView(searchView);
-        atvTitle = view.findViewById(R.id.atv_title);
+        atvTitle = view.findViewById(R.id.tv_title_change_source_dialog);
         ibtStop = view.findViewById(R.id.ibt_stop);
         rvSource = view.findViewById(R.id.rf_rv_change_source);
     }
@@ -164,7 +164,7 @@ public class ChangeSourceDialog extends BaseDialog implements ChangeSourceAdapte
         final String url = searchBookBean.getTag();
         final BookSourceBean sourceBean = BookSourceManager.getBookSourceByUrl(url);
         MoreSettingMenu.builder(context)
-                .setMenu(R.array.more_setting_menu_change_source_dialog)
+                .setMenu(R.array.more_setting_menu_change_source_dialog, R.array.icon_more_setting_menu_change_source_dialog)
                 .setOnclick(position -> {
                     switch (position) {
                         case 0:

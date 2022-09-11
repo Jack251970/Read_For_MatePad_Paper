@@ -25,7 +25,7 @@
             <item>@string/check_select_source</item>
             <item>@string/wifi_share</item>
         </string-array>
-        <string-array name="icon_more_setting_menu_book_source">
+        <array name="icon_more_setting_menu_book_source">
             <item>@drawable/ic_add</item>
             <item>@drawable/ic_import</item>
             <item>@drawable/ic_import</item>
@@ -34,29 +34,29 @@
             <item>@drawable/ic_delete</item>
             <item>@drawable/ic_check_source</item>
             <item>@drawable/ic_share</item>
-        </string-array>
+        </array>
         <!-- More Setting Menu Replace Rule-->
         <string-array name="more_setting_menu_replace_rule">
             <item>@string/import_local</item>
             <item>@string/import_online</item>
             <item>@string/del_all</item>
         </string-array>
-        <string-array name="icon_more_setting_menu_replace_rule">
+        <array name="icon_more_setting_menu_replace_rule">
             <item>@drawable/ic_import</item>
             <item>@drawable/ic_import</item>
             <item>@drawable/ic_delete</item>
-        </string-array>
+        </array>
         <!-- More Setting Menu TxtChapter Rule -->
         <string-array name="more_setting_menu_txt_chapter_rule">
             <item>@string/import_local</item>
             <item>@string/import_default</item>
             <item>@string/del_all</item>
         </string-array>
-        <string-array name="icon_more_setting_menu_txt_chapter_rule">
+        <array name="icon_more_setting_menu_txt_chapter_rule">
             <item>@drawable/ic_import</item>
             <item>@drawable/ic_import</item>
             <item>@drawable/ic_delete</item>
-        </string-array>
+        </array>
         <!-- More Setting Menu Book Source Edit -->
         <string-array name="more_setting_menu_source_edit">
             <item>@string/login</item>
@@ -66,12 +66,25 @@
             <item>@string/wifi_share</item>
             <item>@string/rule_summary</item>
         </string-array>
+    <array name="icon_more_setting_menu_source_edit">
+        <item>@string/login</item>
+        <item>@string/copy_source</item>
+        <item>@string/paste_source</item>
+        <item>@string/str_share</item>
+        <item>@string/wifi_share</item>
+        <item>@string/rule_summary</item>
+    </array>
         <!-- More Setting Menu Change Source Dialog  -->
         <string-array name="more_setting_menu_change_source_dialog">
             <item>@string/disable_book_source</item>
             <item>@string/delete_book_source</item>
             <item>@string/edit_book_source</item>
         </string-array>
+        <array name="icon_more_setting_menu_change_source_dialog">
+            <item>@drawable/ic_cancel_with_circle</item>
+            <item>@drawable/ic_delete</item>
+            <item>@drawable/ic_edit</item>
+        </array>
     <!-- More Setting Menu -->
 
     <!-- Select Menu -->
