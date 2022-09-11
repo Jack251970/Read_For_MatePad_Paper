@@ -1,5 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mpp_ll_more_setting_menu_book_detail"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
     android:paddingTop="10dp"
@@ -7,57 +7,111 @@
     android:paddingLeft="18dp"
     android:paddingRight="18dp"
     android:background="@drawable/shape_more_setting_menu_background"
-    android:orientation="vertical">
-    <TextView
-        android:id="@+id/mpp_tv_refresh_book_detail"
-        android:layout_width="@dimen/item_more_setting_menu_width"
+    android:orientation="vertical"
+    tools:ignore="ContentDescription">
+    <LinearLayout
+        android:id="@+id/ll_refresh_book_detail"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:textColor="@color/md_black_1000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:text="@string/refresh" />
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="@dimen/more_setting_menu_iv_width_and_height"
+            android:layout_height="@dimen/more_setting_menu_iv_width_and_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
+            android:src="@drawable/ic_refresh" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
+            android:textColor="@color/md_black_1000"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="@string/refresh" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"/>
     <LinearLayout
+        android:id="@+id/ll_manage_update_book_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="@dimen/more_setting_menu_iv_width_and_height"
+            android:layout_height="@dimen/more_setting_menu_iv_width_and_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
+            android:src="@drawable/ic_update" />
+        <TextView
+            android:id="@+id/tv_manage_update_book_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
+            android:textColor="@color/md_black_1000"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="@string/disable_update" />
+    </LinearLayout>
+    <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/md_black_1000"/>
-    <TextView
-        android:id="@+id/mpp_tv_manage_update_book_detail"
-        android:layout_width="@dimen/item_more_setting_menu_width"
+    <LinearLayout
+        android:id="@+id/ll_edit_book_source_book_detail"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:textColor="@color/md_black_1000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:text="@string/disable_update" />
-    <LinearLayout
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="@dimen/more_setting_menu_iv_width_and_height"
+            android:layout_height="@dimen/more_setting_menu_iv_width_and_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
+            android:src="@drawable/ic_edit" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
+            android:textColor="@color/md_black_1000"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="@string/edit_book_source" />
+    </LinearLayout>
+    <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/md_black_1000"/>
-    <TextView
-        android:id="@+id/mpp_tv_edit_book_source_book_detail"
-        android:layout_width="@dimen/item_more_setting_menu_width"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textColor="@color/md_black_1000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:text="@string/edit_book_source" />
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/md_black_1000"/>
-    <TextView
-        android:id="@+id/mpp_tv_copy_book_url_detail"
-        android:layout_width="@dimen/item_more_setting_menu_width"
+        android:id="@+id/ll_copy_book_url_detail"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:textColor="@color/md_black_1000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:text="@string/copy_book_url" />
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="@dimen/more_setting_menu_iv_width_and_height"
+            android:layout_height="@dimen/more_setting_menu_iv_width_and_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
+            android:src="@drawable/ic_copy" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
+            android:textColor="@color/md_black_1000"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="@string/copy_book_url" />
+    </LinearLayout>
 </LinearLayout>

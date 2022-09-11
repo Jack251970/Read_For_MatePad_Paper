@@ -29,23 +29,23 @@ public class MoreSettingMenuBookDetail extends PopupWindow {
         this.view = LayoutInflater.from(context).inflate(R.layout.menu_more_setting_book_detail, null);
         // 菜单文字初始化
         if (!ifAllowUpdate) {
-            ((TextView) view.findViewById(R.id.mpp_tv_manage_update_book_detail)).setText(R.string.allow_update);
+            ((TextView) view.findViewById(R.id.tv_manage_update_book_detail)).setText(R.string.allow_update);
         }
         this.setContentView(view);
         // 菜单点击事件
-        view.findViewById(R.id.mpp_tv_refresh_book_detail).setOnClickListener(v -> {
+        view.findViewById(R.id.ll_refresh_book_detail).setOnClickListener(v -> {
             dismiss();
             itemClick.refreshBook();
         });
-        view.findViewById(R.id.mpp_tv_manage_update_book_detail).setOnClickListener(v -> {
+        view.findViewById(R.id.ll_manage_update_book_detail).setOnClickListener(v -> {
             MoreSettingMenuBookDetail.this.dismiss();
             itemClick.manageUpdate();
         });
-        view.findViewById(R.id.mpp_tv_edit_book_source_book_detail).setOnClickListener(v -> {
+        view.findViewById(R.id.ll_edit_book_source_book_detail).setOnClickListener(v -> {
             dismiss();
             itemClick.editBookSource();
         });
-        view.findViewById(R.id.mpp_tv_copy_book_url_detail).setOnClickListener(v -> {
+        view.findViewById(R.id.ll_copy_book_url_detail).setOnClickListener(v -> {
             dismiss();
             itemClick.copyBookUrl();
         });
