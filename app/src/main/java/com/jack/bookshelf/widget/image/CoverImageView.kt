@@ -36,11 +36,7 @@ class CoverImageView : androidx.appcompat.widget.AppCompatImageView {
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
-            context,
-            attrs,
-            defStyleAttr
-    )
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     init {
         namePaint.typeface = Typeface.DEFAULT_BOLD
@@ -98,12 +94,12 @@ class CoverImageView : androidx.appcompat.widget.AppCompatImageView {
             canvas.clipPath(path)
         }
         super.onDraw(canvas)
-        if (!loadFailed) return
         // 绘制边框
         val rectOut = RectF(0f, 0f, width, height)
         val rectIn = RectF(3f, 3f, width - 3, height - 3)
         canvas.drawDoubleRoundRect(rectOut, coverRadius, coverRadius,
             rectIn, coverRadius, coverRadius, paint)
+        if (!loadFailed) return
         name?.let {
             namePaint.color = Color.WHITE
             namePaint.style = Paint.Style.STROKE
