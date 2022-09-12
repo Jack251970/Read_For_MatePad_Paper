@@ -349,6 +349,9 @@
         <string name="advertisement">广告</string>
         <!-- Pop More Setting Menu -->
         <string name="read_setting">阅读设置</string>
+        <string name="parameter_setting">参数设置</string>
+            <string name="read_aloud_speed">朗读语速</string>
+            <string name="auto_next_page_speed">自动翻页时每分钟阅读字数(CPM)</string>
         <string name="display_setting">显示设置</string>
         <string name="operation_setting">操作设置</string>
         <string name="screen_orientation">屏幕方向</string>
@@ -457,8 +460,6 @@
     <string name="nb_file_add_succeed">成功添加%1$d本书</string>
     <string name="edit">编辑</string>
     <string name="to_top">置顶</string>
-    <string name="read_aloud_speed">朗读语速</string>
-    <string name="auto_next_page_speed">自动翻页时每分钟阅读字数(CPM)</string>
     <string name="menu_action_group">分组</string>
     <string name="download_path">书籍缓存路径</string>
     <string name="download_update">下载更新</string>

@@ -17,93 +17,6 @@
         android:id="@+id/vw_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="@string/read_aloud_speed"
-                style="@style/PaperTextStylePopReadMenu"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="@string/flow_sys"
-                style="@style/PaperTextStylePopReadMenu"/>
-            <com.jack.bookshelf.widget.check_box.SmoothCheckBox
-                android:id="@+id/scb_tts_follow_sys"
-                android:layout_width="20sp"
-                android:layout_height="20sp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="7dp"
-                android:layout_marginEnd="5dp"
-                android:clickable="false"
-                android:contentDescription="@string/flow_sys"
-                app:duration="0" />
-        </LinearLayout>
-        <com.jack.bookshelf.widget.views.PaperSeekBar
-            android:id="@+id/hpb_tts_SpeechRate"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="-3dp"
-            android:layout_marginEnd="-7dp"
-            android:max="95" />
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/black" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="@string/auto_next_page_speed"
-                style="@style/PaperTextStylePopReadMenu"/>
-            <TextView
-                android:id="@+id/tv_auto_page"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="%dS"
-                style="@style/PaperTextStylePopReadMenu"
-                tools:ignore="HardcodedText" />
-        </LinearLayout>
-        <com.jack.bookshelf.widget.views.PaperSeekBar
-            android:id="@+id/hpb_click"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="-3dp"
-            android:layout_marginEnd="-7dp"
-            android:max="180" />
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/black" />-->
     <!-- 标题 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -382,6 +295,117 @@
                     android:src="@drawable/ic_switch_unchecked"
                     app:layout_constraintRight_toRightOf="@id/cl_operation_setting"
                     app:layout_constraintTop_toTopOf="@id/line6"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- 参数设置 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/setting_preference_margin_title"
+                android:text="@string/parameter_setting"
+                style="@style/PaperTextStyleSettingTitle" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_parameter_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/setting_preference_margin_title"
+                android:paddingTop="@dimen/setting_category_padding_up_and_bottom"
+                android:paddingBottom="@dimen/setting_category_padding_up_and_bottom"
+                android:paddingStart="@dimen/setting_preference_padding_left_and_right"
+                android:paddingEnd="@dimen/setting_preference_padding_left_and_right"
+                android:background="@drawable/shape_preference_category_background">
+                <LinearLayout
+                    android:id="@+id/ll_speech_rate_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="@dimen/setting_preference_margin_title"
+                    android:layout_marginBottom="@dimen/setting_preference_margin_title"
+                    android:orientation="vertical"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_parameter_setting"
+                    app:layout_constraintRight_toRightOf="@id/cl_parameter_setting"
+                    app:layout_constraintTop_toTopOf="@id/cl_parameter_setting">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="@string/read_aloud_speed"
+                            style="@style/PaperTextStylePopReadMenu"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/flow_sys"
+                            style="@style/PaperTextStylePopReadMenu"/>
+                        <com.jack.bookshelf.widget.checkbox.CheckBox
+                            android:id="@+id/scb_tts_follow_sys"
+                            android:layout_width="20sp"
+                            android:layout_height="20sp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="7dp"
+                            android:layout_marginEnd="5dp"
+                            android:clickable="false"
+                            android:src="@drawable/ic_checkbox_checked"/>
+                    </LinearLayout>
+                    <com.jack.bookshelf.widget.views.PaperSeekBar
+                        android:id="@+id/hpb_tts_SpeechRate"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginStart="-3dp"
+                        android:layout_marginEnd="-7dp"
+                        android:max="95" />
+                </LinearLayout>
+                <View
+                    android:id="@+id/line7"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/ll_speech_rate_setting"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_parameter_setting" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="@dimen/setting_preference_margin_title"
+                    android:layout_marginBottom="@dimen/setting_preference_margin_title"
+                    android:orientation="vertical"
+                    app:layout_constraintLeft_toLeftOf="@id/cl_parameter_setting"
+                    app:layout_constraintRight_toRightOf="@id/cl_parameter_setting"
+                    app:layout_constraintTop_toBottomOf="@id/line7">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="@string/auto_next_page_speed"
+                            style="@style/PaperTextStylePopReadMenu"/>
+                        <TextView
+                            android:id="@+id/tv_auto_page"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="%dS"
+                            style="@style/PaperTextStylePopReadMenu"
+                            tools:ignore="HardcodedText" />
+                    </LinearLayout>
+                    <com.jack.bookshelf.widget.views.PaperSeekBar
+                        android:id="@+id/hpb_click"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginStart="-3dp"
+                        android:layout_marginEnd="-7dp"
+                        android:max="180" />
+                </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>

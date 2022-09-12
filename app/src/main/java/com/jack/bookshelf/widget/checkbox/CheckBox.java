@@ -42,10 +42,10 @@ public class CheckBox extends AppCompatImageView {
         this.preferenceKey = preferenceKey;
         if (prefer.getBoolean(preferenceKey, defaultValue)) {
             this.checked = true;
-            setImageResource(R.drawable.ic_checked);
+            setImageResource(R.drawable.ic_checkbox_checked);
         } else {
             this.checked = false;
-            setImageResource(R.drawable.ic_uncheck);
+            setImageResource(R.drawable.ic_checkbox_unchecked);
         }
         setOnClickListener(v -> setChecked(!checked));
         return this;
@@ -66,10 +66,10 @@ public class CheckBox extends AppCompatImageView {
     public void setChecked(boolean checked) {
         if (checked) {
             this.checked = true;
-            setImageResource(R.drawable.ic_checked);
+            setImageResource(R.drawable.ic_checkbox_checked);
         } else {
             this.checked = false;
-            setImageResource(R.drawable.ic_uncheck);
+            setImageResource(R.drawable.ic_checkbox_unchecked);
         }
         if (preferenceKey != null) {
             prefer.edit().putBoolean(preferenceKey, checked).apply();

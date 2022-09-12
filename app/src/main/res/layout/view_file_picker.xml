@@ -3,34 +3,27 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_path"
         android:layout_width="match_parent"
         android:layout_height="30dp" />
-
     <View
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
-        android:background="@color/btn_bg_press_2" />
-
+        android:background="@color/black" />
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_file"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
         <TextView
             android:id="@+id/tv_empty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:textColor="@color/tv_text_secondary"
+            android:textColor="@color/tv_text_default"
             android:visibility="gone" />
-
     </FrameLayout>
-
 </LinearLayout>

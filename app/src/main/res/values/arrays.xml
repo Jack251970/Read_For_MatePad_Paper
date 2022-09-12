@@ -71,7 +71,7 @@
             <item>@drawable/ic_copy</item>
             <item>@drawable/ic_paste</item>
             <item>@drawable/ic_share</item>
-            <item>@drawable/ic_web_service_phone</item>
+            <item>@drawable/ic_share</item>
             <item>@drawable/ic_faq</item>
         </array>
         <!-- More Setting Menu Change Source Dialog  -->

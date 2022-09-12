@@ -50,7 +50,7 @@
                     android:layout_marginStart="7dp"
                     android:layout_marginEnd="5dp"
                     android:clickable="false"
-                    android:src="@drawable/ic_checked"/>
+                    android:src="@drawable/ic_checkbox_checked"/>
             </LinearLayout>
             <com.jack.bookshelf.widget.views.PaperSeekBar
                 android:id="@+id/hpb_light"

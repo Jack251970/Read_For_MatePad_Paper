@@ -25,20 +25,9 @@
     <!-- Read Activity Select Text Background Color -->
     <color name="text_selector_background_color">#77afafaf</color>
 
-
-
-
-
-    <!-- Smooth Check Box -->
-    <color name="background_card">#dedede</color>
-    <color name="background_menu">#fcfcfc</color>
-
-    <color name="transparent30">#30000000</color>
-
-    <color name="btn_bg_press_2">#80858585</color>
+    <!-- Others -->
 
     <!--"control" means checkbox / radio button-->
-
     <!--LIGHT-->
     <!--12%-->
     <color name="ate_switch_track_disabled_light">#1F000000</color>

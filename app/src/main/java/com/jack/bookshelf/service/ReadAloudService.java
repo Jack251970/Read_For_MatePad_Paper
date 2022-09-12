@@ -439,8 +439,7 @@ public class ReadAloudService extends Service implements Player.Listener {
     }
 
     private void initSpeechRate() {
-        if (speechRate != preference.getInt("speechRate", 10)
-                && !preference.getBoolean("speechRateFollowSys", true)) {
+        if (speechRate != preference.getInt("speechRate", 10) && !preference.getBoolean("speechRateFollowSys", true)) {
             speechRate = preference.getInt("speechRate", 10);
             float speechRateF = (float) speechRate / 10;
             textToSpeech.setSpeechRate(speechRateF);

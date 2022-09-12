@@ -5,6 +5,8 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.SeekBar
+import com.jack.bookshelf.MApplication
 import com.jack.bookshelf.R
 import com.jack.bookshelf.databinding.PopMoreSettingBinding
 import com.jack.bookshelf.help.ReadBookControl
@@ -80,7 +82,7 @@ class MoreSettingPop : FrameLayout {
             .setAddedListener {
                 checked: Boolean -> readBookControl.canClickTurn = checked
             }
-            .setBindSwitch(binding.swClickAllNextPage);
+            .setBindSwitch(binding.swClickAllNextPage)
         binding.swClickAllNextPage.setPreferenceKey("clickAllNext",false)
             .setAddedListener {
                 checked: Boolean -> readBookControl.clickAllNext = checked
@@ -89,7 +91,7 @@ class MoreSettingPop : FrameLayout {
             .setAddedListener {
                 checked: Boolean -> readBookControl.canVolumeKeyTurn = checked
             }
-            .setBindSwitch(binding.swAloudVolumePage);
+            .setBindSwitch(binding.swAloudVolumePage)
         binding.swAloudVolumePage.setPreferenceKey("readAloudCanKeyTurn",false)
             .setAddedListener {
                 checked: Boolean -> readBookControl.aloudCanKeyTurn = checked
@@ -99,22 +101,17 @@ class MoreSettingPop : FrameLayout {
                 checked: Boolean -> readBookControl.isCanSelectText = checked
             }
         // 朗读语速调节
-        /*binding.scbTtsFollowSys.isChecked = !binding.scbTtsFollowSys.isChecked
-        binding.scbTtsFollowSys.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                //跟随系统
-                binding.hpbTtsSpeechRate.isEnabled = false
-                readBookControl.isSpeechRateFollowSys = true
-                callback?.speechRateFollowSys()
-            } else {
-                //不跟随系统
-                binding.hpbTtsSpeechRate.isEnabled = true
-                readBookControl.isSpeechRateFollowSys = false
-                if (callback != null) {
-                    callback!!.changeSpeechRate(readBookControl.speechRate)
+        binding.scbTtsFollowSys.setPreferenceKey("speechRateFollowSys", true)
+            .setAddedListener { checked: Boolean ->
+                run {
+                    binding.hpbTtsSpeechRate.isEnabled = !checked
+                    if (checked) {
+                        callback!!.speechRateFollowSys()
+                    } else {
+                        callback!!.changeSpeechRate(readBookControl.speechRate)
+                    }
                 }
             }
-        }
         binding.hpbTtsSpeechRate.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {}
@@ -133,20 +130,19 @@ class MoreSettingPop : FrameLayout {
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {}
             override fun onStopTrackingTouch(seekBar: SeekBar) {}
-        })*/
+        })
     }
 
     private fun initData() {
         upScreenDirection(readBookControl.screenDirection)
         upScreenTimeOut(readBookControl.screenTimeOut)
         // 朗读语速调节 默认跟随系统
-        /*binding.scbTtsFollowSys.isChecked = readBookControl.isSpeechRateFollowSys
-        binding.hpbTtsSpeechRate.isEnabled = !readBookControl.isSpeechRateFollowSys
+        binding.hpbTtsSpeechRate.isEnabled = !MApplication.getConfigPreferences().getBoolean("speechRateFollowSys", true)
         binding.hpbTtsSpeechRate.progress = readBookControl.speechRate - 5
         //CPM范围设置 每分钟阅读200字到2000字 默认500字/分钟
         binding.hpbClick.max = readBookControl.maxCPM - readBookControl.minCPM
         binding.hpbClick.progress = readBookControl.cpm
-        binding.tvAutoPage.text = String.format("%sCPM", readBookControl.cpm)*/
+        binding.tvAutoPage.text = String.format("%sCPM", readBookControl.cpm)
     }
 
     private fun upScreenTimeOut(screenTimeOut: Int) {

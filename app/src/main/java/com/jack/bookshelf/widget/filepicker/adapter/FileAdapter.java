@@ -20,7 +20,6 @@ import com.jack.bookshelf.widget.filepicker.util.FileUtils;
 import java.io.File;
 import java.util.ArrayList;
 
-
 public class FileAdapter extends RecyclerView.Adapter<FileAdapter.MyViewHolder> {
     public static final String DIR_ROOT = ".";
     public static final String DIR_PARENT = "..";
@@ -81,10 +80,6 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.MyViewHolder> 
         this.onlyListDir = onlyListDir;
     }
 
-    public boolean isOnlyListDir() {
-        return onlyListDir;
-    }
-
     /**
      * 是否显示返回主目录
      */
@@ -114,14 +109,11 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.MyViewHolder> 
         this.showHideDir = showHideDir;
     }
 
-    public boolean isShowHideDir() {
-        return showHideDir;
-    }
-
     public void setItemHeight(int itemHeight) {
         this.itemHeight = itemHeight;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void loadData(String path) {
         if (path == null) {
             return;
@@ -138,7 +130,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.MyViewHolder> 
         if (fileIcon == null) {
             fileIcon = ConvertUtils.toDrawable(FilePickerIcon.getFILE());
         }
-        ArrayList<FileItem> datas = new ArrayList<FileItem>();
+        ArrayList<FileItem> data = new ArrayList<>();
         if (rootPath == null) {
             rootPath = path;
         }
@@ -151,7 +143,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.MyViewHolder> 
             fileRoot.setName(DIR_ROOT);
             fileRoot.setSize(0);
             fileRoot.setPath(rootPath);
-            datas.add(fileRoot);
+            data.add(fileRoot);
         }
         if (showUpDir && !path.equals("/")) {
             //添加“返回上一级目录”
@@ -161,7 +153,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.MyViewHolder> 
             fileParent.setName(DIR_PARENT);
             fileParent.setSize(0);
             fileParent.setPath(new File(path).getParent());
-            datas.add(fileParent);
+            data.add(fileParent);
         }
         File[] files;
         if (allowExtensions == null) {
@@ -194,11 +186,11 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.MyViewHolder> 
                 }
                 fileItem.setName(file.getName());
                 fileItem.setPath(file.getAbsolutePath());
-                datas.add(fileItem);
+                data.add(fileItem);
             }
         }
-        data.clear();
-        data.addAll(datas);
+        this.data.clear();
+        this.data.addAll(data);
         notifyDataSetChanged();
     }
 
@@ -214,12 +206,9 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.MyViewHolder> 
         FileItem fileItem = data.get(position);
         holder.imageView.setImageDrawable(fileItem.getIcon());
         holder.textView.setText(fileItem.getName());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (callBack != null) {
-                    callBack.onFileClick(position);
-                }
+        holder.itemView.setOnClickListener(v -> {
+            if (callBack != null) {
+                callBack.onFileClick(position);
             }
         });
     }
@@ -229,7 +218,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.MyViewHolder> 
         return data.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView textView;
 
@@ -243,6 +232,4 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.MyViewHolder> 
     public interface CallBack {
         void onFileClick(int position);
     }
-
 }
-

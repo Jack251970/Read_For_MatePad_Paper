@@ -18,7 +18,6 @@ import com.jack.bookshelf.MApplication;
 public class ReadBookControl {
     private int screenDirection;
     private int speechRate;
-    private boolean speechRateFollowSys;
     private int textSize;
     private int textColor;
     private float lineMultiplier;
@@ -88,7 +87,6 @@ public class ReadBookControl {
         this.textConvert = preferences.getInt("textConvertInt", 0);
         this.textBold = preferences.getBoolean("textBold", false);
         this.speechRate = preferences.getInt("speechRate", 10);
-        this.speechRateFollowSys = preferences.getBoolean("speechRateFollowSys", true);
         this.screenTimeOut = preferences.getInt("screenTimeOut", 0);
         this.paddingLeft = preferences.getInt("paddingLeft", DEFAULT_MARGIN_WIDTH);
         this.paddingTop = preferences.getInt("paddingTop", 0);
@@ -237,15 +235,6 @@ public class ReadBookControl {
     public void setSpeechRate(int speechRate) {
         this.speechRate = speechRate;
         preferences.edit().putInt("speechRate", speechRate).apply();
-    }
-
-    public boolean isSpeechRateFollowSys() {
-        return speechRateFollowSys;
-    }
-
-    public void setSpeechRateFollowSys(boolean speechRateFollowSys) {
-        this.speechRateFollowSys = speechRateFollowSys;
-        preferences.edit().putBoolean("speechRateFollowSys", speechRateFollowSys).apply();
     }
 
     public Boolean getLightNovelParagraph(){return lightNovelParagraph;}
