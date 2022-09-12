@@ -7,7 +7,8 @@
     android:paddingLeft="18dp"
     android:paddingRight="18dp"
     android:background="@drawable/shape_more_setting_menu_background"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="ContentDescription">
     <LinearLayout
         android:id="@+id/ll_more_setting_menu_book_read_online1"
         android:layout_width="match_parent"
@@ -27,8 +28,7 @@
                 android:layout_height="@dimen/more_setting_menu_iv_width_and_height"
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
-                android:src="@drawable/ic_cancel_with_circle"
-                android:contentDescription="禁用书源" />
+                android:src="@drawable/ic_cancel_with_circle" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -56,8 +56,7 @@
                 android:layout_height="@dimen/more_setting_menu_iv_width_and_height"
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
-                android:src="@drawable/ic_edit"
-                android:contentDescription="编辑书源" />
+                android:src="@drawable/ic_edit" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -86,8 +85,7 @@
             android:layout_height="@dimen/more_setting_menu_iv_width_and_height"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
-            android:src="@drawable/ic_find_replace"
-            android:contentDescription="替换净化" />
+            android:src="@drawable/ic_find_replace"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -123,8 +121,7 @@
             android:layout_height="@dimen/more_setting_menu_iv_width_and_height"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
-            android:src="@drawable/ic_edit"
-            android:contentDescription="编辑替换规则" />
+            android:src="@drawable/ic_edit" />
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -155,8 +152,7 @@
             android:layout_height="@dimen/more_setting_menu_iv_width_and_height"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
-            android:src="@drawable/ic_light_novel_paragraph"
-            android:contentDescription="重新分段" />
+            android:src="@drawable/ic_light_novel_paragraph"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -192,15 +188,14 @@
             android:layout_height="@dimen/more_setting_menu_iv_width_and_height"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
-            android:src="@drawable/ic_update"
-            android:contentDescription="更新目录" />
+            android:src="@drawable/ic_update"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginEnd="6dp"
             android:layout_gravity="center_vertical"
-            android:textColor="@color/md_black_1000"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="@string/update_chapter" />
@@ -215,7 +210,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/md_black_1000"/>
+            android:background="@color/black"/>
         <LinearLayout
             android:id="@+id/ll_open_browser_online"
             android:layout_width="match_parent"
@@ -228,15 +223,14 @@
                 android:layout_height="@dimen/more_setting_menu_iv_width_and_height"
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
-                android:src="@drawable/ic_web"
-                android:contentDescription="在浏览器中打开" />
+                android:src="@drawable/ic_web"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="6dp"
                 android:layout_gravity="center_vertical"
-                android:textColor="@color/md_black_1000"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:text="@string/open_browser" />

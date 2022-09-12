@@ -17,8 +17,8 @@ import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.help.storage.BackupRestoreUi;
 import com.jack.bookshelf.service.WebService;
 import com.jack.bookshelf.view.activity.SettingActivity;
-import com.jack.bookshelf.view.popupwindow.PaperAlertDialog;
 import com.jack.bookshelf.view.popupwindow.NumberPickerDialog;
+import com.jack.bookshelf.view.popupwindow.PaperAlertDialog;
 
 /**
  * General Setting Fragment

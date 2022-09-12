@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <item name="fast_scroller" type="id" />
-
     <item name="tag1" type="id" />
-
     <item name="tag2" type="id" />
-
 </resources>

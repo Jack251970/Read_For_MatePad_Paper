@@ -32,10 +32,10 @@ import com.jack.bookshelf.utils.RxUtils;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.activity.BookDetailActivity;
 import com.jack.bookshelf.view.activity.ReadBookActivity;
+import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
 import com.jack.bookshelf.view.fragment.adapter.BookShelfAdapter;
 import com.jack.bookshelf.view.fragment.adapter.BookShelfGridAdapter;
 import com.jack.bookshelf.view.fragment.adapter.BookShelfListAdapter;
-import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
 import com.jack.bookshelf.view.popupwindow.PaperAlertDialog;
 import com.jack.bookshelf.widget.viewpager.PaperViewPager;
 
