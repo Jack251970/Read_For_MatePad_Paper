@@ -13,12 +13,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jack.bookshelf.R;
-import com.jack.bookshelf.widget.filepicker.icons.FilePickerIcon;
-import com.jack.bookshelf.widget.filepicker.util.ConvertUtils;
 
 import java.util.Collections;
 import java.util.LinkedList;
 
+/**
+ * Item Path Adapter
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
 public class PathAdapter extends RecyclerView.Adapter<PathAdapter.MyViewHolder> {
     private static final String ROOT_HINT = "SD";
@@ -50,9 +53,6 @@ public class PathAdapter extends RecyclerView.Adapter<PathAdapter.MyViewHolder> 
     @SuppressLint("NotifyDataSetChanged")
     public void updatePath(String path) {
         path = path.replace(sdCardDirectory, "");
-        if (arrowIcon == null) {
-            arrowIcon = ConvertUtils.toDrawable(FilePickerIcon.getARROW());
-        }
         paths.clear();
         if (!path.equals("/") && !path.equals("")) {
             String[] temp = path.substring(path.indexOf("/") + 1).split("/");
@@ -72,7 +72,9 @@ public class PathAdapter extends RecyclerView.Adapter<PathAdapter.MyViewHolder> 
     @SuppressLint("RecyclerView")
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         holder.textView.setText(paths.get(position));
-        holder.imageView.setImageDrawable(arrowIcon);
+        if (arrowIcon != null) {
+            holder.imageView.setImageDrawable(arrowIcon);
+        }
         holder.itemView.setOnClickListener(v -> {
             if (callBack != null) {
                 callBack.onPathClick(position);
@@ -91,8 +93,8 @@ public class PathAdapter extends RecyclerView.Adapter<PathAdapter.MyViewHolder> 
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.image_view);
-            textView = itemView.findViewById(R.id.text_view);
+            imageView = itemView.findViewById(R.id.iv_item_path_file_picker);
+            textView = itemView.findViewById(R.id.tv_item_path_file_picker);
         }
     }
 

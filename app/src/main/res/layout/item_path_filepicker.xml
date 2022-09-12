@@ -6,17 +6,19 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:focusable="true">
-
     <TextView
-        android:id="@+id/text_view"
+        android:id="@+id/tv_item_path_file_picker"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:gravity="center_vertical" />
-
+        android:gravity="center_vertical"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        tools:text="Download"/>
     <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="20dp"
-        android:layout_height="match_parent"
+        android:id="@+id/iv_item_path_file_picker"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_chevron_right"
         tools:ignore="ContentDescription" />
-
 </LinearLayout>

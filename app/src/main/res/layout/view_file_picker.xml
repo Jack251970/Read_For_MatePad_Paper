@@ -6,7 +6,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_path"
         android:layout_width="match_parent"
-        android:layout_height="30dp" />
+        android:layout_height="30dp"
+        android:paddingStart="@dimen/content_padding"
+        android:paddingEnd="@dimen/content_padding"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="0.2dp"

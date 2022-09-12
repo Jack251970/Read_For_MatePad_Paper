@@ -25,8 +25,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * 文件目录选择器
- *
+ * File Chooser
+ * Edited by Jack 251970
  * @author 李玉江[QQ:1032694760]
  * @since 2015/9/29, 2017/01/01, 2017/01/08
  */

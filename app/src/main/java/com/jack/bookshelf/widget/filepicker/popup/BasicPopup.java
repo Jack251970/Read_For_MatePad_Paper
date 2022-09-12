@@ -18,7 +18,6 @@ import androidx.annotation.StyleRes;
 
 import com.jack.bookshelf.widget.filepicker.util.ScreenUtils;
 
-
 /**
  * 弹窗基类
  *
@@ -26,8 +25,8 @@ import com.jack.bookshelf.widget.filepicker.util.ScreenUtils;
  * @author 李玉江[QQ:1023694760]
  * @since 2015/7/19
  */
-public abstract class BasicPopup<V extends View> implements DialogInterface.OnKeyListener,
-        DialogInterface.OnDismissListener {
+
+public abstract class BasicPopup<V extends View> implements DialogInterface.OnKeyListener, DialogInterface.OnDismissListener {
     public static final int MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT;
     public static final int WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT;
     protected Activity activity;
