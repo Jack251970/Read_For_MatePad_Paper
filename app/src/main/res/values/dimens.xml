@@ -89,6 +89,8 @@
         <!-- About Fragment -->
         <dimen name="preference_with_icon_padding_start">42dp</dimen>
         <dimen name="preference_icon_layout_height_and_width">24dp</dimen>
+        <!-- Compat Image View -->
+        <dimen name="cp_iv_icon_size">20sp</dimen>
 
     <!-- Widget-->
         <!-- Fast Scroller -->
@@ -107,39 +109,4 @@
         <dimen name="fastscroll_scrollbar_margin_bottom">8dp</dimen>
         <dimen name="fastscroll_scrollbar_padding_start">8dp</dimen>
         <dimen name="fastscroll_scrollbar_padding_end">8dp</dimen>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-
-    <dimen name="fast_scroll_min_thumb_height">24dp</dimen>
-
-    <dimen name="line_height">0.8dp</dimen>
-
-    <dimen name="desc_icon_size">18sp</dimen>
-
-    <dimen name="toolbar_elevation">4dp</dimen>
 </resources>

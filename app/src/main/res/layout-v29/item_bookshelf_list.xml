@@ -70,8 +70,8 @@
         tools:ignore="RtlHardcoded,RtlSymmetry" />
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_author"
-        android:layout_width="@dimen/desc_icon_size"
-        android:layout_height="@dimen/desc_icon_size"
+        android:layout_width="@dimen/cp_iv_icon_size"
+        android:layout_height="@dimen/cp_iv_icon_size"
         android:layout_marginLeft="8dp"
         android:contentDescription="@string/author"
         android:paddingStart="2dp"
@@ -98,8 +98,8 @@
         tools:ignore="RtlSymmetry" />
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_read"
-        android:layout_width="@dimen/desc_icon_size"
-        android:layout_height="@dimen/desc_icon_size"
+        android:layout_width="@dimen/cp_iv_icon_size"
+        android:layout_height="@dimen/cp_iv_icon_size"
         android:layout_marginLeft="8dp"
         android:contentDescription="@string/read_dur_progress"
         android:paddingStart="2dp"
@@ -124,8 +124,8 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_author" />
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_last"
-        android:layout_width="@dimen/desc_icon_size"
-        android:layout_height="@dimen/desc_icon_size"
+        android:layout_width="@dimen/cp_iv_icon_size"
+        android:layout_height="@dimen/cp_iv_icon_size"
         android:layout_marginLeft="8dp"
         android:contentDescription="@string/book_search_last"
         android:paddingStart="2dp"
