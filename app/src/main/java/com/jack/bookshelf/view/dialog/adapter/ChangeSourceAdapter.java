@@ -2,6 +2,7 @@ package com.jack.bookshelf.view.dialog.adapter;
 
 import static android.text.TextUtils.isEmpty;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +21,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by GKF on 2017/12/22.
- * 书源Adapter
+ * Change Source Item Adapter
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
  */
 
+@SuppressLint("NotifyDataSetChanged")
 public class ChangeSourceAdapter extends RefreshRecyclerViewAdapter {
     private final List<SearchBookBean> allBookBeans;
     private CallBack callBack;
@@ -128,5 +131,4 @@ public class ChangeSourceAdapter extends RefreshRecyclerViewAdapter {
 
         void showMenu(View view, SearchBookBean searchBookBean);
     }
-
 }
