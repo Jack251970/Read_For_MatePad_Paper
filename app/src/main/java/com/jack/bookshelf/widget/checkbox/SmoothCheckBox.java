@@ -1,4 +1,4 @@
-package com.jack.bookshelf.widget.check_box;
+package com.jack.bookshelf.widget.checkbox;
 
 import android.animation.ValueAnimator;
 import android.content.Context;

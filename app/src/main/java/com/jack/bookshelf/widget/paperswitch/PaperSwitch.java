@@ -1,4 +1,4 @@
-package com.jack.bookshelf.widget;
+package com.jack.bookshelf.widget.paperswitch;
 
 import android.content.Context;
 import android.content.SharedPreferences;

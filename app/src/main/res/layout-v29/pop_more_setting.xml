@@ -260,7 +260,7 @@
                     style="@style/PaperTextStyleSettingPreference"
                     app:layout_constraintLeft_toLeftOf="@id/cl_operation_setting"
                     app:layout_constraintTop_toTopOf="@id/cl_operation_setting"/>
-                <com.jack.bookshelf.widget.PaperSwitch
+                <com.jack.bookshelf.widget.paperswitch.PaperSwitch
                     android:id="@+id/sw_disable_return_key"
                     android:layout_width="@dimen/setting_preference_layout_height"
                     android:layout_height="@dimen/setting_preference_layout_height"
@@ -283,7 +283,7 @@
                     style="@style/PaperTextStyleSettingPreference"
                     app:layout_constraintLeft_toLeftOf="@id/cl_operation_setting"
                     app:layout_constraintTop_toTopOf="@id/line2"/>
-                <com.jack.bookshelf.widget.PaperSwitch
+                <com.jack.bookshelf.widget.paperswitch.PaperSwitch
                     android:id="@+id/sw_click_open_page"
                     android:layout_width="@dimen/setting_preference_layout_height"
                     android:layout_height="@dimen/setting_preference_layout_height"
@@ -306,7 +306,7 @@
                     style="@style/PaperTextStyleSettingPreference"
                     app:layout_constraintLeft_toLeftOf="@id/cl_operation_setting"
                     app:layout_constraintTop_toTopOf="@id/line3"/>
-                <com.jack.bookshelf.widget.PaperSwitch
+                <com.jack.bookshelf.widget.paperswitch.PaperSwitch
                     android:id="@+id/sw_click_all_next_page"
                     android:layout_width="@dimen/setting_preference_layout_height"
                     android:layout_height="@dimen/setting_preference_layout_height"
@@ -329,7 +329,7 @@
                     style="@style/PaperTextStyleSettingPreference"
                     app:layout_constraintLeft_toLeftOf="@id/cl_operation_setting"
                     app:layout_constraintTop_toTopOf="@id/line4"/>
-                <com.jack.bookshelf.widget.PaperSwitch
+                <com.jack.bookshelf.widget.paperswitch.PaperSwitch
                     android:id="@+id/sw_volume_open_page"
                     android:layout_width="@dimen/setting_preference_layout_height"
                     android:layout_height="@dimen/setting_preference_layout_height"
@@ -352,7 +352,7 @@
                     style="@style/PaperTextStyleSettingPreference"
                     app:layout_constraintLeft_toLeftOf="@id/cl_operation_setting"
                     app:layout_constraintTop_toTopOf="@id/line5"/>
-                <com.jack.bookshelf.widget.PaperSwitch
+                <com.jack.bookshelf.widget.paperswitch.PaperSwitch
                     android:id="@+id/sw_aloud_volume_page"
                     android:layout_width="@dimen/setting_preference_layout_height"
                     android:layout_height="@dimen/setting_preference_layout_height"
@@ -375,7 +375,7 @@
                     style="@style/PaperTextStyleSettingPreference"
                     app:layout_constraintLeft_toLeftOf="@id/cl_operation_setting"
                     app:layout_constraintTop_toTopOf="@id/line6"/>
-                <com.jack.bookshelf.widget.PaperSwitch
+                <com.jack.bookshelf.widget.paperswitch.PaperSwitch
                     android:id="@+id/sw_select_text"
                     android:layout_width="@dimen/setting_preference_layout_height"
                     android:layout_height="@dimen/setting_preference_layout_height"

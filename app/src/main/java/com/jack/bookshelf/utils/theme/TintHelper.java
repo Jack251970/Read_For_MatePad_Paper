@@ -57,7 +57,6 @@ public final class TintHelper {
         });
     }
 
-    @SuppressWarnings("deprecation")
     public static void setTintSelector(@NonNull View view, @ColorInt final int color, final boolean darker, final boolean useDarkTheme) {
         final boolean isColorLight = ColorUtils.isColorLight(color);
         final int disabled = ContextCompat.getColor(view.getContext(), useDarkTheme ? R.color.ate_button_disabled_dark : R.color.ate_button_disabled_light);
@@ -129,7 +128,6 @@ public final class TintHelper {
         setTintAuto(view, color, background, ATHUtil.isWindowBackgroundDark(view.getContext()));
     }
 
-    @SuppressWarnings("deprecation")
     public static void setTintAuto(final @NonNull View view, final @ColorInt int color,
                                    boolean background, final boolean isDark) {
         if (!background) {

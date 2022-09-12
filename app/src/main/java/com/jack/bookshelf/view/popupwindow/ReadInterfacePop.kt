@@ -66,7 +66,6 @@ class ReadInterfacePop : FrameLayout {
 
     private fun initLight() {
         binding.hpbLight.progress = readBookControl.light
-        binding.scbFollowSys.isChecked = readBookControl.lightFollowSys
         if (!readBookControl.lightFollowSys) {
             setScreenBrightness(readBookControl.light)
         }
@@ -90,19 +89,17 @@ class ReadInterfacePop : FrameLayout {
     @SuppressLint("DefaultLocale")
     private fun bindEvent() {
         // 亮度调节
-        binding.scbFollowSys.isChecked = !binding.scbFollowSys.isChecked
-        binding.scbFollowSys.setOnCheckedChangeListener { _, isChecked ->
-            readBookControl.lightFollowSys = isChecked
-            if (isChecked) {
-                // 跟随系统
-                binding.hpbLight.isEnabled = false
-                setScreenBrightness()
-            } else {
-                // 不跟随系统
-                binding.hpbLight.isEnabled = true
-                setScreenBrightness(readBookControl.light)
+        binding.scbFollowSys.setPreferenceKey("lightFollowSys", true)
+            .setAddedListener { checked: Boolean ->
+                run {
+                    binding.hpbLight.isEnabled = !checked
+                    if (checked) {
+                        setScreenBrightness()
+                    } else {
+                        setScreenBrightness(readBookControl.light)
+                    }
+                }
             }
-        }
         binding.hpbLight.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
                 if (!readBookControl.lightFollowSys) {

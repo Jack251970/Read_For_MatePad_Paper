@@ -374,10 +374,6 @@ public class ReadBookControl {
         return preferences.getBoolean("lightFollowSys", true);
     }
 
-    public void setLightFollowSys(boolean isFollowSys) {
-        preferences.edit().putBoolean("lightFollowSys", isFollowSys).apply();
-    }
-
     private int getScreenBrightness() {
         int value = 0;
         ContentResolver cr = MApplication.getInstance().getContentResolver();

@@ -42,7 +42,7 @@
                     android:layout_gravity="center_vertical"
                     android:text="@string/flow_sys"
                     style="@style/PaperTextStylePopReadMenu"/>
-                <com.jack.bookshelf.widget.check_box.SmoothCheckBox
+                <com.jack.bookshelf.widget.checkbox.CheckBox
                     android:id="@+id/scb_follow_sys"
                     android:layout_width="20sp"
                     android:layout_height="20sp"
@@ -50,8 +50,7 @@
                     android:layout_marginStart="7dp"
                     android:layout_marginEnd="5dp"
                     android:clickable="false"
-                    android:contentDescription="@string/flow_sys"
-                    app:duration="0" />
+                    android:src="@drawable/ic_checked"/>
             </LinearLayout>
             <com.jack.bookshelf.widget.views.PaperSeekBar
                 android:id="@+id/hpb_light"

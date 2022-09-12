@@ -16,7 +16,6 @@ public class ScrollTextView extends AppCompatTextView {
     //是否到顶或者到底的标志
     private boolean mBottomFlag = false;
 
-
     public ScrollTextView(Context context) {
         super(context);
     }
@@ -99,5 +98,4 @@ public class ScrollTextView extends AppCompatTextView {
             mBottomFlag = true;
         }
     }
-
 }

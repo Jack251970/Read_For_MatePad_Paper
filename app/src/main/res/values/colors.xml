@@ -29,39 +29,13 @@
 
 
 
-
-
-
-
-
-    <color name="night_mask">#00000000</color>
-
-
+    <!-- Smooth Check Box -->
     <color name="background_card">#dedede</color>
     <color name="background_menu">#fcfcfc</color>
 
     <color name="transparent30">#30000000</color>
 
-    <color name="colorPrimaryDark">@color/md_grey_200</color>
-
-    <color name="btn_bg_press">#80C0C0C0</color>
     <color name="btn_bg_press_2">#80858585</color>
-
-    <color name="tv_btn_normal_black">#737373</color>
-    <color name="tv_btn_press_black">#adadad</color>
-    <color name="tv_text_summary">#8a000000</color>
-    <color name="tv_text_book_detail">#dfdfdf</color>
-    <color name="menu_color_default">#383838</color>
-
-
-    <color name="tv_text_button_nor">#efefef</color>
-
-    <color name="light_translucent">#23000000</color>
-    <color name="common_gray">#EEEEEE</color>
-    <color name="darker_gray">#aaaaaaaa</color>
-
-    <!-- 分格线背景色 -->
-    <color name="bg_divider_line">#FFD4D4D4</color>
 
     <!--"control" means checkbox / radio button-->
 
@@ -76,8 +50,6 @@
     <!-- 38% -->
     <color name="ate_text_disabled_light">#61000000</color>
     <!-- 54% -->
-    <color name="ate_secondary_text_light">#8A000000</color>
-    <color name="ate_icon_light">#8A000000</color>
     <color name="ate_control_normal_light">#8A000000</color>
     <!-- 87% -->
     <color name="ate_primary_text_light">#DE000000</color>
@@ -85,8 +57,6 @@
     <color name="ate_switch_thumb_normal_light">#FFFAFAFA</color>
     <!--Grey 400, #BDBDBD, Opacity  100%-->
     <color name="ate_switch_thumb_disabled_light">#FFBDBDBD</color>
-    <!---->
-    <color name="ate_navigation_drawer_selected_light">#E8E8E8</color>
 
     <!--DARK-->
     <!--10%-->
@@ -99,8 +69,6 @@
     <color name="ate_button_text_disabled_dark">#4DFFFFFF</color>
     <color name="ate_text_disabled_dark">#4DFFFFFF</color>
     <!-- 70% -->
-    <color name="ate_secondary_text_dark">#B3FFFFFF</color>
-    <color name="ate_icon_dark">#B3FFFFFF</color>
     <color name="ate_control_normal_dark">#B3FFFFFF</color>
     <!-- 100% -->
     <color name="ate_primary_text_dark">#FFFFFFFF</color>
@@ -108,6 +76,4 @@
     <color name="ate_switch_thumb_normal_dark">#FFBDBDBD</color>
     <!--Grey 800, #424242, Opacity 100%-->
     <color name="ate_switch_thumb_disabled_dark">#FF424242</color>
-    <!---->
-    <color name="ate_navigation_drawer_selected_dark">#202020</color>
 </resources>

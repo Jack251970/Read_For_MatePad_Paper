@@ -11,11 +11,8 @@ import android.widget.FrameLayout
 import androidx.core.view.ViewCompat
 import kotlin.math.max
 
-class VerticalSeekBarWrapper @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr) {
+class VerticalSeekBarWrapper @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
+    FrameLayout(context, attrs, defStyleAttr) {
 
     private val childSeekBar: VerticalSeekBar?
         get() {
