@@ -90,7 +90,23 @@
         <dimen name="preference_with_icon_padding_start">42dp</dimen>
         <dimen name="preference_icon_layout_height_and_width">24dp</dimen>
 
+    <!-- Widget-->
+        <!-- Fast Scroller -->
+        <dimen name="fastscroll_bubble_radius">44dp</dimen>
+        <dimen name="fastscroll_bubble_size">88dp</dimen>
+        <dimen name="fastscroll_bubble_text_size">48sp</dimen>
+        <dimen name="fastscroll_bubble_padding">16dp</dimen>
 
+        <dimen name="fastscroll_handle_height">40dp</dimen>
+        <dimen name="fastscroll_handle_width">8dp</dimen>
+        <dimen name="fastscroll_handle_radius">0dp</dimen>
+
+        <dimen name="fastscroll_track_width">2dp</dimen>
+
+        <dimen name="fastscroll_scrollbar_margin_top">8dp</dimen>
+        <dimen name="fastscroll_scrollbar_margin_bottom">8dp</dimen>
+        <dimen name="fastscroll_scrollbar_padding_start">8dp</dimen>
+        <dimen name="fastscroll_scrollbar_padding_end">8dp</dimen>
 
 
 
@@ -126,20 +142,4 @@
     <dimen name="desc_icon_size">18sp</dimen>
 
     <dimen name="toolbar_elevation">4dp</dimen>
-
-    <dimen name="fastscroll_bubble_radius">44dp</dimen>
-    <dimen name="fastscroll_bubble_size">88dp</dimen>
-    <dimen name="fastscroll_bubble_text_size">48sp</dimen>
-    <dimen name="fastscroll_bubble_padding">16dp</dimen>
-
-    <dimen name="fastscroll_handle_height">40dp</dimen>
-    <dimen name="fastscroll_handle_width">8dp</dimen>
-    <dimen name="fastscroll_handle_radius">0dp</dimen>
-
-    <dimen name="fastscroll_track_width">2dp</dimen>
-
-    <dimen name="fastscroll_scrollbar_margin_top">8dp</dimen>
-    <dimen name="fastscroll_scrollbar_margin_bottom">8dp</dimen>
-    <dimen name="fastscroll_scrollbar_padding_start">8dp</dimen>
-    <dimen name="fastscroll_scrollbar_padding_end">8dp</dimen>
 </resources>

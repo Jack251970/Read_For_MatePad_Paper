@@ -2,7 +2,7 @@
 <merge
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <!-- 信息显示 -->
     <TextView
         android:id="@+id/fastscroll_bubble"
         android:layout_width="wrap_content"
@@ -14,20 +14,17 @@
         android:visibility="gone"
         tools:background="@drawable/shape_fastscroll_bubble"
         tools:text="A"
-        tools:textColor="#ffffff"
+        tools:textColor="#000"
         tools:visibility="visible" />
-
+    <!-- 快速滑动条 -->
     <FrameLayout
         android:id="@+id/fastscroll_scrollbar"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:paddingEnd="@dimen/fastscroll_scrollbar_padding_end"
-        android:paddingLeft="@dimen/fastscroll_scrollbar_padding_start"
-        android:paddingRight="@dimen/fastscroll_scrollbar_padding_end"
         android:paddingStart="@dimen/fastscroll_scrollbar_padding_start"
         android:visibility="gone"
         tools:visibility="visible">
-
         <ImageView
             android:id="@+id/fastscroll_track"
             android:layout_width="wrap_content"
@@ -35,7 +32,6 @@
             android:layout_gravity="center_horizontal"
             tools:ignore="ContentDescription"
             tools:src="@drawable/shape_fastscroll_track" />
-
         <ImageView
             android:id="@+id/fastscroll_handle"
             android:layout_width="wrap_content"
@@ -43,7 +39,5 @@
             android:layout_gravity="center_horizontal"
             tools:ignore="ContentDescription"
             tools:src="@drawable/shape_fastscroll_handle" />
-
     </FrameLayout>
-
 </merge>

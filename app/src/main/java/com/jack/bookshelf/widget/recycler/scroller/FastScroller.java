@@ -1,7 +1,5 @@
 package com.jack.bookshelf.widget.recycler.scroller;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,7 +9,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,26 +31,26 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.utils.ColorUtils;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 
+import java.util.Objects;
+
+/**
+ * Fast Scroller
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
 public class FastScroller extends LinearLayout {
-    private static final int sBubbleAnimDuration = 100;
-    private static final int sScrollbarAnimDuration = 300;
-    private static final int sScrollbarHideDelay = 1000;
+    private static final int sScrollbarHideDelay = 600;
     private static final int sTrackSnapRange = 5;
-    @ColorInt
-    private int mBubbleColor;
-    @ColorInt
-    private int mHandleColor;
+    @ColorInt private int mBubbleColor;
+    @ColorInt private int mHandleColor;
     private int mBubbleHeight;
     private int mHandleHeight;
     private int mViewHeight;
     private boolean mFadeScrollbar;
     private boolean mShowBubble;
     private SectionIndexer mSectionIndexer;
-    private ViewPropertyAnimator mScrollbarAnimator;
-    private ViewPropertyAnimator mBubbleAnimator;
     private RecyclerView mRecyclerView;
     private TextView mBubbleView;
     private ImageView mHandleView;
@@ -80,7 +77,6 @@ public class FastScroller extends LinearLayout {
                 switch (newState) {
                     case RecyclerView.SCROLL_STATE_DRAGGING:
                         getHandler().removeCallbacks(mScrollbarHider);
-                        cancelAnimation(mScrollbarAnimator);
                         if (!isViewVisible(mScrollbar)) {
                             showScrollbar();
                         }
@@ -296,8 +292,6 @@ public class FastScroller extends LinearLayout {
                 requestDisallowInterceptTouchEvent(true);
                 setHandleSelected(true);
                 getHandler().removeCallbacks(mScrollbarHider);
-                cancelAnimation(mScrollbarAnimator);
-                cancelAnimation(mBubbleAnimator);
                 if (!isViewVisible(mScrollbar)) {
                     showScrollbar();
                 }
@@ -329,9 +323,9 @@ public class FastScroller extends LinearLayout {
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        mViewHeight = h;
+    protected void onSizeChanged(int width, int height, int old_width, int old_height) {
+        super.onSizeChanged(width, height, old_width, old_height);
+        mViewHeight = height;
     }
 
     private void setRecyclerViewPosition(float y) {
@@ -346,7 +340,7 @@ public class FastScroller extends LinearLayout {
                 proportion = y / (float) mViewHeight;
             }
             int scrolledItemCount = Math.round(proportion * itemCount);
-            if (isLayoutReversed(mRecyclerView.getLayoutManager())) {
+            if (isLayoutReversed(Objects.requireNonNull(mRecyclerView.getLayoutManager()))) {
                 scrolledItemCount = itemCount - scrolledItemCount;
             }
             int targetPos = getValueInRange(0, itemCount - 1, scrolledItemCount);
@@ -406,77 +400,30 @@ public class FastScroller extends LinearLayout {
         return view != null && view.getVisibility() == VISIBLE;
     }
 
-    private void cancelAnimation(ViewPropertyAnimator animator) {
-        if (animator != null) {
-            animator.cancel();
-        }
-    }
-
     private void showBubble() {
         if (!isViewVisible(mBubbleView)) {
             mBubbleView.setVisibility(VISIBLE);
-            mBubbleAnimator = mBubbleView.animate().alpha(1f)
-                    .setDuration(sBubbleAnimDuration)
-                    .setListener(new AnimatorListenerAdapter() {
-                        // adapter required for new alpha value to stick
-                    });
         }
     }
 
     private void hideBubble() {
         if (isViewVisible(mBubbleView)) {
-            mBubbleAnimator = mBubbleView.animate().alpha(0f)
-                    .setDuration(sBubbleAnimDuration)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            super.onAnimationEnd(animation);
-                            mBubbleView.setVisibility(GONE);
-                            mBubbleAnimator = null;
-                        }
-
-                        @Override
-                        public void onAnimationCancel(Animator animation) {
-                            super.onAnimationCancel(animation);
-                            mBubbleView.setVisibility(GONE);
-                            mBubbleAnimator = null;
-                        }
-                    });
+            mBubbleView.setVisibility(GONE);
         }
     }
 
     private void showScrollbar() {
         if (mRecyclerView.computeVerticalScrollRange() - mViewHeight > 0) {
-            float transX = getResources().getDimensionPixelSize(R.dimen.fastscroll_scrollbar_padding_end);
-            mScrollbar.setTranslationX(transX);
-            mScrollbar.setVisibility(VISIBLE);
-            mScrollbarAnimator = mScrollbar.animate().translationX(0f).alpha(1f)
-                    .setDuration(sScrollbarAnimDuration)
-                    .setListener(new AnimatorListenerAdapter() {
-                        // adapter required for new alpha value to stick
-                    });
+            if (!isViewVisible(mScrollbar)) {
+                mScrollbar.setVisibility(VISIBLE);
+            }
         }
     }
 
     private void hideScrollbar() {
-        float transX = getResources().getDimensionPixelSize(R.dimen.fastscroll_scrollbar_padding_end);
-        mScrollbarAnimator = mScrollbar.animate().translationX(transX).alpha(0f)
-                .setDuration(sScrollbarAnimDuration)
-                .setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        mScrollbar.setVisibility(GONE);
-                        mScrollbarAnimator = null;
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animation) {
-                        super.onAnimationCancel(animation);
-                        mScrollbar.setVisibility(GONE);
-                        mScrollbarAnimator = null;
-                    }
-                });
+        if (isViewVisible(mScrollbar)) {
+            mScrollbar.setVisibility(GONE);
+        }
     }
 
     private void setHandleSelected(boolean selected) {
@@ -493,9 +440,9 @@ public class FastScroller extends LinearLayout {
         mHandleView = findViewById(R.id.fastscroll_handle);
         mTrackView = findViewById(R.id.fastscroll_track);
         mScrollbar = findViewById(R.id.fastscroll_scrollbar);
-        @ColorInt int bubbleColor = ColorUtils.adjustAlpha(ThemeStore.accentColor(context), 0.8f);
-        @ColorInt int handleColor = ThemeStore.accentColor(context);
-        @ColorInt int trackColor = context.getResources().getColor(R.color.transparent30);
+        @ColorInt int bubbleColor = ColorUtils.adjustAlpha(Color.BLACK, 0.8f);
+        @ColorInt int handleColor = Color.BLACK;
+        @ColorInt int trackColor = Color.TRANSPARENT;
         @ColorInt int textColor = ColorUtils.isColorLight(bubbleColor) ? Color.BLACK : Color.WHITE;
         boolean fadeScrollbar = true;
         boolean showBubble = false;
