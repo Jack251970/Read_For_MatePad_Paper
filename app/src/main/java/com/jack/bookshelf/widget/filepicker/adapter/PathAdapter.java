@@ -65,7 +65,7 @@ public class PathAdapter extends RecyclerView.Adapter<PathAdapter.MyViewHolder> 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_path_filepicker, parent, false));
+        return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_path_file_picker, parent, false));
     }
 
     @Override
