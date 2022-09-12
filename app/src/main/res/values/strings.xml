@@ -356,9 +356,9 @@
             <string name="screen_portrait">竖屏</string>
         <string name="keep_light_time">屏幕关闭时间</string>
             <string name="system">系统</string>
-            <string name="light_time_1_minute">1分钟</string>
-            <string name="light_time_2_minute">2分钟</string>
-            <string name="light_time_3_minute">3分钟</string>
+            <string name="light_time_5_minute">5分钟</string>
+            <string name="light_time_10_minute">10分钟</string>
+            <string name="light_time_15_minute">15分钟</string>
             <string name="light_always">常亮</string>
         <string name="disable_return_key">禁用返回键</string>
         <string name="click_open_page">点击翻页</string>

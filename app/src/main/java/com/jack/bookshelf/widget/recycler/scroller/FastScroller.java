@@ -218,7 +218,7 @@ public class FastScroller extends LinearLayout {
     public void setTrackColor(@ColorInt int color) {
         @ColorInt int trackColor = color;
         if (mTrackImage == null) {
-            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.fastscroll_track);
+            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.shape_fastscroll_track);
             if (drawable != null) {
                 mTrackImage = DrawableCompat.wrap(drawable);
             }
@@ -235,7 +235,7 @@ public class FastScroller extends LinearLayout {
     public void setHandleColor(@ColorInt int color) {
         mHandleColor = color;
         if (mHandleImage == null) {
-            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.fastscroll_handle);
+            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.shape_fastscroll_handle);
             if (drawable != null) {
                 mHandleImage = DrawableCompat.wrap(drawable);
             }
@@ -252,7 +252,7 @@ public class FastScroller extends LinearLayout {
     public void setBubbleColor(@ColorInt int color) {
         mBubbleColor = color;
         if (mBubbleImage == null) {
-            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.fastscroll_bubble);
+            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.shape_fastscroll_bubble);
             if (drawable != null) {
                 mBubbleImage = DrawableCompat.wrap(drawable);
             }

@@ -12,7 +12,7 @@
         android:maxLines="1"
         android:textSize="@dimen/fastscroll_bubble_text_size"
         android:visibility="gone"
-        tools:background="@drawable/fastscroll_bubble"
+        tools:background="@drawable/shape_fastscroll_bubble"
         tools:text="A"
         tools:textColor="#ffffff"
         tools:visibility="visible" />
@@ -34,7 +34,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             tools:ignore="ContentDescription"
-            tools:src="@drawable/fastscroll_track" />
+            tools:src="@drawable/shape_fastscroll_track" />
 
         <ImageView
             android:id="@+id/fastscroll_handle"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             tools:ignore="ContentDescription"
-            tools:src="@drawable/fastscroll_handle" />
+            tools:src="@drawable/shape_fastscroll_handle" />
 
     </FrameLayout>
 
