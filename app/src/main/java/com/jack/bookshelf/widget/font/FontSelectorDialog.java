@@ -8,13 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.jack.bookshelf.R;
-import com.jack.bookshelf.utils.FileDoc;
-
-import java.util.List;
+import com.jack.bookshelf.help.ReadBookControl;
 
 import kotlin.text.Regex;
 
@@ -26,51 +21,55 @@ import kotlin.text.Regex;
 
 public class FontSelectorDialog extends PopupWindow {
     private final Context context;
-    private RecyclerView recyclerView;
+    private final View view;
+    private final ReadBookControl readBookControl = ReadBookControl.getInstance();
     private OnThisListener thisListener;
+
     public static Regex fontRegex = new Regex("(?i).*\\.[ot]tf");
 
     @SuppressLint("InflateParams")
     public FontSelectorDialog(Context context) {
         super(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         this.context = context;
-        View view = LayoutInflater.from(context).inflate(R.layout.dialog_font_selector, null);
+        this.view = LayoutInflater.from(context).inflate(R.layout.dialog_font_selector, null);
         this.setContentView(view);
-        bindView(view);
+        initView();
+        bindView();
         setFocusable(true);
         setTouchable(true);
     }
 
-    private void bindView(View view) {
-        view.findViewById(R.id.tv_reset_default_font).setOnClickListener(v -> {
-            dismiss();
-            thisListener.setDefault();
-        });
-        recyclerView = view.findViewById(R.id.recycler_view_font_select);
+    private void initView() {
+        switch (readBookControl.getFontItem()) {
+            case 0:
+                view.findViewById(R.id.iv_font_harmony_regular).setVisibility(View.VISIBLE);
+                break;
+            case 1:
+                view.findViewById(R.id.iv_font_harmony_bold).setVisibility(View.VISIBLE);
+                break;
+            case 2:
+                view.findViewById(R.id.iv_font_harmony_thin).setVisibility(View.VISIBLE);
+                break;
+        }
     }
 
-    public FontSelectorDialog setFile(String selectPath, List<FileDoc> docItems){
-        FontAdapter adapter = new FontAdapter(context, selectPath, new OnThisListener() {
-            @Override
-            public void setDefault() {
-                if (thisListener != null) {
-                    thisListener.setDefault();
-                }
-                dismiss();
-            }
-
-            @Override
-            public void setFontPath(FileDoc fileDoc) {
-                if (thisListener != null) {
-                    thisListener.setFontPath(fileDoc);
-                }
-                dismiss();
-            }
+    private void bindView() {
+        view.findViewById(R.id.tv_font_self_choose).setOnClickListener(v -> {
+            dismiss();
+            thisListener.forBottomButton();
         });
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        adapter.upData(docItems);
-        return this;
+        view.findViewById(R.id.tv_font_harmony_regular).setOnClickListener(v -> {
+            dismiss();
+            thisListener.forMenuItem(0);
+        });
+        view.findViewById(R.id.tv_font_harmony_bold).setOnClickListener(v -> {
+            dismiss();
+            thisListener.forMenuItem(1);
+        });
+        view.findViewById(R.id.tv_font_harmony_thin).setOnClickListener(v -> {
+            dismiss();
+            thisListener.forMenuItem(2);
+        });
     }
 
     public FontSelectorDialog setListener(OnThisListener thisListener) {
@@ -83,8 +82,8 @@ public class FontSelectorDialog extends PopupWindow {
     }
 
     public interface OnThisListener {
-        void setDefault();
+        void forMenuItem(int item);
 
-        void setFontPath(FileDoc fileDoc);
+        void forBottomButton();
     }
 }

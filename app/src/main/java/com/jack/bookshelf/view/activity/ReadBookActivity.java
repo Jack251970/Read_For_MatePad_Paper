@@ -1681,6 +1681,18 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         }
     }
 
+    public void selectFontDir() {
+        try {
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            //noinspection deprecation
+            startActivityForResult(intent, fontDirRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+            toast(e.getLocalizedMessage());
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -47,6 +47,7 @@ public class PathAdapter extends RecyclerView.Adapter<PathAdapter.MyViewHolder> 
         this.arrowIcon = arrowIcon;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void updatePath(String path) {
         path = path.replace(sdCardDirectory, "");
         if (arrowIcon == null) {
@@ -54,8 +55,8 @@ public class PathAdapter extends RecyclerView.Adapter<PathAdapter.MyViewHolder> 
         }
         paths.clear();
         if (!path.equals("/") && !path.equals("")) {
-            String[] tmps = path.substring(path.indexOf("/") + 1).split("/");
-            Collections.addAll(paths, tmps);
+            String[] temp = path.substring(path.indexOf("/") + 1).split("/");
+            Collections.addAll(paths, temp);
         }
         paths.addFirst(ROOT_HINT);
         notifyDataSetChanged();
@@ -72,12 +73,9 @@ public class PathAdapter extends RecyclerView.Adapter<PathAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         holder.textView.setText(paths.get(position));
         holder.imageView.setImageDrawable(arrowIcon);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (callBack != null) {
-                    callBack.onPathClick(position);
-                }
+        holder.itemView.setOnClickListener(v -> {
+            if (callBack != null) {
+                callBack.onPathClick(position);
             }
         });
     }
@@ -87,7 +85,7 @@ public class PathAdapter extends RecyclerView.Adapter<PathAdapter.MyViewHolder> 
         return paths.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView textView;
 

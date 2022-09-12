@@ -23,6 +23,7 @@ public class ReadBookControl {
     private float lineMultiplier;
     private float paragraphSize;
     private Boolean lightNovelParagraph;
+    private int fontItem;
     private String fontPath;
     private int textConvert;
     private Boolean textBold;
@@ -83,6 +84,7 @@ public class ReadBookControl {
         this.paragraphSize = preferences.getFloat("paragraphSize", 1);
         this.CPM = preferences.getInt("CPM", defaultCPM) > maxCPM ? minCPM : preferences.getInt("CPM", defaultCPM);
         this.clickAllNext = preferences.getBoolean("clickAllNext", false);
+        this.fontItem = preferences.getInt("fontItem",0);
         this.fontPath = preferences.getString("fontPath", null);
         this.textConvert = preferences.getInt("textConvertInt", 0);
         this.textBold = preferences.getBoolean("textBold", false);
@@ -122,6 +124,15 @@ public class ReadBookControl {
     public void setTextBold(boolean textBold) {
         this.textBold = textBold;
         preferences.edit().putBoolean("textBold", textBold).apply();
+    }
+
+    public void setFontItem(int fontItem) {
+        this.fontItem = fontItem;
+        preferences.edit().putInt("fontItem", fontItem).apply();
+    }
+
+    public int getFontItem() {
+        return fontItem;
     }
 
     public void setReadBookFont(String fontPath) {

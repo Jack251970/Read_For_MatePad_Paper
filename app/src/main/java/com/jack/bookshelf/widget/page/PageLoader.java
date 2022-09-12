@@ -208,17 +208,22 @@ public abstract class PageLoader {
      */
     private void initPaint() {
         Typeface typeface;
+        String[] font_path = mContext.getResources().getStringArray(R.array.font_path);
         // 改变字体
-        try {
-            if (!TextUtils.isEmpty(readBookControl.getFontPath())) {
-                typeface = Typeface.createFromFile(readBookControl.getFontPath());
-            } else {
-                typeface = Typeface.SANS_SERIF;
+        if (readBookControl.getFontItem() != -1) {
+            typeface = Typeface.createFromAsset(mContext.getAssets(), font_path[readBookControl.getFontItem()]);
+        } else {
+            try {
+                if (!TextUtils.isEmpty(readBookControl.getFontPath())) {
+                    typeface = Typeface.createFromFile(readBookControl.getFontPath());
+                } else {
+                    typeface = Typeface.createFromAsset(mContext.getAssets(), font_path[0]);
+                }
+            } catch (Exception e) {
+                ToastsKt.toast(mContext, mContext.getString(R.string.choose_font_cannot_find), Toast.LENGTH_SHORT);
+                readBookControl.setReadBookFont(null);
+                typeface = Typeface.createFromAsset(mContext.getAssets(), font_path[0]);
             }
-        } catch (Exception e) {
-            ToastsKt.toast(mContext, "字体文件未找，将恢复默认字体", Toast.LENGTH_SHORT);
-            readBookControl.setReadBookFont(null);
-            typeface = Typeface.SANS_SERIF;
         }
 
         // 绘制提示的画笔

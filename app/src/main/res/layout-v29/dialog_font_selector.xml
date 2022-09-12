@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:layout_width="@dimen/alert_dialog_width"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/shape_alert_dialog_background"
     android:paddingStart="@dimen/alert_dialog_radius"
     android:paddingEnd="@dimen/alert_dialog_radius"
     android:paddingTop="@dimen/alert_dialog_padding_top"
     android:paddingBottom="@dimen/alert_dialog_padding_bottom"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="ContentDescription" >
     <!-- 标题 -->
     <TextView
         android:layout_width="match_parent"
@@ -18,20 +21,79 @@
         android:textSize="@dimen/alert_dialog_title_text_size"
         android:textStyle="bold" />
     <!-- 字体 -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_font_select"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/alert_dialog_message_margin_bottom"
-        android:layout_marginBottom="@dimen/alert_dialog_message_margin_bottom"/>
+        android:layout_marginBottom="@dimen/alert_dialog_message_margin_bottom">
+        <TextView
+            android:id="@+id/tv_font_harmony_regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="HarmonyOS_Sans_SC_Regular.ttf"
+            android:textSize="16sp"
+            android:textColor="@color/tv_text_default"
+            tools:ignore="HardcodedText"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <ImageView
+            android:id="@+id/iv_font_harmony_regular"
+            android:layout_width="16sp"
+            android:layout_height="16sp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_check"
+            app:layout_constraintTop_toTopOf="@id/tv_font_harmony_regular"
+            app:layout_constraintBottom_toBottomOf="@id/tv_font_harmony_regular"
+            app:layout_constraintRight_toRightOf="parent"
+            android:visibility="invisible" />
+        <TextView
+            android:id="@+id/tv_font_harmony_bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="HarmonyOS_Sans_SC_Bold.ttf"
+            android:textSize="16sp"
+            android:textColor="@color/tv_text_default"
+            tools:ignore="HardcodedText"
+            app:layout_constraintTop_toBottomOf="@id/tv_font_harmony_regular"/>
+        <ImageView
+            android:id="@+id/iv_font_harmony_bold"
+            android:layout_width="16sp"
+            android:layout_height="16sp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_check"
+            app:layout_constraintTop_toTopOf="@id/tv_font_harmony_bold"
+            app:layout_constraintBottom_toBottomOf="@id/tv_font_harmony_bold"
+            app:layout_constraintRight_toRightOf="parent"
+            android:visibility="invisible"/>
+        <TextView
+            android:id="@+id/tv_font_harmony_thin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="HarmonyOS_Sans_SC_Thin.ttf"
+            android:textSize="16sp"
+            android:textColor="@color/tv_text_default"
+            tools:ignore="HardcodedText"
+            app:layout_constraintTop_toBottomOf="@id/tv_font_harmony_bold"/>
+        <ImageView
+            android:id="@+id/iv_font_harmony_thin"
+            android:layout_width="16sp"
+            android:layout_height="16sp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_check"
+            app:layout_constraintTop_toTopOf="@id/tv_font_harmony_thin"
+            app:layout_constraintBottom_toBottomOf="@id/tv_font_harmony_thin"
+            app:layout_constraintRight_toRightOf="parent"
+            android:visibility="invisible"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- 按钮 -->
     <TextView
-        android:id="@+id/tv_reset_default_font"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/alert_dialog_button_layout_height"
-        android:layout_gravity="center"
+        android:id="@+id/tv_font_self_choose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/reset_default_font"
+        android:text="@string/self_choose_font"
         android:textColor="@color/black"
         android:textSize="@dimen/alert_dialog_button_text_size"
         android:textStyle="bold"/>

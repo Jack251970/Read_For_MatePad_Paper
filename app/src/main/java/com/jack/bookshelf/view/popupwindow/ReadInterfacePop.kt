@@ -200,11 +200,7 @@ class ReadInterfacePop : FrameLayout {
                 .rationale(R.string.need_storage_permission_to_backup_book_information)
                 .onGranted {
                     kotlin.runCatching {
-                        selectFont(
-                            DocumentUtils.listFiles(FileUtils.getSdCardPath() + "/Fonts") {
-                                it.name.matches(FontSelectorDialog.fontRegex)
-                            }
-                        )
+                        selectFont()
                     }.onFailure {
                         context.toastOnUi(context.getString(R.string.get_file_list_error,it.localizedMessage))
                     }
@@ -219,7 +215,7 @@ class ReadInterfacePop : FrameLayout {
             DocumentUtils.listFiles(doc!!.uri) {
                 it.name.matches(FontSelectorDialog.fontRegex)
             }.let {
-                selectFont(it)
+                selectFont()
             }
         }.onFailure {
             context.toastOnUi(context.getString(R.string.get_file_list_error,it.localizedMessage))
@@ -227,35 +223,19 @@ class ReadInterfacePop : FrameLayout {
         }
     }
 
-    private fun selectFont(docItems: List<FileDoc?>?) {
+    private fun selectFont() {
         FontSelectorDialog(context)
-            .setFile(readBookControl.fontPath, docItems)
             .setListener(object : OnThisListener {
-                override fun setDefault() {
-                    clearFontPath()
+                override fun forMenuItem(item: Int) {
+                    readBookControl.fontItem = item
+                    callback!!.refresh()
                 }
 
-                override fun setFontPath(fileDoc: FileDoc) {
-                    setReadFonts(fileDoc)
+                override fun forBottomButton() {
+                    activity!!.selectFontDir()
                 }
             })
             .show(mainView)
-    }
-
-    fun setReadFonts(fileDoc: FileDoc) {
-        if (fileDoc.isContentScheme) {
-            val file = FileUtils.createFileIfNotExist(context.externalFiles, "Fonts", fileDoc.name)
-            file.writeBytes(fileDoc.uri.readBytes(context))
-            readBookControl.setReadBookFont(file.absolutePath)
-        } else {
-            readBookControl.setReadBookFont(fileDoc.uri.toString())
-        }
-        callback!!.refresh()
-    }
-
-    fun clearFontPath() {
-        readBookControl.setReadBookFont(null)
-        callback!!.refresh()
     }
 
     interface Callback {

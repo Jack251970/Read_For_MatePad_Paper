@@ -261,7 +261,7 @@
         <!-- Font Select Dialog -->
         <string name="select_font">选择字体</string>
         <string name="self_choose_font">自定义字体</string>
-        <string name="reset_default_font">恢复默认字体</string>
+        <string name="choose_font_cannot_find">字体文件未找到！</string>
         <string name="fonts_folder">请将字体文件放到内部存储根目录下的Fonts文件夹中重新选择</string>
 
     <!-- Select Menu -->
