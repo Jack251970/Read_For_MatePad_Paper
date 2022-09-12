@@ -187,8 +187,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
         binding.mppIvSettingMain.setOnClickListener(view ->
                 SettingActivity.startThis(this));
         // 搜索栏
-        binding.mppLlSearchMain.setOnClickListener(view -> MainActivity.this
-                .startActivity(new Intent(MainActivity.this, SearchBookActivity.class)));
+        binding.mppLlSearchMain.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SearchBookActivity.class)));
         // 导入书籍
         binding.mppIvImportOnlineMain.setOnClickListener(view -> {
             if (!selectMenu.isShowing()) {
