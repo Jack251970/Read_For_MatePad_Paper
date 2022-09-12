@@ -41,7 +41,7 @@ import java.util.Objects;
  */
 
 public class FastScroller extends LinearLayout {
-    private static final int sScrollbarHideDelay = 600;
+    private static final int sScrollbarHideDelay = 1000;
     private static final int sTrackSnapRange = 5;
     @ColorInt private int mBubbleColor;
     @ColorInt private int mHandleColor;
