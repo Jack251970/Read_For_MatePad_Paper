@@ -503,5 +503,4 @@
     <string name="is_enable">启用</string>
     <string name="chapter_pay">购买</string>
     <string name="open_browser">在浏览器中打开</string>
-    <string name="brightness_auto">自动亮度 %s</string>
 </resources>
