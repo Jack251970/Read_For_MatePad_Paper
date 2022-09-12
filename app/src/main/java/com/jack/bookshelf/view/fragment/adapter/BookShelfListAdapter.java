@@ -19,6 +19,7 @@ import com.jack.bookshelf.bean.BookInfoBean;
 import com.jack.bookshelf.bean.BookShelfBean;
 import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.help.ItemTouchCallback;
+import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
 import com.jack.bookshelf.widget.BadgeView;
@@ -143,10 +144,10 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
         if (!activity.isFinishing()) {
             holder.ivCover.load(bookShelfBean.getCoverPath(), bookShelfBean.getName(), bookShelfBean.getAuthor());
         }
-        holder.tvName.setText(bookInfoBean.getName());
-        holder.tvAuthor.setText(bookInfoBean.getAuthor());
-        holder.tvRead.setText(bookShelfBean.getDurChapterName());
-        holder.tvLast.setText(bookShelfBean.getLastChapterName());
+        holder.tvName.setText(!StringUtils.isTrimEmpty(bookInfoBean.getName()) ? bookInfoBean.getName() : activity.getString(R.string.unknown));
+        holder.tvAuthor.setText(!StringUtils.isTrimEmpty(bookInfoBean.getAuthor()) ? bookInfoBean.getAuthor() : activity.getString(R.string.unknown));
+        holder.tvRead.setText(!StringUtils.isTrimEmpty(bookShelfBean.getDurChapterName()) ? bookShelfBean.getDurChapterName() : activity.getString(R.string.unknown));
+        holder.tvLast.setText(!StringUtils.isTrimEmpty(bookShelfBean.getLastChapterName()) ? bookShelfBean.getLastChapterName() : activity.getString(R.string.unknown));
         holder.ivCover.setOnClickListener(v -> {
             if (itemClickListener != null)
                 itemClickListener.onClick(v, index);

@@ -16,6 +16,7 @@ import com.jack.bookshelf.bean.BookInfoBean;
 import com.jack.bookshelf.bean.BookShelfBean;
 import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.help.ItemTouchCallback;
+import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
 import com.jack.bookshelf.widget.BadgeView;
@@ -141,12 +142,11 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
             holder.vwSelect.setVisibility(View.INVISIBLE);
             holder.checkBox.setVisibility(View.INVISIBLE);
         }
-        holder.tvName.setText(bookInfoBean.getName());
+        holder.tvName.setText(!StringUtils.isTrimEmpty(bookInfoBean.getName()) ? bookInfoBean.getName() : activity.getString(R.string.unknown));
         holder.tvName.setBackgroundColor(ThemeStore.backgroundColor(activity));
         if (!activity.isFinishing()) {
             holder.ivCover.load(bookShelfBean.getCoverPath(), bookShelfBean.getName(), bookShelfBean.getAuthor());
         }
-
         holder.ivCover.setOnClickListener(v -> {
             if (itemClickListener != null)
                 itemClickListener.onClick(v, index);
