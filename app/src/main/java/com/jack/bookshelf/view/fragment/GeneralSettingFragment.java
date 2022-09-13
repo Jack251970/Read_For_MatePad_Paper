@@ -54,7 +54,7 @@ public class GeneralSettingFragment extends Fragment {
             WebdavSettingFragment webDavSettingFragment = new WebdavSettingFragment();
             settingActivity.getSupportFragmentManager().beginTransaction().replace(R.id.settingFragment, webDavSettingFragment, settingActivity.webdavSettingTag).commit();
         });
-        binding.tvBackPath.setOnClickListener(v -> BackupRestoreUi.INSTANCE.selectBackupFolder(settingActivity,settingActivity.getRoot()));
+        binding.tvBackPath.setOnClickListener(v -> BackupRestoreUi.INSTANCE.selectBackupFolder(settingActivity, settingActivity.getRoot(), false));
         binding.tvFilterGradeNumber.setText(String.valueOf(pref.getInt(getString(R.string.pk_search_result_filter_grade),0)));
         binding.clSearchResultFilterGrade.setOnClickListener(v ->
                 NumberPickerDialog.builder(settingActivity)
@@ -116,6 +116,7 @@ public class GeneralSettingFragment extends Fragment {
 
     private void bindSwitch() {
         binding.swDefaultRead.setPreferenceKey(R.string.pk_default_read,false);
+        binding.swAutoBackup.setPreferenceKey(R.string.pk_auto_backup,true);
         binding.swAutoUpdate.setPreferenceKey(R.string.pk_auto_refresh,false);
         binding.swAutoDownload.setPreferenceKey(R.string.pk_auto_download,false);
         binding.swUpChangeSourceLastChapter.setPreferenceKey(R.string.pk_change_source_update_chapter,false);

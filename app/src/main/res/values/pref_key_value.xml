@@ -15,6 +15,7 @@
     <string name="pk_show_all_find">showAllFind</string>
     <string name="pk_check_update">checkUpdate</string>
     <string name="pk_search_result_filter_grade">search_result_filter_grade</string>
+    <string name="pk_auto_backup">auto_backup</string>
     <!-- Websites -->
     <string name="latest_release_url">https://github.com/Jack251970/MyBookshelf/releases/latest</string>
     <string name="latest_release_api">https://api.github.com/repos/Jack251970/MyBookshelf/releases/latest</string>

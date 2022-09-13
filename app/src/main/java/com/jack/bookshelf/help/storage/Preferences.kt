@@ -6,6 +6,10 @@ import android.content.ContextWrapper
 import android.content.SharedPreferences
 import java.io.File
 
+/**
+ * Preference Object
+ */
+
 object Preferences {
 
     /**

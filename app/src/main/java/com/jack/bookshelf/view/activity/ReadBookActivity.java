@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import com.jack.basemvplib.AppActivityManager;
 import com.jack.basemvplib.BitIntentDataManager;
 import com.jack.bookshelf.DbHelper;
+import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.MBaseActivity;
 import com.jack.bookshelf.base.observer.MySingleObserver;
@@ -1755,7 +1756,9 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         if (!AppActivityManager.getInstance().isExist(MainActivity.class)) {
             startActivity(new Intent(this, MainActivity.class));
         }
-        Backup.INSTANCE.autoBack();
+        if (MApplication.getConfigPreferences().getBoolean(getString(R.string.pk_auto_backup),true)) {
+            Backup.INSTANCE.autoBack();
+        }
         super.finish();
     }
 

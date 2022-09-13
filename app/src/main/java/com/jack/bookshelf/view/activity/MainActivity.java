@@ -174,18 +174,12 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
         // 初始化一级菜单
         initMenu();
         // 左侧边栏菜单
-        binding.mppLlBookSourceMain.setOnClickListener(view ->
-                BookSourceActivity.startThis(this, requestSource));
-        binding.mppLlReplaceMain.setOnClickListener(view ->
-                ReplaceRuleActivity.startThis(this, null));
-        binding.mppLlDownloadMain.setOnClickListener(view ->
-                DownloadActivity.startThis(this));
-        binding.mppLlBackupMain.setOnClickListener(view ->
-                BackupRestoreUi.INSTANCE.backup(this,binding.getRoot()));
-        binding.mppLlRestoreMain.setOnClickListener(view ->
-                BackupRestoreUi.INSTANCE.restore(this,binding.getRoot()));
-        binding.mppIvSettingMain.setOnClickListener(view ->
-                SettingActivity.startThis(this));
+        binding.mppLlBookSourceMain.setOnClickListener(view -> BookSourceActivity.startThis(this, requestSource));
+        binding.mppLlReplaceMain.setOnClickListener(view -> ReplaceRuleActivity.startThis(this, null));
+        binding.mppLlDownloadMain.setOnClickListener(view -> DownloadActivity.startThis(this));
+        binding.mppLlBackupMain.setOnClickListener(view -> BackupRestoreUi.INSTANCE.backup(this,binding.getRoot()));
+        binding.mppLlRestoreMain.setOnClickListener(view -> BackupRestoreUi.INSTANCE.restore(this,binding.getRoot()));
+        binding.mppIvSettingMain.setOnClickListener(view -> SettingActivity.startThis(this));
         // 搜索栏
         binding.mppLlSearchMain.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SearchBookActivity.class)));
         // 导入书籍

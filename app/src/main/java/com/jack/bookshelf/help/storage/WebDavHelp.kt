@@ -32,6 +32,9 @@ object WebDavHelp {
         FileHelp.getCachePath()
     }
 
+    /**
+     * 获取WebDav服务器地址
+     */
     private fun getWebDavUrl(): String {
         var url = MApplication.getConfigPreferences().getString("web_dav_url", AppConstant.DEFAULT_WEB_DAV_URL)
         if (url.isNullOrEmpty()) {

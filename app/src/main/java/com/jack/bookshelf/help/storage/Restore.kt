@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.documentfile.provider.DocumentFile
 import com.jack.bookshelf.DbHelper
 import com.jack.bookshelf.MApplication
+import com.jack.bookshelf.R
 import com.jack.bookshelf.base.observer.MySingleObserver
 import com.jack.bookshelf.bean.*
 import com.jack.bookshelf.help.FileHelp
@@ -14,6 +15,7 @@ import com.jack.bookshelf.model.ReplaceRuleManager
 import com.jack.bookshelf.model.TxtChapterRuleManager
 import com.jack.bookshelf.utils.DocumentUtil
 import com.jack.bookshelf.utils.GSON
+import com.jack.bookshelf.utils.StringUtils
 import com.jack.bookshelf.utils.fromJsonArray
 import io.reactivex.Single
 import io.reactivex.SingleOnSubscribe
@@ -21,8 +23,16 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.io.File
 
+/**
+ * Restore Helper
+ * Edited by Jack251970
+ */
+
 object Restore {
 
+    /**
+     * 恢复数据
+     */
     fun restore(context: Context, uri: Uri, callBack: CallBack?) {
         Single.create(SingleOnSubscribe<Boolean> { e ->
             DocumentFile.fromTreeUri(context, uri)?.listFiles()?.forEach { doc ->
@@ -45,11 +55,14 @@ object Restore {
 
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
-                        callBack?.restoreError(e.localizedMessage ?: "ERROR")
+                        callBack?.restoreError(e.localizedMessage ?: StringUtils.getString(R.string.error))
                     }
                 })
     }
 
+    /**
+     * 恢复数据
+     */
     fun restore(path: String, callBack: CallBack?) {
         Single.create(SingleOnSubscribe<Boolean> { e ->
             try {
@@ -126,7 +139,7 @@ object Restore {
 
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
-                        callBack?.restoreError(e.localizedMessage ?: "ERROR")
+                        callBack?.restoreError(e.localizedMessage ?: StringUtils.getString(R.string.error))
                     }
                 })
     }

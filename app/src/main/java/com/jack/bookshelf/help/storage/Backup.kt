@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.documentfile.provider.DocumentFile
 import com.jack.bookshelf.DbHelper
 import com.jack.bookshelf.MApplication
+import com.jack.bookshelf.R
 import com.jack.bookshelf.base.observer.MySingleObserver
 import com.jack.bookshelf.help.BookshelfHelp
 import com.jack.bookshelf.help.FileHelp
@@ -14,6 +15,7 @@ import com.jack.bookshelf.model.TxtChapterRuleManager
 import com.jack.bookshelf.utils.DocumentUtil
 import com.jack.bookshelf.utils.FileUtils
 import com.jack.bookshelf.utils.GSON
+import com.jack.bookshelf.utils.StringUtils
 import io.reactivex.Single
 import io.reactivex.SingleOnSubscribe
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -21,13 +23,17 @@ import io.reactivex.schedulers.Schedulers
 import java.io.File
 import java.util.concurrent.TimeUnit
 
+/**
+ * Backup Helper
+ * Edited by Jack251970
+ */
 
 object Backup {
 
     val backupPath = MApplication.getInstance().filesDir.absolutePath + File.separator + "backup"
 
     val defaultPath by lazy {
-        FileUtils.getSdCardPath() + File.separator + "YueDu"
+        FileUtils.getSdCardPath() + File.separator + "Read"
     }
 
     val backupFileNames by lazy {
@@ -41,6 +47,9 @@ object Backup {
         )
     }
 
+    /**
+     * 自动备份
+     */
     fun autoBack() {
         val lastBackup = MApplication.getConfigPreferences().getLong("lastBackup", 0)
         if (System.currentTimeMillis() - lastBackup < TimeUnit.DAYS.toMillis(1)) {
@@ -54,6 +63,9 @@ object Backup {
         }
     }
 
+    /**
+     * 备份数据
+     */
     fun backup(context: Context, path: String, callBack: CallBack?, isAuto: Boolean = false) {
         MApplication.getConfigPreferences().edit().putLong("lastBackup", System.currentTimeMillis()).apply()
         Single.create(SingleOnSubscribe<Boolean> { e ->
@@ -119,7 +131,7 @@ object Backup {
 
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
-                        callBack?.backupError(e.localizedMessage ?: "ERROR")
+                        callBack?.backupError(e.localizedMessage ?: StringUtils.getString(R.string.error))
                     }
                 })
     }
