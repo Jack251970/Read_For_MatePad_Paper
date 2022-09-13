@@ -47,8 +47,8 @@ public class InputDialog extends BaseDialog {
 
     public static final int WITHOUT_PREF = 0, PREF_WITH_BIND_TV = 1, PREF_WITHOUT_BIND_TV = 2;
     // WITHOUT_PREF一般需要setCallback
-    // PREF_WITH_BIND_TV必须setPreference以及setBindTextView
     // PREF_WITHOUT_BIND_TV必须setPreference
+    // PREF_WITH_BIND_TV必须setPreference以及setBindTextView
 
     public static InputDialog builder(Context context) {
         return new InputDialog(context, WITHOUT_PREF);
@@ -82,7 +82,9 @@ public class InputDialog extends BaseDialog {
                 tvConfirm.setOnClickListener(view -> {
                     dismiss();
                     String value = etInput.getText().toString();
-                    callback.setInputText(value);
+                    if (callback != null) {
+                        callback.setInputText(value);
+                    }
                     if (value.equals("")) {
                         bindTextView.setText(Objects.requireNonNullElse(tvDefaultValue, value));
                         prefer.edit().putString(preferenceKey, prefDefaultValue).apply();
@@ -100,7 +102,9 @@ public class InputDialog extends BaseDialog {
                 tvConfirm.setOnClickListener(view -> {
                     dismiss();
                     String value = etInput.getText().toString();
-                    callback.setInputText(value);
+                    if (callback != null) {
+                        callback.setInputText(value);
+                    }
                     if (value.equals("")) {
                         prefer.edit().putString(preferenceKey, prefDefaultValue).apply();
                     } else if (!value.equals(oldValue)) {
