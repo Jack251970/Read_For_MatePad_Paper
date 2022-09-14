@@ -41,10 +41,6 @@ public class WebdavSettingFragment extends Fragment {
 
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    private InputDialog inputDialogUrl;
-    private InputDialog inputDialogAccount;
-    private InputDialog inputDialogPassWord;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,31 +53,44 @@ public class WebdavSettingFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentWebdavSettingBinding.inflate(inflater, container, false);
-        initDialog();
         bindView();
         return binding.getRoot();
     }
 
-    private void initDialog() {
-        inputDialogUrl = InputDialog.builder(settingActivity, InputDialog.PREF_WITH_BIND_TV)
+    private void bindView() {
+        initText();
+        binding.tvWebDavUrl.setOnClickListener(v -> InputDialog.builder(settingActivity, InputDialog.PREF_WITH_BIND_TV)
                 .setTitle(getString(R.string.web_dav_url))
-                .setBindTextView(binding.tvWebDavUrlBindTv, DEFAULT_WEB_DAV_URL,false)
-                .setPreferenceKey("web_dav_url", DEFAULT_WEB_DAV_URL);
-        inputDialogAccount = InputDialog.builder(settingActivity, InputDialog.PREF_WITH_BIND_TV)
+                .setDefaultValue()
+                .setBindTextView(binding.tvWebDavUrlBindTv, DEFAULT_WEB_DAV_URL, false)
+                .setPreferenceKey("web_dav_url", DEFAULT_WEB_DAV_URL).show());
+        binding.tvWebDavAccount.setOnClickListener(v -> InputDialog.builder(settingActivity, InputDialog.PREF_WITH_BIND_TV)
                 .setTitle(getString(R.string.web_dav_account))
-                .setBindTextView(binding.tvWebDavAccountBindTv,getString(R.string.input_web_dav_account),false)
-                .setPreferenceKey("web_dav_account","");
-        inputDialogPassWord = InputDialog.builder(settingActivity, InputDialog.PREF_WITH_BIND_TV)
+                .setDefaultValue()
+                .setBindTextView(binding.tvWebDavAccountBindTv,getString(R.string.input_web_dav_account), false)
+                .setPreferenceKey("web_dav_account","").show());
+        binding.tvWebDavPassword.setOnClickListener(v -> InputDialog.builder(settingActivity, InputDialog.PREF_WITH_BIND_TV)
                 .setTitle(getString(R.string.web_dav_password))
-                .setBindTextView(binding.tvWebDavPasswordBindTv,getString(R.string.input_web_dav_password),true)
+                .setBindTextView(binding.tvWebDavPasswordBindTv,getString(R.string.input_web_dav_password), true)
+                .setPreferenceKey("web_dav_password","").show());
+        binding.tvWebDavBackup.setOnClickListener(v -> backup());
+        binding.tvWebDavRestore.setOnClickListener(v -> restore());
+    }
+
+    private void initText() {
+        InputDialog.builder(settingActivity)
+                .setBindTextView(binding.tvWebDavUrlBindTv, DEFAULT_WEB_DAV_URL, false)
+                .setPreferenceKey("web_dav_url", DEFAULT_WEB_DAV_URL);
+        InputDialog.builder(settingActivity)
+                .setBindTextView(binding.tvWebDavAccountBindTv,getString(R.string.input_web_dav_account), false)
+                .setPreferenceKey("web_dav_account","");
+        InputDialog.builder(settingActivity)
+                .setBindTextView(binding.tvWebDavPasswordBindTv,getString(R.string.input_web_dav_password), true)
                 .setPreferenceKey("web_dav_password","");
     }
 
-    private void bindView() {
-        binding.tvWebDavUrl.setOnClickListener(v -> inputDialogUrl.show());
-        binding.tvWebDavAccount.setOnClickListener(v -> inputDialogAccount.show());
-        binding.tvWebDavPassword.setOnClickListener(v -> inputDialogPassWord.show());
-        binding.tvWebDavRestore.setOnClickListener(v -> restore());
+    private void backup() {
+        BackupRestoreUi.INSTANCE.backup(settingActivity, settingActivity.getRoot(), BackupRestoreUi.backupRestoreWebDav);
     }
 
     private void restore() {
@@ -90,7 +99,7 @@ public class WebdavSettingFragment extends Fragment {
                 .subscribe(new MySingleObserver<>() {
                     @Override
                     public void onSuccess(ArrayList<String> strings) {
-                        if (!WebDavHelp.INSTANCE.showRestoreDialog(settingActivity, strings, BackupRestoreUi.INSTANCE)) {
+                        if (!WebDavHelp.INSTANCE.showRestoreDialog(settingActivity, settingActivity.getRoot(), strings, BackupRestoreUi.INSTANCE)) {
                             ToastsKt.toast(settingActivity, R.string.no_backup, Toast.LENGTH_SHORT);
                         }
                     }

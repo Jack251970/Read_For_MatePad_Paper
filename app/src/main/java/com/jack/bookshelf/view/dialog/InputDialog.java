@@ -28,7 +28,6 @@ import java.util.Objects;
  */
 
 public class InputDialog extends BaseDialog {
-
     private final Context context;
     private boolean showDel = false;
 
@@ -39,9 +38,10 @@ public class InputDialog extends BaseDialog {
 
     private TextView bindTextView = null;
     private String tvDefaultValue = null;
+    private boolean ifSetDefaultValue = false;
     private boolean isPassWord = false;
     private String prefDefaultValue;
-    private String oldValue;
+    private String oldPrefValue;
     private String preferenceKey = null;
     private final SharedPreferences prefer = MApplication.getConfigPreferences();
 
@@ -88,7 +88,7 @@ public class InputDialog extends BaseDialog {
                     if (value.equals("")) {
                         bindTextView.setText(Objects.requireNonNullElse(tvDefaultValue, value));
                         prefer.edit().putString(preferenceKey, prefDefaultValue).apply();
-                    } else if (!value.equals(oldValue)) {
+                    } else if (!value.equals(oldPrefValue)) {
                         if (isPassWord) {
                             bindTextView.setText("************");
                         } else {
@@ -107,7 +107,7 @@ public class InputDialog extends BaseDialog {
                     }
                     if (value.equals("")) {
                         prefer.edit().putString(preferenceKey, prefDefaultValue).apply();
-                    } else if (!value.equals(oldValue)) {
+                    } else if (!value.equals(oldPrefValue)) {
                         prefer.edit().putString(preferenceKey,value).apply();
                     }
                 });
@@ -136,8 +136,8 @@ public class InputDialog extends BaseDialog {
     public InputDialog setPreferenceKey(String preferenceKey, String prefDefaultValue) {
         this.preferenceKey = preferenceKey;
         this.prefDefaultValue = prefDefaultValue;
-        this.oldValue = prefer.getString(preferenceKey,prefDefaultValue);
-        if (oldValue.equals(prefDefaultValue)) {
+        this.oldPrefValue = prefer.getString(preferenceKey, prefDefaultValue);
+        if (oldPrefValue.equals(prefDefaultValue)) {
             if (bindTextView != null) {
                 bindTextView.setText(Objects.requireNonNullElse(tvDefaultValue, ""));
             }
@@ -146,9 +146,12 @@ public class InputDialog extends BaseDialog {
                 if (isPassWord) {
                     bindTextView.setText("************");
                 } else {
-                    bindTextView.setText(oldValue);
+                    bindTextView.setText(oldPrefValue);
                 }
             }
+        }
+        if (ifSetDefaultValue) {
+            setDefaultValue(Objects.requireNonNullElseGet(oldPrefValue, () -> Objects.requireNonNullElse(prefDefaultValue, "")));
         }
         return this;
     }
@@ -160,6 +163,11 @@ public class InputDialog extends BaseDialog {
 
     public InputDialog setShowDel(boolean showDel) {
         this.showDel = showDel;
+        return this;
+    }
+
+    public InputDialog setDefaultValue() {
+        this.ifSetDefaultValue = true;
         return this;
     }
 
