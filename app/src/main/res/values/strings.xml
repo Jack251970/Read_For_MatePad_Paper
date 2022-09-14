@@ -171,11 +171,8 @@
         <string name="launcher_setting">启动设置</string>
         <string name="default_read">默认跳转最近阅读</string>
         <string name="backup_setting">备份设置</string>
+        <string name="local_backup_setting">本地备份设置</string>
         <string name="web_dav_setting">WebDav设置</string>
-        <string name="web_dav_config">WebDav配置</string>
-        <string name="web_dav_backup_and_restore">WebDav备份与恢复</string>
-        <string name="backup_path">本地备份路径</string>
-        <string name="auto_backup">自动本地备份</string>
         <string name="update_setting">更新设置</string>
         <string name="auto_update">自动更新书籍</string>
         <string name="auto_download">自动下载最新章节</string>
@@ -194,6 +191,8 @@
         <string name="web_port_summary">当前端口 %s</string>
         <string name="clear_cache">清除应用缓存</string>
         <!-- WebDav Setting Fragment -->
+        <string name="web_dav_config">WebDav配置</string>
+        <string name="web_dav_backup_and_restore">WebDav备份与恢复</string>
         <string name="webdav">WebDav</string>
         <string name="no_backup">没有备份</string>
         <string name="web_dav_url">WebDav 服务器地址</string>
@@ -201,7 +200,13 @@
         <string name="input_web_dav_account">输入你的WebDav账号</string>
         <string name="web_dav_password">WebDav 密码</string>
         <string name="input_web_dav_password">输入你的WebDav授权密码</string>
+        <string name="web_dav_backup">WebDav 备份</string>
         <string name="web_dav_restore">WebDav 恢复</string>
+        <!-- Local Backup Setting Fragment -->
+        <string name="local_backup_config">本地备份配置</string>
+        <string name="local_backup_and_restore">本地备份与恢复</string>
+        <string name="backup_path">本地备份路径</string>
+        <string name="auto_backup">自动本地备份</string>
         <!-- Chapter List Fragment -->
         <string name="chapter_info_format">%s（%d/%d章）</string>
 
@@ -224,6 +229,9 @@
         <string name="sys_folder_picker">系统文件夹选择器</string>
         <string name="app_folder_picker">软件文件夹选择器</string>
         <string name="default_path">默认路径</string>
+        <!-- WebDav Helper -->
+        <string name="backup_fail">备份失败</string>
+        <string name="choose_restore_file">"选择恢复文件"</string>
 
     <!-- Dialog -->
         <!-- InputDialog Main -->
@@ -274,6 +282,10 @@
         <string name="import_book">导入书籍</string>
         <string name="import_local_book">导入本地书籍</string>
         <string name="import_online_book">导入网络书籍</string>
+        <string name="local_backup">本地备份</string>
+        <string name="webdav_backup">WebDav备份</string>
+        <string name="local_restore">本地恢复</string>
+        <string name="webdav_restore">WebDav恢复</string>
         <!-- Select Menu Book Source UpGroup -->
         <string name="book_source_sequence">书源排序</string>
         <string name="sort_manual">手动排序</string>
@@ -410,7 +422,6 @@
     <string name="backup_message">新备份会替换原有备份。\n备份文件夹Read</string>
     <string name="restore_confirmation">确认恢复吗？</string>
     <string name="restore_message">恢复书架会覆盖现有书架。</string>
-    <string name="backup_fail">备份失败</string>
     <string name="on_restore">正在恢复</string>
     <string name="restore_fail">恢复失败</string>
     <string name="all_chapter_num">共%d章</string>

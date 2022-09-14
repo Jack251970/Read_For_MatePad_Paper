@@ -57,6 +57,32 @@
         android:paddingEnd="@dimen/setting_preference_padding_left_and_right"
         android:background="@drawable/shape_preference_category_background">
         <TextView
+            android:id="@+id/tv_local_backup_setting"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/setting_preference_layout_height"
+            android:gravity="center_vertical"
+            android:text="@string/local_backup_setting"
+            style="@style/PaperTextStyleSettingPreference"
+            app:layout_constraintLeft_toLeftOf="@id/cl_backup_setting"
+            app:layout_constraintRight_toRightOf="@id/iv_local_backup_setting"
+            app:layout_constraintTop_toTopOf="@id/cl_backup_setting"/>
+        <ImageView
+            android:id="@+id/iv_local_backup_setting"
+            android:layout_width="@dimen/setting_preference_layout_height"
+            android:layout_height="@dimen/setting_preference_layout_height"
+            android:src="@drawable/ic_next"
+            android:focusable="false"
+            android:clickable="false"
+            app:layout_constraintRight_toRightOf="@id/cl_backup_setting"
+            app:layout_constraintTop_toTopOf="@id/cl_backup_setting"/>
+        <View
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/tv_local_backup_setting"
+            app:layout_constraintLeft_toLeftOf="@id/cl_backup_setting"/>
+        <TextView
             android:id="@+id/tv_webdav_setting"
             android:layout_width="0dp"
             android:layout_height="@dimen/setting_preference_layout_height"
@@ -65,7 +91,7 @@
             style="@style/PaperTextStyleSettingPreference"
             app:layout_constraintLeft_toLeftOf="@id/cl_backup_setting"
             app:layout_constraintRight_toRightOf="@id/iv_webdav_setting"
-            app:layout_constraintTop_toTopOf="@id/cl_backup_setting"/>
+            app:layout_constraintTop_toBottomOf="@id/line1"/>
         <ImageView
             android:id="@+id/iv_webdav_setting"
             android:layout_width="@dimen/setting_preference_layout_height"
@@ -74,56 +100,7 @@
             android:focusable="false"
             android:clickable="false"
             app:layout_constraintRight_toRightOf="@id/cl_backup_setting"
-            app:layout_constraintTop_toTopOf="@id/cl_backup_setting" />
-        <View
-            android:id="@+id/line1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/tv_webdav_setting"
-            app:layout_constraintLeft_toLeftOf="@id/cl_backup_setting"/>
-        <TextView
-            android:id="@+id/tv_back_path"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/setting_preference_layout_height"
-            android:gravity="center_vertical"
-            android:text="@string/backup_path"
-            style="@style/PaperTextStyleSettingPreference"
-            app:layout_constraintLeft_toLeftOf="@id/cl_backup_setting"
-            app:layout_constraintRight_toRightOf="@id/iv_back_path"
             app:layout_constraintTop_toBottomOf="@id/line1"/>
-        <ImageView
-            android:id="@+id/iv_back_path"
-            android:layout_width="@dimen/setting_preference_layout_height"
-            android:layout_height="@dimen/setting_preference_layout_height"
-            android:src="@drawable/ic_next"
-            android:focusable="false"
-            android:clickable="false"
-            app:layout_constraintRight_toRightOf="@id/cl_backup_setting"
-            app:layout_constraintTop_toBottomOf="@id/line1"/>
-        <View
-            android:id="@+id/line8"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/black"
-            app:layout_constraintLeft_toLeftOf="@id/cl_backup_setting"
-            app:layout_constraintTop_toBottomOf="@id/tv_back_path"/>
-        <TextView
-            android:id="@+id/tv_auto_backup"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/setting_preference_layout_height"
-            android:gravity="center_vertical"
-            android:text="@string/auto_backup"
-            style="@style/PaperTextStyleSettingPreference"
-            app:layout_constraintLeft_toLeftOf="@id/cl_backup_setting"
-            app:layout_constraintTop_toBottomOf="@id/line8"/>
-        <com.jack.bookshelf.widget.paperswitch.PaperSwitch
-            android:id="@+id/sw_auto_backup"
-            android:layout_width="@dimen/setting_preference_layout_height"
-            android:layout_height="@dimen/setting_preference_layout_height"
-            android:src="@drawable/ic_switch_unchecked"
-            app:layout_constraintRight_toRightOf="@id/cl_backup_setting"
-            app:layout_constraintTop_toBottomOf="@id/line8"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- 更新设置 -->
     <TextView

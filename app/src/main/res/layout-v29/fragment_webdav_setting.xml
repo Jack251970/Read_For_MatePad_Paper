@@ -180,6 +180,32 @@
         android:paddingEnd="@dimen/setting_preference_padding_left_and_right"
         android:background="@drawable/shape_preference_category_background">
         <TextView
+            android:id="@+id/tv_web_dav_backup"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/setting_preference_layout_height"
+            android:gravity="center_vertical"
+            android:text="@string/web_dav_backup"
+            style="@style/PaperTextStyleSettingPreference"
+            app:layout_constraintLeft_toLeftOf="@id/cl_webdav_backup_and_restore"
+            app:layout_constraintRight_toRightOf="@id/cl_webdav_backup_and_restore"
+            app:layout_constraintTop_toTopOf="@id/cl_webdav_backup_and_restore" />
+        <ImageView
+            android:id="@+id/iv_web_dav_backup"
+            android:layout_width="@dimen/setting_preference_layout_height"
+            android:layout_height="@dimen/setting_preference_layout_height"
+            android:src="@drawable/ic_next"
+            android:focusable="false"
+            android:clickable="false"
+            app:layout_constraintRight_toRightOf="@id/cl_webdav_backup_and_restore"
+            app:layout_constraintTop_toTopOf="@id/cl_webdav_backup_and_restore"/>
+        <View
+            android:id="@+id/line3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintLeft_toLeftOf="@id/cl_webdav_backup_and_restore"
+            app:layout_constraintTop_toBottomOf="@id/tv_web_dav_backup"/>
+        <TextView
             android:id="@+id/tv_web_dav_restore"
             android:layout_width="0dp"
             android:layout_height="@dimen/setting_preference_layout_height"
@@ -188,7 +214,7 @@
             style="@style/PaperTextStyleSettingPreference"
             app:layout_constraintLeft_toLeftOf="@id/cl_webdav_backup_and_restore"
             app:layout_constraintRight_toRightOf="@id/cl_webdav_backup_and_restore"
-            app:layout_constraintTop_toTopOf="@id/cl_webdav_backup_and_restore" />
+            app:layout_constraintTop_toBottomOf="@id/line3" />
         <ImageView
             android:id="@+id/iv_web_dav_restore"
             android:layout_width="@dimen/setting_preference_layout_height"
@@ -197,6 +223,7 @@
             android:focusable="false"
             android:clickable="false"
             app:layout_constraintRight_toRightOf="@id/cl_webdav_backup_and_restore"
-            app:layout_constraintTop_toTopOf="@id/cl_webdav_backup_and_restore"/>
+            app:layout_constraintTop_toTopOf="@id/tv_web_dav_restore"
+            app:layout_constraintTop_toBottomOf="@id/line3"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
