@@ -60,6 +60,8 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
 
     private MoreSettingMenu moreSettingMenu;
     private SelectMenu selectMenu;
+    private SelectMenu selectMenuBackup;
+    private SelectMenu selectMenuRestore;
 
     @Override
     protected MainContract.Presenter initInjector() {
@@ -177,8 +179,16 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
         binding.mppLlBookSourceMain.setOnClickListener(view -> BookSourceActivity.startThis(this, requestSource));
         binding.mppLlReplaceMain.setOnClickListener(view -> ReplaceRuleActivity.startThis(this, null));
         binding.mppLlDownloadMain.setOnClickListener(view -> DownloadActivity.startThis(this));
-        binding.mppLlBackupMain.setOnClickListener(view -> BackupRestoreUi.INSTANCE.backup(this,binding.getRoot()));
-        binding.mppLlRestoreMain.setOnClickListener(view -> BackupRestoreUi.INSTANCE.restore(this,binding.getRoot()));
+        binding.mppLlBackupMain.setOnClickListener(view -> {
+            if (!selectMenuBackup.isShowing()) {
+                selectMenuBackup.show(binding.getRoot());
+            }
+        });
+        binding.mppLlRestoreMain.setOnClickListener(view -> {
+            if (!selectMenuRestore.isShowing()) {
+                selectMenuRestore.show(binding.getRoot());
+            }
+        });
         binding.mppIvSettingMain.setOnClickListener(view -> SettingActivity.startThis(this));
         // 搜索栏
         binding.mppLlSearchMain.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SearchBookActivity.class)));
@@ -269,6 +279,48 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
                                 importOnlineBooks();
                                 break;
                         }
+                    }
+                });
+        selectMenuBackup = SelectMenu.builder(this)
+                .setTitle(getString(R.string.backup))
+                .setBottomButton(getString(R.string.cancel))
+                .setMenu(getResources().getStringArray(R.array.backup_ways))
+                .setListener(new SelectMenu.OnItemClickListener() {
+                    @Override
+                    public void forBottomButton() {}
+
+                    @Override
+                    public void forListItem(int lastChoose, int position) {
+                        switch (position) {
+                            case 0:
+                                BackupRestoreUi.INSTANCE.backup(MainActivity.this, binding.getRoot(), BackupRestoreUi.backupRestoreLocal);
+                                break;
+                            case 1:
+                                BackupRestoreUi.INSTANCE.backup(MainActivity.this, binding.getRoot(), BackupRestoreUi.backupRestoreWebDav);
+                                break;
+                        }
+
+                    }
+                });
+        selectMenuRestore = SelectMenu.builder(this)
+                .setTitle(getString(R.string.restore))
+                .setBottomButton(getString(R.string.cancel))
+                .setMenu(getResources().getStringArray(R.array.restore_ways))
+                .setListener(new SelectMenu.OnItemClickListener() {
+                    @Override
+                    public void forBottomButton() {}
+
+                    @Override
+                    public void forListItem(int lastChoose, int position) {
+                        switch (position) {
+                            case 0:
+                                BackupRestoreUi.INSTANCE.restore(MainActivity.this, binding.getRoot(), BackupRestoreUi.backupRestoreLocal);
+                                break;
+                            case 1:
+                                BackupRestoreUi.INSTANCE.restore(MainActivity.this, binding.getRoot(), BackupRestoreUi.backupRestoreWebDav);
+                                break;
+                        }
+
                     }
                 });
     }
