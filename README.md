@@ -19,13 +19,13 @@
 #### Android-安卓
 * [Releases](https://github.com/Jack251970/Read_For_MatePad_Paper/releases/latest)
 
-# Diaclaim-免责声明
+# Diaclaimer-免责声明
 ##### 
-[免责声明](/app/src/main/assets/disclaimer.md)
+[免责声明](https://github.com/Jack251970/Read_For_MatePad_Paper/blob/master/app/src/main/assets/disclaimer.md)
 
 ##### 阅读
 * [书源规则](https://alanskycn.gitee.io/teachme)
-* [更新日志](/app/src/main/assets/updateLog.md)
+* [更新日志]((https://github.com/Jack251970/Read_For_MatePad_Paper/blob/master/app/src/main/assets/updateLog.md)
 * [帮助文档](/app/src/main/assets/help/appHelp.md)
 
 <a href="#readme">
