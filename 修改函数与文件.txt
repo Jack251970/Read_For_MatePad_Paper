@@ -42,3 +42,5 @@ SourceEditAdapter.java
 8. refreshview
 加载动画
 点击背景
+9. sharedPreference保存
+Preference类中的getSharedPreferences
