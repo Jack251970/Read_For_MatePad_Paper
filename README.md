@@ -15,16 +15,36 @@
 6.支持高度自定义阅读界面，切换字体、间距、加粗、简繁转换等。<br>
 </details>
 
+# Interface-界面展示
+<img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B1.jpg" width="270"><img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B2.jpg" width="270"><img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B3.jpg" width="270">
+<img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B4.jpg" width="270"><img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B5.jpg" width="270"><img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B6.jpg" width="270">
+
 # Download-下载
 #### Android-安卓
 * [Releases](https://github.com/Jack251970/Read_For_MatePad_Paper/releases/latest)
 
 # Diaclaimer-免责声明
-##### 
-[免责声明](https://github.com/Jack251970/Read_For_MatePad_Paper/blob/master/app/src/main/assets/disclaimer.md)
+* [免责声明](https://github.com/Jack251970/Read_For_MatePad_Paper/blob/master/app/src/main/assets/disclaimer.md)
 
 # UpdateLog-更新日志
 * [更新日志](https://github.com/Jack251970/Read_For_MatePad_Paper/blob/master/app/src/main/assets/updateLog.md)
+
+# Grateful-特别感谢
+> * org.jsoup:jsoup
+> * cn.wanghaomiao:JsoupXpath
+> * com.jayway.jsonpath:json-path
+> * com.github.gedoor:rhino-android
+> * com.squareup.okhttp3:okhttp
+> * com.github.bumptech.glide:glide
+> * org.nanohttpd:nanohttpd
+> * org.nanohttpd:nanohttpd-websocket
+> * cn.bingoogolapple:bga-qrcode-zxing
+> * com.jaredrummler:colorpicker
+> * org.apache.commons:commons-text
+> * io.noties.markwon:core
+> * io.noties.markwon:image-glide
+> * com.hankcs:hanlp
+> * com.positiondev.epublib:epublib-core
 
 <a href="#readme">
     <img src="https://img.shields.io/badge/-返回顶部-white.svg" alt="#" align="right">
