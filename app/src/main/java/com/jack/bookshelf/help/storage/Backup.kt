@@ -29,7 +29,6 @@ import java.util.concurrent.TimeUnit
  */
 
 object Backup {
-
     val backupPath = MApplication.getInstance().filesDir.absolutePath + File.separator + "backup"
 
     val defaultPath by lazy {
@@ -48,7 +47,7 @@ object Backup {
     }
 
     /**
-     * 自动备份
+     * 自动本地备份
      */
     fun autoBack() {
         val lastBackup = MApplication.getConfigPreferences().getLong("lastBackup", 0)
@@ -57,69 +56,31 @@ object Backup {
         }
         val path = MApplication.getConfigPreferences().getString("backupPath", defaultPath)
         if (path == null) {
-            backup(MApplication.getInstance(), defaultPath, null, true)
+            backup(MApplication.getInstance(), defaultPath, null, true, BackupRestoreUi.backupRestoreLocal)
         } else {
-            backup(MApplication.getInstance(), path, null, true)
+            backup(MApplication.getInstance(), path, null, true, BackupRestoreUi.backupRestoreLocal)
         }
     }
 
     /**
      * 备份数据
      */
-    fun backup(context: Context, path: String, callBack: CallBack?, isAuto: Boolean = false) {
+    fun backup(context: Context, path: String?, callBack: CallBack?, isAutoBackup: Boolean, backupWay: Int) {
         MApplication.getConfigPreferences().edit().putLong("lastBackup", System.currentTimeMillis()).apply()
         Single.create(SingleOnSubscribe<Boolean> { e ->
-            BookshelfHelp.getAllBook().let {
-                if (it.isNotEmpty()) {
-                    val json = GSON.toJson(it)
-                    FileHelp.createFileIfNotExist(backupPath + File.separator + "myBookShelf.json").writeText(json)
+            if (backupWay == BackupRestoreUi.backupRestoreWebDav) {
+                createBackupFile(context, FileHelp.getCachePath())
+                if (!WebDavHelp.backUpWebDav()) {
+                    return@SingleOnSubscribe
                 }
             }
-            BookSourceManager.getAllBookSource().let {
-                if (it.isNotEmpty()) {
-                    val json = GSON.toJson(it)
-                    FileHelp.createFileIfNotExist(backupPath + File.separator + "myBookSource.json").writeText(json)
+            if (backupWay == BackupRestoreUi.backupRestoreLocal) {
+                createBackupFile(context, backupPath)
+                if (path.isContentPath()) {
+                    copyBackup(context, Uri.parse(path), isAutoBackup)
+                } else {
+                    path?.let { copyBackup(it, isAutoBackup) }
                 }
-            }
-            DbHelper.getDaoSession().searchHistoryBeanDao.queryBuilder().list().let {
-                if (it.isNotEmpty()) {
-                    val json = GSON.toJson(it)
-                    FileHelp.createFileIfNotExist(backupPath + File.separator + "myBookSearchHistory.json")
-                            .writeText(json)
-                }
-            }
-            ReplaceRuleManager.getAll().blockingGet().let {
-                if (it.isNotEmpty()) {
-                    val json = GSON.toJson(it)
-                    FileHelp.createFileIfNotExist(backupPath + File.separator + "myBookReplaceRule.json").writeText(json)
-                }
-            }
-            TxtChapterRuleManager.getAll().let {
-                if (it.isNotEmpty()) {
-                    val json = GSON.toJson(it)
-                    FileHelp.createFileIfNotExist(backupPath + File.separator + "myTxtChapterRule.json")
-                            .writeText(json)
-                }
-            }
-            Preferences.getSharedPreferences(context, backupPath, "config")?.let { sp ->
-                val edit = sp.edit()
-                MApplication.getConfigPreferences().all.map {
-                    when (val value = it.value) {
-                        is Int -> edit.putInt(it.key, value)
-                        is Boolean -> edit.putBoolean(it.key, value)
-                        is Long -> edit.putLong(it.key, value)
-                        is Float -> edit.putFloat(it.key, value)
-                        is String -> edit.putString(it.key, value)
-                        else -> Unit
-                    }
-                }
-                edit.commit()
-            }
-            WebDavHelp.backUpWebDav(backupPath)
-            if (path.isContentPath()) {
-                copyBackup(context, Uri.parse(path), isAuto)
-            } else {
-                copyBackup(path, isAuto)
             }
             e.onSuccess(true)
         }).subscribeOn(Schedulers.io())
@@ -128,12 +89,63 @@ object Backup {
                     override fun onSuccess(t: Boolean) {
                         callBack?.backupSuccess()
                     }
-
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
                         callBack?.backupError(e.localizedMessage ?: StringUtils.getString(R.string.error))
                     }
                 })
+    }
+
+    /**
+     * 指定位置生成备份文件
+     */
+    private fun createBackupFile(context: Context, backupPath: String) {
+        BookshelfHelp.getAllBook().let {
+            if (it.isNotEmpty()) {
+                val json = GSON.toJson(it)
+                FileHelp.createFileIfNotExist(backupPath + File.separator + "myBookShelf.json").writeText(json)
+            }
+        }
+        BookSourceManager.getAllBookSource().let {
+            if (it.isNotEmpty()) {
+                val json = GSON.toJson(it)
+                FileHelp.createFileIfNotExist(backupPath + File.separator + "myBookSource.json").writeText(json)
+            }
+        }
+        DbHelper.getDaoSession().searchHistoryBeanDao.queryBuilder().list().let {
+            if (it.isNotEmpty()) {
+                val json = GSON.toJson(it)
+                FileHelp.createFileIfNotExist(backupPath + File.separator + "myBookSearchHistory.json")
+                    .writeText(json)
+            }
+        }
+        ReplaceRuleManager.getAll().blockingGet().let {
+            if (it.isNotEmpty()) {
+                val json = GSON.toJson(it)
+                FileHelp.createFileIfNotExist(backupPath + File.separator + "myBookReplaceRule.json").writeText(json)
+            }
+        }
+        TxtChapterRuleManager.getAll().let {
+            if (it.isNotEmpty()) {
+                val json = GSON.toJson(it)
+                FileHelp.createFileIfNotExist(backupPath + File.separator + "myTxtChapterRule.json")
+                    .writeText(json)
+            }
+        }
+        Preferences.getSharedPreferences(context, backupPath, "config")?.let { sharedPreferences ->
+            val edit = sharedPreferences.edit()
+            MApplication.getConfigPreferences().all.map {
+                when (val value = it.value) {
+                    is Int -> edit.putInt(it.key, value)
+                    is Boolean -> edit.putBoolean(it.key, value)
+                    is Long -> edit.putLong(it.key, value)
+                    is Float -> edit.putFloat(it.key, value)
+                    is String -> edit.putString(it.key, value)
+                    else -> Unit
+                }
+            }
+            edit.commit()
+        }
     }
 
     @Throws(Exception::class)
@@ -164,6 +176,9 @@ object Backup {
         }
     }
 
+    /**
+     * 拷贝文件
+     */
     @Throws(java.lang.Exception::class)
     private fun copyBackup(path: String, isAuto: Boolean) {
         synchronized(this) {
@@ -185,6 +200,7 @@ object Backup {
 
     interface CallBack {
         fun backupSuccess()
+
         fun backupError(msg: String)
     }
 }

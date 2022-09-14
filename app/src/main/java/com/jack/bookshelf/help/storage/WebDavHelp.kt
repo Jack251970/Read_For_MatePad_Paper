@@ -3,13 +3,19 @@ package com.jack.bookshelf.help.storage
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import com.jack.bookshelf.MApplication
+import com.jack.bookshelf.R
 import com.jack.bookshelf.base.observer.MySingleObserver
 import com.jack.bookshelf.constant.AppConstant
 import com.jack.bookshelf.help.FileHelp
+import com.jack.bookshelf.utils.StringUtils
+import com.jack.bookshelf.utils.StringUtils.getString
 import com.jack.bookshelf.utils.ZipUtils
+import com.jack.bookshelf.utils.toastOnUi
 import com.jack.bookshelf.utils.webdav.WebDav
 import com.jack.bookshelf.utils.webdav.http.HttpAuth
+import com.jack.bookshelf.view.popupwindow.SelectMenu
 import io.reactivex.Single
 import io.reactivex.SingleOnSubscribe
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -28,6 +34,7 @@ import kotlin.math.min
 
 object WebDavHelp {
     private val zipFilePath = FileHelp.getCachePath() + "/backup" + ".zip"
+
     private val unzipFilesPath by lazy {
         FileHelp.getCachePath()
     }
@@ -44,6 +51,10 @@ object WebDavHelp {
         return url
     }
 
+
+    /**
+     * 初始化WebDav账号
+     */
     private fun initWebDav(): Boolean {
         val account = MApplication.getConfigPreferences().getString("web_dav_account", "")
         val password = MApplication.getConfigPreferences().getString("web_dav_password", "")
@@ -54,6 +65,9 @@ object WebDavHelp {
         return false
     }
 
+    /**
+     * 获取WebDav备份文件名字
+     */
     fun getWebDavFileNames(): ArrayList<String> {
         val url = getWebDavUrl()
         val names = arrayListOf<String>()
@@ -73,8 +87,21 @@ object WebDavHelp {
         return names
     }
 
-    fun showRestoreDialog(context: Context, names: ArrayList<String>, callBack: Restore.CallBack?): Boolean {
+    /**
+     * 选择WebDav备份文件
+     */
+    fun showRestoreDialog(context: Context, mainView: View, names: ArrayList<String>, callBack: Restore.CallBack?): Boolean {
         return if (names.isNotEmpty()) {
+           /* SelectMenu.builder(context)
+                .setTitle(getString(R.string.choose_restore_file))
+                .setBottomButton(getString(R.string.cancel))
+                .setMenu(names)
+                .setListener(object : SelectMenu.OnItemClickListener {
+                    override fun forBottomButton() {}
+                    override fun forListItem(lastChoose: Int, position: Int) {
+                        restoreWebDav(names[position], callBack)
+                    }
+                })*/
             context.selector(title = "选择恢复文件", items = names) { _, index ->
                 if (index in 0 until names.size) {
                     restoreWebDav(names[index], callBack)
@@ -86,6 +113,9 @@ object WebDavHelp {
         }
     }
 
+    /**
+     * 恢复指定文件
+     */
     private fun restoreWebDav(name: String, callBack: Restore.CallBack?) {
         Single.create(SingleOnSubscribe<Boolean> { e ->
             getWebDavUrl().let {
@@ -104,26 +134,31 @@ object WebDavHelp {
                 })
     }
 
-    fun backUpWebDav(path: String) {
+    /**
+     * WebDav数据备份
+     */
+    fun backUpWebDav(): Boolean {
         try {
             if (initWebDav()) {
                 val paths = arrayListOf(*Backup.backupFileNames)
                 for (i in 0 until paths.size) {
-                    paths[i] = path + File.separator + paths[i]
+                    paths[i] = FileHelp.getCachePath() + File.separator + paths[i]
                 }
                 FileHelp.deleteFile(zipFilePath)
                 if (ZipUtils.zipFiles(paths, zipFilePath)) {
                     WebDav(getWebDavUrl() + "Read").makeAsDir()
-                    val putUrl = getWebDavUrl() + "Read/backup" +
-                            SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-                                    .format(Date(System.currentTimeMillis())) + ".zip"
+                    val putUrl = getWebDavUrl() + "Read/backup" + SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date(System.currentTimeMillis())) + ".zip"
                     WebDav(putUrl).upload(zipFilePath)
                 }
+                return true
+            } else {
+                MApplication.getInstance().toastOnUi(StringUtils.getString(R.string.backup_fail))
             }
         } catch (e: Exception) {
             Handler(Looper.getMainLooper()).post {
-                MApplication.getInstance().toast("WebDav\n${e.localizedMessage}")
+                MApplication.getInstance().toastOnUi("WebDav\n${e.localizedMessage}")
             }
         }
+        return false
     }
 }

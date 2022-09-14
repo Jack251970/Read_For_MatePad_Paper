@@ -39,8 +39,7 @@ object Restore {
                 for (fileName in Backup.backupFileNames) {
                     if (doc.name == fileName) {
                         DocumentUtil.readBytes(context, doc.uri)?.let {
-                            FileHelp.createFileIfNotExist(Backup.backupPath + File.separator + fileName)
-                                    .writeBytes(it)
+                            FileHelp.createFileIfNotExist(Backup.backupPath + File.separator + fileName).writeBytes(it)
                         }
                     }
                 }
@@ -136,7 +135,6 @@ object Restore {
                         ReadBookControl.getInstance().updateReaderSettings()
                         callBack?.restoreSuccess()
                     }
-
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
                         callBack?.restoreError(e.localizedMessage ?: StringUtils.getString(R.string.error))

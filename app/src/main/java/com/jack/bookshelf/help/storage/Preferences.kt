@@ -11,26 +11,21 @@ import java.io.File
  */
 
 object Preferences {
-
     /**
      * 用反射生成 SharedPreferences
      * @param context
-     * @param dir
+     * @param dir 保存路径
      * @param fileName 文件名,不需要 '.xml' 后缀
      * @return
      */
-    fun getSharedPreferences(
-            context: Context,
-            dir: String,
-            fileName: String
-    ): SharedPreferences? {
+    fun getSharedPreferences(context: Context, dir: String, fileName: String): SharedPreferences? {
         try {
             // 获取 ContextWrapper对象中的mBase变量。该变量保存了 ContextImpl 对象
             val fieldMBase = ContextWrapper::class.java.getDeclaredField("mBase")
             fieldMBase.isAccessible = true
             // 获取 mBase变量
             val objMBase = fieldMBase.get(context)
-            // 获取 ContextImpl。mPreferencesDir变量，该变量保存了数据文件的保存路径
+            // 获取 ContextImpl . mPreferencesDir变量，该变量保存了数据文件的保存路径
             val fieldMPreferencesDir = objMBase.javaClass.getDeclaredField("mPreferencesDir")
             fieldMPreferencesDir.isAccessible = true
             // 创建自定义路径

@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Build
 import android.text.TextUtils
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.documentfile.provider.DocumentFile
 import com.hwangjr.rxbus.RxBus
@@ -34,11 +35,12 @@ import io.reactivex.schedulers.Schedulers
  */
 
 object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
-
     private const val backupSelectRequestCode = 22
     private const val backupSelectAndBackupRequestCode = 23
     private const val restoreSelectRequestCode = 33
     private const val restoreSelectAndRestoreRequestCode = 34
+    const val backupRestoreLocal = 1
+    const val backupRestoreWebDav = 2
 
     private fun getBackupRestorePath(): String? {
         return MApplication.getConfigPreferences().getString("backupPath", null)
@@ -70,24 +72,28 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
     }
 
     /**
-     * 直接备份
+     * 直接备份数据
      */
-    fun backup(activity: Activity, mainView: View) {
-        val backupPath = getBackupRestorePath()
-        if (backupPath.isNullOrEmpty()) {
-            selectBackupFolder(activity, mainView, true)
-        } else if (backupPath.isContentPath()) {
-            val uri = Uri.parse(backupPath)
-            val doc = DocumentFile.fromTreeUri(activity, uri)
-            if (doc?.canWrite() == true) {
-                Backup.backup(activity, backupPath, this)
-            } else {
-                selectBackupFolder(activity, mainView, true)
-            }
-        } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
-            selectBackupFolder(activity, mainView, true)
+    fun backup(activity: Activity, mainView: View, backupWay: Int) {
+        if (backupWay == backupRestoreWebDav) {
+            Backup.backup(activity, null, this, false, backupRestoreWebDav)
         } else {
-            backupUsePermission(activity, true)
+            val backupPath = getBackupRestorePath()
+            if (backupPath.isNullOrEmpty()) {
+                selectBackupFolder(activity, mainView, true)
+            } else if (backupPath.isContentPath()) {
+                val uri = Uri.parse(backupPath)
+                val doc = DocumentFile.fromTreeUri(activity, uri)
+                if (doc?.canWrite() == true) {
+                    Backup.backup(activity, backupPath, this, false, backupRestoreLocal)
+                } else {
+                    selectBackupFolder(activity, mainView, true)
+                }
+            } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
+                selectBackupFolder(activity, mainView, true)
+            } else {
+                backupUsePermission(activity, true)
+            }
         }
     }
 
@@ -101,14 +107,14 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
             .onGranted {
                 setBackupRestorePath(path)
                 if (ifBackUp) {
-                    Backup.backup(activity, path, this)
+                    Backup.backup(activity, path, this, false, backupRestoreLocal)
                 }
             }
             .request()
     }
 
     /**
-     * 选择备份文件夹
+     * 选择本地备份文件夹
      */
     fun selectBackupFolder(activity: Activity, mainView: View, ifBackUp: Boolean = false) {
         SelectMenu.builder(activity)
@@ -151,7 +157,7 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
     /**
      * 软件文件夹选择
      */
-    private fun selectBackupFolderApp(activity: Activity, isRestore: Boolean, ifBackUp: Boolean = true) {
+    private fun selectBackupFolderApp(activity: Activity, isRestore: Boolean, ifBackUpRestore: Boolean = true) {
         val picker = FilePicker(activity, FilePicker.DIRECTORY)
         picker.setBackgroundColor(ContextCompat.getColor(activity, R.color.white))
         picker.setTopBackgroundColor(ContextCompat.getColor(activity, R.color.white))
@@ -159,10 +165,12 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
         picker.setOnFilePickListener { currentPath: String ->
             setBackupRestorePath(currentPath)
             if (isRestore) {
-                Restore.restore(currentPath, this)
+                if (ifBackUpRestore) {
+                    Restore.restore(currentPath, this)
+                }
             } else {
-                if (ifBackUp) {
-                    Backup.backup(activity, currentPath, this)
+                if (ifBackUpRestore) {
+                    Backup.backup(activity, currentPath, this, false, backupRestoreLocal)
                 }
             }
         }
@@ -170,35 +178,40 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
     }
 
     /**
-     * 直接恢复
+     * 直接恢复数据
      */
-    fun restore(activity: Activity, mainView: View) {
-        Single.create { emitter: SingleEmitter<ArrayList<String>?> ->
-            emitter.onSuccess(getWebDavFileNames())
-        }.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : MySingleObserver<ArrayList<String>?>() {
-                override fun onSuccess(strings: ArrayList<String>) {
-                    if (!showRestoreDialog(activity, strings, this@BackupRestoreUi)) {
-                        val path = getBackupRestorePath()
-                        if (TextUtils.isEmpty(path)) {
-                            selectRestoreFolder(activity, mainView, true)
-                        } else if (path.isContentPath()) {
-                            val uri = Uri.parse(path)
-                            val doc = DocumentFile.fromTreeUri(activity, uri)
-                            if (doc?.canWrite() == true) {
-                                Restore.restore(activity, Uri.parse(path), this@BackupRestoreUi)
-                            } else {
-                                selectRestoreFolder(activity, mainView, true)
-                            }
-                        } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
-                            selectRestoreFolder(activity, mainView, true)
-                        } else {
-                            restoreUsePermission(activity, true)
+    fun restore(activity: Activity, mainView: View, restoreWay: Int) {
+        if (restoreWay == backupRestoreWebDav) {
+            Single.create { emitter: SingleEmitter<ArrayList<String>?> ->
+                emitter.onSuccess(getWebDavFileNames())
+            }.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : MySingleObserver<ArrayList<String>?>() {
+                    override fun onSuccess(strings: ArrayList<String>) {
+                        if (!showRestoreDialog(activity, mainView, strings, this@BackupRestoreUi)) {
+                            restoreError(getString(R.string.no_backup))
                         }
                     }
+                })
+        }
+        if (restoreWay == backupRestoreLocal) {
+            val path = getBackupRestorePath()
+            if (TextUtils.isEmpty(path)) {
+                selectRestoreFolder(activity, mainView, true)
+            } else if (path.isContentPath()) {
+                val uri = Uri.parse(path)
+                val doc = DocumentFile.fromTreeUri(activity, uri)
+                if (doc?.canWrite() == true) {
+                    Restore.restore(activity, Uri.parse(path), this@BackupRestoreUi)
+                } else {
+                    selectRestoreFolder(activity, mainView, true)
                 }
-            })
+            } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
+                selectRestoreFolder(activity, mainView, true)
+            } else {
+                restoreUsePermission(activity, true)
+            }
+        }
     }
 
     /**
@@ -227,6 +240,7 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
             .setMenu(activity.resources.getStringArray(R.array.select_folder))
             .setListener(object : SelectMenu.OnItemClickListener {
                 override fun forBottomButton() {}
+
                 override fun forListItem(lastChoose: Int, position: Int) {
                     when (position) {
                         0 -> {
@@ -275,7 +289,7 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
                         Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
                     )
                     setBackupRestorePath(uri.toString())
-                    Backup.backup(MApplication.getInstance(), uri.toString(), this)
+                    Backup.backup(MApplication.getInstance(), uri.toString(), this, false, backupRestoreLocal)
                 }
             }
             restoreSelectRequestCode -> if (resultCode == RESULT_OK) {

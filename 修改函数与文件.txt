@@ -1,5 +1,5 @@
 1. 风格不统一
-MApplication.getInstance().toast
+MApplication.getInstance().toast√
 activity.alert{}
 2. webdav保存目录有关
 WebDavHelp.kt

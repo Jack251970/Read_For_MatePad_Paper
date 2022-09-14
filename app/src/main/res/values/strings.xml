@@ -232,6 +232,8 @@
         <!-- WebDav Helper -->
         <string name="backup_fail">备份失败</string>
         <string name="choose_restore_file">"选择恢复文件"</string>
+        <!-- Source Helper -->
+        <string name="website_illegal_cannot_import">%s网址非法，不能导入！</string>
 
     <!-- Dialog -->
         <!-- InputDialog Main -->

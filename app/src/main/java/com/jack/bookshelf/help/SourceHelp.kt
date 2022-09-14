@@ -3,11 +3,19 @@ package com.jack.bookshelf.help
 import android.os.Handler
 import android.os.Looper
 import com.jack.bookshelf.MApplication
+import com.jack.bookshelf.R
 import com.jack.bookshelf.bean.BookSourceBean
 import com.jack.bookshelf.model.BookSourceManager
 import com.jack.bookshelf.utils.EncoderUtils
+import com.jack.bookshelf.utils.StringUtils.getString
 import com.jack.bookshelf.utils.splitNotBlank
+import com.jack.bookshelf.utils.toastOnUi
 import org.jetbrains.anko.toast
+
+/**
+ * Source Helper
+ * Edited by Jack251970
+ */
 
 object SourceHelp {
 
@@ -25,7 +33,7 @@ object SourceHelp {
         bookSources.forEach { bookSource ->
             if (is18Plus(bookSource.bookSourceUrl)) {
                 handler.post {
-                    MApplication.getInstance().toast("${bookSource.bookSourceName}是18+网址,禁止导入.")
+                    MApplication.getInstance().toastOnUi(getString(R.string.website_illegal_cannot_import, bookSource.bookSourceName + ""))
                 }
             } else {
                 BookSourceManager.addBookSource(bookSource)
