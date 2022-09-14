@@ -15,27 +15,18 @@
 6.支持高度自定义阅读界面，切换字体、间距、加粗、简繁转换等。<br>
 </details>
 
-<a href="#readme">
-    <img src="https://img.shields.io/badge/-返回顶部-white.svg" alt="#" align="right">
-</a>
-
 # Download-下载
 #### Android-安卓
 * [Releases](https://github.com/Jack251970/Read_For_MatePad_Paper/releases/latest)
 
-<a href="#readme">
-    <img src="https://img.shields.io/badge/-返回顶部-white.svg" alt="#" align="right">
-</a>
-
 # Diaclaim-免责声明
 ##### 
-(免责声明)[https://github.com/Jack251970/Read_For_MatePad_Paper/blob/raw/app/src/main/assets/disclaimer.md]
+[免责声明](/app/src/main/assets/disclaimer.md)
 
-##### 阅读3.0
+##### 阅读
 * [书源规则](https://alanskycn.gitee.io/teachme)
 * [更新日志](/app/src/main/assets/updateLog.md)
 * [帮助文档](/app/src/main/assets/help/appHelp.md)
-* [web端](https://github.com/gedoor/legado_web_bookshelf)
 
 <a href="#readme">
     <img src="https://img.shields.io/badge/-返回顶部-white.svg" alt="#" align="right">
