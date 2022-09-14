@@ -6,14 +6,12 @@
 </div>
 
 # Function-主要功能
-<details><summary>中文</summary>
-1.纯黑白界面无动画，完美适配墨水屏，控件风格高度适配华为MatePad Paper。<br>
-2.自带精选书源，支持设置、导入规则。<br>
-3.支持根据书源搜索网络书籍，同时支持下载网络书籍。<br>
-4.支持替换净化，去除广告、替换内容很方便。<br>
-5.支持本地TXT、EPUB阅读，手动浏览，智能扫描。<br>
-6.支持高度自定义阅读界面，切换字体、间距、加粗、简繁转换等。<br>
-</details>
+1.纯黑白界面无动画，完美适配墨水屏，控件风格高度适配华为MatePad Paper。
+2.自带精选书源，支持设置、导入规则。
+3.支持根据书源搜索网络书籍，同时支持下载网络书籍。
+4.支持替换净化，去除广告、替换内容很方便。
+5.支持本地TXT、EPUB阅读，手动浏览，智能扫描。
+6.支持高度自定义阅读界面，切换字体、间距、加粗、简繁转换等。
 
 # Interface-界面展示
 <img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B1.jpg" width="270"><img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B2.jpg" width="270"><img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B3.jpg" width="270">
