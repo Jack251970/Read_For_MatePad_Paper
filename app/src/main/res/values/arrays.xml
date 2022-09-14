@@ -92,6 +92,14 @@
             <item>@string/import_local_book</item>
             <item>@string/import_online_book</item>
         </string-array>
+        <string-array name="backup_ways">
+            <item>@string/local_backup</item>
+            <item>@string/webdav_backup</item>
+        </string-array>
+        <string-array name="restore_ways">
+            <item>@string/local_restore</item>
+            <item>@string/webdav_restore</item>
+        </string-array>
         <!-- Select Menu BookDetail-->
         <string-array name="book_groups">
             <item>@string/pursue</item>
