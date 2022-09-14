@@ -19,13 +19,12 @@
 #### *Android*-安卓
 * [Releases](https://github.com/Jack251970/Read_For_MatePad_Paper/releases/latest)
 
-# *Diaclaimer*-免责声明
-* [免责声明](https://github.com/Jack251970/Read_For_MatePad_Paper/blob/master/app/src/main/assets/disclaimer.md)
 
-# *UpdateLog*-更新日志
+# *Others*-其他
+* [免责声明](https://github.com/Jack251970/Read_For_MatePad_Paper/blob/master/app/src/main/assets/disclaimer.md)
 * [更新日志](https://github.com/Jack251970/Read_For_MatePad_Paper/blob/master/app/src/main/assets/updateLog.md)
 
-# *Grateful*-特别感谢
+# *Grateful*-感谢
 > * org.jsoup:jsoup
 > * cn.wanghaomiao:JsoupXpath
 > * com.jayway.jsonpath:json-path
@@ -42,7 +41,7 @@
 > * com.hankcs:hanlp
 > * com.positiondev.epublib:epublib-core
 
-# *Interface*-界面展示
+# *Interface*-界面
 <img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B1.jpg" width="270"><img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B2.jpg" width="270"><img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B3.jpg" width="270">
 <img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B4.jpg" width="270"><img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B5.jpg" width="270"><img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B6.jpg" width="270">
 
