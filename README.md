@@ -6,7 +6,7 @@
 
 </div>
 
-# Function-主要功能
+# *Function*-主要功能
 * 1.纯黑白界面无动画，完美适配墨水屏，控件风格高度适配华为*MatePad Paper*。
 * 2.自带精选书源，支持设置、导入规则。
 * 3.支持根据书源搜索网络书籍，同时支持下载网络书籍。
@@ -14,17 +14,17 @@
 * 5.支持本地*TXT、EPUB*阅读，手动浏览，智能扫描。
 * 6.支持高度自定义阅读界面，切换字体、间距、加粗、简繁转换等。
 
-# Download-下载
-#### Android-安卓
+# *Download*-下载
+#### *Android*-安卓
 * [Releases](https://github.com/Jack251970/Read_For_MatePad_Paper/releases/latest)
 
-# Diaclaimer-免责声明
+# *Diaclaimer*-免责声明
 * [免责声明](https://github.com/Jack251970/Read_For_MatePad_Paper/blob/master/app/src/main/assets/disclaimer.md)
 
-# UpdateLog-更新日志
+# *UpdateLog*-更新日志
 * [更新日志](https://github.com/Jack251970/Read_For_MatePad_Paper/blob/master/app/src/main/assets/updateLog.md)
 
-# Grateful-特别感谢
+# *Grateful*-特别感谢
 > * org.jsoup:jsoup
 > * cn.wanghaomiao:JsoupXpath
 > * com.jayway.jsonpath:json-path
@@ -41,7 +41,7 @@
 > * com.hankcs:hanlp
 > * com.positiondev.epublib:epublib-core
 
-# Interface-界面展示
+# *Interface*-界面展示
 <img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B1.jpg" width="270"><img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B2.jpg" width="270"><img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B3.jpg" width="270">
 <img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B4.jpg" width="270"><img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B5.jpg" width="270"><img src="https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B6.jpg" width="270">
 
