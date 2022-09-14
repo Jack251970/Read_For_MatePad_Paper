@@ -29,7 +29,7 @@
 
 # Diaclaim-免责声明
 ##### 
-https://github.com/Jack251970/Read_For_MatePad_Paper/blob/raw/app/src/main/assets/disclaimer.md
+(免责声明)[https://github.com/Jack251970/Read_For_MatePad_Paper/blob/raw/app/src/main/assets/disclaimer.md]
 
 ##### 阅读3.0
 * [书源规则](https://alanskycn.gitee.io/teachme)
