@@ -15,7 +15,10 @@ import androidx.fragment.app.Fragment;
 import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.databinding.FragmentAboutBinding;
+import com.jack.bookshelf.help.update.UpdateManager;
+import com.jack.bookshelf.service.update.UpdateService;
 import com.jack.bookshelf.view.activity.SettingActivity;
+import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
 
 /**
  * About Fragment
@@ -24,9 +27,9 @@ import com.jack.bookshelf.view.activity.SettingActivity;
  */
 
 public class AboutFragment extends Fragment {
-
     private FragmentAboutBinding binding;
     private SettingActivity settingActivity;
+    private PaperAlertDialog alertDialog;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,11 +48,59 @@ public class AboutFragment extends Fragment {
     }
 
     private void bindView() {
+        initDialog();
         binding.tvVersion.setText(getString(R.string.version_name, MApplication.getVersionName()));
-        binding.tvUpdate.setOnClickListener(view -> openIntent(getString(R.string.latest_release_url)));
-        binding.tvUpdateLog.setOnClickListener(view -> settingActivity.getMoDialogHUD().showAssetMarkdown("updateLog.md"));
-        binding.tvGithub.setOnClickListener(view -> openIntent(getString(R.string.this_github_url)));
-        binding.tvDisclaimer.setOnClickListener(view -> settingActivity.getMoDialogHUD().showAssetMarkdown("disclaimer.md"));
+        binding.tvUpdate.setOnClickListener(v -> checkUpdate());
+        binding.tvUpdateLog.setOnClickListener(v -> settingActivity.getMoDialogHUD().showAssetMarkdown("updateLog.md"));
+        binding.tvGithub.setOnClickListener(v -> openIntent(getString(R.string.this_github_url)));
+        binding.tvDisclaimer.setOnClickListener(v -> settingActivity.getMoDialogHUD().showAssetMarkdown("disclaimer.md"));
+    }
+
+    private void initDialog() {
+        alertDialog = new PaperAlertDialog(settingActivity)
+                .setTitle(R.string.update)
+                .setType(PaperAlertDialog.WITH_PROGRESS_BAR)
+                .setProgressMax(100)
+                .setNegativeButton(R.string.cancel)
+                .setPositiveButton(R.string.confirm)
+                .setOnclick(new PaperAlertDialog.OnItemClickListener() {
+                    @Override
+                    public void forNegativeButton() {
+                        UpdateService.getInstance().cancelDownload();
+                    }
+
+                    @Override
+                    public void forPositiveButton() {
+
+                    }
+                });
+    }
+
+    /**
+     * 检查更新
+     */
+    private void checkUpdate() {
+        UpdateManager.getInstance(settingActivity).checkUpdate(settingActivity, settingActivity.getRoot(),
+                true, new UpdateManager.CallBack() {
+            @Override
+            public void setProgress(int progress) {
+                alertDialog.setProgress(progress);
+            }
+
+            @Override
+            public void showDialog() {
+                alertDialog.setProgress(0);
+                alertDialog.show(settingActivity.getRoot());
+            }
+
+            @Override
+            public void dismissDialog() {
+                alertDialog.setProgress(0);
+                if (alertDialog.isShowing()) {
+                    alertDialog.dismiss();
+                }
+            }
+        });
     }
 
     /**

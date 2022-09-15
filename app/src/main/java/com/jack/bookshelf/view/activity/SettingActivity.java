@@ -13,7 +13,7 @@ import com.jack.bookshelf.base.MBaseActivity;
 import com.jack.bookshelf.databinding.ActivitySettingsBinding;
 import com.jack.bookshelf.help.storage.BackupRestoreUi;
 import com.jack.bookshelf.view.fragment.GeneralSettingFragment;
-import com.jack.bookshelf.widget.modialog.MoDialogHUD;
+import com.jack.bookshelf.widget.dialog.modialog.MoDialogHUD;
 
 /**
  * Setting Page

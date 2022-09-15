@@ -14,7 +14,7 @@ import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.DownloadBookBean;
 import com.jack.bookshelf.service.DownloadService;
 import com.jack.bookshelf.view.activity.DownloadActivity;
-import com.jack.bookshelf.widget.image.CoverImageView;
+import com.jack.bookshelf.widget.imageview.CoverImageView;
 
 import java.util.ArrayList;
 import java.util.Collections;

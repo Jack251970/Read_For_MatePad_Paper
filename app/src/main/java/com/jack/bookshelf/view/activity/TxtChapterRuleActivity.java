@@ -26,10 +26,10 @@ import com.jack.bookshelf.utils.IOUtils;
 import com.jack.bookshelf.utils.RealPathUtil;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.TxtChapterRuleAdapter;
-import com.jack.bookshelf.view.popupwindow.MoreSettingMenu;
-import com.jack.bookshelf.view.popupwindow.PaperAlertDialog;
+import com.jack.bookshelf.widget.popupwindow.MoreSettingMenu;
+import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
 import com.jack.bookshelf.widget.filepicker.picker.FilePicker;
-import com.jack.bookshelf.widget.modialog.TxtChapterRuleDialog;
+import com.jack.bookshelf.widget.dialog.modialog.TxtChapterRuleDialog;
 
 import java.io.IOException;
 import java.io.InputStream;

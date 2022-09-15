@@ -1,6 +1,5 @@
 package com.jack.bookshelf.utils;
 
-import android.os.Build;
 import android.text.Html;
 import android.widget.TextView;
 
@@ -42,11 +41,7 @@ public class MarkdownUtils {
             line = line.replaceAll(emPtn, "<em>$1</em>");
             builder.append(line);
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return Html.fromHtml(builder.toString(), Html.FROM_HTML_SEPARATOR_LINE_BREAK_LIST_ITEM);
-        } else {
-            return Html.fromHtml(builder.toString());
-        }
+        return Html.fromHtml(builder.toString(), Html.FROM_HTML_SEPARATOR_LINE_BREAK_LIST_ITEM);
     }
 
     public static void setText(TextView view, String text) {

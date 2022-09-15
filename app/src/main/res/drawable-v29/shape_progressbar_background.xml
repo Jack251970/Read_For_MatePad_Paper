@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 背景进度条 -->
+    <item
+        android:id="@android:id/background"
+        android:gravity="center_vertical|fill_horizontal">
+        <shape android:shape="rectangle">
+            <size android:height="10dp"/>
+            <corners android:radius="3dp"/>
+            <stroke android:width="1dp"
+                android:color="@color/black"/>
+            <solid android:color="@color/white"/>
+        </shape>
+    </item>
+    <!-- 缓冲进度条 -->
+    <item
+        android:id="@android:id/secondaryProgress"
+        android:gravity="center_vertical|fill_horizontal">
+        <clip>
+            <shape android:shape="rectangle">
+                <size android:height="10dp"/>
+                <corners android:radius="3dp"/>
+                <stroke android:width="1dp"
+                    android:color="@color/black"/>
+                <solid android:color="@color/paper_gray"/>
+            </shape>
+        </clip>
+    </item>
+    <!-- 实际进度条 -->
+    <item
+        android:id="@android:id/progress"
+        android:gravity="center_vertical|fill_horizontal">
+        <clip>
+            <shape android:shape="rectangle">
+                <size android:height="10dp"/>
+                <corners android:radius="3dp"/>
+                <stroke android:width="1dp"
+                    android:color="@color/black"/>
+                <solid android:color="@color/black"/>
+            </shape>
+        </clip>
+    </item>
+</layer-list>

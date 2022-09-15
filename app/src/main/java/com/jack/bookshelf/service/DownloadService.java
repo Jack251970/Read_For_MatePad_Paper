@@ -60,14 +60,14 @@ public class DownloadService extends Service {
     public void onCreate() {
         super.onCreate();
         isRunning = true;
-        //创建 Notification.Builder 对象
+        // 创建 Notification.Builder 对象
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MApplication.channelIdDownload)
                 .setSmallIcon(R.drawable.ic_download_noti)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher))
                 .setOngoing(false)
                 .setContentTitle(getString(R.string.download_offline_t))
                 .setContentText(getString(R.string.download_offline_s));
-        //发送通知
+        // 发送通知
         Notification notification = builder.build();
         startForeground(notificationId, notification);
 
@@ -284,18 +284,18 @@ public class DownloadService extends Service {
 
         Intent mainIntent = new Intent(this, DownloadActivity.class);
         PendingIntent mainPendingIntent = PendingIntent.getActivity(this, 0, mainIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        //创建 Notification.Builder 对象
+        // 创建 Notification.Builder 对象
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MApplication.channelIdDownload)
                 .setSmallIcon(R.drawable.ic_download_noti)
-                //通知栏大图标
+                // 通知栏大图标
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher))
-                //点击通知后自动清除
+                // 点击通知后自动清除
                 .setAutoCancel(true)
                 .setContentTitle("正在下载：" + downloadChapterBean.getBookName())
                 .setContentText(downloadChapterBean.getDurChapterName() == null ? "  " : downloadChapterBean.getDurChapterName())
                 .setContentIntent(mainPendingIntent);
         builder.addAction(R.drawable.ic_stop_white, getString(R.string.cancel), getChancelPendingIntent());
-        //发送通知
+        // 发送通知
         startForeground(notificationId, builder.build());
     }
 

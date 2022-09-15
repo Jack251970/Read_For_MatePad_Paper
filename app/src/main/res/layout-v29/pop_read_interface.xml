@@ -52,7 +52,7 @@
                     android:clickable="false"
                     android:src="@drawable/ic_checkbox_checked"/>
             </LinearLayout>
-            <com.jack.bookshelf.widget.views.PaperSeekBar
+            <com.jack.bookshelf.widget.bar.PaperSeekBar
                 android:id="@+id/hpb_light"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -69,7 +69,7 @@
             android:layout_marginTop="5dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
-            <com.jack.bookshelf.widget.views.PaperStrokeTextView
+            <com.jack.bookshelf.widget.textview.PaperStrokeTextView
                 android:id="@+id/nbTextSizeDec"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
@@ -89,7 +89,7 @@
                 android:paddingRight="4dp"
                 style="@style/PaperTextStylePopReadMenu"
                 tools:text="20"/>
-            <com.jack.bookshelf.widget.views.PaperStrokeTextView
+            <com.jack.bookshelf.widget.textview.PaperStrokeTextView
                 android:id="@+id/nbTextSizeAdd"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
@@ -104,7 +104,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5" />
-            <com.jack.bookshelf.widget.views.PaperStrokeTextView
+            <com.jack.bookshelf.widget.textview.PaperStrokeTextView
                 android:id="@+id/fl_text_Bold"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
@@ -118,7 +118,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5" />
-            <com.jack.bookshelf.widget.views.PaperStrokeTextView
+            <com.jack.bookshelf.widget.textview.PaperStrokeTextView
                 android:id="@+id/fl_text_font"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
@@ -132,7 +132,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5" />
-            <com.jack.bookshelf.widget.views.PaperStrokeTextView
+            <com.jack.bookshelf.widget.textview.PaperStrokeTextView
                 android:id="@+id/fl_indent"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
@@ -146,7 +146,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5" />
-            <com.jack.bookshelf.widget.views.PaperStrokeTextView
+            <com.jack.bookshelf.widget.textview.PaperStrokeTextView
                 android:id="@+id/llJFConvert"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
@@ -164,7 +164,7 @@
             android:layout_gravity="center"
             android:orientation="horizontal"
             android:gravity="center_vertical">
-            <com.jack.bookshelf.widget.views.PaperStrokeTextView
+            <com.jack.bookshelf.widget.textview.PaperStrokeTextView
                 android:id="@+id/tvRowDef0"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
@@ -179,7 +179,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5" />
-            <com.jack.bookshelf.widget.views.PaperStrokeTextView
+            <com.jack.bookshelf.widget.textview.PaperStrokeTextView
                 android:id="@+id/tvRowDef1"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
@@ -194,7 +194,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5" />
-            <com.jack.bookshelf.widget.views.PaperStrokeTextView
+            <com.jack.bookshelf.widget.textview.PaperStrokeTextView
                 android:id="@+id/tvRowDef2"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
@@ -209,7 +209,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5" />
-            <com.jack.bookshelf.widget.views.PaperStrokeTextView
+            <com.jack.bookshelf.widget.textview.PaperStrokeTextView
                 android:id="@+id/tvRowDef"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
@@ -224,7 +224,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5" />
-            <com.jack.bookshelf.widget.views.PaperStrokeTextView
+            <com.jack.bookshelf.widget.textview.PaperStrokeTextView
                 android:id="@+id/tvSpace"
                 android:layout_width="0dp"
                 android:layout_height="36dp"

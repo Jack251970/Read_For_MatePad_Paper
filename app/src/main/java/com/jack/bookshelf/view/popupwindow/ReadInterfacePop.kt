@@ -17,8 +17,9 @@ import com.jack.bookshelf.help.permission.Permissions
 import com.jack.bookshelf.help.permission.PermissionsCompat
 import com.jack.bookshelf.utils.*
 import com.jack.bookshelf.view.activity.ReadBookActivity
-import com.jack.bookshelf.widget.font.FontSelectorDialog
-import com.jack.bookshelf.widget.font.FontSelectorDialog.OnThisListener
+import com.jack.bookshelf.widget.dialog.FontSelectorDialog
+import com.jack.bookshelf.widget.dialog.FontSelectorDialog.OnThisListener
+import com.jack.bookshelf.widget.popupwindow.SelectMenu
 import timber.log.Timber
 
 /**

@@ -19,7 +19,7 @@ import com.jack.bookshelf.help.storage.BackupRestoreUi;
 import com.jack.bookshelf.help.storage.WebDavHelp;
 import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.view.activity.SettingActivity;
-import com.jack.bookshelf.view.dialog.InputDialog;
+import com.jack.bookshelf.widget.dialog.InputDialog;
 
 import java.util.ArrayList;
 

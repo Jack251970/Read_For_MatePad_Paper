@@ -21,7 +21,7 @@ import com.jack.bookshelf.help.permission.PermissionsCompat;
 import com.jack.bookshelf.utils.RealPathUtil;
 import com.jack.bookshelf.utils.SoftInputUtil;
 import com.jack.bookshelf.utils.theme.ThemeStore;
-import com.jack.bookshelf.widget.modialog.MoDialogHUD;
+import com.jack.bookshelf.widget.dialog.modialog.MoDialogHUD;
 
 import java.util.Objects;
 

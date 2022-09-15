@@ -32,10 +32,10 @@ import com.jack.bookshelf.presenter.contract.MainContract;
 import com.jack.bookshelf.service.WebService;
 import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.theme.ThemeStore;
-import com.jack.bookshelf.view.dialog.InputDialog;
+import com.jack.bookshelf.widget.dialog.InputDialog;
 import com.jack.bookshelf.view.fragment.BookListFragment;
-import com.jack.bookshelf.view.popupwindow.MoreSettingMenu;
-import com.jack.bookshelf.view.popupwindow.SelectMenu;
+import com.jack.bookshelf.widget.popupwindow.MoreSettingMenu;
+import com.jack.bookshelf.widget.popupwindow.SelectMenu;
 import com.jack.bookshelf.widget.viewpager.PaperViewPager;
 
 import java.util.List;

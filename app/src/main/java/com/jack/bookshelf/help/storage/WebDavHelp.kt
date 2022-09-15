@@ -15,13 +15,11 @@ import com.jack.bookshelf.utils.ZipUtils
 import com.jack.bookshelf.utils.toastOnUi
 import com.jack.bookshelf.utils.webdav.WebDav
 import com.jack.bookshelf.utils.webdav.http.HttpAuth
-import com.jack.bookshelf.view.popupwindow.SelectMenu
+import com.jack.bookshelf.widget.popupwindow.SelectMenu
 import io.reactivex.Single
 import io.reactivex.SingleOnSubscribe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import org.jetbrains.anko.selector
-import org.jetbrains.anko.toast
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -92,7 +90,7 @@ object WebDavHelp {
      */
     fun showRestoreDialog(context: Context, mainView: View, names: ArrayList<String>, callBack: Restore.CallBack?): Boolean {
         return if (names.isNotEmpty()) {
-           /* SelectMenu.builder(context)
+            SelectMenu.builder(context)
                 .setTitle(getString(R.string.choose_restore_file))
                 .setBottomButton(getString(R.string.cancel))
                 .setMenu(names)
@@ -101,12 +99,12 @@ object WebDavHelp {
                     override fun forListItem(lastChoose: Int, position: Int) {
                         restoreWebDav(names[position], callBack)
                     }
-                })*/
-            context.selector(title = "选择恢复文件", items = names) { _, index ->
+                }).show(mainView)
+            /*context.selector(title = getString(R.string.choose_restore_file), items = names) { _, index ->
                 if (index in 0 until names.size) {
                     restoreWebDav(names[index], callBack)
                 }
-            }
+            }*/
             true
         } else {
             false

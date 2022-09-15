@@ -17,10 +17,10 @@
     <string name="pk_search_result_filter_grade">search_result_filter_grade</string>
     <string name="pk_auto_backup">auto_backup</string>
     <!-- Websites -->
-    <string name="latest_release_url">https://github.com/Jack251970/MyBookshelf/releases/latest</string>
-    <string name="latest_release_api">https://api.github.com/repos/Jack251970/MyBookshelf/releases/latest</string>
-    <string name="source_rule_url">https://gedoor.github.io/MyBookshelf/sourcerule.html</string>
-    <string name="this_github_url">https://github.com/Jack251970/MyBookshelf</string>
+    <string name="latest_release_url">https://github.com/Jack251970/Read_For_MatePad_Paper/releases/latest</string>
+    <string name="latest_release_api">https://api.github.com/repos/Jack251970/Read_For_MatePad_Paper/releases/latest</string>
+    <string name="source_rule_url">https://alanskycn.gitee.io/teachme/</string>
+    <string name="this_github_url">https://github.com/Jack251970/Read_For_MatePad_Paper</string>
     <!-- Title -->
     <string name="vip_title">🔒%s</string>
     <string name="payed_title">🔓%s</string>

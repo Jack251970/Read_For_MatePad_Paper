@@ -37,10 +37,10 @@ import com.jack.bookshelf.service.ShareService;
 import com.jack.bookshelf.utils.SoftInputUtil;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.SourceEditAdapter;
-import com.jack.bookshelf.view.dialog.SourceLoginDialog;
+import com.jack.bookshelf.widget.dialog.SourceLoginDialog;
 import com.jack.bookshelf.view.popupwindow.KeyboardToolPop;
-import com.jack.bookshelf.view.popupwindow.MoreSettingMenu;
-import com.jack.bookshelf.view.popupwindow.PaperAlertDialog;
+import com.jack.bookshelf.widget.popupwindow.MoreSettingMenu;
+import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
 
 import org.jetbrains.annotations.NotNull;
 

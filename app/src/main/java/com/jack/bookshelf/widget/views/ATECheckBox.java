@@ -19,20 +19,20 @@ public class ATECheckBox extends AppCompatCheckBox {
 
     public ATECheckBox(Context context) {
         super(context);
-        init(context, null);
+        init(context);
     }
 
     public ATECheckBox(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context, attrs);
+        init(context);
     }
 
     public ATECheckBox(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context, attrs);
+        init(context);
     }
 
-    private void init(Context context, AttributeSet attrs) {
+    private void init(Context context) {
         setBackgroundColor(Color.TRANSPARENT);  // 取消点击背景
         ATH.setTint(this, ThemeStore.accentColor(context));
     }

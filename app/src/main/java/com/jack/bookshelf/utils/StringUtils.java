@@ -1,7 +1,5 @@
 package com.jack.bookshelf.utils;
 
-import static android.text.TextUtils.isEmpty;
-
 import android.annotation.SuppressLint;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -494,5 +492,10 @@ public class StringUtils {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static boolean isEmpty(String value) {
+        return value == null || "".equalsIgnoreCase(value.trim())
+                || "null".equalsIgnoreCase(value.trim());
     }
 }

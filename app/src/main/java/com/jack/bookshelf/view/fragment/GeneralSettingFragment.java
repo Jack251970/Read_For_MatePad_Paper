@@ -16,8 +16,8 @@ import com.jack.bookshelf.databinding.FragmentGeneralSettingBinding;
 import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.service.WebService;
 import com.jack.bookshelf.view.activity.SettingActivity;
-import com.jack.bookshelf.view.popupwindow.NumberPickerDialog;
-import com.jack.bookshelf.view.popupwindow.PaperAlertDialog;
+import com.jack.bookshelf.widget.dialog.NumberPickerDialog;
+import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
 
 /**
  * General Setting Fragment

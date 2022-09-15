@@ -19,9 +19,9 @@ import com.jack.bookshelf.help.ItemTouchCallback;
 import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
-import com.jack.bookshelf.widget.BadgeView;
+import com.jack.bookshelf.widget.textview.BadgeTextView;
 import com.jack.bookshelf.widget.RotateLoading;
-import com.jack.bookshelf.widget.image.CoverImageView;
+import com.jack.bookshelf.widget.imageview.CoverImageView;
 import com.jack.bookshelf.widget.views.ATECheckBox;
 
 import java.util.ArrayList;
@@ -213,7 +213,7 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
     static class MyViewHolder extends RecyclerView.ViewHolder {
         CoverImageView ivCover;
         TextView tvName;
-        BadgeView bvProgress;
+        BadgeTextView bvProgress;
         RotateLoading rotateLoading;
         View vwSelect;
         ATECheckBox checkBox;

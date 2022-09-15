@@ -23,7 +23,7 @@ import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.utils.RxUtils;
 import com.jack.bookshelf.view.activity.ChapterListActivity;
 import com.jack.bookshelf.view.fragment.adapter.BookmarkAdapter;
-import com.jack.bookshelf.widget.modialog.BookmarkDialog;
+import com.jack.bookshelf.widget.dialog.modialog.BookmarkDialog;
 
 import java.util.List;
 

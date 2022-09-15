@@ -10,6 +10,7 @@ import com.jack.bookshelf.MApplication
 import com.jack.bookshelf.R
 import com.jack.bookshelf.databinding.PopMoreSettingBinding
 import com.jack.bookshelf.help.ReadBookControl
+import com.jack.bookshelf.widget.popupwindow.SelectMenu
 
 /**
  * Read More Setting Menu

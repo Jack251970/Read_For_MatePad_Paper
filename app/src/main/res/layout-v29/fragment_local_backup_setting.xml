@@ -57,7 +57,7 @@
             style="@style/PaperTextStyleSettingPreference"
             app:layout_constraintLeft_toLeftOf="@id/cl_local_config"
             app:layout_constraintTop_toBottomOf="@id/line1"/>
-        <com.jack.bookshelf.widget.paperswitch.PaperSwitch
+        <com.jack.bookshelf.widget.onoff.PaperSwitch
             android:id="@+id/sw_auto_backup"
             android:layout_width="@dimen/setting_preference_layout_height"
             android:layout_height="@dimen/setting_preference_layout_height"

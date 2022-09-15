@@ -20,7 +20,7 @@ public class UpdateInfoBean implements Parcelable {
         upDate = in.readByte() != 0;
     }
 
-    public static final Creator<UpdateInfoBean> CREATOR = new Creator<UpdateInfoBean>() {
+    public static final Creator<UpdateInfoBean> CREATOR = new Creator<>() {
         @Override
         public UpdateInfoBean createFromParcel(Parcel in) {
             return new UpdateInfoBean(in);

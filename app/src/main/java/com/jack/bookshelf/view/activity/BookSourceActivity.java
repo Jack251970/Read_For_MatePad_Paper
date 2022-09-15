@@ -39,10 +39,10 @@ import com.jack.bookshelf.utils.RealPathUtil;
 import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.BookSourceAdapter;
-import com.jack.bookshelf.view.dialog.InputDialog;
-import com.jack.bookshelf.view.popupwindow.MoreSettingMenu;
-import com.jack.bookshelf.view.popupwindow.PaperAlertDialog;
-import com.jack.bookshelf.view.popupwindow.SelectMenu;
+import com.jack.bookshelf.widget.dialog.InputDialog;
+import com.jack.bookshelf.widget.popupwindow.MoreSettingMenu;
+import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
+import com.jack.bookshelf.widget.popupwindow.SelectMenu;
 import com.jack.bookshelf.widget.filepicker.picker.FilePicker;
 
 import java.io.IOException;
