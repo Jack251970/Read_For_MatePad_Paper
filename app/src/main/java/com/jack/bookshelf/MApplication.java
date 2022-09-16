@@ -15,6 +15,7 @@ import com.jack.bookshelf.help.AppFrontBackHelper;
 import com.jack.bookshelf.help.CrashHandler;
 import com.jack.bookshelf.model.UpLastChapterModel;
 import com.jack.bookshelf.utils.theme.ThemeStore;
+import com.jack.bookshelf.widget.dialog.PaperProgressDialog;
 
 import java.util.Arrays;
 
@@ -38,20 +39,34 @@ public class MApplication extends Application {
     private static long versionCode;
     private SharedPreferences configPreferences;
 
+    private PaperProgressDialog progressDialog;
+
     public static MApplication getInstance() {
         return instance;
-    }
-
-    public static long getVersionCode() {
-        return versionCode;
     }
 
     public static String getVersionName() {
         return versionName;
     }
 
+    public static long getVersionCode() {
+        return versionCode;
+    }
+
     public static Resources getAppResources() {
         return getInstance().getResources();
+    }
+
+    public static SharedPreferences getConfigPreferences() {
+        return getInstance().configPreferences;
+    }
+
+    public PaperProgressDialog getProgressDialog() {
+        return progressDialog;
+    }
+
+    public void setProgressDialog(PaperProgressDialog paperProgressDialog) {
+        progressDialog = paperProgressDialog;
     }
 
     @Override
@@ -137,9 +152,5 @@ public class MApplication extends Application {
         if (notificationManager != null) {
             notificationManager.createNotificationChannels(Arrays.asList(downloadChannel, readAloudChannel, webChannel));
         }
-    }
-
-    public static SharedPreferences getConfigPreferences() {
-        return getInstance().configPreferences;
     }
 }

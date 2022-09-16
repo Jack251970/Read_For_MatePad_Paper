@@ -29,7 +29,6 @@ import com.jack.bookshelf.widget.dialog.PaperProgressDialog;
 public class AboutFragment extends Fragment {
     private FragmentAboutBinding binding;
     private SettingActivity settingActivity;
-    private PaperProgressDialog progressDialog = null;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,8 +56,8 @@ public class AboutFragment extends Fragment {
     }
 
     private void initDialog() {
-        if (progressDialog == null) {
-            progressDialog = new PaperProgressDialog(settingActivity)
+        if (MApplication.getInstance().getProgressDialog() == null) {
+            MApplication.getInstance().setProgressDialog(new PaperProgressDialog(settingActivity)
                     .setTitle(R.string.download_update)
                     .setProgressMax(100)
                     .setButton(R.string.cancel, R.string.hide)
@@ -66,9 +65,9 @@ public class AboutFragment extends Fragment {
                         if (item == 0) {
                             UpdateService.getInstance().cancelDownload();
                         } else {
-                            progressDialog.dismiss();
+                            MApplication.getInstance().getProgressDialog().dismiss();
                         }
-                    });
+                    }));
         }
     }
 
@@ -79,26 +78,26 @@ public class AboutFragment extends Fragment {
         UpdateManager.getInstance(settingActivity).checkUpdate(settingActivity, settingActivity.getRoot(), true, new UpdateManager.CallBack() {
             @Override
             public void setProgress(int progress) {
-                progressDialog.setProgress(progress);
+                MApplication.getInstance().getProgressDialog().setProgress(progress);
             }
 
             @Override
             public void showDialog() {
-                progressDialog.setProgress(0);
-                progressDialog.show(settingActivity.getRoot());
+                MApplication.getInstance().getProgressDialog().setProgress(0);
+                MApplication.getInstance().getProgressDialog().show(settingActivity.getRoot());
             }
 
             @Override
             public void showDialog(int progress) {
-                progressDialog.setProgress(progress);
-                progressDialog.show(settingActivity.getRoot());
+                MApplication.getInstance().getProgressDialog().setProgress(progress);
+                MApplication.getInstance().getProgressDialog().show(settingActivity.getRoot());
             }
 
             @Override
             public void dismissDialog() {
-                progressDialog.setProgress(0);
-                if (progressDialog.isShowing()) {
-                    progressDialog.dismiss();
+                MApplication.getInstance().getProgressDialog().setProgress(0);
+                if (MApplication.getInstance().getProgressDialog().isShowing()) {
+                    MApplication.getInstance().getProgressDialog().dismiss();
                 }
             }
         });
