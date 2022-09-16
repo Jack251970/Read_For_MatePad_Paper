@@ -58,10 +58,13 @@ public class AboutFragment extends Fragment {
 
     private void initDialog() {
         progressDialog = new PaperProgressDialog(settingActivity)
-                .setTitle(R.string.update)
+                .setTitle(R.string.download_update)
                 .setProgressMax(100)
                 .setButton(R.string.cancel)
-                .setOnclick(() -> UpdateService.getInstance().cancelDownload());
+                .setOnclick(() -> {
+                    UpdateService.getInstance().cancelDownload();
+                    settingActivity.toast(R.string.download_cancel, Toast.LENGTH_SHORT);
+                });
     }
 
     /**

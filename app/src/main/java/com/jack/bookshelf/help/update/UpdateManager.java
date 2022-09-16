@@ -69,10 +69,10 @@ public class UpdateManager {
                         if (updateInfo.getUpDate()) {
                             PaperAlertDialog.builder(context)
                                     .setType(PaperAlertDialog.NO_APPEND_MESSAGE)
-                                    .setTitle(R.string.check_update)
+                                    .setTitle(R.string.find_new_version)
                                     .setMessage(String.valueOf(MarkdownUtils.simpleMarkdownConverter(updateInfo.getDetail())))
                                     .setNegativeButton(R.string.cancel)
-                                    .setPositiveButton(R.string.confirm)
+                                    .setPositiveButton(R.string.update)
                                     .setOnclick(new PaperAlertDialog.OnItemClickListener() {
                                         @Override
                                         public void forNegativeButton() {

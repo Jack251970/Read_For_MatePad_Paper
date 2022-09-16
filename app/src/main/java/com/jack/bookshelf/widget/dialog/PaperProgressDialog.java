@@ -54,7 +54,7 @@ public class PaperProgressDialog extends PopupWindow{
     }
 
     private String getPercentText(int progress) {
-        return (int)(100 * progress / max) + " %";
+        return "" + (int)(100.0 * progress / max + 0.5) + " %";
     }
 
     public PaperProgressDialog setButton(int strId) {

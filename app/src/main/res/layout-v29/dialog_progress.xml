@@ -6,7 +6,7 @@
     android:paddingStart="@dimen/alert_dialog_radius"
     android:paddingEnd="@dimen/alert_dialog_radius"
     android:paddingTop="@dimen/alert_dialog_padding_top"
-    android:paddingBottom="@dimen/alert_dialog_padding_bottom"
+    android:paddingBottom="12dp"
     android:orientation="vertical">
     <!-- 标题 -->
     <TextView
@@ -31,9 +31,9 @@
         android:id="@+id/tv_progress_number_progress_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/alert_dialog_title_margin_bottom"
+        android:layout_marginBottom="6dp"
         android:layout_gravity="center_horizontal"
-        android:text="0 %"
+        android:text=" 0 %"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -44,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/alert_dialog_button_layout_height"
         android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
         android:paddingStart="30dp"
         android:paddingEnd="30dp"
         android:text="@string/cancel"
