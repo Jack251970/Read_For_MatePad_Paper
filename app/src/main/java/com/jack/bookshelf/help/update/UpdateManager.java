@@ -28,7 +28,6 @@ import com.jack.bookshelf.service.update.UpdateService;
 import com.jack.bookshelf.service.update.listener.OnUpdateListener;
 import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
-import com.jack.bookshelf.widget.dialog.PaperProgressDialog;
 
 import java.io.File;
 
