@@ -23,11 +23,12 @@ import com.jack.bookshelf.base.observer.MyObserver;
 import com.jack.bookshelf.bean.UpdateInfoBean;
 import com.jack.bookshelf.model.analyzeRule.AnalyzeHeaders;
 import com.jack.bookshelf.model.impl.IHttpGetApi;
-import com.jack.bookshelf.service.update.listener.OnUpdateListener;
+import com.jack.bookshelf.service.update.UpdateDownloadTask;
 import com.jack.bookshelf.service.update.UpdateService;
-import com.jack.bookshelf.utils.MarkdownUtils;
+import com.jack.bookshelf.service.update.listener.OnUpdateListener;
 import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
+import com.jack.bookshelf.widget.dialog.PaperProgressDialog;
 
 import java.io.File;
 
@@ -42,6 +43,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class UpdateManager {
     private final Activity activity;
+    private boolean showMsg;
     private CallBack callBack;
 
     private UpdateManager(Activity activity) {
@@ -56,6 +58,7 @@ public class UpdateManager {
      * 检查Github更新
      */
     public void checkUpdate(Context context, View mainView, boolean showMsg, CallBack callBack) {
+        this.showMsg = showMsg;
         this.callBack = callBack;
         BaseModelImpl.getInstance().getRetrofitString("https://api.github.com")
                 .create(IHttpGetApi.class)
@@ -67,25 +70,27 @@ public class UpdateManager {
                     @Override
                     public void onNext(UpdateInfoBean updateInfo) {
                         if (updateInfo.getUpDate()) {
-                            PaperAlertDialog.builder(context)
-                                    .setType(PaperAlertDialog.NO_APPEND_MESSAGE)
-                                    .setTitle(R.string.find_new_version)
-                                    .setMessage(String.valueOf(MarkdownUtils.simpleMarkdownConverter(updateInfo.getDetail())))
-                                    .setNegativeButton(R.string.cancel)
-                                    .setPositiveButton(R.string.update)
-                                    .setOnclick(new PaperAlertDialog.OnItemClickListener() {
-                                        @Override
-                                        public void forNegativeButton() {
+                            if (!UpdateDownloadTask.getIsDownload()) {
+                                String markdownInfo = "### " + context.getString(R.string.version) + "：_" + updateInfo.getLastVersion() + "_\n" + updateInfo.getDetail();
+                                PaperAlertDialog.builder(context)
+                                        .setType(PaperAlertDialog.NO_MESSAGE)
+                                        .setTitle(R.string.find_new_version)
+                                        .putMarkdown(markdownInfo)
+                                        .setNegativeButton(R.string.cancel)
+                                        .setPositiveButton(R.string.update)
+                                        .setOnclick(new PaperAlertDialog.OnItemClickListener() {
+                                            @Override
+                                            public void forNegativeButton() {}
 
-                                        }
-
-                                        @Override
-                                        public void forPositiveButton() {
-                                            callBack.showDialog();
-                                            startUpdate(context, updateInfo);
-                                        }
-                                    })
-                                    .show(mainView);
+                                            @Override
+                                            public void forPositiveButton() {
+                                                callBack.showDialog();
+                                                startUpdate(context, updateInfo);
+                                            }
+                                        }).show(mainView);
+                            } else {
+                                callBack.showDialog(/*UpdateDownloadTask.getLastProgress()*/0);
+                            }
                         } else if (showMsg) {
                             ToastsKt.toast(activity, R.string.up_to_date, Toast.LENGTH_SHORT);
                         }
@@ -118,7 +123,7 @@ public class UpdateManager {
                     String thisVersion = MApplication.getVersionName().split("\\s")[0];
                     updateInfo.setUrl(url);
                     updateInfo.setLastVersion(lastVersion);
-                    updateInfo.setDetail("# " + lastVersion + "\n" + detail);
+                    updateInfo.setDetail(detail);
                     updateInfo.setUpDate(Integer.parseInt(lastVersion.split("\\.")[2]) > Integer.parseInt(thisVersion.split("\\.")[2]));
                 }
                 emitter.onNext(updateInfo);
@@ -153,18 +158,29 @@ public class UpdateManager {
 
             @Override
             public void onFailed() {
+                // 将开启断点下载
                 callBack.dismissDialog();
-                ToastsKt.toast(context, R.string.download_fail, Toast.LENGTH_SHORT);
+                if (showMsg) {
+                    ToastsKt.toast(context, R.string.download_fail, Toast.LENGTH_SHORT);
+                }
             }
 
             @Override
             public void onPaused() {
-
+                // 将开启断点下载
+                callBack.dismissDialog();
+                if (showMsg) {
+                    ToastsKt.toast(context, R.string.download_pause, Toast.LENGTH_SHORT);
+                }
             }
 
             @Override
             public void onCanceled() {
-
+                // 将清除缓存文件
+                callBack.dismissDialog();
+                if (showMsg) {
+                    ToastsKt.toast(context, R.string.download_cancel, Toast.LENGTH_SHORT);
+                }
             }});
     }
 
@@ -181,7 +197,9 @@ public class UpdateManager {
         try {
             activity.startActivity(intent);
         } catch (Exception e) {
-            ToastsKt.toast(activity, R.string.cannot_go_to_install_page, Toast.LENGTH_SHORT);
+            if (showMsg) {
+                ToastsKt.toast(activity, R.string.cannot_go_to_install_page, Toast.LENGTH_SHORT);
+            }
         }
     }
 
@@ -196,6 +214,8 @@ public class UpdateManager {
         void setProgress(int progress);
 
         void showDialog();
+
+        void showDialog(int progress);
 
         void dismissDialog();
     }

@@ -25,6 +25,6 @@ public class ReadAssets {
             // Should never happen!
             e.printStackTrace();
         }
-        return "读取错误，请检查文件名";
+        return "";
     }
 }

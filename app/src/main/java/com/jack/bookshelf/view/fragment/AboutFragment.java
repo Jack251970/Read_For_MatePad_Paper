@@ -29,7 +29,7 @@ import com.jack.bookshelf.widget.dialog.PaperProgressDialog;
 public class AboutFragment extends Fragment {
     private FragmentAboutBinding binding;
     private SettingActivity settingActivity;
-    private PaperProgressDialog progressDialog;
+    private PaperProgressDialog progressDialog = null;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,22 +57,26 @@ public class AboutFragment extends Fragment {
     }
 
     private void initDialog() {
-        progressDialog = new PaperProgressDialog(settingActivity)
-                .setTitle(R.string.download_update)
-                .setProgressMax(100)
-                .setButton(R.string.cancel)
-                .setOnclick(() -> {
-                    UpdateService.getInstance().cancelDownload();
-                    settingActivity.toast(R.string.download_cancel, Toast.LENGTH_SHORT);
-                });
+        if (progressDialog == null) {
+            progressDialog = new PaperProgressDialog(settingActivity)
+                    .setTitle(R.string.download_update)
+                    .setProgressMax(100)
+                    .setButton(R.string.cancel, R.string.hide)
+                    .setOnclick(item -> {
+                        if (item == 0) {
+                            UpdateService.getInstance().cancelDownload();
+                        } else {
+                            progressDialog.dismiss();
+                        }
+                    });
+        }
     }
 
     /**
      * 检查更新
      */
     private void checkUpdate() {
-        UpdateManager.getInstance(settingActivity).checkUpdate(settingActivity,
-                settingActivity.getRoot(), true, new UpdateManager.CallBack() {
+        UpdateManager.getInstance(settingActivity).checkUpdate(settingActivity, settingActivity.getRoot(), true, new UpdateManager.CallBack() {
             @Override
             public void setProgress(int progress) {
                 progressDialog.setProgress(progress);
@@ -81,6 +85,12 @@ public class AboutFragment extends Fragment {
             @Override
             public void showDialog() {
                 progressDialog.setProgress(0);
+                progressDialog.show(settingActivity.getRoot());
+            }
+
+            @Override
+            public void showDialog(int progress) {
+                progressDialog.setProgress(progress);
                 progressDialog.show(settingActivity.getRoot());
             }
 

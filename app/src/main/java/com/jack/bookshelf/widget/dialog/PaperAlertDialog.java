@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 
 import com.jack.bookshelf.R;
 
+import ru.noties.markwon.Markwon;
+
 /**
  * Paper Alert Dialog
  * Adapt to Huawei MatePad Paper
@@ -29,7 +31,7 @@ public class PaperAlertDialog extends PopupWindow{
     private TextView tvNegativeButton;
     private TextView tvPositiveButton;
 
-    public static final int NO_APPEND_MESSAGE = 0, ONLY_CENTER_TITLE = 1, ALL = 2;
+    public static final int NO_APPEND_MESSAGE = 0, ONLY_CENTER_TITLE = 1, NO_MESSAGE = 2, ALL = 3;
 
     public static PaperAlertDialog builder(Context context) { return new PaperAlertDialog(context); }
 
@@ -40,6 +42,10 @@ public class PaperAlertDialog extends PopupWindow{
                 tvMessage.setVisibility(View.GONE);
                 break;
             case ALL:
+                tvAppendMessage.setVisibility(View.VISIBLE);
+                break;
+            case NO_MESSAGE:
+                tvMessage.setVisibility(View.GONE);
                 tvAppendMessage.setVisibility(View.VISIBLE);
                 break;
             default:
@@ -72,6 +78,15 @@ public class PaperAlertDialog extends PopupWindow{
 
     public PaperAlertDialog setAppendMessage(String appendMessage) {
         tvAppendMessage.setText(appendMessage);
+        return this;
+    }
+
+    public PaperAlertDialog putMarkdown(String markdownText) {
+        if (tvMessage.getVisibility() == View.VISIBLE) {
+            Markwon.create(context).setMarkdown(tvMessage, markdownText);
+        } else {
+            Markwon.create(context).setMarkdown(tvAppendMessage, markdownText);
+        }
         return this;
     }
 

@@ -236,15 +236,17 @@
         <string name="website_illegal_cannot_import">%s网址非法，不能导入！</string>
         <!-- Update Manager -->
         <string name="update">更新</string>
+        <string name="hide">隐藏</string>
+        <string name="version">版本</string>
         <string name="find_new_version">发现新版本</string>
         <string name="up_to_date">已是最新版本</string>
         <string name="check_update_error">检查新版本出错</string>
+        <string name="download_update">下载更新</string>
         <string name="download_success">下载成功</string>
         <string name="download_fail">下载失败</string>
+        <string name="download_pause">下载暂停</string>
         <string name="download_cancel">下载取消</string>
         <string name="cannot_go_to_install_page">无法跳转安装界面</string>
-        <string name="download_update">下载更新</string>
-
 
     <!-- Dialog -->
         <!-- InputDialog Main -->

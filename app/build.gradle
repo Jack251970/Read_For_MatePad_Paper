@@ -71,6 +71,7 @@ android {
     lint {
         abortOnError false
     }
+    namespace 'com.jack.bookshelf'
     tasks.withType(JavaCompile) {
         options.compilerArgs << "-Xlint:unchecked"
         //options.compilerArgs << "-Xlint:deprecation"

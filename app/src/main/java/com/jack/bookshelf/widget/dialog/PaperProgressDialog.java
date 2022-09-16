@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -26,6 +27,9 @@ public class PaperProgressDialog extends PopupWindow{
     private final Context context;
     private TextView tvTitle;
     private TextView tvButton;
+    private LinearLayout llTwoButton;
+    private TextView tvLeftButton;
+    private TextView tvRightButton;
     private PaperProgressBar progressBar;
     private TextView progressNumber;
     private int max = 100;
@@ -62,16 +66,41 @@ public class PaperProgressDialog extends PopupWindow{
     }
 
     public PaperProgressDialog setButton(String text) {
+        llTwoButton.setVisibility(View.GONE);
+        tvButton.setVisibility(View.VISIBLE);
         tvButton.setText(text);
         return this;
     }
 
+    public PaperProgressDialog setButton(int leftButton, int rightButton) {
+        return setButton(getString(leftButton), getString(rightButton));
+    }
+
+    public PaperProgressDialog setButton(String leftButton, String rightButton) {
+        tvLeftButton.setText(leftButton);
+        tvRightButton.setText(rightButton);
+        return this;
+    }
+
     public PaperProgressDialog setOnclick(@NonNull OnItemClickListener itemClick) {
-        tvButton.setOnClickListener(v -> {
-            dismiss();
-            setProgress(0);
-            itemClick.forButton();
-        });
+        if (tvButton.getVisibility() == View.VISIBLE) {
+            tvButton.setOnClickListener(v -> {
+                dismiss();
+                setProgress(0);
+                itemClick.forButton(0);
+            });
+        } else {
+            tvLeftButton.setOnClickListener(v -> {
+                dismiss();
+                setProgress(0);
+                itemClick.forButton(0);
+            });
+            tvRightButton.setOnClickListener(v -> {
+                dismiss();
+                setProgress(0);
+                itemClick.forButton(1);
+            });
+        }
         return this;
     }
 
@@ -89,6 +118,9 @@ public class PaperProgressDialog extends PopupWindow{
     private void bindView(View view) {
         tvTitle = view.findViewById(R.id.tv_title_progress_dialog);
         tvButton = view.findViewById(R.id.tv_button_progress_dialog);
+        llTwoButton = view.findViewById(R.id.ll_two_button_progress_dialog);
+        tvLeftButton = view.findViewById(R.id.tv_negative_button_progress_dialog);
+        tvRightButton = view.findViewById(R.id.tv_positive_button_progress_dialog);
         progressBar = view.findViewById(R.id.pgb_progress_bar_progress_dialog);
         progressNumber = view.findViewById(R.id.tv_progress_number_progress_dialog);
     }
@@ -98,6 +130,6 @@ public class PaperProgressDialog extends PopupWindow{
     }
 
     public interface OnItemClickListener {
-        void forButton();
+        void forButton(int item);
     }
 }

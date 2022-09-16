@@ -38,7 +38,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
         tools:ignore="HardcodedText" />
-    <!-- 按钮 -->
+    <!-- 一个按钮 -->
     <TextView
         android:id="@+id/tv_button_progress_dialog"
         android:layout_width="wrap_content"
@@ -47,8 +47,42 @@
         android:gravity="center_vertical"
         android:paddingStart="30dp"
         android:paddingEnd="30dp"
-        android:text="@string/cancel"
         android:textColor="@color/black"
         android:textSize="@dimen/alert_dialog_button_text_size"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:text="取消"/>
+    <!-- 两个按钮 -->
+    <LinearLayout
+        android:id="@+id/ll_two_button_progress_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/alert_dialog_button_layout_height"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_negative_button_progress_dialog"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/alert_dialog_button_text_size"
+            android:textStyle="bold"
+            tools:text="取消"/>
+        <!-- 分割线 -->
+        <LinearLayout
+            android:layout_width="@dimen/alert_dialog_button_divide_line_width"
+            android:layout_height="20sp"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black"/>
+        <TextView
+            android:id="@+id/tv_positive_button_progress_dialog"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/alert_dialog_button_text_size"
+            android:textStyle="bold"
+            tools:text="隐藏"/>
+    </LinearLayout>
 </LinearLayout>

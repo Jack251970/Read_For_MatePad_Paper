@@ -19,6 +19,7 @@ import java.io.File;
 public class UpdateService {
     private static volatile UpdateService manager = null;
     private UpdateDownloadTask updateDownloadTask;
+
     private final String fileParentPath;
     private String fileName;
 
@@ -45,7 +46,7 @@ public class UpdateService {
         if (updateDownloadTask == null) {
             updateDownloadTask = new UpdateDownloadTask(onUpdateListener);
             updateDownloadTask.execute(updateInfo.getUrl(), fileParentPath, fileName);
-            updateDownloadTask.setOnDownloadTaskFinishedListener(new UpdateDownloadTask.OnDownloadTaskFinishedListener() {
+            updateDownloadTask.setOnDownloadTaskFinishedListener(new UpdateDownloadTask.OnUpdateDownloadTaskListener() {
                 @Override
                 public void onFinished() {
                     updateDownloadTask = null;

@@ -25,30 +25,31 @@ public class UpdateDownloadTask extends AsyncTask<String, Integer, Integer> {
     private static final int TYPE_PAUSED = 2;
     private static final int TYPE_CANCELED = 3;
 
-    private final OnUpdateListener mOnUpdateListener;
-    private OnDownloadTaskFinishedListener mOnDownloadTaskFinishedListener;
+    private final OnUpdateListener updateListener;
+    private OnUpdateDownloadTaskListener updateDownloadTaskListener;
 
     private boolean isCanceled = false;
     private boolean isPaused = false;
+    private static boolean isDownload = false;
 
-    private int lastProgress;
+    private int lastProgress = 0;
     private File mDownloadFile = null;
-    private long mContentLength;    // 记录url下载文件的长度
+    private long mContentLength;    // 已下载的文件长度
 
     public UpdateDownloadTask(OnUpdateListener onUpdateListener) {
-        mOnUpdateListener = onUpdateListener;
+        updateListener = onUpdateListener;
     }
 
-    public void setOnDownloadTaskFinishedListener(OnDownloadTaskFinishedListener onDownloadTaskFinishedListener) {
-        mOnDownloadTaskFinishedListener = onDownloadTaskFinishedListener;
+    public void setOnDownloadTaskFinishedListener(OnUpdateDownloadTaskListener onUpdateDownloadTaskListener) {
+        updateDownloadTaskListener = onUpdateDownloadTaskListener;
     }
 
     @Override
     protected Integer doInBackground(String... params) {
         InputStream is = null;
         RandomAccessFile savedFile = null;
+        isDownload = true;
         try {
-
             long downloadLength = 0; // 记录已下载的文件长度
             String downloadUrl = params[0];
             String fileParentPath = params[1];
@@ -57,12 +58,11 @@ public class UpdateDownloadTask extends AsyncTask<String, Integer, Integer> {
             if (mDownloadFile.exists()) {
                 downloadLength = mDownloadFile.length();
             }
-
             mContentLength = getContentLength(downloadUrl);
             if (mContentLength == 0) {
                 return TYPE_FAILED;
             } else if (mContentLength == downloadLength) {
-                // 已下载字节和文件总字节相等，说明已经下载完成了
+                // 已下载字节和文件总字节相等，说明下载完成
                 return TYPE_SUCCESS;
             }
             OkHttpClient client = new OkHttpClient();
@@ -117,7 +117,7 @@ public class UpdateDownloadTask extends AsyncTask<String, Integer, Integer> {
     protected void onProgressUpdate(Integer... values) {
         int progress = values[0];
         if (progress > lastProgress) {
-            mOnUpdateListener.onProgress(progress);
+            updateListener.onProgress(progress);
             lastProgress = progress;
         }
     }
@@ -127,36 +127,46 @@ public class UpdateDownloadTask extends AsyncTask<String, Integer, Integer> {
         switch (status) {
             case TYPE_SUCCESS:
                 if (mContentLength != mDownloadFile.length()) {
-                    if (mOnUpdateListener != null)
-                        mOnUpdateListener.onException();
+                    if (updateListener != null) {
+                        updateListener.onException();
+                    }
                     // 下载数据异常，告知downManager下载任务已失败
-                    if (mOnDownloadTaskFinishedListener != null)
-                        mOnDownloadTaskFinishedListener.onException();
+                    if (updateDownloadTaskListener != null) {
+                        updateDownloadTaskListener.onException();
+                    }
                 } else {
-                    if (mOnUpdateListener != null)
-                        mOnUpdateListener.onSuccess();
+                    if (updateListener != null) {
+                        updateListener.onSuccess();
+                    }
                 }
+                lastProgress = 0;
                 break;
             case TYPE_FAILED:
-                if (mOnUpdateListener != null)
-                    mOnUpdateListener.onFailed();
+                if (updateListener != null) {
+                    updateListener.onFailed();
+                }
                 break;
             case TYPE_PAUSED:
-                if (mOnUpdateListener != null)
-                    mOnUpdateListener.onPaused();
+                if (updateListener != null) {
+                    updateListener.onPaused();
+                }
                 break;
             case TYPE_CANCELED:
-                if (mOnUpdateListener != null)
-                    mOnUpdateListener.onCanceled();
-
-                if (mOnDownloadTaskFinishedListener != null)
-                    mOnDownloadTaskFinishedListener.onCanceled();
+                if (updateListener != null) {
+                    updateListener.onCanceled();
+                }
+                if (updateDownloadTaskListener != null) {
+                    updateDownloadTaskListener.onCanceled();
+                }
+                lastProgress = 0;
+                break;
             default:
                 break;
         }
-
-        if (mOnDownloadTaskFinishedListener != null)
-            mOnDownloadTaskFinishedListener.onFinished();
+        if (updateDownloadTaskListener != null) {
+            updateDownloadTaskListener.onFinished();
+        }
+        isDownload = false;
     }
 
     /**
@@ -175,9 +185,6 @@ public class UpdateDownloadTask extends AsyncTask<String, Integer, Integer> {
 
     /**
      * 获取下载文件长度
-     * @param downloadUrl 下载文件url
-     * @return 下载文件长度
-     * @throws IOException IOException
      */
     private long getContentLength(String downloadUrl) throws IOException {
         OkHttpClient client = new OkHttpClient();
@@ -193,20 +200,15 @@ public class UpdateDownloadTask extends AsyncTask<String, Integer, Integer> {
         return 0;
     }
 
-    public interface OnDownloadTaskFinishedListener {
-        /**
-         * 下载任务已结束
-         */
+    public static boolean getIsDownload() {
+        return isDownload;
+    }
+
+    public interface OnUpdateDownloadTaskListener {
         void onFinished();
 
-        /**
-         * 下载任务已取消
-         */
         void onCanceled();
 
-        /**
-         * 下载文件异常，不是完整的文件或者文件包异常
-         */
         void onException();
     }
 }
