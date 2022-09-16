@@ -11,7 +11,6 @@
     android:paddingBottom="@dimen/alert_dialog_padding_bottom"
     android:orientation="vertical">
     <TextView
-        android:id="@+id/tv_alert_dialog_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/alert_dialog_title_margin_bottom"

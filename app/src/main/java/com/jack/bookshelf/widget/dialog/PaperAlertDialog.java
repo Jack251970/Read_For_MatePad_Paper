@@ -14,7 +14,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.jack.bookshelf.R;
-import com.jack.bookshelf.widget.bar.PaperProgressBar;
 
 /**
  * Paper Alert Dialog
@@ -29,11 +28,8 @@ public class PaperAlertDialog extends PopupWindow{
     private TextView tvAppendMessage;
     private TextView tvNegativeButton;
     private TextView tvPositiveButton;
-    private PaperProgressBar progressBar;
-    private TextView progressNumber;
-    private int max = 100;
 
-    public static final int NO_APPEND_MESSAGE = 0, ONLY_CENTER_TITLE = 1, ALL = 2, WITH_PROGRESS_BAR = 3;
+    public static final int NO_APPEND_MESSAGE = 0, ONLY_CENTER_TITLE = 1, ALL = 2;
 
     public static PaperAlertDialog builder(Context context) { return new PaperAlertDialog(context); }
 
@@ -46,12 +42,6 @@ public class PaperAlertDialog extends PopupWindow{
             case ALL:
                 tvAppendMessage.setVisibility(View.VISIBLE);
                 break;
-            case WITH_PROGRESS_BAR:
-                progressBar.setVisibility(View.VISIBLE);
-                progressNumber.setVisibility(View.VISIBLE);
-                tvMessage.setVisibility(View.GONE);
-                break;
-            case NO_APPEND_MESSAGE:
             default:
                 return this;
         }
@@ -83,22 +73,6 @@ public class PaperAlertDialog extends PopupWindow{
     public PaperAlertDialog setAppendMessage(String appendMessage) {
         tvAppendMessage.setText(appendMessage);
         return this;
-    }
-
-    public PaperAlertDialog setProgressMax(int max) {
-        this.max = max;
-        progressBar.setMax(max);
-        return this;
-    }
-
-    public PaperAlertDialog setProgress(int progress) {
-        progressBar.setProgress(progress, false);
-        progressNumber.setText(getPercentText(progress / max));
-        return this;
-    }
-
-    private String getPercentText(int percent) {
-        return percent + " %";
     }
 
     public PaperAlertDialog setNegativeButton(int strId) {
@@ -143,13 +117,11 @@ public class PaperAlertDialog extends PopupWindow{
     }
 
     private void bindView(View view) {
-        tvTitle = view.findViewById(R.id.tv_alert_dialog_title);
-        tvMessage = view.findViewById(R.id.tv_alert_dialog_message);
-        tvAppendMessage = view.findViewById(R.id.tv_alert_dialog_append_message);
-        tvNegativeButton = view.findViewById(R.id.tv_alert_dialog_negative_button);
-        tvPositiveButton = view.findViewById(R.id.tv_alert_dialog_positive_button);
-        progressBar = view.findViewById(R.id.pgb_progress_alert_dialog);
-        progressNumber = view.findViewById(R.id.tv_progress_number);
+        tvTitle = view.findViewById(R.id.tv_title_alert_dialog);
+        tvMessage = view.findViewById(R.id.tv_message_alert_dialog);
+        tvAppendMessage = view.findViewById(R.id.tv_append_message_alert_dialog);
+        tvNegativeButton = view.findViewById(R.id.tv_negative_button_alert_dialog);
+        tvPositiveButton = view.findViewById(R.id.tv_positive_button_alert_dialog);
     }
 
     public void show(View mainView) {

@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="@dimen/alert_dialog_width"
+    android:background="@drawable/shape_alert_dialog_background"
+    android:paddingStart="@dimen/alert_dialog_radius"
+    android:paddingEnd="@dimen/alert_dialog_radius"
+    android:paddingTop="@dimen/alert_dialog_padding_top"
+    android:paddingBottom="@dimen/alert_dialog_padding_bottom"
+    android:orientation="vertical">
+    <!-- 标题 -->
+    <TextView
+        android:id="@+id/tv_title_progress_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/alert_dialog_title_margin_bottom"
+        android:gravity="start"
+        android:textColor="@color/black"
+        android:textSize="@dimen/alert_dialog_title_text_size"
+        android:textStyle="bold"
+        tools:text="精准转写" />
+    <!-- 进度条 -->
+    <com.jack.bookshelf.widget.bar.PaperProgressBar
+        android:id="@+id/pgb_progress_bar_progress_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginBottom="6dp"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/shape_progressbar_background" />
+    <TextView
+        android:id="@+id/tv_progress_number_progress_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/alert_dialog_title_margin_bottom"
+        android:layout_gravity="center_horizontal"
+        android:text="0 %"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
+    <!-- 按钮 -->
+    <TextView
+        android:id="@+id/tv_button_progress_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/alert_dialog_button_layout_height"
+        android:layout_gravity="center_horizontal"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="@string/cancel"
+        android:textColor="@color/black"
+        android:textSize="@dimen/alert_dialog_button_text_size"
+        android:textStyle="bold"/>
+</LinearLayout>

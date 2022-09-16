@@ -18,7 +18,7 @@ import com.jack.bookshelf.databinding.FragmentAboutBinding;
 import com.jack.bookshelf.help.update.UpdateManager;
 import com.jack.bookshelf.service.update.UpdateService;
 import com.jack.bookshelf.view.activity.SettingActivity;
-import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
+import com.jack.bookshelf.widget.dialog.PaperProgressDialog;
 
 /**
  * About Fragment
@@ -29,7 +29,7 @@ import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
 public class AboutFragment extends Fragment {
     private FragmentAboutBinding binding;
     private SettingActivity settingActivity;
-    private PaperAlertDialog alertDialog;
+    private PaperProgressDialog progressDialog;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,47 +57,35 @@ public class AboutFragment extends Fragment {
     }
 
     private void initDialog() {
-        alertDialog = new PaperAlertDialog(settingActivity)
+        progressDialog = new PaperProgressDialog(settingActivity)
                 .setTitle(R.string.update)
-                .setType(PaperAlertDialog.WITH_PROGRESS_BAR)
                 .setProgressMax(100)
-                .setNegativeButton(R.string.cancel)
-                .setPositiveButton(R.string.confirm)
-                .setOnclick(new PaperAlertDialog.OnItemClickListener() {
-                    @Override
-                    public void forNegativeButton() {
-                        UpdateService.getInstance().cancelDownload();
-                    }
-
-                    @Override
-                    public void forPositiveButton() {
-
-                    }
-                });
+                .setButton(R.string.cancel)
+                .setOnclick(() -> UpdateService.getInstance().cancelDownload());
     }
 
     /**
      * 检查更新
      */
     private void checkUpdate() {
-        UpdateManager.getInstance(settingActivity).checkUpdate(settingActivity, settingActivity.getRoot(),
-                true, new UpdateManager.CallBack() {
+        UpdateManager.getInstance(settingActivity).checkUpdate(settingActivity,
+                settingActivity.getRoot(), true, new UpdateManager.CallBack() {
             @Override
             public void setProgress(int progress) {
-                alertDialog.setProgress(progress);
+                progressDialog.setProgress(progress);
             }
 
             @Override
             public void showDialog() {
-                alertDialog.setProgress(0);
-                alertDialog.show(settingActivity.getRoot());
+                progressDialog.setProgress(0);
+                progressDialog.show(settingActivity.getRoot());
             }
 
             @Override
             public void dismissDialog() {
-                alertDialog.setProgress(0);
-                if (alertDialog.isShowing()) {
-                    alertDialog.dismiss();
+                progressDialog.setProgress(0);
+                if (progressDialog.isShowing()) {
+                    progressDialog.dismiss();
                 }
             }
         });
