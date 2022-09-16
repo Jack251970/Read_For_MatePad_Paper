@@ -1,5 +1,5 @@
 <div align="center">
-<img width="150" height="150" src="https://github.com/Jack251970/Read_For_MatePad_Paper/blob/raw/app/src/main/res/mipmap-xxxhdpi/book_launcher_matepad_paper.png" alt="legado"/>  
+<img width="150" height="150" src="https://github.com/Jack251970/Read_For_MatePad_Paper/blob/raw/app/src/main/res/mipmap-xxxhdpi/book_launcher_matepad_paper.png" alt="icon"/>  
 
 # 阅读（Read）
 一款为华为*MatePad Paper*适配的阅读软件（A Read Application for Huawei Matepad Paper）
