@@ -19,7 +19,6 @@ import com.jack.bookshelf.base.MBaseActivity;
 import com.jack.bookshelf.bean.BookSourceBean;
 import com.jack.bookshelf.bean.CookieBean;
 import com.jack.bookshelf.databinding.ActivitySourceLoginBinding;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 
 /**
  * Source Login Page
@@ -63,7 +62,6 @@ public class SourceLoginActivity extends MBaseActivity<IPresenter> {
      */
     @Override
     protected void onCreateActivity() {
-        getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivitySourceLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
     }

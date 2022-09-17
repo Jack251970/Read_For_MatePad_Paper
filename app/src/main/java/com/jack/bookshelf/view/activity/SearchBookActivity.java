@@ -36,7 +36,6 @@ import com.jack.bookshelf.presenter.BookDetailPresenter;
 import com.jack.bookshelf.presenter.SearchBookPresenter;
 import com.jack.bookshelf.presenter.contract.SearchBookContract;
 import com.jack.bookshelf.utils.SoftInputUtil;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.SearchBookAdapter;
 import com.jack.bookshelf.view.adapter.SearchBookshelfAdapter;
 import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
@@ -81,7 +80,6 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
 
     @Override
     protected void onCreateActivity() {
-        getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivitySearchBookBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
     }

@@ -1,5 +1,6 @@
 package com.jack.bookshelf.view.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -37,13 +38,12 @@ import com.jack.bookshelf.utils.GsonUtils;
 import com.jack.bookshelf.utils.IOUtils;
 import com.jack.bookshelf.utils.RealPathUtil;
 import com.jack.bookshelf.utils.StringUtils;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.BookSourceAdapter;
 import com.jack.bookshelf.widget.dialog.InputDialog;
-import com.jack.bookshelf.widget.popupwindow.MoreSettingMenu;
 import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
-import com.jack.bookshelf.widget.popupwindow.SelectMenu;
 import com.jack.bookshelf.widget.filepicker.picker.FilePicker;
+import com.jack.bookshelf.widget.popupwindow.MoreSettingMenu;
+import com.jack.bookshelf.widget.popupwindow.SelectMenu;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -88,7 +88,6 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
 
     @Override
     protected void onCreateActivity() {
-        getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivityBookSourceBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
     }
@@ -276,6 +275,7 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void selectAllDataS() {
         for (BookSourceBean bookSourceBean : adapter.getDataList()) {
             bookSourceBean.setEnable(!selectAll);
@@ -286,6 +286,7 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
         setResult(RESULT_OK);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void revertSelection() {
         for (BookSourceBean bookSourceBean : adapter.getDataList()) {
             bookSourceBean.setEnable(!bookSourceBean.getEnable());

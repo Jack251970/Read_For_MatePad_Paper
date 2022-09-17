@@ -10,7 +10,6 @@ import com.jack.bookshelf.utils.EncoderUtils
 import com.jack.bookshelf.utils.StringUtils.getString
 import com.jack.bookshelf.utils.splitNotBlank
 import com.jack.bookshelf.utils.toastOnUi
-import org.jetbrains.anko.toast
 
 /**
  * Source Helper

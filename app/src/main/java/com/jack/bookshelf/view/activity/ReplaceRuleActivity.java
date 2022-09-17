@@ -31,14 +31,13 @@ import com.jack.bookshelf.presenter.contract.ReplaceRuleContract;
 import com.jack.bookshelf.utils.ACache;
 import com.jack.bookshelf.utils.RealPathUtil;
 import com.jack.bookshelf.utils.StringUtils;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.ReplaceRuleAdapter;
 import com.jack.bookshelf.widget.dialog.InputDialog;
-import com.jack.bookshelf.widget.popupwindow.MoreSettingMenu;
 import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
-import com.jack.bookshelf.widget.filepicker.picker.FilePicker;
 import com.jack.bookshelf.widget.dialog.modialog.MoDialogHUD;
 import com.jack.bookshelf.widget.dialog.modialog.ReplaceRuleDialog;
+import com.jack.bookshelf.widget.filepicker.picker.FilePicker;
+import com.jack.bookshelf.widget.popupwindow.MoreSettingMenu;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -84,7 +83,6 @@ public class ReplaceRuleActivity extends MBaseActivity<ReplaceRuleContract.Prese
 
     @Override
     protected void onCreateActivity() {
-        getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivityReplaceRuleBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
     }

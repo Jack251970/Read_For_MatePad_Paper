@@ -60,7 +60,6 @@ public final class ThemeStore implements ThemeStorePrefKeys, ThemeStoreInterface
 
     // Commit method
 
-    @SuppressWarnings("unchecked")
     @Override
     public void apply() {
         mEditor.putLong(VALUES_CHANGED, System.currentTimeMillis())

@@ -5,7 +5,6 @@ handler.postDelayed(()
      */
     @Override
     protected void onCreateActivity() {
-        getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivityAboutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         @SuppressLint("UseCompatLoadingForDrawables")

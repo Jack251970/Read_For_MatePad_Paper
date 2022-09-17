@@ -20,7 +20,6 @@ import com.jack.bookshelf.base.MBaseActivity;
 import com.jack.bookshelf.bean.DownloadBookBean;
 import com.jack.bookshelf.databinding.ActivityDownloadBinding;
 import com.jack.bookshelf.service.DownloadService;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.DownloadAdapter;
 
 import java.lang.ref.WeakReference;
@@ -68,7 +67,6 @@ public class DownloadActivity extends MBaseActivity<IPresenter> {
      */
     @Override
     protected void onCreateActivity() {
-        getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivityDownloadBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
     }

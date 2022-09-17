@@ -1,11 +1,11 @@
 package com.jack.bookshelf.view.activity
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import com.jack.basemvplib.BitIntentDataManager
 import com.jack.basemvplib.impl.IPresenter
 import com.jack.bookshelf.base.MBaseActivity
 import com.jack.bookshelf.databinding.ActivityWebViewBinding
-import com.jack.bookshelf.utils.theme.ThemeStore
 
 /**
  * WebView Page
@@ -24,7 +24,7 @@ class WebViewActivity : MBaseActivity<IPresenter>() {
     }
 
     override fun onCreateActivity() {
-        window.decorView.setBackgroundColor(ThemeStore.backgroundColor(this))
+        window.decorView.setBackgroundColor(Color.WHITE)
         setContentView(binding.root)
         binding.ivBackWebView.setOnClickListener{ finish() }
         binding.tvTitleWebView.text = intent.getStringExtra("title")

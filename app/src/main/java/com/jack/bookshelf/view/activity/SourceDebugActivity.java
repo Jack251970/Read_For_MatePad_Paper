@@ -22,7 +22,6 @@ import com.jack.bookshelf.constant.RxBusTag;
 import com.jack.bookshelf.databinding.ActivitySourceDebugBinding;
 import com.jack.bookshelf.model.content.Debug;
 import com.jack.bookshelf.utils.SoftInputUtil;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.SourceDebugAdapter;
 
 import io.reactivex.disposables.CompositeDisposable;
@@ -77,7 +76,6 @@ public class SourceDebugActivity extends MBaseActivity<IPresenter> {
      */
     @Override
     protected void onCreateActivity() {
-        getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivitySourceDebugBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
     }

@@ -9,7 +9,6 @@ import com.jack.bookshelf.base.BaseViewPagerActivity;
 import com.jack.bookshelf.databinding.ActivityImportBookBinding;
 import com.jack.bookshelf.presenter.ImportBookPresenter;
 import com.jack.bookshelf.presenter.contract.ImportBookContract;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.fragment.LocalDirectoryFragment;
 import com.jack.bookshelf.view.fragment.SmartImportFragment;
 import com.jack.bookshelf.view.fragment.base.BaseFileFragment;
@@ -55,7 +54,6 @@ public class ImportBookActivity extends BaseViewPagerActivity<ImportBookContract
 
     @Override
     protected void onCreateActivity() {
-        getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivityImportBookBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         // 初始化TabIndicator

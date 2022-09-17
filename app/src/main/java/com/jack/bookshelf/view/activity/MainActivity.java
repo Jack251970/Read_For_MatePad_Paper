@@ -31,9 +31,8 @@ import com.jack.bookshelf.presenter.MainPresenter;
 import com.jack.bookshelf.presenter.contract.MainContract;
 import com.jack.bookshelf.service.WebService;
 import com.jack.bookshelf.utils.StringUtils;
-import com.jack.bookshelf.utils.theme.ThemeStore;
-import com.jack.bookshelf.widget.dialog.InputDialog;
 import com.jack.bookshelf.view.fragment.BookListFragment;
+import com.jack.bookshelf.widget.dialog.InputDialog;
 import com.jack.bookshelf.widget.popupwindow.MoreSettingMenu;
 import com.jack.bookshelf.widget.popupwindow.SelectMenu;
 import com.jack.bookshelf.widget.viewpager.PaperViewPager;
@@ -85,7 +84,6 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
 
     @Override
     protected void onCreateActivity() {
-        getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
     }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         initTheme();
+        initBackground();
         super.onCreate(savedInstanceState);
         // disable auto fill
         getWindow().getDecorView().setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
@@ -62,6 +64,10 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
 
     protected void initTheme() {
         setTheme(R.style.CAppTheme);
+    }
+
+    protected void initBackground() {
+        getWindow().getDecorView().setBackgroundColor(Color.WHITE);
     }
 
     /********************************************Bar***********************************************/

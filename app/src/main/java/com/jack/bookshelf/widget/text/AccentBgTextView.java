@@ -6,9 +6,8 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
-import com.jack.bookshelf.utils.screen.ScreenUtils;
 import com.jack.bookshelf.utils.Selector;
-import com.jack.bookshelf.utils.theme.ThemeStore;
+import com.jack.bookshelf.utils.screen.ScreenUtils;
 
 /**
  * Accent Background TextView
@@ -19,24 +18,23 @@ import com.jack.bookshelf.utils.theme.ThemeStore;
 public class AccentBgTextView extends AppCompatTextView {
     public AccentBgTextView(Context context) {
         super(context);
-        init(context);
+        init();
     }
 
     public AccentBgTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context);
+        init();
     }
 
     public AccentBgTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context);
+        init();
     }
 
-    private void init(Context context) {
+    private void init() {
         setBackground(Selector.shapeBuild()
                 .setCornerRadius(ScreenUtils.dpToPx(3))
-                .setDefaultBgColor(ThemeStore.accentColor(context))
-                .create());
+                .setDefaultBgColor(Color.WHITE).create());
         setTextColor(Color.WHITE);
     }
 }

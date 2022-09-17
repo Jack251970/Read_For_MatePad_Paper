@@ -23,12 +23,10 @@ import com.jack.bookshelf.databinding.ActivityBookReadBinding;
 import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.help.ChapterContentHelp;
 import com.jack.bookshelf.help.ReadBookControl;
-import com.jack.bookshelf.service.ReadAloudService;
 import com.jack.bookshelf.utils.RxUtils;
-import com.jack.bookshelf.utils.screen.ScreenUtils;
 import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.ToastsKt;
-import com.jack.bookshelf.utils.theme.ThemeStore;
+import com.jack.bookshelf.utils.screen.ScreenUtils;
 import com.jack.bookshelf.widget.page.animation.PageAnimation;
 
 import java.util.ArrayList;
@@ -860,17 +858,13 @@ public abstract class PageLoader {
             // 对标题进行绘制
             String str;
             int strLength = 0;
-            boolean isLight;
             for (int i = 0; i < txtPage.getTitleLines(); ++i) {
                 str = txtPage.getLine(i);
                 strLength = strLength + str.length();
-                isLight = ReadAloudService.running && readAloudParagraph == 0;
-                mTitlePaint.setColor(isLight ? ThemeStore.accentColor(mContext) : readBookControl.getTextColor());
-
-                //进行绘制
+                mTitlePaint.setColor(readBookControl.getTextColor());
+                // 进行绘制
                 canvas.drawText(str, mDisplayWidth / 2f, top, mTitlePaint);
-
-                //pzl
+                // pzl
                 float leftPosition = (float) (mDisplayWidth / 2.0);
                 float rightPosition;
                 float bottomPosition = top + mTitlePaint.getFontMetrics().descent;
@@ -904,12 +898,11 @@ public abstract class PageLoader {
                         leftPosition = rightPosition;
                     }
                 }
-
-                //设置尾部间距
+                // 设置尾部间距
                 if (i == txtPage.getTitleLines() - 1) {
                     top += titlePara;
                 } else {
-                    //行间距
+                    // 行间距
                     top += titleInterval;
                 }
             }
@@ -917,13 +910,12 @@ public abstract class PageLoader {
             if (txtPage.getLines().isEmpty()) {
                 return;
             }
-            //对内容进行绘制
+            // 对内容进行绘制
             for (int i = txtPage.getTitleLines(); i < txtPage.size(); ++i) {
                 str = txtPage.getLine(i);
                 strLength = strLength + str.length();
                 int paragraphLength = txtPage.getPosition() == 0 ? strLength : txtChapter.getPageLength(txtPage.getPosition() - 1) + strLength;
-                isLight = ReadAloudService.running && readAloudParagraph == txtChapter.getParagraphIndex(paragraphLength);
-                mTextPaint.setColor(isLight ? ThemeStore.accentColor(mContext) : readBookControl.getTextColor());
+                mTextPaint.setColor(readBookControl.getTextColor());
                 Layout tempLayout = StaticLayout.Builder.obtain(str, 0, str.length(), mTextPaint, mVisibleWidth)
                         .setAlignment(Layout.Alignment.ALIGN_NORMAL)
                         .setLineSpacing(0,0)
@@ -934,8 +926,7 @@ public abstract class PageLoader {
                 } else {
                     canvas.drawText(str, mMarginLeft, top, mTextPaint);
                 }
-
-                //记录文字位置 --开始 pzl
+                //n记录文字位置 --开始 pzl
                 float leftPosition = mMarginLeft;
                 if (isFirstLineOfParagraph(str)) {
                     String blanks = StringUtils.halfToFull("  ");
@@ -946,7 +937,6 @@ public abstract class PageLoader {
                 float rightPosition;
                 float bottomPosition = top + mTextPaint.getFontMetrics().descent;
                 float textHeight = Math.abs(fontMetrics.ascent) + Math.abs(fontMetrics.descent);
-
                 if (txtPage.getTxtLists() != null) {
                     for (TxtChar c : Objects.requireNonNull(txtPage.getTxtLists().get(i).getCharsData())) {
                         rightPosition = leftPosition + c.getCharWidth();

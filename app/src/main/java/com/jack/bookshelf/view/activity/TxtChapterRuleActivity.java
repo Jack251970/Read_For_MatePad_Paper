@@ -24,12 +24,11 @@ import com.jack.bookshelf.presenter.contract.TxtChapterRuleContract;
 import com.jack.bookshelf.utils.GsonUtils;
 import com.jack.bookshelf.utils.IOUtils;
 import com.jack.bookshelf.utils.RealPathUtil;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.TxtChapterRuleAdapter;
-import com.jack.bookshelf.widget.popupwindow.MoreSettingMenu;
 import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
-import com.jack.bookshelf.widget.filepicker.picker.FilePicker;
 import com.jack.bookshelf.widget.dialog.modialog.TxtChapterRuleDialog;
+import com.jack.bookshelf.widget.filepicker.picker.FilePicker;
+import com.jack.bookshelf.widget.popupwindow.MoreSettingMenu;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -66,7 +65,6 @@ public class TxtChapterRuleActivity extends MBaseActivity<TxtChapterRuleContract
 
     @Override
     protected void onCreateActivity() {
-        getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivityTxtChapterRuleBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
     }

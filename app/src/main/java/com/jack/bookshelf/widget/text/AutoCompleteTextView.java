@@ -2,13 +2,13 @@ package com.jack.bookshelf.widget.text;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 
 import com.jack.bookshelf.utils.Selector;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 
 /**
  * Auto Complete TextView
@@ -20,24 +20,23 @@ public class AutoCompleteTextView extends AppCompatAutoCompleteTextView {
 
     public AutoCompleteTextView(Context context) {
         super(context);
-        init(context);
+        init();
     }
 
     public AutoCompleteTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context);
+        init();
     }
 
     public AutoCompleteTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context);
+        init();
     }
 
-    private void init(Context context) {
+    private void init() {
         setBackgroundTintList(Selector.colorBuild()
-                .setFocusedColor(ThemeStore.accentColor(context))
-                .setDefaultColor(ThemeStore.textColorPrimary(context))
-                .create());
+                .setFocusedColor(Color.WHITE)
+                .setDefaultColor(Color.WHITE).create());
     }
 
     @Override

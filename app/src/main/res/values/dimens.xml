@@ -94,17 +94,18 @@
 
     <!-- Widget-->
         <!-- Fast Scroller -->
+        <!-- Bubble -->
         <dimen name="fastscroll_bubble_radius">44dp</dimen>
         <dimen name="fastscroll_bubble_size">88dp</dimen>
         <dimen name="fastscroll_bubble_text_size">48sp</dimen>
         <dimen name="fastscroll_bubble_padding">16dp</dimen>
-
+        <!-- Handle -->
         <dimen name="fastscroll_handle_height">40dp</dimen>
         <dimen name="fastscroll_handle_width">8dp</dimen>
         <dimen name="fastscroll_handle_radius">0dp</dimen>
-
+        <!-- Track -->
         <dimen name="fastscroll_track_width">2dp</dimen>
-
+        <!-- ScrollBar -->
         <dimen name="fastscroll_scrollbar_margin_top">8dp</dimen>
         <dimen name="fastscroll_scrollbar_margin_bottom">8dp</dimen>
         <dimen name="fastscroll_scrollbar_padding_start">8dp</dimen>

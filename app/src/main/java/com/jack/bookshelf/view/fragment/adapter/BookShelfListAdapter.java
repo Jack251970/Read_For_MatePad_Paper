@@ -23,8 +23,8 @@ import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
 import com.jack.bookshelf.widget.RotateLoading;
-import com.jack.bookshelf.widget.onoff.checkbox.RectCheckBox;
 import com.jack.bookshelf.widget.imageview.CoverImageView;
+import com.jack.bookshelf.widget.onoff.checkbox.RectCheckBox;
 import com.jack.bookshelf.widget.text.BadgeTextView;
 
 import java.util.ArrayList;

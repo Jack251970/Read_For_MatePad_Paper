@@ -51,7 +51,6 @@ public class BookCoverEditActivity extends MBaseActivity<IPresenter> {
 
     @Override
     protected void onCreateActivity() {
-        getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivityBookCoverEditBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
     }

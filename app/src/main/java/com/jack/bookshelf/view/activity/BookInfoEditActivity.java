@@ -20,7 +20,6 @@ import com.jack.bookshelf.help.permission.Permissions;
 import com.jack.bookshelf.help.permission.PermissionsCompat;
 import com.jack.bookshelf.utils.RealPathUtil;
 import com.jack.bookshelf.utils.SoftInputUtil;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.widget.dialog.modialog.MoDialogHUD;
 
 import java.util.Objects;
@@ -76,7 +75,6 @@ public class BookInfoEditActivity extends MBaseActivity<IPresenter> {
      */
     @Override
     protected void onCreateActivity() {
-        getWindow().getDecorView().setBackgroundColor(ThemeStore.backgroundColor(this));
         binding = ActivityBookInfoEditBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         binding.tilBookName.setHint(getString(R.string.book_name));

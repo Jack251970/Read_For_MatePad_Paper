@@ -8,11 +8,8 @@ import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.*
-import android.widget.FrameLayout
-import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
-import com.jack.bookshelf.R
 
 inline fun <reified T : DialogFragment> AppCompatActivity.showDialogFragment(
     arguments: Bundle.() -> Unit = {}
