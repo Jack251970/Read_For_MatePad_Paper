@@ -219,6 +219,30 @@
         <string name="shared_service_starting_short">正在启动Web服务</string>
         <string name="shared_service_starting_long">正在启动Web服务\n具体信息查看通知栏</string>
         <string name="sharded_address">分享地址:%s</string>
+        <!-- Read Aloud Service -->
+        <string name="read_aloud_timer_stop">"计时已取消"</string>
+        <string name="read_aloud_timer_remaining">%d分钟</string>
+        <string name="read_aloud_timer_remaining_length">"%d小时%d分"</string>
+        <string name="read_aloud_error">播放出错</string>
+        <string name="read_aloud_s">点击打开阅读界面</string>
+        <string name="read_aloud_pause">朗读暂停</string>
+        <string name="read_aloud_timer">正在朗读(还剩%d分钟)</string>
+        <string name="read_aloud_timer_long">"正在朗读(还剩%d小时%d分)"</string>
+        <string name="read_aloud_t">正在朗读</string>
+        <string name="stop">停止</string>
+        <string name="pause">暂停</string>
+        <string name="resume">继续</string>
+        <string name="set_timer">定时</string>
+        <string name="tts_init_failed">TTS初始化失败!</string>
+        <!-- Check Source Service -->
+        <string name="check_success">校验完成</string>
+        <string name="start_check">开始校验</string>
+        <string name="check_book_source">校验书源</string>
+        <string name="progress_show">进度 %d/%d</string>
+        <!-- Download Service -->
+        <string name="download_offline_t">离线下载</string>
+        <string name="download_offline_s">下载选择的章节到本地</string>
+        <string name="is_downloading">正在下载</string>
 
     <!-- Help -->
         <!-- Backup & Restore Ui -->
@@ -427,10 +451,7 @@
     <string name="net_error_10003">数据解析失败</string>
     <string name="check_add_bookshelf">是否将《%s》放入书架？</string>
     <string name="import_books_count">共%s个Text文件</string>
-    <string name="is_loading">加载中…</string>
     <string name="web_edit_source">web编辑书源</string>
-    <string name="download_offline_t">离线下载</string>
-    <string name="download_offline_s">下载选择的章节到本地</string>
     <string name="backup_permission">备份请给与存储权限</string>
     <string name="restore_permission">恢复请给与存储权限</string>
     <string name="backup_confirmation">确认备份吗？</string>
@@ -440,20 +461,8 @@
     <string name="on_restore">正在恢复</string>
     <string name="restore_fail">恢复失败</string>
     <string name="all_chapter_num">共%d章</string>
-    <string name="read_aloud_t">正在朗读</string>
-    <string name="read_aloud_s">点击打开阅读界面</string>
     <string name="text_return">返回</string>
     <string name="start">开始</string>
-    <string name="stop">停止</string>
-    <string name="pause">暂停</string>
-    <string name="resume">继续</string>
-    <string name="set_timer">定时</string>
-    <string name="read_aloud_pause">朗读暂停</string>
-    <string name="read_aloud_timer">正在朗读(还剩%d分钟)</string>
-    <string name="read_aloud_timer_long">"正在朗读(还剩%d小时%d分)"</string>
-    <string name="read_aloud_timer_remaining">%d分钟</string>
-    <string name="read_aloud_timer_remaining_length">"%d小时%d分"</string>
-    <string name="read_aloud_timer_stop">"计时已取消"</string>
     <string name="no_chapter">无章节</string>
     <string name="add_url">添加网址</string>
     <string name="book_file_selector">添加书籍</string>
@@ -478,18 +487,10 @@
     <string name="join_group">关注:%s</string>
     <string name="copy_complete">已拷贝</string>
     <string name="chapter_list_size">目录(%d)</string>
-    <string name="check_book_source">校验书源</string>
-    <string name="progress_show">进度 %d/%d</string>
-    <string name="tts_fix">请安装并选择中文TTS!</string>
-    <string name="tts_init_failed">TTS初始化失败!</string>
     <string name="nb_file_sub_count">%1$d 项</string>
     <string name="nb_file_add_shelf">加入书架</string>
     <string name="nb_file_add_shelves">加入书架(%1$d)</string>
     <string name="nb_file_add_succeed">成功添加%1$d本书</string>
-    <string name="edit">编辑</string>
-    <string name="to_top">置顶</string>
-    <string name="menu_action_group">分组</string>
-    <string name="download_path">书籍缓存路径</string>
     <string name="tip_margin_change">Tip边距跟随边距调整</string>
     <string name="faq">常见问题</string>
     <string name="update_chapter">更新目录</string>
@@ -497,8 +498,6 @@
     <string name="swap_sort">倒序-顺序</string>
     <string name="sort">排序</string>
     <string name="read_y">已读: %s</string>
-    <string name="success">成功</string>
-    <string name="click_on_selected_show_menu">选中时点击可弹出菜单</string>
     <string name="read_file_error">文件读取失败</string>
     <string name="del_file">删除文件</string>
     <string name="del_file_success">删除文件成功</string>
@@ -521,7 +520,6 @@
     <string name="chapter_list_empty">目录列表为空</string>
     <string name="load_error_msg">加载失败\n%s</string>
     <string name="text_letter_spacing">字距</string>
-    <string name="a10_permission_toast">Android10以上因权限限制可能无法读写文件</string>
     <string name="please_grant_storage_permission">请给于存储权限</string>
     <string name="skip_previous">上一个</string>
     <string name="skip_next">下一个</string>

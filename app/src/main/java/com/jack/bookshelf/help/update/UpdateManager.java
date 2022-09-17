@@ -26,6 +26,7 @@ import com.jack.bookshelf.model.impl.IHttpGetApi;
 import com.jack.bookshelf.service.update.UpdateDownloadTask;
 import com.jack.bookshelf.service.update.UpdateService;
 import com.jack.bookshelf.service.update.listener.OnUpdateListener;
+import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
 
@@ -123,7 +124,7 @@ public class UpdateManager {
                     updateInfo.setUrl(url);
                     updateInfo.setLastVersion(lastVersion);
                     updateInfo.setDetail(detail);
-                    updateInfo.setUpDate(Integer.parseInt(lastVersion.split("\\.")[2]) > Integer.parseInt(thisVersion.split("\\.")[2]));
+                    updateInfo.setUpDate(StringUtils.compareVersion(lastVersion, thisVersion));
                 }
                 emitter.onNext(updateInfo);
                 emitter.onComplete();

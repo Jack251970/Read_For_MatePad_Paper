@@ -12,8 +12,8 @@ import com.jack.bookshelf.presenter.ReadBookPresenter;
 import com.jack.bookshelf.view.activity.ReadBookActivity;
 
 /**
- * Created by GKF on 2018/1/6.
  * 监听耳机键
+ * Created by GKF on 2018/1/6.
  */
 
 public class MediaButtonIntentReceiver extends BroadcastReceiver {

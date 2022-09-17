@@ -52,8 +52,8 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Created by GKF on 2018/1/2.
- * 朗读服务
+ * Read Aloud Service
+ * Edited by Jack251970
  */
 
 public class ReadAloudService extends Service implements Player.Listener {
@@ -314,10 +314,10 @@ public class ReadAloudService extends Service implements Player.Listener {
     public void onPlaybackStateChanged(int playbackState) {
         switch (playbackState) {
             case Player.STATE_IDLE:
-                //播放器没有可播放的媒体。
+                // 播放器没有可播放的媒体
                 break;
             case Player.STATE_BUFFERING:
-                //播放器无法立即从当前位置开始播放。这种状态通常需要加载更多数据时发生。
+                // 播放器无法立即从当前位置开始播放。这种状态通常需要加载更多数据时发生。
                 break;
             case Player.STATE_READY:
                 // 播放器可以立即从当前位置开始播放。如果{@link#getPlayWhenReady（）}为true，否则暂停。
@@ -336,7 +336,7 @@ public class ReadAloudService extends Service implements Player.Listener {
                 handler.postDelayed(mpRunnable, 1000);
                 break;
             case Player.STATE_ENDED:
-                //播放器完成了播放
+                // 播放器完成了播放
                 handler.removeCallbacks(mpRunnable);
                 RxBus.get().post(RxBusTag.ALOUD_STATE, Status.NEXT);
                 break;
@@ -347,7 +347,7 @@ public class ReadAloudService extends Service implements Player.Listener {
     public void onPlayerError(@NonNull PlaybackException error) {
         error.printStackTrace();
         mainHandler.post(() ->
-                ToastsKt.toast(ReadAloudService.this, "播放出错:" + error.getLocalizedMessage(), Toast.LENGTH_LONG));
+                ToastsKt.toast(ReadAloudService.this, getString(R.string.read_aloud_error) + error.getLocalizedMessage(), Toast.LENGTH_LONG));
         pauseReadAloud(true);
         player.release();
     }
@@ -428,7 +428,7 @@ public class ReadAloudService extends Service implements Player.Listener {
     }
 
     public void toTTSSetting() {
-        //跳转到文字转语音设置界面
+        // 跳转到文字转语音设置界面
         try {
             Intent intent = new Intent();
             intent.setAction("com.android.settings.TTS_SETTINGS");
@@ -751,13 +751,13 @@ public class ReadAloudService extends Service implements Player.Listener {
         public void onAudioFocusChange(int focusChange) {
             switch (focusChange) {
                 case AudioManager.AUDIOFOCUS_GAIN:
-                    // 重新获得焦点,  可做恢复播放，恢复后台音量的操作
+                    // 重新获得焦点，可做恢复播放，恢复后台音量的操作
                     if (!pause) {
                         resumeReadAloud();
                     }
                     break;
                 case AudioManager.AUDIOFOCUS_LOSS:
-                    // 永久丢失焦点除非重新主动获取，这种情况是被其他播放器抢去了焦点，  为避免与其他播放器混音，可将音乐暂停
+                    // 永久丢失焦点除非重新主动获取，这种情况是被其他播放器抢去了焦点，为避免与其他播放器混音，可将音乐暂停
                     break;
                 case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
                     // 暂时丢失焦点，这种情况是被其他应用申请了短暂的焦点，可压低后台音量
@@ -775,5 +775,4 @@ public class ReadAloudService extends Service implements Player.Listener {
     public enum Status {
         PLAY, STOP, PAUSE, NEXT
     }
-
 }

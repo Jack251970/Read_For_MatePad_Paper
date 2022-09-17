@@ -1,6 +1,6 @@
-//Copyright (c) 2017. 章钦豪. All rights reserved.
 package com.jack.bookshelf.service;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -28,13 +28,17 @@ import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.view.activity.DownloadActivity;
 
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import io.reactivex.Scheduler;
 import io.reactivex.schedulers.Schedulers;
+
+/**
+ * Download Service
+ * Edited by Jack251970
+ */
 
 public class DownloadService extends Service {
     public static final String cancelAction = "cancelAction";
@@ -153,9 +157,7 @@ public class DownloadService extends Service {
                 if (downloadTasks.indexOfValue(this) >= 0) {
                     downloadTasks.remove(getId());
                 }
-                ToastsKt.toast(DownloadService.this,
-                        String.format(Locale.getDefault(), "%s：下载失败",
-                                downloadBook.getName()), Toast.LENGTH_SHORT);
+                ToastsKt.toast(DownloadService.this, downloadBook.getName() + "：" + getString(R.string.download_fail), Toast.LENGTH_SHORT);
                 startNextTaskAfterRemove(downloadBook);
             }
 
@@ -265,6 +267,7 @@ public class DownloadService extends Service {
         sendBroadcast(intent);
     }
 
+    @SuppressLint("UnspecifiedImmutableFlag")
     private PendingIntent getChancelPendingIntent() {
         Intent intent = new Intent(this, DownloadService.class);
         intent.setAction(DownloadService.cancelAction);
@@ -275,15 +278,12 @@ public class DownloadService extends Service {
         if (!isRunning) {
             return;
         }
-
-        if (System.currentTimeMillis() - currentTime < 1000) {//更新太快无法取消
+        if (System.currentTimeMillis() - currentTime < 1000) { //更新太快无法取消
             return;
         }
-
         currentTime = System.currentTimeMillis();
-
         Intent mainIntent = new Intent(this, DownloadActivity.class);
-        PendingIntent mainPendingIntent = PendingIntent.getActivity(this, 0, mainIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        @SuppressLint("UnspecifiedImmutableFlag") PendingIntent mainPendingIntent = PendingIntent.getActivity(this, 0, mainIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         // 创建 Notification.Builder 对象
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MApplication.channelIdDownload)
                 .setSmallIcon(R.drawable.ic_download_noti)
@@ -291,7 +291,7 @@ public class DownloadService extends Service {
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher))
                 // 点击通知后自动清除
                 .setAutoCancel(true)
-                .setContentTitle("正在下载：" + downloadChapterBean.getBookName())
+                .setContentTitle(getString(R.string.is_downloading) + downloadChapterBean.getBookName())
                 .setContentText(downloadChapterBean.getDurChapterName() == null ? "  " : downloadChapterBean.getDurChapterName())
                 .setContentIntent(mainPendingIntent);
         builder.addAction(R.drawable.ic_stop_white, getString(R.string.cancel), getChancelPendingIntent());

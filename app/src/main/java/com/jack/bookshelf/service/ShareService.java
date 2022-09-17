@@ -3,6 +3,7 @@ package com.jack.bookshelf.service;
 import static com.jack.bookshelf.constant.AppConstant.ActionDoneService;
 import static com.jack.bookshelf.constant.AppConstant.ActionStartService;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -32,14 +33,13 @@ import java.util.List;
 
 /**
  * Shared Service
- * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
+@SuppressLint("UnspecifiedImmutableFlag")
 public class ShareService extends Service {
     private static boolean isRunning = false;
     private ShareServer shareServer;
-
     private List<BookSourceBean> bookSourceBeans;
 
     public static void startThis(Activity activity, List<BookSourceBean> bookSourceBeans) {

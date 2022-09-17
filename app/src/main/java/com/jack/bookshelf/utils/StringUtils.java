@@ -3,7 +3,6 @@ package com.jack.bookshelf.utils;
 import android.annotation.SuppressLint;
 import android.text.TextUtils;
 import android.util.Base64;
-import android.util.Log;
 
 import androidx.annotation.StringRes;
 
@@ -12,12 +11,10 @@ import com.jack.bookshelf.MApplication;
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.DataFormatException;
@@ -32,56 +29,11 @@ public class StringUtils {
     private static final int TIME_UNIT = 60;
     private final static HashMap<Character, Integer> ChnMap = getChnMap();
 
-    //将时间转换成日期
+    // 将时间转换成日期
     public static String dateConvert(long time, String pattern) {
         Date date = new Date(time);
         @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat(pattern);
         return format.format(date);
-    }
-
-    //将日期转换成昨天、今天、明天
-    public static String dateConvert(String source, String pattern) {
-        @SuppressLint("SimpleDateFormat") DateFormat format = new SimpleDateFormat(pattern);
-        Calendar calendar = Calendar.getInstance();
-        try {
-            Date date = format.parse(source);
-            long curTime = calendar.getTimeInMillis();
-            calendar.setTime(date);
-            //将MISC 转换成 sec
-            long difSec = Math.abs((curTime - date.getTime()) / 1000);
-            long difMin = difSec / 60;
-            long difHour = difMin / 60;
-            long difDate = difHour / 60;
-            int oldHour = calendar.get(Calendar.HOUR);
-            //如果没有时间
-            if (oldHour == 0) {
-                //比日期:昨天今天和明天
-                if (difDate == 0) {
-                    return "今天";
-                } else if (difDate < DAY_OF_YESTERDAY) {
-                    return "昨天";
-                } else {
-                    @SuppressLint("SimpleDateFormat") DateFormat convertFormat = new SimpleDateFormat("yyyy-MM-dd");
-                    return convertFormat.format(date);
-                }
-            }
-
-            if (difSec < TIME_UNIT) {
-                return difSec + "秒前";
-            } else if (difMin < TIME_UNIT) {
-                return difMin + "分钟前";
-            } else if (difHour < HOUR_OF_DAY) {
-                return difHour + "小时前";
-            } else if (difDate < DAY_OF_YESTERDAY) {
-                return "昨天";
-            } else {
-                @SuppressLint("SimpleDateFormat") DateFormat convertFormat = new SimpleDateFormat("yyyy-MM-dd");
-                return convertFormat.format(date);
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return "";
     }
 
     public static String toFirstCapital(String str) {
@@ -107,10 +59,6 @@ public class StringUtils {
                 c[i] = (char) 12288;
                 continue;
             }
-            //根据实际情况，过滤不需要转换的符号
-            //if (c[i] == 46) //半角点号，不转换
-            // continue;
-
             if (c[i] > 32 && c[i] < 127)    //其他符号都转换为全角
                 c[i] = (char) (c[i] + 65248);
         }
@@ -161,7 +109,6 @@ public class StringUtils {
         int tmp = 0;
         int billion = 0;
         char[] cn = chNum.toCharArray();
-
         // "一零二五" 形式
         if (cn.length > 1 && chNum.matches("^[〇零一二三四五六七八九壹贰叁肆伍陆柒捌玖]$")) {
             for (int i = 0; i < cn.length; i++) {
@@ -169,7 +116,6 @@ public class StringUtils {
             }
             return Integer.parseInt(new String(cn));
         }
-
         // "一千零二十五", "一千二" 形式
         try {
             for (int i = 0; i < cn.length; i++) {
@@ -273,14 +219,14 @@ public class StringUtils {
         // 如果是未压缩的json
         if (str.replaceAll("(\\s|\n)*", "").matches("^\\{.*\\}$"))
             return str;
-//        if (str.replaceAll("(\\s|\n)*","").matches("^\\{.*[^}]$"))
-        String string = null;
+        String string;
         str = str.trim();
         try {
             if (str.charAt(0) == '{')
                 string = unzipString(str.substring(1));
             else
                 string = unzipString(str);
+            assert string != null;
             if (string.charAt(string.length() - 1) == '}')
                 return "{" + string;
         } catch (Exception e) {
@@ -361,7 +307,7 @@ public class StringUtils {
         while ((start < end) && ((s.charAt(end) <= 0x20) || (s.charAt(end) == '　'))) {
             --end;
         }
-        if (end < len) ++end;
+        ++end;
         return ((start > 0) || (end < len)) ? s.substring(start, end) : s;
     }
 
@@ -379,7 +325,7 @@ public class StringUtils {
         Matcher m = p.matcher(data);
         StringBuffer buf = new StringBuffer(data.length());
         while (m.find()) {
-            String ch = String.valueOf((char) Integer.parseInt(m.group(1), 16));
+            String ch = String.valueOf((char) Integer.parseInt(Objects.requireNonNull(m.group(1)), 16));
             m.appendReplacement(buf, Matcher.quoteReplacement(ch));
         }
         m.appendTail(buf);
@@ -424,7 +370,6 @@ public class StringUtils {
          *     public static final int NO_FLUSH = 0;                    用于实现最佳压缩结果的压缩刷新模式。
          *     public static final int SYNC_FLUSH = 2;                  用于清除所有未决输出的压缩刷新模式; 可能会降低某些压缩算法的压缩率。
          */
-
         try {
             //使用指定的压缩级别创建一个新的压缩器。
             Deflater deflater = new Deflater(Deflater.BEST_COMPRESSION);
@@ -444,28 +389,19 @@ public class StringUtils {
             //关闭压缩器并丢弃任何未处理的输入。
             deflater.end();
             String zipString = new String(Base64.encode(outputStream.toByteArray(), Base64.DEFAULT), StandardCharsets.UTF_8);
-
-            Log.d("zipString()压缩比", "char:" + zipString.length() + "/" + unzipString.length() + "=" + zipString.length() /(float)(unzipString.length())  +
-                    "\tbyte:" + zipString.getBytes(StandardCharsets.UTF_8).length + "/" + unzipString.getBytes(StandardCharsets.UTF_8).length
-                    + "=" + zipString.getBytes(StandardCharsets.UTF_8).length /(float) unzipString.getBytes(StandardCharsets.UTF_8).length);
             return zipString.trim();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
         return "";
-        //处理回车符
-//        return zipString.replaceAll("[\r\n]", "");
     }
 
     /**
      * 解压缩
      */
     public static String unzipString(String zipString) {
-        byte[] decode //= Base64.decodeBase64(zipString);
-                = Base64.decode(zipString, Base64.DEFAULT);
+        byte[] decode = Base64.decode(zipString, Base64.DEFAULT);
         //创建一个新的解压缩器  https://www.yiibai.com/javazip/javazip_inflater.html
-
         Inflater inflater = new Inflater();
         //设置解压缩的输入数据。
         inflater.setInput(decode);
@@ -485,7 +421,6 @@ public class StringUtils {
             //关闭解压缩器并丢弃任何未处理的输入。
             inflater.end();
         }
-
         try {
             return outputStream.toString("UTF-8");
         } catch (UnsupportedEncodingException e) {
@@ -495,7 +430,19 @@ public class StringUtils {
     }
 
     public static boolean isEmpty(String value) {
-        return value == null || "".equalsIgnoreCase(value.trim())
-                || "null".equalsIgnoreCase(value.trim());
+        return value == null || "".equalsIgnoreCase(value.trim()) || "null".equalsIgnoreCase(value.trim());
+    }
+
+    public static boolean compareVersion(String lastVersion, String thisVersion) {
+        String[] lastVersionNumber = lastVersion.split("\\.");
+        String[] thisVersionNumber = thisVersion.split("\\.");
+        for (int i = 0; i < thisVersionNumber.length; i++) {
+            if (Integer.parseInt(thisVersionNumber[i]) > Integer.parseInt(lastVersionNumber[i])) {
+                return false;
+            } else if (Integer.parseInt(thisVersionNumber[i]) < Integer.parseInt(lastVersionNumber[i])){
+                return true;
+            }
+        }
+        return false;
     }
 }

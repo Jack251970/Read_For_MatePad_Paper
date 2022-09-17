@@ -3,6 +3,7 @@ package com.jack.bookshelf.service;
 import static com.jack.bookshelf.constant.AppConstant.ActionDoneService;
 import static com.jack.bookshelf.constant.AppConstant.ActionStartService;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -31,6 +32,11 @@ import io.reactivex.Scheduler;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+
+/**
+ * Check Source Service
+ * Edited by Jack251970
+ */
 
 public class CheckSourceService extends Service {
     private static final int notificationId = 3333;
@@ -90,7 +96,7 @@ public class CheckSourceService extends Service {
         executorService = Executors.newFixedThreadPool(threadsNum);
         scheduler = Schedulers.from(executorService);
         compositeDisposable = new CompositeDisposable();
-        updateNotification(0, "正在加载");
+        updateNotification(0, getString(R.string.loading));
     }
 
     @SuppressWarnings("unchecked")
@@ -126,7 +132,7 @@ public class CheckSourceService extends Service {
     }
 
     private void doneService() {
-        RxBus.get().post(RxBusTag.CHECK_SOURCE_FINISH, "校验完成");
+        RxBus.get().post(RxBusTag.CHECK_SOURCE_FINISH, getString(R.string.check_success));
         compositeDisposable.dispose();
         stopSelf();
     }
@@ -150,12 +156,14 @@ public class CheckSourceService extends Service {
         startForeground(notificationId, notification);
     }
 
+    @SuppressLint("UnspecifiedImmutableFlag")
     private PendingIntent getActivityPendingIntent() {
         Intent intent = new Intent(this, BookSourceActivity.class);
         intent.setAction(CheckSourceService.ActionOpenActivity);
         return PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
+    @SuppressLint("UnspecifiedImmutableFlag")
     private PendingIntent getThisServicePendingIntent() {
         Intent intent = new Intent(this, this.getClass());
         intent.setAction(ActionDoneService);
@@ -164,7 +172,7 @@ public class CheckSourceService extends Service {
 
     public void startCheck() {
         if (bookSourceBeanList != null && bookSourceBeanList.size() > 0) {
-            RxBus.get().post(RxBusTag.CHECK_SOURCE_STATE, "开始效验");
+            RxBus.get().post(RxBusTag.CHECK_SOURCE_STATE, getString(R.string.start_check));
             checkIndex = -1;
             for (int i = 1; i <= threadsNum; i++) {
                 nextCheck();
@@ -197,5 +205,4 @@ public class CheckSourceService extends Service {
 
         int getCheckIndex();
     }
-
 }
