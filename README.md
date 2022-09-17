@@ -1,5 +1,5 @@
 <div align="center">
-<img width="150" height="150" src="https://github.com/Jack251970/Read_For_MatePad_Paper/blob/raw/app/src/main/res/mipmap-xxxhdpi/book_launcher_matepad_paper.png" alt="icon"/>  
+<img width="150" height="150" src="app/src/main/res/mipmap-xxxhdpi/book_launcher_matepad_paper.png" alt="icon"/>  
 
 # 阅读（Read）
 一款为华为*MatePad Paper*适配的阅读软件（A Read Application for Huawei Matepad Paper）
@@ -19,10 +19,9 @@
 #### *Android*-安卓
 * [Releases](https://github.com/Jack251970/Read_For_MatePad_Paper/releases/latest)
 
-
 # *Others*-其他
 * [免责声明](app/src/main/assets/disclaimer.md)
-* [更新日志](https://github.com/Jack251970/Read_For_MatePad_Paper/blob/master/app/src/main/assets/updateLog.md)
+* [更新日志](app/src/main/assets/updateLog.md)
 
 # *Grateful*-感谢
 > * org.jsoup:jsoup
