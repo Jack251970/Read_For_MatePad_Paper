@@ -12,33 +12,33 @@ import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 
 /**
- * Check Box
+ * Circle Check Box
  * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
-public class CheckBox extends AppCompatImageView {
+public class CircleCheckBox extends AppCompatImageView {
     private boolean checked = false;
     private String preferenceKey = null;
     private final SharedPreferences prefer = MApplication.getConfigPreferences();
 
-    public CheckBox(@NonNull Context context) {
+    public CircleCheckBox(@NonNull Context context) {
         super(context);
     }
 
-    public CheckBox(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public CircleCheckBox(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public CheckBox(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public CircleCheckBox(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    public CheckBox setPreferenceKey(int idPreferenceKey, boolean defaultValue) {
+    public CircleCheckBox setPreferenceKey(int idPreferenceKey, boolean defaultValue) {
         return setPreferenceKey(MApplication.getAppResources().getString(idPreferenceKey), defaultValue);
     }
 
-    public CheckBox setPreferenceKey(String preferenceKey, boolean defaultValue) {
+    public CircleCheckBox setPreferenceKey(String preferenceKey, boolean defaultValue) {
         this.preferenceKey = preferenceKey;
         if (prefer.getBoolean(preferenceKey, defaultValue)) {
             this.checked = true;
@@ -51,7 +51,7 @@ public class CheckBox extends AppCompatImageView {
         return this;
     }
 
-    public CheckBox setAddedListener(@NonNull OnItemClickListener itemClick) {
+    public CircleCheckBox setAddedListener(@NonNull OnItemClickListener itemClick) {
         setOnClickListener(v -> {
             setChecked(!checked);
             itemClick.forPositiveButton(checked);

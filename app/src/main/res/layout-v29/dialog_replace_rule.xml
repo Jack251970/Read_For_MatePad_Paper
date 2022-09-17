@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="3" />
         </com.jack.bookshelf.widget.views.ATETextInputLayout>
-        <com.jack.bookshelf.widget.views.ATECheckBox
+        <com.jack.bookshelf.widget.checkbox.RectCheckBox
             android:id="@+id/cb_use_regex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

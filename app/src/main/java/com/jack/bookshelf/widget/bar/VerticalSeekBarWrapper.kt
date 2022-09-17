@@ -31,18 +31,14 @@ class VerticalSeekBarWrapper @JvmOverloads constructor(context: Context, attrs: 
     @SuppressLint("RtlHardcoded")
     private fun onSizeChangedTraditionalRotation(w: Int, h: Int, oldw: Int, oldh: Int) {
         val seekBar = childSeekBar
-
         if (seekBar != null) {
             val hPadding = paddingLeft + paddingRight
             val vPadding = paddingTop + paddingBottom
             val lp = seekBar.layoutParams as LayoutParams
-
             lp.width = ViewGroup.LayoutParams.WRAP_CONTENT
             lp.height = max(0, h - vPadding)
             seekBar.layoutParams = lp
-
             seekBar.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED)
-
             val seekBarMeasuredWidth = seekBar.measuredWidth
             seekBar.measure(
                 MeasureSpec.makeMeasureSpec(
@@ -54,18 +50,15 @@ class VerticalSeekBarWrapper @JvmOverloads constructor(context: Context, attrs: 
                     MeasureSpec.EXACTLY
                 )
             )
-
             lp.gravity = Gravity.TOP or Gravity.LEFT
             lp.leftMargin = (max(0, w - hPadding) - seekBarMeasuredWidth) / 2
             seekBar.layoutParams = lp
         }
-
         super.onSizeChanged(w, h, oldw, oldh)
     }
 
     private fun onSizeChangedUseViewRotation(w: Int, h: Int, oldw: Int, oldh: Int) {
         val seekBar = childSeekBar
-
         if (seekBar != null) {
             val hPadding = paddingLeft + paddingRight
             val vPadding = paddingTop + paddingBottom
@@ -80,7 +73,6 @@ class VerticalSeekBarWrapper @JvmOverloads constructor(context: Context, attrs: 
                 )
             )
         }
-
         applyViewRotation(w, h)
         super.onSizeChanged(w, h, oldw, oldh)
     }
@@ -91,17 +83,13 @@ class VerticalSeekBarWrapper @JvmOverloads constructor(context: Context, attrs: 
         val heightMode = MeasureSpec.getMode(heightMeasureSpec)
         val widthSize = MeasureSpec.getSize(widthMeasureSpec)
         val heightSize = MeasureSpec.getSize(heightMeasureSpec)
-
         if (seekBar != null && widthMode != MeasureSpec.EXACTLY) {
             val seekBarWidth: Int
             val seekBarHeight: Int
             val hPadding = paddingLeft + paddingRight
             val vPadding = paddingTop + paddingBottom
-            val innerContentWidthMeasureSpec =
-                MeasureSpec.makeMeasureSpec(max(0, widthSize - hPadding), widthMode)
-            val innerContentHeightMeasureSpec =
-                MeasureSpec.makeMeasureSpec(max(0, heightSize - vPadding), heightMode)
-
+            val innerContentWidthMeasureSpec = MeasureSpec.makeMeasureSpec(max(0, widthSize - hPadding), widthMode)
+            val innerContentHeightMeasureSpec = MeasureSpec.makeMeasureSpec(max(0, heightSize - vPadding), heightMode)
             if (useViewRotation()) {
                 seekBar.measure(innerContentHeightMeasureSpec, innerContentWidthMeasureSpec)
                 seekBarWidth = seekBar.measuredHeight
@@ -111,12 +99,8 @@ class VerticalSeekBarWrapper @JvmOverloads constructor(context: Context, attrs: 
                 seekBarWidth = seekBar.measuredWidth
                 seekBarHeight = seekBar.measuredHeight
             }
-
-            val measuredWidth =
-                View.resolveSizeAndState(seekBarWidth + hPadding, widthMeasureSpec, 0)
-            val measuredHeight =
-                View.resolveSizeAndState(seekBarHeight + vPadding, heightMeasureSpec, 0)
-
+            val measuredWidth = View.resolveSizeAndState(seekBarWidth + hPadding, widthMeasureSpec, 0)
+            val measuredHeight = View.resolveSizeAndState(seekBarHeight + vPadding, heightMeasureSpec, 0)
             setMeasuredDimension(measuredWidth, measuredHeight)
         } else {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec)
@@ -130,7 +114,6 @@ class VerticalSeekBarWrapper @JvmOverloads constructor(context: Context, attrs: 
 
     private fun applyViewRotation(w: Int, h: Int) {
         val seekBar = childSeekBar
-
         if (seekBar != null) {
             val isLTR = ViewCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_LTR
             val rotationAngle = seekBar.rotationAngle
@@ -140,15 +123,11 @@ class VerticalSeekBarWrapper @JvmOverloads constructor(context: Context, attrs: 
             val vPadding = paddingTop + paddingBottom
             val hOffset = (max(0, w - hPadding) - seekBarMeasuredHeight) * 0.5f
             val lp = seekBar.layoutParams
-
             lp.width = max(0, h - vPadding)
             lp.height = ViewGroup.LayoutParams.WRAP_CONTENT
-
             seekBar.layoutParams = lp
-
             seekBar.pivotX = (if (isLTR) 0 else max(0, h - vPadding)).toFloat()
             seekBar.pivotY = 0f
-
             when (rotationAngle) {
                 VerticalSeekBar.ROTATION_ANGLE_CW_90 -> {
                     seekBar.rotation = 90f

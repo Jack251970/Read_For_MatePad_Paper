@@ -341,7 +341,7 @@
                             android:layout_gravity="center_vertical"
                             android:text="@string/flow_sys"
                             style="@style/PaperTextStylePopReadMenu"/>
-                        <com.jack.bookshelf.widget.checkbox.CheckBox
+                        <com.jack.bookshelf.widget.checkbox.CircleCheckBox
                             android:id="@+id/scb_tts_follow_sys"
                             android:layout_width="20sp"
                             android:layout_height="20sp"

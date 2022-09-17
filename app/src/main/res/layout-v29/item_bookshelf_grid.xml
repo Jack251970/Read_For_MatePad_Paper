@@ -58,7 +58,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             tools:text="哑舍"/>
-        <com.jack.bookshelf.widget.views.ATECheckBox
+        <com.jack.bookshelf.widget.checkbox.RectCheckBox
             android:id="@+id/checkbox_book"
             android:layout_width="30sp"
             android:layout_height="25sp"

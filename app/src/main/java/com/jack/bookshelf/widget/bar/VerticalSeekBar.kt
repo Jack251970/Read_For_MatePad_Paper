@@ -11,13 +11,10 @@ import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.core.view.ViewCompat
 import com.jack.bookshelf.R
-import com.jack.bookshelf.utils.theme.ATH
-import com.jack.bookshelf.utils.theme.ThemeStore
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
 
 class VerticalSeekBar : AppCompatSeekBar {
-
     private var mIsDragging: Boolean = false
     private var mThumb: Drawable? = null
     private var mMethodSetProgressFromUser: Method? = null
@@ -27,13 +24,10 @@ class VerticalSeekBar : AppCompatSeekBar {
         get() = mRotationAngle
         set(angle) {
             require(isValidRotationAngle(angle)) { "Invalid angle specified :$angle" }
-
             if (mRotationAngle == angle) {
                 return
             }
-
             mRotationAngle = angle
-
             if (useViewRotation()) {
                 val wrapper = wrapper
                 wrapper?.applyViewRotation()
@@ -45,7 +39,6 @@ class VerticalSeekBar : AppCompatSeekBar {
     private val wrapper: VerticalSeekBarWrapper?
         get() {
             val parent = parent
-
             return if (parent is VerticalSeekBarWrapper) {
                 parent
             } else {
@@ -54,11 +47,11 @@ class VerticalSeekBar : AppCompatSeekBar {
         }
 
     constructor(context: Context) : super(context) {
-        initialize(context, null, 0, 0)
+        initialize(context, null, 0)
     }
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        initialize(context, attrs, 0, 0)
+        initialize(context, attrs, 0)
     }
 
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(
@@ -66,18 +59,16 @@ class VerticalSeekBar : AppCompatSeekBar {
             attrs,
             defStyle
     ) {
-        initialize(context, attrs, defStyle, 0)
+        initialize(context, attrs, defStyle)
     }
 
     private fun initialize(
             context: Context,
             attrs: AttributeSet?,
             defStyleAttr: Int,
-            defStyleRes: Int
+            defStyleRes: Int = 0
     ) {
-        ATH.setTint(this, ThemeStore.accentColor(context))
         ViewCompat.setLayoutDirection(this, ViewCompat.LAYOUT_DIRECTION_LTR)
-
         if (attrs != null) {
             val a = context.obtainStyledAttributes(
                     attrs,
@@ -111,7 +102,6 @@ class VerticalSeekBar : AppCompatSeekBar {
         if (!isEnabled) {
             return false
         }
-
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 isPressed = true
@@ -120,11 +110,9 @@ class VerticalSeekBar : AppCompatSeekBar {
                 attemptClaimDrag(true)
                 invalidate()
             }
-
             MotionEvent.ACTION_MOVE -> if (mIsDragging) {
                 trackTouchEvent(event)
             }
-
             MotionEvent.ACTION_UP -> {
                 if (mIsDragging) {
                     trackTouchEvent(event)
@@ -144,7 +132,6 @@ class VerticalSeekBar : AppCompatSeekBar {
                 // value has not apparently changed)
                 invalidate()
             }
-
             MotionEvent.ACTION_CANCEL -> {
                 if (mIsDragging) {
                     onStopTrackingTouch()
@@ -158,7 +145,6 @@ class VerticalSeekBar : AppCompatSeekBar {
 
     private fun onTouchEventUseViewRotation(event: MotionEvent): Boolean {
         val handled = super.onTouchEvent(event)
-
         if (handled) {
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> attemptClaimDrag(true)
@@ -166,7 +152,6 @@ class VerticalSeekBar : AppCompatSeekBar {
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> attemptClaimDrag(false)
             }
         }
-
         return handled
     }
 
@@ -174,18 +159,14 @@ class VerticalSeekBar : AppCompatSeekBar {
         val paddingLeft = super.getPaddingLeft()
         val paddingRight = super.getPaddingRight()
         val height = height
-
         val available = height - paddingLeft - paddingRight
         val y = event.y.toInt()
-
         val scale: Float
         var value = 0f
-
         when (mRotationAngle) {
             ROTATION_ANGLE_CW_90 -> value = (y - paddingLeft).toFloat()
             ROTATION_ANGLE_CW_270 -> value = (height - paddingLeft - y).toFloat()
         }
-
         scale = if (value < 0 || available == 0) {
             0.0f
         } else if (value > available) {
@@ -193,11 +174,9 @@ class VerticalSeekBar : AppCompatSeekBar {
         } else {
             value / available.toFloat()
         }
-
         val max = max
         val progress = scale * max
-
-        setProgressFromUser(progress.toInt(), true)
+        setProgressFromUser(progress.toInt())
     }
 
     /**
@@ -228,7 +207,6 @@ class VerticalSeekBar : AppCompatSeekBar {
         if (isEnabled) {
             val handled: Boolean
             var direction = 0
-
             when (keyCode) {
                 KeyEvent.KEYCODE_DPAD_DOWN -> {
                     direction = if (mRotationAngle == ROTATION_ANGLE_CW_90) 1 else -1
@@ -243,21 +221,16 @@ class VerticalSeekBar : AppCompatSeekBar {
                     return false
                 else -> handled = false
             }
-
             if (handled) {
                 val keyProgressIncrement = keyProgressIncrement
                 var progress = progress
-
                 progress += direction * keyProgressIncrement
-
                 if (progress in 0..max) {
-                    setProgressFromUser(progress, true)
+                    setProgressFromUser(progress)
                 }
-
                 return true
             }
         }
-
         return super.onKeyDown(keyCode, event)
     }
 
@@ -270,7 +243,7 @@ class VerticalSeekBar : AppCompatSeekBar {
     }
 
     @Synchronized
-    private fun setProgressFromUser(progress: Int, fromUser: Boolean) {
+    private fun setProgressFromUser(progress: Int, fromUser: Boolean = true) {
         if (mMethodSetProgressFromUser == null) {
             try {
                 val m: Method = ProgressBar::class.java.getDeclaredMethod(
@@ -280,19 +253,16 @@ class VerticalSeekBar : AppCompatSeekBar {
                 )
                 m.isAccessible = true
                 mMethodSetProgressFromUser = m
-            } catch (e: NoSuchMethodException) {
+            } catch (_: NoSuchMethodException) {
             }
-
         }
-
         if (mMethodSetProgressFromUser != null) {
             try {
                 mMethodSetProgressFromUser!!.invoke(this, progress, fromUser)
-            } catch (e: IllegalArgumentException) {
-            } catch (e: IllegalAccessException) {
-            } catch (e: InvocationTargetException) {
+            } catch (_: IllegalArgumentException) {
+            } catch (_: IllegalAccessException) {
+            } catch (_: InvocationTargetException) {
             }
-
         } else {
             super.setProgress(progress)
         }
@@ -305,9 +275,7 @@ class VerticalSeekBar : AppCompatSeekBar {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         } else {
             super.onMeasure(heightMeasureSpec, widthMeasureSpec)
-
             val lp = layoutParams
-
             if (isInEditMode && lp != null && lp.height >= 0) {
                 setMeasuredDimension(super.getMeasuredHeight(), lp.height)
             } else {
@@ -347,7 +315,7 @@ class VerticalSeekBar : AppCompatSeekBar {
         onSizeChanged(super.getWidth(), super.getHeight(), 0, 0)
     }
 
-    /*package*/
+    // package
     internal fun useViewRotation(): Boolean {
         return !isInEditMode
     }

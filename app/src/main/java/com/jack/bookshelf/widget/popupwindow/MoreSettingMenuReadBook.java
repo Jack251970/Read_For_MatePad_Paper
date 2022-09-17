@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.utils.popupwindow.PopupWindowsUtil;
-import com.jack.bookshelf.widget.views.ATECheckBox;
+import com.jack.bookshelf.widget.checkbox.RectCheckBox;
 
 /**
  * PopupMenu in Read Book Page
@@ -43,8 +43,8 @@ public class MoreSettingMenuReadBook extends PopupWindow {
     }
 
     public MoreSettingMenuReadBook setCheckBox(boolean enableReplaceRule, boolean enableLightParagraph) {
-        ((ATECheckBox)view.findViewById(R.id.checkbox_replace)).setChecked(enableReplaceRule);
-        ((ATECheckBox)view.findViewById(R.id.checkbox_light_novel_paragraph)).setChecked(enableLightParagraph);
+        ((RectCheckBox)view.findViewById(R.id.checkbox_replace)).setChecked(enableReplaceRule);
+        ((RectCheckBox)view.findViewById(R.id.checkbox_light_novel_paragraph)).setChecked(enableLightParagraph);
         return this;
     }
 

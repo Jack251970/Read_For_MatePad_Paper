@@ -19,10 +19,10 @@ import com.jack.bookshelf.help.ItemTouchCallback;
 import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
-import com.jack.bookshelf.widget.textview.BadgeTextView;
 import com.jack.bookshelf.widget.RotateLoading;
+import com.jack.bookshelf.widget.checkbox.RectCheckBox;
 import com.jack.bookshelf.widget.imageview.CoverImageView;
-import com.jack.bookshelf.widget.views.ATECheckBox;
+import com.jack.bookshelf.widget.textview.BadgeTextView;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -216,7 +216,7 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
         BadgeTextView bvProgress;
         RotateLoading rotateLoading;
         View vwSelect;
-        ATECheckBox checkBox;
+        RectCheckBox checkBox;
         MyViewHolder(View itemView) {
             super(itemView);
             ivCover = itemView.findViewById(R.id.iv_cover);

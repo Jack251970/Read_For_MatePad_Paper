@@ -3,18 +3,15 @@ package com.jack.bookshelf.utils.theme;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.RadioButton;
 import android.widget.SeekBar;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.CheckResult;
@@ -23,7 +20,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
@@ -63,8 +59,7 @@ public final class TintHelper {
         final int pressed = ColorUtils.shiftColor(color, darker ? 0.9f : 1.1f);
         final int activated = ColorUtils.shiftColor(color, darker ? 1.1f : 0.9f);
         final int rippleColor = getDefaultRippleColor(view.getContext(), isColorLight);
-        final int textColor = ContextCompat.getColor(view.getContext(), isColorLight ? R.color.ate_primary_text_light : R.color.ate_primary_text_dark);
-
+        final int textColor = Color.BLACK;
         final ColorStateList sl;
         if (view instanceof Button) {
             sl = getDisabledColorStateList(color, disabled);
@@ -119,7 +114,7 @@ public final class TintHelper {
 
         if (view instanceof TextView && !(view instanceof Button)) {
             final TextView tv = (TextView) view;
-            tv.setTextColor(getDisabledColorStateList(textColor, ContextCompat.getColor(view.getContext(), isColorLight ? R.color.ate_text_disabled_light : R.color.ate_text_disabled_dark)));
+            tv.setTextColor(Color.BLACK);
         }
     }
 
@@ -131,22 +126,12 @@ public final class TintHelper {
     public static void setTintAuto(final @NonNull View view, final @ColorInt int color,
                                    boolean background, final boolean isDark) {
         if (!background) {
-            if (view instanceof RadioButton)
-                setTint((RadioButton) view, color, isDark);
-            else if (view instanceof SeekBar)
+            if (view instanceof SeekBar)
                 setTint((SeekBar) view, color, isDark);
-            else if (view instanceof ProgressBar)
-                setTint((ProgressBar) view, color);
             else if (view instanceof AppCompatEditText)
                 setTint((AppCompatEditText) view, color, isDark);
-            else if (view instanceof CheckBox)
-                setTint((CheckBox) view, color, isDark);
             else if (view instanceof ImageView)
                 setTint((ImageView) view, color);
-            else if (view instanceof Switch)
-                setTint((Switch) view, color, isDark);
-            else if (view instanceof SwitchCompat)
-                setTint((SwitchCompat) view, color, isDark);
             else if (view instanceof SearchView) {
                 int[] iconIdS = new int[]{androidx.appcompat.R.id.search_button, androidx.appcompat.R.id.search_close_btn,};
                 for (int iconId : iconIdS) {
@@ -195,39 +180,12 @@ public final class TintHelper {
         }
     }
 
-    public static void setTint(@NonNull RadioButton radioButton, @ColorInt int color, boolean useDarker) {
-        ColorStateList sl = new ColorStateList(new int[][]{
-                new int[]{-android.R.attr.state_enabled},
-                new int[]{android.R.attr.state_enabled, -android.R.attr.state_checked},
-                new int[]{android.R.attr.state_enabled, android.R.attr.state_checked}
-        }, new int[]{
-                // Radio button includes own alpha for disabled state
-                ColorUtils.stripAlpha(ContextCompat.getColor(radioButton.getContext(), useDarker ? R.color.ate_control_disabled_dark : R.color.ate_control_disabled_light)),
-                ContextCompat.getColor(radioButton.getContext(), useDarker ? R.color.ate_control_normal_dark : R.color.ate_control_normal_light),
-                color
-        });
-        radioButton.setButtonTintList(sl);
-    }
-
     public static void setTint(@NonNull SeekBar seekBar, @ColorInt int color, boolean useDarker) {
         final ColorStateList s1 = getDisabledColorStateList(color,
                 ContextCompat.getColor(seekBar.getContext(), useDarker ? R.color.ate_control_disabled_dark : R.color.ate_control_disabled_light));
         seekBar.setThumbTintList(s1);
         seekBar.setProgressTintList(s1);
     }
-
-    public static void setTint(@NonNull ProgressBar progressBar, @ColorInt int color) {
-        setTint(progressBar, color, false);
-    }
-
-    public static void setTint(@NonNull ProgressBar progressBar, @ColorInt int color, boolean skipIndeterminate) {
-        ColorStateList sl = ColorStateList.valueOf(color);
-        progressBar.setProgressTintList(sl);
-        progressBar.setSecondaryProgressTintList(sl);
-        if (!skipIndeterminate)
-            progressBar.setIndeterminateTintList(sl);
-    }
-
 
     @SuppressLint("RestrictedApi")
     public static void setTint(@NonNull AppCompatEditText editText, @ColorInt int color, boolean useDarker) {
@@ -244,81 +202,8 @@ public final class TintHelper {
         setCursorTint(editText, color);
     }
 
-    public static void setTint(@NonNull CheckBox box, @ColorInt int color, boolean useDarker) {
-        ColorStateList sl = new ColorStateList(new int[][]{
-                new int[]{-android.R.attr.state_enabled},
-                new int[]{android.R.attr.state_enabled, -android.R.attr.state_checked},
-                new int[]{android.R.attr.state_enabled, android.R.attr.state_checked}
-        }, new int[]{
-                ContextCompat.getColor(box.getContext(), useDarker ? R.color.ate_control_disabled_dark : R.color.ate_control_disabled_light),
-                ContextCompat.getColor(box.getContext(), useDarker ? R.color.ate_control_normal_dark : R.color.ate_control_normal_light),
-                color
-        });
-        box.setButtonTintList(sl);
-    }
-
     public static void setTint(@NonNull ImageView image, @ColorInt int color) {
         image.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
-    }
-
-    private static Drawable modifySwitchDrawable(@NonNull Context context, @NonNull Drawable from, @ColorInt int tint, boolean thumb, boolean compatSwitch, boolean useDarker) {
-        if (useDarker) {
-            tint = ColorUtils.shiftColor(tint, 1.1f);
-        }
-        tint = ColorUtils.adjustAlpha(tint, (compatSwitch && !thumb) ? 0.5f : 1.0f);
-        int disabled;
-        int normal;
-        if (thumb) {
-            disabled = ContextCompat.getColor(context, useDarker ? R.color.ate_switch_thumb_disabled_dark : R.color.ate_switch_thumb_disabled_light);
-            normal = ContextCompat.getColor(context, useDarker ? R.color.ate_switch_thumb_normal_dark : R.color.ate_switch_thumb_normal_light);
-        } else {
-            disabled = ContextCompat.getColor(context, useDarker ? R.color.ate_switch_track_disabled_dark : R.color.ate_switch_track_disabled_light);
-            normal = ContextCompat.getColor(context, useDarker ? R.color.ate_switch_track_normal_dark : R.color.ate_switch_track_normal_light);
-        }
-
-        // Stock switch includes its own alpha
-        if (!compatSwitch) {
-            normal = ColorUtils.stripAlpha(normal);
-        }
-
-        final ColorStateList sl = new ColorStateList(
-                new int[][]{
-                        new int[]{-android.R.attr.state_enabled},
-                        new int[]{android.R.attr.state_enabled, -android.R.attr.state_activated, -android.R.attr.state_checked},
-                        new int[]{android.R.attr.state_enabled, android.R.attr.state_activated},
-                        new int[]{android.R.attr.state_enabled, android.R.attr.state_checked}
-                },
-                new int[]{
-                        disabled,
-                        normal,
-                        tint,
-                        tint
-                }
-        );
-        return createTintedDrawable(from, sl);
-    }
-
-    @SuppressLint("UseSwitchCompatOrMaterialCode")
-    public static void setTint( @NonNull Switch switchView, @ColorInt int color, boolean useDarker) {
-        if (switchView.getTrackDrawable() != null) {
-            switchView.setTrackDrawable(modifySwitchDrawable(switchView.getContext(),
-                    switchView.getTrackDrawable(), color, false, false, useDarker));
-        }
-        if (switchView.getThumbDrawable() != null) {
-            switchView.setThumbDrawable(modifySwitchDrawable(switchView.getContext(),
-                    switchView.getThumbDrawable(), color, true, false, useDarker));
-        }
-    }
-
-    public static void setTint(@NonNull SwitchCompat switchView, @ColorInt int color, boolean useDarker) {
-        if (switchView.getTrackDrawable() != null) {
-            switchView.setTrackDrawable(modifySwitchDrawable(switchView.getContext(),
-                    switchView.getTrackDrawable(), color, false, true, useDarker));
-        }
-        if (switchView.getThumbDrawable() != null) {
-            switchView.setThumbDrawable(modifySwitchDrawable(switchView.getContext(),
-                    switchView.getThumbDrawable(), color, true, true, useDarker));
-        }
     }
 
     // This returns a NEW Drawable because of the mutate() call. The mutate() call is necessary because Drawables with the same resource have shared states otherwise.

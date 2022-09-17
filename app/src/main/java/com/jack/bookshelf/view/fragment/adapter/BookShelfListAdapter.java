@@ -22,10 +22,10 @@ import com.jack.bookshelf.help.ItemTouchCallback;
 import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
-import com.jack.bookshelf.widget.textview.BadgeTextView;
 import com.jack.bookshelf.widget.RotateLoading;
+import com.jack.bookshelf.widget.checkbox.RectCheckBox;
 import com.jack.bookshelf.widget.imageview.CoverImageView;
-import com.jack.bookshelf.widget.views.ATECheckBox;
+import com.jack.bookshelf.widget.textview.BadgeTextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -235,7 +235,7 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
         View vwSelect;
         ImageView ivBack;
         ImageView ivEditBook;
-        ATECheckBox checkBox;
+        RectCheckBox checkBox;
         MyViewHolder(View itemView) {
             super(itemView);
             flContent = itemView.findViewById(R.id.cv_content);

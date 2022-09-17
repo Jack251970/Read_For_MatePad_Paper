@@ -153,7 +153,7 @@
         android:layout_height="1dp"
         android:background="@color/black"
         app:layout_constraintBottom_toBottomOf="parent" />
-    <com.jack.bookshelf.widget.views.ATECheckBox
+    <com.jack.bookshelf.widget.checkbox.RectCheckBox
         android:id="@+id/checkbox_book"
         android:layout_width="30sp"
         android:layout_height="25sp"
