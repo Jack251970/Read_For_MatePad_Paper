@@ -19,6 +19,9 @@
 #### *Android*-安卓
 * [Releases](https://github.com/Jack251970/Read_For_MatePad_Paper/releases/latest)
 
+# *Develop*-开发
+* 本项目Fork于：https://github.com/gedoor/MyBookshelf
+
 # *Others*-其他
 * [免责声明](app/src/main/assets/disclaimer.md)
 * [更新日志](app/src/main/assets/updateLog.md)
