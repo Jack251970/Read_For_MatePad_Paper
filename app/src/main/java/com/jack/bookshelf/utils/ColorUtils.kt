@@ -103,7 +103,6 @@ object ColorUtils {
         return RandomColor(255, 80, 200).color
     }
 
-
     /**
      * 随机颜色
      */

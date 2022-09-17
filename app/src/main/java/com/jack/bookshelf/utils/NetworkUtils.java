@@ -6,8 +6,6 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
-import android.net.NetworkInfo;
-import android.os.Build;
 import android.text.TextUtils;
 
 import com.jack.bookshelf.MApplication;
@@ -20,6 +18,7 @@ import java.net.URL;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import retrofit2.Response;
@@ -45,24 +44,14 @@ public class NetworkUtils {
 
     public static boolean isNetWorkAvailable() {
         ConnectivityManager cm = (ConnectivityManager) MApplication.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (Build.VERSION.SDK_INT < 23) {
-            NetworkInfo mWiFiNetworkInfo = cm.getActiveNetworkInfo();
-            if (mWiFiNetworkInfo != null) {
+        Network network = cm.getActiveNetwork();
+        if (network != null) {
+            NetworkCapabilities nc = cm.getNetworkCapabilities(network);
+            if (nc != null) {
                 //移动数据
-                if (mWiFiNetworkInfo.getType() == ConnectivityManager.TYPE_WIFI) {//WIFI
+                if (nc.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {//WIFI
                     return true;
-                } else return mWiFiNetworkInfo.getType() == ConnectivityManager.TYPE_MOBILE;
-            }
-        } else {
-            Network network = cm.getActiveNetwork();
-            if (network != null) {
-                NetworkCapabilities nc = cm.getNetworkCapabilities(network);
-                if (nc != null) {
-                    //移动数据
-                    if (nc.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {//WIFI
-                        return true;
-                    } else return nc.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR);
-                }
+                } else return nc.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR);
             }
         }
         return false;
@@ -70,11 +59,7 @@ public class NetworkUtils {
 
     public static String getUrl(Response response) {
         okhttp3.Response networkResponse = response.raw().networkResponse();
-        if (networkResponse != null) {
-            return networkResponse.request().url().toString();
-        } else {
-            return response.raw().request().url().toString();
-        }
+        return Objects.requireNonNullElseGet(networkResponse, response::raw).request().url().toString();
     }
 
     /**

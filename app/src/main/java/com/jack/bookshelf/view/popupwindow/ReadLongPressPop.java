@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 
 import com.jack.bookshelf.databinding.PopReadLongPressBinding;
-import com.jack.bookshelf.utils.DensityUtil;
+import com.jack.bookshelf.utils.screen.ScreenUtils;
 
 /**
  * Read LongPress Pop Menu
@@ -50,7 +50,7 @@ public class ReadLongPressPop extends FrameLayout {
     protected void dispatchDraw(Canvas canvas) {
         Path path = new Path();
         path.addRoundRect(new RectF(0,0, getMeasuredWidth(), getMeasuredHeight()),
-                DensityUtil.dp2px(getContext(),4), DensityUtil.dp2px(getContext(),4), Path.Direction.CW);
+                ScreenUtils.dpToPx(4), ScreenUtils.dpToPx(4), Path.Direction.CW);
         canvas.clipPath(path);
         super.dispatchDraw(canvas);
     }

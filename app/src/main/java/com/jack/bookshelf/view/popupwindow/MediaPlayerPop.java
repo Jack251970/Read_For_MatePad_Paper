@@ -2,6 +2,7 @@ package com.jack.bookshelf.view.popupwindow;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -17,7 +18,6 @@ import com.jack.bookshelf.R;
 import com.jack.bookshelf.databinding.PopMediaPlayerBinding;
 import com.jack.bookshelf.help.glide.ImageLoader;
 import com.jack.bookshelf.utils.TimeUtils;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -38,21 +38,21 @@ public class MediaPlayerPop extends FrameLayout {
 
     public MediaPlayerPop(@NonNull Context context) {
         super(context);
-        init(context);
+        init();
     }
 
     public MediaPlayerPop(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init(context);
+        init();
     }
 
     public MediaPlayerPop(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context);
+        init();
     }
 
-    private void init(Context context) {
-        binding.getRoot().setBackgroundColor(ThemeStore.primaryColor(context));
+    private void init() {
+        binding.getRoot().setBackgroundColor(Color.WHITE);
         binding.vwBg.setOnClickListener(null);
         setColor(binding.ivSkipPrevious.getDrawable());
         setColor(binding.ivSkipNext.getDrawable());

@@ -14,7 +14,6 @@ import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.observer.MyObserver;
 import com.jack.bookshelf.bean.BookChapterBean;
 import com.jack.bookshelf.bean.BookShelfBean;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,9 +87,8 @@ public class ChapterListAdapter extends RecyclerView.Adapter<ChapterListAdapter.
     @NonNull
     @Override
     public ThisViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        normalColor = ThemeStore.textColorSecondary(parent.getContext());
-        return new ThisViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_chapter_and_bookmark, parent, false));
+        normalColor = Color.BLACK;
+        return new ThisViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chapter_and_bookmark, parent, false));
     }
 
     @Override

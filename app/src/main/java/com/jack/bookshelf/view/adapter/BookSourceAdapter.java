@@ -1,5 +1,6 @@
 package com.jack.bookshelf.view.adapter;
 
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,6 @@ import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BookSourceBean;
 import com.jack.bookshelf.help.ItemTouchCallback;
 import com.jack.bookshelf.model.BookSourceManager;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.activity.BookSourceActivity;
 import com.jack.bookshelf.view.activity.SourceEditActivity;
 
@@ -101,7 +101,7 @@ public class BookSourceAdapter extends RecyclerView.Adapter<BookSourceAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.itemView.setBackgroundColor(ThemeStore.backgroundColor(activity));
+        holder.itemView.setBackgroundColor(Color.WHITE);
         if (sort != 2) {
             holder.topView.setVisibility(View.VISIBLE);
         } else {

@@ -7,14 +7,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.graphics.Color;
 
 import androidx.multidex.MultiDex;
 
 import com.jack.bookshelf.help.AppFrontBackHelper;
 import com.jack.bookshelf.help.CrashHandler;
 import com.jack.bookshelf.model.UpLastChapterModel;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.widget.dialog.ProgressDialog;
 
 import java.util.Arrays;
@@ -25,7 +23,6 @@ import timber.log.Timber;
 
 /**
  * MApplication
- * Copyright (c) 2017. 章钦豪. All rights reserved.
  * Edited by Jack251970
  */
 
@@ -85,9 +82,6 @@ public class MApplication extends Application {
         }
         createChannelId();
         configPreferences = getSharedPreferences("CONFIG", 0);
-        if (!ThemeStore.isConfigured(this, versionCode)) {
-            upThemeStore(); // 初始化主题商店
-        }
         AppFrontBackHelper.getInstance().register(this, new AppFrontBackHelper.OnAppStatusListener() {
             @Override
             public void onFront() {}
@@ -103,17 +97,6 @@ public class MApplication extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
-    }
-
-    /**
-     * 初始化主题
-     */
-    public void upThemeStore() {
-        ThemeStore.editTheme(this)
-                .primaryColor(Color.WHITE)
-                .accentColor(Color.BLACK)
-                .backgroundColor(Color.WHITE)
-                .apply();
     }
 
     /**

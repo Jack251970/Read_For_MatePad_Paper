@@ -4,15 +4,31 @@
     <declare-styleable name="PaperStrokeTextView">
         <attr name="cornerRadius" format="dimension" />
     </declare-styleable>
-
     <!-- Number Picker Dialog -->
     <declare-styleable name="NumberPickerPreference">
         <attr name="MinValue" format="integer" />
         <attr name="MaxValue" format="integer" />
         <attr name="android:summary" />
     </declare-styleable>
-
-
+    <!-- Fast Scroller -->
+    <declare-styleable name="FastScroller">
+        <attr name="fadeScrollbar" format="boolean" />
+        <attr name="showBubble" format="boolean" />
+        <attr name="showTrack" format="boolean" />
+        <attr name="trackColor" format="color" />
+        <attr name="handleColor" format="color" />
+        <attr name="bubbleColor" format="color" />
+        <attr name="bubbleTextColor" format="color" />
+    </declare-styleable>
+    <!-- Vertical SeekBar -->
+    <declare-styleable name="VerticalSeekBar">
+        <attr name="seekBarRotation">
+            <!-- Clock wise - 90 deg; top = min, bottom = max -->
+            <enum name="CW90" value="90" />
+            <!-- Clock wise - 270 deg; bottom = min, top = max -->
+            <enum name="CW270" value="270" />
+        </attr>
+    </declare-styleable>
 
     <declare-styleable name="RefreshProgressBar">
         <attr name="max_progress" format="integer"/>
@@ -25,37 +41,10 @@
         <attr name="speed" format="dimension"/>
     </declare-styleable>
 
-    <declare-styleable name="SmoothCheckBox">
-        <attr name="duration" format="integer"/>
-        <attr name="stroke_width" format="dimension"/>
-        <attr name="color_tick" format="color"/>
-        <attr name="color_checked" format="color"/>
-        <attr name="color_unchecked" format="color"/>
-        <attr name="color_unchecked_stroke" format="color"/>
-    </declare-styleable>
-
     <declare-styleable name="RefreshLayout">
         <attr name="layout_refresh_empty" format="reference"/>
         <attr name="layout_refresh_error" format="reference"/>
         <attr name="layout_refresh_loading" format="reference"/>
-    </declare-styleable>
-
-    <declare-styleable name="FastScroller">
-        <attr name="fadeScrollbar" format="boolean" />
-        <attr name="showBubble" format="boolean" />
-        <attr name="showTrack" format="boolean" />
-        <attr name="trackColor" format="color" />
-        <attr name="handleColor" format="color" />
-        <attr name="bubbleColor" format="color" />
-        <attr name="bubbleTextColor" format="color" />
-    </declare-styleable>
-
-    <declare-styleable name="FilletImageView">
-        <attr name="radius" format="dimension"/>
-        <attr name="left_top_radius" format="dimension"/>
-        <attr name="right_top_radius" format="dimension"/>
-        <attr name="right_bottom_radius" format="dimension"/>
-        <attr name="left_bottom_radius" format="dimension"/>
     </declare-styleable>
 
     <declare-styleable name="RotateLoading">
@@ -63,14 +52,5 @@
         <attr name="loading_color" format="color" />
         <attr name="shadow_position" format="integer" />
         <attr name="loading_speed" format="integer" />
-    </declare-styleable>
-
-    <declare-styleable name="VerticalSeekBar">
-        <attr name="seekBarRotation">
-            <!-- Clock wise - 90 deg; top = min, bottom = max -->
-            <enum name="CW90" value="90" />
-            <!-- Clock wise - 270 deg; bottom = min, top = max -->
-            <enum name="CW270" value="270" />
-        </attr>
     </declare-styleable>
 </resources>

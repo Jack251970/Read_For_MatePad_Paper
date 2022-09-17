@@ -17,6 +17,7 @@ import com.jack.bookshelf.R
 import com.jack.bookshelf.databinding.DialogLoginBinding
 import com.jack.bookshelf.model.BookSourceManager
 import com.jack.bookshelf.utils.*
+import com.jack.bookshelf.utils.screen.ScreenUtils
 import com.jack.bookshelf.utils.viewbindingdelegate.viewBinding
 import io.reactivex.Single
 import io.reactivex.SingleObserver
@@ -107,7 +108,7 @@ class SourceLoginDialog : DialogFragment() {
                         it.id = index
                         (it as TextView).let { textView ->
                             textView.text = rowUi.name
-                            textView.setPadding(DensityUtil.dp2px(requireContext(), 16f))
+                            textView.setPadding(ScreenUtils.dpToPx(16))
                         }
                         it.onClick {
                             if (rowUi.action.isAbsUrl()) {

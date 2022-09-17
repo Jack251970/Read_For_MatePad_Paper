@@ -2,6 +2,7 @@ package com.jack.bookshelf.view.fragment.adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +21,6 @@ import com.jack.bookshelf.bean.BookShelfBean;
 import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.help.ItemTouchCallback;
 import com.jack.bookshelf.utils.StringUtils;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
 import com.jack.bookshelf.widget.RotateLoading;
 import com.jack.bookshelf.widget.imageview.CoverImageView;
@@ -246,7 +246,7 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
             tvLast = itemView.findViewById(R.id.tv_last);
             tvAuthor = itemView.findViewById(R.id.tv_author);
             rotateLoading = itemView.findViewById(R.id.rl_loading);
-            rotateLoading.setLoadingColor(ThemeStore.accentColor(itemView.getContext()));
+            rotateLoading.setLoadingColor(Color.BLACK);
             vwSelect = itemView.findViewById(R.id.vw_select);
             ivBack = itemView.findViewById(R.id.iv_back);
             ivEditBook = itemView.findViewById(R.id.iv_edit_book);

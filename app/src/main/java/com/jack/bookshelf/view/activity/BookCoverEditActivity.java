@@ -2,6 +2,7 @@ package com.jack.bookshelf.view.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.jack.basemvplib.impl.IPresenter;
 import com.jack.bookshelf.DbHelper;
-import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.MBaseActivity;
 import com.jack.bookshelf.base.observer.MySingleObserver;
@@ -25,7 +25,6 @@ import com.jack.bookshelf.databinding.ActivityBookCoverEditBinding;
 import com.jack.bookshelf.model.BookSourceManager;
 import com.jack.bookshelf.model.SearchBookModel;
 import com.jack.bookshelf.utils.RxUtils;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.widget.recycler.refresh.RefreshRecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -108,7 +107,7 @@ public class BookCoverEditActivity extends MBaseActivity<IPresenter> {
             }
         };
         searchBookModel = new SearchBookModel(searchListener);
-        binding.swipeRefreshLayout.setColorSchemeColors(ThemeStore.accentColor(MApplication.getInstance()));
+        binding.swipeRefreshLayout.setColorSchemeColors(Color.BLACK);
         binding.swipeRefreshLayout.setOnRefreshListener(() -> {
             if (!isLoading) {
                 isLoading = true;

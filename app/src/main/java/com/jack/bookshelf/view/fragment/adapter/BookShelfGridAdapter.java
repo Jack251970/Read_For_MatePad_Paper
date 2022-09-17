@@ -2,6 +2,7 @@ package com.jack.bookshelf.view.fragment.adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,6 @@ import com.jack.bookshelf.bean.BookShelfBean;
 import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.help.ItemTouchCallback;
 import com.jack.bookshelf.utils.StringUtils;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
 import com.jack.bookshelf.widget.RotateLoading;
 import com.jack.bookshelf.widget.imageview.CoverImageView;
@@ -143,7 +143,7 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
             holder.checkBox.setVisibility(View.INVISIBLE);
         }
         holder.tvName.setText(!StringUtils.isTrimEmpty(bookInfoBean.getName()) ? bookInfoBean.getName() : activity.getString(R.string.unknown));
-        holder.tvName.setBackgroundColor(ThemeStore.backgroundColor(activity));
+        holder.tvName.setBackgroundColor(Color.WHITE);
         if (!activity.isFinishing()) {
             holder.ivCover.load(bookShelfBean.getCoverPath(), bookShelfBean.getName(), bookShelfBean.getAuthor());
         }
@@ -223,7 +223,7 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
             tvName = itemView.findViewById(R.id.tv_name);
             bvProgress = itemView.findViewById(R.id.bv_progress);
             rotateLoading = itemView.findViewById(R.id.rl_loading);
-            rotateLoading.setLoadingColor(ThemeStore.accentColor(itemView.getContext()));
+            rotateLoading.setLoadingColor(Color.BLACK);
             vwSelect = itemView.findViewById(R.id.vw_select);
             checkBox = itemView.findViewById(R.id.checkbox_book);
         }

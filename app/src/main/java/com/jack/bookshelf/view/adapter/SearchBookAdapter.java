@@ -4,6 +4,7 @@ import static com.jack.bookshelf.utils.StringUtils.isTrimEmpty;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -18,7 +19,6 @@ import com.jack.bookshelf.DbHelper;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BookKindBean;
 import com.jack.bookshelf.bean.SearchBookBean;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.adapter.base.BaseListAdapter;
 import com.jack.bookshelf.widget.imageview.CoverImageView;
 import com.jack.bookshelf.widget.recycler.refresh.RefreshRecyclerViewAdapter;
@@ -54,7 +54,7 @@ public class SearchBookAdapter extends RefreshRecyclerViewAdapter {
     @Override
     public void onBindIViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         Activity activity = activityRef.get();
-        holder.itemView.setBackgroundColor(ThemeStore.backgroundColor(activity));
+        holder.itemView.setBackgroundColor(Color.WHITE);
         MyViewHolder myViewHolder = (MyViewHolder) holder;
         myViewHolder.flContent.setOnClickListener(v -> {
             if (itemClickListener != null)

@@ -1,5 +1,6 @@
 package com.jack.bookshelf.view.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.ReplaceRuleBean;
 import com.jack.bookshelf.help.ItemTouchCallback;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.activity.ReplaceRuleActivity;
 
 import java.util.ArrayList;
@@ -75,7 +75,7 @@ public class ReplaceRuleAdapter extends RecyclerView.Adapter<ReplaceRuleAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.itemView.setBackgroundColor(ThemeStore.backgroundColor(activity));
+        holder.itemView.setBackgroundColor(Color.WHITE);
         holder.checkBox.setText(data.get(position).getReplaceSummary());
         holder.checkBox.setChecked(data.get(position).getEnable());
         holder.checkBox.setOnClickListener((View view) -> {

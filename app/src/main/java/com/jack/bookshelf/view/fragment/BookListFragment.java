@@ -3,6 +3,7 @@ package com.jack.bookshelf.view.fragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jack.basemvplib.BitIntentDataManager;
-import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.MBaseFragment;
 import com.jack.bookshelf.base.observer.MySingleObserver;
@@ -29,7 +29,6 @@ import com.jack.bookshelf.presenter.ReadBookPresenter;
 import com.jack.bookshelf.presenter.contract.BookListContract;
 import com.jack.bookshelf.utils.NetworkUtils;
 import com.jack.bookshelf.utils.RxUtils;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 import com.jack.bookshelf.view.activity.BookDetailActivity;
 import com.jack.bookshelf.view.activity.ReadBookActivity;
 import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
@@ -99,7 +98,7 @@ public class BookListFragment extends MBaseFragment<BookListContract.Presenter> 
             bookShelfAdapter = new BookShelfGridAdapter(getActivity());
         }
         binding.rvBookshelf.setAdapter((RecyclerView.Adapter) bookShelfAdapter);
-        binding.refreshLayout.setColorSchemeColors(ThemeStore.accentColor(MApplication.getInstance()));
+        binding.refreshLayout.setColorSchemeColors(Color.BLACK);
     }
 
     @Override
