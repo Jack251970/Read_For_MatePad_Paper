@@ -27,6 +27,11 @@
 * [更新日志](app/src/main/assets/updateLog.md)
 
 # *Grateful*-感谢
+> * gedoor(kunfei) https://github.com/gedoor
+> * 大古队员 https://github.com/DaguDuiyuan
+> * atbest https://github.com/atbest
+> * Antecer https://github.com/Antecer
+> * mabDc https://github.com/mabDc
 > * org.jsoup:jsoup
 > * cn.wanghaomiao:JsoupXpath
 > * com.jayway.jsonpath:json-path
