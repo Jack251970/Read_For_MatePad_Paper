@@ -3,10 +3,10 @@
     <size
         android:height="@dimen/viewpager_indicator_height"/>
     <stroke
-        android:color="@color/colorAccent"
+        android:color="@color/black"
         android:width="@dimen/viewpager_indicator_stroke_width"/>
     <corners
         android:radius="@dimen/viewpager_indicator_radius"/>
     <solid
-        android:color="@color/colorAccent"/>
+        android:color="@color/black"/>
 </shape>

@@ -52,21 +52,18 @@ import com.jack.bookshelf.service.ReadAloudService;
 import com.jack.bookshelf.utils.ActivityExtensionsKt;
 import com.jack.bookshelf.utils.BatteryUtil;
 import com.jack.bookshelf.utils.NetworkUtils;
-import com.jack.bookshelf.utils.ScreenUtils;
 import com.jack.bookshelf.utils.SoftInputUtil;
 import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.SystemUtil;
-import com.jack.bookshelf.utils.theme.ThemeStore;
-import com.jack.bookshelf.widget.dialog.InputDialog;
-import com.jack.bookshelf.widget.dialog.SourceLoginDialog;
-import com.jack.bookshelf.widget.popupwindow.MoreSettingMenuReadBook;
+import com.jack.bookshelf.utils.screen.ScreenUtils;
 import com.jack.bookshelf.view.popupwindow.MoreSettingPop;
-import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
 import com.jack.bookshelf.view.popupwindow.ReadAdjustMarginPop;
 import com.jack.bookshelf.view.popupwindow.ReadBottomMenu;
 import com.jack.bookshelf.view.popupwindow.ReadInterfacePop;
 import com.jack.bookshelf.view.popupwindow.ReadLongPressPop;
-import com.jack.bookshelf.widget.popupwindow.SelectMenu;
+import com.jack.bookshelf.widget.dialog.InputDialog;
+import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
+import com.jack.bookshelf.widget.dialog.SourceLoginDialog;
 import com.jack.bookshelf.widget.dialog.modialog.BookmarkDialog;
 import com.jack.bookshelf.widget.dialog.modialog.ChangeSourceDialog;
 import com.jack.bookshelf.widget.dialog.modialog.DownLoadDialog;
@@ -76,6 +73,8 @@ import com.jack.bookshelf.widget.page.PageLoader;
 import com.jack.bookshelf.widget.page.PageLoaderNet;
 import com.jack.bookshelf.widget.page.PageView;
 import com.jack.bookshelf.widget.page.TxtChapter;
+import com.jack.bookshelf.widget.popupwindow.MoreSettingMenuReadBook;
+import com.jack.bookshelf.widget.popupwindow.SelectMenu;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -190,14 +189,12 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
             getWindow().getDecorView().setSystemUiVisibility(flag);
         }
         if (ifBottomMenuShow) {
-            ActivityExtensionsKt.setStatusBarColorAuto(this,
-                    ThemeStore.primaryColor(this), false, true);
+            ActivityExtensionsKt.setStatusBarColorAutoWhite(this, false, true);
         } else {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
             ActivityExtensionsKt.setLightStatusBar(this, true);
         }
-        ActivityExtensionsKt.setNavigationBarColorAuto(this,
-                ThemeStore.primaryColor(this));
+        ActivityExtensionsKt.setNavigationBarColorWhite(this);
         screenOffTimerStart();
     }
 
@@ -880,9 +877,9 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     public void showAction(View clickView) {
         binding.readLongPress.setVisibility(View.VISIBLE);
         // 如果太靠右，则靠左
-        int[] aa = ScreenUtils.getScreenSize(this);
-        if ((binding.cursorLeft.getX() + ScreenUtils.dpToPx(200)) > aa[0]) {
-            binding.readLongPress.setX(aa[0] - ScreenUtils.dpToPx(200));
+        int[] screenSize = ScreenUtils.getScreenSize(this);
+        if ((binding.cursorLeft.getX() + ScreenUtils.dpToPx(200)) > screenSize[0]) {
+            binding.readLongPress.setX(screenSize[0] - ScreenUtils.dpToPx(200));
         } else {
             binding.readLongPress.setX(binding.cursorLeft.getX() + binding.cursorLeft.getWidth() + ScreenUtils.dpToPx(5));
         }

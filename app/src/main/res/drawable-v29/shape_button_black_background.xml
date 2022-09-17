@@ -7,7 +7,7 @@
     <corners android:radius="@dimen/button_radius" />
     <stroke
         android:width="@dimen/button_stroke_width"
-        android:color="@color/colorAccent"/>
+        android:color="@color/black"/>
     <solid
-        android:color="@color/colorAccent"/>
+        android:color="@color/black"/>
 </shape>

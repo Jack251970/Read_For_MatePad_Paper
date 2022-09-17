@@ -30,7 +30,7 @@
                 android:layout_gravity="center"
                 android:contentDescription="@string/img_cover"
                 android:src="@drawable/image_cover_default"
-                app:civ_border_color="@color/tv_text_default"
+                app:civ_border_color="@color/text_color"
                 app:civ_border_width="1dp"
                 tools:ignore="HardcodedText" />
         </FrameLayout>

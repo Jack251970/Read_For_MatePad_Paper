@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:singleLine="true"
-        android:textColor="@color/tv_text_default"
+        android:textColor="@color/text_color"
         android:textStyle="bold"
         tools:text="净化规则1"/>
     <androidx.appcompat.widget.AppCompatImageView

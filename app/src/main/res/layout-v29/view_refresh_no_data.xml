@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/cannot_search_any_books"
-        android:textColor="@color/tv_text_default"
+        android:textColor="@color/text_color"
         android:textSize="22sp"
         android:textStyle="bold"/>
 </FrameLayout>

@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:textColor="@color/tv_text_default"
+            android:textColor="@color/text_color"
             android:text="@string/edit_find"
             style="@style/PaperTextButton"/>
     </LinearLayout>

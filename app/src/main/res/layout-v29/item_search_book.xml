@@ -9,7 +9,7 @@
     android:paddingTop="15dp"
     android:clickable="true"
     android:focusable="true"
-    android:background="@color/background">
+    android:background="@color/white">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="105dp"
@@ -41,7 +41,7 @@
                 android:layout_marginBottom="2dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/tv_text_default"
+                android:textColor="@color/text_color"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:text="完美世界"/>
@@ -57,7 +57,7 @@
                     android:layout_gravity="center_vertical"
                     android:ellipsize="end"
                     android:lines="1"
-                    android:textColor="@color/tv_text_default"
+                    android:textColor="@color/text_color"
                     android:textSize="12sp"
                     tools:text="来源"/>
                 <!-- 源数 -->
@@ -69,7 +69,7 @@
                     android:layout_marginLeft="5dp"
                     android:ellipsize="end"
                     android:lines="1"
-                    android:textColor="@color/tv_text_default"
+                    android:textColor="@color/text_color"
                     android:textSize="12sp"
                     tools:text="共1个源"/>
             </LinearLayout>
@@ -123,7 +123,7 @@
                 android:paddingTop="5dp"
                 android:ellipsize="end"
                 android:lines="1"
-                android:textColor="@color/tv_text_default"
+                android:textColor="@color/text_color"
                 android:textSize="12sp"
                 tools:text="最新章节"/>
         </LinearLayout>

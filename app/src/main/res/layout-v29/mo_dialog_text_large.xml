@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:padding="20dp"
-        android:textColor="@color/tv_text_default"
+        android:textColor="@color/text_color"
         android:lineSpacingExtra="2dp"
         android:textIsSelectable="true"
         tools:text="这是一段文字!"/>

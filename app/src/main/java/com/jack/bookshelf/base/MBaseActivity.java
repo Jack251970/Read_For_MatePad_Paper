@@ -19,7 +19,6 @@ import com.jack.bookshelf.R;
 import com.jack.bookshelf.utils.ActivityExtensionsKt;
 import com.jack.bookshelf.utils.SoftInputUtil;
 import com.jack.bookshelf.utils.ToastsKt;
-import com.jack.bookshelf.utils.theme.ThemeStore;
 
 /**
  * MBase Activity
@@ -71,16 +70,12 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
         try {
             View actionBar = findViewById(R.id.action_bar);
             ActivityExtensionsKt.fullScreen(this);
-            boolean isShowActionBar = (getSupportActionBar() != null) && (actionBar != null)
-                    && (actionBar.getVisibility() == View.VISIBLE);
-            ActivityExtensionsKt.setStatusBarColorAuto(this
-                    , ThemeStore.primaryColor(this)
-                    , isShowActionBar , isShowActionBar);
+            boolean isShowActionBar = (actionBar != null) && (actionBar.getVisibility() == View.VISIBLE);
+            ActivityExtensionsKt.setStatusBarColorAutoWhite(this, isShowActionBar , isShowActionBar);
         } catch (Exception ignored) {
         }
         try {
-            ActivityExtensionsKt.setNavigationBarColorAuto(this,
-                    ThemeStore.primaryColor(this));
+            ActivityExtensionsKt.setNavigationBarColorWhite(this);
         } catch (Exception ignored) {
         }
     }

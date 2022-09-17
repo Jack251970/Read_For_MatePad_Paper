@@ -16,6 +16,6 @@
         android:layout_height="wrap_content"
         android:lineSpacingMultiplier="1.2"
         android:padding="20dp"
-        android:textColor="@color/tv_text_default"
+        android:textColor="@color/text_color"
         tools:text="这是一段Markdown文字！\n这是一段Markdown文字！"/>
 </ScrollView>

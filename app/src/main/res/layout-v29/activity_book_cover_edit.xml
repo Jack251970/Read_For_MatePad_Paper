@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:id="@+id/ll_content"
-    android:background="@color/background"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context="com.jack.bookshelf.view.activity.BookCoverEditActivity">
     <!-- Custom ActionBar -->

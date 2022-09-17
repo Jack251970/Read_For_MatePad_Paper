@@ -16,7 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.jack.bookshelf.R;
-import com.jack.bookshelf.utils.popupwindow.PopupWindowsUtil;
+import com.jack.bookshelf.utils.screen.view.PopupWindowUtil;
 
 import java.util.Arrays;
 import java.util.List;
@@ -91,12 +91,12 @@ public class MoreSettingMenu extends PopupWindow {
     }
 
     public void show(final View mainView, final View anchorView) {
-        int[] windowPos = PopupWindowsUtil.calculatePopWindowPos(anchorView,view);
+        int[] windowPos = PopupWindowUtil.calculatePopWindowPos(anchorView,view);
         showAtLocation(mainView, Gravity.TOP | Gravity.START, windowPos[0] - 30, windowPos[1] + 10);
     }
 
     public void showForChangeSourceDialog(final View mainView, final View anchorView) {
-        int[] windowPos = PopupWindowsUtil.calculatePopWindowPos(anchorView,view);
+        int[] windowPos = PopupWindowUtil.calculatePopWindowPos(anchorView,view);
         showAtLocation(mainView, Gravity.TOP | Gravity.START, 30, windowPos[1] - 50);
     }
 

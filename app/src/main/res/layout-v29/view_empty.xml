@@ -27,7 +27,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:text="暂无数据"
-            android:textColor="@color/tv_text_default"
+            android:textColor="@color/text_color"
             android:textSize="16dp"
             android:textStyle="bold"/>
     </LinearLayout>

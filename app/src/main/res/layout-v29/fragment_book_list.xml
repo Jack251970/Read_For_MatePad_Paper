@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:bg_color="@color/transparent"
-                app:font_color="@color/tv_text_default"
+                app:font_color="@color/text_color"
                 app:second_color="@color/black"
                 app:second_max_progress="80dp"
                 app:speed="2dp" />
@@ -41,11 +41,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/mpp_navigation_bar_line"/>
+            android:background="@color/navigation_bar_line"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/action_bar_layout_height"
-            android:background="@color/colorPrimary"
+            android:background="@color/white"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:textSize="30sp"
-                android:textColor="@color/tv_text_default"
+                android:textColor="@color/text_color"
                 android:textStyle="bold"
                 tools:text="已选择3项"/>
             <View

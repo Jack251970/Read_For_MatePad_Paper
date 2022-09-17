@@ -35,7 +35,7 @@ import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.model.BookSourceManager;
 import com.jack.bookshelf.model.SearchBookModel;
 import com.jack.bookshelf.model.UpLastChapterModel;
-import com.jack.bookshelf.utils.ScreenUtils;
+import com.jack.bookshelf.utils.screen.ScreenUtils;
 import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.view.activity.SourceEditActivity;

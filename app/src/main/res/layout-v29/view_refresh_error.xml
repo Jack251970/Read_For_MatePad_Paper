@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/white"
     android:clickable="true"
     android:focusable="true"
     android:gravity="center"
@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/get_data_error"
-        android:textColor="@color/tv_text_default"
+        android:textColor="@color/text_color"
         android:textSize="16sp"
         android:textStyle="bold"/>
     <TextView

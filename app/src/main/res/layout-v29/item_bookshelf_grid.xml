@@ -37,7 +37,7 @@
         android:visibility="invisible"
         app:layout_constraintTop_toTopOf="@+id/iv_cover"
         app:layout_constraintRight_toRightOf="@+id/iv_cover"
-        app:loading_color="@color/colorAccent"
+        app:loading_color="@color/black"
         app:loading_width="2dp"
         tools:ignore="RtlHardcoded" />
     <LinearLayout
@@ -54,7 +54,7 @@
             android:layout_gravity="bottom"
             android:minLines="2"
             android:maxLines="2"
-            android:textColor="@color/tv_text_default"
+            android:textColor="@color/text_color"
             android:textSize="18sp"
             android:textStyle="bold"
             tools:text="哑舍"/>

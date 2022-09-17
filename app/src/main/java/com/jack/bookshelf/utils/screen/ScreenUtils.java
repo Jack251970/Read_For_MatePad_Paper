@@ -1,4 +1,4 @@
-package com.jack.bookshelf.utils;
+package com.jack.bookshelf.utils.screen;
 
 import android.annotation.SuppressLint;
 import android.content.res.Resources;
@@ -38,9 +38,7 @@ public class ScreenUtils {
     }
 
     /**
-     * 获取手机显示App区域的大小（头部导航栏+ActionBar+根布局），不包括虚拟按钮
-     *
-     * @return
+     * 获取手机显示App区域（头部导航栏+ActionBar+根布局）的大小，不包括虚拟按钮
      */
     public static int[] getAppSize() {
         int[] size = new int[2];
@@ -53,9 +51,6 @@ public class ScreenUtils {
     /**
      * 获取整个手机屏幕的大小(包括虚拟按钮)
      * 必须在onWindowFocus方法之后使用
-     *
-     * @param activity
-     * @return
      */
     public static int[] getScreenSize(AppCompatActivity activity) {
         int[] size = new int[2];
@@ -70,6 +65,7 @@ public class ScreenUtils {
      */
     public static int getStatusBarHeight() {
         Resources resources = MApplication.getInstance().getResources();
+        @SuppressLint("InternalInsetResource")
         int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
         return resources.getDimensionPixelSize(resourceId);
     }
@@ -80,6 +76,7 @@ public class ScreenUtils {
     public static int getNavigationBarHeight() {
         int navigationBarHeight = 0;
         Resources rs = MApplication.getInstance().getResources();
+        @SuppressLint("InternalInsetResource")
         int id = rs.getIdentifier("navigation_bar_height", "dimen", "android");
         if (id > 0 && hasNavigationBar()) {
             navigationBarHeight = rs.getDimensionPixelSize(id);
@@ -89,8 +86,6 @@ public class ScreenUtils {
 
     /**
      * 是否存在虚拟按键
-     *
-     * @return
      */
     @SuppressWarnings("unchecked")
     private static boolean hasNavigationBar() {
@@ -101,7 +96,7 @@ public class ScreenUtils {
             hasNavigationBar = rs.getBoolean(id);
         }
         try {
-            @SuppressLint("PrivateApi") Class systemPropertiesClass = Class.forName("android.os.SystemProperties");
+            @SuppressLint("PrivateApi") Class<?> systemPropertiesClass = Class.forName("android.os.SystemProperties");
             Method m = systemPropertiesClass.getMethod("get", String.class);
             String navBarOverride = (String) m.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
             if ("1".equals(navBarOverride)) {

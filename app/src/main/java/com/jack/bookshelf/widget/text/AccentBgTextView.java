@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
-import com.jack.bookshelf.utils.ScreenUtils;
+import com.jack.bookshelf.utils.screen.ScreenUtils;
 import com.jack.bookshelf.utils.Selector;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 

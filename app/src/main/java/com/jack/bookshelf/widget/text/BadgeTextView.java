@@ -14,7 +14,7 @@ import android.widget.FrameLayout.LayoutParams;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.jack.bookshelf.R;
-import com.jack.bookshelf.utils.ScreenUtils;
+import com.jack.bookshelf.utils.screen.ScreenUtils;
 
 /**
  * Badge View for Progress Showing

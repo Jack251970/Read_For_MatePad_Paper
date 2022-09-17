@@ -25,7 +25,7 @@ import com.jack.bookshelf.help.ChapterContentHelp;
 import com.jack.bookshelf.help.ReadBookControl;
 import com.jack.bookshelf.service.ReadAloudService;
 import com.jack.bookshelf.utils.RxUtils;
-import com.jack.bookshelf.utils.ScreenUtils;
+import com.jack.bookshelf.utils.screen.ScreenUtils;
 import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.utils.theme.ThemeStore;

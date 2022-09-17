@@ -15,6 +15,6 @@
     android:paddingBottom="8dp"
     android:singleLine="true"
     android:text="@string/app_name"
-    android:textColor="@color/tv_text_default"
+    android:textColor="@color/text_color"
     android:textStyle="bold"
     tools:text="完美世界"/>

@@ -4,7 +4,7 @@
     <corners android:radius="@dimen/more_setting_menu_radius" />
     <stroke
         android:width="@dimen/more_setting_menu_stroke_width"
-        android:color="@color/colorAccent"/>
+        android:color="@color/black"/>
     <solid
-        android:color="@color/colorPrimary"/>
+        android:color="@color/white"/>
 </shape>

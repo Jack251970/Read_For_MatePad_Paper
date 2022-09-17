@@ -1,6 +1,6 @@
 package com.jack.bookshelf.widget.page;
 
-import static com.jack.bookshelf.utils.ScreenUtils.getDisplayMetrics;
+import static com.jack.bookshelf.utils.screen.ScreenUtils.getDisplayMetrics;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -18,7 +18,7 @@ import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BookShelfBean;
 import com.jack.bookshelf.help.FileHelp;
 import com.jack.bookshelf.help.ReadBookControl;
-import com.jack.bookshelf.utils.ScreenUtils;
+import com.jack.bookshelf.utils.screen.ScreenUtils;
 import com.jack.bookshelf.view.activity.ReadBookActivity;
 import com.jack.bookshelf.widget.page.animation.NonePageAnim;
 import com.jack.bookshelf.widget.page.animation.PageAnimation;

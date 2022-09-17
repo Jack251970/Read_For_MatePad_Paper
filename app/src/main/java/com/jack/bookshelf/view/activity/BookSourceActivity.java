@@ -391,8 +391,8 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
                 .rationale(R.string.please_grant_storage_permission)
                 .onGranted((requestCode) -> {
                     FilePicker filePicker = new FilePicker(BookSourceActivity.this, FilePicker.FILE);
-                    filePicker.setBackgroundColor(getResources().getColor(R.color.background));
-                    filePicker.setTopBackgroundColor(getResources().getColor(R.color.background));
+                    filePicker.setBackgroundColor(Color.WHITE);
+                    filePicker.setTopBackgroundColor(Color.WHITE);
                     filePicker.setAllowExtensions(getResources().getStringArray(R.array.text_suffix));
                     filePicker.setOnFilePickListener(s -> mPresenter.importBookSourceLocal(s));
                     filePicker.show();

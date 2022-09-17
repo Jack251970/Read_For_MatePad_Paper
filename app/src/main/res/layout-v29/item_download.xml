@@ -31,7 +31,7 @@
                 android:layout_gravity="center_horizontal|bottom"
                 android:singleLine="true"
                 android:text="@string/book_name"
-                android:textColor="@color/tv_text_default"
+                android:textColor="@color/text_color"
                 android:textSize="17sp"
                 android:textStyle="bold"/>
             <TextView
@@ -41,7 +41,7 @@
                 android:layout_gravity="center_horizontal|bottom"
                 android:singleLine="true"
                 android:text="@string/download_offline"
-                android:textColor="@color/tv_text_default"
+                android:textColor="@color/text_color"
                 android:textSize="15sp"
                 android:textStyle="bold"/>
         </LinearLayout>

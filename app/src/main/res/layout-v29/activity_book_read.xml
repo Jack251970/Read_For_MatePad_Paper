@@ -217,7 +217,7 @@
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:singleLine="true"
-                        android:textColor="@color/tv_text_default"
+                        android:textColor="@color/text_color"
                         android:clickable="false"
                         android:focusable="false"
                         app:layout_constraintTop_toTopOf="parent"

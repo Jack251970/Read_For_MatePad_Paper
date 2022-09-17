@@ -7,5 +7,5 @@
     <corners android:radius="@dimen/searchbar_radius" />
     <stroke
         android:width="@dimen/searchbar_stroke_width"
-        android:color="@color/colorAccent"/>
+        android:color="@color/black"/>
 </shape>

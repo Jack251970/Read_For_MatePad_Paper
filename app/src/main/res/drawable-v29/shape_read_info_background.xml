@@ -4,7 +4,7 @@
     <corners android:radius="@dimen/card_radius" />
     <stroke
         android:width="2dp"
-        android:color="@color/colorAccent"/>
+        android:color="@color/black"/>
     <solid
-        android:color="@color/colorPrimary"/>
+        android:color="@color/white"/>
 </shape>

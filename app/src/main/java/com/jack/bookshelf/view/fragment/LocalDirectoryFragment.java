@@ -128,7 +128,7 @@ public class LocalDirectoryFragment extends BaseFileFragment {
 
     private void setTextViewIconColor(TextView textView) {
         try {
-            textView.getCompoundDrawables()[0].setColorFilter(getResources().getColor(R.color.tv_text_default), PorterDuff.Mode.SRC_ATOP);
+            textView.getCompoundDrawables()[0].setColorFilter(getResources().getColor(R.color.text_color), PorterDuff.Mode.SRC_ATOP);
         } catch (Exception ignored) {
         }
     }

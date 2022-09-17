@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/action_bar_padding_and_margin"
             android:text="@string/read_setting"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/black"
             android:textSize="@dimen/action_bar_title_text_size"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

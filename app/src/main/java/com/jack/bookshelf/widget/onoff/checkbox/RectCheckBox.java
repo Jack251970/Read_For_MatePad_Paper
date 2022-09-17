@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import androidx.appcompat.widget.AppCompatCheckBox;
 
 import com.jack.bookshelf.R;
-import com.jack.bookshelf.utils.ScreenUtils;
+import com.jack.bookshelf.utils.screen.ScreenUtils;
 
 /**
  * Rectangle Check Box
