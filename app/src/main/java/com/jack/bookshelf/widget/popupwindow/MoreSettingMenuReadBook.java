@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.utils.popupwindow.PopupWindowsUtil;
-import com.jack.bookshelf.widget.checkbox.RectCheckBox;
+import com.jack.bookshelf.widget.onoff.checkbox.RectCheckBox;
 
 /**
  * PopupMenu in Read Book Page

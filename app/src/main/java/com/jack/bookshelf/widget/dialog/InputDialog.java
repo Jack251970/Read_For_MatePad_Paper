@@ -16,7 +16,7 @@ import androidx.annotation.Nullable;
 import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.widget.dialog.modialog.BaseDialog;
-import com.jack.bookshelf.widget.textview.ATEAutoCompleteTextView;
+import com.jack.bookshelf.widget.text.AutoCompleteTextView;
 
 import java.util.List;
 import java.util.Objects;
@@ -32,7 +32,7 @@ public class InputDialog extends BaseDialog {
     private boolean showDel = false;
 
     private TextView tvTitle;
-    private ATEAutoCompleteTextView etInput;
+    private AutoCompleteTextView etInput;
     private TextView tvConfirm;
     private Callback callback = null;
 

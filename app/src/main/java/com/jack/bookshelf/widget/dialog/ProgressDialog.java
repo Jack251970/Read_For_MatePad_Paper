@@ -15,15 +15,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.jack.bookshelf.R;
-import com.jack.bookshelf.widget.bar.PaperProgressBar;
+import com.jack.bookshelf.widget.bar.progress.PaperProgressBar;
 
 /**
- * Paper Progress Dialog
+ * Progress Dialog
  * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
-public class PaperProgressDialog extends PopupWindow{
+public class ProgressDialog extends PopupWindow{
     private final Context context;
     private TextView tvTitle;
     private TextView tvButton;
@@ -34,24 +34,24 @@ public class PaperProgressDialog extends PopupWindow{
     private TextView progressNumber;
     private int max = 100;
 
-    public static PaperProgressDialog builder(Context context) { return new PaperProgressDialog(context); }
+    public static ProgressDialog builder(Context context) { return new ProgressDialog(context); }
 
-    public PaperProgressDialog setTitle(int strId) {
+    public ProgressDialog setTitle(int strId) {
         return setTitle(getString(strId));
     }
 
-    public PaperProgressDialog setTitle(String title) {
+    public ProgressDialog setTitle(String title) {
         tvTitle.setText(title);
         return this;
     }
 
-    public PaperProgressDialog setProgressMax(int max) {
+    public ProgressDialog setProgressMax(int max) {
         this.max = max;
         progressBar.setMax(max);
         return this;
     }
 
-    public PaperProgressDialog setProgress(int progress) {
+    public ProgressDialog setProgress(int progress) {
         progressBar.setProgress(progress, false);
         progressNumber.setText(getPercentText(progress));
         return this;
@@ -61,28 +61,28 @@ public class PaperProgressDialog extends PopupWindow{
         return "" + (int)(100.0 * progress / max + 0.5) + " %";
     }
 
-    public PaperProgressDialog setButton(int strId) {
+    public ProgressDialog setButton(int strId) {
         return setButton(getString(strId));
     }
 
-    public PaperProgressDialog setButton(String text) {
+    public ProgressDialog setButton(String text) {
         llTwoButton.setVisibility(View.GONE);
         tvButton.setVisibility(View.VISIBLE);
         tvButton.setText(text);
         return this;
     }
 
-    public PaperProgressDialog setButton(int leftButton, int rightButton) {
+    public ProgressDialog setButton(int leftButton, int rightButton) {
         return setButton(getString(leftButton), getString(rightButton));
     }
 
-    public PaperProgressDialog setButton(String leftButton, String rightButton) {
+    public ProgressDialog setButton(String leftButton, String rightButton) {
         tvLeftButton.setText(leftButton);
         tvRightButton.setText(rightButton);
         return this;
     }
 
-    public PaperProgressDialog setOnclick(@NonNull OnItemClickListener itemClick) {
+    public ProgressDialog setOnclick(@NonNull OnItemClickListener itemClick) {
         if (tvButton.getVisibility() == View.VISIBLE) {
             tvButton.setOnClickListener(v -> {
                 dismiss();
@@ -105,7 +105,7 @@ public class PaperProgressDialog extends PopupWindow{
     }
 
     @SuppressLint({"InflateParams"})
-    public PaperProgressDialog(Context context) {
+    public ProgressDialog(Context context) {
         super(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         this.context = context;
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_progress, null);

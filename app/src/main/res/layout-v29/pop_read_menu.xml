@@ -105,7 +105,7 @@
                     android:textColor="@color/tv_text_default"
                     android:textSize="14sp"
                     android:textStyle="bold"/>
-                <com.jack.bookshelf.widget.bar.PaperSeekBar
+                <com.jack.bookshelf.widget.bar.progress.PaperSeekBar
                     android:id="@+id/hpb_read_progress"
                     android:layout_width="0dp"
                     android:layout_height="25dp"

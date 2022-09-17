@@ -20,7 +20,7 @@
         android:textStyle="bold"
         tools:text="精准转写" />
     <!-- 进度条 -->
-    <com.jack.bookshelf.widget.bar.PaperProgressBar
+    <com.jack.bookshelf.widget.bar.progress.PaperProgressBar
         android:id="@+id/pgb_progress_bar_progress_dialog"
         android:layout_width="match_parent"
         android:layout_height="20dp"

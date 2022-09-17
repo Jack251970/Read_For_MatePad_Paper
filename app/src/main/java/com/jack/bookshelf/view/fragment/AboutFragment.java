@@ -18,7 +18,7 @@ import com.jack.bookshelf.databinding.FragmentAboutBinding;
 import com.jack.bookshelf.help.update.UpdateManager;
 import com.jack.bookshelf.service.update.UpdateService;
 import com.jack.bookshelf.view.activity.SettingActivity;
-import com.jack.bookshelf.widget.dialog.PaperProgressDialog;
+import com.jack.bookshelf.widget.dialog.ProgressDialog;
 
 /**
  * About Fragment
@@ -57,7 +57,7 @@ public class AboutFragment extends Fragment {
 
     private void initDialog() {
         if (MApplication.getInstance().getProgressDialog() == null) {
-            MApplication.getInstance().setProgressDialog(new PaperProgressDialog(settingActivity)
+            MApplication.getInstance().setProgressDialog(new ProgressDialog(settingActivity)
                     .setTitle(R.string.download_update)
                     .setProgressMax(100)
                     .setButton(R.string.cancel, R.string.hide)

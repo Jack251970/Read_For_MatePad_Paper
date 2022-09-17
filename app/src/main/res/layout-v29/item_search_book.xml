@@ -80,7 +80,7 @@
                 android:orientation="horizontal"
                 tools:ignore="NestedWeights">
                 <!-- 状态 -->
-                <com.jack.bookshelf.widget.textview.PaperAccentBgTextView
+                <com.jack.bookshelf.widget.text.AccentBgTextView
                     android:id="@+id/tv_state"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
                     android:textSize="12sp"
                     tools:text="连载"/>
                 <!-- 类别 -->
-                <com.jack.bookshelf.widget.textview.PaperAccentBgTextView
+                <com.jack.bookshelf.widget.text.AccentBgTextView
                     android:id="@+id/tv_kind"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
                     android:textSize="12sp"
                     tools:text="[现代都市]"/>
                 <!-- 字数 -->
-                <com.jack.bookshelf.widget.textview.PaperAccentBgTextView
+                <com.jack.bookshelf.widget.text.AccentBgTextView
                     android:id="@+id/tv_words"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

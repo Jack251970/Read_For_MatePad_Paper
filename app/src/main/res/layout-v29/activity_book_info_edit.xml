@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
     <!-- Custom ActionBar -->
@@ -68,42 +69,43 @@
                     android:orientation="vertical"
                     android:layout_marginStart="10dp"
                     android:padding="5dp">
-                    <com.jack.bookshelf.widget.views.ATETextInputLayout
+                    <com.jack.bookshelf.widget.text.PaperTextInputLayout
                         android:id="@+id/til_book_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/book_name">
-                        <com.jack.bookshelf.widget.views.ATEEditText
+                        <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/tie_book_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:singleLine="true" />
-                    </com.jack.bookshelf.widget.views.ATETextInputLayout>
-                    <com.jack.bookshelf.widget.views.ATETextInputLayout
+                            android:singleLine="true"
+                            android:autofillHints="false" />
+                    </com.jack.bookshelf.widget.text.PaperTextInputLayout>
+                    <com.jack.bookshelf.widget.text.PaperTextInputLayout
                         android:id="@+id/til_book_author"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/author">
-                        <com.jack.bookshelf.widget.views.ATEEditText
+                        <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/tie_book_author"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:singleLine="true" />
-                    </com.jack.bookshelf.widget.views.ATETextInputLayout>
+                    </com.jack.bookshelf.widget.text.PaperTextInputLayout>
                 </LinearLayout>
             </LinearLayout>
             <!-- 封面地址 -->
-            <com.jack.bookshelf.widget.views.ATETextInputLayout
+            <com.jack.bookshelf.widget.text.PaperTextInputLayout
                 android:id="@+id/til_cover_url"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:hint="@string/cover_path">
-                <com.jack.bookshelf.widget.views.ATEEditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/tie_cover_url"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-            </com.jack.bookshelf.widget.views.ATETextInputLayout>
+            </com.jack.bookshelf.widget.text.PaperTextInputLayout>
             <!-- 封面改变按钮 -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -134,17 +136,17 @@
                     style="@style/PaperTextButton"/>
             </LinearLayout>
             <!-- 内容简介编辑 -->
-            <com.jack.bookshelf.widget.views.ATETextInputLayout
+            <com.jack.bookshelf.widget.text.PaperTextInputLayout
                 android:id="@+id/til_book_jj"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:hint="@string/book_intro">
-                <com.jack.bookshelf.widget.views.ATEEditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/tie_book_jj"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-            </com.jack.bookshelf.widget.views.ATETextInputLayout>
+            </com.jack.bookshelf.widget.text.PaperTextInputLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

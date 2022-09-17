@@ -1,4 +1,4 @@
-package com.jack.bookshelf.widget.textview;
+package com.jack.bookshelf.widget.text;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -11,23 +11,23 @@ import com.jack.bookshelf.utils.Selector;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 
 /**
- * Paper TextView with Black Background
+ * Accent Background TextView
  * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
-public class PaperAccentBgTextView extends AppCompatTextView {
-    public PaperAccentBgTextView(Context context) {
+public class AccentBgTextView extends AppCompatTextView {
+    public AccentBgTextView(Context context) {
         super(context);
         init(context);
     }
 
-    public PaperAccentBgTextView(Context context, AttributeSet attrs) {
+    public AccentBgTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public PaperAccentBgTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AccentBgTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }

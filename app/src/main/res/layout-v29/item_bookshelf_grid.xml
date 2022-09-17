@@ -19,7 +19,7 @@
         android:transitionName="img_cover"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="UnusedAttribute" />
-    <com.jack.bookshelf.widget.textview.BadgeTextView
+    <com.jack.bookshelf.widget.text.BadgeTextView
         android:id="@+id/bv_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             tools:text="哑舍"/>
-        <com.jack.bookshelf.widget.checkbox.RectCheckBox
+        <com.jack.bookshelf.widget.onoff.checkbox.RectCheckBox
             android:id="@+id/checkbox_book"
             android:layout_width="30sp"
             android:layout_height="25sp"

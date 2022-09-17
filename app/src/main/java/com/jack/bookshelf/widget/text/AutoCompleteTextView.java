@@ -1,4 +1,4 @@
-package com.jack.bookshelf.widget.textview;
+package com.jack.bookshelf.widget.text;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,19 +10,25 @@ import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 import com.jack.bookshelf.utils.Selector;
 import com.jack.bookshelf.utils.theme.ThemeStore;
 
-public class ATEAutoCompleteTextView extends AppCompatAutoCompleteTextView {
+/**
+ * Auto Complete TextView
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
-    public ATEAutoCompleteTextView(Context context) {
+public class AutoCompleteTextView extends AppCompatAutoCompleteTextView {
+
+    public AutoCompleteTextView(Context context) {
         super(context);
         init(context);
     }
 
-    public ATEAutoCompleteTextView(Context context, AttributeSet attrs) {
+    public AutoCompleteTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public ATEAutoCompleteTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AutoCompleteTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }

@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="16dp">
-    <com.jack.bookshelf.widget.checkbox.RectCheckBox
+    <com.jack.bookshelf.widget.onoff.checkbox.RectCheckBox
         android:id="@+id/cb_book_source"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

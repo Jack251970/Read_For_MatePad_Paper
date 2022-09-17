@@ -53,30 +53,6 @@ public final class ThemeStore implements ThemeStorePrefKeys, ThemeStoreInterface
     }
 
     @Override
-    public ThemeStore textColorPrimary(@ColorInt int color) {
-        mEditor.putInt(KEY_TEXT_COLOR_PRIMARY, color);
-        return this;
-    }
-
-    @Override
-    public ThemeStore textColorPrimaryInverse(@ColorInt int color) {
-        mEditor.putInt(KEY_TEXT_COLOR_PRIMARY_INVERSE, color);
-        return this;
-    }
-
-    @Override
-    public ThemeStore textColorSecondary(@ColorInt int color) {
-        mEditor.putInt(KEY_TEXT_COLOR_SECONDARY, color);
-        return this;
-    }
-
-    @Override
-    public ThemeStore textColorSecondaryInverse(@ColorInt int color) {
-        mEditor.putInt(KEY_TEXT_COLOR_SECONDARY_INVERSE, color);
-        return this;
-    }
-
-    @Override
     public ThemeStore backgroundColor(int color) {
         mEditor.putInt(KEY_BACKGROUND_COLOR, color);
         return this;
@@ -108,23 +84,8 @@ public final class ThemeStore implements ThemeStorePrefKeys, ThemeStoreInterface
 
     @CheckResult
     @ColorInt
-    public static int primaryColorDark(@NonNull Context context) {
-        return prefs(context).getInt(KEY_PRIMARY_COLOR_DARK, ATHUtil.resolveColor(context, R.attr.colorPrimaryDark, Color.parseColor("#37474F")));
-    }
-
-    @CheckResult
-    @ColorInt
     public static int accentColor(@NonNull Context context) {
         return prefs(context).getInt(KEY_ACCENT_COLOR, ATHUtil.resolveColor(context, R.attr.colorAccent, Color.parseColor("#263238")));
-    }
-
-    @CheckResult
-    @ColorInt
-    public static int statusBarColor(@NonNull Context context) {
-        if (!coloredStatusBar(context)) {
-            return Color.BLACK;
-        }
-        return prefs(context).getInt(KEY_STATUS_BAR_COLOR, primaryColorDark(context));
     }
 
     @CheckResult
@@ -146,18 +107,8 @@ public final class ThemeStore implements ThemeStorePrefKeys, ThemeStoreInterface
     }
 
     @CheckResult
-    public static boolean coloredStatusBar(@NonNull Context context) {
-        return prefs(context).getBoolean(KEY_APPLY_PRIMARYDARK_STATUSBAR, true);
-    }
-
-    @CheckResult
     public static boolean autoGeneratePrimaryDark(@NonNull Context context) {
         return prefs(context).getBoolean(KEY_AUTO_GENERATE_PRIMARYDARK, true);
-    }
-
-    @CheckResult
-    public static boolean isConfigured(Context context) {
-        return prefs(context).getBoolean(IS_CONFIGURED_KEY, false);
     }
 
     @SuppressLint("CommitPrefEdits")

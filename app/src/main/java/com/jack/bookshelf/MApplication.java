@@ -15,7 +15,7 @@ import com.jack.bookshelf.help.AppFrontBackHelper;
 import com.jack.bookshelf.help.CrashHandler;
 import com.jack.bookshelf.model.UpLastChapterModel;
 import com.jack.bookshelf.utils.theme.ThemeStore;
-import com.jack.bookshelf.widget.dialog.PaperProgressDialog;
+import com.jack.bookshelf.widget.dialog.ProgressDialog;
 
 import java.util.Arrays;
 
@@ -39,7 +39,7 @@ public class MApplication extends Application {
     private static long versionCode;
     private SharedPreferences configPreferences;
 
-    private PaperProgressDialog progressDialog;
+    private ProgressDialog progressDialog;
 
     public static MApplication getInstance() {
         return instance;
@@ -61,12 +61,12 @@ public class MApplication extends Application {
         return getInstance().configPreferences;
     }
 
-    public PaperProgressDialog getProgressDialog() {
+    public ProgressDialog getProgressDialog() {
         return progressDialog;
     }
 
-    public void setProgressDialog(PaperProgressDialog paperProgressDialog) {
-        progressDialog = paperProgressDialog;
+    public void setProgressDialog(ProgressDialog progressDialog) {
+        this.progressDialog = progressDialog;
     }
 
     @Override

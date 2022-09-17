@@ -96,7 +96,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="@string/replace_rule_title" />
-        <com.jack.bookshelf.widget.checkbox.RectCheckBox
+        <com.jack.bookshelf.widget.onoff.checkbox.RectCheckBox
             android:id="@+id/checkbox_replace"
             android:layout_width="@dimen/more_setting_menu_cb_width_and_height"
             android:layout_height="@dimen/more_setting_menu_cb_width_and_height"
@@ -163,7 +163,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="@string/light_novel_paragraph" />
-        <com.jack.bookshelf.widget.checkbox.RectCheckBox
+        <com.jack.bookshelf.widget.onoff.checkbox.RectCheckBox
             android:id="@+id/checkbox_light_novel_paragraph"
             android:layout_width="@dimen/more_setting_menu_cb_width_and_height"
             android:layout_height="@dimen/more_setting_menu_cb_width_and_height"

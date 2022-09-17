@@ -21,7 +21,7 @@
         android:textStyle="bold"
         tools:text="添加书籍地址"/>
     <!-- 输入框 -->
-    <com.jack.bookshelf.widget.textview.ATEAutoCompleteTextView
+    <com.jack.bookshelf.widget.text.AutoCompleteTextView
         android:id="@+id/atv_input_dialog_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

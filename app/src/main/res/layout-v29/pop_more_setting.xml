@@ -341,7 +341,7 @@
                             android:layout_gravity="center_vertical"
                             android:text="@string/flow_sys"
                             style="@style/PaperTextStylePopReadMenu"/>
-                        <com.jack.bookshelf.widget.checkbox.CircleCheckBox
+                        <com.jack.bookshelf.widget.onoff.checkbox.CircleCheckBox
                             android:id="@+id/scb_tts_follow_sys"
                             android:layout_width="20sp"
                             android:layout_height="20sp"
@@ -351,7 +351,7 @@
                             android:clickable="false"
                             android:src="@drawable/ic_checkbox_checked"/>
                     </LinearLayout>
-                    <com.jack.bookshelf.widget.bar.PaperSeekBar
+                    <com.jack.bookshelf.widget.bar.progress.PaperSeekBar
                         android:id="@+id/hpb_tts_SpeechRate"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
@@ -397,7 +397,7 @@
                             style="@style/PaperTextStylePopReadMenu"
                             tools:ignore="HardcodedText" />
                     </LinearLayout>
-                    <com.jack.bookshelf.widget.bar.PaperSeekBar
+                    <com.jack.bookshelf.widget.bar.progress.PaperSeekBar
                         android:id="@+id/hpb_click"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"

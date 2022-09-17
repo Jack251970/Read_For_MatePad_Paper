@@ -17,19 +17,19 @@
         android:focusable="true"
         tools:visibility="gone"/>
     <!-- 自动翻页指示器 -->
-    <com.jack.bookshelf.widget.bar.VerticalSeekBarWrapper
+    <com.jack.bookshelf.widget.bar.seekbar.VerticalSeekBarWrapper
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="20dp"
         tools:ignore="RtlHardcoded">
-        <com.jack.bookshelf.widget.bar.VerticalSeekBar
+        <com.jack.bookshelf.widget.bar.seekbar.VerticalSeekBar
             android:id="@+id/pb_nextPage"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:visibility="invisible"
             app:seekBarRotation="CW270" />
-    </com.jack.bookshelf.widget.bar.VerticalSeekBarWrapper>
+    </com.jack.bookshelf.widget.bar.seekbar.VerticalSeekBarWrapper>
     <!-- 阅读长按光标 -->
     <ImageView
         android:id="@+id/cursor_left"
@@ -223,7 +223,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toLeftOf="@+id/login" />
-                    <com.jack.bookshelf.widget.textview.PaperAccentBgTextView
+                    <com.jack.bookshelf.widget.text.AccentBgTextView
                         android:id="@+id/login"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
@@ -236,7 +236,7 @@
                         app:layout_constraintRight_toLeftOf="@+id/pay"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent" />
-                    <com.jack.bookshelf.widget.textview.PaperAccentBgTextView
+                    <com.jack.bookshelf.widget.text.AccentBgTextView
                         android:id="@+id/pay"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"

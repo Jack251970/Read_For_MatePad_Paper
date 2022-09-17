@@ -1,4 +1,4 @@
-package com.jack.bookshelf.widget.checkbox;
+package com.jack.bookshelf.widget.onoff.checkbox;
 
 import android.content.Context;
 import android.content.SharedPreferences;

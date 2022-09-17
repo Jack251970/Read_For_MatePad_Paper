@@ -7,9 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.AppCompatEditText;
+
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.TxtChapterRuleBean;
-import com.jack.bookshelf.widget.views.ATEEditText;
 
 /**
  * Txt Chapter Input Dialog
@@ -18,8 +19,8 @@ import com.jack.bookshelf.widget.views.ATEEditText;
  */
 
 public class TxtChapterRuleDialog {
-    private ATEEditText tieRuleName;
-    private ATEEditText tieRuleRegex;
+    private AppCompatEditText tieRuleName;
+    private AppCompatEditText tieRuleRegex;
     private TextView tvOk;
 
     private final BaseDialog dialog;

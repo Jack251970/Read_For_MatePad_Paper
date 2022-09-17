@@ -1,4 +1,4 @@
-package com.jack.bookshelf.widget.textview;
+package com.jack.bookshelf.widget.text;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,24 +13,24 @@ import com.jack.bookshelf.utils.ScreenUtils;
 import com.jack.bookshelf.utils.Selector;
 
 /**
- * Paper Stroke TextView
+ * Stroke TextView
  * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
-public class PaperStrokeTextView extends AppCompatTextView {
+public class StrokeTextView extends AppCompatTextView {
 
-    public PaperStrokeTextView(Context context) {
+    public StrokeTextView(Context context) {
         super(context);
         init(context, null);
     }
 
-    public PaperStrokeTextView(Context context, AttributeSet attrs) {
+    public StrokeTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public PaperStrokeTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public StrokeTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }

@@ -1,4 +1,4 @@
-package com.jack.bookshelf.widget.textview;
+package com.jack.bookshelf.widget.text;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

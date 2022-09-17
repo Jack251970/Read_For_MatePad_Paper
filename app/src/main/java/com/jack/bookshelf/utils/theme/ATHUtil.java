@@ -5,16 +5,10 @@ import android.content.res.TypedArray;
 
 import androidx.annotation.AttrRes;
 
-import com.jack.bookshelf.utils.ColorUtils;
-
 /**
  * @author Aidan Follestad (afollestad)
  */
 public final class ATHUtil {
-
-    public static boolean isWindowBackgroundDark(Context context) {
-        return !ColorUtils.isColorLight(ATHUtil.resolveColor(context, android.R.attr.windowBackground));
-    }
 
     public static int resolveColor(Context context, @AttrRes int attr) {
         return resolveColor(context, attr, 0);
@@ -27,8 +21,5 @@ public final class ATHUtil {
         } finally {
             a.recycle();
         }
-    }
-
-    private ATHUtil() {
     }
 }

@@ -1,4 +1,4 @@
-package com.jack.bookshelf.widget.bar;
+package com.jack.bookshelf.widget.bar.progress;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
