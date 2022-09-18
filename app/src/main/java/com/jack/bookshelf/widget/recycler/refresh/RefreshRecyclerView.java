@@ -3,6 +3,7 @@ package com.jack.bookshelf.widget.recycler.refresh;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -15,19 +16,26 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jack.bookshelf.R;
-import com.jack.bookshelf.databinding.ViewRefreshRecyclerBinding;
+import com.jack.bookshelf.databinding.ViewRefreshRecyclerViewBinding;
 
 import java.util.Objects;
 
+/**
+ * Refresh Recycle View
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
 public class RefreshRecyclerView extends FrameLayout {
 
-    private final ViewRefreshRecyclerBinding binding = ViewRefreshRecyclerBinding.inflate(LayoutInflater.from(getContext()), this, true);
+    private final ViewRefreshRecyclerViewBinding binding = ViewRefreshRecyclerViewBinding.inflate(LayoutInflater.from(getContext()), this, true);
     private View noDataView;
     private View refreshErrorView;
     private float durTouchX = -1000000;
     private float durTouchY = -1000000;
     private BaseRefreshListener baseRefreshListener;
     private OnLoadMoreListener loadMoreListener;
+
     private final OnTouchListener refreshTouchListener = new OnTouchListener() {
         @SuppressLint("ClickableViewAccessibility")
         @Override
@@ -45,7 +53,7 @@ public class RefreshRecyclerView extends FrameLayout {
                     if (durTouchY == -1000000)
                         durTouchY = event.getY();
 
-                    float dY = event.getY() - durTouchY;  //>0下拉
+                    float dY = event.getY() - durTouchY;  // >0 下拉
                     durTouchY = event.getY();
                     if (baseRefreshListener != null
                             && ((RefreshRecyclerViewAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter())).getIsRequesting() == 0
@@ -67,8 +75,8 @@ public class RefreshRecyclerView extends FrameLayout {
                     if (baseRefreshListener != null && binding.rpb.getSecondMaxProgress() > 0 && binding.rpb.getSecondDurProgress() > 0) {
                         if (binding.rpb.getSecondDurProgress() >= binding.rpb.getSecondMaxProgress() && ((RefreshRecyclerViewAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter())).getIsRequesting() == 0) {
                             if (baseRefreshListener instanceof OnRefreshWithProgressListener) {
-                                //带有进度的
-                                //执行刷新响应
+                                // 带有进度的
+                                // 执行刷新响应
                                 ((RefreshRecyclerViewAdapter) binding.recyclerView.getAdapter()).setIsAll(false, false);
                                 ((RefreshRecyclerViewAdapter) binding.recyclerView.getAdapter()).setIsRequesting(1, true);
                                 binding.rpb.setMaxProgress(((OnRefreshWithProgressListener) baseRefreshListener).getMaxProgress());
@@ -80,7 +88,7 @@ public class RefreshRecyclerView extends FrameLayout {
                                     refreshErrorView.setVisibility(GONE);
                                 }
                             } else {
-                                //不带进度的
+                                // 不带进度的
                                 ((RefreshRecyclerViewAdapter) binding.recyclerView.getAdapter()).setIsAll(false, false);
                                 ((RefreshRecyclerViewAdapter) binding.recyclerView.getAdapter()).setIsRequesting(1, true);
                                 baseRefreshListener.startRefresh();
@@ -121,9 +129,9 @@ public class RefreshRecyclerView extends FrameLayout {
         binding.rpb.setSpeed(a.getDimensionPixelSize(R.styleable.RefreshProgressBar_speed, binding.rpb.getSpeed()));
         binding.rpb.setMaxProgress(a.getInt(R.styleable.RefreshProgressBar_max_progress, binding.rpb.getMaxProgress()));
         binding.rpb.setSecondMaxProgress(a.getDimensionPixelSize(R.styleable.RefreshProgressBar_second_max_progress, binding.rpb.getSecondMaxProgress()));
-        binding.rpb.setBgColor(a.getColor(R.styleable.RefreshProgressBar_bg_color, binding.rpb.getBgColor()));
-        binding.rpb.setSecondColor(a.getColor(R.styleable.RefreshProgressBar_second_color, binding.rpb.getSecondColor()));
-        binding.rpb.setFontColor(a.getColor(R.styleable.RefreshProgressBar_font_color, binding.rpb.getFontColor()));
+        binding.rpb.setBgColor(Color.WHITE);
+        binding.rpb.setSecondColor(Color.BLACK);
+        binding.rpb.setFontColor(Color.BLACK);
         a.recycle();
 
         bindEvent();
@@ -162,7 +170,7 @@ public class RefreshRecyclerView extends FrameLayout {
         binding.recyclerView.setOnTouchListener(refreshTouchListener);
     }
 
-    public RefreshProgressBar getRpb() {
+    public RefreshProgressBar getRefreshProgressBar() {
         return binding.rpb;
     }
 
@@ -231,12 +239,12 @@ public class RefreshRecyclerView extends FrameLayout {
         }
     }
 
-    public void finishLoadMore(Boolean isAll, Boolean needNoti) {
+    public void finishLoadMore(Boolean isAll, Boolean needNotification) {
         if (isAll) {
             ((RefreshRecyclerViewAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter())).setIsRequesting(0, false);
-            ((RefreshRecyclerViewAdapter) binding.recyclerView.getAdapter()).setIsAll(true, needNoti);
+            ((RefreshRecyclerViewAdapter) binding.recyclerView.getAdapter()).setIsAll(true, needNotification);
         } else {
-            ((RefreshRecyclerViewAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter())).setIsRequesting(0, needNoti);
+            ((RefreshRecyclerViewAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter())).setIsRequesting(0, needNotification);
         }
 
         if (noDataView != null) {

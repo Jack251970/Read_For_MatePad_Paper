@@ -40,15 +40,14 @@
             android:layout_margin="5dp"
             android:includeFontPadding="false"
             tools:ignore="RtlHardcoded" />
-        <com.jack.bookshelf.widget.RotateLoading
-            android:id="@+id/rl_loading"
+        <ImageView
+            android:id="@+id/iv_loading"
             android:layout_width="26dp"
             android:layout_height="26dp"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_refresh"
             android:visibility="invisible"
-            app:loading_color="@color/black"
-            app:loading_width="2dp"
-            tools:ignore="RtlHardcoded" />
+            android:contentDescription="加载"/>
     </FrameLayout>
     <TextView
         android:id="@+id/tv_name"

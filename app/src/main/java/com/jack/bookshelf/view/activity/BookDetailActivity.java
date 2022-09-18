@@ -114,7 +114,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
             // 显示加载信息
             binding.tvIntro.setVisibility(View.INVISIBLE);
             binding.tvLoading.setVisibility(View.VISIBLE);
-            binding.tvLoading.setText(R.string.loading);
+            binding.tvLoading.setText(R.string.is_loading);
             binding.tvLoading.setOnClickListener(null);
         }
     }
@@ -225,7 +225,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
         binding.tvLoading.setVisibility(View.VISIBLE);
         binding.tvLoading.setText(R.string.load_error_retry);
         binding.tvLoading.setOnClickListener(v -> {
-            binding.tvLoading.setText(R.string.loading);
+            binding.tvLoading.setText(R.string.is_loading);
             binding.tvLoading.setOnClickListener(null);
             mPresenter.getBookShelfInfo();
         });
@@ -251,7 +251,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
      */
     private void refresh() {
         binding.tvLoading.setVisibility(View.VISIBLE);
-        binding.tvLoading.setText(R.string.loading);
+        binding.tvLoading.setText(R.string.is_loading);
         binding.tvLoading.setOnClickListener(null);
         mPresenter.getBookShelf().getBookInfoBean().setBookInfoHtml(null);
         mPresenter.getBookShelf().getBookInfoBean().setChapterListHtml(null);
@@ -290,7 +290,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
                         .setCallback(searchBookBean -> {
                             binding.tvOrigin.setText(searchBookBean.getOrigin());
                             binding.tvLoading.setVisibility(View.VISIBLE);
-                            binding.tvLoading.setText(R.string.loading);
+                            binding.tvLoading.setText(R.string.is_loading);
                             binding.tvLoading.setOnClickListener(null);
                             if (mPresenter.getOpenFrom() == FROM_BOOKSHELF) {
                                 mPresenter.changeBookSource(searchBookBean);

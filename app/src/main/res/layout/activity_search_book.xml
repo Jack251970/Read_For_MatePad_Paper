@@ -54,9 +54,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
-            app:bg_color="#00000000"
-            app:font_color="@color/black"
-            app:second_color="@color/black"
             app:second_max_progress="80dp"
             app:speed="2dp" />
         <!-- 搜索建议 -->

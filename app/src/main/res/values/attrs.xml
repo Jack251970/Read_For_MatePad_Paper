@@ -29,28 +29,18 @@
             <enum name="CW270" value="270" />
         </attr>
     </declare-styleable>
-
-    <declare-styleable name="RefreshProgressBar">
-        <attr name="max_progress" format="integer"/>
-        <attr name="dur_progress" format="integer"/>
-        <attr name="second_dur_progress" format="dimension"/>
-        <attr name="second_max_progress" format="dimension"/>
-        <attr name="bg_color" format="color"/>
-        <attr name="second_color" format="color"/>
-        <attr name="font_color" format="color"/>
-        <attr name="speed" format="dimension"/>
-    </declare-styleable>
-
+    <!-- Refresh Layout -->
     <declare-styleable name="RefreshLayout">
         <attr name="layout_refresh_empty" format="reference"/>
         <attr name="layout_refresh_error" format="reference"/>
         <attr name="layout_refresh_loading" format="reference"/>
     </declare-styleable>
-
-    <declare-styleable name="RotateLoading">
-        <attr name="loading_width" format="dimension" />
-        <attr name="loading_color" format="color" />
-        <attr name="shadow_position" format="integer" />
-        <attr name="loading_speed" format="integer" />
+    <!-- Refresh Progress Bar -->
+    <declare-styleable name="RefreshProgressBar">
+        <attr name="max_progress" format="integer"/>
+        <attr name="dur_progress" format="integer"/>
+        <attr name="second_dur_progress" format="dimension"/>
+        <attr name="second_max_progress" format="dimension"/>
+        <attr name="speed" format="dimension"/>
     </declare-styleable>
 </resources>

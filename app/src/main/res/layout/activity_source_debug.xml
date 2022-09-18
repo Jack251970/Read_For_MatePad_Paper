@@ -21,7 +21,8 @@
             android:layout_height="@dimen/action_bar_icon_height_and_width"
             android:gravity="center_vertical"
             android:contentDescription="返回"
-            android:src="@drawable/ic_arrow_back"/>
+            android:src="@drawable/ic_arrow_back"
+            tools:ignore="HardcodedText" />
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"
             android:layout_width="0dp"
@@ -47,15 +48,5 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@null" />
-        <!-- 加载动画 -->
-        <com.jack.bookshelf.widget.RotateLoading
-            android:id="@+id/loading"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="6dp"
-            app:loading_color="@color/black"
-            app:loading_width="2dp"
-            tools:ignore="RtlHardcoded" />
     </FrameLayout>
 </LinearLayout>

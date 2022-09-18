@@ -29,17 +29,16 @@
         app:layout_constraintTop_toTopOf="@+id/iv_cover"
         app:layout_constraintRight_toRightOf="@+id/iv_cover"
         tools:ignore="RtlHardcoded" />
-    <com.jack.bookshelf.widget.RotateLoading
-        android:id="@+id/rl_loading"
+    <ImageView
+        android:id="@+id/iv_loading"
         android:layout_width="26dp"
         android:layout_height="26dp"
-        android:layout_gravity="right"
-        android:visibility="invisible"
+        android:layout_gravity="end"
+        android:src="@drawable/ic_refresh"
         app:layout_constraintTop_toTopOf="@+id/iv_cover"
         app:layout_constraintRight_toRightOf="@+id/iv_cover"
-        app:loading_color="@color/black"
-        app:loading_width="2dp"
-        tools:ignore="RtlHardcoded" />
+        android:visibility="invisible"
+        android:contentDescription="加载"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -19,9 +19,6 @@
                 android:id="@+id/rv_bookshelf"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:bg_color="@color/transparent"
-                app:font_color="@color/text_color"
-                app:second_color="@color/black"
                 app:second_max_progress="80dp"
                 app:speed="2dp" />
             <!-- 书架无书籍界面 -->

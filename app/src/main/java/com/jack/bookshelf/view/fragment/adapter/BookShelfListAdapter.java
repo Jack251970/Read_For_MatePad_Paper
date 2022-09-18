@@ -2,7 +2,6 @@ package com.jack.bookshelf.view.fragment.adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +21,6 @@ import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.help.ItemTouchCallback;
 import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
-import com.jack.bookshelf.widget.RotateLoading;
 import com.jack.bookshelf.widget.imageview.CoverImageView;
 import com.jack.bookshelf.widget.onoff.checkbox.RectCheckBox;
 import com.jack.bookshelf.widget.text.BadgeTextView;
@@ -182,13 +180,11 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
         }
         if (bookShelfBean.isLoading()) {
             holder.bvProgress.setVisibility(View.INVISIBLE);
-            holder.rotateLoading.setVisibility(View.VISIBLE);
-            holder.rotateLoading.start();
+            holder.ivLoading.setVisibility(View.VISIBLE);
         } else {
             holder.bvProgress.setBadgeProgress(BookshelfHelp.getReadProgress(bookShelfBean));
             holder.bvProgress.setBackground();
-            holder.rotateLoading.setVisibility(View.INVISIBLE);
-            holder.rotateLoading.stop();
+            holder.ivLoading.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -231,7 +227,7 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
         TextView tvAuthor;
         TextView tvRead;
         TextView tvLast;
-        RotateLoading rotateLoading;
+        ImageView ivLoading;
         View vwSelect;
         ImageView ivBack;
         ImageView ivEditBook;
@@ -245,8 +241,7 @@ public class BookShelfListAdapter extends RecyclerView.Adapter<BookShelfListAdap
             tvRead = itemView.findViewById(R.id.tv_read);
             tvLast = itemView.findViewById(R.id.tv_last);
             tvAuthor = itemView.findViewById(R.id.tv_author);
-            rotateLoading = itemView.findViewById(R.id.rl_loading);
-            rotateLoading.setLoadingColor(Color.BLACK);
+            ivLoading = itemView.findViewById(R.id.iv_loading);
             vwSelect = itemView.findViewById(R.id.vw_select);
             ivBack = itemView.findViewById(R.id.iv_back);
             ivEditBook = itemView.findViewById(R.id.iv_edit_book);

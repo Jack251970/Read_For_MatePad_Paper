@@ -13,13 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.DownloadBookBean;
 import com.jack.bookshelf.service.DownloadService;
+import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.view.activity.DownloadActivity;
 import com.jack.bookshelf.widget.imageview.CoverImageView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Download Item Adapter
@@ -108,15 +108,18 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull List<Object> payloads) {
         final DownloadBookBean item = data.get(holder.getLayoutPosition());
         if (!payloads.isEmpty()) {
-            holder.tvName.setText(String.format(Locale.getDefault(), "%s(正在下载)", item.getName()));
+            String text = item.getName() + "(" + StringUtils.getString(R.string.is_downloading) + ")";
+            holder.tvName.setText(text);
             holder.tvDownload.setText(activity.getString(R.string.un_download, payloads.get(0)));
         } else {
             holder.ivDel.getDrawable().mutate();
             holder.ivCover.load(item.getCoverUrl(), item.getName(), null);
             if (item.getSuccessCount() > 0) {
-                holder.tvName.setText(String.format(Locale.getDefault(), "%s(正在下载)", item.getName()));
+                String text = item.getName() + "(" + StringUtils.getString(R.string.is_downloading) + ")";
+                holder.tvName.setText(text);
             } else {
-                holder.tvName.setText(String.format(Locale.getDefault(), "%s(等待下载)", item.getName()));
+                String text = item.getName() + "(" + StringUtils.getString(R.string.wait_download) + ")";
+                holder.tvName.setText(text);
             }
             holder.tvDownload.setText(activity.getString(R.string.un_download, item.getDownloadCount() - item.getSuccessCount()));
             holder.ivDel.setOnClickListener(view -> DownloadService.removeDownload(activity, item.getNoteUrl()));

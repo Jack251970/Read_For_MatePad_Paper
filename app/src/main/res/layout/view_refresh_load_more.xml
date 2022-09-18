@@ -3,15 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
-    android:id="@+id/ll_loadmore">
+    android:id="@+id/ll_load_more">
     <TextView
-        android:id="@+id/tv_loadmore"
+        android:id="@+id/tv_load_more"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="正在加载..."
+        android:text="@string/is_loading"
         android:padding="10dp"
         android:layout_gravity="center"
         android:textSize="14sp"
-        android:textColor="#A0ABAE"/>
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
 </FrameLayout>

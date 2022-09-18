@@ -1003,7 +1003,7 @@ public abstract class PageLoader {
         String tip = "";
         switch (chapter.getStatus()) {
             case LOADING:
-                tip = mContext.getString(R.string.loading);
+                tip = mContext.getString(R.string.is_loading);
                 break;
             case ERROR:
                 tip = mContext.getString(R.string.load_error_msg, curChapter().txtChapter.getMsg());
@@ -1015,7 +1015,7 @@ public abstract class PageLoader {
                 tip = mContext.getString(R.string.chapter_list_empty);
                 break;
             case CHANGE_SOURCE:
-                tip = mContext.getString(R.string.on_change_source);
+                tip = mContext.getString(R.string.is_changing_source);
         }
         return tip;
     }

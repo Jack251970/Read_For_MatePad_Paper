@@ -3,6 +3,7 @@ package com.jack.bookshelf.widget.recycler.refresh;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -12,15 +13,23 @@ import android.view.View;
 
 import com.jack.bookshelf.R;
 
+/**
+ * Refresh Progress Bar
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
 public class RefreshProgressBar extends View {
     int a = 1;
     private int maxProgress = 100;
     private int durProgress = 0;
     private int secondMaxProgress = 100;
     private int secondDurProgress = 0;
-    private int bgColor = 0x00000000;
-    private int secondColor = 0xFFC1C1C1;
-    private int fontColor = 0xFF363636;
+
+    private int bgColor = Color.WHITE;
+    private int secondColor = Color.BLACK;
+    private int fontColor = Color.BLACK;
+
     private int speed = 1;
     private int secondFinalProgress = 0;
     private Paint paint;
@@ -40,7 +49,7 @@ public class RefreshProgressBar extends View {
     public RefreshProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        init(context, attrs, defStyleAttr);
+        init(context, attrs);
     }
 
     public Boolean getIsAutoLoading() {
@@ -57,14 +66,12 @@ public class RefreshProgressBar extends View {
             secondFinalProgress = 0;
         }
         maxProgress = 0;
-
         invalidate();
     }
 
-    private void init(Context context, AttributeSet attrs, int defStyleAttr) {
+    private void init(Context context, AttributeSet attrs) {
         paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
-
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RefreshProgressBar);
         speed = a.getDimensionPixelSize(R.styleable.RefreshProgressBar_speed, speed);
         maxProgress = a.getInt(R.styleable.RefreshProgressBar_max_progress, maxProgress);
@@ -72,9 +79,6 @@ public class RefreshProgressBar extends View {
         secondDurProgress = a.getDimensionPixelSize(R.styleable.RefreshProgressBar_second_dur_progress, secondDurProgress);
         secondFinalProgress = secondDurProgress;
         secondMaxProgress = a.getDimensionPixelSize(R.styleable.RefreshProgressBar_second_max_progress, secondMaxProgress);
-        bgColor = a.getColor(R.styleable.RefreshProgressBar_bg_color, bgColor);
-        secondColor = a.getColor(R.styleable.RefreshProgressBar_second_color, secondColor);
-        fontColor = a.getColor(R.styleable.RefreshProgressBar_font_color, fontColor);
         a.recycle();
     }
 

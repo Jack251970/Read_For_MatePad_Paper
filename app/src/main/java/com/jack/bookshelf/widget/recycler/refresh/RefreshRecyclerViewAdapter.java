@@ -1,5 +1,6 @@
 package com.jack.bookshelf.widget.recycler.refresh;
 
+import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
@@ -13,13 +14,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jack.bookshelf.R;
 
+/**
+ * Refresh Recycle View Adapter
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
+
 public abstract class RefreshRecyclerViewAdapter extends RecyclerView.Adapter {
     private final int LOAD_MORE_TYPE = 2001;
 
     private final Handler handler;
-    private int isRequesting = 0;   //0是未执行网络请求  1是正在下拉刷新  2是正在加载更多
+    private int isRequesting = 0;   // 0: 未执行网络请求  1: 正在下拉刷新  2: 正在加载更多
     private final Boolean needLoadMore;
-    private Boolean isAll = false;  //判断是否还有更多
+    private Boolean isAll = false;  // 判断是否还有更多
     private Boolean loadMoreError = false;
 
     private OnClickTryAgainListener clickTryAgainListener;
@@ -63,15 +70,15 @@ public abstract class RefreshRecyclerViewAdapter extends RecyclerView.Adapter {
         if (holder.getItemViewType() == LOAD_MORE_TYPE) {
             LoadMoreViewHolder loadHolder = (LoadMoreViewHolder) holder;
             if (!loadMoreError) {
-                loadHolder.tvLoadMore.setText("正在加载...");
+                loadHolder.tvLoadMore.setText(R.string.is_loading);
             } else {
-                loadHolder.tvLoadMore.setText("加载失败,点击重试");
+                loadHolder.tvLoadMore.setText(R.string.load_error_retry);
             }
             ((LoadMoreViewHolder) holder).llLoadMore.setOnClickListener(v -> {
                 if (null != clickTryAgainListener && loadMoreError) {
                     clickTryAgainListener.loadMoreErrorTryAgain();
                     loadMoreError = false;
-                    ((LoadMoreViewHolder) holder).tvLoadMore.setText("正在加载...");
+                    ((LoadMoreViewHolder) holder).tvLoadMore.setText(R.string.is_loading);
                 }
             });
         } else
@@ -119,10 +126,6 @@ public abstract class RefreshRecyclerViewAdapter extends RecyclerView.Adapter {
         return needLoadMore && isRequesting == 0 && !isAll && getICount() > 0;
     }
 
-    public OnClickTryAgainListener getClickTryAgainListener() {
-        return clickTryAgainListener;
-    }
-
     public void setClickTryAgainListener(OnClickTryAgainListener clickTryAgainListener) {
         this.clickTryAgainListener = clickTryAgainListener;
     }
@@ -131,6 +134,7 @@ public abstract class RefreshRecyclerViewAdapter extends RecyclerView.Adapter {
         return loadMoreError;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setLoadMoreError(Boolean loadMoreError, Boolean needNotify) {
         this.isRequesting = 0;
         this.loadMoreError = loadMoreError;
@@ -147,14 +151,14 @@ public abstract class RefreshRecyclerViewAdapter extends RecyclerView.Adapter {
         void loadMoreErrorTryAgain();
     }
 
-    class LoadMoreViewHolder extends RecyclerView.ViewHolder {
+    static class LoadMoreViewHolder extends RecyclerView.ViewHolder {
         FrameLayout llLoadMore;
         TextView tvLoadMore;
 
         LoadMoreViewHolder(View itemView) {
             super(itemView);
-            llLoadMore = itemView.findViewById(R.id.ll_loadmore);
-            tvLoadMore = itemView.findViewById(R.id.tv_loadmore);
+            llLoadMore = itemView.findViewById(R.id.ll_load_more);
+            tvLoadMore = itemView.findViewById(R.id.tv_load_more);
         }
     }
 }

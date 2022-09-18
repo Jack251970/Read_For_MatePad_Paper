@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,7 +20,6 @@ import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.help.ItemTouchCallback;
 import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
-import com.jack.bookshelf.widget.RotateLoading;
 import com.jack.bookshelf.widget.imageview.CoverImageView;
 import com.jack.bookshelf.widget.onoff.checkbox.RectCheckBox;
 import com.jack.bookshelf.widget.text.BadgeTextView;
@@ -169,13 +169,11 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
         }
         if (bookShelfBean.isLoading()) {
             holder.bvProgress.setVisibility(View.INVISIBLE);
-            holder.rotateLoading.setVisibility(View.VISIBLE);
-            holder.rotateLoading.start();
+            holder.ivLoading.setVisibility(View.VISIBLE);
         } else {
             holder.bvProgress.setBadgeProgress(BookshelfHelp.getReadProgress(bookShelfBean));
             holder.bvProgress.setBackground();
-            holder.rotateLoading.setVisibility(View.INVISIBLE);
-            holder.rotateLoading.stop();
+            holder.ivLoading.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -214,7 +212,7 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
         CoverImageView ivCover;
         TextView tvName;
         BadgeTextView bvProgress;
-        RotateLoading rotateLoading;
+        ImageView ivLoading;
         View vwSelect;
         RectCheckBox checkBox;
         MyViewHolder(View itemView) {
@@ -222,8 +220,7 @@ public class BookShelfGridAdapter extends RecyclerView.Adapter<BookShelfGridAdap
             ivCover = itemView.findViewById(R.id.iv_cover);
             tvName = itemView.findViewById(R.id.tv_name);
             bvProgress = itemView.findViewById(R.id.bv_progress);
-            rotateLoading = itemView.findViewById(R.id.rl_loading);
-            rotateLoading.setLoadingColor(Color.BLACK);
+            ivLoading = itemView.findViewById(R.id.iv_loading);
             vwSelect = itemView.findViewById(R.id.vw_select);
             checkBox = itemView.findViewById(R.id.checkbox_book);
         }

@@ -13,10 +13,10 @@ import android.widget.FrameLayout;
 import com.jack.bookshelf.R;
 
 /**
+ * Book Cover Edit Page
+ * Adapt to Huawei MatePad Paper
  * Created by newbiechen on 17-4-22.
- * 功能:
- * 1. 加载动画
- * 2. 加载错误点击重新加载
+ * Edited by Jack251970
  */
 
 public class RefreshLayout extends FrameLayout {
@@ -59,19 +59,18 @@ public class RefreshLayout extends FrameLayout {
         mEmptyViewId = typedArray.getResourceId(R.styleable.RefreshLayout_layout_refresh_empty, R.layout.view_empty);
         mErrorViewId = typedArray.getResourceId(R.styleable.RefreshLayout_layout_refresh_error, R.layout.view_net_error);
         mLoadingViewId = typedArray.getResourceId(R.styleable.RefreshLayout_layout_refresh_loading, R.layout.view_loading);
-
         typedArray.recycle();
     }
 
     private void initView() {
-        //添加在empty、error、loading 情况下的布局
+        // 添加在empty、error、loading 情况下的布局
         mEmptyView = inflateView(mEmptyViewId);
         mErrorView = inflateView(mErrorViewId);
         mLoadingView = inflateView(mLoadingViewId);
         addView(mEmptyView);
         addView(mErrorView);
         addView(mLoadingView);
-        //设置监听器
+        // 设置监听器
         mErrorView.setOnClickListener(
                 (view) -> {
                     if (mListener != null) {
@@ -96,7 +95,7 @@ public class RefreshLayout extends FrameLayout {
         }
     }
 
-    //除了自带的数据，保证子类只能够添加一个子View
+    // 除了自带的数据，保证子类只能够添加一个子View
     @Override
     public void addView(View child) {
         if (getChildCount() > 4) {
@@ -156,7 +155,7 @@ public class RefreshLayout extends FrameLayout {
         }
     }
 
-    //视图根据状态切换
+    // 视图根据状态切换
     private void toggleStatus(int status) {
         switch (status) {
             case STATUS_LOADING:
@@ -199,16 +198,16 @@ public class RefreshLayout extends FrameLayout {
         return mStatus;
     }
 
+    // 加载错误点击重新加载
     public void setOnReloadingListener(OnReloadingListener listener) {
         mListener = listener;
     }
 
     private View inflateView(int id) {
-        return LayoutInflater.from(mContext)
-                .inflate(id, this, false);
+        return LayoutInflater.from(mContext).inflate(id, this, false);
     }
 
-    //数据存储
+    // 数据存储
     @Override
     protected Parcelable onSaveInstanceState() {
         Parcelable superParcel = super.onSaveInstanceState();
@@ -221,18 +220,17 @@ public class RefreshLayout extends FrameLayout {
     protected void onRestoreInstanceState(Parcelable state) {
         SavedState savedState = (SavedState) state;
         super.onRestoreInstanceState(savedState.getSuperState());
-        //刷新状态
+        // 刷新状态
         toggleStatus(savedState.status);
     }
 
-    //添加错误重新加载的监听
+    // 添加错误重新加载的监听
     public interface OnReloadingListener {
         void onReload();
     }
 
     static class SavedState extends BaseSavedState {
-        public static final Creator<SavedState> CREATOR
-                = new Creator<>() {
+        public static final Creator<SavedState> CREATOR = new Creator<>() {
             public SavedState createFromParcel(Parcel in) {
                 return new SavedState(in);
             }

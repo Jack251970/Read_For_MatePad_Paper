@@ -91,7 +91,7 @@ public class SearchBookAdapter extends RefreshRecyclerViewAdapter {
         // 来源
         myViewHolder.tvOrigin.setVisibility(View.VISIBLE);
         if (isTrimEmpty(book.getOrigin())) {
-            myViewHolder.tvOrigin.setText(activity.getString(R.string.origin_format, activity.getString(R.string.loading)));
+            myViewHolder.tvOrigin.setText(activity.getString(R.string.origin_format, activity.getString(R.string.is_loading)));
         } else {
             myViewHolder.tvOrigin.setText(activity.getString(R.string.origin_format, book.getOrigin()));
         }

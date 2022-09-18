@@ -68,7 +68,7 @@
         <string name="start_read">开始阅读</string>
         <string name="add_to_shelf">放入书架</string>
         <string name="continue_read">继续阅读</string>
-        <string name="data_loading">加载数据中…</string>
+        <string name="data_loading">加载数据中</string>
         <string name="load_error_retry">加载失败，点击重试</string>
         <string name="unknown">未知</string>
         <!-- Import Book Activity -->
@@ -107,7 +107,7 @@
         <string name="delete_all_history">是否删除所有历史记录?</string>
         <string name="searchHistory">搜索历史</string>
         <string name="origin_format">来源: %s</string>
-        <string name="loading">加载中…</string>
+        <string name="is_loading">加载中</string>
         <string name="book_search_last">最新: %s</string>
         <string name="no_kind">暂未分类</string>
         <!-- Book Info Edit Activity -->
@@ -267,6 +267,7 @@
         <string name="download_offline_t">离线下载</string>
         <string name="download_offline_s">下载选择的章节到本地</string>
         <string name="is_downloading">正在下载</string>
+        <string name="wait_download">等待下载</string>
 
     <!-- Help -->
         <!-- Backup & Restore Ui -->
@@ -473,10 +474,6 @@
     <string name="net_error_10002">网络连接超时</string>
     <string name="net_error_10003">数据解析失败</string>
     <string name="check_add_bookshelf">是否将《%s》放入书架？</string>
-    <string name="restore_fail">恢复失败</string>
-    <string name="text_return">返回</string>
-    <string name="start">开始</string>
-    <string name="no_chapter">无章节</string>
     <string name="add_url">添加网址</string>
     <string name="source_rule_s">书源规则说明</string>
     <string name="replace_rule_title">替换净化</string>
@@ -509,7 +506,7 @@
     <string name="get_web_content_error">访问网站失败:%s</string>
     <string name="no_book_name">未获取到书名</string>
     <string name="content_empty">文章内容为空</string>
-    <string name="on_change_source">正在换源请等待…</string>
+    <string name="is_changing_source">正在换源中</string>
     <string name="chapter_list_empty">目录列表为空</string>
     <string name="load_error_msg">加载失败\n%s</string>
     <string name="please_grant_storage_permission">请给于存储权限</string>

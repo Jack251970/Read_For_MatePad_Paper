@@ -96,7 +96,7 @@ public class CheckSourceService extends Service {
         executorService = Executors.newFixedThreadPool(threadsNum);
         scheduler = Schedulers.from(executorService);
         compositeDisposable = new CompositeDisposable();
-        updateNotification(0, getString(R.string.loading));
+        updateNotification(0, getString(R.string.is_loading));
     }
 
     @SuppressWarnings("unchecked")

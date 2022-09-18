@@ -145,7 +145,6 @@ public class SourceDebugActivity extends MBaseActivity<IPresenter> {
             compositeDisposable.dispose();
         }
         compositeDisposable = new CompositeDisposable();
-        binding.loading.start();
         adapter.clearData();
         Debug.newDebug(sourceTag, key, compositeDisposable);
     }
@@ -153,8 +152,5 @@ public class SourceDebugActivity extends MBaseActivity<IPresenter> {
     @Subscribe(thread = EventThread.MAIN_THREAD, tags = {@Tag(RxBusTag.PRINT_DEBUG_LOG)})
     public void printDebugLog(String msg) {
         adapter.addData(msg);
-        if (msg.equals("finish")) {
-            binding.loading.stop();
-        }
     }
 }

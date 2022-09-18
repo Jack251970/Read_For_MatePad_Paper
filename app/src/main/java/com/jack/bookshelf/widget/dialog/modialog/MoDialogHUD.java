@@ -124,19 +124,6 @@ public class MoDialogHUD {
         return false;
     }
 
-    /**
-     * 加载动画
-     */
-    public void showLoading(String msg) {
-        initCenter();
-        canBack = false;
-        rootView.setOnClickListener(null);
-        if (!isShowing()) {
-            onAttached();
-        }
-        mSharedView.showLoading(msg);
-    }
-
 
     /**
      * 显示一段文本

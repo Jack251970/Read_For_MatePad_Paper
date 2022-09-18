@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.utils.ReadAssets;
-import com.jack.bookshelf.widget.RotateLoading;
 
 import ru.noties.markwon.Markwon;
 
@@ -33,20 +32,6 @@ public class MoDialogView extends LinearLayout {
         super(context, attrs, defStyleAttr);
         this.context = context;
         setOrientation(VERTICAL);
-    }
-
-    /**
-     * 转圈载入
-     */
-    public void showLoading(String text) {
-        removeAllViews();
-        LayoutInflater.from(getContext()).inflate(R.layout.mo_dialog_loading, this, true);
-        TextView msgTv = findViewById(R.id.msg_tv);
-        if (text != null && text.length() > 0) {
-            msgTv.setText(text);
-        }
-        RotateLoading rlLoading = findViewById(R.id.rl_loading);
-        rlLoading.start();
     }
 
     /**
