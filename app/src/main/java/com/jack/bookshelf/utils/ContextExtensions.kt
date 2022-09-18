@@ -144,17 +144,6 @@ val Context.navigationBarHeight: Int
         return resources.getDimensionPixelSize(resourceId)
     }
 
-fun Context.share(text: String, title: String = getString(R.string.share)) {
-    kotlin.runCatching {
-        val intent = Intent(Intent.ACTION_SEND)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        intent.putExtra(Intent.EXTRA_SUBJECT, title)
-        intent.putExtra(Intent.EXTRA_TEXT, text)
-        intent.type = "text/plain"
-        startActivity(Intent.createChooser(intent, title))
-    }
-}
-
 fun Context.sendToClip(text: String) {
     val clipboard =
         getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager

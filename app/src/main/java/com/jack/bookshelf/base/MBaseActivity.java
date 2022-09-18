@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.jack.basemvplib.BaseActivity;
@@ -105,9 +106,51 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
 
     /*****************************************SnackBar*********************************************/
 
+    public Snackbar getSnackBar(View view, String msg, int length) {
+        if (snackbar == null) {
+            snackbar = Snackbar.make(view, msg, length);
+            snackbar.setActionTextColor(Color.BLACK);
+            snackbar.setTextColor(Color.BLACK);
+            snackbar.setBackgroundTint(Color.WHITE);
+        } else {
+            snackbar.setText(msg);
+            snackbar.setDuration(length);
+        }
+        return snackbar;
+    }
+
+    public Snackbar getSnackBar(View view, @StringRes int msg, int length) {
+        if (snackbar == null) {
+            snackbar = Snackbar.make(view, msg, length);
+            snackbar.setActionTextColor(Color.BLACK);
+            snackbar.setTextColor(Color.BLACK);
+            snackbar.setBackgroundTint(Color.WHITE);
+        } else {
+            snackbar.setText(msg);
+            snackbar.setDuration(length);
+        }
+        return snackbar;
+    }
+
     public void showSnackBar(View view, String msg, int length) {
         if (snackbar == null) {
             snackbar = Snackbar.make(view, msg, length);
+            snackbar.setActionTextColor(Color.BLACK);
+            snackbar.setTextColor(Color.BLACK);
+            snackbar.setBackgroundTint(Color.WHITE);
+        } else {
+            snackbar.setText(msg);
+            snackbar.setDuration(length);
+        }
+        snackbar.show();
+    }
+
+    public void showSnackBar(View view, @StringRes int msg, int length) {
+        if (snackbar == null) {
+            snackbar = Snackbar.make(view, msg, length);
+            snackbar.setActionTextColor(Color.BLACK);
+            snackbar.setTextColor(Color.BLACK);
+            snackbar.setBackgroundTint(Color.WHITE);
         } else {
             snackbar.setText(msg);
             snackbar.setDuration(length);
@@ -131,11 +174,11 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
         ToastsKt.toast(this, msg, length);
     }
 
-    public void toast(int strId) {
+    public void toast(@StringRes int strId) {
         toast(getString(strId));
     }
 
-    public void toast(int strId, int length) {
+    public void toast(@StringRes int strId, int length) {
         toast(getString(strId), length);
     }
 

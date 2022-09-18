@@ -20,7 +20,7 @@ import com.jack.bookshelf.utils.toastOnUi
 import com.jack.bookshelf.view.activity.ReadBookActivity
 import com.jack.bookshelf.widget.dialog.FontSelectorDialog
 import com.jack.bookshelf.widget.dialog.FontSelectorDialog.OnThisListener
-import com.jack.bookshelf.widget.popupwindow.SelectMenu
+import com.jack.bookshelf.widget.menu.SelectMenu
 import timber.log.Timber
 
 /**

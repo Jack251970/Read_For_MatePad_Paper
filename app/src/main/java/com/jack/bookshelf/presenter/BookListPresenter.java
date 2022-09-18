@@ -1,4 +1,3 @@
-//Copyright (c) 2017. 章钦豪. All rights reserved.
 package com.jack.bookshelf.presenter;
 
 import android.os.AsyncTask;
@@ -38,6 +37,12 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
+/**
+ * Book List Presenter
+ * Copyright (c) 2017. 章钦豪. All rights reserved.
+ * Edited by Jack251970
+ */
+
 public class BookListPresenter extends BasePresenterImpl<BookListContract.View> implements BookListContract.Presenter {
     private int threadsNum = 6;
     private int refreshIndex;
@@ -64,7 +69,7 @@ public class BookListPresenter extends BasePresenterImpl<BookListContract.View> 
         })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<List<BookShelfBean>>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onNext(@NonNull List<BookShelfBean> value) {
                         bookShelfBeans = value;
@@ -132,7 +137,7 @@ public class BookListPresenter extends BasePresenterImpl<BookListContract.View> 
                 WebBookModel.getInstance().getChapterList(bookShelfBean)
                         .flatMap(chapterBeanList -> saveBookToShelfO(bookShelfBean, chapterBeanList))
                         .compose(RxUtils::toSimpleSingle)
-                        .subscribe(new Observer<BookShelfBean>() {
+                        .subscribe(new Observer<>() {
                             @Override
                             public void onSubscribe(@NonNull Disposable d) {
                                 compositeDisposable.add(d);

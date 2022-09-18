@@ -40,7 +40,7 @@ import com.jack.bookshelf.utils.ToastsKt;
 import com.jack.bookshelf.utils.screen.ScreenUtils;
 import com.jack.bookshelf.view.activity.SourceEditActivity;
 import com.jack.bookshelf.widget.dialog.adapter.ChangeSourceAdapter;
-import com.jack.bookshelf.widget.popupwindow.MoreSettingMenu;
+import com.jack.bookshelf.widget.menu.MoreSettingMenu;
 import com.jack.bookshelf.widget.recycler.refresh.RefreshRecyclerView;
 
 import java.util.ArrayList;
@@ -171,12 +171,12 @@ public class ChangeSourceDialog extends BaseDialog implements ChangeSourceAdapte
                             Objects.requireNonNull(sourceBean).setEnable(false);
                             BookSourceManager.addBookSource(sourceBean);
                             adapter.removeData(searchBookBean);
-                            ToastsKt.toast(context, context.getString(R.string.have_disabled,sourceBean.getBookSourceName()), Toast.LENGTH_SHORT);
+                            ToastsKt.toast(context, sourceBean.getBookSourceName() + context.getString(R.string.have_disabled), Toast.LENGTH_SHORT);
                             break;
                         case 1:
                             BookSourceManager.removeBookSource(sourceBean);
                             adapter.removeData(searchBookBean);
-                            ToastsKt.toast(context, context.getString(R.string.have_deleted, Objects.requireNonNull(sourceBean).getBookSourceName()), Toast.LENGTH_SHORT);
+                            ToastsKt.toast(context, Objects.requireNonNull(sourceBean).getBookSourceName() + context.getString(R.string.have_deleted), Toast.LENGTH_SHORT);
                             break;
                         case 2:
                             SourceEditActivity.startThis(context, Objects.requireNonNull(sourceBean));

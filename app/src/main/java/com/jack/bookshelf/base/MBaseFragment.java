@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 
 import com.jack.basemvplib.BaseFragment;
 import com.jack.basemvplib.impl.IPresenter;
@@ -62,7 +63,7 @@ public abstract class MBaseFragment<T extends IPresenter> extends BaseFragment<T
         ToastsKt.toast(this.getActivity(),msg,Toast.LENGTH_SHORT);
     }
 
-    public void toast(int strId) {
+    public void toast(@StringRes int strId) {
         ToastsKt.toast(this.getActivity(),strId,Toast.LENGTH_SHORT);
     }
 }

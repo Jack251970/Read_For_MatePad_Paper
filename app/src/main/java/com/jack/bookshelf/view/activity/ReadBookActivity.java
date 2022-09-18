@@ -73,8 +73,8 @@ import com.jack.bookshelf.widget.page.PageLoader;
 import com.jack.bookshelf.widget.page.PageLoaderNet;
 import com.jack.bookshelf.widget.page.PageView;
 import com.jack.bookshelf.widget.page.TxtChapter;
-import com.jack.bookshelf.widget.popupwindow.MoreSettingMenuReadBook;
-import com.jack.bookshelf.widget.popupwindow.SelectMenu;
+import com.jack.bookshelf.widget.menu.MoreSettingMenuReadBook;
+import com.jack.bookshelf.widget.menu.SelectMenu;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -412,7 +412,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
             @Override
             public void autoPage() {
                 if (ReadAloudService.running) {
-                    ReadBookActivity.this.toast(R.string.aloud_can_not_auto_page);
+                    ReadBookActivity.this.toast(R.string.aloud_cannot_auto_page);
                     return;
                 }
                 ReadBookActivity.this.autoPage = !ReadBookActivity.this.autoPage;
@@ -647,7 +647,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                                         intent.setData(Uri.parse(url));
                                         startActivity(intent);
                                     } catch (Exception e) {
-                                        toast(R.string.can_not_open);
+                                        toast(R.string.cannot_open);
                                     }
                                     break;
                             }

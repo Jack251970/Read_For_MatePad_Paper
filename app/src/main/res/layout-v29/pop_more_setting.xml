@@ -349,7 +349,7 @@
                             android:layout_marginStart="7dp"
                             android:layout_marginEnd="5dp"
                             android:clickable="false"
-                            android:src="@drawable/ic_checkbox_checked"/>
+                            android:src="@drawable/ic_update_book_enable"/>
                     </LinearLayout>
                     <com.jack.bookshelf.widget.bar.progress.PaperSeekBar
                         android:id="@+id/hpb_tts_SpeechRate"

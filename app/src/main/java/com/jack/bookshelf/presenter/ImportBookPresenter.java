@@ -1,4 +1,3 @@
-//Copyright (c) 2017. 章钦豪. All rights reserved.
 package com.jack.bookshelf.presenter;
 
 import com.hwangjr.rxbus.RxBus;
@@ -17,6 +16,12 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
+/**
+ * Import Book Presenter
+ * Copyright (c) 2017. 章钦豪. All rights reserved.
+ * Edited by Jack251970
+ */
+
 public class ImportBookPresenter extends BasePresenterImpl<ImportBookContract.View> implements ImportBookContract.Presenter {
 
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -26,7 +31,7 @@ public class ImportBookPresenter extends BasePresenterImpl<ImportBookContract.Vi
         Observable.fromIterable(books)
                 .flatMap(file -> ImportBookModel.getInstance().importBook(file))
                 .compose(RxUtils::toSimpleSingle)
-                .subscribe(new Observer<LocBookShelfBean>() {
+                .subscribe(new Observer<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);
@@ -51,7 +56,6 @@ public class ImportBookPresenter extends BasePresenterImpl<ImportBookContract.Vi
                     }
                 });
     }
-
 
     @Override
     public void detachView() {

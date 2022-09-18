@@ -28,7 +28,7 @@ import com.jack.bookshelf.view.adapter.TxtChapterRuleAdapter;
 import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
 import com.jack.bookshelf.widget.dialog.modialog.TxtChapterRuleDialog;
 import com.jack.bookshelf.widget.filepicker.picker.FilePicker;
-import com.jack.bookshelf.widget.popupwindow.MoreSettingMenu;
+import com.jack.bookshelf.widget.menu.MoreSettingMenu;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -261,6 +261,6 @@ public class TxtChapterRuleActivity extends MBaseActivity<TxtChapterRuleContract
 
     @Override
     public Snackbar getSnackBar(String msg, int length) {
-        return Snackbar.make(binding.llContent, msg, length);
+        return super.getSnackBar(binding.llContent, msg, length);
     }
 }

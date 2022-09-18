@@ -27,6 +27,7 @@ import com.jack.bookshelf.help.DocumentHelper;
 import com.jack.bookshelf.model.BookSourceManager;
 import com.jack.bookshelf.presenter.contract.BookSourceContract;
 import com.jack.bookshelf.service.CheckSourceService;
+import com.jack.bookshelf.utils.StringUtils;
 
 import java.io.File;
 import java.util.List;
@@ -37,8 +38,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
+ * Book Source Presenter
  * Created by GKF on 2017/12/18.
- * 书源管理
+ * Edited by Jack251970
  */
 
 public class BookSourcePresenter extends BasePresenterImpl<BookSourceContract.View> implements BookSourceContract.Presenter {
@@ -70,18 +72,18 @@ public class BookSourcePresenter extends BasePresenterImpl<BookSourceContract.Vi
             e.onNext(true);
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<Boolean>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onNext(Boolean aBoolean) {
-                        mView.getSnackBar(delBookSource.getBookSourceName() + "已删除", Snackbar.LENGTH_LONG)
-                                .setAction("恢复", view -> restoreBookSource(delBookSource))
+                        mView.getSnackBar(delBookSource.getBookSourceName() + StringUtils.getString(R.string.have_deleted), Snackbar.LENGTH_LONG)
+                                .setAction(R.string.restore, view -> restoreBookSource(delBookSource))
                                 .setActionTextColor(Color.WHITE)
                                 .show();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        mView.toast("删除失败");
+                        mView.toast(R.string.delete_fail);
                         mView.refreshBookSource();
                     }
                 });
@@ -96,17 +98,17 @@ public class BookSourcePresenter extends BasePresenterImpl<BookSourceContract.Vi
             e.onNext(true);
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<Boolean>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onNext(Boolean aBoolean) {
-                        mView.toast("删除成功");
+                        mView.toast(R.string.delete_success);
                         mView.refreshBookSource();
                         mView.setResult(RESULT_OK);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        mView.toast("删除失败");
+                        mView.toast(R.string.delete_fail);
                     }
                 });
     }
@@ -117,7 +119,7 @@ public class BookSourcePresenter extends BasePresenterImpl<BookSourceContract.Vi
             e.onNext(true);
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<Boolean>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onNext(Boolean aBoolean) {
                         mView.refreshBookSource();
@@ -133,12 +135,12 @@ public class BookSourcePresenter extends BasePresenterImpl<BookSourceContract.Vi
 
     @Override
     public void importBookSource(String text) {
-        mView.showSnackBar("正在导入书源", Snackbar.LENGTH_INDEFINITE);
+        mView.showSnackBar(StringUtils.getString(R.string.is_importing_book_source), Snackbar.LENGTH_INDEFINITE);
         Observable<List<BookSourceBean>> observable = BookSourceManager.importSource(text);
         if (observable != null) {
             observable.subscribe(getImportObserver());
         } else {
-            mView.showSnackBar("格式不对", Snackbar.LENGTH_SHORT);
+            mView.showSnackBar(StringUtils.getString(R.string.format_error), Snackbar.LENGTH_SHORT);
         }
     }
 
@@ -153,12 +155,12 @@ public class BookSourcePresenter extends BasePresenterImpl<BookSourceContract.Vi
         try {
             file = DocumentFile.fromFile(new File(path));
         } catch (Exception e) {
-            mView.toast(path + "无法打开！");
+            mView.toast(path +StringUtils.getString(R.string.cannot_open));
             return;
         }
         json = DocumentHelper.readString(file);
         if (!isEmpty(json)) {
-            mView.showSnackBar("正在导入书源", Snackbar.LENGTH_INDEFINITE);
+            mView.showSnackBar(StringUtils.getString(R.string.is_importing_book_source), Snackbar.LENGTH_INDEFINITE);
             importBookSource(json);
         } else {
             mView.toast(R.string.read_file_error);
@@ -166,16 +168,16 @@ public class BookSourcePresenter extends BasePresenterImpl<BookSourceContract.Vi
     }
 
     private MyObserver<List<BookSourceBean>> getImportObserver() {
-        return new MyObserver<List<BookSourceBean>>() {
+        return new MyObserver<>() {
             @SuppressLint("DefaultLocale")
             @Override
             public void onNext(List<BookSourceBean> bookSourceBeans) {
                 if (bookSourceBeans.size() > 0) {
                     mView.refreshBookSource();
-                    mView.showSnackBar(String.format("导入成功%d个书源", bookSourceBeans.size()), Snackbar.LENGTH_SHORT);
+                    mView.showSnackBar(String.format(StringUtils.getString(R.string.import_number_book_source_success), bookSourceBeans.size()), Snackbar.LENGTH_SHORT);
                     mView.setResult(RESULT_OK);
                 } else {
-                    mView.showSnackBar("格式不对", Snackbar.LENGTH_SHORT);
+                    mView.showSnackBar(StringUtils.getString(R.string.format_error), Snackbar.LENGTH_SHORT);
                 }
             }
 

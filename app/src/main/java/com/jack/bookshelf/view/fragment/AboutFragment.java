@@ -112,7 +112,7 @@ public class AboutFragment extends Fragment {
             intent.setData(Uri.parse(address));
             startActivity(intent);
         } catch (Exception e) {
-            settingActivity.toast(R.string.can_not_open, Toast.LENGTH_LONG);
+            settingActivity.toast(R.string.cannot_open, Toast.LENGTH_LONG);
         }
     }
 

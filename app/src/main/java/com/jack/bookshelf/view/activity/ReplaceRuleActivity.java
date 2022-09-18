@@ -37,7 +37,7 @@ import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
 import com.jack.bookshelf.widget.dialog.modialog.MoDialogHUD;
 import com.jack.bookshelf.widget.dialog.modialog.ReplaceRuleDialog;
 import com.jack.bookshelf.widget.filepicker.picker.FilePicker;
-import com.jack.bookshelf.widget.popupwindow.MoreSettingMenu;
+import com.jack.bookshelf.widget.menu.MoreSettingMenu;
 
 import java.util.ArrayList;
 import java.util.Arrays;

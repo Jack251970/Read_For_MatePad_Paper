@@ -15,7 +15,7 @@ import com.jack.bookshelf.utils.ZipUtils
 import com.jack.bookshelf.utils.toastOnUi
 import com.jack.bookshelf.utils.webdav.WebDav
 import com.jack.bookshelf.utils.webdav.http.HttpAuth
-import com.jack.bookshelf.widget.popupwindow.SelectMenu
+import com.jack.bookshelf.widget.menu.SelectMenu
 import io.reactivex.Single
 import io.reactivex.SingleOnSubscribe
 import io.reactivex.android.schedulers.AndroidSchedulers

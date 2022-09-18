@@ -17,6 +17,7 @@ import com.jack.bookshelf.help.DocumentHelper;
 import com.jack.bookshelf.model.ReplaceRuleManager;
 import com.jack.bookshelf.model.TxtChapterRuleManager;
 import com.jack.bookshelf.presenter.contract.TxtChapterRuleContract;
+import com.jack.bookshelf.utils.StringUtils;
 
 import java.io.File;
 import java.util.List;
@@ -25,6 +26,11 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+
+/**
+ * Txt Chapter Rule Presenter
+ * Edited by Jack251970
+ */
 
 public class TxtChapterRulePresenter extends BasePresenterImpl<TxtChapterRuleContract.View> implements TxtChapterRuleContract.Presenter {
 
@@ -57,13 +63,13 @@ public class TxtChapterRulePresenter extends BasePresenterImpl<TxtChapterRuleCon
             e.onComplete();
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<Boolean>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onNext(Boolean replaceRuleBeans) {
                         mView.refresh();
-                        mView.getSnackBar(txtChapterRuleBean.getName() + "已删除", Snackbar.LENGTH_LONG)
-                                .setAction("恢复", view -> restoreData(txtChapterRuleBean))
-                                .setActionTextColor(Color.WHITE)
+                        mView.getSnackBar(txtChapterRuleBean.getName() + StringUtils.getString(R.string.have_deleted), Snackbar.LENGTH_LONG)
+                                .setAction(R.string.restore, view -> restoreData(txtChapterRuleBean))
+                                .setActionTextColor(Color.BLACK)
                                 .show();
                     }
 
@@ -81,16 +87,16 @@ public class TxtChapterRulePresenter extends BasePresenterImpl<TxtChapterRuleCon
             e.onNext(true);
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<Boolean>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onNext(Boolean aBoolean) {
-                        mView.toast("删除成功");
+                        mView.toast(R.string.delete_success);
                         mView.refresh();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        mView.toast("删除失败");
+                        mView.toast(R.string.delete_fail);
                     }
                 });
     }
@@ -108,7 +114,7 @@ public class TxtChapterRulePresenter extends BasePresenterImpl<TxtChapterRuleCon
         if (!isEmpty(json)) {
             importDataS(json);
         } else {
-            mView.toast("文件读取失败");
+            mView.toast(R.string.read_file_error);
         }
     }
 
@@ -116,7 +122,7 @@ public class TxtChapterRulePresenter extends BasePresenterImpl<TxtChapterRuleCon
     public void importDataS(String text) {
         Observable<Boolean> observable = ReplaceRuleManager.importReplaceRule(text);
         if (observable != null) {
-            observable.subscribe(new MyObserver<Boolean>() {
+            observable.subscribe(new MyObserver<>() {
                 @Override
                 public void onNext(Boolean aBoolean) {
                     mView.refresh();
@@ -125,11 +131,11 @@ public class TxtChapterRulePresenter extends BasePresenterImpl<TxtChapterRuleCon
 
                 @Override
                 public void onError(Throwable e) {
-                    mView.toast("格式不对");
+                    mView.toast(R.string.format_error);
                 }
             });
         } else {
-            mView.toast("导入失败");
+            mView.toast(R.string.import_fail);
         }
     }
 }

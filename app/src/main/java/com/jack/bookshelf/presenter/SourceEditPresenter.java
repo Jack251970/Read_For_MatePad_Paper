@@ -12,6 +12,7 @@ import com.google.gson.reflect.TypeToken;
 import com.jack.basemvplib.BasePresenterImpl;
 import com.jack.basemvplib.impl.IView;
 import com.jack.bookshelf.DbHelper;
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BookSource3Bean;
 import com.jack.bookshelf.bean.BookSourceBean;
 import com.jack.bookshelf.model.BookSourceManager;
@@ -25,9 +26,10 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 
 /**
- * Created by GKF on 2018/1/28.
- * 编辑书源
+ * Source Edit Presenter
+ * Edited by Jack251970
  */
+
 public class SourceEditPresenter extends BasePresenterImpl<SourceEditContract.View> implements SourceEditContract.Presenter {
 
     @Override
@@ -63,25 +65,21 @@ public class SourceEditPresenter extends BasePresenterImpl<SourceEditContract.Vi
     public void setText(String bookSourceStr) {
         try {
             if (bookSourceStr.trim().length() > 5) {
-                mView.setText( mathcSourceBean(bookSourceStr.trim())  );
+                mView.setText( matchSourceBean(bookSourceStr.trim())  );
             } else {
-                mView.toast("似乎不是书源内容");
-                // 理论上这里已经没用了
-//                Gson gson = new Gson();
-//                BookSourceBean bookSourceBean = gson.fromJson(bookSourceStr, BookSourceBean.class);
-//                mView.setText(bookSourceBean);
+                mView.toast(R.string.seem_not_source_info);
             }
         } catch (Exception e) {
-            mView.toast("数据格式不对");
+            mView.toast(R.string.format_error);
             e.printStackTrace();
         }
     }
 
-    private BookSourceBean mathcSourceBean(String str) {
+    private BookSourceBean matchSourceBean(String str) {
         Gson gson = new Gson();
         BookSource3Bean bookSource3Bean=new BookSource3Bean();
         BookSourceBean bookSource2Bean=new BookSourceBean();
-        int r2 = 0, r3 = 0;
+        int r2, r3 = 0;
         try {
             if (str.charAt(0) == '[' && str.charAt(str.length() - 1) == ']') {
                 List<BookSource3Bean> list = gson.fromJson(str, new TypeToken<List<BookSource3Bean>>() {
@@ -112,7 +110,7 @@ public class SourceEditPresenter extends BasePresenterImpl<SourceEditContract.Vi
         }
 
         if (r3 > 0) {
-            mView.toast("导入了阅读3.0书源。如有Bug请及时上报");
+            mView.toast(R.string.import_read_3_book_source);
             return bookSource3Bean.addGroupTag("阅读3.0书源").toBookSourceBean();
         }
         return bookSource2Bean;

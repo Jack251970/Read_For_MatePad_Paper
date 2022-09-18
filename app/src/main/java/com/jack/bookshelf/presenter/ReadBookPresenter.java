@@ -1,4 +1,3 @@
-//Copyright (c) 2017. 章钦豪. All rights reserved.
 package com.jack.bookshelf.presenter;
 
 import static android.text.TextUtils.isEmpty;
@@ -22,6 +21,7 @@ import com.jack.basemvplib.BasePresenterImpl;
 import com.jack.basemvplib.BitIntentDataManager;
 import com.jack.basemvplib.impl.IView;
 import com.jack.bookshelf.DbHelper;
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.observer.MyObserver;
 import com.jack.bookshelf.bean.BookChapterBean;
 import com.jack.bookshelf.bean.BookShelfBean;
@@ -41,6 +41,7 @@ import com.jack.bookshelf.model.SavedSource;
 import com.jack.bookshelf.presenter.contract.ReadBookContract;
 import com.jack.bookshelf.service.DownloadService;
 import com.jack.bookshelf.service.ReadAloudService;
+import com.jack.bookshelf.utils.StringUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -51,6 +52,12 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+
+/**
+ * Read Book Presenter
+ * Copyright (c) 2017. 章钦豪. All rights reserved.
+ * Edited by Jack251970
+ */
 
 public class ReadBookPresenter extends BasePresenterImpl<ReadBookContract.View> implements ReadBookContract.Presenter {
     private final static int OPEN_FROM_OTHER = 0;
@@ -97,14 +104,14 @@ public class ReadBookPresenter extends BasePresenterImpl<ReadBookContract.View> 
                 chapterBeanList = BookshelfHelp.getChapterList(bookShelf.getNoteUrl());
             }
             if (bookShelf == null) {
-                e.onError(new Exception("没有书籍"));
+                e.onError(new Exception(StringUtils.getString(R.string.no_book)));
             } else {
                 e.onNext(bookShelf);
                 e.onComplete();
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<BookShelfBean>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onNext(@NonNull BookShelfBean bookShelfBean) {
                         if (isEmpty(bookShelf.getBookInfoBean().getName())) {
@@ -131,7 +138,7 @@ public class ReadBookPresenter extends BasePresenterImpl<ReadBookContract.View> 
             if (bookSourceBean != null) {
                 bookSourceBean.addGroup("禁用");
                 DbHelper.getDaoSession().getBookSourceBeanDao().insertOrReplace(bookSourceBean);
-                mView.toast("已禁用" + bookSourceBean.getBookSourceName());
+                mView.toast(bookSourceBean.getBookSourceName() + StringUtils.getString(R.string.have_disabled));
             }
         } catch (Exception ignored) {
         }
@@ -176,13 +183,13 @@ public class ReadBookPresenter extends BasePresenterImpl<ReadBookContract.View> 
         getRealFilePath(activity, uri)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new MyObserver<String>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onNext(@NonNull String value) {
                         ImportBookModel.getInstance().importBook(new File(value))
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribeOn(Schedulers.io())
-                                .subscribe(new MyObserver<LocBookShelfBean>() {
+                                .subscribe(new MyObserver<>() {
                                     @Override
                                     public void onNext(@NonNull LocBookShelfBean value) {
                                         if (value.getNew())
@@ -195,7 +202,7 @@ public class ReadBookPresenter extends BasePresenterImpl<ReadBookContract.View> 
                                     @Override
                                     public void onError(Throwable e) {
                                         e.printStackTrace();
-                                        mView.toast("文本打开失败！");
+                                        mView.toast(R.string.open_text_fail);
                                     }
                                 });
                     }
@@ -203,7 +210,7 @@ public class ReadBookPresenter extends BasePresenterImpl<ReadBookContract.View> 
                     @Override
                     public void onError(Throwable e) {
                         e.printStackTrace();
-                        mView.toast("文本打开失败！");
+                        mView.toast(R.string.open_text_fail);
                     }
                 });
     }
@@ -236,7 +243,7 @@ public class ReadBookPresenter extends BasePresenterImpl<ReadBookContract.View> 
         searchBook.setName(bookShelf.getBookInfoBean().getName());
         searchBook.setAuthor(bookShelf.getBookInfoBean().getAuthor());
         ChangeSourceHelp.changeBookSource(searchBook, bookShelf)
-                .subscribe(new MyObserver<TwoDataBean<BookShelfBean, List<BookChapterBean>>>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         super.onSubscribe(d);
@@ -370,7 +377,7 @@ public class ReadBookPresenter extends BasePresenterImpl<ReadBookContract.View> 
                 e.onComplete();
             }).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new MyObserver<Boolean>() {
+                    .subscribe(new MyObserver<>() {
                         @Override
                         public void onNext(@NonNull Boolean aBoolean) {
                             RxBus.get().post(RxBusTag.HAD_REMOVE_BOOK, bookShelf);

@@ -1,4 +1,4 @@
-package com.jack.bookshelf.widget.popupwindow;
+package com.jack.bookshelf.widget.menu;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -30,6 +31,7 @@ public class MoreSettingMenuBookDetail extends PopupWindow {
         // 菜单文字初始化
         if (!ifAllowUpdate) {
             ((TextView) view.findViewById(R.id.tv_manage_update_book_detail)).setText(R.string.allow_update);
+            ((ImageView) view.findViewById(R.id.iv_manage_update_book_detail)).setImageResource(R.drawable.ic_update_book_enable);
         }
         this.setContentView(view);
         // 菜单点击事件

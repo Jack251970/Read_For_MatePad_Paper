@@ -39,7 +39,7 @@ import com.jack.bookshelf.utils.SoftInputUtil;
 import com.jack.bookshelf.view.adapter.SearchBookAdapter;
 import com.jack.bookshelf.view.adapter.SearchBookshelfAdapter;
 import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
-import com.jack.bookshelf.widget.popupwindow.SelectMenu;
+import com.jack.bookshelf.widget.menu.SelectMenu;
 import com.jack.bookshelf.widget.recycler.refresh.OnLoadMoreListener;
 
 import java.util.List;

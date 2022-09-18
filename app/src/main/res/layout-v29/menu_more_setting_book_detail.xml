@@ -45,11 +45,13 @@
         android:paddingBottom="10dp"
         android:orientation="horizontal">
         <ImageView
+            android:id="@+id/iv_manage_update_book_detail"
             android:layout_width="@dimen/more_setting_menu_iv_width_and_height"
             android:layout_height="@dimen/more_setting_menu_iv_width_and_height"
             android:layout_gravity="center_vertical"
+            android:padding="1.5dp"
             android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
-            android:src="@drawable/ic_update" />
+            android:src="@drawable/ic_disable" />
         <TextView
             android:id="@+id/tv_manage_update_book_detail"
             android:layout_width="0dp"

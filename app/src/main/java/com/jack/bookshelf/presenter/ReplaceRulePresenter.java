@@ -16,6 +16,7 @@ import com.jack.bookshelf.bean.ReplaceRuleBean;
 import com.jack.bookshelf.help.DocumentHelper;
 import com.jack.bookshelf.model.ReplaceRuleManager;
 import com.jack.bookshelf.presenter.contract.ReplaceRuleContract;
+import com.jack.bookshelf.utils.StringUtils;
 
 import java.io.File;
 import java.util.List;
@@ -26,8 +27,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
+ * Replace Rule Presenter
  * Created by GKF on 2017/12/18.
- * 书源管理
+ * Edited by Jack251970
  */
 
 public class ReplaceRulePresenter extends BasePresenterImpl<ReplaceRuleContract.View> implements ReplaceRuleContract.Presenter {
@@ -61,12 +63,12 @@ public class ReplaceRulePresenter extends BasePresenterImpl<ReplaceRuleContract.
             e.onComplete();
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<Boolean>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onNext(Boolean replaceRuleBeans) {
                         mView.refresh();
-                        mView.getSnackBar(replaceRuleBean.getReplaceSummary() + "已删除", Snackbar.LENGTH_LONG)
-                                .setAction("恢复", view -> restoreData(replaceRuleBean))
+                        mView.getSnackBar(replaceRuleBean.getReplaceSummary() + StringUtils.getString(R.string.have_deleted), Snackbar.LENGTH_LONG)
+                                .setAction(R.string.restore, view -> restoreData(replaceRuleBean))
                                 .setActionTextColor(Color.WHITE)
                                 .show();
                     }
@@ -85,23 +87,23 @@ public class ReplaceRulePresenter extends BasePresenterImpl<ReplaceRuleContract.
             e.onNext(true);
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<Boolean>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onNext(Boolean aBoolean) {
-                        mView.toast("删除成功");
+                        mView.toast(R.string.delete_success);
                         mView.refresh();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        mView.toast("删除失败");
+                        mView.toast(R.string.delete_fail);
                     }
                 });
     }
 
     private void restoreData(ReplaceRuleBean replaceRuleBean) {
         ReplaceRuleManager.saveData(replaceRuleBean)
-                .subscribe(new MySingleObserver<Boolean>() {
+                .subscribe(new MySingleObserver<>() {
                     @Override
                     public void onSuccess(Boolean aBoolean) {
                         mView.refresh();
@@ -117,7 +119,7 @@ public class ReplaceRulePresenter extends BasePresenterImpl<ReplaceRuleContract.
         if (!isEmpty(json)) {
             importDataS(json);
         } else {
-            mView.toast("文件读取失败");
+            mView.toast(R.string.read_file_error);
         }
     }
 
@@ -125,7 +127,7 @@ public class ReplaceRulePresenter extends BasePresenterImpl<ReplaceRuleContract.
     public void importDataS(String text) {
         Observable<Boolean> observable = ReplaceRuleManager.importReplaceRule(text);
         if (observable != null) {
-            observable.subscribe(new MyObserver<Boolean>() {
+            observable.subscribe(new MyObserver<>() {
                 @Override
                 public void onNext(Boolean aBoolean) {
                     mView.refresh();
@@ -134,11 +136,11 @@ public class ReplaceRulePresenter extends BasePresenterImpl<ReplaceRuleContract.
 
                 @Override
                 public void onError(Throwable e) {
-                    mView.toast("格式不对");
+                    mView.toast(R.string.format_error);
                 }
             });
         } else {
-            mView.toast("导入失败");
+            mView.toast(R.string.import_fail);
         }
     }
 }

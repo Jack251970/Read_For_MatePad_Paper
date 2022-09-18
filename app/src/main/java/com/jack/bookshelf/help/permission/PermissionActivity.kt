@@ -36,7 +36,6 @@ class PermissionActivity : Activity() {
                 toast(this, R.string.tip_cannot_jump_setting_page, Toast.LENGTH_SHORT);
                 finish()
             }
-
         }
     }
 

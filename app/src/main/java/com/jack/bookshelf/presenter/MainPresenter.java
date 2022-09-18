@@ -1,4 +1,3 @@
-//Copyright (c) 2017. 章钦豪. All rights reserved.
 package com.jack.bookshelf.presenter;
 
 import android.annotation.SuppressLint;
@@ -13,6 +12,7 @@ import com.hwangjr.rxbus.thread.EventThread;
 import com.jack.basemvplib.BasePresenterImpl;
 import com.jack.basemvplib.impl.IView;
 import com.jack.bookshelf.DbHelper;
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.observer.MyObserver;
 import com.jack.bookshelf.bean.BookChapterBean;
 import com.jack.bookshelf.bean.BookInfoBean;
@@ -33,8 +33,13 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class MainPresenter extends BasePresenterImpl<MainContract.View> implements MainContract.Presenter {
+/**
+ * Main Presenter
+ * Copyright (c) 2017. 章钦豪. All rights reserved.
+ * Edited by Jack251970
+ */
 
+public class MainPresenter extends BasePresenterImpl<MainContract.View> implements MainContract.Presenter {
     /**
      * @param bookUrls 如果不包含书源，一行为一本小说的地址。如果包含书源，只解析为一本数，以免url#{{书源}}中书源包含换行
      */
@@ -53,7 +58,7 @@ public class MainPresenter extends BasePresenterImpl<MainContract.View> implemen
         Observable.fromArray(urls)
                 .flatMap(this::addBookUrlO)
                 .compose(RxUtils::toSimpleSingle)
-                .subscribe(new MyObserver<BookShelfBean>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onNext(@NonNull BookShelfBean bookShelfBean) {
                         getBook(bookShelfBean);
@@ -86,13 +91,13 @@ public class MainPresenter extends BasePresenterImpl<MainContract.View> implemen
 
             BookInfoBean temp = DbHelper.getDaoSession().getBookInfoBeanDao().load(url);
             if (temp != null) {
-                e.onError(new Throwable("已在书架中"));
+                e.onError(new Throwable(StringUtils.getString(R.string.already_in_bookshelf)));
                 return;
             } else {
                 String baseUrl = StringUtils.getBaseUrl(url);
                 BookSourceBean bookSourceBean = DbHelper.getDaoSession().getBookSourceBeanDao().load(baseUrl);
 
-                // RuleBookUrlPattern推定  考虑有书源规则不完善，需要排除RuleBookUrlPatternt填写.*匹配全部url的情况
+                // RuleBookUrlPattern推定  考虑有书源规则不完善，需要排除RuleBookUrlPattern填写.*匹配全部url的情况
                 if (bookSourceBean == null) {
                     List<BookSourceBean> sourceBeans = DbHelper.getDaoSession().getBookSourceBeanDao().queryBuilder()
                             .where(BookSourceBeanDao.Properties.RuleBookUrlPattern.isNotNull()
@@ -107,14 +112,14 @@ public class MainPresenter extends BasePresenterImpl<MainContract.View> implemen
                     }
                 }
 
-                //BookSourceUrl推定  考虑有书源规则不完善，没有填写RuleBookUrlPattern的情况（但是通常会填写bookSourceUrl），因此需要做补充
+                // BookSourceUrl推定  考虑有书源规则不完善，没有填写RuleBookUrlPattern的情况（但是通常会填写bookSourceUrl），因此需要做补充
                 if (bookSourceBean == null) {
                     String siteUrl = url.replaceFirst("^(http://|https://)?(m\\.|www\\.|web\\.)?", "").replaceFirst("/.*$", "");
                     List<BookSourceBean> sourceBeans = DbHelper.getDaoSession().getBookSourceBeanDao().queryBuilder()
                             .where(BookSourceBeanDao.Properties.BookSourceUrl.like("%" + siteUrl + "%")).list();
                     for (BookSourceBean sourceBean : sourceBeans) {
-                        //由于RuleBookUrlPattern推定排除了RuleBookUrlPattern为空或者匹配所有字符的情况，因此需要做过杀推定
-                        if (sourceBean.getRuleBookUrlPattern().equals(null)) {
+                        // 由于RuleBookUrlPattern推定排除了RuleBookUrlPattern为空或者匹配所有字符的情况，因此需要做过杀推定
+                        if (sourceBean.getRuleBookUrlPattern() == null) {
                             bookSourceBean = sourceBean;
                             break;
                         } else if (sourceBean.getRuleBookUrlPattern().replaceAll("\\s", "").length() == 0) {
@@ -140,29 +145,22 @@ public class MainPresenter extends BasePresenterImpl<MainContract.View> implemen
                     if (source.length() > 10) {
                         Observable<List<BookSourceBean>> observable = BookSourceManager.importSource(source);
                         if (observable != null) {
-                            observable.subscribe(new MyObserver<List<BookSourceBean>>() {
+                            observable.subscribe(new MyObserver<>() {
                                 @SuppressLint("DefaultLocale")
                                 @Override
                                 public void onNext(@NonNull List<BookSourceBean> bookSourceBeans) {
                                     if (bookSourceBeans.size() == 1) {
                                         BookSourceBean bean = (bookSourceBeans.get(0));
-//                                         BookShelfBean bookShelfBean = new BookShelfBean();
                                         bookShelfBean.setTag(bean.getBookSourceUrl());
-//                                         bookShelfBean.setNoteUrl(url);
                                         bookShelfBean.setDurChapter(0);
                                         bookShelfBean.setGroup(mView.getGroup() % 4);
                                         bookShelfBean.setDurChapterPage(0);
                                         bookShelfBean.setFinalDate(System.currentTimeMillis());
-//                                        e.onNext(bookShelfBean);
                                         getBook(bookShelfBean);
                                     } else {
                                         e.onError(new Throwable("未导入内嵌的书源-" + bookSourceBeans.size()));
                                     }
                                 }
-/*                                @Override
-                                public void onError(Throwable e) {
-                                    mView.toast(e.getLocalizedMessage());
-                                }*/
                             });
                         } else {
                             e.onError(new Throwable("未找到内嵌的书源"));
@@ -184,21 +182,21 @@ public class MainPresenter extends BasePresenterImpl<MainContract.View> implemen
                 .flatMap(chapterBeanList -> saveBookToShelfO(bookShelfBean, chapterBeanList))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<BookShelfBean>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onNext(@NonNull BookShelfBean value) {
                         if (value.getBookInfoBean().getChapterUrl() == null) {
-                            mView.toast("添加书籍失败");
+                            mView.toast(R.string.add_book_fail);
                         } else {
-                            //成功   //发送RxBus
+                            // 成功 发送RxBus
                             RxBus.get().post(RxBusTag.HAD_ADD_BOOK, bookShelfBean);
-                            mView.toast("添加书籍成功");
+                            mView.toast(R.string.add_book_success);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        mView.toast("添加书籍失败" + e.getMessage());
+                        mView.toast(StringUtils.getString(R.string.add_book_fail) + e.getMessage());
                     }
                 });
     }

@@ -32,12 +32,17 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * Search Book Presenter
+ * Edited by Jack251970
+ */
+
 public class SearchBookPresenter extends BasePresenterImpl<SearchBookContract.View> implements SearchBookContract.Presenter {
     private static final int BOOK = 2;
 
     private long startThisSearchTime;
     private String durSearchKey;
-    private final List<BookShelfBean> bookShelfS = new ArrayList<>();   //用来比对搜索的书籍是否已经添加进书架
+    private final List<BookShelfBean> bookShelfS = new ArrayList<>();   // 用来比对搜索的书籍是否已经添加进书架
     private final SearchBookModel searchBookModel;
 
     public SearchBookPresenter() {
@@ -47,7 +52,7 @@ public class SearchBookPresenter extends BasePresenterImpl<SearchBookContract.Vi
             e.onComplete();
         }).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<List<BookShelfBean>>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onNext(List<BookShelfBean> value) {
                         bookShelfS.addAll(value);
@@ -58,8 +63,7 @@ public class SearchBookPresenter extends BasePresenterImpl<SearchBookContract.Vi
                         e.printStackTrace();
                     }
                 });
-
-        //搜索监听
+        // 搜索监听
         SearchBookModel.OnSearchListener onSearchListener = new SearchBookModel.OnSearchListener() {
             @Override
             public void refreshSearchBook() {
@@ -91,7 +95,7 @@ public class SearchBookPresenter extends BasePresenterImpl<SearchBookContract.Vi
                 return mView.getSearchBookAdapter().getICount();
             }
         };
-        //搜索引擎初始化
+        // 搜索引擎初始化
         if (MApplication.SEARCH_GROUP != null) {
             List<BookSourceBean> sourceBeanList = BookSourceManager.getEnableSourceByGroup(MApplication.SEARCH_GROUP);
             if (sourceBeanList.size() > 0) {
@@ -128,7 +132,7 @@ public class SearchBookPresenter extends BasePresenterImpl<SearchBookContract.Vi
             e.onNext(searchHistoryBean);
         }).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<SearchHistoryBean>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onNext(SearchHistoryBean value) {
                         mView.insertSearchHistorySuccess(value);
@@ -151,7 +155,7 @@ public class SearchBookPresenter extends BasePresenterImpl<SearchBookContract.Vi
             e.onNext(a);
         }).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<Integer>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onNext(Integer value) {
                         if (value > 0) {
@@ -174,7 +178,7 @@ public class SearchBookPresenter extends BasePresenterImpl<SearchBookContract.Vi
             e.onComplete();
         }).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<Boolean>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onNext(Boolean value) {
                         if (value) {
@@ -201,7 +205,7 @@ public class SearchBookPresenter extends BasePresenterImpl<SearchBookContract.Vi
             e.onNext(data);
         }).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<List<SearchHistoryBean>>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onNext(List<SearchHistoryBean> value) {
                         if (null != value)

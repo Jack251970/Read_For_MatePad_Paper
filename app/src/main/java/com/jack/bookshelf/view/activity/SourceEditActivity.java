@@ -39,7 +39,7 @@ import com.jack.bookshelf.view.adapter.SourceEditAdapter;
 import com.jack.bookshelf.view.popupwindow.KeyboardToolPop;
 import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
 import com.jack.bookshelf.widget.dialog.SourceLoginDialog;
-import com.jack.bookshelf.widget.popupwindow.MoreSettingMenu;
+import com.jack.bookshelf.widget.menu.MoreSettingMenu;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -517,7 +517,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
             intent.setData(Uri.parse(getString(R.string.source_rule_url)));
             startActivity(intent);
         } catch (Exception e) {
-            toast(R.string.can_not_open, Toast.LENGTH_LONG);
+            toast(R.string.cannot_open, Toast.LENGTH_LONG);
         }
     }
 
@@ -528,7 +528,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
             textIntent.putExtra(Intent.EXTRA_TEXT, text);
             startActivity(Intent.createChooser(textIntent, "Source Share"));
         } catch (Exception e) {
-            toast(R.string.can_not_share, Toast.LENGTH_LONG);
+            toast(R.string.cannot_share, Toast.LENGTH_LONG);
         }
     }
 

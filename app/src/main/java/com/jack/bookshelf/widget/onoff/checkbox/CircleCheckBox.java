@@ -42,10 +42,10 @@ public class CircleCheckBox extends AppCompatImageView {
         this.preferenceKey = preferenceKey;
         if (prefer.getBoolean(preferenceKey, defaultValue)) {
             this.checked = true;
-            setImageResource(R.drawable.ic_checkbox_checked);
+            setImageResource(R.drawable.ic_circle_check_box_checked);
         } else {
             this.checked = false;
-            setImageResource(R.drawable.ic_checkbox_unchecked);
+            setImageResource(R.drawable.ic_circle_check_box_unchecked);
         }
         setOnClickListener(v -> setChecked(!checked));
         return this;
@@ -66,10 +66,10 @@ public class CircleCheckBox extends AppCompatImageView {
     public void setChecked(boolean checked) {
         if (checked) {
             this.checked = true;
-            setImageResource(R.drawable.ic_checkbox_checked);
+            setImageResource(R.drawable.ic_circle_check_box_checked);
         } else {
             this.checked = false;
-            setImageResource(R.drawable.ic_checkbox_unchecked);
+            setImageResource(R.drawable.ic_circle_check_box_unchecked);
         }
         if (preferenceKey != null) {
             prefer.edit().putBoolean(preferenceKey, checked).apply();

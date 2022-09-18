@@ -42,8 +42,8 @@ import com.jack.bookshelf.view.adapter.BookSourceAdapter;
 import com.jack.bookshelf.widget.dialog.InputDialog;
 import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
 import com.jack.bookshelf.widget.filepicker.picker.FilePicker;
-import com.jack.bookshelf.widget.popupwindow.MoreSettingMenu;
-import com.jack.bookshelf.widget.popupwindow.SelectMenu;
+import com.jack.bookshelf.widget.menu.MoreSettingMenu;
+import com.jack.bookshelf.widget.menu.SelectMenu;
 
 import java.io.IOException;
 import java.io.InputStream;
