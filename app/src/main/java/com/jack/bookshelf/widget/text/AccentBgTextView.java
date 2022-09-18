@@ -34,7 +34,7 @@ public class AccentBgTextView extends AppCompatTextView {
     private void init() {
         setBackground(Selector.shapeBuild()
                 .setCornerRadius(ScreenUtils.dpToPx(3))
-                .setDefaultBgColor(Color.WHITE).create());
+                .setDefaultBgColor(Color.BLACK).create());
         setTextColor(Color.WHITE);
     }
 }
