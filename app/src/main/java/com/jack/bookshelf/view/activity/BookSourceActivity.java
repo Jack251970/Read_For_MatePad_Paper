@@ -445,7 +445,7 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
         String json = null;
         try {
             InputStream inputStream = MApplication.getInstance().getAssets()
-                    .open("defaultData/bookSource.json");
+                    .open("default/bookSource.json");
             json = IOUtils.toString(inputStream);
             inputStream.close();
         } catch (IOException e) {

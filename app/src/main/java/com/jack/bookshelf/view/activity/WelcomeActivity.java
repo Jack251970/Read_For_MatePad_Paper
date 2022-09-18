@@ -75,7 +75,7 @@ public class WelcomeActivity extends AppCompatActivity {
             String json = null;
             try {
                 InputStream inputStream = MApplication.getInstance().getAssets()
-                        .open("defaultData/bookSource.json");
+                        .open("default/bookSource.json");
                 json = IOUtils.toString(inputStream);
                 inputStream.close();
             } catch (IOException e) {
@@ -92,7 +92,7 @@ public class WelcomeActivity extends AppCompatActivity {
         if (!preferences.getBoolean("importDefaultTxtRule", false)) {
             String json = null;
             try {
-                InputStream inputStream = MApplication.getInstance().getAssets().open("defaultData/txtChapterRule.json");
+                InputStream inputStream = MApplication.getInstance().getAssets().open("default/txtChapterRule.json");
                 json = IOUtils.toString(inputStream);
                 inputStream.close();
             } catch (IOException e) {

@@ -174,7 +174,7 @@ public class TxtChapterRuleActivity extends MBaseActivity<TxtChapterRuleContract
     private void importDefaultRule() {
         String json = null;
         try {
-            InputStream inputStream = MApplication.getInstance().getAssets().open("defaultData/txtChapterRule.json");
+            InputStream inputStream = MApplication.getInstance().getAssets().open("default/txtChapterRule.json");
             json = IOUtils.toString(inputStream);
             inputStream.close();
         } catch (IOException e) {
