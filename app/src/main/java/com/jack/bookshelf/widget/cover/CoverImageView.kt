@@ -1,4 +1,4 @@
-package com.jack.bookshelf.widget.imageview
+package com.jack.bookshelf.widget.cover
 
 import android.annotation.SuppressLint
 import android.content.Context

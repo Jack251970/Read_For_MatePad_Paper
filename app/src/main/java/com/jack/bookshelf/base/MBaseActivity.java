@@ -109,22 +109,6 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
     public Snackbar getSnackBar(View view, String msg, int length) {
         if (snackbar == null) {
             snackbar = Snackbar.make(view, msg, length);
-            snackbar.setActionTextColor(Color.BLACK);
-            snackbar.setTextColor(Color.BLACK);
-            snackbar.setBackgroundTint(Color.WHITE);
-        } else {
-            snackbar.setText(msg);
-            snackbar.setDuration(length);
-        }
-        return snackbar;
-    }
-
-    public Snackbar getSnackBar(View view, @StringRes int msg, int length) {
-        if (snackbar == null) {
-            snackbar = Snackbar.make(view, msg, length);
-            snackbar.setActionTextColor(Color.BLACK);
-            snackbar.setTextColor(Color.BLACK);
-            snackbar.setBackgroundTint(Color.WHITE);
         } else {
             snackbar.setText(msg);
             snackbar.setDuration(length);
@@ -135,22 +119,6 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
     public void showSnackBar(View view, String msg, int length) {
         if (snackbar == null) {
             snackbar = Snackbar.make(view, msg, length);
-            snackbar.setActionTextColor(Color.BLACK);
-            snackbar.setTextColor(Color.BLACK);
-            snackbar.setBackgroundTint(Color.WHITE);
-        } else {
-            snackbar.setText(msg);
-            snackbar.setDuration(length);
-        }
-        snackbar.show();
-    }
-
-    public void showSnackBar(View view, @StringRes int msg, int length) {
-        if (snackbar == null) {
-            snackbar = Snackbar.make(view, msg, length);
-            snackbar.setActionTextColor(Color.BLACK);
-            snackbar.setTextColor(Color.BLACK);
-            snackbar.setBackgroundTint(Color.WHITE);
         } else {
             snackbar.setText(msg);
             snackbar.setDuration(length);

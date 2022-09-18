@@ -20,7 +20,7 @@ import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BookKindBean;
 import com.jack.bookshelf.bean.SearchBookBean;
 import com.jack.bookshelf.view.adapter.base.BaseListAdapter;
-import com.jack.bookshelf.widget.imageview.CoverImageView;
+import com.jack.bookshelf.widget.cover.CoverImageView;
 import com.jack.bookshelf.widget.recycler.refresh.RefreshRecyclerViewAdapter;
 
 import java.lang.ref.WeakReference;

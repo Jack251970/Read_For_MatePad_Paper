@@ -21,7 +21,7 @@ import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.help.ItemTouchCallback;
 import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.view.adapter.base.OnItemClickListenerTwo;
-import com.jack.bookshelf.widget.imageview.CoverImageView;
+import com.jack.bookshelf.widget.cover.CoverImageView;
 import com.jack.bookshelf.widget.onoff.checkbox.RectCheckBox;
 import com.jack.bookshelf.widget.text.BadgeTextView;
 
