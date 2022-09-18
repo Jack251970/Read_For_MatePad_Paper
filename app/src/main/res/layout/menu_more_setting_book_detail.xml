@@ -21,7 +21,7 @@
             android:layout_height="@dimen/more_setting_menu_iv_width_and_height"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="@dimen/item_more_setting_menu_iv_margin_end"
-            android:src="@drawable/ic_refresh" />
+            android:src="@drawable/ic_refresh_light" />
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"

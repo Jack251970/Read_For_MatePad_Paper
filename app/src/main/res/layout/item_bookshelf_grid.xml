@@ -31,14 +31,19 @@
         tools:ignore="RtlHardcoded" />
     <ImageView
         android:id="@+id/iv_loading"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
         android:layout_gravity="end"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:padding="2dp"
         android:src="@drawable/ic_refresh"
+        android:background="@drawable/shape_loading_background"
         app:layout_constraintTop_toTopOf="@+id/iv_cover"
         app:layout_constraintRight_toRightOf="@+id/iv_cover"
         android:visibility="invisible"
-        android:contentDescription="加载"/>
+        android:contentDescription="加载"
+        tools:ignore="HardcodedText" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
