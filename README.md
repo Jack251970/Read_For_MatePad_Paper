@@ -34,6 +34,7 @@
 > * mabDc https://github.com/mabDc
 
 # *Interface*-界面
+* 界面风格高度适配华为*MatePad Paper*
 <img src="https://github.com/Jack251970/start-docusaurus2/blob/master/image/interface/interface1.jpg" width="800">
 
 <a href="#readme">
