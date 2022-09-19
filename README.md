@@ -34,7 +34,7 @@
 > * mabDc https://github.com/mabDc
 
 # *Interface*-界面
-<img src="https://github.com/Jack251970/start-docusaurus2/blob/master/image/interface/interface1.jpg" width="270">
+<img src="https://github.com/Jack251970/start-docusaurus2/blob/master/image/interface/interface1.jpg" width="800">
 
 <a href="#readme">
     <img src="https://img.shields.io/badge/-返回顶部-white.svg" alt="#" align="left">
