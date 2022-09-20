@@ -58,14 +58,11 @@ fun Activity.fullScreen() {
 /**
  * 设置状态栏颜色白色
  */
-fun Activity.setStatusBarColorAutoWhite(
+fun Activity.setStatusBarColorWhite(
     isTransparent: Boolean,
-    fullScreen: Boolean
 ) {
-    if (fullScreen) {
-        if (isTransparent) {
-            window.statusBarColor = Color.TRANSPARENT
-        }
+    if (isTransparent) {
+        window.statusBarColor = Color.TRANSPARENT
     }
     window.statusBarColor = Color.WHITE
     setLightStatusBar(true)

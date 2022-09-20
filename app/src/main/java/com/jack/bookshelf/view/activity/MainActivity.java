@@ -174,42 +174,42 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
         // 初始化一级菜单
         initMenu();
         // 左侧边栏菜单
-        binding.mppLlBookSourceMain.setOnClickListener(view -> BookSourceActivity.startThis(this, requestSource));
-        binding.mppLlReplaceMain.setOnClickListener(view -> ReplaceRuleActivity.startThis(this, null));
-        binding.mppLlDownloadMain.setOnClickListener(view -> DownloadActivity.startThis(this));
-        binding.mppLlBackupMain.setOnClickListener(view -> {
+        binding.llBookSourceMain.setOnClickListener(view -> BookSourceActivity.startThis(this, requestSource));
+        binding.llReplaceMain.setOnClickListener(view -> ReplaceRuleActivity.startThis(this, null));
+        binding.llDownloadMain.setOnClickListener(view -> DownloadActivity.startThis(this));
+        binding.llBackupMain.setOnClickListener(view -> {
             if (!selectMenuBackup.isShowing()) {
                 selectMenuBackup.show(binding.getRoot());
             }
         });
-        binding.mppLlRestoreMain.setOnClickListener(view -> {
+        binding.llRestoreMain.setOnClickListener(view -> {
             if (!selectMenuRestore.isShowing()) {
                 selectMenuRestore.show(binding.getRoot());
             }
         });
-        binding.mppIvSettingMain.setOnClickListener(view -> SettingActivity.startThis(this));
+        binding.ivSettingMain.setOnClickListener(view -> SettingActivity.startThis(this));
         // 搜索栏
-        binding.mppLlSearchMain.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SearchBookActivity.class)));
+        binding.searchBarMain.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SearchBookActivity.class)));
         // 导入书籍
-        binding.mppIvImportOnlineMain.setOnClickListener(view -> {
+        binding.ivImportOnlineMain.setOnClickListener(view -> {
             if (!selectMenu.isShowing()) {
                 selectMenu.show(binding.getRoot());
             }
         });
         // 选择书架布局
-        binding.mppIvSelectLayoutMain.setOnClickListener(view -> changeBookshelfLayout());
+        binding.ivSelectLayoutMain.setOnClickListener(view -> changeBookshelfLayout());
         // 更多选项
-        binding.mppIvMoreSettingsMain.setOnClickListener(view -> {
+        binding.ivMoreSettingsMain.setOnClickListener(view -> {
             if (!moreSettingMenu.isShowing()) {
-                moreSettingMenu.show(binding.getRoot(), binding.mppIvMoreSettingsMain);
+                moreSettingMenu.show(binding.getRoot(), binding.ivMoreSettingsMain);
             }
         });
         // 书籍类别切换
-        binding.mppTvAllBooksMain.setOnClickListener(view -> upGroup(0));
-        binding.mppTvChaseBookMain.setOnClickListener(view -> upGroup(1));
-        binding.mppTvFattenBookMain.setOnClickListener(view -> upGroup(2));
-        binding.mppTvEndBookMain.setOnClickListener(view -> upGroup(3));
-        binding.mppTvLocalBookMain.setOnClickListener(view -> upGroup(4));
+        binding.tvAllBooksMain.setOnClickListener(view -> upGroup(0));
+        binding.tvChaseBookMain.setOnClickListener(view -> upGroup(1));
+        binding.tvFattenBookMain.setOnClickListener(view -> upGroup(2));
+        binding.tvEndBookMain.setOnClickListener(view -> upGroup(3));
+        binding.tvLocalBookMain.setOnClickListener(view -> upGroup(4));
     }
 
     /**
@@ -376,19 +376,19 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
     private void upGroupIcon(int old_group,int group) {
         switch (old_group) {
             case 0:
-                binding.mppIvAllBooksIndicatorMain.setVisibility(View.INVISIBLE);
+                binding.ivAllBooksIndicatorMain.setVisibility(View.INVISIBLE);
                 break;
             case 1:
-                binding.mppIvChaseBookIndicatorMain.setVisibility(View.INVISIBLE);
+                binding.ivChaseBookIndicatorMain.setVisibility(View.INVISIBLE);
                 break;
             case 2:
-                binding.mppTvFattenBookIndicatorMain.setVisibility(View.INVISIBLE);
+                binding.ivFattenBookIndicatorMain.setVisibility(View.INVISIBLE);
                 break;
             case 3:
-                binding.mppIvEndBookIndicatorMain.setVisibility(View.INVISIBLE);
+                binding.ivEndBookIndicatorMain.setVisibility(View.INVISIBLE);
                 break;
             case 4:
-                binding.mppIvLocalBookIndicatorMain.setVisibility(View.INVISIBLE);
+                binding.ivLocalBookIndicatorMain.setVisibility(View.INVISIBLE);
                 break;
         }
         initGroupIcon(group);
@@ -400,19 +400,19 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
     private void initGroupIcon(int group) {
         switch (group) {
             case 0:
-                binding.mppIvAllBooksIndicatorMain.setVisibility(View.VISIBLE);
+                binding.ivAllBooksIndicatorMain.setVisibility(View.VISIBLE);
                 break;
             case 1:
-                binding.mppIvChaseBookIndicatorMain.setVisibility(View.VISIBLE);
+                binding.ivChaseBookIndicatorMain.setVisibility(View.VISIBLE);
                 break;
             case 2:
-                binding.mppTvFattenBookIndicatorMain.setVisibility(View.VISIBLE);
+                binding.ivFattenBookIndicatorMain.setVisibility(View.VISIBLE);
                 break;
             case 3:
-                binding.mppIvEndBookIndicatorMain.setVisibility(View.VISIBLE);
+                binding.ivEndBookIndicatorMain.setVisibility(View.VISIBLE);
                 break;
             case 4:
-                binding.mppIvLocalBookIndicatorMain.setVisibility(View.VISIBLE);
+                binding.ivLocalBookIndicatorMain.setVisibility(View.VISIBLE);
                 break;
         }
     }
@@ -422,9 +422,9 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
      */
     private void initLayoutIcon() {
         if (preferences.getInt("bookshelfLayout", 1) == 0) {
-            binding.mppIvSelectLayoutMain.setImageResource(R.drawable.ic_bookshelf_layout_grid);
+            binding.ivSelectLayoutMain.setImageResource(R.drawable.ic_bookshelf_layout_grid);
         } else {
-            binding.mppIvSelectLayoutMain.setImageResource(R.drawable.ic_bookshelf_layout_list);
+            binding.ivSelectLayoutMain.setImageResource(R.drawable.ic_bookshelf_layout_list);
         }
     }
 

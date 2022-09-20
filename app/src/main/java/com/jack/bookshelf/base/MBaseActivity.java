@@ -75,10 +75,8 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
 
     protected void initImmersionBar() {
         try {
-            View actionBar = findViewById(R.id.action_bar);
             ActivityExtensionsKt.fullScreen(this);
-            boolean isShowActionBar = (actionBar != null) && (actionBar.getVisibility() == View.VISIBLE);
-            ActivityExtensionsKt.setStatusBarColorAutoWhite(this, isShowActionBar , isShowActionBar);
+            ActivityExtensionsKt.setStatusBarColorWhite(this, true);
         } catch (Exception ignored) {
         }
         try {

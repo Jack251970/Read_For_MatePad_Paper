@@ -189,7 +189,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
             getWindow().getDecorView().setSystemUiVisibility(flag);
         }
         if (ifBottomMenuShow) {
-            ActivityExtensionsKt.setStatusBarColorAutoWhite(this, false, true);
+            ActivityExtensionsKt.setStatusBarColorWhite(this, false);
         } else {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
             ActivityExtensionsKt.setLightStatusBar(this, true);

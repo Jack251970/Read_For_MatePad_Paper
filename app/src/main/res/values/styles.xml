@@ -104,4 +104,14 @@
     <style name="PaperTextStyleSettingTitle" parent="PaperTextTheme">
         <item name="android:textSize">14sp</item>
     </style>
+
+    <!-- Main Activity Left Drawer Text Style -->
+    <style name="PaperTextStyleMainLeftDrawer" parent="PaperTextTheme">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- Main Activity Book Category Text Style -->
+    <style name="PaperTextStyleMainBookCategory" parent="PaperTextTheme">
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>
