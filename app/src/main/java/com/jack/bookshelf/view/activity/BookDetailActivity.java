@@ -214,7 +214,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
                 }
             }
         });
-        moreSettingMenuBookDetail.show(binding.iflContent, binding.ivMenu);
+        moreSettingMenuBookDetail.show(binding.getRoot(), binding.ivMenu);
     }
 
     /**
@@ -280,11 +280,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
             }
             finish();
         });
-        // 主界面点击事件
-        binding.iflContent.setOnClickListener(null);
-        binding.tvToc.setOnClickListener(v -> {
-            ChapterListActivity.startThis(this, mPresenter.getBookShelf(), mPresenter.getChapterList());
-        });
+        binding.tvToc.setOnClickListener(v -> ChapterListActivity.startThis(this, mPresenter.getBookShelf(), mPresenter.getChapterList()));
         binding.tvChangeOrigin.setOnClickListener(view ->
                 ChangeSourceDialog.builder(BookDetailActivity.this, mPresenter.getBookShelf())
                         .setCallback(searchBookBean -> {
@@ -339,7 +335,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
     protected void firstRequest() {
         super.firstRequest();
         if (mPresenter.getOpenFrom() == BookDetailPresenter.FROM_SEARCH) {
-            //网络请求
+            // 网络请求
             mPresenter.getBookShelfInfo();
         }
     }
@@ -364,11 +360,8 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
 
     @SuppressLint("DefaultLocale")
     private void upChapterSizeTv() {
-        String chapterSize = "";
-        if (mPresenter.getOpenFrom() == FROM_BOOKSHELF && bookShelfBean.getChapterListSize() > 0) {
-            int newChapterNum = bookShelfBean.getChapterListSize() - 1 - bookShelfBean.getDurChapter();
-            if (newChapterNum > 0)
-                chapterSize = String.format("(+%d)", newChapterNum);
+        if (mPresenter.getOpenFrom() == FROM_BOOKSHELF) {
+            bookShelfBean.getChapterListSize();
         }
     }
 

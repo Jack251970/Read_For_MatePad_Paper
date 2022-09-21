@@ -5,7 +5,7 @@
     android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="ContentDescription"
+    tools:ignore="ContentDescription, UseCompoundDrawables"
     tools:context=".view.activity.MainActivity">
     <!-- 分割线 -->
     <View
@@ -215,7 +215,8 @@
         android:orientation="horizontal"
         android:background="@drawable/shape_searchbar_background"
         app:layout_constraintBottom_toBottomOf="@id/gl_main_title_bar_title"
-        app:layout_constraintRight_toLeftOf="@id/cl_main_menu"/>
+        app:layout_constraintRight_toLeftOf="@id/cl_main_menu"
+        tools:visibility="gone"/>
     <ImageView
         android:id="@+id/iv_search_bar_main"
         android:layout_width="20dp"

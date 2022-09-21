@@ -32,9 +32,12 @@ public class AccentBgTextView extends AppCompatTextView {
     }
 
     private void init() {
+        // 设置背景
         setBackground(Selector.shapeBuild()
                 .setCornerRadius(ScreenUtils.dpToPx(3))
                 .setDefaultBgColor(Color.BLACK).create());
         setTextColor(Color.WHITE);
+        // 设置Padding
+        setPadding(ScreenUtils.dpToPx(4),ScreenUtils.dpToPx(1),ScreenUtils.dpToPx(4),ScreenUtils.dpToPx(1));
     }
 }

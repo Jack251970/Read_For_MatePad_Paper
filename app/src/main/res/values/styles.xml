@@ -25,7 +25,7 @@
     </style>
 
     <!-- Base Animation Theme -->
-    <style name="PaperTextTheme">
+    <style name="PaperTextBaseStyle">
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -56,7 +56,7 @@
     </style>
 
     <!-- MatePad Paper Text Button Theme -->
-    <style name="PaperTextButton" parent="PaperTextTheme">
+    <style name="PaperTextButton" parent="PaperTextBaseStyle">
         <item name="android:background">@drawable/shape_textview_button_background</item>
         <item name="android:padding">@dimen/text_view_button_padding</item>
         <item name="android:textSize">14sp</item>
@@ -72,12 +72,12 @@
     </style>
 
     <!-- Pop Menu Text Style -->
-    <style name="PaperTextStylePopReadMenu" parent="PaperTextTheme">
+    <style name="PaperTextStylePopReadMenu" parent="PaperTextBaseStyle">
         <item name="android:textSize">16sp</item>
     </style>
 
     <!-- Pop Menu More Setting Text Style -->
-    <style name="PaperTextStylePopReadMenuMoreSetting" parent="PaperTextTheme">
+    <style name="PaperTextStylePopReadMenuMoreSetting" parent="PaperTextBaseStyle">
         <item name="android:textSize">18sp</item>
     </style>
 
@@ -91,27 +91,32 @@
     </style>
 
     <!-- Setting Activity Preference Text Style -->
-    <style name="PaperTextStyleSettingPreference" parent="PaperTextTheme">
+    <style name="PaperTextStyleSettingPreference" parent="PaperTextBaseStyle">
         <item name="android:textSize">16sp</item>
     </style>
 
     <!-- Setting Activity Preference Bind TextView Style -->
-    <style name="PaperTextStyleSettingBindTvPreference" parent="PaperTextTheme">
+    <style name="PaperTextStyleSettingBindTvPreference" parent="PaperTextBaseStyle">
         <item name="android:textSize">12sp</item>
     </style>
 
     <!-- Setting Activity Title Text Style -->
-    <style name="PaperTextStyleSettingTitle" parent="PaperTextTheme">
+    <style name="PaperTextStyleSettingTitle" parent="PaperTextBaseStyle">
         <item name="android:textSize">14sp</item>
     </style>
 
     <!-- Main Activity Left Drawer Text Style -->
-    <style name="PaperTextStyleMainLeftDrawer" parent="PaperTextTheme">
+    <style name="PaperTextStyleMainLeftDrawer" parent="PaperTextBaseStyle">
         <item name="android:textSize">14sp</item>
     </style>
 
     <!-- Main Activity Book Category Text Style -->
-    <style name="PaperTextStyleMainBookCategory" parent="PaperTextTheme">
+    <style name="PaperTextStyleMainBookCategory" parent="PaperTextBaseStyle">
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <!-- Action Bar Text Text Style -->
+    <style name="PaperTextStyleActionBarText" parent="PaperTextBaseStyle">
+        <item name="android:textSize">@dimen/action_bar_title_text_size</item>
     </style>
 </resources>
