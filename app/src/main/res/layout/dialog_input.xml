@@ -1,6 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ll_content"
+    android:id="@+id/cl_content"
     android:layout_height="wrap_content"
     android:layout_width="@dimen/alert_dialog_width"
     android:background="@drawable/shape_alert_dialog_background"

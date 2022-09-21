@@ -69,7 +69,7 @@ public class InputDialog extends BaseDialog {
     }
 
     private void bindView(View view) {
-        view.findViewById(R.id.ll_content).setOnClickListener(null);
+        view.findViewById(R.id.cl_content).setOnClickListener(null);
         tvTitle = view.findViewById(R.id.tv_title_dialog_input);
         etInput = view.findViewById(R.id.atv_input_dialog_input);
         view.findViewById(R.id.tv_cancel_dialog_input).setOnClickListener(v -> dismiss());

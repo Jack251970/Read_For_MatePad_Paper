@@ -261,7 +261,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void bindEvent() {
-        // ToolBar点击事件
+        binding.clContent.setOnClickListener(null);
         binding.ivBack.setOnClickListener(v -> finish());
         binding.ivEditBook.setOnClickListener(v -> {
             if (mPresenter.getOpenFrom() == FROM_BOOKSHELF) {
@@ -269,7 +269,6 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
             }
         });
         binding.ivMenu.setOnClickListener(v -> showMoreSetting());
-        // 作者名字点击事件
         binding.tvName.setOnClickListener(v -> {
             if (bookShelfBean == null) return;
             if (TextUtils.isEmpty(bookShelfBean.getBookInfoBean().getName())) return;
@@ -296,9 +295,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
                             }
                         }).show());
         binding.tvRead.setOnClickListener(v -> readBook());
-        // 封面点击事件
         binding.ivCover.setOnClickListener(null);
-        // 作者点击事件
         binding.tvAuthor.setOnClickListener(view -> {
             if (TextUtils.isEmpty(author)) return;
             if (!AppActivityManager.getInstance().isExist(SearchBookActivity.class)) {
@@ -308,7 +305,6 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
             }
             finish();
         });
-        // 分组点击事件
         binding.tvManageGroups.setOnClickListener(v ->
                 SelectMenu.builder(this)
                 .setTitle(getString(R.string.manage_groups))

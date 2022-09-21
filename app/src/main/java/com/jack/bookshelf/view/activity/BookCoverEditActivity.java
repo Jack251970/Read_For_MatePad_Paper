@@ -56,7 +56,7 @@ public class BookCoverEditActivity extends MBaseActivity<IPresenter> {
 
     @Override
     protected void initData() {
-        binding.ivBackBookCoverEdit.setOnClickListener(v -> finish());
+        binding.ivBack.setOnClickListener(v -> finish());
         name = getIntent().getStringExtra("name");
         author = getIntent().getStringExtra("author");
         ChangeCoverAdapter changeCoverAdapter = new ChangeCoverAdapter();

@@ -170,10 +170,6 @@ public class RefreshRecyclerView extends FrameLayout {
         binding.recyclerView.setOnTouchListener(refreshTouchListener);
     }
 
-    public RefreshProgressBar getRefreshProgressBar() {
-        return binding.rpb;
-    }
-
     public RecyclerView getRecyclerView() {
         return binding.recyclerView;
     }

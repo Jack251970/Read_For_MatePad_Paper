@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="ContentDescription, UseCompoundDrawables">
     <!-- Custom ActionBar -->
     <LinearLayout
         android:id="@+id/action_bar"
@@ -18,7 +20,6 @@
             android:layout_width="@dimen/action_bar_icon_height_and_width"
             android:layout_height="@dimen/action_bar_icon_height_and_width"
             android:gravity="center_vertical"
-            android:contentDescription="返回"
             android:src="@drawable/ic_arrow_back"/>
         <TextView
             android:layout_width="0dp"
@@ -35,7 +36,6 @@
             android:layout_width="@dimen/action_bar_icon_height_and_width"
             android:layout_height="@dimen/action_bar_icon_height_and_width"
             android:layout_marginStart="@dimen/action_bar_padding_and_margin"
-            android:contentDescription="保存"
             android:src="@drawable/ic_save"/>
     </LinearLayout>
     <!-- 书籍信息编辑 -->

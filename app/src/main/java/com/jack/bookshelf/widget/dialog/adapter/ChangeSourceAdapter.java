@@ -94,7 +94,7 @@ public class ChangeSourceAdapter extends RefreshRecyclerViewAdapter {
 
         MyViewHolder(View itemView) {
             super(itemView);
-            llContent = itemView.findViewById(R.id.ll_content);
+            llContent = itemView.findViewById(R.id.cl_content);
             tvBookSource = itemView.findViewById(R.id.tv_source_name);
             tvLastChapter = itemView.findViewById(R.id.tv_lastChapter);
             ivChecked = itemView.findViewById(R.id.iv_checked);

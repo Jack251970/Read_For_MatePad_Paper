@@ -68,7 +68,7 @@ public class ReplaceRuleDialog extends BaseDialog {
     }
 
     private void bindView(View view) {
-        View llContent = view.findViewById(R.id.ll_content);
+        View llContent = view.findViewById(R.id.cl_content);
         llContent.setOnClickListener(null);
         tieReplaceRule = view.findViewById(R.id.tie_replace_rule);
         tieReplaceSummary = view.findViewById(R.id.tie_replace_summary);
