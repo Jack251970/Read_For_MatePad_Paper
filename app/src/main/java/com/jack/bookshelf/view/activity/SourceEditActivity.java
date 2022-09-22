@@ -595,7 +595,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
             return;
         }
         if (mSoftKeyboardTool != null & !this.isFinishing()) {
-            mSoftKeyboardTool.showAtLocation(binding.llContent, Gravity.BOTTOM, 0, 0);
+            mSoftKeyboardTool.showAtLocation(binding.clContent, Gravity.BOTTOM, 0, 0);
         }
     }
 

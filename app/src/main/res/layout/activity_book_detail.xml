@@ -121,12 +121,12 @@
             android:textColor="@color/text_color"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
         <TextView
             android:id="@+id/tv_read"
             android:layout_width="280dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="16dp"
             android:background="@drawable/shape_button_black_background"
             android:clickable="true"
             android:focusable="true"
@@ -136,7 +136,8 @@
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toRightOf="@id/tv_shelf"/>
+            app:layout_constraintLeft_toRightOf="@id/tv_shelf"
+            tools:ignore="TouchTargetSizeCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <TextView
         android:id="@+id/tv_loading"

@@ -261,6 +261,6 @@ public class TxtChapterRuleActivity extends MBaseActivity<TxtChapterRuleContract
 
     @Override
     public Snackbar getSnackBar(String msg, int length) {
-        return super.getSnackBar(binding.llContent, msg, length);
+        return super.getSnackBar(binding.clContent, msg, length);
     }
 }

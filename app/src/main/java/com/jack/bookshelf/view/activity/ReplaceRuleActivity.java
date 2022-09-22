@@ -317,6 +317,6 @@ public class ReplaceRuleActivity extends MBaseActivity<ReplaceRuleContract.Prese
 
     @Override
     public Snackbar getSnackBar(String msg, int length) {
-        return Snackbar.make(binding.llContent, msg, length);
+        return Snackbar.make(binding.clContent, msg, length);
     }
 }

@@ -4,6 +4,30 @@
     android:layout_height="match_parent"
     tools:ignore="ContentDescription, UseCompoundDrawables"
     tools:context="com.jack.bookshelf.view.activity.BookCoverEditActivity">
+    <View
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/action_bar_layout_height"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="@dimen/action_bar_icon_height_and_width"
+        android:layout_height="@dimen/action_bar_icon_height_and_width"
+        android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintLeft_toLeftOf="@id/action_bar"
+        app:layout_constraintTop_toTopOf="@id/action_bar"
+        app:layout_constraintBottom_toBottomOf="@id/action_bar"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="15dp"
+        android:text="@string/cover_change_source"
+        style="@style/PaperTextStyleActionBarText"
+        app:layout_constraintLeft_toRightOf="@id/iv_back"
+        app:layout_constraintTop_toTopOf="@id/action_bar"
+        app:layout_constraintBottom_toBottomOf="@id/action_bar"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

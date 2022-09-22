@@ -506,11 +506,11 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
 
     @Override
     public Snackbar getSnackBar(String msg, int length) {
-        return Snackbar.make(binding.llContent, msg, length);
+        return Snackbar.make(binding.clContent, msg, length);
     }
 
     @Override
     public void showSnackBar(String msg, int length) {
-        super.showSnackBar(binding.llContent, msg, length);
+        super.showSnackBar(binding.clContent, msg, length);
     }
 }
