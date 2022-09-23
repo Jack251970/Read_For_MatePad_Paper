@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cl_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/shape_dialog_background"
@@ -19,7 +18,7 @@
         android:id="@+id/til_rule_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="名称"
+        android:hint="@string/name"
         android:padding="10dp">
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/tie_rule_name"
@@ -31,7 +30,7 @@
         android:id="@+id/til_rule_regex"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="正则"
+        android:hint="@string/regex"
         android:padding="10dp">
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/tie_rule_regex"

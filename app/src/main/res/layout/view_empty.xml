@@ -12,23 +12,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UseCompoundDrawables,UselessParent">
         <ImageView
             android:id="@+id/iv_empty"
             android:layout_width="190dp"
             android:layout_height="132dp"
             android:src="@drawable/ic_books"
             android:visibility="gone"
-            tools:visibility="visible"/>
+            tools:visibility="visible"
+            tools:ignore="ContentDescription" />
         <TextView
             android:id="@+id/tv_empty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="暂无数据"
+            android:text="@string/no_data"
             android:textColor="@color/text_color"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textStyle="bold"/>
     </LinearLayout>
 </RelativeLayout>

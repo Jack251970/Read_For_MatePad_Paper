@@ -60,7 +60,6 @@
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
-            android:contentDescription="停止搜索"
             android:elevation="0dp"
             android:src="@drawable/ic_stop_white"
             android:visibility="invisible"
@@ -68,6 +67,7 @@
             app:fabSize="mini"
             app:layout_anchorGravity="right|bottom"
             app:pressedTranslationZ="0dp"
-            tools:visibility="visible" />
+            tools:visibility="visible"
+            tools:ignore="ContentDescription" />
     </RelativeLayout>
 </LinearLayout>

@@ -8,7 +8,7 @@
     android:paddingRight="18dp"
     android:background="@drawable/shape_more_setting_menu_background"
     android:orientation="vertical"
-    tools:ignore="ContentDescription">
+    tools:ignore="ContentDescription, UseCompoundDrawables">
     <LinearLayout
         android:id="@+id/ll_refresh_book_detail"
         android:layout_width="@dimen/item_more_setting_menu_width_with_icon"

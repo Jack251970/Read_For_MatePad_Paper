@@ -85,7 +85,8 @@
         android:gravity="center">
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:ignore="UselessParent">
             <!--文件夹标识或已选文件标识-->
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/file_iv_if_add"

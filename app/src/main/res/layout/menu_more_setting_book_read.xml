@@ -8,7 +8,7 @@
     android:paddingRight="18dp"
     android:background="@drawable/shape_more_setting_menu_background"
     android:orientation="vertical"
-    tools:ignore="ContentDescription">
+    tools:ignore="ContentDescription, UseCompoundDrawables">
     <LinearLayout
         android:id="@+id/ll_more_setting_menu_book_read_online1"
         android:layout_width="match_parent"

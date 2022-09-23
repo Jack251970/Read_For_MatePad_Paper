@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/cl_content"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical">
+<!-- 书架主界面 -->
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="6dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_bookshelf"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:second_max_progress="80dp"
+            app:speed="2dp" />
+        <!-- 书架无书籍界面 -->
+        <include
+            android:id="@+id/viewEmpty"
+            layout="@layout/view_empty" />
+    </FrameLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+<!-- 整理书架菜单 -->
+<LinearLayout
+    android:id="@+id/tool_bar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:visibility="gone"
+    tools:visibility="visible">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/navigation_bar_line"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/action_bar_layout_height"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/back"
+            android:src="@drawable/ic_cancel"/>
+        <TextView
+            android:id="@+id/tv_select_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:textSize="30sp"
+            android:textColor="@color/text_color"
+            android:textStyle="bold"
+            tools:text="已选择3项"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <LinearLayout
+            android:id="@+id/ll_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginEnd="30dp">
+            <ImageView
+                android:id="@+id/iv_delete"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_delete"/>
+            <TextView
+                android:id="@+id/tv_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_select_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_marginEnd="20dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_select_all"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/select_all"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+</LinearLayout>

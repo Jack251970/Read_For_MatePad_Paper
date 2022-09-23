@@ -40,16 +40,16 @@
             android:layout_width="46dp"
             android:layout_height="46dp"
             android:padding="2dp"
-            android:contentDescription="滚动到顶部"
-            android:src="@drawable/ic_arrow_drop_up"/>
+            android:src="@drawable/ic_arrow_drop_up"
+            tools:ignore="ContentDescription" />
         <ImageView
             android:id="@+id/iv_chapter_bottom"
             android:layout_width="46dp"
             android:layout_height="46dp"
             android:layout_marginStart="10dp"
             android:padding="2dp"
-            android:contentDescription="滚动到底部"
-            android:src="@drawable/ic_arrow_drop_down"/>
+            android:src="@drawable/ic_arrow_drop_down"
+            tools:ignore="ContentDescription" />
     </LinearLayout>
     <!-- 分割线 -->
     <View

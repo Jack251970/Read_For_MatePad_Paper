@@ -30,7 +30,7 @@
             android:layout_height="20dp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_select_menu_unselected"
-            android:contentDescription="选中标志" />
+            tools:ignore="ContentDescription" />
     </LinearLayout>
     <Space
         android:layout_width="match_parent"

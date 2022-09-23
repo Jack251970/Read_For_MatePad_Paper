@@ -337,6 +337,9 @@
         <string name="self_choose_font">自定义字体</string>
         <string name="choose_font_cannot_find">字体文件未找到！</string>
         <string name="fonts_folder">请将字体文件放到内部存储根目录下的Fonts文件夹中重新选择</string>
+        <!-- Txt Chapter Rule Dialog -->
+        <string name="name">名称</string>
+        <string name="regex">正则</string>
 
     <!-- Select Menu -->
         <!-- Select Menu Main -->
@@ -461,6 +464,10 @@
         <string name="custom_mr_t_b">下Tip</string>
         <string name="custom_mr_t_l">左Tip</string>
         <string name="custom_mr_t_r">右Tip</string>
+
+    <!-- View -->
+        <!-- View Empty -->
+        <string name="no_data">暂无数据</string>
 
     <!-- Shortcuts -->
     <string name="enter_bookshelf">进入书架</string>

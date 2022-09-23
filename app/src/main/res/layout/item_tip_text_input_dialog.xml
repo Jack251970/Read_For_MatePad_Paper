@@ -21,6 +21,5 @@
         android:layout_height="24dp"
         android:src="@drawable/ic_clear"
         android:visibility="gone"
-        android:contentDescription="@string/delete" />
-
+        tools:ignore="ContentDescription" />
 </LinearLayout>
