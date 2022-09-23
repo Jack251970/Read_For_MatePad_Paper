@@ -9,7 +9,7 @@
     tools:ignore="ContentDescription">
     <!-- Action Bar -->
     <LinearLayout
-        android:id="@+id/action_bar"
+        android:id="@+id/cl_menu_top"
         android:layout_width="match_parent"
         android:layout_height="@dimen/action_bar_layout_height"
         android:gravity="center_vertical"

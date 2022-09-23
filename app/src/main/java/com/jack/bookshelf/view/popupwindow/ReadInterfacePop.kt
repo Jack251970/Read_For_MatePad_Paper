@@ -30,7 +30,6 @@ import timber.log.Timber
  */
 
 class ReadInterfacePop : FrameLayout {
-
     private val binding = PopReadInterfaceBinding.inflate(LayoutInflater.from(context), this, true)
     private var activity: ReadBookActivity? = null
     private val readBookControl = ReadBookControl.getInstance()
@@ -38,18 +37,18 @@ class ReadInterfacePop : FrameLayout {
     private var callback: Callback? = null
 
     constructor(context: Context) : super(context) {
-        init()
+        init(context)
     }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        init()
+        init(context)
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        init()
+        init(context)
     }
 
-    private fun init() {
+    private fun init(context: Context) {
         binding.vwBg.setOnClickListener(null)
     }
 

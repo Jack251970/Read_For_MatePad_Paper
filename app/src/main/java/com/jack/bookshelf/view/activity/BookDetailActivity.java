@@ -114,6 +114,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
             // 显示加载信息
             binding.tvIntro.setVisibility(View.INVISIBLE);
             binding.tvLoading.setVisibility(View.VISIBLE);
+            binding.twoButtons.setVisibility(View.GONE);
             binding.tvLoading.setText(R.string.is_loading);
             binding.tvLoading.setOnClickListener(null);
         }
@@ -177,6 +178,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
             upChapterSizeTv();
         }
         binding.tvLoading.setVisibility(View.GONE);
+        binding.twoButtons.setVisibility(View.VISIBLE);
         binding.tvLoading.setOnClickListener(null);
     }
 
@@ -223,6 +225,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
     @Override
     public void getBookShelfError() {
         binding.tvLoading.setVisibility(View.VISIBLE);
+        binding.twoButtons.setVisibility(View.GONE);
         binding.tvLoading.setText(R.string.load_error_retry);
         binding.tvLoading.setOnClickListener(v -> {
             binding.tvLoading.setText(R.string.is_loading);
@@ -251,6 +254,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
      */
     private void refresh() {
         binding.tvLoading.setVisibility(View.VISIBLE);
+        binding.twoButtons.setVisibility(View.GONE);
         binding.tvLoading.setText(R.string.is_loading);
         binding.tvLoading.setOnClickListener(null);
         mPresenter.getBookShelf().getBookInfoBean().setBookInfoHtml(null);
@@ -285,6 +289,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
                         .setCallback(searchBookBean -> {
                             binding.tvOrigin.setText(searchBookBean.getOrigin());
                             binding.tvLoading.setVisibility(View.VISIBLE);
+                            binding.twoButtons.setVisibility(View.GONE);
                             binding.tvLoading.setText(R.string.is_loading);
                             binding.tvLoading.setOnClickListener(null);
                             if (mPresenter.getOpenFrom() == FROM_BOOKSHELF) {

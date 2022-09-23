@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="ContentDescription, UseCompoundDrawables"
@@ -21,7 +24,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
         android:layout_marginStart="15dp"
         android:text="@string/cover_change_source"
         style="@style/PaperTextStyleActionBarText"
@@ -29,12 +31,27 @@
         app:layout_constraintTop_toTopOf="@id/action_bar"
         app:layout_constraintBottom_toBottomOf="@id/action_bar"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>-->
+</androidx.constraintlayout.widget.ConstraintLayout>
+-->
+<!--
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:fitsSystemWindows="true"
-android:id="@+id/cl_content"
-android:orientation="vertical">
-</LinearLayout>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/cl_content"
+    android:orientation="vertical">
+</LinearLayout>-->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_content"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.jack.bookshelf.view.activity.ReadBookActivity"
+    tools:ignore="ContentDescription, UseCompoundDrawables">
+
+</FrameLayout>

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fl_content"
-    android:background="@color/white"
+    android:id="@+id/cl_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@color/white"
+    tools:ignore="ContentDescription, UseCompoundDrawables"
+    tools:context="com.jack.bookshelf.view.activity.ReadBookActivity">
     <!-- 阅读主界面 -->
     <com.jack.bookshelf.widget.page.PageView
         android:id="@+id/pageView"
@@ -22,9 +23,10 @@
         android:layout_height="match_parent"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="20dp"
-        tools:ignore="RtlHardcoded">
+        tools:ignore="RtlHardcoded"
+        app:layout_constraintLeft_toLeftOf="parent">
         <com.jack.bookshelf.widget.bar.seekbar.VerticalSeekBar
-            android:id="@+id/pb_nextPage"
+            android:id="@+id/pb_next_page"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:visibility="invisible"
@@ -35,23 +37,27 @@
         android:id="@+id/cursor_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="左光标"
         android:src="@drawable/ic_cursor_left"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="parent"/>
     <ImageView
         android:id="@+id/cursor_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="右光标"
         android:src="@drawable/ic_cursor_right"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="parent"/>
     <!-- 阅读长按菜单 -->
     <com.jack.bookshelf.view.popupwindow.ReadLongPressPop
-        android:id="@+id/readLongPress"
+        android:id="@+id/read_long_press"
         android:layout_width="190dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="parent"/>
     <!-- 听书播放界面 -->
     <com.jack.bookshelf.view.popupwindow.MediaPlayerPop
         android:id="@+id/mediaPlayerPop"
@@ -60,251 +66,250 @@
         android:layout_gravity="center"
         android:visibility="gone" />
     <!-- 菜单 -->
-    <FrameLayout
-        android:id="@+id/fl_menu"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="invisible"
         tools:visibility="visible">
-        <!-- 全局点击范围 -->
+        <!-- 全局点击 -->
         <View
             android:id="@+id/v_menu_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/transparent"
             android:clickable="true"
             android:focusable="true"
             tools:visibility="gone"/>
         <!-- 顶部菜单 -->
-        <LinearLayout
-            android:id="@+id/ll_menu_top"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_menu_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:background="@color/white"
-            android:visibility="invisible"
-            tools:visibility="visible">
-            <!-- Custom ActionBar -->
-            <LinearLayout
-                android:id="@+id/appBar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:paddingTop="20dp">
+            <View
+                android:id="@+id/action_bar"
                 android:layout_width="match_parent"
+                android:layout_height="@dimen/action_bar_layout_height"
+                app:layout_constraintTop_toTopOf="parent"/>
+            <View
+                android:id="@+id/divide_line"
+                android:layout_width="match_parent"
+                android:layout_marginTop="6dp"
+                android:layout_height="2dp"
+                android:background="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/tv_chapter_name"/>
+            <!-- 基础选项 -->
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="@dimen/action_bar_icon_height_and_width"
+                android:layout_height="@dimen/action_bar_icon_height_and_width"
+                android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintLeft_toLeftOf="@id/action_bar"
+                app:layout_constraintTop_toTopOf="@id/action_bar"
+                app:layout_constraintBottom_toBottomOf="@id/action_bar"/>
+            <TextView
+                android:id="@+id/tv_book_title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/action_bar_layout_height"
-                    android:paddingLeft="@dimen/action_bar_padding_and_margin"
-                    android:paddingRight="@dimen/action_bar_padding_and_margin"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:id="@+id/iv_back_book_read"
-                        android:layout_width="@dimen/action_bar_icon_height_and_width"
-                        android:layout_height="@dimen/action_bar_icon_height_and_width"
-                        android:gravity="center_vertical"
-                        android:contentDescription="返回"
-                        android:src="@drawable/ic_arrow_back"/>
-                    <TextView
-                        android:id="@+id/tv_book_title"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="15dp"
-                        android:textSize="22sp"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:singleLine="true"
-                        android:clickable="false"
-                        android:focusable="false"
-                        tools:text="哑舍"/>
-                    <LinearLayout
-                        android:id="@+id/appBar_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:visibility="gone"
-                        tools:visibility="visible">
-                        <ImageView
-                            android:id="@+id/iv_set_text_chapter_regex"
-                            android:layout_width="@dimen/action_bar_icon_height_and_width"
-                            android:layout_height="@dimen/action_bar_icon_height_and_width"
-                            android:layout_marginStart="@dimen/action_bar_padding_and_margin"
-                            android:contentDescription="设置目录正则"
-                            android:src="@drawable/ic_txt_chapter_rule"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/appBar_local"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:visibility="gone"
-                        tools:visibility="visible">
-                        <ImageView
-                            android:id="@+id/iv_set_charset"
-                            android:layout_width="@dimen/action_bar_icon_height_and_width"
-                            android:layout_height="@dimen/action_bar_icon_height_and_width"
-                            android:layout_marginStart="@dimen/action_bar_padding_and_margin"
-                            android:contentDescription="设置编码"
-                            android:src="@drawable/ic_translate"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/appBar_online"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:visibility="gone"
-                        android:clickable="false"
-                        android:focusable="false"
-                        tools:visibility="gone">
-                        <ImageView
-                            android:id="@+id/iv_change_source"
-                            android:layout_width="@dimen/action_bar_icon_height_and_width"
-                            android:layout_height="@dimen/action_bar_icon_height_and_width"
-                            android:layout_marginStart="@dimen/action_bar_padding_and_margin"
-                            android:contentDescription="切换书源"
-                            android:src="@drawable/ic_exchange"/>
-                        <ImageView
-                            android:id="@+id/iv_refresh"
-                            android:layout_width="@dimen/action_bar_icon_height_and_width"
-                            android:layout_height="@dimen/action_bar_icon_height_and_width"
-                            android:layout_marginStart="@dimen/action_bar_padding_and_margin"
-                            android:contentDescription="重新加载"
-                            android:src="@drawable/ic_refresh_light"/>
-                        <ImageView
-                            android:id="@+id/iv_download_offline"
-                            android:layout_width="@dimen/action_bar_icon_height_and_width"
-                            android:layout_height="@dimen/action_bar_icon_height_and_width"
-                            android:layout_marginStart="@dimen/action_bar_padding_and_margin"
-                            android:contentDescription="离线下载"
-                            android:src="@drawable/ic_download"/>
-                    </LinearLayout>
-                    <ImageView
-                        android:id="@+id/iv_add_bookmark"
-                        android:layout_width="@dimen/action_bar_icon_height_and_width"
-                        android:layout_height="@dimen/action_bar_icon_height_and_width"
-                        android:layout_marginStart="@dimen/action_bar_padding_and_margin"
-                        android:contentDescription="添加书签"
-                        android:src="@drawable/ic_bookmark"/>
-                    <ImageView
-                        android:id="@+id/iv_copy_text"
-                        android:layout_width="@dimen/action_bar_icon_height_and_width"
-                        android:layout_height="@dimen/action_bar_icon_height_and_width"
-                        android:layout_marginStart="@dimen/action_bar_padding_and_margin"
-                        android:contentDescription="拷贝内容"
-                        android:src="@drawable/ic_copy"/>
-                    <ImageView
-                        android:id="@+id/iv_more_settings_book_read"
-                        android:layout_width="@dimen/action_bar_icon_height_and_width"
-                        android:layout_height="@dimen/action_bar_icon_height_and_width"
-                        android:layout_marginStart="@dimen/action_bar_padding_and_margin"
-                        android:contentDescription="更多选项"
-                        android:src="@drawable/ic_more_settings"/>
-                </LinearLayout>
-                <!-- 基础信息栏 -->
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cl_chapter_name_book_read"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/content_padding"
-                    android:paddingRight="@dimen/content_padding"
-                    android:layout_marginBottom="6dp">
-                    <TextView
-                        android:id="@+id/tv_chapter_name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:singleLine="true"
-                        android:textColor="@color/text_color"
-                        android:clickable="false"
-                        android:focusable="false"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toLeftOf="@+id/login" />
-                    <com.jack.bookshelf.widget.text.AccentBgTextView
-                        android:id="@+id/login"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:padding="6dp"
-                        android:visibility="gone"
-                        android:text="@string/login"
-                        android:gravity="center"
-                        android:clickable="false"
-                        android:focusable="false"
-                        app:layout_constraintRight_toLeftOf="@+id/pay"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent" />
-                    <com.jack.bookshelf.widget.text.AccentBgTextView
-                        android:id="@+id/pay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:padding="6dp"
-                        android:visibility="gone"
-                        android:text="@string/chapter_pay"
-                        android:gravity="center"
-                        android:clickable="false"
-                        android:focusable="false"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
-            <!-- 分割线 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"/>
-        </LinearLayout>
+                android:layout_marginStart="15dp"
+                android:text="@string/cover_change_source"
+                android:singleLine="true"
+                android:clickable="false"
+                android:focusable="false"
+                style="@style/PaperTextStyleActionBarText"
+                app:layout_constraintLeft_toRightOf="@id/iv_back"
+                app:layout_constraintTop_toTopOf="@id/action_bar"
+                app:layout_constraintBottom_toBottomOf="@id/action_bar"
+                tools:text="哑舍"/>
+            <!-- 顶部菜单 -->
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_txt"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent"
+                app:constraint_referenced_ids="iv_set_text_chapter_regex"
+                tools:visibility="visible"/>
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_online"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent"
+                app:constraint_referenced_ids="iv_change_source, iv_refresh, iv_download_offline"
+                tools:visibility="visible"/>
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group_local"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent"
+                app:constraint_referenced_ids="iv_set_charset"
+                tools:visibility="visible"/>
+            <!-- TxT格式选项 -->
+            <ImageView
+                android:id="@+id/iv_set_text_chapter_regex"
+                android:layout_width="@dimen/action_bar_icon_height_and_width"
+                android:layout_height="@dimen/action_bar_icon_height_and_width"
+                android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+                android:src="@drawable/ic_txt_chapter_rule"
+                app:layout_constraintRight_toLeftOf="@id/iv_set_charset"
+                app:layout_constraintTop_toTopOf="@id/action_bar"
+                app:layout_constraintBottom_toBottomOf="@id/action_bar"/>
+            <!-- 本地选项 -->
+            <ImageView
+                android:id="@+id/iv_set_charset"
+                android:layout_width="@dimen/action_bar_icon_height_and_width"
+                android:layout_height="@dimen/action_bar_icon_height_and_width"
+                android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+                android:src="@drawable/ic_translate"
+                app:layout_constraintRight_toLeftOf="@id/iv_change_source"
+                app:layout_constraintTop_toTopOf="@id/action_bar"
+                app:layout_constraintBottom_toBottomOf="@id/action_bar"/>
+            <!-- 联网选项 -->
+            <ImageView
+                android:id="@+id/iv_change_source"
+                android:layout_width="@dimen/action_bar_icon_height_and_width"
+                android:layout_height="@dimen/action_bar_icon_height_and_width"
+                android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+                android:src="@drawable/ic_exchange"
+                app:layout_constraintRight_toLeftOf="@id/iv_refresh"
+                app:layout_constraintTop_toTopOf="@id/action_bar"
+                app:layout_constraintBottom_toBottomOf="@id/action_bar"/>
+            <ImageView
+                android:id="@+id/iv_refresh"
+                android:layout_width="@dimen/action_bar_icon_height_and_width"
+                android:layout_height="@dimen/action_bar_icon_height_and_width"
+                android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+                android:src="@drawable/ic_refresh_light"
+                app:layout_constraintRight_toLeftOf="@id/iv_download_offline"
+                app:layout_constraintTop_toTopOf="@id/action_bar"
+                app:layout_constraintBottom_toBottomOf="@id/action_bar"/>
+            <ImageView
+                android:id="@+id/iv_download_offline"
+                android:layout_width="@dimen/action_bar_icon_height_and_width"
+                android:layout_height="@dimen/action_bar_icon_height_and_width"
+                android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+                android:src="@drawable/ic_download"
+                app:layout_constraintRight_toLeftOf="@id/iv_add_bookmark"
+                app:layout_constraintTop_toTopOf="@id/action_bar"
+                app:layout_constraintBottom_toBottomOf="@id/action_bar"/>
+            <!-- 常驻选项 -->
+            <ImageView
+                android:id="@+id/iv_add_bookmark"
+                android:layout_width="@dimen/action_bar_icon_height_and_width"
+                android:layout_height="@dimen/action_bar_icon_height_and_width"
+                android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+                android:src="@drawable/ic_bookmark"
+                app:layout_constraintTop_toTopOf="@id/action_bar"
+                app:layout_constraintBottom_toBottomOf="@id/action_bar"
+                app:layout_constraintRight_toLeftOf="@id/iv_copy_text"/>
+            <ImageView
+                android:id="@+id/iv_copy_text"
+                android:layout_width="@dimen/action_bar_icon_height_and_width"
+                android:layout_height="@dimen/action_bar_icon_height_and_width"
+                android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+                android:src="@drawable/ic_copy"
+                app:layout_constraintTop_toTopOf="@id/action_bar"
+                app:layout_constraintBottom_toBottomOf="@id/action_bar"
+                app:layout_constraintRight_toLeftOf="@id/iv_more_settings_book_read"/>
+            <ImageView
+                android:id="@+id/iv_more_settings_book_read"
+                android:layout_width="@dimen/action_bar_icon_height_and_width"
+                android:layout_height="@dimen/action_bar_icon_height_and_width"
+                android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+                android:src="@drawable/ic_more_settings"
+                app:layout_constraintTop_toTopOf="@id/action_bar"
+                app:layout_constraintBottom_toBottomOf="@id/action_bar"
+                app:layout_constraintRight_toRightOf="@id/action_bar"/>
+            <!-- 信息栏 -->
+            <TextView
+                android:id="@+id/tv_chapter_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/text_color"
+                android:clickable="false"
+                android:focusable="false"
+                app:layout_constraintLeft_toLeftOf="@id/iv_back"
+                app:layout_constraintTop_toBottomOf="@id/action_bar"
+                tools:text="第一章"/>
+            <!--com.jack.bookshelf.widget.text.AccentBgTextView-->
+            <TextView
+                android:id="@+id/login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+                android:text="@string/login"
+                app:layout_constraintRight_toLeftOf="@id/pay"
+                app:layout_constraintBottom_toBottomOf="@id/tv_chapter_name"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+            <!--com.jack.bookshelf.widget.text.AccentBgTextView-->
+            <TextView
+                android:id="@+id/pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+                android:text="@string/chapter_pay"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/tv_chapter_name"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <!-- 底部主菜单 -->
         <com.jack.bookshelf.view.popupwindow.ReadBottomMenu
             android:id="@+id/read_menu_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
             android:layout_marginStart="@dimen/content_margin_left_and_right"
             android:layout_marginEnd="@dimen/content_margin_left_and_right"
             android:layout_marginBottom="-1dp"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"/>
         <!-- 显示设置菜单 -->
         <com.jack.bookshelf.view.popupwindow.ReadInterfacePop
-            android:id="@+id/readInterfacePop"
+            android:id="@+id/read_interface_pop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
             android:layout_marginStart="@dimen/content_margin_left_and_right"
             android:layout_marginEnd="@dimen/content_margin_left_and_right"
             android:layout_marginBottom="-1dp"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"/>
         <!-- 间距设置菜单 -->
         <com.jack.bookshelf.view.popupwindow.ReadAdjustMarginPop
-            android:id="@+id/readAdjustMarginPop"
+            android:id="@+id/read_adjust_margin_pop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
             android:layout_marginStart="@dimen/content_margin_left_and_right"
             android:layout_marginEnd="@dimen/content_margin_left_and_right"
             android:layout_marginBottom="-1dp"
             android:paddingBottom="100dp"
             android:visibility="invisible"
-            tools:visibility="visible"/>
+            app:layout_constraintBottom_toBottomOf="parent"/>
         <!-- 更多设置菜单 -->
         <com.jack.bookshelf.view.popupwindow.MoreSettingPop
-            android:id="@+id/moreSettingPop"
+            android:id="@+id/more_setting_pop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="end"
             android:layout_marginStart="@dimen/content_margin_left_and_right"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            app:layout_constraintRight_toRightOf="parent"/>
         <!-- 目录菜单 -->
-        <!--<com.jack.bookshelf.view.popupwindow.ReadChapterBookmarkPop
-            android:id="@+id/chapterBookmarkPop"
+        <com.jack.bookshelf.view.popupwindow.ReadChapterBookmarkPop
+            android:id="@+id/chapter_bookmark_pop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="end"
             android:layout_marginEnd="@dimen/content_margin_left_and_right"
-            android:visibility="invisible" >
-        </com.jack.bookshelf.view.popupwindow.ReadChapterBookmarkPop>-->
-    </FrameLayout>
-</FrameLayout>
+            android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="parent">
+        </com.jack.bookshelf.view.popupwindow.ReadChapterBookmarkPop>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

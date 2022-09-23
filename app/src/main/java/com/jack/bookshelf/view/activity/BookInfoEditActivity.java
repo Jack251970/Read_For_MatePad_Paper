@@ -114,11 +114,11 @@ public class BookInfoEditActivity extends MBaseActivity<IPresenter> {
     @Override
     protected void bindEvent() {
         super.bindEvent();
-        binding.ivBackBookInfoEdit.setOnClickListener(v -> {
+        binding.ivBack.setOnClickListener(v -> {
             SoftInputUtil.hideIMM(getCurrentFocus());
             finish();
         });
-        binding.ivSaveBookInfoEdit.setOnClickListener(v -> saveInfo());
+        binding.ivSaveBookInfo.setOnClickListener(v -> saveInfo());
         binding.tvSelectCover.setOnClickListener(view -> selectCover());
         binding.tvChangeCover.setOnClickListener(view -> {
             Intent intent = new Intent(BookInfoEditActivity.this, BookCoverEditActivity.class);

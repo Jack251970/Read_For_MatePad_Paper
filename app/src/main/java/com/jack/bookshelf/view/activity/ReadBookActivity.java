@@ -329,8 +329,8 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
             screenOffTimerStart();
         }
         binding.vMenuBg.setOnClickListener(null);
-        binding.flMenu.setVisibility(View.INVISIBLE);
-        binding.llMenuTop.setVisibility(View.INVISIBLE);
+        binding.clMenu.setVisibility(View.INVISIBLE);
+        binding.clMenuTop.setVisibility(View.INVISIBLE);
         binding.readMenuBottom.setVisibility(View.INVISIBLE);
         binding.readAdjustMarginPop.setVisibility(View.INVISIBLE);
         binding.readInterfacePop.setVisibility(View.INVISIBLE);
@@ -352,7 +352,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     @Override
     protected void bindView() {
         upMenu();
-        binding.appBar.setPadding(0, ScreenUtils.getStatusBarHeight(),0,0);
+        binding.clMenuTop.setPadding(0, ScreenUtils.getStatusBarHeight(),0,0);
         binding.readMenuBottom.setPadding(0,0,0,ScreenUtils.getNavigationBarHeight());
         binding.readInterfacePop.setPadding(0,0,0,ScreenUtils.getNavigationBarHeight());
         binding.readAdjustMarginPop.setPadding(0,0,0,ScreenUtils.getNavigationBarHeight());
@@ -376,8 +376,8 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         binding.mediaPlayerPop.setIvChapterClickListener(v -> ChapterListActivity.startThis(ReadBookActivity.this, mPresenter.getBookShelf(), mPresenter.getChapterList()));
         binding.mediaPlayerPop.setIvTimerClickListener(v -> ReadAloudService.setTimer(getContext(), 10));
         binding.mediaPlayerPop.setLlCoverBgClickListener(v -> {
-            binding.flMenu.setVisibility(View.VISIBLE);
-            binding.llMenuTop.setVisibility(View.VISIBLE);
+            binding.clMenu.setVisibility(View.VISIBLE);
+            binding.clMenuTop.setVisibility(View.VISIBLE);
             menuTopIn();
         });
         binding.mediaPlayerPop.setPlayClickListener(v -> onMediaButton(ReadAloudService.ActionMediaPlay));
@@ -586,9 +586,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void bindEvent() {
-        binding.toolbar.setOnClickListener(null);
-        binding.clChapterNameBookRead.setOnClickListener(null);
-        binding.ivBackBookRead.setOnClickListener(v -> finish());
+        binding.ivBack.setOnClickListener(v -> finish());
         binding.ivAddBookmark.setOnClickListener(v -> showBookmark(null));
         binding.ivCopyText.setOnClickListener(v -> {
             popMenuOut();
@@ -658,7 +656,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         binding.pay.setOnClickListener(v -> pay());
         binding.cursorLeft.setOnTouchListener(this);
         binding.cursorRight.setOnTouchListener(this);
-        binding.flContent.setOnTouchListener(this);
+        binding.clContent.setOnTouchListener(this);
     }
 
     /**
@@ -1276,7 +1274,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
      */
     public void readAdjustMarginIn() {
         initImmersionBar(true);
-        binding.flMenu.setVisibility(View.VISIBLE);
+        binding.clMenu.setVisibility(View.VISIBLE);
         binding.readAdjustMarginPop.show();
         binding.readAdjustMarginPop.setVisibility(View.VISIBLE);
         menuBottomIn();
@@ -1287,7 +1285,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
      */
     private void readInterfaceIn() {
         initImmersionBar(true);
-        binding.flMenu.setVisibility(View.VISIBLE);
+        binding.clMenu.setVisibility(View.VISIBLE);
         binding.readInterfacePop.setVisibility(View.VISIBLE);
         menuBottomIn();
     }
@@ -1297,7 +1295,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
      */
     private void moreSettingIn() {
         initImmersionBar(true);
-        binding.flMenu.setVisibility(View.VISIBLE);
+        binding.clMenu.setVisibility(View.VISIBLE);
         binding.moreSettingPop.setVisibility(View.VISIBLE);
         menuBottomIn();
     }
@@ -1316,8 +1314,8 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
      * 显示菜单
      */
     private void popMenuIn() {
-        binding.flMenu.setVisibility(View.VISIBLE);
-        binding.llMenuTop.setVisibility(View.VISIBLE);
+        binding.clMenu.setVisibility(View.VISIBLE);
+        binding.clMenuTop.setVisibility(View.VISIBLE);
         binding.readMenuBottom.setVisibility(View.VISIBLE);
         menuTopIn();
         menuBottomIn();
@@ -1328,9 +1326,9 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
      * 隐藏菜单
      */
     private void popMenuOut() {
-        if (binding.flMenu.getVisibility() == View.VISIBLE) {
+        if (binding.clMenu.getVisibility() == View.VISIBLE) {
             initImmersionBar(false);
-            if (binding.llMenuTop.getVisibility() == View.VISIBLE) {
+            if (binding.clMenuTop.getVisibility() == View.VISIBLE) {
                 menuOut(false);
                 if (ifPopMenuShow()) {
                     screenOffTimerStart();
@@ -1511,7 +1509,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                 if (binding.readInterfacePop.getVisibility() == View.VISIBLE
                         || binding.readAdjustMarginPop.getVisibility() == View.VISIBLE
                         || binding.moreSettingPop.getVisibility() == View.VISIBLE
-                        || binding.flMenu.getVisibility() == View.VISIBLE) {
+                        || binding.clMenu.getVisibility() == View.VISIBLE) {
                     popMenuOut();
                     return true;
                 } else if (ReadAloudService.running && aloudStatus == ReadAloudService.Status.PLAY) {
@@ -1526,7 +1524,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                     }
                     return true;
                 }
-            } else if (binding.flMenu.getVisibility() != View.VISIBLE) {
+            } else if (binding.clMenu.getVisibility() != View.VISIBLE) {
                 if (readBookControl.getCanKeyTurn(aloudStatus == ReadAloudService.Status.PLAY) && keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
                     if (mPageLoader != null) {
                         mPageLoader.skipToNextPage();
@@ -1545,7 +1543,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if (binding.flMenu.getVisibility() != View.VISIBLE) {
+        if (binding.clMenu.getVisibility() != View.VISIBLE) {
             if (readBookControl.getCanKeyTurn(aloudStatus == ReadAloudService.Status.PLAY)
                     && (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN
                     || keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
@@ -1563,16 +1561,16 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         boolean onLine = (mPresenter.getBookShelf() != null) && !mPresenter.getBookShelf().getTag().equals(BookShelfBean.LOCAL_TAG);
         boolean isTxt = (mPresenter.getBookShelf() != null) && mPresenter.getBookShelf().getNoteUrl().toLowerCase().endsWith(".txt");
         if (onLine) {
-            binding.appBarOnline.setVisibility(View.VISIBLE);
-            binding.appBarLocal.setVisibility(View.GONE);
+            binding.groupOnline.setVisibility(View.VISIBLE);
+            binding.groupLocal.setVisibility(View.GONE);
         } else {
-            binding.appBarOnline.setVisibility(View.GONE);
-            binding.appBarLocal.setVisibility(View.VISIBLE);
+            binding.groupOnline.setVisibility(View.GONE);
+            binding.groupLocal.setVisibility(View.VISIBLE);
         }
         if (isTxt) {
-            binding.appBarTxt.setVisibility(View.VISIBLE);
+            binding.groupTxt.setVisibility(View.VISIBLE);
         } else {
-            binding.appBarTxt.setVisibility(View.GONE);
+            binding.groupTxt.setVisibility(View.GONE);
         }
     }
 
