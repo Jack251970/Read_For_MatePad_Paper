@@ -12,7 +12,6 @@ import com.jack.bookshelf.R;
 
 @SuppressWarnings("unused")
 public class FastScrollRecyclerView extends RecyclerView {
-
     private FastScroller mFastScroller;
 
     public FastScrollRecyclerView(Context context) {
@@ -150,16 +149,12 @@ public class FastScrollRecyclerView extends RecyclerView {
 
     @Override
     protected void onDetachedFromWindow() {
-
         mFastScroller.detachRecyclerView();
-
         super.onDetachedFromWindow();
-
     }
 
     private void layout(Context context, AttributeSet attrs) {
         mFastScroller = new FastScroller(context, attrs);
-
         mFastScroller.setId(R.id.fast_scroller);
     }
 }

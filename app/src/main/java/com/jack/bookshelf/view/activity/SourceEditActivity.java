@@ -139,7 +139,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
                 enable = bookSourceBean.getEnable();
             }
         }
-        binding.tvTitleBookSource.setText(title);
+        binding.tvTitle.setText(title);
     }
 
     @Override
@@ -226,7 +226,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
             binding.recyclerView.scrollToPosition(0);
         });
         // 返回
-        binding.ivBackSourceEdit.setOnClickListener(v -> {
+        binding.ivBack.setOnClickListener(v -> {
             SoftInputUtil.hideIMM(getCurrentFocus());
             if (!back()) { finish(); }
         });

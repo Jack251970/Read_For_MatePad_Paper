@@ -1,5 +1,6 @@
 package com.jack.bookshelf.view.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -103,7 +104,7 @@ public class ReplaceRuleActivity extends MBaseActivity<ReplaceRuleContract.Prese
         // 初始化一级菜单
         initMenu();
         // 返回
-        binding.ivBackReplaceRule.setOnClickListener(v -> finish());
+        binding.ivBack.setOnClickListener(v -> finish());
         // 添加替换规则
         binding.ivAddReplaceRule.setOnClickListener(v -> editReplaceRule(null));
         // 全选替换规则
@@ -159,7 +160,7 @@ public class ReplaceRuleActivity extends MBaseActivity<ReplaceRuleContract.Prese
         ReplaceRuleDialog.builder(this, replaceRuleBean, bookShelfBean)
                 .setPositiveButton(replaceRuleBean1 ->
                         ReplaceRuleManager.saveData(replaceRuleBean1)
-                                .subscribe(new MySingleObserver<Boolean>() {
+                                .subscribe(new MySingleObserver<>() {
                                     @Override
                                     public void onSuccess(Boolean aBoolean) {
                                         refresh();
@@ -177,6 +178,7 @@ public class ReplaceRuleActivity extends MBaseActivity<ReplaceRuleContract.Prese
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void selectAllDataS() {
         for (ReplaceRuleBean replaceRuleBean : adapter.getData()) {
             replaceRuleBean.setEnable(!selectAll);
@@ -301,7 +303,7 @@ public class ReplaceRuleActivity extends MBaseActivity<ReplaceRuleContract.Prese
     @Override
     public void refresh() {
         ReplaceRuleManager.getAll()
-                .subscribe(new MySingleObserver<List<ReplaceRuleBean>>() {
+                .subscribe(new MySingleObserver<>() {
                     @Override
                     public void onSuccess(List<ReplaceRuleBean> replaceRuleBeans) {
                         adapter.resetDataS(replaceRuleBeans);

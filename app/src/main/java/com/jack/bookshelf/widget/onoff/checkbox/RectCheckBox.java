@@ -20,20 +20,20 @@ public class RectCheckBox extends AppCompatCheckBox {
 
     public RectCheckBox(Context context) {
         super(context);
-        init();
+        init(context, null);
     }
 
     public RectCheckBox(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(context, attrs);
     }
 
     public RectCheckBox(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(context, attrs);
     }
 
-    private void init() {
+    private void init(Context context, AttributeSet attrs) {
         // 取消点击背景
         setBackgroundColor(Color.TRANSPARENT);
         // 设置文字颜色

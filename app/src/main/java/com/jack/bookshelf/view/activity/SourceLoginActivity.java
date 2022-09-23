@@ -107,7 +107,7 @@ public class SourceLoginActivity extends MBaseActivity<IPresenter> {
     @Override
     protected void bindView() {
         super.bindView();
-        binding.ivBackSourceLogin.setOnClickListener(v -> finish());
+        binding.ivBack.setOnClickListener(v -> finish());
         binding.ivCheckSourceLogin.setOnClickListener(v -> {
             if (!checking) {
                 checking = true;

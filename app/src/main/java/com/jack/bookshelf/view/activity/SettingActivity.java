@@ -51,11 +51,11 @@ public class SettingActivity extends MBaseActivity<IPresenter> {
     @Override
     protected void bindView() {
         super.bindView();
-        binding.ivBackSetting.setOnClickListener(v -> finish());
+        binding.ivBack.setOnClickListener(v -> finish());
     }
 
     public void setTile(int strId) {
-        binding.tvSettingTitle.setText(strId);
+        binding.tvTitle.setText(strId);
     }
 
     public View getRoot() {

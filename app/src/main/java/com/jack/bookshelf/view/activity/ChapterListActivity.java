@@ -120,8 +120,7 @@ public class ChapterListActivity extends BaseViewPagerActivity<IPresenter> {
             binding.ivBookmarkIndicator.setVisibility(VISIBLE);
         });
         binding.ivSearch.setOnClickListener(v -> {
-            binding.tvBookTitleChapterList.setVisibility(GONE);
-            binding.ivSearch.setVisibility(GONE);
+            binding.groupTitleAndIvSearch.setVisibility(GONE);
             binding.searchView.setVisibility(VISIBLE);
         });
     }
@@ -179,8 +178,7 @@ public class ChapterListActivity extends BaseViewPagerActivity<IPresenter> {
 
     public void searchViewCollapsed() {
         mSearchAutoComplete.setText("");
-        binding.tvBookTitleChapterList.setVisibility(VISIBLE);
-        binding.ivSearch.setVisibility(VISIBLE);
+        binding.groupTitleAndIvSearch.setVisibility(VISIBLE);
         binding.searchView.setVisibility(GONE);
     }
 }

@@ -1,45 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:fitsSystemWindows="true"
-    android:orientation="vertical"
-    tools:ignore="ContentDescription">
-    <!-- Action Bar -->
-    <LinearLayout
-        android:id="@+id/cl_menu_top"
+    tools:ignore="ContentDescription, UseCompoundDrawables"
+    tools:context="com.jack.bookshelf.view.activity.WebViewActivity">
+    <View
+        android:id="@+id/action_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/action_bar_layout_height"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingTop="18dp"
-        android:paddingBottom="18dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        tools:ignore="UseCompoundDrawables">
-        <ImageView
-            android:id="@+id/iv_back_web_view"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:gravity="center_vertical"
-            android:src="@drawable/ic_arrow_back" />
-        <TextView
-            android:id="@+id/tv_title_web_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="15dp"
-            android:text="@string/setting"
-            android:textSize="22sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"/>
-    </LinearLayout>
-    <!-- 网页 -->
+        app:layout_constraintTop_toTopOf="parent"/>
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="@dimen/action_bar_icon_height_and_width"
+        android:layout_height="@dimen/action_bar_icon_height_and_width"
+        android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintLeft_toLeftOf="@id/action_bar"
+        app:layout_constraintTop_toTopOf="@id/action_bar"
+        app:layout_constraintBottom_toBottomOf="@id/action_bar"/>
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+        android:text="@string/setting"
+        style="@style/PaperTextStyleActionBarText"
+        app:layout_constraintLeft_toRightOf="@id/iv_back"
+        app:layout_constraintTop_toTopOf="@id/action_bar"
+        app:layout_constraintBottom_toBottomOf="@id/action_bar"/>
     <WebView
         android:id="@+id/web_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white" />
-</LinearLayout>
+        android:layout_height="0dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/action_bar"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

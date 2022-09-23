@@ -21,7 +21,6 @@ import com.jack.bookshelf.widget.itemdecoration.DividerItemDecoration;
  */
 
 public class SmartImportFragment extends BaseFileFragment {
-
     private FragmentSmartImportBinding binding;
 
     @Override

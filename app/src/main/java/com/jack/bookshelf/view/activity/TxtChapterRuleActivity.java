@@ -80,7 +80,7 @@ public class TxtChapterRuleActivity extends MBaseActivity<TxtChapterRuleContract
         // 初始化一级菜单
         initMenu();
         // 返回
-        binding.ivBackTxtChapterRule.setOnClickListener(v -> finish());
+        binding.ivBack.setOnClickListener(v -> finish());
         // 新增目录正则
         binding.ivAddTxtChapterRule.setOnClickListener(v -> editChapterRule(null));
         // 全选目录正则

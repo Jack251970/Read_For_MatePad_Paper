@@ -1,5 +1,7 @@
 package com.jack.bookshelf.view.fragment.adapter;
 
+import android.annotation.SuppressLint;
+
 import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.view.adapter.base.BaseListAdapter;
 import com.jack.bookshelf.view.adapter.base.IViewHolder;
@@ -17,7 +19,7 @@ import java.util.Set;
  */
 
 public class FileSystemAdapter extends BaseListAdapter<File> {
-    //记录item是否被选中的Map
+    // 记录item是否被选中的Map
     private final HashMap<File, Boolean> mCheckMap = new HashMap<>();
     private int mCheckedCount = 0;
 
@@ -63,17 +65,18 @@ public class FileSystemAdapter extends BaseListAdapter<File> {
 
     @Override
     public void removeItems(List<File> value) {
-        //删除在HashMap中的文件
+        // 删除在HashMap中的文件
         for (File file : value) {
             mCheckMap.remove(file);
-            //因为，能够被移除的文件，肯定是选中的
+            // 因为，能够被移除的文件，肯定是选中的
             --mCheckedCount;
         }
-        //删除列表中的文件
+        // 删除列表中的文件
         super.removeItems(value);
     }
 
-    //设置点击切换
+    // 设置点击切换
+    @SuppressLint("NotifyDataSetChanged")
     public void setCheckedItem(int pos) {
         File file = getItem(pos);
         if (isFileLoaded(file.getAbsolutePath())) return;
@@ -89,14 +92,15 @@ public class FileSystemAdapter extends BaseListAdapter<File> {
         notifyDataSetChanged();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setCheckedAll(boolean isChecked) {
-        Set<Map.Entry<File, Boolean>> entrys = mCheckMap.entrySet();
+        Set<Map.Entry<File, Boolean>> entries = mCheckMap.entrySet();
         mCheckedCount = 0;
-        for (Map.Entry<File, Boolean> entry : entrys) {
-            //必须是文件，必须没有被收藏
+        for (Map.Entry<File, Boolean> entry : entries) {
+            // 必须是文件，必须没有被收藏
             if (entry.getKey().isFile() && !isFileLoaded(entry.getKey().getAbsolutePath())) {
                 entry.setValue(isChecked);
-                //如果选中，则增加点击的数量
+                // 如果选中，则增加点击的数量
                 if (isChecked) {
                     ++mCheckedCount;
                 }
@@ -106,7 +110,7 @@ public class FileSystemAdapter extends BaseListAdapter<File> {
     }
 
     private boolean isFileLoaded(String id) {
-        //如果是已加载的文件，则点击事件无效。
+        // 如果是已加载的文件，则点击事件无效。
         return BookshelfHelp.getBook(id) != null;
     }
 
@@ -122,13 +126,13 @@ public class FileSystemAdapter extends BaseListAdapter<File> {
 
     public boolean getItemIsChecked(int pos) {
         File file = getItem(pos);
-        return mCheckMap.get(file);
+        return Boolean.TRUE.equals(mCheckMap.get(file));
     }
 
     public List<File> getCheckedFiles() {
         List<File> files = new ArrayList<>();
-        Set<Map.Entry<File, Boolean>> entrys = mCheckMap.entrySet();
-        for (Map.Entry<File, Boolean> entry : entrys) {
+        Set<Map.Entry<File, Boolean>> entries = mCheckMap.entrySet();
+        for (Map.Entry<File, Boolean> entry : entries) {
             if (entry.getValue()) {
                 files.add(entry.getKey());
             }

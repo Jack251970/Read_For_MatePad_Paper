@@ -91,7 +91,7 @@ public class DownloadActivity extends MBaseActivity<IPresenter> {
         // 初始化RecyclerView
         initRecyclerView();
         // 返回
-        binding.ivBackDownload.setOnClickListener(v -> finish());
+        binding.ivBack.setOnClickListener(v -> finish());
         // 停止下载
         binding.ivStopDownload.setOnClickListener(v -> DownloadService.cancelDownload(this));
     }

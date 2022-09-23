@@ -93,13 +93,13 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
     @SuppressLint("InflateParams")
     @Override
     protected void bindView() {
+        // 初始化搜索框
+        initSearchView();
         // 返回
-        binding.ivBackSearchBook.setOnClickListener(v -> {
+        binding.ivBack.setOnClickListener(v -> {
             SoftInputUtil.hideIMM(getCurrentFocus());
             finish();
         });
-        // 初始化搜索框
-        initSearchView();
         // 更多选项
         binding.ivMoreSettingsSearchBook.setOnClickListener(v -> {
             List<String> groupList = BookSourceManager.getEnableGroupList();
@@ -134,8 +134,6 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
                         }
                     }).show(binding.getRoot());
         });
-        // 主界面无事件
-        binding.llSearchHistory.setOnClickListener(null);
         binding.rfRvSearchBooks.setRefreshRecyclerViewAdapter(searchBookAdapter, new LinearLayoutManager(this));
         // 未搜索到相关书籍
         binding.rfRvSearchBooks.setNoDataAndRefreshErrorView(LayoutInflater.from(this).inflate(R.layout.view_refresh_no_data, null),
@@ -248,20 +246,18 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
     @Override
     protected void bindEvent() {
         // 搜索历史的清除按钮
-        binding.ivSearchHistoryClean.setOnClickListener(v -> {
-            PaperAlertDialog.builder(this)
-                    .setType(PaperAlertDialog.ONLY_CENTER_TITLE)
-                    .setTitle(R.string.delete_all_history)
-                    .setNegativeButton(R.string.cancel)
-                    .setPositiveButton(R.string.delete)
-                    .setOnclick(new PaperAlertDialog.OnItemClickListener() {
-                        @Override
-                        public void forNegativeButton() {}
+        binding.ivSearchHistoryClean.setOnClickListener(v -> PaperAlertDialog.builder(this)
+                .setType(PaperAlertDialog.ONLY_CENTER_TITLE)
+                .setTitle(R.string.delete_all_history)
+                .setNegativeButton(R.string.cancel)
+                .setPositiveButton(R.string.delete)
+                .setOnclick(new PaperAlertDialog.OnItemClickListener() {
+                    @Override
+                    public void forNegativeButton() {}
 
-                        @Override
-                        public void forPositiveButton() { mPresenter.cleanSearchHistory();;}
-                    }).show(binding.getRoot());
-        });
+                    @Override
+                    public void forPositiveButton() { mPresenter.cleanSearchHistory();}
+                }).show(binding.getRoot()));
         // 搜索历史其他按钮
         binding.rfRvSearchBooks.setLoadMoreListener(new OnLoadMoreListener() {
             @Override
@@ -288,7 +284,7 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
     @Override
     public void onPause() {
         super.onPause();
-        showHistory = binding.llSearchHistory.getVisibility() == View.VISIBLE;
+        showHistory = binding.clSearchSuggest.getVisibility() == View.VISIBLE;
     }
 
     @Override
@@ -371,7 +367,7 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
     private void toSearch() {
         if (!TextUtils.isEmpty(searchKey)) {
             mPresenter.insertSearchHistory();
-            //执行搜索请求
+            // 执行搜索请求
             new Handler().postDelayed(() -> {
                 mPresenter.initPage();
                 binding.rfRvSearchBooks.startRefresh();
@@ -386,12 +382,12 @@ public class SearchBookActivity extends MBaseActivity<SearchBookContract.Present
      */
     private void openOrCloseHistory(Boolean open) {
         if (open) {
-            if (binding.llSearchHistory.getVisibility() != View.VISIBLE) {
-                binding.llSearchHistory.setVisibility(View.VISIBLE);
+            if (binding.clSearchSuggest.getVisibility() != View.VISIBLE) {
+                binding.clSearchSuggest.setVisibility(View.VISIBLE);
             }
         } else {
-            if (binding.llSearchHistory.getVisibility() == View.VISIBLE) {
-                binding.llSearchHistory.setVisibility(View.GONE);
+            if (binding.clSearchSuggest.getVisibility() == View.VISIBLE) {
+                binding.clSearchSuggest.setVisibility(View.GONE);
             }
         }
     }

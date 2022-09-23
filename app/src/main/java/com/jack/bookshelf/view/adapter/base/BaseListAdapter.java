@@ -16,8 +16,6 @@ import java.util.List;
  */
 
 public abstract class BaseListAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-    private static final String TAG = "BaseListAdapter";
     /*common statement*/
     protected final List<T> mList = new ArrayList<>();
     protected OnItemClickListener mClickListener;
@@ -31,15 +29,13 @@ public abstract class BaseListAdapter<T> extends RecyclerView.Adapter<RecyclerVi
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         IViewHolder<T> viewHolder = createViewHolder(viewType);
-
         View view = viewHolder.createItemView(parent);
-        //初始化
         return new BaseViewHolder<>(view, viewHolder);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        //防止别人直接使用RecyclerView.ViewHolder调用该方法
+        // 防止别人直接使用RecyclerView.ViewHolder调用该方法
         if (!(holder instanceof BaseViewHolder))
             throw new IllegalArgumentException("The ViewHolder item must extend BaseViewHolder");
 
@@ -47,23 +43,23 @@ public abstract class BaseListAdapter<T> extends RecyclerView.Adapter<RecyclerVi
         IViewHolder<T> iHolder = ((BaseViewHolder) holder).holder;
         iHolder.onBind(getItem(position), position);
 
-        //设置点击事件
+        // 设置点击事件
         holder.itemView.setOnClickListener((v) -> {
             if (mClickListener != null) {
                 mClickListener.onItemClick(v, position);
             }
-            //adapter监听点击事件
+            // adapter监听点击事件
             iHolder.onClick();
             onItemClick(v, position);
         });
-        //设置长点击事件
+        // 设置长点击事件
         holder.itemView.setOnLongClickListener(
                 (v) -> {
                     boolean isClicked = false;
                     if (mLongClickListener != null) {
                         isClicked = mLongClickListener.onItemLongClick(v, position);
                     }
-                    //Adapter监听长点击事件
+                    // Adapter监听长点击事件
                     onItemLongClick(v, position);
                     return isClicked;
                 }
@@ -133,6 +129,7 @@ public abstract class BaseListAdapter<T> extends RecyclerView.Adapter<RecyclerVi
         return mList.size();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void refreshItems(List<T> list) {
         mList.clear();
         mList.addAll(list);

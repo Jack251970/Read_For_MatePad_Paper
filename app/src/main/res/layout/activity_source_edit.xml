@@ -1,97 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:fitsSystemWindows="true"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cl_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <LinearLayout
-        android:id="@+id/cl_menu_top"
+    android:fitsSystemWindows="true"
+    tools:ignore="ContentDescription, UseCompoundDrawables"
+    tools:context="com.jack.bookshelf.view.activity.SourceEditActivity">
+    <!-- 整体分块 -->
+    <View
+        android:id="@+id/action_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/action_bar_layout_height"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/action_bar_padding_and_margin"
-        android:paddingRight="@dimen/action_bar_padding_and_margin">
-        <ImageView
-            android:id="@+id/iv_back_source_edit"
-            android:layout_width="@dimen/action_bar_icon_height_and_width"
-            android:layout_height="@dimen/action_bar_icon_height_and_width"
-            android:gravity="center_vertical"
-            android:contentDescription="返回"
-            android:src="@drawable/ic_arrow_back"/>
-        <TextView
-            android:id="@+id/tv_title_book_source"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="15dp"
-            android:text="@string/edit_book_source"
-            android:textSize="22sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"/>
-        <ImageView
-            android:id="@+id/iv_save_source_edit"
-            android:layout_width="@dimen/action_bar_icon_height_and_width"
-            android:layout_height="@dimen/action_bar_icon_height_and_width"
-            android:layout_marginStart="@dimen/action_bar_padding_and_margin"
-            android:contentDescription="保存"
-            android:src="@drawable/ic_save"/>
-        <ImageView
-            android:id="@+id/iv_debug_source_edit"
-            android:layout_width="@dimen/action_bar_icon_height_and_width"
-            android:layout_height="@dimen/action_bar_icon_height_and_width"
-            android:layout_marginStart="@dimen/action_bar_padding_and_margin"
-            android:contentDescription="书源排序"
-            android:src="@drawable/ic_debug"/>
-        <ImageView
-            android:id="@+id/iv_more_settings_source_edit"
-            android:layout_width="@dimen/action_bar_icon_height_and_width"
-            android:layout_height="@dimen/action_bar_icon_height_and_width"
-            android:layout_marginStart="@dimen/action_bar_padding_and_margin"
-            android:contentDescription="更多选项"
-            android:src="@drawable/ic_more_settings"/>
-    </LinearLayout>
-    <!-- 编辑栏 -->
-    <LinearLayout
+        app:layout_constraintTop_toTopOf="parent"/>
+    <View
+        android:id="@+id/edit_card"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/content_padding"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/action_bar"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <!-- 内容 -->
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="@dimen/action_bar_icon_height_and_width"
+        android:layout_height="@dimen/action_bar_icon_height_and_width"
+        android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintLeft_toLeftOf="@id/action_bar"
+        app:layout_constraintTop_toTopOf="@id/action_bar"
+        app:layout_constraintBottom_toBottomOf="@id/action_bar"/>
+    <TextView
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/content_padding"
-        android:paddingRight="@dimen/content_padding"
-        android:paddingBottom="15dp">
-        <com.jack.bookshelf.widget.onoff.checkbox.RectCheckBox
-            android:id="@+id/cb_is_enable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:padding="5dp"
-            android:text="@string/is_enable" />
-        <com.jack.bookshelf.widget.onoff.checkbox.RectCheckBox
-            android:id="@+id/cb_is_audio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="@string/audio" />
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1" />
-        <TextView
-            android:id="@+id/tv_edit_find"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:textColor="@color/text_color"
-            android:text="@string/edit_find"
-            style="@style/PaperTextButton"/>
-    </LinearLayout>
-    <!-- 书源详细信息-->
+        android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+        android:text="@string/edit_book_source"
+        style="@style/PaperTextStyleActionBarText"
+        app:layout_constraintLeft_toRightOf="@id/iv_back"
+        app:layout_constraintTop_toTopOf="@id/action_bar"
+        app:layout_constraintBottom_toBottomOf="@id/action_bar"/>
+    <ImageView
+        android:id="@+id/iv_save_source_edit"
+        android:layout_width="@dimen/action_bar_icon_height_and_width"
+        android:layout_height="@dimen/action_bar_icon_height_and_width"
+        android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+        android:src="@drawable/ic_save"
+        app:layout_constraintRight_toLeftOf="@id/iv_debug_source_edit"
+        app:layout_constraintTop_toTopOf="@id/action_bar"
+        app:layout_constraintBottom_toBottomOf="@id/action_bar"/>
+    <ImageView
+        android:id="@+id/iv_debug_source_edit"
+        android:layout_width="@dimen/action_bar_icon_height_and_width"
+        android:layout_height="@dimen/action_bar_icon_height_and_width"
+        android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+        android:src="@drawable/ic_debug"
+        app:layout_constraintRight_toLeftOf="@id/iv_more_settings_source_edit"
+        app:layout_constraintTop_toTopOf="@id/action_bar"
+        app:layout_constraintBottom_toBottomOf="@id/action_bar"/>
+    <ImageView
+        android:id="@+id/iv_more_settings_source_edit"
+        android:layout_width="@dimen/action_bar_icon_height_and_width"
+        android:layout_height="@dimen/action_bar_icon_height_and_width"
+        android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+        android:src="@drawable/ic_more_settings"
+        app:layout_constraintRight_toRightOf="@id/action_bar"
+        app:layout_constraintTop_toTopOf="@id/action_bar"
+        app:layout_constraintBottom_toBottomOf="@id/action_bar"/>
+    <!-- 编辑选项 -->
+    <!--com.jack.bookshelf.widget.onoff.checkbox.RectCheckBox-->
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/cb_is_enable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:checked="true"
+        android:text="@string/is_enable"
+        app:layout_constraintLeft_toLeftOf="@id/edit_card"
+        app:layout_constraintTop_toTopOf="@id/edit_card"/>
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/cb_is_audio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:checked="false"
+        android:text="@string/audio"
+        app:layout_constraintTop_toTopOf="@id/edit_card"
+        app:layout_constraintLeft_toRightOf="@id/cb_is_enable"/>
+    <TextView
+        android:id="@+id/tv_edit_find"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="@string/edit_find"
+        style="@style/PaperTextButton"
+        app:layout_constraintTop_toTopOf="@id/cb_is_enable"
+        app:layout_constraintBottom_toBottomOf="@id/cb_is_enable"
+        app:layout_constraintRight_toRightOf="@id/edit_card"/>
+    <!-- 信息 -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/content_padding"/>
-</LinearLayout>
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@id/edit_card"
+        app:layout_constraintRight_toRightOf="@id/edit_card"
+        app:layout_constraintTop_toBottomOf="@id/tv_edit_find"
+        app:layout_constraintBottom_toBottomOf="@id/edit_card"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

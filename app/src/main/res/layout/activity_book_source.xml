@@ -1,80 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cl_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:orientation="vertical">
-    <!-- Custom ActionBar -->
-    <LinearLayout
-        android:id="@+id/cl_menu_top"
+    tools:ignore="ContentDescription, UseCompoundDrawables"
+    tools:context="com.jack.bookshelf.view.activity.BookSourceActivity">
+    <View
+        android:id="@+id/action_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/action_bar_layout_height"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/action_bar_padding_and_margin"
-        android:paddingRight="@dimen/action_bar_padding_and_margin">
-        <ImageView
-            android:id="@+id/iv_back_book_source"
-            android:layout_width="@dimen/action_bar_icon_height_and_width"
-            android:layout_height="@dimen/action_bar_icon_height_and_width"
-            android:gravity="center_vertical"
-            android:contentDescription="返回"
-            android:src="@drawable/ic_arrow_back"/>
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchView"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="@dimen/action_bar_icon_height_and_width"
-            android:layout_marginLeft="@dimen/action_bar_padding_and_margin"
-            android:background="@drawable/shape_searchbar_background"
-            android:imeOptions="actionSearch"
-            app:iconifiedByDefault="false"
-            app:searchIcon="@null"
-            app:defaultQueryHint="@string/search"
-            app:showDividers="none"
-            app:queryBackground="@null"
-            app:submitBackground="@null"
-            tools:ignore="RtlHardcoded" />
-        <ImageView
-            android:id="@+id/iv_quick_search_book_source"
-            android:layout_width="@dimen/action_bar_icon_height_and_width"
-            android:layout_height="@dimen/action_bar_icon_height_and_width"
-            android:layout_marginStart="@dimen/action_bar_padding_and_margin"
-            android:contentDescription="快速搜索"
-            android:src="@drawable/ic_search"/>
-        <ImageView
-            android:id="@+id/iv_select_all_book_source"
-            android:layout_width="@dimen/action_bar_icon_height_and_width"
-            android:layout_height="@dimen/action_bar_icon_height_and_width"
-            android:layout_marginStart="@dimen/action_bar_padding_and_margin"
-            android:contentDescription="全选"
-            android:src="@drawable/ic_select_all"/>
-        <ImageView
-            android:id="@+id/iv_up_group_book_source"
-            android:layout_width="@dimen/action_bar_icon_height_and_width"
-            android:layout_height="@dimen/action_bar_icon_height_and_width"
-            android:layout_marginStart="@dimen/action_bar_padding_and_margin"
-            android:contentDescription="书源排序"
-            android:src="@drawable/ic_groups"/>
-        <ImageView
-            android:id="@+id/iv_more_settings_book_source"
-            android:layout_width="@dimen/action_bar_icon_height_and_width"
-            android:layout_height="@dimen/action_bar_icon_height_and_width"
-            android:layout_marginStart="@dimen/action_bar_padding_and_margin"
-            android:contentDescription="更多选项"
-            android:src="@drawable/ic_more_settings"/>
-    </LinearLayout>
-    <!-- Recycler View -->
-    <RelativeLayout
+        app:layout_constraintTop_toTopOf="parent"/>
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="@dimen/action_bar_icon_height_and_width"
+        android:layout_height="@dimen/action_bar_icon_height_and_width"
+        android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintLeft_toLeftOf="@id/action_bar"
+        app:layout_constraintTop_toTopOf="@id/action_bar"
+        app:layout_constraintBottom_toBottomOf="@id/action_bar"/>
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/action_bar_icon_height_and_width"
+        android:layout_marginStart="@dimen/action_bar_padding_and_margin"
+        android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+        android:background="@drawable/shape_searchbar_background"
+        android:imeOptions="actionSearch"
+        app:iconifiedByDefault="false"
+        app:searchIcon="@null"
+        app:defaultQueryHint="@string/search"
+        app:showDividers="none"
+        app:queryBackground="@null"
+        app:submitBackground="@null"
+        app:layout_constraintTop_toTopOf="@id/action_bar"
+        app:layout_constraintBottom_toBottomOf="@id/action_bar"
+        app:layout_constraintLeft_toRightOf="@id/iv_back"
+        app:layout_constraintRight_toLeftOf="@id/iv_quick_search_book_source"/>
+    <ImageView
+        android:id="@+id/iv_quick_search_book_source"
+        android:layout_width="@dimen/action_bar_icon_height_and_width"
+        android:layout_height="@dimen/action_bar_icon_height_and_width"
+        android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+        android:src="@drawable/ic_search"
+        app:layout_constraintTop_toTopOf="@id/action_bar"
+        app:layout_constraintBottom_toBottomOf="@id/action_bar"
+        app:layout_constraintRight_toLeftOf="@id/iv_select_all_book_source"/>
+    <ImageView
+        android:id="@+id/iv_select_all_book_source"
+        android:layout_width="@dimen/action_bar_icon_height_and_width"
+        android:layout_height="@dimen/action_bar_icon_height_and_width"
+        android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+        android:src="@drawable/ic_select_all"
+        app:layout_constraintTop_toTopOf="@id/action_bar"
+        app:layout_constraintBottom_toBottomOf="@id/action_bar"
+        app:layout_constraintRight_toLeftOf="@id/iv_up_group_book_source"/>
+    <ImageView
+        android:id="@+id/iv_up_group_book_source"
+        android:layout_width="@dimen/action_bar_icon_height_and_width"
+        android:layout_height="@dimen/action_bar_icon_height_and_width"
+        android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+        android:src="@drawable/ic_groups"
+        app:layout_constraintTop_toTopOf="@id/action_bar"
+        app:layout_constraintBottom_toBottomOf="@id/action_bar"
+        app:layout_constraintRight_toLeftOf="@id/iv_more_settings_book_source"/>
+    <ImageView
+        android:id="@+id/iv_more_settings_book_source"
+        android:layout_width="@dimen/action_bar_icon_height_and_width"
+        android:layout_height="@dimen/action_bar_icon_height_and_width"
+        android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
+        android:src="@drawable/ic_more_settings"
+        app:layout_constraintTop_toTopOf="@id/action_bar"
+        app:layout_constraintBottom_toBottomOf="@id/action_bar"
+        app:layout_constraintRight_toRightOf="@id/action_bar"/>
+    <com.jack.bookshelf.widget.recycler.scroller.FastScrollRecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <com.jack.bookshelf.widget.recycler.scroller.FastScrollRecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/content_padding"/>
-    </RelativeLayout>
-</LinearLayout>
+        android:layout_height="0dp"
+        android:padding="@dimen/content_padding"
+        app:layout_constraintTop_toBottomOf="@id/action_bar"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

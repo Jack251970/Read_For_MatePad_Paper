@@ -26,8 +26,8 @@ class WebViewActivity : MBaseActivity<IPresenter>() {
     override fun onCreateActivity() {
         window.decorView.setBackgroundColor(Color.WHITE)
         setContentView(binding.root)
-        binding.ivBackWebView.setOnClickListener{ finish() }
-        binding.tvTitleWebView.text = intent.getStringExtra("title")
+        binding.ivBack.setOnClickListener{ finish() }
+        binding.tvTitle.text = intent.getStringExtra("title")
     }
 
     @SuppressLint("SetJavaScriptEnabled")

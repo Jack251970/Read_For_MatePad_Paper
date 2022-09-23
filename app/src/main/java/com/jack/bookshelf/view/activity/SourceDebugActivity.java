@@ -92,7 +92,7 @@ public class SourceDebugActivity extends MBaseActivity<IPresenter> {
     protected void bindView() {
         super.bindView();
         initSearchView();
-        binding.ivBackSourceDebug.setOnClickListener(v -> finish());
+        binding.ivBack.setOnClickListener(v -> finish());
         adapter = new SourceDebugAdapter(this);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerView.setAdapter(adapter);

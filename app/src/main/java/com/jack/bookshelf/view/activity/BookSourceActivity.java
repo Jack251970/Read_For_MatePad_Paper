@@ -115,7 +115,7 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
         // 初始化RecyclerView
         initRecyclerView();
         // 返回
-        binding.ivBackBookSource.setOnClickListener(v -> finish());
+        binding.ivBack.setOnClickListener(v -> finish());
         // 快速搜索
         binding.ivQuickSearchBookSource.setOnClickListener(v -> {
             List<String> groupList = BookSourceManager.getGroupList();
