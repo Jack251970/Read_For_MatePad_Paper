@@ -50,13 +50,13 @@ import io.reactivex.SingleOnSubscribe;
  */
 
 public class BookListFragment extends MBaseFragment<BookListContract.Presenter> implements BookListContract.View {
-
     private CallbackValue callbackValue;
     private FragmentBookListBinding binding;
     private int bookPx;
     private boolean resumed = false;
     private boolean isRecreate;
     private int group;
+    private boolean noBook;
 
     private BookShelfAdapter bookShelfAdapter;
 
@@ -219,8 +219,10 @@ public class BookListFragment extends MBaseFragment<BookListContract.Presenter> 
             binding.viewEmpty.tvEmpty.setText(R.string.bookshelf_empty);
             binding.viewEmpty.ivEmpty.setVisibility(View.VISIBLE);
             binding.viewEmpty.rlEmptyView.setVisibility(View.VISIBLE);
+            noBook = true;
         } else {
             binding.viewEmpty.rlEmptyView.setVisibility(View.GONE);
+            noBook = false;
         }
     }
 
@@ -254,15 +256,23 @@ public class BookListFragment extends MBaseFragment<BookListContract.Presenter> 
             if (isArrange) {
                 binding.toolBar.setVisibility(View.VISIBLE);
                 upSelectCount();
+                upSelectAll();
             } else {
                 binding.toolBar.setVisibility(View.GONE);
             }
         }
     }
 
-    /**
-     * 更新已选择项数与删除按钮启用状态
-     */
+    private void upSelectAll() {
+        if (noBook) {
+            binding.tvSelectAll.setTextColor(getResources().getColor(R.color.button_unable));
+            binding.ivSelectAll.setImageResource(R.drawable.ic_select_all_unable);
+        } else {
+            binding.tvSelectAll.setTextColor(getResources().getColor(R.color.black));
+            binding.ivSelectAll.setImageResource(R.drawable.ic_select_all);
+        }
+    }
+
     @SuppressLint("DefaultLocale")
     private void upSelectCount() {
         if (bookShelfAdapter.getSelected().size() == 0) {

@@ -16,7 +16,6 @@
         android:layout_width="80dp"
         android:layout_height="100dp"
         android:scaleType="centerCrop"
-        android:contentDescription="@string/img_cover"
         tools:src="@drawable/image_cover_default"/>
     <TextView
         android:id="@+id/tv_source_name"

@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="ContentDescription, UseCompoundDrawables">
     <!-- 浮动按钮 -->
     <LinearLayout
         android:id="@+id/ll_read_aloud_timer"
@@ -21,8 +22,7 @@
             android:layout_margin="10dp"
             android:padding="@dimen/float_image_button_padding"
             android:background="@drawable/shape_float_button_background"
-            android:src="@drawable/ic_timer_black"
-            android:contentDescription="朗读状态" />
+            android:src="@drawable/ic_timer_black" />
         <TextView
             android:id="@+id/tv_read_aloud_timer"
             android:layout_width="wrap_content"
@@ -49,8 +49,7 @@
             android:layout_margin="10dp"
             android:padding="@dimen/float_image_button_padding"
             android:background="@drawable/shape_float_button_background"
-            android:src="@drawable/ic_read_aloud"
-            android:contentDescription="朗读" />
+            android:src="@drawable/ic_read_aloud"/>
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -62,8 +61,7 @@
             android:layout_margin="10dp"
             android:padding="@dimen/float_image_button_padding"
             android:background="@drawable/shape_float_button_background"
-            android:src="@drawable/ic_auto_page"
-            android:contentDescription="自动翻页" />
+            android:src="@drawable/ic_auto_page" />
     </LinearLayout>
     <!-- 底部菜单 -->
     <FrameLayout
@@ -144,7 +142,6 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:padding="10dp"
-                    android:contentDescription="目录与书签"
                     android:clickable="true"
                     android:focusable="true"
                     android:src="@drawable/ic_chapter_list"/>
@@ -158,7 +155,6 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:padding="10dp"
-                    android:contentDescription="界面设置"
                     android:clickable="true"
                     android:focusable="true"
                     android:src="@drawable/ic_interface_setting"/>
@@ -172,7 +168,6 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:padding="10dp"
-                    android:contentDescription="阅读设置"
                     android:clickable="true"
                     android:focusable="true"
                     android:src="@drawable/ic_settings"/>

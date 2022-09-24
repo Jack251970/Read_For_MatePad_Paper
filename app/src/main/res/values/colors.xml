@@ -12,7 +12,7 @@
     <!-- NavigationBar-->
     <color name="navigation_bar_line">#dcdcdc</color>
     <!-- Button Color -->
-    <color name="button_unable">#afafaf</color>
+    <color name="button_unable">@color/text_light</color>
     <!-- Read Activity Select Text Background Color -->
     <color name="text_selector_background_color">#77afafaf</color>
 </resources>
