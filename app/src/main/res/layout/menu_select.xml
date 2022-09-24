@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="16dp"/>
         <TextView
-            android:id="@+id/mpp_tv_title_selectMenu"
+            android:id="@+id/tv_title_selectMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -28,7 +28,7 @@
             android:layout_height="16dp"/>
     </LinearLayout>
     <ListView
-        android:id="@+id/mpp_lv_arrange_rule_main"
+        android:id="@+id/lv_arrange_rule_main"
         android:layout_width="347dp"
         android:layout_height="wrap_content"
         android:divider="@color/black"
@@ -37,7 +37,7 @@
         android:fastScrollEnabled="false">
     </ListView>
     <LinearLayout
-        android:id="@+id/mpp_ll_bottom_button_select_menu"
+        android:id="@+id/ll_bottom_button_select_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="23dp"/>
         <TextView
-            android:id="@+id/mpp_tv_bottom_button_select_menu"
+            android:id="@+id/tv_bottom_button_select_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

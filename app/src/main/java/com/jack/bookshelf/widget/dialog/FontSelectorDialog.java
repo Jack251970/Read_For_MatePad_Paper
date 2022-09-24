@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 
 import com.jack.bookshelf.R;
@@ -42,13 +43,10 @@ public class FontSelectorDialog extends PopupWindow {
     private void initView() {
         switch (readBookControl.getFontItem()) {
             case 0:
-                view.findViewById(R.id.iv_font_harmony_regular).setVisibility(View.VISIBLE);
+                ((ImageView)view.findViewById(R.id.iv_indicator_font_harmony_regular)).setImageResource(R.drawable.ic_select_menu_selected);
                 break;
             case 1:
-                view.findViewById(R.id.iv_font_harmony_bold).setVisibility(View.VISIBLE);
-                break;
-            case 2:
-                view.findViewById(R.id.iv_font_harmony_thin).setVisibility(View.VISIBLE);
+                ((ImageView)view.findViewById(R.id.iv_indicator_font_harmony_bold)).setImageResource(R.drawable.ic_select_menu_selected);
                 break;
         }
     }
@@ -65,10 +63,6 @@ public class FontSelectorDialog extends PopupWindow {
         view.findViewById(R.id.tv_font_harmony_bold).setOnClickListener(v -> {
             dismiss();
             thisListener.forMenuItem(1);
-        });
-        view.findViewById(R.id.tv_font_harmony_thin).setOnClickListener(v -> {
-            dismiss();
-            thisListener.forMenuItem(2);
         });
     }
 

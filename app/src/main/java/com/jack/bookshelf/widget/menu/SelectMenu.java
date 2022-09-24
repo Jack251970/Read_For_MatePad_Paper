@@ -121,10 +121,10 @@ public class SelectMenu extends PopupWindow{
     }
 
     private void bindView(View view) {
-        tvTitle = view.findViewById(R.id.mpp_tv_title_selectMenu);
-        llBottomButton = view.findViewById(R.id.mpp_ll_bottom_button_select_menu);
-        tvBottomButton = view.findViewById(R.id.mpp_tv_bottom_button_select_menu);
-        lvMenu = view.findViewById(R.id.mpp_lv_arrange_rule_main);
+        tvTitle = view.findViewById(R.id.tv_title_selectMenu);
+        llBottomButton = view.findViewById(R.id.ll_bottom_button_select_menu);
+        tvBottomButton = view.findViewById(R.id.tv_bottom_button_select_menu);
+        lvMenu = view.findViewById(R.id.lv_arrange_rule_main);
     }
 
     public void show(View mainView) {
@@ -172,8 +172,8 @@ public class SelectMenu extends PopupWindow{
             ViewHolder holder;
             holder = new ViewHolder();
             convertView = LayoutInflater.from(mContext).inflate(R.layout.item_select_menu, null);
-            holder.tv_name_select_menu_item = convertView.findViewById(R.id.mpp_tv_name_select_menu_item);
-            holder.iv_indicator_select_menu_item = convertView.findViewById(R.id.mpp_iv_indicator_select_menu_item);
+            holder.tv_name_select_menu_item = convertView.findViewById(R.id.tv_name_select_menu_item);
+            holder.iv_indicator_select_menu_item = convertView.findViewById(R.id.iv_indicator_select_menu_item);
             String menuName = menuList.get(position);
             holder.tv_name_select_menu_item.setText(menuName);
             if (lastChoose == -1) {

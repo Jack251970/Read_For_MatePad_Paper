@@ -30,62 +30,42 @@
             android:id="@+id/tv_font_harmony_regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="HarmonyOS_Sans_SC_Regular.ttf"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="HarmonyOS_Sans_Bold"
             android:textSize="16sp"
             android:textColor="@color/text_color"
             tools:ignore="HardcodedText"
             app:layout_constraintTop_toTopOf="parent"/>
         <ImageView
-            android:id="@+id/iv_font_harmony_regular"
-            android:layout_width="16sp"
-            android:layout_height="16sp"
+            android:id="@+id/iv_indicator_font_harmony_regular"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_check"
+            android:src="@drawable/ic_select_menu_unselected"
             app:layout_constraintTop_toTopOf="@id/tv_font_harmony_regular"
             app:layout_constraintBottom_toBottomOf="@id/tv_font_harmony_regular"
-            app:layout_constraintRight_toRightOf="parent"
-            android:visibility="invisible" />
+            app:layout_constraintRight_toRightOf="parent"/>
         <TextView
             android:id="@+id/tv_font_harmony_bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="HarmonyOS_Sans_SC_Bold.ttf"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="HarmonyOS_Sans_Black"
             android:textSize="16sp"
             android:textColor="@color/text_color"
             tools:ignore="HardcodedText"
             app:layout_constraintTop_toBottomOf="@id/tv_font_harmony_regular"/>
         <ImageView
-            android:id="@+id/iv_font_harmony_bold"
-            android:layout_width="16sp"
-            android:layout_height="16sp"
+            android:id="@+id/iv_indicator_font_harmony_bold"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_check"
+            android:src="@drawable/ic_select_menu_unselected"
             app:layout_constraintTop_toTopOf="@id/tv_font_harmony_bold"
             app:layout_constraintBottom_toBottomOf="@id/tv_font_harmony_bold"
-            app:layout_constraintRight_toRightOf="parent"
-            android:visibility="invisible"/>
-        <TextView
-            android:id="@+id/tv_font_harmony_thin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="HarmonyOS_Sans_SC_Thin.ttf"
-            android:textSize="16sp"
-            android:textColor="@color/text_color"
-            tools:ignore="HardcodedText"
-            app:layout_constraintTop_toBottomOf="@id/tv_font_harmony_bold"/>
-        <ImageView
-            android:id="@+id/iv_font_harmony_thin"
-            android:layout_width="16sp"
-            android:layout_height="16sp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_check"
-            app:layout_constraintTop_toTopOf="@id/tv_font_harmony_thin"
-            app:layout_constraintBottom_toBottomOf="@id/tv_font_harmony_thin"
-            app:layout_constraintRight_toRightOf="parent"
-            android:visibility="invisible"/>
+            app:layout_constraintRight_toRightOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- 按钮 -->
     <TextView

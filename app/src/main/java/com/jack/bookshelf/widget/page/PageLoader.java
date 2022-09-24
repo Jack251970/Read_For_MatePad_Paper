@@ -117,7 +117,6 @@ public abstract class PageLoader {
     private int readTextLength; //已读字符数
     private boolean resetReadAloud; //是否重新朗读
     private int readAloudParagraph; //正在朗读章节
-    Bitmap cover;
     CompositeDisposable compositeDisposable;
     private long skipPageTime = 0;  //翻页时间
 
@@ -914,7 +913,6 @@ public abstract class PageLoader {
             for (int i = txtPage.getTitleLines(); i < txtPage.size(); ++i) {
                 str = txtPage.getLine(i);
                 strLength = strLength + str.length();
-                int paragraphLength = txtPage.getPosition() == 0 ? strLength : txtChapter.getPageLength(txtPage.getPosition() - 1) + strLength;
                 mTextPaint.setColor(readBookControl.getTextColor());
                 Layout tempLayout = StaticLayout.Builder.obtain(str, 0, str.length(), mTextPaint, mVisibleWidth)
                         .setAlignment(Layout.Alignment.ALIGN_NORMAL)
