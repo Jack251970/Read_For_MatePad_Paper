@@ -186,8 +186,8 @@ public class SelectMenu extends PopupWindow{
             if (convertView == null) {
                 holder = new ViewHolder();
                 convertView = LayoutInflater.from(mContext).inflate(R.layout.item_select_menu, null);
-                holder.tv_name_select_menu_item = convertView.findViewById(R.id.mpp_tv_name_select_menu_item);
-                holder.iv_indicator_select_menu_item = convertView.findViewById(R.id.mpp_iv_indicator_select_menu_item);
+                holder.tv_name_select_menu_item = convertView.findViewById(R.id.tv_name_select_menu_item);
+                holder.iv_indicator_select_menu_item = convertView.findViewById(R.id.iv_indicator_select_menu_item);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();

@@ -25,7 +25,7 @@ fun toast(context: Context?, msg: String?, length: Int) {
     if (toast == null) {
         toast = Toast(context)
     }
-    (view.findViewById<View>(R.id.mpp_tv_toast) as TextView).text = msg
+    (view.findViewById<View>(R.id.tv_toast) as TextView).text = msg
     toast!!.view = view
     toast!!.duration = length
     toast?.show()
@@ -41,7 +41,7 @@ fun Context.toastOnUi(message: Int) {
         if (toast == null) {
             toast = Toast(this)
         }
-        (view.findViewById<View>(R.id.mpp_tv_toast) as TextView).text = StringUtils.getString(message)
+        (view.findViewById<View>(R.id.tv_toast) as TextView).text = StringUtils.getString(message)
         toast!!.view = view
         toast!!.duration = Toast.LENGTH_SHORT
         toast?.show()
@@ -54,7 +54,7 @@ fun Context.toastOnUi(message: CharSequence?) {
         if (toast == null) {
             toast = Toast(this)
         }
-        (view.findViewById<View>(R.id.mpp_tv_toast) as TextView).text = message
+        (view.findViewById<View>(R.id.tv_toast) as TextView).text = message
         toast!!.view = view
         toast!!.duration = Toast.LENGTH_SHORT
         toast?.show()
@@ -67,7 +67,7 @@ fun Context.longToastOnUi(message: Int) {
         if (toast == null) {
             toast = Toast(this)
         }
-        (view.findViewById<View>(R.id.mpp_tv_toast) as TextView).text = StringUtils.getString(message)
+        (view.findViewById<View>(R.id.tv_toast) as TextView).text = StringUtils.getString(message)
         toast!!.view = view
         toast!!.duration = Toast.LENGTH_LONG
         toast?.show()
@@ -79,7 +79,7 @@ fun Context.longToastOnUi(message: CharSequence?) {
         if (toast == null) {
             val view: View = inflater.inflate(R.layout.dialog_toast, null)
             toast = Toast(this)
-            (view.findViewById<View>(R.id.mpp_tv_toast) as TextView).text = message
+            (view.findViewById<View>(R.id.tv_toast) as TextView).text = message
             toast!!.view = view
             toast!!.duration = Toast.LENGTH_LONG
         } else {
