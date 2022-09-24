@@ -234,8 +234,7 @@
                 app:layout_constraintLeft_toLeftOf="@id/iv_back"
                 app:layout_constraintTop_toBottomOf="@id/action_bar"
                 tools:text="第一章"/>
-            <!--com.jack.bookshelf.widget.text.AccentBgTextView-->
-            <TextView
+            <com.jack.bookshelf.widget.text.AccentBgTextView
                 android:id="@+id/login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -245,8 +244,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/tv_chapter_name"
                 android:visibility="gone"
                 tools:visibility="visible"/>
-            <!--com.jack.bookshelf.widget.text.AccentBgTextView-->
-            <TextView
+            <com.jack.bookshelf.widget.text.AccentBgTextView
                 android:id="@+id/pay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
