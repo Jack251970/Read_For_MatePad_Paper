@@ -26,6 +26,7 @@ import com.jack.bookshelf.databinding.ActivityMainBinding;
 import com.jack.bookshelf.help.permission.Permissions;
 import com.jack.bookshelf.help.permission.PermissionsCompat;
 import com.jack.bookshelf.help.storage.BackupRestoreUi;
+import com.jack.bookshelf.help.update.UpdateManager;
 import com.jack.bookshelf.model.UpLastChapterModel;
 import com.jack.bookshelf.presenter.MainPresenter;
 import com.jack.bookshelf.presenter.contract.MainContract;
@@ -116,7 +117,10 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
     }
 
     @Override
-    protected void initData() {}
+    protected void initData() {
+        // 清除下载缓存
+        UpdateManager.getInstance(this).clearApkClear();
+    }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) { return super.dispatchTouchEvent(ev); }

@@ -14,6 +14,7 @@ import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.databinding.FragmentGeneralSettingBinding;
 import com.jack.bookshelf.help.BookshelfHelp;
+import com.jack.bookshelf.help.update.UpdateManager;
 import com.jack.bookshelf.service.WebService;
 import com.jack.bookshelf.view.activity.SettingActivity;
 import com.jack.bookshelf.widget.dialog.NumberPickerDialog;
@@ -92,11 +93,13 @@ public class GeneralSettingFragment extends Fragment {
                     @Override
                     public void forNegativeButton() {
                         BookshelfHelp.clearCaches(false);
+                        UpdateManager.getInstance(settingActivity).clearApkClear();
                     }
 
                     @Override
                     public void forPositiveButton() {
                         BookshelfHelp.clearCaches(true);
+                        UpdateManager.getInstance(settingActivity).clearApkClear();
                     }})
                 .show(settingActivity.getRoot()));
         binding.tvAboutRead.setOnClickListener(v -> openAboutFragment());

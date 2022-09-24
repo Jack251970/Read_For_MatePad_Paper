@@ -88,6 +88,7 @@ public class UpdateManager {
                                                 startUpdate(context, updateInfo);
                                             }
                                         }).show(mainView);
+                                clearApkClear();
                             } else {
                                 callBack.showDialog(/*UpdateDownloadTask.getLastProgress()*/0);
                             }
@@ -208,6 +209,23 @@ public class UpdateManager {
      */
     private String getApkPath(String fileName) {
         return Environment.getExternalStoragePublicDirectory(DOWNLOAD_SERVICE).getPath() + File.separator + fileName + ".apk";
+    }
+
+    public void clearApkClear() {
+        String thisVersion = MApplication.getVersionName().split("\\s")[0];
+        File[] files = Environment.getExternalStoragePublicDirectory(DOWNLOAD_SERVICE).listFiles();
+        if(files == null) return;
+        for (File file : files) {
+            if (file.isFile()) {
+                String fileName = file.getName();
+                if (fileName.endsWith(".apk") && fileName.startsWith(StringUtils.getString(R.string.app_name))) {
+                    String otherVersion = fileName.substring(2, fileName.length()-4);
+                    if (!StringUtils.compareVersion(otherVersion, thisVersion)) {
+                        file.delete();
+                    }
+                }
+            }
+        }
     }
 
     public interface CallBack {

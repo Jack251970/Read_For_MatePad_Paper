@@ -391,7 +391,6 @@ object FileUtils {
     @JvmOverloads
     fun delete(path: String, deleteRootDir: Boolean = false): Boolean {
         val file = File(path)
-
         return if (file.exists()) {
             delete(file, deleteRootDir)
         } else false

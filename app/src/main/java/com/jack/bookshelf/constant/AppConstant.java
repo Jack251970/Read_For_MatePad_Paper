@@ -1,8 +1,5 @@
 package com.jack.bookshelf.constant;
 
-import android.content.Context;
-import android.provider.Settings;
-
 import com.google.gson.reflect.TypeToken;
 import com.jack.bookshelf.BuildConfig;
 import com.jack.bookshelf.help.FileHelp;
@@ -14,8 +11,6 @@ import java.util.regex.Pattern;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
-
-import okhttp3.MediaType;
 
 public class AppConstant {
     public static final String ActionStartService = "startService";
@@ -40,10 +35,4 @@ public class AppConstant {
     public static final Pattern EXP_PATTERN = Pattern.compile("\\{\\{([\\w\\W]*?)\\}\\}");
 
     public static final ScriptEngine SCRIPT_ENGINE = new ScriptEngineManager().getEngineByName("rhino");
-
-    public static final MediaType jsonMediaType = MediaType.parse("Content-Type, application/json");
-
-    static public String androidId(Context context) {
-        return Settings.System.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
-    }
 }

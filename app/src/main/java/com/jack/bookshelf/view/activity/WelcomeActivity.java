@@ -74,8 +74,7 @@ public class WelcomeActivity extends AppCompatActivity {
         if (!preferences.getBoolean("importDefaultBookSource", false)) {
             String json = null;
             try {
-                InputStream inputStream = MApplication.getInstance().getAssets()
-                        .open("default/bookSource.json");
+                InputStream inputStream = MApplication.getInstance().getAssets().open("default/bookSource.json");
                 json = IOUtils.toString(inputStream);
                 inputStream.close();
             } catch (IOException e) {
@@ -102,9 +101,7 @@ public class WelcomeActivity extends AppCompatActivity {
             if (ruleDefaultList != null) {
                 DbHelper.getDaoSession().getTxtChapterRuleBeanDao().insertOrReplaceInTx(ruleDefaultList);
             }
-            preferences.edit()
-                    .putBoolean("importDefaultTxtRule", ruleDefaultList != null)
-                    .apply();
+            preferences.edit().putBoolean("importDefaultTxtRule", ruleDefaultList != null).apply();
         }
     }
 }
