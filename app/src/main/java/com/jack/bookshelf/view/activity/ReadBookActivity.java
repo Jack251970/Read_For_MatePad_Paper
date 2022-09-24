@@ -474,7 +474,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
      */
     private void initReadAdjustMarginPop() {
         binding.readAdjustMarginPop.setListener(this, new ReadAdjustMarginPop.Callback() {
-
             @Override
             public void upTextSize() {
                 if (mPageLoader != null) {
@@ -693,12 +692,11 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                         if (mPresenter.getBookShelf().getChapterListSize() > 0) {
                             BookChapterBean chapter = mPresenter.getChapterList().get(pos);
                             if (chapter.getIsVip() && !chapter.getIsPay()) {
-                                toast("付费章节未购买,如已购买请登录并刷新目录");
+                                toast(R.string.have_not_buy_chapter_please_login_and_refresh);
                             }
                             binding.tvChapterName.setVisibility(View.VISIBLE);
                             binding.tvChapterName.setText(mPresenter.getChapterList().get(pos).getDurChapterName());
-                            url_CS = NetworkUtils.getAbsoluteURL(mPresenter.getBookShelf().getBookInfoBean().getChapterUrl(),
-                                    chapter.getDurChapterUrl());
+                            url_CS = NetworkUtils.getAbsoluteURL(mPresenter.getBookShelf().getBookInfoBean().getChapterUrl(), chapter.getDurChapterUrl());
                         } else {
                             binding.tvChapterName.setVisibility(View.GONE);
                         }
@@ -740,9 +738,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                         binding.readMenuBottom.getReadProgress().setMax(Math.max(0, count - 1));
                         binding.readMenuBottom.getReadProgress().setProgress(0);
                         // 如果处于错误状态，那么就冻结使用
-                        binding.readMenuBottom.getReadProgress().setEnabled(
-                                mPageLoader.getPageStatus() != TxtChapter.Status.LOADING
-                                        && mPageLoader.getPageStatus() != TxtChapter.Status.ERROR
+                        binding.readMenuBottom.getReadProgress().setEnabled(mPageLoader.getPageStatus() != TxtChapter.Status.LOADING && mPageLoader.getPageStatus() != TxtChapter.Status.ERROR
                         );
                     }
 
@@ -840,30 +836,23 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                     int b = v.getBottom() + dy;
                     int r = v.getRight() + dx;
                     int t = v.getTop() + dy;
-
                     v.layout(l, t, r, b);
                     lastX = (int) event.getRawX();
                     lastY = (int) event.getRawY();
                     v.postInvalidate();
-
                     //移动过程中要画线
                     binding.pageView.setSelectMode(PageView.SelectMode.SelectMoveForward);
-
                     int hh = binding.cursorLeft.getHeight();
                     int ww = binding.cursorLeft.getWidth();
-
                     if (v.getId() == R.id.cursor_left) {
                         binding.pageView.setFirstSelectTxtChar(binding.pageView.getCurrentTxtChar(lastX + ww, lastY - hh));
                     } else {
                         binding.pageView.setLastSelectTxtChar(binding.pageView.getCurrentTxtChar(lastX - ww, lastY - hh));
                     }
-
                     binding.pageView.invalidate();
-
                     break;
                 case MotionEvent.ACTION_UP:
                     showAction(v);
-                    //v.layout(l, t, r, b);
                     break;
                 default:
                     break;
@@ -897,9 +886,9 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     private void selectTextCursorShow() {
         if (binding.pageView.getFirstSelectTxtChar() == null || binding.pageView.getLastSelectTxtChar() == null)
             return;
-        //show Cursor on current position
+        // show Cursor on current position
         cursorShow();
-        //set current word selected
+        // set current word selected
         binding.pageView.invalidate();
         hideSnackBar();
     }
@@ -931,7 +920,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                 ClipData clipData = ClipData.newPlainText(null, binding.pageView.getSelectStr());
                 if (clipboard != null) {
                     clipboard.setPrimaryClip(clipData);
-                    toast("所选内容已经复制到剪贴板");
+                    toast(R.string.have_copy_to_clipboard);
                 }
 
                 binding.cursorLeft.setVisibility(View.INVISIBLE);
@@ -993,7 +982,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                     );
 
                 }
-
                 ReplaceRuleBean oldRuleBean = new ReplaceRuleBean();
                 oldRuleBean.setReplaceSummary(getString(R.string.replace_ad) + "-" + mPresenter.getBookShelf().getTag());
                 oldRuleBean.setEnable(true);
@@ -1002,7 +990,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                 oldRuleBean.setReplacement("");
                 oldRuleBean.setSerialNumber(0);
                 oldRuleBean.setUseTo(mPresenter.getBookShelf().getTag());
-
                 ReplaceRuleDialog.builder(ReadBookActivity.this, oldRuleBean, mPresenter.getBookShelf(), ReplaceRuleDialog.AddAdUI)
                         .setPositiveButton(replaceRuleBean1 ->
                                 ReplaceRuleManager.mergeAdRules(replaceRuleBean1)
@@ -1067,7 +1054,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                 webIntent.putExtra("url", result);
                 webIntent.putExtra("title", "购买");
                 BitIntentDataManager.getInstance().putData(result, mPresenter.getBookSource().getHeaderMap(true));
-                //noinspection deprecation
+                // noinspection deprecation
                 startActivityForResult(webIntent, payActivityRequest);
             }
         }
@@ -1078,7 +1065,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
      */
     private void refreshDurChapter() {
         if (!NetworkUtils.isNetWorkAvailable()) {
-            toast("网络不可用，无法刷新当前章节!");
+            toast(R.string.network_connection_unavailable_cannot_refresh_chapter);
             return;
         }
         ReadBookActivity.this.popMenuOut();
@@ -1246,8 +1233,8 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                 checkedItem = 0;
             }
             SelectMenu.builder(this)
-                    .setTitle("选择目录正则")
-                    .setBottomButton("管理目录正则")
+                    .setTitle(R.string.choose_txt_regex)
+                    .setBottomButton(R.string.manage_txt_regex)
                     .setMenu(ruleNameList, checkedItem)
                     .setListener(new SelectMenu.OnItemClickListener() {
                         @Override
@@ -1681,7 +1668,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         try {
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            //noinspection deprecation
+            // noinspection deprecation
             startActivityForResult(intent, fontDirRequest);
         } catch (Exception e) {
             e.printStackTrace();

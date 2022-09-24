@@ -728,7 +728,7 @@ public abstract class PageLoader {
                 if (prevChapter().txtChapter == null) {
                     txtChapter = new TxtChapter(mCurChapterPos + 1);
                     txtChapter.setStatus(TxtChapter.Status.ERROR);
-                    txtChapter.setMsg("未加载完成");
+                    txtChapter.setMsg(StringUtils.getString(R.string.load_un_complete));
                 } else {
                     txtChapter = prevChapter().txtChapter;
                     txtPage = txtChapter.getPage(txtChapter.getPageSize() - 1);
@@ -742,11 +742,11 @@ public abstract class PageLoader {
                 if (mCurChapterPos + 1 >= callback.getChapterList().size()) {
                     txtChapter = new TxtChapter(mCurChapterPos + 1);
                     txtChapter.setStatus(TxtChapter.Status.ERROR);
-                    txtChapter.setMsg("没有下一页");
+                    txtChapter.setMsg(StringUtils.getString(R.string.no_next_page));
                 } else if (nextChapter().txtChapter == null) {
                     txtChapter = new TxtChapter(mCurChapterPos + 1);
                     txtChapter.setStatus(TxtChapter.Status.ERROR);
-                    txtChapter.setMsg("未加载完成");
+                    txtChapter.setMsg(StringUtils.getString(R.string.load_un_complete));
                 } else {
                     txtChapter = nextChapter().txtChapter;
                     txtPage = txtChapter.getPage(0);

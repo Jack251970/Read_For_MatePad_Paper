@@ -1,6 +1,5 @@
 package com.jack.bookshelf.model.content;
 
-import android.os.Build;
 import android.text.TextUtils;
 
 import com.jack.bookshelf.MApplication;
@@ -327,7 +326,7 @@ public class BookChapterList {
                     for (int i = nameParams.size(); i-- > 0; ) {
                         if (nameGroups.get(i) > 0) {
                             cName.insert(0, resM.group(nameGroups.get(i)));
-                        } else if (nameGroups.get(i) < 0 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        } else if (nameGroups.get(i) < 0) {
                             cName.insert(0, resM.group(nameParams.get(i)));
                         } else {
                             cName.insert(0, nameParams.get(i));
@@ -335,16 +334,14 @@ public class BookChapterList {
                     }
                     if (vipNumGroup > 0) {
                         cName.insert(0, resM.group(vipNumGroup) == null ? "" : "\uD83D\uDD12");
-                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        cName.insert(0, resM.group(vipNameGroup) == null ? "" : "\uD83D\uDD12");
                     } else {
-                        cName.insert(0, vipNameGroup);
+                        cName.insert(0, resM.group(vipNameGroup) == null ? "" : "\uD83D\uDD12");
                     }
 
                     for (int i = linkParams.size(); i-- > 0; ) {
                         if (linkGroups.get(i) > 0) {
                             cLink.insert(0, resM.group(linkGroups.get(i)));
-                        } else if (linkGroups.get(i) < 0 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        } else if (linkGroups.get(i) < 0) {
                             cLink.insert(0, resM.group(linkParams.get(i)));
                         } else {
                             cLink.insert(0, linkParams.get(i));
@@ -359,7 +356,7 @@ public class BookChapterList {
                     for (int i = nameParams.size(); i-- > 0; ) {
                         if (nameGroups.get(i) > 0) {
                             cName.insert(0, resM.group(nameGroups.get(i)));
-                        } else if (nameGroups.get(i) < 0 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        } else if (nameGroups.get(i) < 0) {
                             cName.insert(0, resM.group(nameParams.get(i)));
                         } else {
                             cName.insert(0, nameParams.get(i));
@@ -369,7 +366,7 @@ public class BookChapterList {
                     for (int i = linkParams.size(); i-- > 0; ) {
                         if (linkGroups.get(i) > 0) {
                             cLink.insert(0, resM.group(linkGroups.get(i)));
-                        } else if (linkGroups.get(i) < 0 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        } else if (linkGroups.get(i) < 0) {
                             cLink.insert(0, resM.group(linkParams.get(i)));
                         } else {
                             cLink.insert(0, linkParams.get(i));

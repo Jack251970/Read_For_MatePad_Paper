@@ -42,8 +42,7 @@
         app:layout_constraintTop_toTopOf="@+id/iv_cover"
         app:layout_constraintRight_toRightOf="@+id/iv_cover"
         android:visibility="invisible"
-        android:contentDescription="加载"
-        tools:ignore="HardcodedText" />
+        tools:ignore="ContentDescription,HardcodedText" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

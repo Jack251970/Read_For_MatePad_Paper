@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base String -->
-    <string name="app_name">阅读</string>
-    <string name="read_summary">让阅读成为一种习惯。</string>
-    <string name="yes">是</string>
-    <string name="no">否</string>
-    <string name="confirm">确认</string>
-    <string name="cancel">取消</string>
-    <string name="error">错误</string>
+        <string name="app_name">阅读</string>
+        <string name="read_summary">让阅读成为一种习惯。</string>
+        <string name="yes">是</string>
+        <string name="no">否</string>
+        <string name="confirm">确认</string>
+        <string name="cancel">取消</string>
+        <string name="error">错误</string>
+
+    <!-- Shortcuts -->
+        <string name="enter_bookshelf">进入书架</string>
+        <string name="last_read">最后阅读</string>
 
     <!-- Presenter -->
         <!-- Txt Chapter Rule Presenter -->
@@ -34,8 +38,8 @@
         <string name="delete_book_fail">删除书籍失败</string>
 
     <!-- Permission -->
-    <string name="import_local_book_need_storage_permission">导入本地书籍需要储存权限</string>
-    <string name="need_storage_permission_to_backup_book_information">本软件需要存储权限来存储备份书籍信息</string>
+        <string name="import_local_book_need_storage_permission">导入本地书籍需要储存权限</string>
+        <string name="need_storage_permission_to_backup_book_information">本软件需要存储权限来存储备份书籍信息</string>
 
     <!-- Activity -->
         <!-- MainActivity -->
@@ -71,6 +75,7 @@
         <string name="data_loading">加载数据中</string>
         <string name="load_error_retry">加载失败，点击重试</string>
         <string name="unknown">未知</string>
+        <string name="copy_complete">已拷贝</string>
         <!-- Import Book Activity -->
         <string name="local_directory">本地目录</string>
         <string name="smart_import">智能导入</string>
@@ -86,6 +91,7 @@
         <string name="del_delete_all_replace_rule">是否删除所有规则？</string>
         <!-- Download Activity -->
         <string name="download_offline">离线下载</string>
+        <string name="un_download">还剩%d章未下载</string>
         <!-- Txt Chapter Rule Activity -->
         <string name="chapter_regex">目录正则</string>
         <string name="del_delete_all_txt_chapter_rule">是否删除所有目录正则？</string>
@@ -118,6 +124,8 @@
         <string name="cover_change_source">封面换源</string>
         <string name="refresh_cover">刷新封面</string>
         <!-- Source Edit Activity -->
+        <string name="audio">音频</string>
+        <string name="is_enable">启用</string>
         <string name="source_no_login">当前源没有配置登陆地址</string>
         <string name="if_copy_find_content">是否拷贝发现内容？</string>
         <string name="edit_find">编辑发现</string>
@@ -177,6 +185,18 @@
         <string name="check_host_cookie">正在打开首页，成功自动返回主界面</string>
         <!-- Chapter List Activity -->
         <string name="chapter_list">目录</string>
+        <!-- Book Read Activity -->
+        <string name="chapter_pay">购买</string>
+        <string name="aloud_cannot_auto_page">朗读正在运行,不能自动翻页</string>
+        <string name="have_not_buy_chapter_please_login_and_refresh">付费章节未购买，如已购买请登录并刷新目录</string>
+        <string name="have_copy_to_clipboard">所选内容已经复制到剪贴板</string>
+        <string name="network_connection_unavailable_cannot_refresh_chapter">网络不可用，无法刷新当前章节</string>
+        <string name="input_charset">输入编码</string>
+        <string name="choose_txt_regex">选择目录正则</string>
+        <string name="manage_txt_regex">管理目录正则</string>
+        <string name="check_add_bookshelf">是否将《%s》放入书架？</string>
+        <string name="read_aloud_pause">朗读暂停</string>
+        <string name="please_grant_storage_permission">请给于存储权限</string>
 
     <!-- Fragment -->
         <!-- BookList Fragment-->
@@ -249,7 +269,7 @@
         <string name="read_aloud_timer_remaining_length">"%d小时%d分"</string>
         <string name="read_aloud_error">播放出错</string>
         <string name="read_aloud_s">点击打开阅读界面</string>
-        <string name="read_aloud_pause">朗读暂停</string>
+
         <string name="read_aloud_timer">正在朗读(还剩%d分钟)</string>
         <string name="read_aloud_timer_long">"正在朗读(还剩%d小时%d分)"</string>
         <string name="read_aloud_t">正在朗读</string>
@@ -332,6 +352,7 @@
         <string name="delete_book_source">删除书源</string>
         <string name="have_disabled">已禁用</string>
         <string name="have_deleted">已删除</string>
+        <string name="no_last_chapter">无最新章节信息</string>
         <!-- Font Select Dialog -->
         <string name="select_font">选择字体</string>
         <string name="self_choose_font">自定义字体</string>
@@ -395,6 +416,12 @@
         <string name="paste_source">粘贴书源</string>
         <string name="str_share">字符串分享</string>
         <string name="rule_summary">规则说明</string>
+        <!-- More Setting Menu Book Read -->
+        <string name="replace_rule_title">替换净化</string>
+        <string name="edit_replace_rule">编辑替换规则</string>
+        <string name="light_novel_paragraph">重新分段</string>
+        <string name="update_chapter">更新目录</string>
+        <string name="open_browser">在浏览器中打开</string>
 
     <!-- Pop Menu -->
         <!-- Pop Read Menu -->
@@ -469,59 +496,26 @@
         <!-- View Empty -->
         <string name="no_data">暂无数据</string>
 
-    <!-- Shortcuts -->
-    <string name="enter_bookshelf">进入书架</string>
-    <string name="last_read">最后阅读</string>
+    <!-- Page Loader & Page Viewer -->
+        <string name="load_error_msg">加载失败\n%s</string>
+        <string name="content_empty">文章内容为空</string>
+        <string name="chapter_list_empty">目录列表为空</string>
+        <string name="is_changing_source">正在换源中</string>
+        <string name="load_un_complete">未加载完成</string>
+        <string name="no_prior_page">没有上一页</string>
+        <string name="no_next_page">没有下一页</string>
 
-
-    <string name="dialog_title">提示</string>
-    <string name="dialog_setting">去设置</string>
-    <string name="tip_cannot_jump_setting_page">无法跳转至设置界面</string>
-    <string name="net_error_10001">没有网络</string>
-    <string name="net_error_10002">网络连接超时</string>
-    <string name="net_error_10003">数据解析失败</string>
-    <string name="check_add_bookshelf">是否将《%s》放入书架？</string>
-    <string name="add_url">添加网址</string>
-    <string name="source_rule_s">书源规则说明</string>
-    <string name="replace_rule_title">替换净化</string>
-    <string name="edit_replace_rule">编辑替换规则</string>
-    <string name="light_novel_paragraph">重新分段</string>
-    <string name="img_cover">封面</string>
-    <string name="no_last_chapter">无最新章节信息</string>
-    <string name="un_download">还剩%d章未下载</string>
-    <string name="bookmark_add">添加书签</string>
-    <string name="copy_complete">已拷贝</string>
-    <string name="nb_file_sub_count">%1$d 项</string>
-    <string name="nb_file_add_shelf">加入书架</string>
-    <string name="nb_file_add_shelves">加入书架(%1$d)</string>
-    <string name="nb_file_add_succeed">成功添加%1$d本书</string>
-    <string name="update_chapter">更新目录</string>
-    <string name="set_charset">设置编码</string>
-    <string name="swap_sort">倒序-顺序</string>
-    <string name="sort">排序</string>
-    <string name="read_y">已读: %s</string>
-    <string name="del_file">删除文件</string>
-    <string name="del_file_success">删除文件成功</string>
-    <string name="sure_del_file">确定删除文件吗?</string>
-    <string name="import_per">导入本地书籍需存储权限</string>
-    <string name="aloud_cannot_auto_page">朗读正在运行,不能自动翻页</string>
-    <string name="input_charset">输入编码</string>
-    <string name="open_local_book_per">打开外部书籍需获取存储权限</string>
-    <string name="get_book_info_error">书籍信息获取失败</string>
-    <string name="get_content_error">内容获取失败</string>
-    <string name="get_chapter_list_error">目录获取失败</string>
-    <string name="get_web_content_error">访问网站失败:%s</string>
-    <string name="no_book_name">未获取到书名</string>
-    <string name="content_empty">文章内容为空</string>
-    <string name="is_changing_source">正在换源中</string>
-    <string name="chapter_list_empty">目录列表为空</string>
-    <string name="load_error_msg">加载失败\n%s</string>
-    <string name="please_grant_storage_permission">请给于存储权限</string>
-    <string name="skip_previous">上一个</string>
-    <string name="skip_next">下一个</string>
-    <string name="music">音乐</string>
-    <string name="audio">音频</string>
-    <string name="is_enable">启用</string>
-    <string name="chapter_pay">购买</string>
-    <string name="open_browser">在浏览器中打开</string>
+    <!-- Others -->
+        <string name="get_book_info_error">书籍信息获取失败</string>
+        <string name="dialog_title">提示</string>
+        <string name="dialog_setting">去设置</string>
+        <string name="tip_cannot_jump_setting_page">无法跳转至设置界面</string>
+        <string name="net_error_10001">没有网络</string>
+        <string name="net_error_10002">网络连接超时</string>
+        <string name="net_error_10003">数据解析失败</string>
+        <string name="nb_file_sub_count">%1$d 项</string>
+        <string name="get_content_error">内容获取失败</string>
+        <string name="get_chapter_list_error">目录获取失败</string>
+        <string name="no_book_name">未获取到书名</string>
+        <string name="get_web_content_error">访问网站失败:%s</string>
 </resources>

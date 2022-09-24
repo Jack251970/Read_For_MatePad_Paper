@@ -12,13 +12,12 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingBottom="0dp"
-    tools:ignore="UnusedAttribute">
+    tools:ignore="ContentDescription, UnusedAttribute">
     <com.jack.bookshelf.widget.cover.CoverImageView
         android:id="@+id/iv_cover"
         android:layout_width="75dp"
         android:layout_height="100dp"
         android:layout_margin="8dp"
-        android:contentDescription="@string/img_cover"
         android:scaleType="centerCrop"
         android:src="@drawable/image_cover_default"
         android:transitionName="img_cover"
@@ -51,7 +50,6 @@
             android:src="@drawable/ic_refresh"
             android:background="@drawable/shape_loading_background"
             android:visibility="invisible"
-            android:contentDescription="加载"
             tools:ignore="HardcodedText" />
     </FrameLayout>
     <TextView
@@ -77,7 +75,6 @@
         android:layout_width="@dimen/cp_iv_icon_size"
         android:layout_height="@dimen/cp_iv_icon_size"
         android:layout_marginLeft="8dp"
-        android:contentDescription="@string/author"
         android:paddingStart="2dp"
         android:paddingEnd="2dp"
         android:src="@drawable/ic_author"
@@ -105,7 +102,6 @@
         android:layout_width="@dimen/cp_iv_icon_size"
         android:layout_height="@dimen/cp_iv_icon_size"
         android:layout_marginLeft="8dp"
-        android:contentDescription="@string/read_dur_progress"
         android:paddingStart="2dp"
         android:paddingEnd="2dp"
         android:src="@drawable/ic_history"
@@ -131,7 +127,6 @@
         android:layout_width="@dimen/cp_iv_icon_size"
         android:layout_height="@dimen/cp_iv_icon_size"
         android:layout_marginLeft="8dp"
-        android:contentDescription="@string/book_search_last"
         android:paddingStart="2dp"
         android:paddingEnd="2dp"
         android:src="@drawable/ic_book_last"

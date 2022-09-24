@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import androidx.annotation.Keep;
 
 import com.google.gson.Gson;
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BookSourceBean;
 import com.jack.bookshelf.help.JsExtensions;
 import com.jack.bookshelf.utils.NetworkUtils;
@@ -24,6 +25,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -86,7 +88,7 @@ public class AnalyzeUrl implements JsExtensions {
         }
         //判断是否有下一页
         if (page > 1 && !ruleUrl.contains("searchPage"))
-            throw new Exception("没有下一页");
+            throw new Exception(StringUtils.getString(R.string.no_next_page));
         //替换js
         ruleUrl = replaceJs(ruleUrl);
         //解析Header
@@ -141,6 +143,7 @@ public class AnalyzeUrl implements JsExtensions {
         Matcher matcher = headerPattern.matcher(ruleUrl);
         if (matcher.find()) {
             String find = matcher.group(0);
+            assert find != null;
             ruleUrl = ruleUrl.replace(find, "");
             find = find.substring(8);
             try {
@@ -178,7 +181,7 @@ public class AnalyzeUrl implements JsExtensions {
         if (searchPage == null) return ruleUrl;
         Matcher matcher = pagePattern.matcher(ruleUrl);
         while (matcher.find()) {
-            String[] pages = matcher.group(1).split(",");
+            String[] pages = Objects.requireNonNull(matcher.group(1)).split(",");
             if (searchPage <= pages.length) {
                 ruleUrl = ruleUrl.replace(matcher.group(), pages[searchPage - 1].trim());
             } else {

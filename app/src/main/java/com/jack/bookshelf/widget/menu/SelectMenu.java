@@ -14,8 +14,10 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 
 import com.jack.bookshelf.R;
+import com.jack.bookshelf.utils.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -38,9 +40,17 @@ public class SelectMenu extends PopupWindow{
         return new SelectMenu(context);
     }
 
+    public SelectMenu setTitle (@StringRes int strId) {
+        return setTitle(StringUtils.getString(strId));
+    }
+
     public SelectMenu setTitle (String title) {
         tvTitle.setText(title);
         return this;
+    }
+
+    public SelectMenu setBottomButton (@StringRes int strId) {
+        return setBottomButton(StringUtils.getString(strId));
     }
 
     public SelectMenu setBottomButton (String text) {

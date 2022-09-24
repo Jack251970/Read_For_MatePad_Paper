@@ -18,6 +18,7 @@ import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BookShelfBean;
 import com.jack.bookshelf.help.FileHelp;
 import com.jack.bookshelf.help.ReadBookControl;
+import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.screen.ScreenUtils;
 import com.jack.bookshelf.view.activity.ReadBookActivity;
 import com.jack.bookshelf.widget.page.animation.NonePageAnim;
@@ -452,7 +453,7 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
         if (mPageLoader.hasPrev()) {
             return true;
         } else {
-            showSnackBar("没有上一页了");
+            showSnackBar(StringUtils.getString(R.string.no_prior_page));
             return false;
         }
     }
@@ -464,7 +465,7 @@ public class PageView extends View implements PageAnimation.OnPageChangeListener
         if (mPageLoader.hasNext(pageOnCur)) {
             return true;
         } else {
-            showSnackBar("没有下一页了");
+            showSnackBar(StringUtils.getString(R.string.no_next_page));
             return false;
         }
     }
