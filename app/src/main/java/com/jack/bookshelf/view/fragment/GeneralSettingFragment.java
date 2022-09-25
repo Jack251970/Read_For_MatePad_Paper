@@ -116,16 +116,16 @@ public class GeneralSettingFragment extends Fragment {
 
     private void openLocalBackupSettingFragment() {
         LocalBackupSettingFragment localBackupSettingFragment = new LocalBackupSettingFragment();
-        settingActivity.getSupportFragmentManager().beginTransaction().replace(R.id.settingFragment, localBackupSettingFragment, settingActivity.localBackupSettingTag).commit();
+        settingActivity.getSupportFragmentManager().beginTransaction().replace(R.id.setting_fragment, localBackupSettingFragment, settingActivity.localBackupSettingTag).commit();
     }
 
     private void openWebdavSettingFragment() {
         WebdavSettingFragment webDavSettingFragment = new WebdavSettingFragment();
-        settingActivity.getSupportFragmentManager().beginTransaction().replace(R.id.settingFragment, webDavSettingFragment, settingActivity.webdavSettingTag).commit();
+        settingActivity.getSupportFragmentManager().beginTransaction().replace(R.id.setting_fragment, webDavSettingFragment, settingActivity.webdavSettingTag).commit();
     }
 
     private void openAboutFragment() {
         AboutFragment aboutFragment = new AboutFragment();
-        settingActivity.getSupportFragmentManager().beginTransaction().replace(R.id.settingFragment, aboutFragment, settingActivity.aboutTag).commit();
+        settingActivity.getSupportFragmentManager().beginTransaction().replace(R.id.setting_fragment, aboutFragment, settingActivity.aboutTag).commit();
     }
 }

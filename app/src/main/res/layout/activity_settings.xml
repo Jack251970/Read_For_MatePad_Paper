@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@id/action_bar"
         app:layout_constraintBottom_toBottomOf="parent">
         <LinearLayout
-            android:id="@+id/settingFragment"
+            android:id="@+id/setting_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
