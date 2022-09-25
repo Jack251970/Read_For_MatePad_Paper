@@ -1,12 +1,9 @@
 package com.jack.bookshelf.help.update;
 
-import static android.content.Context.DOWNLOAD_SERVICE;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Environment;
 import android.view.View;
 import android.widget.Toast;
 
@@ -21,6 +18,7 @@ import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.BaseModelImpl;
 import com.jack.bookshelf.base.observer.MyObserver;
 import com.jack.bookshelf.bean.UpdateInfoBean;
+import com.jack.bookshelf.constant.AppConstant;
 import com.jack.bookshelf.model.analyzeRule.AnalyzeHeaders;
 import com.jack.bookshelf.model.impl.IHttpGetApi;
 import com.jack.bookshelf.service.update.UpdateDownloadTask;
@@ -208,12 +206,15 @@ public class UpdateManager {
      * 获取安装包路径
      */
     private String getApkPath(String fileName) {
-        return Environment.getExternalStoragePublicDirectory(DOWNLOAD_SERVICE).getPath() + File.separator + fileName + ".apk";
+        return AppConstant.APK_DOWNLOAD_File.getPath() + File.separator + fileName + ".apk";
     }
 
+    /**
+     * 清除旧版本安装包与缓存
+     */
     public void clearApkClear() {
         String thisVersion = MApplication.getVersionName().split("\\s")[0];
-        File[] files = Environment.getExternalStoragePublicDirectory(DOWNLOAD_SERVICE).listFiles();
+        File[] files = AppConstant.APK_DOWNLOAD_File.listFiles();
         if(files == null) return;
         for (File file : files) {
             if (file.isFile()) {
@@ -221,6 +222,10 @@ public class UpdateManager {
                 if (fileName.endsWith(".apk") && fileName.startsWith(StringUtils.getString(R.string.app_name))) {
                     String otherVersion = fileName.substring(2, fileName.length()-4);
                     if (!StringUtils.compareVersion(otherVersion, thisVersion)) {
+                        file.delete();
+                    }
+                } else {
+                    if (file.lastModified() - System.currentTimeMillis() > 60 * 60 * 24 * 7) {
                         file.delete();
                     }
                 }

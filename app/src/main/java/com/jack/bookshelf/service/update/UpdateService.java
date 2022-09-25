@@ -1,11 +1,8 @@
 package com.jack.bookshelf.service.update;
 
-import static android.content.Context.DOWNLOAD_SERVICE;
-
-import android.os.Environment;
-
 import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.UpdateInfoBean;
+import com.jack.bookshelf.constant.AppConstant;
 import com.jack.bookshelf.service.update.listener.OnUpdateListener;
 import com.jack.bookshelf.utils.StringUtils;
 
@@ -24,7 +21,7 @@ public class UpdateService {
     private String fileName;
 
     private UpdateService() {
-        fileParentPath = Environment.getExternalStoragePublicDirectory(DOWNLOAD_SERVICE).getPath();
+        fileParentPath = AppConstant.APK_DOWNLOAD_File.getPath();
     }
 
     public static UpdateService getInstance() {
