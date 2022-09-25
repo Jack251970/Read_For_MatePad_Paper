@@ -61,7 +61,7 @@
         app:layout_constraintRight_toRightOf="@id/main_view"/>
     <!-- 书籍显示界面 -->
     <com.jack.bookshelf.widget.viewpager.PaperViewPager
-        android:id="@+id/tab_vp"
+        android:id="@+id/view_pager"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/main_view_divide_line2"

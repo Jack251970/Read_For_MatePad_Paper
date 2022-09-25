@@ -25,7 +25,6 @@ import java.util.List;
  */
 
 public class ImportBookActivity extends BaseViewPagerActivity<ImportBookContract.Presenter> implements ImportBookContract.View {
-
     private ActivityImportBookBinding binding;
     private SmartImportFragment mLocalFragment;
     private LocalDirectoryFragment mCategoryFragment;

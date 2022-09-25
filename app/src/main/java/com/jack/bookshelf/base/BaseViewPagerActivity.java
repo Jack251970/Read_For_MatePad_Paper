@@ -36,7 +36,7 @@ public abstract class BaseViewPagerActivity<T extends IPresenter> extends MBaseA
     @Override
     protected void bindView() {
         super.bindView();
-        mVp = findViewById(R.id.tab_vp);
+        mVp = findViewById(R.id.view_pager);
         setUpViewPager();
     }
 

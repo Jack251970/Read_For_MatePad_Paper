@@ -156,7 +156,7 @@
         app:layout_constraintRight_toRightOf="@id/file_system_cb_selected_all"/>
     <!-- 中间内容 -->
     <com.jack.bookshelf.widget.viewpager.PaperViewPager
-        android:id="@+id/tab_vp"
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="@dimen/content_margin_left_and_right"

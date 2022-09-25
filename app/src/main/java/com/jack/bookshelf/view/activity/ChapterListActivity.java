@@ -36,7 +36,6 @@ import java.util.List;
  */
 
 public class ChapterListActivity extends BaseViewPagerActivity<IPresenter> {
-
     private ActivityChapterListBinding binding;
     SearchView.SearchAutoComplete mSearchAutoComplete;
     private final ReadBookControl readBookControl = ReadBookControl.getInstance();

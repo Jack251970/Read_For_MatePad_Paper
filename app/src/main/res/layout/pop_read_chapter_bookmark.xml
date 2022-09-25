@@ -144,7 +144,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- 目录/书签列表 -->
     <com.jack.bookshelf.widget.viewpager.PaperViewPager
-        android:id="@+id/tab_vp"
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="140dp"
