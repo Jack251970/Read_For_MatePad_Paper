@@ -45,7 +45,7 @@ public class SettingActivity extends MBaseActivity<IPresenter> {
     protected void onCreateActivity() {
         binding = ActivitySettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        getSupportFragmentManager().beginTransaction().replace(R.id.settingFragment, settingsFragment,generalSettingTag).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.setting_fragment, settingsFragment,generalSettingTag).commit();
     }
 
     @Override
@@ -74,7 +74,7 @@ public class SettingActivity extends MBaseActivity<IPresenter> {
     @Override
     public void finish() {
         if (getSupportFragmentManager().findFragmentByTag(generalSettingTag) == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.settingFragment, settingsFragment, generalSettingTag).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.setting_fragment, settingsFragment, generalSettingTag).commit();
         } else {
             super.finish();
         }
