@@ -6,7 +6,6 @@ import com.jack.basemvplib.impl.IView;
 public interface MainContract {
 
     interface View extends IView {
-
         void initImmersionBar();
 
         void recreate();
@@ -19,7 +18,6 @@ public interface MainContract {
     }
 
     interface Presenter extends IPresenter {
-
         void addBookUrl(String bookUrl);
     }
 }
