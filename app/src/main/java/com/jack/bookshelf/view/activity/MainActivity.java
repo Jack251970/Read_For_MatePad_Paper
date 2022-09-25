@@ -109,9 +109,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
                         @Override
                         public void delete(String value) {}
                     }).show();
-            preferences.edit()
-                    .putString("shared_url", "")
-                    .apply();
+            preferences.edit().putString("shared_url", "").apply();
         }
     }
 

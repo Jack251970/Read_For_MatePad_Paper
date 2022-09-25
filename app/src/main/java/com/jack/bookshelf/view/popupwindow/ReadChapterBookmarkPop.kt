@@ -34,7 +34,7 @@ class ReadChapterBookmarkPop : FrameLayout {
     private var chapterBeanList: List<BookChapterBean>? = null
     private var callback: Callback? = null
 
-    private val mVp: PaperViewPager = binding.tabVp
+    private val mVp: PaperViewPager = binding.viewPager
     private var tabFragmentPageAdapter: TabFragmentPageAdapter? = null
     private var mFragmentList: List<Fragment>? = null
 

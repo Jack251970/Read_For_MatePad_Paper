@@ -211,6 +211,7 @@ public class UpdateManager {
 
     /**
      * 清除旧版本安装包与缓存
+     * 更新缓存默认保留3天
      */
     public void clearApkClear() {
         String thisVersion = MApplication.getVersionName().split("\\s")[0];
@@ -225,7 +226,7 @@ public class UpdateManager {
                         file.delete();
                     }
                 } else {
-                    if (file.lastModified() - System.currentTimeMillis() > 60 * 60 * 24 * 7) {
+                    if (file.lastModified() - System.currentTimeMillis() > 1000 * 60 * 60 * 24 * 3) {
                         file.delete();
                     }
                 }
