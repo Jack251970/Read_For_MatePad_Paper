@@ -48,8 +48,7 @@ import kotlin.Unit;
  * Edited by Jack251970
  */
 
-public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
-        implements MainContract.View, BookListFragment.CallbackValue {
+public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> implements MainContract.View, BookListFragment.CallbackValue {
     private final int requestSource = 14;
 
     private ActivityMainBinding binding;
@@ -118,7 +117,6 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter>
 
     @Override
     protected void initData() {
-        // 清除下载缓存
         UpdateManager.getInstance(this).clearApkClear();
     }
 
