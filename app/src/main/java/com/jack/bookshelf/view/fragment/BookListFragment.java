@@ -50,15 +50,21 @@ import io.reactivex.SingleOnSubscribe;
  */
 
 public class BookListFragment extends MBaseFragment<BookListContract.Presenter> implements BookListContract.View {
-    private CallbackValue callbackValue;
     private FragmentBookListBinding binding;
+    private final int bookshelfLayout;
     private int bookPx;
     private boolean resumed = false;
     private boolean isRecreate;
     private int group;
     private boolean noBook;
+    private CallbackValue callbackValue;
 
     private BookShelfAdapter bookShelfAdapter;
+
+    public BookListFragment(int bookshelfLayout) {
+        super();
+        this.bookshelfLayout = bookshelfLayout;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,7 +96,7 @@ public class BookListFragment extends MBaseFragment<BookListContract.Presenter> 
     protected void bindView() {
         super.bindView();
         // 书架布局
-        if (preferences.getInt("bookshelfLayout", 1) == 0) {
+        if (bookshelfLayout == 0) {
             binding.rvBookshelf.setLayoutManager(new LinearLayoutManager(getContext()));
             bookShelfAdapter = new BookShelfListAdapter(getActivity());
         } else {
@@ -300,6 +306,10 @@ public class BookListFragment extends MBaseFragment<BookListContract.Presenter> 
                         mPresenter.queryBookShelf(false, group);
                     }
                 });
+    }
+
+    public int getBookshelfLayout() {
+        return bookshelfLayout;
     }
 
     public interface CallbackValue {

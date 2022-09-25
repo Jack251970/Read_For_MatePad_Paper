@@ -127,9 +127,6 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
     public void initImmersionBar() { super.initImmersionBar(); }
 
     @Override
-    public void recreate() { super.recreate(); }
-
-    @Override
     public boolean isRecreate() { return isRecreate; }
 
     @Override
@@ -140,15 +137,24 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
 
     @Override
     protected List<Fragment> createTabFragments() {
-        BookListFragment bookListFragment = null;
+        BookListFragment bookListFragmentGrid = null, bookListFragmentList = null;
         for (Fragment fragment : getSupportFragmentManager().getFragments()) {
             if (fragment instanceof BookListFragment) {
-                bookListFragment = (BookListFragment) fragment;
+                if (((BookListFragment)fragment).getBookshelfLayout() == 0) {
+                    bookListFragmentGrid = (BookListFragment) fragment;
+                } else {
+                    bookListFragmentList = (BookListFragment) fragment;
+                }
             }
         }
-        if (bookListFragment == null)
-            bookListFragment = new BookListFragment();
-        return List.of(bookListFragment);
+        if (bookListFragmentGrid == null) {
+            bookListFragmentGrid = new BookListFragment(0);
+        }
+        if (bookListFragmentList == null) {
+            bookListFragmentList = new BookListFragment(1);
+
+        }
+        return List.of(bookListFragmentGrid, bookListFragmentList);
     }
 
     @Override
@@ -158,7 +164,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
 
     public BookListFragment getBookListFragment() {
         try {
-            return (BookListFragment) mFragmentList.get(0);
+            return (BookListFragment) mFragmentList.get(preferences.getInt("bookshelfLayout", 1));
         } catch (Exception e) {
             return null;
         }
@@ -168,7 +174,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
     protected void bindView() {
         super.bindView();
         // 初始化书架布局图标
-        initLayoutIcon();
+        initLayout();
         // 初始化书籍类别图标
         initGroupIcon(group);
         // 更新书籍类别
@@ -420,13 +426,15 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
     }
 
     /**
-     * 改变书架布局按钮图标
+     * 初始化书架布局
      */
-    private void initLayoutIcon() {
+    private void initLayout() {
         if (preferences.getInt("bookshelfLayout", 1) == 0) {
             binding.ivSelectLayoutMain.setImageResource(R.drawable.ic_bookshelf_layout_grid);
+            setCurrentItem(0);
         } else {
             binding.ivSelectLayoutMain.setImageResource(R.drawable.ic_bookshelf_layout_list);
+            setCurrentItem(1);
         }
     }
 
@@ -439,7 +447,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
         } else {
             preferences.edit().putInt("bookshelfLayout", 0).apply();
         }
-        recreate();
+        initLayout();
     }
 
     /**
