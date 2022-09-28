@@ -223,7 +223,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
                 binding.tvEditFind.setText(R.string.back);
             }
             showFind = !showFind;
-            binding.recyclerView.scrollToPosition(0);
+            binding.recyclerView.scrollToPosition(0);   // 返回第一条
         });
         // 返回
         binding.ivBack.setOnClickListener(v -> {
