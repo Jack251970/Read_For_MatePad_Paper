@@ -59,8 +59,7 @@ import kotlin.Unit;
  * Edited by Jack251970
  */
 
-public class BookSourceActivity extends MBaseActivity<BookSourceContract.Presenter>
-        implements BookSourceContract.View {
+public class BookSourceActivity extends MBaseActivity<BookSourceContract.Presenter> implements BookSourceContract.View {
     private final int IMPORT_SOURCE = 102;
     private ActivityBookSourceBinding binding;
     private ItemTouchCallback itemTouchCallback;
