@@ -3,28 +3,29 @@
     android:height="60dp"
     android:viewportWidth="60"
     android:viewportHeight="60">
+    <!-- Optimize Path Length -->
     <path
         android:fillColor="#000"
         android:name="圆角矩形 2"
         android:pathData="m11 28h18c0.55 0 1 0.45 1 1v2c0 0.55 -0.45 1 -1 1h-18c-0.55 0 -1 -0.45 -1 -1v-2c0 -0.55 0.45 -1 1 -1z" />
     <path
         android:name="圆角矩形 2"
-        android:pathData="m29 29c0 0 0 0 0 0c0 0 0 -0 0 -0zm0 2c0 0 0 0 0 0c0 -0 0 -0 0 -0zm-0 -2c0 0 0 0 0 0v2c0 0 -0 0 -0 0h-18v-2zm-18 -1c-0.55 0 -1 0.45 -1 1v2c0 0.55 0.45 1 1 1h18c0.55 0 1 -0.45 1 -1v-2c0 -0.55 -0.45 -1 -1 -1z"
+        android:pathData="m29 29c0 0 0 0 0 0c0 0 0 -0 0 -0zm0 2c0 0 0 0 0 0c0 -0 0 -0 0 -0zm-0 -2c0 0 0 0 0 0v2c0 0 -0 0 -0 0h-18v-2zm-18 -1c-0 0 -1 0 -1 1v2c0 0 0 1 1 1h18c0 0 1 -0 1 -1v-2c0 -0 -0 -1 -1 -1z"
         android:fillColor="#000" />
     <path
         android:fillColor="#000"
         android:name="圆角矩形 1"
-        android:pathData="m29 10h2c0.55 0 1 0.45 1 1v38c0 0.55 -0.45 1 -1 1h-2c-0.55 0 -1 -0.45 -1 -1v-38c0 -0.55 0.45 -1 1 -1z" />
+        android:pathData="m29 10h2c0 0 1 0 1 1v38c0 0 -0 1 -1 1h-2c-0 0 -1 -0 -1 -1v-38c0 -0 0 -1 1 -1z" />
     <path
         android:name="圆角矩形 1"
-        android:pathData="m31 11v38h-2v-38zm0 38c0 0 0 0 0 0c0 0 0 0 0 0zm-2 -39c-0.55 0 -1 0.45 -1 1v38c0 0.55 0.45 1 1 1h2c0.55 0 1 -0.45 1 -1v-38c0 -0.55 -0.45 -1 -1 -1z"
+        android:pathData="m31 11v38h-2v-38zm0 38c0 0 0 0 0 0c0 0 0 0 0 0zm-2 -39c-0 0 -1 0 -1 1v38c0 0 0 1 1 1h2c0 0 1 -0 1 -1v-38c0 -0 -0 -1 -1 -1z"
         android:fillColor="#000" />
     <path
         android:fillColor="#000"
         android:name="圆角矩形 3"
-        android:pathData="m34 28h15c0.55 0 1 0.45 1 1v2c0 0.55 -0.45 1 -1 1h-15c-0.55 0 -1 -0.45 -1 -1v-2c0 -0.55 0.45 -1 1 -1z" />
+        android:pathData="m34 28h15c0 0 1 0 1 1v2c0 0 -0 1 -1 1h-15c-0 0 -1 -0 -1 -1v-2c0 -0 0 -1 1 -1z" />
     <path
         android:name="圆角矩形 3"
-        android:pathData="m34 29c0 0 0 0 0 0c0 0 0 0 0 0zm0 2c0 0 0 0 0 0c0 0 0 0 0 0zm15 0c0 0 0 0 0 0c0 0 0 0 0 0zm0 -2v2h-15c-0 0 -0 0 -0 -0v-2c0 -0 0 -0 0 -0zm-15 -1c-0.55 0 -1 0.45 -1 1v2c0 0.55 0.45 1 1 1h15c0.55 0 1 -0.45 1 -1v-2c0 -0.55 -0.45 -1 -1 -1z"
+        android:pathData="m34 29c0 0 0 0 0 0c0 0 0 0 0 0zm0 2c0 0 0 0 0 0c0 0 0 0 0 0zm15 0c0 0 0 0 0 0c0 0 0 0 0 0zm0 -2v2h-15c-0 0 -0 0 -0 -0v-2c0 -0 0 -0 0 -0zm-15 -1c-0 0 -1 0 -1 1v2c0 0 0 1 1 1h15c0 0 1 -0 1 -1v-2c0 -0 -0 -1 -1 -1z"
         android:fillColor="#000" />
 </vector>
