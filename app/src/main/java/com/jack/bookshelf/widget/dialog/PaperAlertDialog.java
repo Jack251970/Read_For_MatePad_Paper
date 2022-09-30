@@ -67,6 +67,10 @@ public class PaperAlertDialog extends PopupWindow{
         return setMessage(getString(strId));
     }
 
+    public PaperAlertDialog setMessage(CharSequence str) {
+        return setMessage(String.valueOf(str));
+    }
+
     public PaperAlertDialog setMessage(String message) {
         tvMessage.setText(message);
         return this;

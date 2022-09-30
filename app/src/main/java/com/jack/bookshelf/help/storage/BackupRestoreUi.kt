@@ -91,7 +91,7 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
             } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
                 selectBackupFolder(activity, mainView, true)
             } else {
-                backupUsePermission(activity, true)
+                backupUsePermission(activity, mainView, true)
             }
         }
     }
@@ -99,8 +99,8 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
     /**
      * 权限获取与备份
      */
-    private fun backupUsePermission(activity: Activity, ifBackUp: Boolean, path: String = Backup.defaultPath) {
-        PermissionsCompat.Builder(activity)
+    private fun backupUsePermission(activity: Activity, mainView: View, ifBackUp: Boolean, path: String = Backup.defaultPath) {
+        PermissionsCompat.Builder(activity, mainView)
             .addPermissions(*Permissions.Group.STORAGE)
             .rationale(R.string.need_storage_permission_to_backup_book_information)
             .onGranted {
@@ -139,7 +139,7 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
                             }
                         }
                         1 -> {
-                            PermissionsCompat.Builder(activity)
+                            PermissionsCompat.Builder(activity, mainView)
                                 .addPermissions(*Permissions.Group.STORAGE)
                                 .rationale(R.string.need_storage_permission_to_backup_book_information)
                                 .onGranted {
@@ -147,7 +147,7 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
                                 }
                                 .request()
                         }
-                        2 -> backupUsePermission(activity, ifBackUp)
+                        2 -> backupUsePermission(activity, mainView, ifBackUp)
                     }
                 }
             }).show(mainView)
@@ -208,7 +208,7 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
             } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
                 selectRestoreFolder(activity, mainView, true)
             } else {
-                restoreUsePermission(activity, true)
+                restoreUsePermission(activity, mainView, true)
             }
         }
     }
@@ -216,8 +216,8 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
     /**
      * 权限获取与恢复
      */
-    private fun restoreUsePermission(activity: Activity, ifRestore: Boolean, path: String = Backup.defaultPath) {
-        PermissionsCompat.Builder(activity)
+    private fun restoreUsePermission(activity: Activity, mainView: View, ifRestore: Boolean, path: String = Backup.defaultPath) {
+        PermissionsCompat.Builder(activity, mainView)
             .addPermissions(*Permissions.Group.STORAGE)
             .rationale(R.string.need_storage_permission_to_backup_book_information)
             .onGranted {
@@ -256,7 +256,7 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
                             }
                         }
                         1 -> {
-                            PermissionsCompat.Builder(activity)
+                            PermissionsCompat.Builder(activity, mainView)
                                 .addPermissions(*Permissions.Group.STORAGE)
                                 .rationale(R.string.need_storage_permission_to_backup_book_information)
                                 .onGranted {
@@ -264,7 +264,7 @@ object BackupRestoreUi : Backup.CallBack, Restore.CallBack {
                                 }
                                 .request()
                         }
-                        2 -> restoreUsePermission(activity, ifRestore)
+                        2 -> restoreUsePermission(activity, mainView, ifRestore)
                     }
                 }
             }).show(mainView)

@@ -4,16 +4,22 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
+import android.view.View
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.jack.bookshelf.R
+import com.jack.bookshelf.widget.dialog.PaperAlertDialog
 import org.jetbrains.anko.startActivity
 import java.util.*
 
-internal class Request : OnRequestPermissionsResultCallback {
+/**
+ * Permission Request
+ * Adapt to Huawei MatePad Paper
+ * Edited by Jack251970
+ */
 
+internal class Request : OnRequestPermissionsResultCallback {
     internal val requestTime: Long
     private var requestCode: Int = TYPE_REQUEST_PERMISSION
     private var source: RequestSource? = null
@@ -22,28 +28,30 @@ internal class Request : OnRequestPermissionsResultCallback {
     private var deniedCallback: OnPermissionsDeniedCallback? = null
     private var rationaleResId: Int = 0
     private var rationale: CharSequence? = null
-
-    private var rationaleDialog: AlertDialog? = null
+    private var rationaleDialog: PaperAlertDialog? = null
+    private val mainView: View
 
     private val deniedPermissions: Array<String>?
         get() {
             return getDeniedPermissions(this.permissions?.toTypedArray())
         }
 
-    constructor(activity: Activity) {
+    constructor(activity: Activity, mainView: View) {
         source = ActivitySource(activity)
         permissions = ArrayList()
         requestTime = System.currentTimeMillis()
+        this.mainView = mainView
     }
 
-    constructor(fragment: Fragment) {
+    constructor(fragment: Fragment, mainView: View) {
         source = FragmentSource(fragment)
         permissions = ArrayList()
         requestTime = System.currentTimeMillis()
+        this.mainView = mainView
     }
 
     fun addPermissions(vararg permissions: String) {
-        this.permissions?.addAll(Arrays.asList(*permissions))
+        this.permissions?.addAll(listOf(*permissions))
     }
 
     fun setRequestCode(requestCode: Int) {
@@ -128,21 +136,27 @@ internal class Request : OnRequestPermissionsResultCallback {
         rationaleDialog?.dismiss()
         source?.context?.let {
             runCatching {
-                rationaleDialog = AlertDialog.Builder(it)
-                        .setTitle(R.string.dialog_title)
-                        .setMessage(rationale)
-                        .setPositiveButton(R.string.dialog_setting) { _, _ ->
+                rationaleDialog = PaperAlertDialog(it)
+                    .setTitle(R.string.dialog_title)
+                    .setMessage(rationale)
+                    .setNegativeButton(R.string.cancel)
+                    .setPositiveButton(R.string.dialog_setting)
+                    .setOnclick(object : PaperAlertDialog.OnItemClickListener {
+                        override fun forNegativeButton() {
+                            cancel()
+                        }
+                        override fun forPositiveButton() {
                             it.startActivity<PermissionActivity>(
-                                    Pair(
-                                            PermissionActivity.KEY_INPUT_REQUEST_TYPE,
-                                            TYPE_REQUEST_SETTING
-                                    )
+                                Pair(
+                                    PermissionActivity.KEY_INPUT_REQUEST_TYPE,
+                                    TYPE_REQUEST_SETTING
+                                )
                             )
                         }
-                        .setNegativeButton(R.string.cancel) { _, _ -> cancel() }
-                        .show()
+                    })
             }
         }
+        rationaleDialog?.show(mainView)
     }
 
     private fun onPermissionsGranted(requestCode: Int) {

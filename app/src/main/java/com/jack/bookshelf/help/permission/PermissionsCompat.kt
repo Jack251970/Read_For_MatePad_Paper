@@ -1,11 +1,16 @@
 package com.jack.bookshelf.help.permission
 
 import android.app.Activity
+import android.view.View
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 
-class PermissionsCompat private constructor() {
+/**
+ * Permission Compat
+ * Edited by Jack251970
+ */
 
+class PermissionsCompat private constructor() {
     private var request: Request? = null
 
     fun request() {
@@ -15,12 +20,12 @@ class PermissionsCompat private constructor() {
     class Builder {
         private val request: Request
 
-        constructor(activity: Activity) {
-            request = Request(activity)
+        constructor(activity: Activity, mainView: View) {
+            request = Request(activity, mainView)
         }
 
-        constructor(fragment: Fragment) {
-            request = Request(fragment)
+        constructor(fragment: Fragment, mainView: View) {
+            request = Request(fragment, mainView)
         }
 
         fun addPermissions(vararg permissions: String): Builder {
@@ -74,5 +79,4 @@ class PermissionsCompat private constructor() {
             return compat
         }
     }
-
 }

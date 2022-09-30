@@ -1596,7 +1596,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
 
     @Override
     public void openBookFromOther() {
-        new PermissionsCompat.Builder(this)
+        new PermissionsCompat.Builder(this, binding.getRoot())
                 .addPermissions(Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE)
                 .rationale(R.string.please_grant_storage_permission)
                 .onGranted((requestCode) -> {

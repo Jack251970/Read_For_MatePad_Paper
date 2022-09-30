@@ -333,7 +333,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
      * 导入本地书籍
      */
     private void importLocalBooks() {
-        new PermissionsCompat.Builder(this)
+        new PermissionsCompat.Builder(this, binding.getRoot())
                 .addPermissions(Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE)
                 .rationale(getString(R.string.import_local_book_need_storage_permission))
                 .onGranted((requestCode) -> {

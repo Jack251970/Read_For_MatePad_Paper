@@ -128,8 +128,11 @@
         <string name="is_enable">启用</string>
         <string name="source_no_login">当前源没有配置登陆地址</string>
         <string name="if_copy_find_content">是否拷贝发现内容？</string>
-        <string name="edit_find">编辑发现</string>
-        <string name="back">返回</string>
+        <string name="basic">基本</string>
+        <string name="find">发现</string>
+        <string name="info">详情</string>
+        <string name="catalog">目录</string>
+        <string name="main_content">正文</string>
         <string name="save_success">保存成功</string>
         <string name="non_null_source_name_url">书源名称和URL不能为空</string>
         <string name="book_source_url">书源URL(bookSourceUrl)</string>
@@ -160,8 +163,8 @@
         <string name="rule_chapter_list">目录列表规则(ruleChapterList)</string>
         <string name="rule_chapter_name">章节名称规则(ruleChapterName)</string>
         <string name="rule_content_url">章节URL规则(ruleContentUrl)</string>
-        <string name="rule_vip">VIP标识(ruleVip)</string>
-        <string name="rule_pay">购买标识(rulePay)</string>
+        <string name="rule_chapter_vip">VIP标识(ruleChapterVip)</string>
+        <string name="rule_chapter_pay">购买标识(ruleChapterPay)</string>
         <string name="rule_content_url_next">正文下一页URL规则(ruleContentUrlNext)</string>
         <string name="rule_book_content">正文规则(ruleBookContent)</string>
         <string name="rule_book_content_replace">正文替换规则(ruleBookContentReplace)</string>

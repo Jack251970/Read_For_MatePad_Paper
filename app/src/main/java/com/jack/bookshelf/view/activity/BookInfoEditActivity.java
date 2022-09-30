@@ -133,7 +133,7 @@ public class BookInfoEditActivity extends MBaseActivity<IPresenter> {
     }
 
     private void selectCover() {
-        new PermissionsCompat.Builder(this)
+        new PermissionsCompat.Builder(this, binding.getRoot())
                 .addPermissions(Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE)
                 .rationale(R.string.bg_image_per)
                 .onGranted((requestCode) -> {

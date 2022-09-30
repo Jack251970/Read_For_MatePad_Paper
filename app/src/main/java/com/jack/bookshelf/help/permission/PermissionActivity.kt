@@ -15,9 +15,8 @@ class PermissionActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         when (intent.getIntExtra(KEY_INPUT_REQUEST_TYPE, Request.TYPE_REQUEST_PERMISSION)) {
-            Request.TYPE_REQUEST_PERMISSION//权限请求
+            Request.TYPE_REQUEST_PERMISSION // 权限请求
             -> {
                 val requestCode = intent.getIntExtra(KEY_INPUT_PERMISSIONS_CODE, 1000)
                 val permissions = intent.getStringArrayExtra(KEY_INPUT_PERMISSIONS)
@@ -27,13 +26,13 @@ class PermissionActivity : Activity() {
                     finish()
                 }
             }
-            Request.TYPE_REQUEST_SETTING//跳转到设置界面
+            Request.TYPE_REQUEST_SETTING // 跳转到设置界面
             -> try {
                 val settingIntent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                 settingIntent.data = Uri.fromParts("package", packageName, null)
                 startActivityForResult(settingIntent, Request.TYPE_REQUEST_SETTING)
             } catch (e: Exception) {
-                toast(this, R.string.tip_cannot_jump_setting_page, Toast.LENGTH_SHORT);
+                toast(this, R.string.tip_cannot_jump_setting_page, Toast.LENGTH_SHORT)
                 finish()
             }
         }
@@ -68,7 +67,6 @@ class PermissionActivity : Activity() {
     }
 
     companion object {
-
         const val KEY_INPUT_REQUEST_TYPE = "KEY_INPUT_REQUEST_TYPE"
         const val KEY_INPUT_PERMISSIONS_CODE = "KEY_INPUT_PERMISSIONS_CODE"
         const val KEY_INPUT_PERMISSIONS = "KEY_INPUT_PERMISSIONS"

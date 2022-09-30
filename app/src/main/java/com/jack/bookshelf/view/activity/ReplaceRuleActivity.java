@@ -218,7 +218,7 @@ public class ReplaceRuleActivity extends MBaseActivity<ReplaceRuleContract.Prese
      * 导入本地规则
      */
     private void selectReplaceRuleFile() {
-        new PermissionsCompat.Builder(this)
+        new PermissionsCompat.Builder(this, binding.getRoot())
                 .addPermissions(Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE)
                 .rationale(R.string.need_storage_permission_to_backup_book_information)
                 .onGranted((requestCode) -> {

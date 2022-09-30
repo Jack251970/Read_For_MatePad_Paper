@@ -193,7 +193,7 @@ class ReadInterfacePop : FrameLayout {
         binding.tvSpace.setOnClickListener { activity!!.readAdjustMarginIn() }
         // 选择字体
         binding.flTextFont.setOnClickListener {
-            PermissionsCompat.Builder(activity!!)
+            PermissionsCompat.Builder(activity!!, mainView!!)
                 .addPermissions(
                     Permissions.READ_EXTERNAL_STORAGE,
                     Permissions.WRITE_EXTERNAL_STORAGE

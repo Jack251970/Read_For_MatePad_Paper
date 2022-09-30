@@ -22,14 +22,12 @@ import com.jack.bookshelf.widget.dialog.modialog.MoDialogHUD;
  */
 
 public class SettingActivity extends MBaseActivity<IPresenter> {
-
     private ActivitySettingsBinding binding;
     private final GeneralSettingFragment settingsFragment = new GeneralSettingFragment();
     private final String generalSettingTag = "general";
     public final String webdavSettingTag = "webdav";
     public final String localBackupSettingTag = "localBackup";
     public final String aboutTag = "about";
-
     private MoDialogHUD moDialogHUD;
 
     public static void startThis(Context context) {

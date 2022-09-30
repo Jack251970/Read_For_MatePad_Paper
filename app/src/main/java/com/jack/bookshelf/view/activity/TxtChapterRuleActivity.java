@@ -147,7 +147,7 @@ public class TxtChapterRuleActivity extends MBaseActivity<TxtChapterRuleContract
      * 导入本地正则
      */
     private void selectTxtChapterRuleFile() {
-        new PermissionsCompat.Builder(this)
+        new PermissionsCompat.Builder(this, binding.getRoot())
                 .addPermissions(Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE)
                 .rationale(R.string.need_storage_permission_to_backup_book_information)
                 .onGranted((requestCode) -> {
