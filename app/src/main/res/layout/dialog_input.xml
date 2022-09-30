@@ -25,7 +25,7 @@
         android:id="@+id/atv_input_dialog_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/alert_dialog_message_margin_bottom"
+        android:layout_marginBottom="@dimen/alert_dialog_append_message_margin_bottom"
         android:textColor="@color/black"
         android:textSize="15sp"
         android:textStyle="bold"

@@ -24,8 +24,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/alert_dialog_message_margin_bottom"
-        android:layout_marginBottom="@dimen/alert_dialog_message_margin_bottom">
+        android:layout_marginTop="@dimen/alert_dialog_append_message_margin_bottom"
+        android:layout_marginBottom="@dimen/alert_dialog_append_message_margin_bottom">
         <TextView
             android:id="@+id/tv_font_harmony_regular"
             android:layout_width="match_parent"

@@ -22,7 +22,7 @@
         android:id="@+id/tvChapterName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/alert_dialog_message_margin_bottom"
+        android:layout_marginBottom="@dimen/alert_dialog_append_message_margin_bottom"
         android:textColor="@color/black"
         android:textSize="@dimen/alert_dialog_message_text_size"
         tools:text="第一章"/>
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="-3dp"
         android:paddingEnd="-6dp"
-        android:layout_marginBottom="@dimen/alert_dialog_message_margin_bottom"
+        android:layout_marginBottom="@dimen/alert_dialog_append_message_margin_bottom"
         android:hint="@string/content">
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/tie_content"

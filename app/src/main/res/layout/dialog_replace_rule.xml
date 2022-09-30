@@ -89,7 +89,7 @@
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
-            android:layout_marginTop="@dimen/alert_dialog_message_margin_bottom"
+            android:layout_marginTop="@dimen/alert_dialog_append_message_margin_bottom"
             android:paddingStart="50dp"
             android:paddingEnd="50dp"
             android:text="@string/confirm"
