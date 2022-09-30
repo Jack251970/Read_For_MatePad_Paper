@@ -216,8 +216,7 @@
         app:layout_constraintLeft_toLeftOf="@id/tv_edit_main_content"
         app:layout_constraintRight_toRightOf="@id/tv_edit_main_content"/>
     <!-- 编辑选项 -->
-    <!--com.jack.bookshelf.widget.onoff.checkbox.RectCheckBox-->
-    <androidx.appcompat.widget.AppCompatCheckBox
+    <com.jack.bookshelf.widget.onoff.checkbox.RectCheckBox
         android:id="@+id/cb_is_enable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -226,7 +225,7 @@
         android:text="@string/is_enable"
         app:layout_constraintLeft_toLeftOf="@id/edit_card"
         app:layout_constraintTop_toBottomOf="@id/vp_title"/>
-    <androidx.appcompat.widget.AppCompatCheckBox
+    <com.jack.bookshelf.widget.onoff.checkbox.RectCheckBox
         android:id="@+id/cb_is_audio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
