@@ -70,6 +70,151 @@
         app:layout_constraintRight_toRightOf="@id/action_bar"
         app:layout_constraintTop_toTopOf="@id/action_bar"
         app:layout_constraintBottom_toBottomOf="@id/action_bar"/>
+    <!-- 标题 -->
+    <View
+        android:id="@+id/vp_title"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintTop_toTopOf="@id/edit_card"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_center_horizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"/>
+    <!-- 切换选项 -->
+    <TextView
+        android:id="@+id/tv_edit_basic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="@string/basic"
+        style="@style/PaperTextStyleViewPagerTab"
+        app:layout_constraintRight_toLeftOf="@id/tv_edit_search"
+        app:layout_constraintTop_toTopOf="@id/vp_title"
+        app:layout_constraintBottom_toBottomOf="@id/vp_title"/>
+    <ImageView
+        android:id="@+id/iv_edit_basic_indicator"
+        android:layout_width="32sp"
+        android:layout_height="2dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/shape_viewpager_indicator"
+        android:focusable="false"
+        android:clickable="false"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/vp_title"
+        app:layout_constraintLeft_toLeftOf="@id/tv_edit_basic"
+        app:layout_constraintRight_toRightOf="@id/tv_edit_basic"/>
+    <TextView
+        android:id="@+id/tv_edit_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="@string/search"
+        style="@style/PaperTextStyleViewPagerTab"
+        app:layout_constraintRight_toLeftOf="@id/tv_edit_find"
+        app:layout_constraintTop_toTopOf="@id/vp_title"
+        app:layout_constraintBottom_toBottomOf="@id/vp_title"/>
+    <ImageView
+        android:id="@+id/iv_edit_search_indicator"
+        android:layout_width="32sp"
+        android:layout_height="2dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/shape_viewpager_indicator"
+        android:focusable="false"
+        android:clickable="false"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/vp_title"
+        app:layout_constraintLeft_toLeftOf="@id/tv_edit_search"
+        app:layout_constraintRight_toRightOf="@id/tv_edit_search"/>
+    <TextView
+        android:id="@+id/tv_edit_find"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="@string/find"
+        style="@style/PaperTextStyleViewPagerTab"
+        app:layout_constraintRight_toRightOf="@id/gl_center_horizontal"
+        app:layout_constraintTop_toTopOf="@id/vp_title"
+        app:layout_constraintBottom_toBottomOf="@id/vp_title"/>
+    <ImageView
+        android:id="@+id/iv_edit_find_indicator"
+        android:layout_width="32sp"
+        android:layout_height="2dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/shape_viewpager_indicator"
+        android:focusable="false"
+        android:clickable="false"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/vp_title"
+        app:layout_constraintLeft_toLeftOf="@id/tv_edit_find"
+        app:layout_constraintRight_toRightOf="@id/tv_edit_find"/>
+    <TextView
+        android:id="@+id/tv_edit_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/info"
+        style="@style/PaperTextStyleViewPagerTab"
+        app:layout_constraintLeft_toLeftOf="@id/gl_center_horizontal"
+        app:layout_constraintTop_toTopOf="@id/vp_title"
+        app:layout_constraintBottom_toBottomOf="@id/vp_title"/>
+    <ImageView
+        android:id="@+id/iv_edit_info_indicator"
+        android:layout_width="32sp"
+        android:layout_height="2dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/shape_viewpager_indicator"
+        android:focusable="false"
+        android:clickable="false"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/vp_title"
+        app:layout_constraintLeft_toLeftOf="@id/tv_edit_info"
+        app:layout_constraintRight_toRightOf="@id/tv_edit_info"/>
+    <TextView
+        android:id="@+id/tv_edit_catalog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/catalog"
+        style="@style/PaperTextStyleViewPagerTab"
+        app:layout_constraintLeft_toRightOf="@id/tv_edit_info"
+        app:layout_constraintTop_toTopOf="@id/vp_title"
+        app:layout_constraintBottom_toBottomOf="@id/vp_title"/>
+    <ImageView
+        android:id="@+id/iv_edit_catalog_indicator"
+        android:layout_width="32sp"
+        android:layout_height="2dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/shape_viewpager_indicator"
+        android:focusable="false"
+        android:clickable="false"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/vp_title"
+        app:layout_constraintLeft_toLeftOf="@id/tv_edit_catalog"
+        app:layout_constraintRight_toRightOf="@id/tv_edit_catalog"/>
+    <TextView
+        android:id="@+id/tv_edit_main_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/main_content"
+        style="@style/PaperTextStyleViewPagerTab"
+        app:layout_constraintLeft_toRightOf="@id/tv_edit_catalog"
+        app:layout_constraintTop_toTopOf="@id/vp_title"
+        app:layout_constraintBottom_toBottomOf="@id/vp_title"/>
+    <ImageView
+        android:id="@+id/iv_edit_main_content_indicator"
+        android:layout_width="32sp"
+        android:layout_height="2dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/shape_viewpager_indicator"
+        android:focusable="false"
+        android:clickable="false"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/vp_title"
+        app:layout_constraintLeft_toLeftOf="@id/tv_edit_main_content"
+        app:layout_constraintRight_toRightOf="@id/tv_edit_main_content"/>
     <!-- 编辑选项 -->
     <!--com.jack.bookshelf.widget.onoff.checkbox.RectCheckBox-->
     <androidx.appcompat.widget.AppCompatCheckBox
@@ -80,7 +225,7 @@
         android:checked="true"
         android:text="@string/is_enable"
         app:layout_constraintLeft_toLeftOf="@id/edit_card"
-        app:layout_constraintTop_toTopOf="@id/edit_card"/>
+        app:layout_constraintTop_toBottomOf="@id/vp_title"/>
     <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/cb_is_audio"
         android:layout_width="wrap_content"
@@ -88,18 +233,8 @@
         android:layout_marginStart="10dp"
         android:checked="false"
         android:text="@string/audio"
-        app:layout_constraintTop_toTopOf="@id/edit_card"
-        app:layout_constraintLeft_toRightOf="@id/cb_is_enable"/>
-    <TextView
-        android:id="@+id/tv_edit_find"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:text="@string/edit_find"
-        style="@style/PaperTextButton"
-        app:layout_constraintTop_toTopOf="@id/cb_is_enable"
-        app:layout_constraintBottom_toBottomOf="@id/cb_is_enable"
-        app:layout_constraintRight_toRightOf="@id/edit_card"/>
+        app:layout_constraintLeft_toRightOf="@id/cb_is_enable"
+        app:layout_constraintTop_toBottomOf="@id/vp_title"/>
     <!-- 信息 -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -108,6 +243,6 @@
         android:layout_marginTop="10dp"
         app:layout_constraintLeft_toLeftOf="@id/edit_card"
         app:layout_constraintRight_toRightOf="@id/edit_card"
-        app:layout_constraintTop_toBottomOf="@id/tv_edit_find"
+        app:layout_constraintTop_toBottomOf="@id/cb_is_enable"
         app:layout_constraintBottom_toBottomOf="@id/edit_card"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
