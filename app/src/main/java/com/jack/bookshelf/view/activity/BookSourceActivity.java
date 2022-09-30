@@ -386,7 +386,7 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
      * 导入本地书源
      */
     private void selectBookSourceFile() {
-        new PermissionsCompat.Builder(this)
+        new PermissionsCompat.Builder(this, binding.getRoot())
                 .addPermissions(Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE)
                 .rationale(R.string.please_grant_storage_permission)
                 .onGranted((requestCode) -> {
