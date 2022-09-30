@@ -2,6 +2,7 @@ package com.jack.bookshelf.utils
 
 import android.content.Context
 import android.net.Uri
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.documentfile.provider.DocumentFile
 import androidx.fragment.app.Fragment
@@ -17,7 +18,7 @@ fun Uri.isContentScheme() = this.scheme == "content"
 /**
  * 读取URI
  */
-fun AppCompatActivity.readUri(uri: Uri?, success: (name: String, bytes: ByteArray) -> Unit) {
+fun AppCompatActivity.readUri(uri: Uri?, mainView: View, success: (name: String, bytes: ByteArray) -> Unit) {
     uri ?: return
     try {
         if (uri.isContentScheme()) {
@@ -27,7 +28,7 @@ fun AppCompatActivity.readUri(uri: Uri?, success: (name: String, bytes: ByteArra
             val fileBytes = DocumentUtils.readBytes(this, doc.uri)
             success.invoke(name, fileBytes)
         } else {
-            PermissionsCompat.Builder(this)
+            PermissionsCompat.Builder(this, mainView)
                 .addPermissions(
                     Permissions.READ_EXTERNAL_STORAGE,
                     Permissions.WRITE_EXTERNAL_STORAGE
@@ -50,7 +51,7 @@ fun AppCompatActivity.readUri(uri: Uri?, success: (name: String, bytes: ByteArra
 /**
  * 读取URI
  */
-fun Fragment.readUri(uri: Uri?, success: (name: String, bytes: ByteArray) -> Unit) {
+fun Fragment.readUri(uri: Uri?, mainView: View, success: (name: String, bytes: ByteArray) -> Unit) {
     uri ?: return
     try {
         if (uri.isContentScheme()) {
@@ -60,7 +61,7 @@ fun Fragment.readUri(uri: Uri?, success: (name: String, bytes: ByteArray) -> Uni
             val fileBytes = DocumentUtils.readBytes(requireContext(), doc.uri)
             success.invoke(name, fileBytes)
         } else {
-            PermissionsCompat.Builder(this)
+            PermissionsCompat.Builder(this, mainView)
                 .addPermissions(
                     Permissions.READ_EXTERNAL_STORAGE,
                     Permissions.WRITE_EXTERNAL_STORAGE
