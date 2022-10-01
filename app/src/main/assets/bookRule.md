@@ -29,8 +29,41 @@ E[att*='val'}               属性 att 的值包含val的E元素（区分大小�
 E[attl='vl'][att2*='v2']    属性 attl的值为vl，att2的值包含v2（区分大小写
 E:contains('xXXx'           内容中包含XXXx的E元素
 E:not(s）                   匹配不符合当前选择器的任何元素
+
+注意：必须以 @css: 开头
 ```
+**
 * JSONPath
+```
+符号	描述
+$	                    查询的根节点对象，用于表示一个json数据，可以是数组或对象
+@	                    过滤器断言（filter predicate）处理的当前节点对象，类似于java中的this字段
+*                       通配符，可以表示一个名字或数字
+..	                    可以理解为递归搜索，Deep scan. Available anywhere a name is required.
+.<name>	                表示一个子节点
+[‘<name>’ (, ‘<name>’)] 表示一个或多个子节点
+[<number> (, <number>)] 表示一个或多个数组下标
+[start:end]             组片段，区间为[start,end),不包含end
+[?(<expression>)]	    过滤器表达式，表达式结果必须是boolean
+min()	                获取数值类型数组的最小值，输出Double类型数据
+max()	                获取数值类型数组的最大值，输出Double类型数据
+avg()	                获取数值类型数组的平均值，输出Double类型数据
+stddev()	            获取数值类型数组的标准差，输出Double类型数据
+length()	            获取数值类型数组的长度，输出Integer类型数据
+==                      等于符号，但数字1不等于字符1(note that 1 is not equal to ‘1’)
+!=                      不等于符号
+<                       小于符号
+<=                      小于等于符号
+>                       大于符号
+>=                      大于等于符号
+=~                      判断是否符合正则表达式，如[?(@.name =~ /foo.*?/i)]
+in                      所属符号，如[?(@.size in [‘S’, ‘M’])]
+nin                     排除符号
+size                    获取数据数目
+empty                   判空符号
+注意：最好以 @json: 或 $. 开头，其他形式不可靠
+```
+**
 * 正则表达式
 ```
 .           匹配除换行符以外的所有字符
@@ -53,6 +86,9 @@ aa|cc	    匹配aa或cc
 (?:expr)    忽略此标记的子表达式
 (?=expr)    正向预查(Positive Lookahead)
 (?!expr)    负向预查(Negative Lookahead)
+&&          合并所有取到的值
+||          以第一个取到值的为准
+%%          依次取数
 ```
 
 ## 示例
