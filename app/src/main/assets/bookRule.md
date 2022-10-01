@@ -12,8 +12,11 @@
 
 ## 语法
 * 正则表达式
-  .           匹配除换行符以外的所有字符
+* |---|--|
+  |.  |         匹配除换行符以外的所有字符|
+  
   d,s,w       分别匹配数字、空格和制表符、字母数字字符和“_”
+  
   D,S,W       分别匹配非数字、非空格、非制表符、非字母数字字符
   ^	        匹配文本的开头
   $	        匹配文本的结尾
@@ -34,6 +37,7 @@
   (?!expr)    负向预查(Negative Lookahead)
   
 ## 示例
+```Json
 {
     "bookSourceUrl": "https://www.kaixin7days.com",
     "bookSourceName": "消消乐听书",
@@ -69,3 +73,4 @@
     "ruleBookContent": "",
     "payAction": "var header = JSON.parse(source.getLoginHeader())\nvar chapterUrl = chapter.getDurChapterUrl(); var reg = /&chapterId=(.*?)&/; var chapterId = reg.exec(chapterUrl)[1]\n'http://www.shuidi.online/?name='+book.getName()+'&type=2&cover=' + book.getCoverPath() + '&chapterId=' + chapterId + '&chapter=203&allNumber=' + book.getChapterListSize()+'&bookId=' + book.getVariableMap().get('bookId') + '&chapterIds=' + chapterId + '&number=' + chapter.getDurChapterIndex() + '&accessToken=' + header.Authorization.substring(7) + '#/pay'"
 }
+```
