@@ -116,14 +116,30 @@ aa|cc	    匹配aa或cc
   + 支持相对URL
 * 2、搜索列表规则(ruleSearchList)
 * 3、搜索书名规则(ruleSearchName)
-* 4、搜索作者规则(author)
-* 5、搜索分类规则(kind)
-* 6、搜索最新章节规则(lastChapter)
-* 7、搜索简介规则(intro)
-* 8、搜索封面规则(coverUrl)
-* 9、搜索书籍url规则(bookUrl)
+* 4、搜索作者规则(ruleSearchAuthor)
+* 5、搜索分类规则(ruleSearchKind)
+* 6、搜索最新章节规则(ruleSearchLastChapter)
+* 7、搜索简介规则(ruleSearchIntroduce)
+* 8、搜索封面规则(ruleSearchCoverUrl)
+* 9、搜索书籍url规则(ruleSearchNoteUrl)
 
 ## 发现
+* 1、发现规则(ruleFindUrl)
+  + page为关键字标识，通常形态为{{page}}，page的初值为1，也可以对page进行计算，
+  + 如：{{(page-1)*20}}，有时会遇到第一页没有页数的情况，有两种方法：
+  + ① {{page - 1 == 0 ? "": page}}
+  + ② <,{{page}}>
+  + 格式一，如： 名称::http://www。baidu.com，发现URL可使用&&或换行符\n隔开
+  + 格式二，有5个样式属性(layout_flexGrow、layout_flexShrink、layout_alignSelf、layout_flexBasisPercent、layout_wrapBefore)
+  + 支持相对URL
+* 2、发现列表规则(ruleFindList)
+* 3、发现书名规则(ruleFindName)
+* 4、发现作者规则(ruleFindAuthor)
+* 5、发现分类规则(ruleFindKind)
+* 6、发现简介规则(ruleFindIntroduce)
+* 7、发现最新章节规则(ruleFindLastChapter)
+* 8、发现封面规则(ruleFindCoverUrl)
+* 9、发现书籍url规则(ruleFindNoteUrl)
 
 ## 详情
 
