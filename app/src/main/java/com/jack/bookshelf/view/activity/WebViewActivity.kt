@@ -33,8 +33,8 @@ class WebViewActivity : MBaseActivity<IPresenter>() {
     @SuppressLint("SetJavaScriptEnabled")
     override fun initData() {
         val settings = binding.webView.settings
-        settings.setSupportZoom(true)
-        settings.builtInZoomControls = true
+        // settings.setSupportZoom(false)
+        // settings.builtInZoomControls = true
         settings.defaultTextEncodingName = "UTF-8"
         settings.javaScriptEnabled = true
         val url = intent.getStringExtra("url")
