@@ -105,14 +105,23 @@ aa|cc	    匹配aa或cc
 * 4、登录URL(loginUrl)
   + 根据需求，随机应变
   + 用于登录个人账户
-* 5、书籍URL正则(bookUrlPattern)
-  + 可不填
-  + 添加网址时，用于识别书源
-* 6、请求头(header)
-  + 根据需求，随机应变
-  + 访问网址时使用
+* 5、登陆UI(loginUi)
+* 6、登陆检查(loginCheckJS)
 
 ## 搜索
+* 1、搜索地址(ruleSearchUrl)
+  + key为关键字标识，通常形态为{{key}}，运行时会替换为搜索关键字
+  + 也可以对key进行加密等操作，如：{{java.base64Encode(key)}}
+  + page为关键字标识，通常形态为{{page}}
+  + 支持相对URL
+* 2、搜索列表规则(ruleSearchList)
+* 3、搜索书名规则(ruleSearchName)
+* 4、搜索作者规则(author)
+* 5、搜索分类规则(kind)
+* 6、搜索最新章节规则(lastChapter)
+* 7、搜索简介规则(intro)
+* 8、搜索封面规则(coverUrl)
+* 9、搜索书籍url规则(bookUrl)
 
 ## 发现
 
