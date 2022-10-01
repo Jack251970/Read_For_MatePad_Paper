@@ -61,6 +61,7 @@ in                      所属符号，如[?(@.size in [‘S’, ‘M’])]
 nin                     排除符号
 size                    获取数据数目
 empty                   判空符号
+
 注意：最好以 @json: 或 $. 开头，其他形式不可靠
 ```
 
@@ -142,10 +143,47 @@ aa|cc	    匹配aa或cc
 * 9、发现书籍url规则(ruleFindNoteUrl)
 
 ## 详情
+* 1、书籍详情URL正则(ruleBookUrlPattern)
+* 2、书籍详情预处理规则(ruleBookInfoInit)
+  + 只能使用正则表达式或者js
+  + js的返回值需要是json对象
+* 3、书名规则(ruleBookName)
+* 4、作者规则(ruleBookAuthor)
+* 5、封面规则(ruleCoverUrl)
+* 6、简介规则(ruleBookIntroduce)
+* 7、分类规则(ruleBookKind)
+* 8、最新章节规则(ruleBookLastChapter)
+* 9、目录URL规则(ruleChapterUrl)
+  + 只支持单个url
+  + 允许修改书名作者(canReName)
+  + 规则不为空且详情页书名不为空，使用详情页中的作者。否则，使用搜索页中的书名
+  + 规则不为空且详情页作者不为空，使用详情页中的作者。否则，使用搜索页中的作者
 
 ## 目录
+* 1、目录下一页规则(ruleChapterUrlNext)
+  + 支持单个url
+  + 支持url数组
+  + js中返回`[]``null``""`时停止加载下一页
+* 2、目录列表规则(ruleChapterList)
+  + 首字符使用负号(-)可使列表反序
+* 3、章节名称规则(ruleChapterName)
+* 4、章节URL规则(ruleChapterUrl)
+* 5、VIP标识(ruleChapterVip)
+* 6、购买标志(ruleChapterPay)
+  + 当结果为`null``false``0``""`时为非VIP
 
 ## 正文
+* 1、正文下一页URL规则(ruleContentUrlNext)
+  + 支持单个url
+  + 支持url数组
+* 2、正文规则(ruleBookContent)
+  + 正文图片链接支持修改headers
+  + book对象的可用属性
+  + 使用方法: 在js中或`{{}}`中使用`book.属性`的方式即可获取，如在正文内容后加上`##{{book.name+"正文卷"+title}}`可以净化 书名+正文卷+章节名称（如：我是大明星正文卷第二章我爸是豪门总裁）这一类的字符
+  + chapter对象的可用属性
+  + 使用方法: 在js中或`{{}}`中使用`chapter.属性`的方式即可获取，如在正文内容后加上`##{{chapter.title+chapter.index}}`可以净化 章节标题+序号(如 第二章 天仙下凡2) 这一类的字符
+* 3、正文替换规则(ruleBookContentReplace)
+* 4、HttpUserAgent
 
 ## 示例
 ```Json
