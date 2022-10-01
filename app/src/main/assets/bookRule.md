@@ -110,9 +110,9 @@ aa|cc	    匹配aa或cc
 
 ## 搜索
 * 1、搜索地址(ruleSearchUrl)
-  + key为关键字标识，通常形态为{{key}}，运行时会替换为搜索关键字
-  + 也可以对key进行加密等操作，如：{{java.base64Encode(key)}}
-  + page为关键字标识，通常形态为{{page}}
+  + key为关键字标识，通常形态为`{{key}}`，运行时会替换为搜索关键字
+  + 也可以对key进行加密等操作，如：`{{java.base64Encode(key)}}`
+  + page为关键字标识，通常形态为`{{page}}`
   + 支持相对URL
 * 2、搜索列表规则(ruleSearchList)
 * 3、搜索书名规则(ruleSearchName)
@@ -125,11 +125,11 @@ aa|cc	    匹配aa或cc
 
 ## 发现
 * 1、发现规则(ruleFindUrl)
-  + page为关键字标识，通常形态为{{page}}，page的初值为1，也可以对page进行计算，
-  + 如：{{(page-1)*20}}，有时会遇到第一页没有页数的情况，有两种方法：
-  + ① {{page - 1 == 0 ? "": page}}
-  + ② <,{{page}}>
-  + 格式一，如： 名称::http://www。baidu.com，发现URL可使用&&或换行符\n隔开
+  + page为关键字标识，通常形态为`{{page}}`，page的初值为1，也可以对page进行计算，
+  + 如：`{{(page-1)*20}}`，有时会遇到第一页没有页数的情况，有两种方法：
+  + ① `{{page - 1 == 0 ? "": page}}`
+  + ② `<,{{page}}>`
+  + 格式一，如：`名称::http://www.baidu.com`，发现URL可使用&&或换行符\n隔开
   + 格式二，有5个样式属性(layout_flexGrow、layout_flexShrink、layout_alignSelf、layout_flexBasisPercent、layout_wrapBefore)
   + 支持相对URL
 * 2、发现列表规则(ruleFindList)
