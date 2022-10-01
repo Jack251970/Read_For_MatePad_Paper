@@ -19,7 +19,8 @@
     <!-- Websites -->
     <string name="latest_release_url">https://github.com/Jack251970/Read_For_MatePad_Paper/releases/latest</string>
     <string name="latest_release_api">https://api.github.com/repos/Jack251970/Read_For_MatePad_Paper/releases/latest</string>
-    <string name="source_rule_url">https://alanskycn.gitee.io/teachme/</string>
+    <string name="source_rule_url">https://github.com/Jack251970/Read_For_MatePad_Paper/blob/master/app/src/main/assets/bookRule.md</string>
+    <!--<string name="source_rule_url">https://alanskycn.gitee.io/teachme/</string>-->
     <string name="this_github_url">https://github.com/Jack251970/Read_For_MatePad_Paper</string>
     <!-- Title -->
     <string name="vip_title">🔒%s</string>
