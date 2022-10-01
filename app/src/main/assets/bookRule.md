@@ -97,28 +97,21 @@ aa|cc	    匹配aa或cc
 + 唯一标识，不可重复
 + 与其他源相同会覆盖
 + 书源名称(bookSourceName)
+* 必填
++ 名字可重复
+* 书源分组(bookSourceGroup)
++ 可不填
++ 用于整理源
+* 登录URL(loginUrl)
++ 根据需求，随机应变
++ 用于登录个人账户
+* 书籍URL正则(bookUrlPattern)
++ 可不填
++ 添加网址时，用于识别书源
+* 请求头(header)
++ 根据需求，随机应变
++ 访问网址时使用
 
-必填
-名字可重复
-书源分组(bookSourceGroup)
-
-可不填
-用于整理源
-登录URL(loginUrl)
-
-根据需求，随机应变
-用于登录个人账户
-书籍URL正则(bookUrlPattern)
-
-可不填
-
-添加网址时，用于识别书源
-
-例:https?://www.piaotian.com/bookinfo/.*
-请求头(header)
-
-根据需求，随机应变
-访问网址时使用
 ## 搜索
 
 ## 发现
