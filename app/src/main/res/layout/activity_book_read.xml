@@ -249,7 +249,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/action_bar_padding_and_margin"
-                android:text="@string/chapter_pay"
+                android:text="@string/pay"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toBottomOf="@id/tv_chapter_name"
                 android:visibility="gone"

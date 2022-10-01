@@ -1052,7 +1052,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                 final int payActivityRequest = 1234;
                 Intent webIntent = new Intent(this, WebViewActivity.class);
                 webIntent.putExtra("url", result);
-                webIntent.putExtra("title", "购买");
+                webIntent.putExtra("title", getString(R.string.pay));
                 BitIntentDataManager.getInstance().putData(result, mPresenter.getBookSource().getHeaderMap(true));
                 // noinspection deprecation
                 startActivityForResult(webIntent, payActivityRequest);

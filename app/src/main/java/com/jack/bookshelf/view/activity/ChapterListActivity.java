@@ -163,7 +163,7 @@ public class ChapterListActivity extends BaseViewPagerActivity<IPresenter> {
 
     @Override
     protected List<String> createTabTitles() {
-        return Arrays.asList(getString(R.string.chapter_list), getString(R.string.bookmark));
+        return Arrays.asList(getString(R.string.catalog), getString(R.string.bookmark));
     }
 
     @Override

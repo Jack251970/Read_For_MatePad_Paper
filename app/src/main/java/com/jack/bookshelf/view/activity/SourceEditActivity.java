@@ -88,6 +88,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
             Fragment fragment = (Fragment) object;
             Intent intent = new Intent(fragment.getContext(), SourceEditActivity.class);
             intent.putExtra("data_key", key);
+            // noinspection deprecation
             fragment.startActivityForResult(intent, EDIT_SOURCE);
         } else if (object instanceof Context) {
             Context context = (Context) object;
@@ -203,7 +204,13 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
                             ShareService.startThis(this, Collections.singletonList(getBookSource(true)));
                             break;
                         case 5:
-                            openRuleSummary();
+                            /*openRuleSummary();*/
+                            final int bookRuleActivityRequest = 333;
+                            Intent webIntent = new Intent(this, WebViewActivity.class);
+                            webIntent.putExtra("url", getString(R.string.source_rule_url));
+                            webIntent.putExtra("title", getString(R.string.rule_summary));
+                            // noinspection deprecation
+                            startActivityForResult(webIntent, bookRuleActivityRequest);
                             break;
                     }
                 });
