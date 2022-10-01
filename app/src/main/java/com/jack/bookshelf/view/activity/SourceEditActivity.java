@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.Gravity;
@@ -39,6 +38,7 @@ import com.jack.bookshelf.view.adapter.SourceEditAdapter;
 import com.jack.bookshelf.view.popupwindow.KeyboardToolPop;
 import com.jack.bookshelf.widget.dialog.PaperAlertDialog;
 import com.jack.bookshelf.widget.dialog.SourceLoginDialog;
+import com.jack.bookshelf.widget.dialog.modialog.MoDialogHUD;
 import com.jack.bookshelf.widget.menu.MoreSettingMenu;
 
 import org.jetbrains.annotations.NotNull;
@@ -75,6 +75,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
     private final String[] keyHelp = {"@", "&", "|", "%", "/", ":", "[", "]", "(", ")", "{", "}", "<", ">", "\\", "$", "#", "!", ".",
             "href", "src", "textNodes", "xpath", "json", "css", "id", "class", "tag"};
     private MoreSettingMenu moreSettingMenu;
+    private MoDialogHUD moDialogHUD;
 
     public static void startThis(Object object, BookSourceBean sourceBean) {
         String key = String.valueOf(System.currentTimeMillis());
@@ -143,6 +144,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
             }
         }
         binding.tvTitle.setText(title);
+        moDialogHUD = new MoDialogHUD(this);
     }
 
     @Override
@@ -204,13 +206,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
                             ShareService.startThis(this, Collections.singletonList(getBookSource(true)));
                             break;
                         case 5:
-                            /*openRuleSummary();*/
-                            final int bookRuleActivityRequest = 333;
-                            Intent webIntent = new Intent(this, WebViewActivity.class);
-                            webIntent.putExtra("url", getString(R.string.source_rule_url));
-                            webIntent.putExtra("title", getString(R.string.rule_summary));
-                            // noinspection deprecation
-                            startActivityForResult(webIntent, bookRuleActivityRequest);
+                            moDialogHUD.showAssetMarkdown("bookRule.md");
                             break;
                     }
                 });
@@ -586,16 +582,6 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
         return bookSourceBeanN;
     }
 
-    private void openRuleSummary() {
-        try {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(getString(R.string.source_rule_url)));
-            startActivity(intent);
-        } catch (Exception e) {
-            toast(R.string.cannot_open, Toast.LENGTH_LONG);
-        }
-    }
-
     private void shareText(String text) {
         try {
             Intent textIntent = new Intent(Intent.ACTION_SEND);
@@ -609,6 +595,10 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent keyEvent) {
+        if (moDialogHUD.isShow()) {
+            Boolean mo = moDialogHUD.onKeyDown(keyCode, keyEvent);
+            return mo || super.onKeyDown(keyCode, keyEvent);
+        }
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (back()) {
                 return true;
@@ -623,6 +613,7 @@ public class SourceEditActivity extends MBaseActivity<SourceEditContract.Present
         if (mSoftKeyboardTool != null) {
             mSoftKeyboardTool.dismiss();
         }
+        moDialogHUD.dismiss();
     }
 
     private boolean back() {
