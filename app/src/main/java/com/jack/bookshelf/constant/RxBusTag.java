@@ -16,14 +16,12 @@ public class RxBusTag {
     public final static String CHECK_SOURCE_FINISH = "checkSourceFinish";
     public final static String IMMERSION_CHANGE = "Immersion_Change";
     public final static String SEARCH_BOOK = "search_book";
-    public final static String UPDATE_APK_STATE = "updateApkState";
     public final static String DOWNLOAD_ALL = "downloadAll";
     public final static String UP_SEARCH_BOOK = "upSearchBook";
     public final static String SKIP_TO_CHAPTER = "skipToChapter";
     public final static String OPEN_BOOK_MARK = "openBookMark";
     public final static String READ_ALOUD_NUMBER = "readAloudNumber";
     public final static String READ_ALOUD_START = "readAloudStart";
-    public final static String AUTO_BACKUP = "autoBackup";
     public final static String PRINT_DEBUG_LOG = "printDebugLog";
     public final static String AUDIO_SIZE = "audioSize";
     public final static String AUDIO_DUR = "audioDur";

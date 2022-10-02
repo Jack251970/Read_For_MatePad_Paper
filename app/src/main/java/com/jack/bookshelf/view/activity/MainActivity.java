@@ -119,22 +119,32 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) { return super.dispatchTouchEvent(ev); }
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return super.dispatchTouchEvent(ev);
+    }
 
     @Override
-    public void initImmersionBar() { super.initImmersionBar(); }
+    public void initImmersionBar() {
+        super.initImmersionBar();
+    }
 
     @Override
-    public boolean isRecreate() { return isRecreate; }
+    public boolean isRecreate() {
+        return isRecreate;
+    }
 
     @Override
-    public int getGroup() { return group; }
+    public int getGroup() {
+        return group;
+    }
 
     @Override
-    public PaperViewPager getViewPager() { return mVp; }
+    public PaperViewPager getViewPager() {
+        return mVp;
+    }
 
     @Override
-    protected List<Fragment> createTabFragments() {
+    protected List<Fragment> createFragments() {
         BookListFragment bookListFragmentGrid = null, bookListFragmentList = null;
         for (Fragment fragment : getSupportFragmentManager().getFragments()) {
             if (fragment instanceof BookListFragment) {
@@ -150,13 +160,12 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
         }
         if (bookListFragmentList == null) {
             bookListFragmentList = new BookListFragment(1);
-
         }
         return List.of(bookListFragmentGrid, bookListFragmentList);
     }
 
     @Override
-    protected List<String> createTabTitles() {
+    protected List<String> createTitles() {
         return null;
     }
 
@@ -227,18 +236,20 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
                 .setOnclick(position -> {
                     switch (position) {
                         case 0:
+                            getBookListFragment().refresh();
+                            break;
+                        case 1:
                             if (!isNetWorkAvailable()) {
                                 toast(R.string.network_connection_unavailable, Toast.LENGTH_SHORT);
                             } else {
                                 RxBus.get().post(RxBusTag.DOWNLOAD_ALL, 10000);
                             }
                             break;
-                        case 1:
+                        case 2:
                             SelectMenu.builder(MainActivity.this)
                                     .setTitle(getString(R.string.sequence_book))
                                     .setBottomButton(getString(R.string.cancel))
-                                    .setMenu(getResources().getStringArray(R.array.sequence_book),
-                                            preferences.getInt(getString(R.string.pk_bookshelf_px), 0))
+                                    .setMenu(getResources().getStringArray(R.array.sequence_book), preferences.getInt(getString(R.string.pk_bookshelf_px), 0))
                                     .setListener(new SelectMenu.OnItemClickListener() {
                                         @Override
                                         public void forBottomButton() {}
@@ -247,17 +258,18 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
                                         public void forListItem(int lastChoose, int position) {
                                             if (position != lastChoose) {
                                                 preferences.edit().putInt(getString(R.string.pk_bookshelf_px),position).apply();
-                                                RxBus.get().post(RxBusTag.RECREATE, true);
+                                                ((BookListFragment)mFragmentList.get(0)).setBookPx(position);
+                                                ((BookListFragment)mFragmentList.get(1)).setBookPx(position);
                                             }
                                         }
                                     }).show(binding.getRoot());
                             break;
-                        case 2:
+                        case 3:
                             if (getBookListFragment() != null) {
                                 getBookListFragment().setArrange(true);
                             }
                             break;
-                        case 3:
+                        case 4:
                             boolean startedThisTime = WebService.startThis(MainActivity.this);
                             if (!startedThisTime) {
                                 toast(getString(R.string.web_service_already_started));

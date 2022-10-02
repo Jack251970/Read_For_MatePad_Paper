@@ -3,7 +3,6 @@ package com.jack.bookshelf.view.fragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,6 +64,11 @@ public class BookListFragment extends MBaseFragment<BookListContract.Presenter> 
         this.bookshelfLayout = bookshelfLayout;
     }
 
+    public void setBookPx(int bookPx) {
+        this.bookPx = bookPx;
+        mPresenter.queryBookShelf(false, group);
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         if (savedInstanceState != null) {
@@ -103,7 +107,6 @@ public class BookListFragment extends MBaseFragment<BookListContract.Presenter> 
             bookShelfAdapter = new BookShelfGridAdapter(getActivity());
         }
         binding.rvBookshelf.setAdapter((RecyclerView.Adapter) bookShelfAdapter);
-        binding.refreshLayout.setColorSchemeColors(Color.BLACK);
     }
 
     @Override
@@ -113,30 +116,23 @@ public class BookListFragment extends MBaseFragment<BookListContract.Presenter> 
         mPresenter.queryBookShelf(needRefresh, group);
     }
 
+    /**
+     * 书架刷新
+     */
+    public void refresh() {
+        mPresenter.queryBookShelf(NetworkUtils.isNetWorkAvailable(), group);
+        if (!NetworkUtils.isNetWorkAvailable()) {
+            toast(R.string.network_connection_unavailable);
+        }
+    }
+
     @Override
     protected void bindEvent() {
-        // 书架刷新功能
-        binding.refreshLayout.setOnRefreshListener(() -> {
-            mPresenter.queryBookShelf(NetworkUtils.isNetWorkAvailable(), group);
-            if (!NetworkUtils.isNetWorkAvailable()) {
-                toast(R.string.network_connection_unavailable);
-            }
-            binding.refreshLayout.setRefreshing(false);
-        });
         ItemTouchCallback itemTouchCallback = new ItemTouchCallback();
-        itemTouchCallback.setSwipeRefreshLayout(binding.refreshLayout);
         itemTouchCallback.setViewPager(callbackValue.getViewPager());
-        // 载入书架排序规则
-        if (bookPx == 2) {
-            itemTouchCallback.setDragEnable(true);
-            ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemTouchCallback);
-            itemTouchHelper.attachToRecyclerView(binding.rvBookshelf);
-        } else {
-            itemTouchCallback.setDragEnable(false);
-            ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemTouchCallback);
-            itemTouchHelper.attachToRecyclerView(binding.rvBookshelf);
-        }
-        // 整理书架
+        itemTouchCallback.setDragEnable(false);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemTouchCallback);
+        itemTouchHelper.attachToRecyclerView(binding.rvBookshelf);
         bookShelfAdapter.setItemClickListener(getAdapterListener());
         itemTouchCallback.setOnItemTouchCallbackListener(bookShelfAdapter.getItemTouchCallbackListener());
         binding.ivBack.setOnClickListener(v -> setArrange(false));

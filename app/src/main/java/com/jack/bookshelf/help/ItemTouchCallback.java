@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 /**
@@ -16,12 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 
 public class ItemTouchCallback extends ItemTouchHelper.Callback {
 
-    private SwipeRefreshLayout swipeRefreshLayout;
     private ViewPager viewPager;
-
-    public void setSwipeRefreshLayout(SwipeRefreshLayout swipeRefreshLayout) {
-        this.swipeRefreshLayout = swipeRefreshLayout;
-    }
 
     public void setViewPager(ViewPager viewPager) {
         this.viewPager = viewPager;
@@ -97,10 +91,8 @@ public class ItemTouchCallback extends ItemTouchHelper.Callback {
         } else if (layoutManager instanceof LinearLayoutManager) {// linearLayoutManager
             LinearLayoutManager linearLayoutManager = (LinearLayoutManager) layoutManager;
             int orientation = linearLayoutManager.getOrientation();
-
             int dragFlag = 0;
             int swipeFlag = 0;
-
             // 为了方便理解，相当于分为横着的ListView和竖着的ListView
             if (orientation == LinearLayoutManager.HORIZONTAL) {// 如果是横向的布局
                 swipeFlag = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
@@ -139,9 +131,6 @@ public class ItemTouchCallback extends ItemTouchHelper.Callback {
     public void onSelectedChanged(@Nullable RecyclerView.ViewHolder viewHolder, int actionState) {
         super.onSelectedChanged(viewHolder, actionState);
         final boolean swiping = actionState == ItemTouchHelper.ACTION_STATE_DRAG;
-        if (swipeRefreshLayout != null) {
-            swipeRefreshLayout.setEnabled(!swiping);
-        }
         if (viewPager != null) {
             viewPager.requestDisallowInterceptTouchEvent(swiping);
         }

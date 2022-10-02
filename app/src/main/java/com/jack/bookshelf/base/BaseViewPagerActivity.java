@@ -21,17 +21,17 @@ public abstract class BaseViewPagerActivity<T extends IPresenter> extends MBaseA
     // View
     protected PaperViewPager mVp;
     // Adapter
-    protected TabFragmentPageAdapter fragmentPageAdapter;
+    protected FragmentPageAdapter fragmentPageAdapter;
     // Params
     protected List<Fragment> mFragmentList;
-    private List<String> mTitleList;
+    protected List<String> mTitleList;
     // private List<ImageView> mIndicatorList;
     // private int lastChoose;
 
     // Abstract
-    protected abstract List<Fragment> createTabFragments();
-    protected abstract List<String> createTabTitles();
-    // private abstract List<ImageView> createTabIndicators();
+    protected abstract List<Fragment> createFragments();
+    protected abstract List<String> createTitles();
+    // private abstract List<ImageView> createIndicators();
 
     @Override
     protected void bindView() {
@@ -41,10 +41,10 @@ public abstract class BaseViewPagerActivity<T extends IPresenter> extends MBaseA
     }
 
     private void setUpViewPager() {
-        mFragmentList = createTabFragments();
-        mTitleList = createTabTitles();
-        // mIndicatorList = createTabIndicators();
-        fragmentPageAdapter = new TabFragmentPageAdapter(getSupportFragmentManager());
+        mFragmentList = createFragments();
+        mTitleList = createTitles();
+        // mIndicatorList = createIndicators();
+        fragmentPageAdapter = new FragmentPageAdapter(getSupportFragmentManager());
         mVp.setAdapter(fragmentPageAdapter);
         mVp.setOffscreenPageLimit(3);
         //
@@ -60,9 +60,9 @@ public abstract class BaseViewPagerActivity<T extends IPresenter> extends MBaseA
 
     public int getCurrentItem() { return mVp.getCurrentItem(); }
 
-    public class TabFragmentPageAdapter extends FragmentPagerAdapter {
+    public class FragmentPageAdapter extends FragmentPagerAdapter {
 
-        TabFragmentPageAdapter(FragmentManager fm) {
+        FragmentPageAdapter(FragmentManager fm) {
             super(fm);
         }
 

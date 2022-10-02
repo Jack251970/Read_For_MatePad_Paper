@@ -9,41 +9,24 @@
     tools:ignore="ContentDescription, UseCompoundDrawables"
     tools:context="com.jack.bookshelf.view.activity.BookCoverEditActivity">
     <!-- 书架主界面 -->
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/refresh_layout"
+    <FrameLayout
+        android:id="@+id/fl_refresh"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:padding="@dimen/content_padding"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/divide_line">
-        <FrameLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_bookshelf"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/content_padding">
-            <TextView
-                android:id="@+id/tv_refreshing"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:paddingStart="1dp"
-                android:paddingEnd="5dp"
-                android:gravity="center_vertical"
-                android:text="@string/is_refreshing"
-                android:background="@drawable/shape_badge_view"
-                style="@style/PaperTextBaseStyle"
-                app:drawableStartCompat="@drawable/ic_refresh"
-                android:visibility="invisible"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_bookshelf"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:second_max_progress="80dp"
-                app:speed="2dp" />
-            <!-- 书架无书籍界面 -->
-            <include
-                android:id="@+id/view_empty"
-                layout="@layout/view_empty" />
-        </FrameLayout>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            app:second_max_progress="80dp"
+            app:speed="2dp" />
+        <!-- 书架无书籍界面 -->
+        <include
+            android:id="@+id/view_empty"
+            layout="@layout/view_empty" />
+    </FrameLayout>
     <!-- 工具栏 -->
     <androidx.constraintlayout.widget.Group
         android:id="@+id/tool_bar"

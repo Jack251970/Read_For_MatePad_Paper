@@ -55,7 +55,6 @@
         <string name="fattening">养肥</string>
         <string name="finish">完结</string>
         <string name="local_book">本地书籍</string>
-        <string name="is_refreshing">刷新中</string>
         <string name="double_click_exit_read">再按一次退出阅读</string>
         <!-- BookDetailActivity -->
         <string name="book_info">书籍信息</string>
@@ -369,7 +368,6 @@
         <!-- Select Menu Main -->
         <string name="sequence_book_by_reading_time">按阅读时间排序</string>
         <string name="sequence_book_by_updating_time">按更新时间排序</string>
-        <string name="sequence_book_manually">手动排序</string>
         <string name="import_book">导入书籍</string>
         <string name="import_local_book">导入本地书籍</string>
         <string name="import_online_book">导入网络书籍</string>
@@ -388,6 +386,7 @@
 
     <!-- More Setting Menu -->
         <!-- More Setting Menu Main -->
+        <string name="refresh_all">刷新全部</string>
         <string name="download_all">下载全部</string>
         <string name="network_connection_unavailable">网络连接不可用</string>
         <string name="organize_bookshelf">整理书架</string>

@@ -68,14 +68,14 @@ public class ImportBookActivity extends BaseViewPagerActivity<ImportBookContract
     }
 
     @Override
-    protected List<Fragment> createTabFragments() {
+    protected List<Fragment> createFragments() {
         mCategoryFragment = new LocalDirectoryFragment(); // 本机目录
         mLocalFragment = new SmartImportFragment();   // 智能导入
         return Arrays.asList(mCategoryFragment, mLocalFragment);
     }
 
     @Override
-    protected List<String> createTabTitles() {
+    protected List<String> createTitles() {
         return null;
     }
 
