@@ -130,7 +130,7 @@ public class BookListFragment extends MBaseFragment<BookListContract.Presenter> 
     protected void bindEvent() {
         ItemTouchCallback itemTouchCallback = new ItemTouchCallback();
         itemTouchCallback.setViewPager(callbackValue.getViewPager());
-        itemTouchCallback.setDragEnable(false);
+        itemTouchCallback.setDragEnable(bookPx == 2);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemTouchCallback);
         itemTouchHelper.attachToRecyclerView(binding.rvBookshelf);
         bookShelfAdapter.setItemClickListener(getAdapterListener());
