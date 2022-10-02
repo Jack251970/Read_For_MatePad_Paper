@@ -58,7 +58,6 @@ public class BookListFragment extends MBaseFragment<BookListContract.Presenter> 
     private int group;
     private boolean noBook;
     private CallbackValue callbackValue;
-
     private BookShelfAdapter bookShelfAdapter;
 
     public BookListFragment(int bookshelfLayout) {
@@ -110,8 +109,7 @@ public class BookListFragment extends MBaseFragment<BookListContract.Presenter> 
     @Override
     protected void firstRequest() {
         group = preferences.getInt("bookshelfGroup", 0);
-        boolean needRefresh = preferences.getBoolean(getString(R.string.pk_auto_refresh), false)
-                && !isRecreate && NetworkUtils.isNetWorkAvailable() && group != 2;
+        boolean needRefresh = preferences.getBoolean(getString(R.string.pk_auto_refresh), false) && !isRecreate && NetworkUtils.isNetWorkAvailable() && group != 2;
         mPresenter.queryBookShelf(needRefresh, group);
     }
 

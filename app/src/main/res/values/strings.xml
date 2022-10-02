@@ -55,6 +55,7 @@
         <string name="fattening">养肥</string>
         <string name="finish">完结</string>
         <string name="local_book">本地书籍</string>
+        <string name="is_refreshing">刷新中</string>
         <string name="double_click_exit_read">再按一次退出阅读</string>
         <!-- BookDetailActivity -->
         <string name="book_info">书籍信息</string>

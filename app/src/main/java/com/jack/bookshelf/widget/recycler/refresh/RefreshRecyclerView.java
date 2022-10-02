@@ -215,7 +215,7 @@ public class RefreshRecyclerView extends FrameLayout {
             if (loadMoreListener != null)
                 loadMoreListener.loadMoreErrorTryAgain();
         });
-        binding.llContent.addView(headerView, 0);
+        binding.flContent.addView(headerView, 0);
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setAdapter(refreshRecyclerViewAdapter);
     }
