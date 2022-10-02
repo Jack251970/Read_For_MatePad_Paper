@@ -69,12 +69,12 @@ import com.jack.bookshelf.widget.dialog.modialog.ChangeSourceDialog;
 import com.jack.bookshelf.widget.dialog.modialog.DownLoadDialog;
 import com.jack.bookshelf.widget.dialog.modialog.MoDialogHUD;
 import com.jack.bookshelf.widget.dialog.modialog.ReplaceRuleDialog;
+import com.jack.bookshelf.widget.menu.MoreSettingMenuReadBook;
+import com.jack.bookshelf.widget.menu.SelectMenu;
 import com.jack.bookshelf.widget.page.PageLoader;
 import com.jack.bookshelf.widget.page.PageLoaderNet;
 import com.jack.bookshelf.widget.page.PageView;
 import com.jack.bookshelf.widget.page.TxtChapter;
-import com.jack.bookshelf.widget.menu.MoreSettingMenuReadBook;
-import com.jack.bookshelf.widget.menu.SelectMenu;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -3,9 +3,6 @@ package com.jack.bookshelf.constant
 import android.annotation.SuppressLint
 import android.provider.Settings
 import splitties.init.appCtx
-import java.text.SimpleDateFormat
-import javax.script.ScriptEngine
-import javax.script.ScriptEngineManager
 
 @SuppressLint("SimpleDateFormat")
 object AppConst {

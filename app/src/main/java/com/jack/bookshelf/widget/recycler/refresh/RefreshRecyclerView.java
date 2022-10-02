@@ -2,8 +2,6 @@ package com.jack.bookshelf.widget.recycler.refresh;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -15,7 +13,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.jack.bookshelf.R;
 import com.jack.bookshelf.databinding.ViewRefreshRecyclerViewBinding;
 
 import java.util.Objects;
@@ -27,12 +24,10 @@ import java.util.Objects;
  */
 
 public class RefreshRecyclerView extends FrameLayout {
-
-    private final ViewRefreshRecyclerViewBinding binding = ViewRefreshRecyclerViewBinding.inflate(LayoutInflater.from(getContext()), this, true);
+    private final ViewRefreshRecyclerViewBinding binding = ViewRefreshRecyclerViewBinding
+            .inflate(LayoutInflater.from(getContext()), this, true);
     private View noDataView;
     private View refreshErrorView;
-    private float durTouchX = -1000000;
-    private float durTouchY = -1000000;
     private BaseRefreshListener baseRefreshListener;
     private OnLoadMoreListener loadMoreListener;
 
@@ -42,44 +37,20 @@ public class RefreshRecyclerView extends FrameLayout {
         public boolean onTouch(View v, MotionEvent event) {
             int action = event.getAction();
             switch (action) {
-                case MotionEvent.ACTION_DOWN:
-                    durTouchX = event.getX();
-                    durTouchY = event.getY();
-                    break;
                 case MotionEvent.ACTION_MOVE:
-                    if (durTouchX == -1000000) {
-                        durTouchX = event.getX();
-                    }
-                    if (durTouchY == -1000000)
-                        durTouchY = event.getY();
-
-                    float dY = event.getY() - durTouchY;  // >0 下拉
-                    durTouchY = event.getY();
-                    if (baseRefreshListener != null
-                            && ((RefreshRecyclerViewAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter())).getIsRequesting() == 0
-                            && binding.rpb.getSecondDurProgress() == binding.rpb.getSecondFinalProgress()) {
-                        if (binding.rpb.getVisibility() != View.VISIBLE) {
-                            binding.rpb.setVisibility(View.VISIBLE);
+                    if (baseRefreshListener != null && ((RefreshRecyclerViewAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter())).getIsRequesting() == 0) {
+                        if (binding.tvLoading.getVisibility() != VISIBLE) {
+                            binding.tvLoading.setVisibility(VISIBLE);
                         }
-                        if (binding.recyclerView.getAdapter().getItemCount() > 0) {
-                            if (0 == ((LinearLayoutManager) Objects.requireNonNull(binding.recyclerView.getLayoutManager())).findFirstCompletelyVisibleItemPosition()) {
-                                binding.rpb.setSecondDurProgress((int) (binding.rpb.getSecondDurProgress() + dY));
-                            }
-                        } else {
-                            binding.rpb.setSecondDurProgress((int) (binding.rpb.getSecondDurProgress() + dY));
-                        }
-                        return binding.rpb.getSecondDurProgress() > 0;
                     }
                     break;
                 case MotionEvent.ACTION_UP:
-                    if (baseRefreshListener != null && binding.rpb.getSecondMaxProgress() > 0 && binding.rpb.getSecondDurProgress() > 0) {
-                        if (binding.rpb.getSecondDurProgress() >= binding.rpb.getSecondMaxProgress() && ((RefreshRecyclerViewAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter())).getIsRequesting() == 0) {
+                    if (baseRefreshListener != null) {
+                        if (((RefreshRecyclerViewAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter())).getIsRequesting() == 0) {
                             if (baseRefreshListener instanceof OnRefreshWithProgressListener) {
-                                // 带有进度的
-                                // 执行刷新响应
+                                // 带有进度的，执行刷新响应
                                 ((RefreshRecyclerViewAdapter) binding.recyclerView.getAdapter()).setIsAll(false, false);
                                 ((RefreshRecyclerViewAdapter) binding.recyclerView.getAdapter()).setIsRequesting(1, true);
-                                binding.rpb.setMaxProgress(((OnRefreshWithProgressListener) baseRefreshListener).getMaxProgress());
                                 baseRefreshListener.startRefresh();
                                 if (noDataView != null) {
                                     noDataView.setVisibility(GONE);
@@ -98,15 +69,10 @@ public class RefreshRecyclerView extends FrameLayout {
                                 if (refreshErrorView != null) {
                                     refreshErrorView.setVisibility(GONE);
                                 }
-                                binding.rpb.setIsAutoLoading(true);
+                                binding.tvLoading.setVisibility(VISIBLE);
                             }
-                        } else {
-                            if (((RefreshRecyclerViewAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter())).getIsRequesting() != 1)
-                                binding.rpb.setSecondDurProgressWithAnim(0);
                         }
                     }
-                    durTouchX = -1000000;
-                    durTouchY = -1000000;
                     break;
             }
             return false;
@@ -123,17 +89,6 @@ public class RefreshRecyclerView extends FrameLayout {
 
     public RefreshRecyclerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
-        @SuppressLint("CustomViewStyleable")
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RefreshProgressBar);
-        binding.rpb.setSpeed(a.getDimensionPixelSize(R.styleable.RefreshProgressBar_speed, binding.rpb.getSpeed()));
-        binding.rpb.setMaxProgress(a.getInt(R.styleable.RefreshProgressBar_max_progress, binding.rpb.getMaxProgress()));
-        binding.rpb.setSecondMaxProgress(a.getDimensionPixelSize(R.styleable.RefreshProgressBar_second_max_progress, binding.rpb.getSecondMaxProgress()));
-        binding.rpb.setBgColor(Color.WHITE);
-        binding.rpb.setSecondColor(Color.BLACK);
-        binding.rpb.setFontColor(Color.BLACK);
-        a.recycle();
-
         bindEvent();
     }
 
@@ -175,8 +130,7 @@ public class RefreshRecyclerView extends FrameLayout {
     }
 
     public void refreshError() {
-        binding.rpb.setIsAutoLoading(false);
-        binding.rpb.clean();
+        binding.tvLoading.setVisibility(INVISIBLE);
         ((RefreshRecyclerViewAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter())).setIsRequesting(0, true);
         if (noDataView != null) {
             noDataView.setVisibility(GONE);
@@ -190,11 +144,9 @@ public class RefreshRecyclerView extends FrameLayout {
         if (baseRefreshListener instanceof OnRefreshWithProgressListener) {
             ((RefreshRecyclerViewAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter())).setIsAll(false, false);
             ((RefreshRecyclerViewAdapter) binding.recyclerView.getAdapter()).setIsRequesting(1, false);
-            binding.rpb.setSecondDurProgress(binding.rpb.getSecondMaxProgress());
-            binding.rpb.setMaxProgress(((OnRefreshWithProgressListener) baseRefreshListener).getMaxProgress());
         } else {
             ((RefreshRecyclerViewAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter())).setIsRequesting(1, true);
-            binding.rpb.setIsAutoLoading(true);
+            binding.tvLoading.setVisibility(VISIBLE);
             if (noDataView != null) {
                 noDataView.setVisibility(GONE);
             }
@@ -209,13 +161,12 @@ public class RefreshRecyclerView extends FrameLayout {
     }
 
     public void finishRefresh(Boolean isAll, Boolean needNotify) {
-        binding.rpb.setDurProgress(0);
         if (isAll) {
             ((RefreshRecyclerViewAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter())).setIsRequesting(0, false);
-            binding.rpb.setIsAutoLoading(false);
+            binding.tvLoading.setVisibility(INVISIBLE);
             ((RefreshRecyclerViewAdapter) binding.recyclerView.getAdapter()).setIsAll(true, needNotify);
         } else {
-            binding.rpb.setIsAutoLoading(false);
+            binding.tvLoading.setVisibility(INVISIBLE);
             ((RefreshRecyclerViewAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter())).setIsRequesting(0, needNotify);
         }
 
@@ -242,7 +193,6 @@ public class RefreshRecyclerView extends FrameLayout {
         } else {
             ((RefreshRecyclerViewAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter())).setIsRequesting(0, needNotification);
         }
-
         if (noDataView != null) {
             noDataView.setVisibility(GONE);
         }
@@ -276,8 +226,7 @@ public class RefreshRecyclerView extends FrameLayout {
     }
 
     public void loadMoreError() {
-        binding.rpb.setIsAutoLoading(false);
-        binding.rpb.clean();
+        binding.tvLoading.setVisibility(INVISIBLE);
         ((RefreshRecyclerViewAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter())).setLoadMoreError(true, true);
     }
 
@@ -293,5 +242,4 @@ public class RefreshRecyclerView extends FrameLayout {
             refreshErrorView.setVisibility(GONE);
         }
     }
-
 }

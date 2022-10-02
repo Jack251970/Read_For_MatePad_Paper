@@ -20,7 +20,6 @@ import com.jack.bookshelf.R;
  */
 
 public class RefreshLayout extends FrameLayout {
-
     protected static final int STATUS_LOADING = 0;
     protected static final int STATUS_FINISH = 1;
     protected static final int STATUS_ERROR = 2;

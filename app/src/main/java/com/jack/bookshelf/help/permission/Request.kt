@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import com.jack.bookshelf.R
 import com.jack.bookshelf.widget.dialog.PaperAlertDialog
 import org.jetbrains.anko.startActivity
-import java.util.*
 
 /**
  * Permission Request
