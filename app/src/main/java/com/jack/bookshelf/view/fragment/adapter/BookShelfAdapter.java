@@ -24,5 +24,4 @@ public interface BookShelfAdapter {
     void setItemClickListener(OnItemClickListenerTwo itemClickListener);
 
     HashSet<String> getSelected();
-
 }

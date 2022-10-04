@@ -1010,7 +1010,7 @@ public abstract class PageLoader {
                 tip = mContext.getString(R.string.content_empty);
                 break;
             case CATEGORY_EMPTY:
-                tip = mContext.getString(R.string.chapter_list_empty);
+                tip = mContext.getString(R.string.catalog_empty);
                 break;
             case CHANGE_SOURCE:
                 tip = mContext.getString(R.string.is_changing_source);
@@ -1296,11 +1296,7 @@ public abstract class PageLoader {
     }
 
     /**
-     * --------------------
      * 检测获取按压坐标所在位置的字符，没有的话返回null
-     * --------------------
-     * author: HuangWei
-     * 2017年7月4日上午10:23:19
      */
     TxtChar detectPressTxtChar(float down_X2, float down_Y2) {
         TxtPage txtPage = curChapter().txtChapter.getPage(mCurPagePos);
@@ -1331,28 +1327,24 @@ public abstract class PageLoader {
 
         /**
          * 作用：章节切换的时候进行回调
-         *
          * @param pos:切换章节的序号
          */
         void onChapterChange(int pos);
 
         /**
          * 作用：章节目录加载完成时候回调
-         *
          * @param chapters：返回章节目录
          */
         void onCategoryFinish(List<BookChapterBean> chapters);
 
         /**
          * 作用：章节页码数量改变之后的回调。==> 字体大小的调整，或者是否关闭虚拟按钮功能都会改变页面的数量。
-         *
          * @param count:页面的数量
          */
         void onPageCountChange(int count);
 
         /**
          * 作用：当页面改变的时候回调
-         *
          * @param chapterIndex   章节序号
          * @param pageIndex      页数
          * @param resetReadAloud 是否重置朗读

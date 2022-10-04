@@ -73,7 +73,7 @@ public class UpLastChapterModel {
             e.onComplete();
         }).flatMap(this::findSearchBookBean)
                 .compose(RxUtils::toSimpleSingle)
-                .subscribe(new Observer<SearchBookBean>() {
+                .subscribe(new Observer<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);
@@ -117,7 +117,7 @@ public class UpLastChapterModel {
                     .flatMap(this::saveSearchBookBean)
                     .subscribeOn(scheduler)
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<SearchBookBean>() {
+                    .subscribe(new Observer<>() {
                         @Override
                         public void onSubscribe(Disposable d) {
                             compositeDisposable.add(d);

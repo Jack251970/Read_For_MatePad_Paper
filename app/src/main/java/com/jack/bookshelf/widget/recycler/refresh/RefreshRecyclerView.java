@@ -46,7 +46,7 @@ public class RefreshRecyclerView extends FrameLayout {
                 case MotionEvent.ACTION_UP:
                     if (baseRefreshListener != null) {
                         if (((RefreshRecyclerViewAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter())).getIsRequesting() == 0) {
-                            if (baseRefreshListener instanceof OnRefreshWithProgressListener) {
+                            if (baseRefreshListener != null) {
                                 // 带有进度的，执行刷新响应
                                 ((RefreshRecyclerViewAdapter) binding.recyclerView.getAdapter()).setIsAll(false, false);
                                 ((RefreshRecyclerViewAdapter) binding.recyclerView.getAdapter()).setIsRequesting(1, true);
@@ -136,7 +136,7 @@ public class RefreshRecyclerView extends FrameLayout {
     }
 
     public void startRefresh() {
-        if (baseRefreshListener instanceof OnRefreshWithProgressListener) {
+        if (baseRefreshListener != null) {
             ((RefreshRecyclerViewAdapter) Objects.requireNonNull(binding.recyclerView.getAdapter())).setIsAll(false, false);
             ((RefreshRecyclerViewAdapter) binding.recyclerView.getAdapter()).setIsRequesting(1, false);
         } else {

@@ -3,12 +3,14 @@ package com.jack.bookshelf.web.controller;
 import android.text.TextUtils;
 
 import com.jack.bookshelf.DbHelper;
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BookChapterBean;
 import com.jack.bookshelf.bean.BookContentBean;
 import com.jack.bookshelf.bean.BookShelfBean;
 import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.model.WebBookModel;
 import com.jack.bookshelf.utils.GsonUtils;
+import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.web.utils.ReturnData;
 
 import java.util.List;
@@ -20,7 +22,7 @@ public class BookshelfController {
         List<BookShelfBean> shelfBeans = BookshelfHelp.getAllBook();
         ReturnData returnData = new ReturnData();
         if (shelfBeans.isEmpty()) {
-            return returnData.setErrorMsg("还没有添加小说");
+            return returnData.setErrorMsg(StringUtils.getString(R.string.have_not_add_novel));
         }
         return returnData.setData(shelfBeans);
     }
@@ -29,7 +31,7 @@ public class BookshelfController {
         List<String> strings = parameters.get("url");
         ReturnData returnData = new ReturnData();
         if (strings == null) {
-            return returnData.setErrorMsg("参数url不能为空，请指定书籍地址");
+            return returnData.setErrorMsg(StringUtils.getString(R.string.url_cannot_be_empty_please_specify_book_url));
         }
         List<BookChapterBean> chapterList = BookshelfHelp.getChapterList(strings.get(0));
         return returnData.setData(chapterList);
@@ -39,15 +41,15 @@ public class BookshelfController {
         List<String> strings = parameters.get("url");
         ReturnData returnData = new ReturnData();
         if (strings == null) {
-            return returnData.setErrorMsg("参数url不能为空，请指定内容地址");
+            return returnData.setErrorMsg(StringUtils.getString(R.string.url_cannot_be_empty_please_specify_content_url));
         }
         BookChapterBean chapter = DbHelper.getDaoSession().getBookChapterBeanDao().load(strings.get(0));
         if (chapter == null) {
-            return returnData.setErrorMsg("未找到");
+            return returnData.setErrorMsg(StringUtils.getString(R.string.cannot_find));
         }
         BookShelfBean bookShelfBean = BookshelfHelp.getBook(chapter.getNoteUrl());
         if (bookShelfBean == null) {
-            return returnData.setErrorMsg("未找到");
+            return returnData.setErrorMsg(StringUtils.getString(R.string.cannot_find));
         }
         String content = BookshelfHelp.getChapterCache(bookShelfBean, chapter);
         if (!TextUtils.isEmpty(content)) {
@@ -68,7 +70,6 @@ public class BookshelfController {
             DbHelper.getDaoSession().getBookShelfBeanDao().insertOrReplace(bookShelfBean);
             return returnData.setData("");
         }
-        return returnData.setErrorMsg("格式不对");
+        return returnData.setErrorMsg(StringUtils.getString(R.string.format_error));
     }
-
 }

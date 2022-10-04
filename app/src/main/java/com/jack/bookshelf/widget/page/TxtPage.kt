@@ -6,9 +6,9 @@ package com.jack.bookshelf.widget.page
 
 class TxtPage(val position: Int) {
     var title: String? = null
-    var titleLines: Int = 0 //当前 lines 中为 title 的行数。
+    var titleLines: Int = 0 // 当前 lines 中为 title 的行数。
     private val lines = ArrayList<String>()
-    //存放每个字的位置
+    // 存放每个字的位置
     var txtLists: List<TxtLine>? = null
 
     val content: String

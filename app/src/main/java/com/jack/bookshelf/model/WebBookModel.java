@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 
 import com.hwangjr.rxbus.RxBus;
 import com.jack.bookshelf.DbHelper;
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BaseChapterBean;
 import com.jack.bookshelf.bean.BookChapterBean;
 import com.jack.bookshelf.bean.BookContentBean;
@@ -17,6 +18,7 @@ import com.jack.bookshelf.bean.SearchBookBean;
 import com.jack.bookshelf.constant.RxBusTag;
 import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.model.content.WebBook;
+import com.jack.bookshelf.utils.StringUtils;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -113,7 +115,7 @@ public class WebBookModel {
         return Observable.create(e -> {
             bookContentBean.setNoteUrl(chapterBean.getNoteUrl());
             if (isEmpty(bookContentBean.getDurChapterContent())) {
-                e.onError(new Throwable("下载章节出错"));
+                e.onError(new Throwable(StringUtils.getString(R.string.download_chapter_error)));
             } else if (infoBean.isAudio()) {
                 bookContentBean.setTimeMillis(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(1));
                 DbHelper.getDaoSession().getBookContentBeanDao().insertOrReplace(bookContentBean);
@@ -123,7 +125,7 @@ public class WebBookModel {
                 RxBus.get().post(RxBusTag.CHAPTER_CHANGE, chapterBean);
                 e.onNext(bookContentBean);
             } else {
-                e.onError(new Throwable("保存章节出错"));
+                e.onError(new Throwable(StringUtils.getString(R.string.save_chapter_error)));
             }
             e.onComplete();
         });

@@ -5,6 +5,7 @@ import static com.jack.bookshelf.help.FileHelp.BLANK;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BookChapterBean;
 import com.jack.bookshelf.bean.BookShelfBean;
 import com.jack.bookshelf.databinding.ActivityBookReadBinding;
@@ -14,6 +15,7 @@ import com.jack.bookshelf.utils.EncodingDetect;
 import com.jack.bookshelf.utils.IOUtils;
 import com.jack.bookshelf.utils.MD5Utils;
 import com.jack.bookshelf.utils.RxUtils;
+import com.jack.bookshelf.utils.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -114,7 +116,7 @@ public class PageLoaderText extends PageLoader {
 
     @Override
     public void updateChapter(ActivityBookReadBinding binding, PageLoader mPageLoader) {
-        mPageView.getActivity().toast("目录更新中");
+        mPageView.getActivity().toast(StringUtils.getString(R.string.catalog_updating));
         Single.create((SingleOnSubscribe<List<BookChapterBean>>) e -> {
                     BookshelfHelp.delChapterList(book.getNoteUrl());
                     //获取文件编码
@@ -134,7 +136,7 @@ public class PageLoaderText extends PageLoader {
                     @Override
                     public void onSuccess(List<BookChapterBean> value) {
                         isChapterListPrepare = true;
-                        mPageView.getActivity().toast("更新完成");
+                        mPageView.getActivity().toast(StringUtils.getString(R.string.update_finish));
                         book.setHasUpdate(false);
 
                         // 提示目录加载完成
@@ -160,7 +162,7 @@ public class PageLoaderText extends PageLoader {
 
     @Override
     public void updateChapter() {
-        mPageView.getActivity().toast("目录更新中");
+        mPageView.getActivity().toast(StringUtils.getString(R.string.catalog_updating));
         Single.create((SingleOnSubscribe<List<BookChapterBean>>) e -> {
             BookshelfHelp.delChapterList(book.getNoteUrl());
             //获取文件编码
@@ -180,7 +182,7 @@ public class PageLoaderText extends PageLoader {
                     @Override
                     public void onSuccess(List<BookChapterBean> value) {
                         isChapterListPrepare = true;
-                        mPageView.getActivity().toast("更新完成");
+                        mPageView.getActivity().toast(StringUtils.getString(R.string.update_finish));
                         book.setHasUpdate(false);
 
                         // 提示目录加载完成
@@ -296,7 +298,6 @@ public class PageLoaderText extends PageLoader {
                 while (matcher.find()) {
                     //获取匹配到的字符在字符串中的起始位置
                     int chapterStart = matcher.start();
-
                     //如果 seekPos == 0 && nextChapterPos != 0 表示当前block处前面有一段内容
                     //第一种情况一定是序章 第二种情况可能是上一个章节的内容
                     if (seekPos == 0 && chapterStart != 0) {
@@ -358,7 +359,6 @@ public class PageLoaderText extends PageLoader {
                 int strLength = length;
                 //分章的位置
                 int chapterPos = 0;
-
                 while (strLength > 0) {
                     ++chapterPos;
                     //是否长度超过一章
@@ -373,17 +373,17 @@ public class PageLoaderText extends PageLoader {
                             }
                         }
                         BookChapterBean chapter = new BookChapterBean();
-                        chapter.setDurChapterName("第" + blockPos + "章" + "(" + chapterPos + ")");
+                        chapter.setDurChapterName(String.format(StringUtils.getString(R.string.chapter), blockPos, chapterPos));
                         chapter.setStart(curOffset + chapterOffset + 1);
                         chapter.setEnd(curOffset + end);
                         mChapterList.add(chapter);
-                        //减去已经被分配的长度
+                        // 减去已经被分配的长度
                         strLength = strLength - (end - chapterOffset);
-                        //设置偏移的位置
+                        // 设置偏移的位置
                         chapterOffset = end;
                     } else {
                         BookChapterBean chapter = new BookChapterBean();
-                        chapter.setDurChapterName("第" + blockPos + "章" + "(" + chapterPos + ")");
+                        chapter.setDurChapterName(String.format(StringUtils.getString(R.string.chapter), blockPos, chapterPos));
                         chapter.setStart(curOffset + chapterOffset + 1);
                         chapter.setEnd(curOffset + length);
                         mChapterList.add(chapter);
@@ -391,17 +391,14 @@ public class PageLoaderText extends PageLoader {
                     }
                 }
             }
-
             //block的偏移点
             curOffset += length;
-
             if (hasChapter) {
                 //设置上一章的结尾
                 BookChapterBean lastChapter = mChapterList.get(mChapterList.size() - 1);
                 lastChapter.setEnd(curOffset);
             }
-
-            //当添加的block太多的时候，执行GC
+            // 当添加的block太多的时候，执行GC
             if (blockPos % 15 == 0) {
                 System.gc();
                 System.runFinalization();
@@ -415,11 +412,8 @@ public class PageLoaderText extends PageLoader {
             bean.setDurChapterUrl(MD5Utils.strToMd5By16(mBookFile.getAbsolutePath() + i + bean.getDurChapterName()));
         }
         IOUtils.close(bookStream);
-
         System.gc();
         System.runFinalization();
-
         return mChapterList;
     }
-
 }

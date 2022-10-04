@@ -120,6 +120,7 @@ public class SearchBookAdapter extends RefreshRecyclerViewAdapter {
         this.itemClickListener = itemClickListener;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public synchronized void upData(DataAction action, List<SearchBookBean> newDataS) {
         switch (action) {
             case ADD:

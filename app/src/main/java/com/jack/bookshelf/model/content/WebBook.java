@@ -6,6 +6,7 @@ import static com.jack.bookshelf.constant.AppConstant.SCRIPT_ENGINE;
 
 import android.text.TextUtils;
 
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.BaseModelImpl;
 import com.jack.bookshelf.bean.BaseChapterBean;
 import com.jack.bookshelf.bean.BookChapterBean;
@@ -16,6 +17,7 @@ import com.jack.bookshelf.bean.SearchBookBean;
 import com.jack.bookshelf.help.JsExtensions;
 import com.jack.bookshelf.model.BookSourceManager;
 import com.jack.bookshelf.model.analyzeRule.AnalyzeUrl;
+import com.jack.bookshelf.utils.StringUtils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -76,7 +78,7 @@ public class WebBook extends BaseModelImpl implements JsExtensions {
                     .flatMap(response -> checkLogin(response, url, tag))
                     .flatMap(bookList::analyzeSearchBook);
         } catch (Exception e) {
-            return Observable.error(new Throwable(String.format("%s错误:%s", url, e.getLocalizedMessage())));
+            return Observable.error(new Throwable(url + StringUtils.getString(R.string.error) + ":" + e.getLocalizedMessage()));
         }
     }
 
@@ -126,7 +128,7 @@ public class WebBook extends BaseModelImpl implements JsExtensions {
                     .flatMap(response -> checkLogin(response, bookShelfBean.getNoteUrl(), tag))
                     .flatMap(response -> bookInfo.analyzeBookInfo(response.body(), bookShelfBean));
         } catch (Exception e) {
-            return Observable.error(new Throwable(String.format("url错误:%s", bookShelfBean.getNoteUrl())));
+            return Observable.error(new Throwable("Url" + StringUtils.getString(R.string.error) + ":" + bookShelfBean.getNoteUrl()));
         }
     }
 
@@ -152,7 +154,7 @@ public class WebBook extends BaseModelImpl implements JsExtensions {
                     .flatMap(stringResponse -> checkLogin(stringResponse, bookShelfBean.getBookInfoBean().getChapterUrl(), bookShelfBean.getNoteUrl()))
                     .flatMap(response -> bookChapterList.analyzeChapterList(response.body(), bookShelfBean, headerMap));
         } catch (Exception e) {
-            return Observable.error(new Throwable(String.format("url错误:%s", bookShelfBean.getBookInfoBean().getChapterUrl())));
+            return Observable.error(new Throwable("Url" + StringUtils.getString(R.string.error) + ":" + bookShelfBean.getBookInfoBean().getChapterUrl()));
         }
     }
 
@@ -187,7 +189,7 @@ public class WebBook extends BaseModelImpl implements JsExtensions {
                     bookSourceBean.getHeaderMap(true));
             String contentRule = bookSourceBean.getRuleBookContent();
             if (contentRule.startsWith("$") && !contentRule.startsWith("$.")) {
-                //动态网页第一个js放到webView里执行
+                // 动态网页第一个js放到webView里执行
                 contentRule = contentRule.substring(1);
                 String js = null;
                 Matcher jsMatcher = JS_PATTERN.matcher(contentRule);
@@ -208,7 +210,7 @@ public class WebBook extends BaseModelImpl implements JsExtensions {
                         .flatMap(response -> bookContent.analyzeBookContent(response, chapterBean, nextChapterBean, bookShelfBean, headerMap));
             }
         } catch (Exception e) {
-            return Observable.error(new Throwable(String.format("url错误:%s", e.getLocalizedMessage())));
+            return Observable.error(new Throwable("Url" + StringUtils.getString(R.string.error) + ":" + e.getLocalizedMessage()));
         }
     }
 
@@ -231,10 +233,9 @@ public class WebBook extends BaseModelImpl implements JsExtensions {
         });
     }
 
-    public class NoSourceThrowable extends Throwable {
+    public static class NoSourceThrowable extends Throwable {
         NoSourceThrowable(String tag) {
-            super(String.format("%s没有找到书源配置", tag));
+            super(tag + StringUtils.getString(R.string.have_not_find_book_source_config));
         }
     }
-
 }

@@ -31,7 +31,6 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.MyViewHolder> 
     private boolean showHomeDir = false;//是否显示返回主目录
     private boolean showUpDir = true;//是否显示返回上一级
     private boolean showHideDir = true;//是否显示隐藏的目录（以“.”开头）
-    private int itemHeight = 40;// dp
     private Drawable homeIcon = null;
     private Drawable upIcon = null;
     private Drawable folderIcon = null;
@@ -110,7 +109,7 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.MyViewHolder> 
     }
 
     public void setItemHeight(int itemHeight) {
-        this.itemHeight = itemHeight;
+        // dp
     }
 
     @SuppressLint("NotifyDataSetChanged")

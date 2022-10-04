@@ -114,7 +114,7 @@ public class AnalyzeByJSoup {
                 }
                 if (temp != null && !temp.isEmpty()) {
                     results.add(temp);
-                    if (!results.isEmpty() && elementsType.equals("|")) {
+                    if (elementsType.equals("|")) {
                         break;
                     }
                 }
@@ -426,7 +426,7 @@ public class AnalyzeByJSoup {
         return textS;
     }
 
-    class SourceRule {
+    static class SourceRule {
         boolean isCss = false;
         String elementsRule;
         String replaceRegex = "";
@@ -450,5 +450,4 @@ public class AnalyzeByJSoup {
             }
         }
     }
-
 }

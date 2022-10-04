@@ -1,5 +1,7 @@
 package com.jack.bookshelf.widget.filepicker.entity;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -18,14 +20,15 @@ public class JavaBean implements Serializable {
     /**
      * 反射出所有字段值
      */
+    @NonNull
     @Override
     public String toString() {
-        ArrayList<Field> list = new ArrayList<>();
         Class<?> clazz = getClass();
-        list.addAll(Arrays.asList(clazz.getDeclaredFields()));//得到自身的所有字段
+        ArrayList<Field> list = new ArrayList<>(Arrays.asList(clazz.getDeclaredFields()));//得到自身的所有字段
         StringBuilder sb = new StringBuilder();
         while (clazz != Object.class) {
             clazz = clazz.getSuperclass();//得到继承自父类的字段
+            assert clazz != null;
             Field[] fields = clazz.getDeclaredFields();
             for (Field field : fields) {
                 int modifier = field.getModifiers();

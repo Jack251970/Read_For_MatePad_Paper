@@ -1,5 +1,6 @@
 package com.jack.bookshelf.view.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ public class SearchBookshelfAdapter extends RecyclerView.Adapter<SearchBookshelf
         this.callBack = callBack;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setItems(List<BookInfoBean> beans) {
         this.beans.clear();
         this.beans.addAll(beans);

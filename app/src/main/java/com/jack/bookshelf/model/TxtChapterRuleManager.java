@@ -15,15 +15,13 @@ import java.util.List;
 public class TxtChapterRuleManager {
 
     public static List<TxtChapterRuleBean> getAll() {
-        List<TxtChapterRuleBean> beans = DbHelper.getDaoSession().getTxtChapterRuleBeanDao().loadAll();
-        return beans;
+        return DbHelper.getDaoSession().getTxtChapterRuleBeanDao().loadAll();
     }
 
     public static List<TxtChapterRuleBean> getEnabled() {
-        List<TxtChapterRuleBean> beans = DbHelper.getDaoSession().getTxtChapterRuleBeanDao().queryBuilder()
+        return DbHelper.getDaoSession().getTxtChapterRuleBeanDao().queryBuilder()
                 .where(TxtChapterRuleBeanDao.Properties.Enable.eq(true))
                 .list();
-        return beans;
     }
 
     public static List<String> enabledRuleList() {

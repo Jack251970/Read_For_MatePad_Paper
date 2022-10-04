@@ -283,7 +283,7 @@ public class BookDetailActivity extends MBaseActivity<BookDetailContract.Present
             }
             finish();
         });
-        binding.tvToc.setOnClickListener(v -> ChapterListActivity.startThis(this, mPresenter.getBookShelf(), mPresenter.getChapterList()));
+        binding.tvToc.setOnClickListener(v -> CatalogActivity.startThis(this, mPresenter.getBookShelf(), mPresenter.getChapterList()));
         binding.tvChangeOrigin.setOnClickListener(view ->
                 ChangeSourceDialog.builder(BookDetailActivity.this, mPresenter.getBookShelf())
                         .setCallback(searchBookBean -> {

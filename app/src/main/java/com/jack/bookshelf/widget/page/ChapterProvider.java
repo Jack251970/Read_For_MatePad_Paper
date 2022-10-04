@@ -5,9 +5,11 @@ import android.text.StaticLayout;
 
 import androidx.annotation.NonNull;
 
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BookChapterBean;
 import com.jack.bookshelf.help.ChapterContentHelp;
 import com.jack.bookshelf.utils.NetworkUtils;
+import com.jack.bookshelf.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +29,7 @@ class ChapterProvider {
         if (!isPrepare || pageLoader.noChapterData(chapter)) {
             if (pageLoader instanceof PageLoaderNet && !NetworkUtils.isNetWorkAvailable()) {
                 txtChapter.setStatus(TxtChapter.Status.ERROR);
-                txtChapter.setMsg("网络连接不可用");
+                txtChapter.setMsg(StringUtils.getString(R.string.network_connection_unavailable));
             }
             return txtChapter;
         }
@@ -36,12 +38,12 @@ class ChapterProvider {
             content = pageLoader.getChapterContent(chapter);
         } catch (Exception e) {
             txtChapter.setStatus(TxtChapter.Status.ERROR);
-            txtChapter.setMsg("读取内容出错\n" + e.getLocalizedMessage());
+            txtChapter.setMsg(StringUtils.getString(R.string.read_content_error) + e.getLocalizedMessage());
             return txtChapter;
         }
         if (content == null) {
             txtChapter.setStatus(TxtChapter.Status.ERROR);
-            txtChapter.setMsg("缓存文件不存在");
+            txtChapter.setMsg(StringUtils.getString(R.string.cache_file_do_not_exist));
             return txtChapter;
         }
         return loadPageList(chapter, content);
@@ -49,7 +51,6 @@ class ChapterProvider {
 
     /**
      * 将章节数据，解析成页面列表
-     *
      * @param chapter：章节信息
      * @param content：章节的文本
      */
@@ -70,18 +71,9 @@ class ChapterProvider {
             return txtChapter;
         }
         content = contentHelper.replaceContent(pageLoader.book.getBookInfoBean().getName(), pageLoader.book.getTag(), content, pageLoader.book.getReplaceEnable());
-
-//        Log.i("chapterName",chapter.getDurChapterName());
-//      方便debug
-//        if(chapter.getDurChapterName().matches(".*幽魂.*"))
-        {
-//               Log.i("content",content);
-
-        content = ChapterContentHelp.LightNovelParagraph2(content,chapter.getDurChapterName());
-        }
         String[] allLine = content.split("\n");
         List<String> lines = new ArrayList<>();
-        List<TxtLine> txtLists = new ArrayList<>(); //记录每个字的位置
+        List<TxtLine> txtLists = new ArrayList<>(); // 记录每个字的位置
         int rHeight = pageLoader.mVisibleHeight - pageLoader.contentMarginHeight * 2;
         int titleLinesCount = 0;
         boolean ifShowTitle = true;
@@ -156,13 +148,13 @@ class ChapterProvider {
                         }
                         TxtChar txtChar = new TxtChar();
                         txtChar.setChardata(c);
-                        txtChar.setCharWidth(charWidth);//字宽
-                        txtChar.setIndex(66);//每页每个字的位置
+                        txtChar.setCharWidth(charWidth);    // 字宽
+                        txtChar.setIndex(66);   // 每页每个字的位置
                         Objects.requireNonNull(txtList.getCharsData()).add(txtChar);
                     }
                     txtLists.add(txtList);
-                    //end pzl
-                    //设置段落间距
+                    // end pzl
+                    // 设置段落间距
                     if (ifShowTitle) {
                         titleLinesCount += 1;
                         rHeight -= pageLoader.mTitleInterval;
@@ -202,7 +194,7 @@ class ChapterProvider {
             txtChapter.setStatus(TxtChapter.Status.FINISH);
         } else {
             txtChapter.setStatus(TxtChapter.Status.ERROR);
-            txtChapter.setMsg("未加载到内容");
+            txtChapter.setMsg(StringUtils.getString(R.string.cannot_load_content));
         }
         return txtChapter;
     }

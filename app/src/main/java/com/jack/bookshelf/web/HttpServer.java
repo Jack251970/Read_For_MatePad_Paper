@@ -19,7 +19,6 @@ public class HttpServer extends NanoHTTPD {
         super(port);
     }
 
-
     @Override
     public Response serve(IHTTPSession session) {
         ReturnData returnData = null;
@@ -32,14 +31,11 @@ public class HttpServer extends NanoHTTPD {
                     response.addHeader("Access-Control-Allow-Methods", "POST");
                     response.addHeader("Access-Control-Allow-Headers", "content-type");
                     response.addHeader("Access-Control-Allow-Origin", session.getHeaders().get("origin"));
-                    //response.addHeader("Access-Control-Max-Age", "3600");
                     return response;
-
                 case "POST":
                     Map<String, String> files = new HashMap<>();
                     session.parseBody(files);
                     String postData = files.get("postData");
-
                     switch (uri) {
                         case "/saveSource":
                             returnData = new SourceController().saveSource(postData);
@@ -54,7 +50,6 @@ public class HttpServer extends NanoHTTPD {
                             returnData = new SourceController().deleteSources(postData);
                     }
                     break;
-
                 case "GET":
                     Map<String, List<String>> parameters = session.getParameters();
 
@@ -93,5 +88,4 @@ public class HttpServer extends NanoHTTPD {
             return newFixedLengthResponse(e.getMessage());
         }
     }
-
 }

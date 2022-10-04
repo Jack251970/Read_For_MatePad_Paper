@@ -56,21 +56,6 @@ public abstract class BaseFileFragment extends MBaseFragment<IPresenter> {
         return mAdapter.getCheckableCount();
     }
 
-    // 删除选中的文件
-    public void deleteCheckedFiles() {
-        //删除选中的文件
-        List<File> files = getCheckedFiles();
-        //删除显示的文件列表
-        mAdapter.removeItems(files);
-        //删除选中的文件
-        for (File file : files) {
-            if (file.exists()) {
-                //noinspection ResultOfMethodCallIgnored
-                file.delete();
-            }
-        }
-    }
-
     // 设置文件点击监听事件
     public void setOnFileCheckedListener(OnFileCheckedListener listener) {
         mListener = listener;

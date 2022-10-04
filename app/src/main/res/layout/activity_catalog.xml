@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:ignore="ContentDescription, UseCompoundDrawables"
-    tools:context="com.jack.bookshelf.view.activity.ChapterListActivity">
+    tools:context="com.jack.bookshelf.view.activity.CatalogActivity">
     <!-- 整体分块 -->
     <View
         android:id="@+id/action_bar"

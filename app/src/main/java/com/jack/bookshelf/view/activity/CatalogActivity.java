@@ -21,7 +21,7 @@ import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.BaseViewPagerActivity;
 import com.jack.bookshelf.bean.BookChapterBean;
 import com.jack.bookshelf.bean.BookShelfBean;
-import com.jack.bookshelf.databinding.ActivityChapterListBinding;
+import com.jack.bookshelf.databinding.ActivityCatalogBinding;
 import com.jack.bookshelf.help.ReadBookControl;
 import com.jack.bookshelf.view.fragment.BookmarkFragment;
 import com.jack.bookshelf.view.fragment.ChapterListFragment;
@@ -30,20 +30,20 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Chapter List Page & Bookmark List Page
+ * Catalog Page & Bookmark List Page
  * Adapt to Huawei MatePad Paper
  * Edited by Jack251970
  */
 
-public class ChapterListActivity extends BaseViewPagerActivity<IPresenter> {
-    private ActivityChapterListBinding binding;
+public class CatalogActivity extends BaseViewPagerActivity<IPresenter> {
+    private ActivityCatalogBinding binding;
     SearchView.SearchAutoComplete mSearchAutoComplete;
     private final ReadBookControl readBookControl = ReadBookControl.getInstance();
     private BookShelfBean bookShelf;
     private List<BookChapterBean> chapterBeanList;
 
     public static void startThis(Activity activity, BookShelfBean bookShelf, List<BookChapterBean> chapterBeanList) {
-        Intent intent = new Intent(activity, ChapterListActivity.class);
+        Intent intent = new Intent(activity, CatalogActivity.class);
         String key = String.valueOf(System.currentTimeMillis());
         String bookKey = "book" + key;
         intent.putExtra("bookKey", bookKey);
@@ -88,7 +88,7 @@ public class ChapterListActivity extends BaseViewPagerActivity<IPresenter> {
 
     @Override
     protected void onCreateActivity() {
-        binding = ActivityChapterListBinding.inflate(getLayoutInflater());
+        binding = ActivityCatalogBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
     }
 

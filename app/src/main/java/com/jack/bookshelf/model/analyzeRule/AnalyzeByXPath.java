@@ -122,9 +122,6 @@ public class AnalyzeByXPath {
                 jxNodes = jxDocument.selN(xPath);
             }
             for (JXNode jxNode : jxNodes) {
-                /*if(jxNode.isString()){
-                    result.add(String.valueOf(jxNode));
-                }*/
                 result.add(String.valueOf(jxNode));
             }
             return result;

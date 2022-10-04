@@ -24,8 +24,6 @@ public class ReadLongPressPop extends FrameLayout {
     private final PopReadLongPressBinding binding = PopReadLongPressBinding
             .inflate(LayoutInflater.from(getContext()), this, true);
     private OnBtnClickListener clickListener;
-    // private ReadBookActivity activity;
-    // private final ReadBookControl readBookControl = ReadBookControl.getInstance();
 
     public ReadLongPressPop(Context context) {
         super(context);
@@ -56,7 +54,6 @@ public class ReadLongPressPop extends FrameLayout {
     }
 
     public void setListener(@NonNull OnBtnClickListener clickListener) {
-        // this.activity = readBookActivity;
         this.clickListener = clickListener;
         initData();
         bindEvent();

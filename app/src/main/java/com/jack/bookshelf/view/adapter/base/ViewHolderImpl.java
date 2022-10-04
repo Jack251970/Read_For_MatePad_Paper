@@ -16,7 +16,6 @@ public abstract class ViewHolderImpl<T> implements IViewHolder<T> {
     /****************************************************/
     protected abstract int getItemLayoutId();
 
-
     @Override
     public View createItemView(ViewGroup parent) {
         view = LayoutInflater.from(parent.getContext())

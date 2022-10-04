@@ -39,7 +39,7 @@ public class AnalyzeNextUrlTask {
                         bookChapterList.analyzeChapterList(stringResponse.body(), bookShelfBean, headerMap))
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
-                .subscribe(new MyObserver<List<BookChapterBean>>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         callback.addDisposable(d);

@@ -37,7 +37,7 @@ public class StrokeTextView extends AppCompatTextView {
 
     @SuppressLint("Recycle")
     private void init(Context context, AttributeSet attrs) {
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PaperStrokeTextView);
+        @SuppressLint("CustomViewStyleable") TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PaperStrokeTextView);
         setBackground(Selector.shapeBuild()
                 .setCornerRadius(a.getDimensionPixelSize(R.styleable.PaperStrokeTextView_cornerRadius, 1))
                 .setStrokeWidth(ScreenUtils.dpToPx(2))

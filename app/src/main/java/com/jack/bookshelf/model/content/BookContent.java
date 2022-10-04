@@ -59,7 +59,7 @@ class BookContent {
             if (TextUtils.isEmpty(baseUrl)) {
                 baseUrl = NetworkUtils.getAbsoluteURL(bookShelfBean.getBookInfoBean().getChapterUrl(), chapterBean.getDurChapterUrl());
             }
-            Debug.printLog(tag, "┌成功获取正文页");
+            Debug.printLog(tag, StringUtils.getString(R.string.get_text_page_success));
             Debug.printLog(tag, "└" + baseUrl);
             BookContentBean bookContentBean = new BookContentBean();
             bookContentBean.setDurChapterIndex(chapterBean.getDurChapterIndex());
@@ -127,7 +127,7 @@ class BookContent {
         WebContentBean webContentBean = new WebContentBean();
 
         analyzer.setContent(s, NetworkUtils.getAbsoluteURL(baseUrl, chapterUrl));
-        Debug.printLog(tag, 1, "┌解析正文内容");
+        Debug.printLog(tag, 1, StringUtils.getString(R.string.parse_text_content));
         if (ruleBookContent.equals("all") || ruleBookContent.contains("@all")) {
             webContentBean.content = analyzer.getString(ruleBookContent);
         }
@@ -137,7 +137,7 @@ class BookContent {
         Debug.printLog(tag, 1, "└" + webContentBean.content);
         String nextUrlRule = bookSourceBean.getRuleContentUrlNext();
         if (!TextUtils.isEmpty(nextUrlRule)) {
-            Debug.printLog(tag, 1, "┌解析下一页url");
+            Debug.printLog(tag, 1, StringUtils.getString(R.string.parse_next_page_url));
             webContentBean.nextUrl = analyzer.getString(nextUrlRule, true);
             Debug.printLog(tag, 1, "└" + webContentBean.nextUrl);
         }

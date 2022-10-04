@@ -3,6 +3,7 @@ package com.jack.bookshelf.widget.page;
 import android.annotation.SuppressLint;
 import android.view.View;
 
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.observer.MyObserver;
 import com.jack.bookshelf.bean.BookChapterBean;
 import com.jack.bookshelf.bean.BookContentBean;
@@ -13,6 +14,7 @@ import com.jack.bookshelf.model.WebBookModel;
 import com.jack.bookshelf.model.content.WebBook;
 import com.jack.bookshelf.utils.NetworkUtils;
 import com.jack.bookshelf.utils.RxUtils;
+import com.jack.bookshelf.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -228,7 +230,7 @@ public class PageLoaderNet extends PageLoader {
 
     @Override
     public void updateChapter(ActivityBookReadBinding binding, PageLoader mPageLoader) {
-        mPageView.getActivity().toast("目录更新中");
+        mPageView.getActivity().toast(StringUtils.getString(R.string.catalog_updating));
         WebBookModel.getInstance().getChapterList(book)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -241,12 +243,11 @@ public class PageLoaderNet extends PageLoader {
                     @Override
                     public void onNext(List<BookChapterBean> chapterBeanList) {
                         isChapterListPrepare = true;
-
                         if (chapterBeanList.size() > callback.getChapterList().size()) {
-                            mPageView.getActivity().toast("更新完成，有新章节");
+                            mPageView.getActivity().toast(StringUtils.getString(R.string.update_finish_with_new_chapter));
                             callback.onCategoryFinish(chapterBeanList);
                         } else {
-                            mPageView.getActivity().toast("更新完成，无新章节");
+                            mPageView.getActivity().toast(StringUtils.getString(R.string.update_finish_without_new_chapter));
                         }
                         // 加载并显示当前章节
                         skipToChapter(book.getDurChapter(), book.getDurChapterPage());
@@ -268,7 +269,7 @@ public class PageLoaderNet extends PageLoader {
 
     @Override
     public void updateChapter() {
-        mPageView.getActivity().toast("目录更新中");
+        mPageView.getActivity().toast(StringUtils.getString(R.string.catalog_updating));
         WebBookModel.getInstance().getChapterList(book)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -281,14 +282,12 @@ public class PageLoaderNet extends PageLoader {
                     @Override
                     public void onNext(List<BookChapterBean> chapterBeanList) {
                         isChapterListPrepare = true;
-
                         if (chapterBeanList.size() > callback.getChapterList().size()) {
-                            mPageView.getActivity().toast("更新完成,有新章节");
+                            mPageView.getActivity().toast(StringUtils.getString(R.string.update_finish_with_new_chapter));
                             callback.onCategoryFinish(chapterBeanList);
                         } else {
-                            mPageView.getActivity().toast("更新完成,无新章节");
+                            mPageView.getActivity().toast(StringUtils.getString(R.string.update_finish_without_new_chapter));
                         }
-
                         // 加载并显示当前章节
                         skipToChapter(book.getDurChapter(), book.getDurChapterPage());
                     }

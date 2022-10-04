@@ -64,7 +64,7 @@ public abstract class DownloadTaskImpl implements IDownloadTask {
             emitter.onNext(downloadBook);
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<DownloadBookBean>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         disposables.add(d);
@@ -202,7 +202,7 @@ public abstract class DownloadTaskImpl implements IDownloadTask {
                 })
                 .subscribeOn(scheduler)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MyObserver<BookContentBean>() {
+                .subscribe(new MyObserver<>() {
 
                     @Override
                     public void onSubscribe(Disposable d) {

@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 
 import com.hwangjr.rxbus.RxBus;
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BookChapterBean;
 import com.jack.bookshelf.bean.BookContentBean;
 import com.jack.bookshelf.bean.BookShelfBean;
@@ -76,7 +77,7 @@ public class Debug {
         SOURCE_DEBUG_TAG = tag;
         this.compositeDisposable = compositeDisposable;
         if (NetworkUtils.isUrl(key)) {
-            printLog(String.format("%s %s", getDoTime(), "⇒开始访问详情页:" + key));
+            printLog(String.format("%s %s", getDoTime(), StringUtils.getString(R.string.start_visit_info_page) + key));
             BookShelfBean bookShelfBean = new BookShelfBean();
             bookShelfBean.setTag(Debug.SOURCE_DEBUG_TAG);
             bookShelfBean.setNoteUrl(key);
@@ -87,19 +88,19 @@ public class Debug {
             bookInfoDebug(bookShelfBean);
         } else if (key.contains("::")) {
             String url = key.substring(key.indexOf("::") + 2);
-            printLog(String.format("%s %s", getDoTime(), "⇒开始访问发现页:" + url));
+            printLog(String.format("%s %s", getDoTime(), StringUtils.getString(R.string.start_visit_find_page) + url));
             findDebug(url);
         } else {
-            printLog(String.format("%s %s", getDoTime(), "⇒开始搜索关键字:" + key));
+            printLog(String.format("%s %s", getDoTime(), StringUtils.getString(R.string.start_search_key_word) + key));
             searchDebug(key);
         }
     }
 
     private void findDebug(String url) {
-        printLog(String.format("\n%s ≡开始获取发现页", getDoTime()));
+        printLog(String.format(StringUtils.getString(R.string.start_get_find_page), getDoTime()));
         WebBookModel.getInstance().findBook(url, 1, Debug.SOURCE_DEBUG_TAG)
                 .compose(RxUtils::toSimpleSingle)
-                .subscribe(new Observer<List<SearchBookBean>>() {
+                .subscribe(new Observer<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);
@@ -127,10 +128,10 @@ public class Debug {
     }
 
     private void searchDebug(String key) {
-        printLog(String.format("\n%s ≡开始获取搜索页", getDoTime()));
+        printLog(String.format(StringUtils.getString(R.string.start_get_search_page), getDoTime()));
         WebBookModel.getInstance().searchBook(key, 1, Debug.SOURCE_DEBUG_TAG)
                 .compose(RxUtils::toSimpleSingle)
-                .subscribe(new Observer<List<SearchBookBean>>() {
+                .subscribe(new Observer<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);
@@ -158,10 +159,10 @@ public class Debug {
     }
 
     private void bookInfoDebug(BookShelfBean bookShelfBean) {
-        printLog(String.format("\n%s ≡开始获取详情页", getDoTime()));
+        printLog(String.format(StringUtils.getString(R.string.start_get_info_page), getDoTime()));
         WebBookModel.getInstance().getBookInfo(bookShelfBean)
                 .compose(RxUtils::toSimpleSingle)
-                .subscribe(new Observer<BookShelfBean>() {
+                .subscribe(new Observer<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);
@@ -185,7 +186,7 @@ public class Debug {
     }
 
     private void bookChapterListDebug(BookShelfBean bookShelfBean) {
-        printLog(String.format("\n%s ≡开始获取目录页", getDoTime()));
+        printLog(String.format(StringUtils.getString(R.string.start_get_catalog_page), getDoTime()));
         WebBookModel.getInstance().getChapterList(bookShelfBean)
                 .compose(RxUtils::toSimpleSingle)
                 .subscribe(new Observer<>() {
@@ -201,7 +202,7 @@ public class Debug {
                             BookChapterBean nextChapter = chapterBeanList.size() > 2 ? chapterBeanList.get(1) : null;
                             bookContentDebug(bookShelfBean, chapterBeanList.get(0), nextChapter);
                         } else {
-                            printError("获取到的目录为空");
+                            printError(StringUtils.getString(R.string.catalog_found_is_empty));
                         }
                     }
 
@@ -218,10 +219,10 @@ public class Debug {
     }
 
     private void bookContentDebug(BookShelfBean bookShelfBean, BookChapterBean bookChapterBean, BookChapterBean nextChapterBean) {
-        printLog(String.format("\n%s ≡开始获取正文页", getDoTime()));
+        printLog(String.format(StringUtils.getString(R.string.start_get_text_page), getDoTime()));
         WebBookModel.getInstance().getBookContent(bookShelfBean, bookChapterBean, nextChapterBean)
                 .compose(RxUtils::toSimpleSingle)
-                .subscribe(new Observer<BookContentBean>() {
+                .subscribe(new Observer<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);

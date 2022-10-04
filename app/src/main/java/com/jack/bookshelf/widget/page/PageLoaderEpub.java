@@ -2,6 +2,7 @@ package com.jack.bookshelf.widget.page;
 
 import android.text.TextUtils;
 
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.observer.MyObserver;
 import com.jack.bookshelf.bean.BookChapterBean;
 import com.jack.bookshelf.bean.BookShelfBean;
@@ -67,7 +68,7 @@ public class PageLoaderEpub extends PageLoader {
             epubBook = readBook(bookFile);
 
             if (epubBook == null) {
-                e.onError(new Exception("文件解析失败"));
+                e.onError(new Exception(StringUtils.getString(R.string.parse_file_error)));
                 return;
             }
             if (TextUtils.isEmpty(book.getBookInfoBean().getCharset())) {
@@ -150,7 +151,7 @@ public class PageLoaderEpub extends PageLoader {
                 bean.setNoteUrl(bean.getNoteUrl());
                 bean.setDurChapterUrl(resource.getHref());
                 if (i == 0 && title.isEmpty()) {
-                    bean.setDurChapterName("封面");
+                    bean.setDurChapterName(StringUtils.getString(R.string.cover));
                 } else {
                     bean.setDurChapterName(title);
                 }
@@ -246,7 +247,7 @@ public class PageLoaderEpub extends PageLoader {
 
     @Override
     public void updateChapter() {
-        mPageView.getActivity().toast("目录更新中");
+        mPageView.getActivity().toast(StringUtils.getString(R.string.catalog_updating));
         Observable.create((ObservableOnSubscribe<BookShelfBean>) e -> {
             if (TextUtils.isEmpty(book.getBookInfoBean().getCharset())) {
                 book.getBookInfoBean().setCharset("UTF-8");
@@ -267,7 +268,7 @@ public class PageLoaderEpub extends PageLoader {
 
                     @Override
                     public void onNext(BookShelfBean bookShelfBean) {
-                        mPageView.getActivity().toast("更新完成");
+                        mPageView.getActivity().toast(StringUtils.getString(R.string.update_finish));
                         isChapterListPrepare = true;
                         // 加载并显示当前章节
                         skipToChapter(bookShelfBean.getDurChapter(), bookShelfBean.getDurChapterPage());

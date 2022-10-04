@@ -1,5 +1,6 @@
 package com.jack.bookshelf.view.adapter;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,6 +55,7 @@ public class ReplaceRuleAdapter extends RecyclerView.Adapter<ReplaceRuleAdapter.
         return itemTouchCallbackListener;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void resetDataS(List<ReplaceRuleBean> dataList) {
         this.data.clear();
         this.data.addAll(dataList);
@@ -73,6 +75,7 @@ public class ReplaceRuleAdapter extends RecyclerView.Adapter<ReplaceRuleAdapter.
         return new MyViewHolder(view);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.itemView.setBackgroundColor(Color.WHITE);

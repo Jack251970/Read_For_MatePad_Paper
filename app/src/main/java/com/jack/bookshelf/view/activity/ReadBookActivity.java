@@ -373,7 +373,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
      * 初始化播放界面
      */
     private void initMediaPlayer() {
-        binding.mediaPlayerPop.setIvChapterClickListener(v -> ChapterListActivity.startThis(ReadBookActivity.this, mPresenter.getBookShelf(), mPresenter.getChapterList()));
+        binding.mediaPlayerPop.setIvChapterClickListener(v -> CatalogActivity.startThis(ReadBookActivity.this, mPresenter.getBookShelf(), mPresenter.getChapterList()));
         binding.mediaPlayerPop.setIvTimerClickListener(v -> ReadAloudService.setTimer(getContext(), 10));
         binding.mediaPlayerPop.setLlCoverBgClickListener(v -> {
             binding.clMenu.setVisibility(View.VISIBLE);
@@ -439,7 +439,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                 if (!mPresenter.getChapterList().isEmpty()) {
                     /*mHandler.postDelayed(() -> chapterBookmarkIn(), 0);*/
                     mHandler.postDelayed(() ->
-                            ChapterListActivity.startThis(ReadBookActivity.this,
+                            CatalogActivity.startThis(ReadBookActivity.this,
                                     mPresenter.getBookShelf(),
                                     mPresenter.getChapterList()), 0);
                 }
@@ -977,7 +977,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                             else
                                 spacer = "|" + Pattern.quote(name.trim());
                     String rule = "(\\s*\n\\s*" + spacer + ")";
-                    selectString = ReplaceRuleManager.formateAdRule(
+                    selectString = ReplaceRuleManager.formatAdRule(
                             selectString.replaceAll(rule, "\n")
                     );
 

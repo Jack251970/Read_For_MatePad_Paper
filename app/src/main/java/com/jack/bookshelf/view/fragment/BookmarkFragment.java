@@ -21,7 +21,7 @@ import com.jack.bookshelf.constant.RxBusTag;
 import com.jack.bookshelf.databinding.FragmentBookmarkListBinding;
 import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.utils.RxUtils;
-import com.jack.bookshelf.view.activity.ChapterListActivity;
+import com.jack.bookshelf.view.activity.CatalogActivity;
 import com.jack.bookshelf.view.fragment.adapter.BookmarkAdapter;
 import com.jack.bookshelf.widget.dialog.modialog.BookmarkDialog;
 
@@ -167,8 +167,8 @@ public class BookmarkFragment extends MBaseFragment<IPresenter> {
                 }).show();
     }
 
-    private ChapterListActivity getFatherActivity() {
-        return (ChapterListActivity) getActivity();
+    private CatalogActivity getFatherActivity() {
+        return (CatalogActivity) getActivity();
     }
 
     /*private ReadChapterBookmarkPop getFatherView() {

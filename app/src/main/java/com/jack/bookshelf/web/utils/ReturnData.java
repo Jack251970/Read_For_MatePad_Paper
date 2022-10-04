@@ -1,6 +1,9 @@
 package com.jack.bookshelf.web.utils;
 
 
+import com.jack.bookshelf.R;
+import com.jack.bookshelf.utils.StringUtils;
+
 public class ReturnData {
 
     private boolean isSuccess;
@@ -13,7 +16,7 @@ public class ReturnData {
 
     public ReturnData() {
         this.isSuccess = false;
-        this.errorMsg = "未知错误,请联系开发者!";
+        this.errorMsg = StringUtils.getString(R.string.unknown_error_please_contact_developer);
     }
 
     public boolean isSuccess() {

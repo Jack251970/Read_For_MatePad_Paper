@@ -2,9 +2,9 @@ package com.jack.bookshelf.model.analyzeRule;
 
 import static android.text.TextUtils.isEmpty;
 
-import android.os.Build;
 import android.text.TextUtils;
 
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BookInfoBean;
 import com.jack.bookshelf.bean.BookShelfBean;
 import com.jack.bookshelf.bean.BookSourceBean;
@@ -22,16 +22,15 @@ import java.util.regex.Pattern;
 public class AnalyzeByRegex {
 
     // 纯java模式正则表达式获取书籍详情信息
-    public static void getInfoOfRegex(String res, String[] regs, int index,
-                                      BookShelfBean bookShelfBean, AnalyzeRule analyzer, BookSourceBean bookSourceBean, String tag) throws Exception {
+    public static void getInfoOfRegex(String res, String[] regs, int index, BookShelfBean bookShelfBean, AnalyzeRule analyzer, BookSourceBean bookSourceBean, String tag) {
         Matcher resM = Pattern.compile(regs[index]).matcher(res);
         String baseUrl = bookShelfBean.getNoteUrl();
         // 创建详情信息存储容器
         BookInfoBean bookInfoBean = bookShelfBean.getBookInfoBean();
         // 判断规则是否有效,当搜索列表规则无效时跳过详情页处理
         if (!resM.find()) {
-            Debug.printLog(tag, "└详情预处理失败,跳过详情页解析");
-            Debug.printLog(tag, "┌获取目录网址");
+            Debug.printLog(tag, StringUtils.getString(R.string.fail_to_preprocess_info_skip_parsing_info_page));
+            Debug.printLog(tag, StringUtils.getString(R.string.get_catalog_url));
             bookInfoBean.setChapterUrl(baseUrl);
             bookInfoBean.setChapterListHtml(res);
             Debug.printLog(tag, "└" + baseUrl);
@@ -56,7 +55,7 @@ public class AnalyzeByRegex {
             for (String key : ruleMap.keySet()) {
                 String val = ruleMap.get(key);
                 ruleName.add(key);
-                hasVarParams.add(!TextUtils.isEmpty(val) && (val.contains("@put") || val.contains("@get")));
+                hasVarParams.add(!TextUtils.isEmpty(val) && (Objects.requireNonNull(val).contains("@put") || val.contains("@get")));
                 List<String> ruleParam = new ArrayList<>();
                 List<Integer> ruleType = new ArrayList<>();
                 AnalyzeByRegex.splitRegexRule(val, ruleParam, ruleType);
@@ -74,7 +73,7 @@ public class AnalyzeByRegex {
                     int regType = ruleType.get(j);
                     if (regType > 0) {
                         infoVal.insert(0, resM.group(regType));
-                    } else if (regType < 0 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    } else if (regType < 0) {
                         infoVal.insert(0, resM.group(ruleParam.get(j)));
                     } else {
                         infoVal.insert(0, ruleParam.get(j));
@@ -96,20 +95,20 @@ public class AnalyzeByRegex {
             //如果目录页和详情页相同,暂存页面内容供获取目录用
             if (bookInfoBean.getChapterUrl().equals(baseUrl)) bookInfoBean.setChapterListHtml(res);
             // 输出调试信息
-            Debug.printLog(tag, "└详情预处理完成");
-            Debug.printLog(tag, "┌获取书籍名称");
+            Debug.printLog(tag, StringUtils.getString(R.string.preprocess_info_success));
+            Debug.printLog(tag, StringUtils.getString(R.string.get_book_name));
             Debug.printLog(tag, "└" + bookInfoBean.getName());
-            Debug.printLog(tag, "┌获取作者名称");
+            Debug.printLog(tag, StringUtils.getString(R.string.get_book_author));
             Debug.printLog(tag, "└" + bookInfoBean.getAuthor());
-            Debug.printLog(tag, "┌获取最新章节");
+            Debug.printLog(tag, StringUtils.getString(R.string.get_latest_chapter));
             Debug.printLog(tag, "└" + bookShelfBean.getLastChapterName());
-            Debug.printLog(tag, "┌获取简介内容");
+            Debug.printLog(tag, StringUtils.getString(R.string.get_book_introduction));
             Debug.printLog(tag, 1, "└" + bookInfoBean.getIntroduce(), true, true);
-            Debug.printLog(tag, "┌获取封面网址");
+            Debug.printLog(tag, StringUtils.getString(R.string.get_cover_url));
             Debug.printLog(tag, "└" + bookInfoBean.getCoverUrl());
-            Debug.printLog(tag, "┌获取目录网址");
+            Debug.printLog(tag, StringUtils.getString(R.string.get_cover_url));
             Debug.printLog(tag, "└" + bookInfoBean.getChapterUrl());
-            Debug.printLog(tag, "-详情页解析完成");
+            Debug.printLog(tag, StringUtils.getString(R.string.preprocess_info_success));
         } else {
             StringBuilder result = new StringBuilder();
             do {
@@ -120,8 +119,7 @@ public class AnalyzeByRegex {
     }
 
     // 正则表达式解析规则数据的通用方法(暂未使用,技术储备型代码)
-    public static void getInfoByRegex(String res, String[] regList, int regIndex,
-                                      HashMap<String, String> ruleMap, final List<HashMap<String, String>> ruleVals) throws Exception {
+    public static void getInfoByRegex(String res, String[] regList, int regIndex, HashMap<String, String> ruleMap, final List<HashMap<String, String>> ruleValue) {
         Matcher resM = Pattern.compile(regList[regIndex]).matcher(res);
         // 判断规则是否有效
         if (!resM.find()) {
@@ -137,6 +135,7 @@ public class AnalyzeByRegex {
             for (String key : ruleMap.keySet()) {
                 String val = ruleMap.get(key);
                 ruleName.add(key);
+                assert val != null;
                 hasVarParams.add(val.contains("@put") || val.contains("@get"));
                 List<String> ruleParam = new ArrayList<>();
                 List<Integer> ruleType = new ArrayList<>();
@@ -162,13 +161,9 @@ public class AnalyzeByRegex {
                             }
                         } else if (regType < 0) {
                             if (j == 0 && Objects.equals(ruleName.get(0), "ruleChapterName")) {
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                    infoVal.insert(0, resM.group(ruleParam.get(j)) == null ? "" : "\uD83D\uDD12");
-                                }
+                                infoVal.insert(0, resM.group(ruleParam.get(j)) == null ? "" : "\uD83D\uDD12");
                             } else {
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                    infoVal.insert(0, resM.group(ruleParam.get(j)));
-                                }
+                                infoVal.insert(0, resM.group(ruleParam.get(j)));
                             }
                         } else {
                             infoVal.insert(0, ruleParam.get(j));
@@ -176,19 +171,19 @@ public class AnalyzeByRegex {
                     }
                     ruleVal.put(ruleName.get(i), infoVal.toString());
                 }
-                ruleVals.add(ruleVal);
+                ruleValue.add(ruleVal);
             } while (resM.find());
         } else {
             StringBuilder result = new StringBuilder();
             do {
                 result.append(resM.group(0));
             } while (resM.find());
-            getInfoByRegex(result.toString(), regList, ++regIndex, ruleMap, ruleVals);
+            getInfoByRegex(result.toString(), regList, ++regIndex, ruleMap, ruleValue);
         }
     }
 
     // 拆分正则表达式替换规则(如:$\d{1,2}或${name}) /*注意:千万别用正则表达式拆分字符串,效率太低了!*/
-    public static void splitRegexRule(String str, final List<String> ruleParam, final List<Integer> ruleType) throws Exception {
+    public static void splitRegexRule(String str, final List<String> ruleParam, final List<Integer> ruleType) {
         if (TextUtils.isEmpty(str)) {
             ruleParam.add("");
             ruleType.add(0);
@@ -242,11 +237,11 @@ public class AnalyzeByRegex {
     }
 
     // 存取字符串中的put&get参数
-    public static String checkKeys(String str, AnalyzeRule analyzer) throws Exception {
+    public static String checkKeys(String str, AnalyzeRule analyzer) {
         if (str.contains("@put:{")) {
             Matcher putMatcher = Pattern.compile("@put:\\{([^,]*):([^\\}]*)\\}").matcher(str);
             while (putMatcher.find()) {
-                str = str.replace(putMatcher.group(0), "");
+                str = str.replace(Objects.requireNonNull(putMatcher.group(0)), "");
                 analyzer.put(putMatcher.group(1), putMatcher.group(2));
             }
         }

@@ -3,6 +3,7 @@ package com.jack.bookshelf.model;
 import android.text.TextUtils;
 
 import com.jack.bookshelf.DbHelper;
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.base.BaseModelImpl;
 import com.jack.bookshelf.bean.ReplaceRuleBean;
 import com.jack.bookshelf.dao.ReplaceRuleBeanDao;
@@ -40,16 +41,11 @@ public class ReplaceRuleManager {
         return replaceRuleBeansEnabled;
     }
 
-    // 合并广告话术规则
+    /**
+     * 合并广告话术规则
+     */
     public static Single<Boolean> mergeAdRules(ReplaceRuleBean replaceRuleBean) {
-
-
-        String rule = formateAdRule(replaceRuleBean.getRegex());
-
-/*        String summary=replaceRuleBean.getReplaceSummary();
-        if(summary==null)
-            summary="";
-        String sumary_pre=summary.split("-")[0];*/
+        String rule = formatAdRule(replaceRuleBean.getRegex());
 
         int sn = replaceRuleBean.getSerialNumber();
         if (sn == 0) {
@@ -68,13 +64,12 @@ public class ReplaceRuleManager {
             replaceRuleBean.setRegex(rule);
             return saveData(replaceRuleBean);
         } else {
-            StringBuffer buffer = new StringBuffer(rule);
+            StringBuilder buffer = new StringBuilder(rule);
             for (ReplaceRuleBean li : list) {
                 buffer.append('\n');
                 buffer.append(li.getRegex());
-//                    buffer.append(formateAdRule(rule.getRegex()));
             }
-            replaceRuleBean.setRegex(formateAdRule(buffer.toString()));
+            replaceRuleBean.setRegex(formatAdRule(buffer.toString()));
 
             return Single.create((SingleOnSubscribe<Boolean>) emitter -> {
 
@@ -85,13 +80,13 @@ public class ReplaceRuleManager {
                 refreshDataS();
                 emitter.onSuccess(true);
             }).compose(RxUtils::toSimpleSingle);
-
         }
     }
 
-    // 把输入的规则进行预处理（分段、排序、去重）。保存的是普通多行文本。
-    public static String formateAdRule(String rule) {
-
+    /**
+     * 把输入的规则进行预处理（分段、排序、去重）。保存的是普通多行文本。
+     */
+    public static String formatAdRule(String rule) {
         if (rule == null)
             return "";
         String result = rule.trim();
@@ -113,15 +108,13 @@ public class ReplaceRuleManager {
         List<String> list = new ArrayList<>();
 
         for (String s : lines) {
-            s = s.trim()
-//                    .replaceAll("\\s+", "\\s")
-            ;
+            s = s.trim();
             if (!list.contains(s)) {
                 list.add(s);
             }
         }
         Collections.sort(list);
-        StringBuffer buffer = new StringBuffer(rule.length() + 1);
+        StringBuilder buffer = new StringBuilder(rule.length() + 1);
         for (int i = 0; i < list.size(); i++) {
             buffer.append('\n');
             buffer.append(list.get(i));
@@ -189,7 +182,7 @@ public class ReplaceRuleManager {
                     .flatMap(rsp -> importReplaceRuleO(rsp.body()))
                     .compose(RxUtils::toSimpleSingle);
         }
-        return Observable.error(new Exception("不是Json或Url格式"));
+        return Observable.error(new Exception(StringUtils.getString(R.string.not_json_or_url_format)));
     }
 
     private static Observable<Boolean> importReplaceRuleO(String json) {

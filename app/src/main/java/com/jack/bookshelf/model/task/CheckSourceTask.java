@@ -41,7 +41,7 @@ public class CheckSourceTask {
                     .subscribeOn(scheduler)
                     .observeOn(AndroidSchedulers.mainThread())
                     .timeout(60, TimeUnit.SECONDS)
-                    .subscribe(new Observer<List<SearchBookBean>>() {
+                    .subscribe(new Observer<>() {
                         @Override
                         public void onSubscribe(Disposable d) {
                             checkSourceListener.compositeDisposableAdd(d);
@@ -90,7 +90,7 @@ public class CheckSourceTask {
                     .subscribeOn(scheduler)
                     .observeOn(AndroidSchedulers.mainThread())
                     .timeout(60, TimeUnit.SECONDS)
-                    .subscribe(new Observer<List<SearchBookBean>>() {
+                    .subscribe(new Observer<>() {
                         @Override
                         public void onSubscribe(Disposable d) {
                             checkSourceListener.compositeDisposableAdd(d);

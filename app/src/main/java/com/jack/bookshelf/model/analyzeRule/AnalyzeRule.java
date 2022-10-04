@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,6 +35,7 @@ import javax.script.SimpleBindings;
  * Created by REFGD.
  * 统一解析接口
  */
+
 @Keep
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class AnalyzeRule implements JsExtensions {
@@ -340,6 +342,7 @@ public class AnalyzeRule implements JsExtensions {
         while (putMatcher.find()) {
             ruleStr = ruleStr.replace(putMatcher.group(), "");
             Map<String, String> map = new Gson().fromJson(putMatcher.group(1), MAP_STRING);
+            assert map != null;
             putRule(map);
         }
         return ruleStr;
@@ -370,7 +373,7 @@ public class AnalyzeRule implements JsExtensions {
                 Pattern pattern = Pattern.compile(rule.replaceRegex);
                 Matcher matcher = pattern.matcher(String.valueOf(result));
                 if (matcher.find()) {
-                    result = matcher.group(0).replaceFirst(rule.replaceRegex, rule.replacement);
+                    result = Objects.requireNonNull(matcher.group(0)).replaceFirst(rule.replaceRegex, rule.replacement);
                 } else {
                     result = "";
                 }

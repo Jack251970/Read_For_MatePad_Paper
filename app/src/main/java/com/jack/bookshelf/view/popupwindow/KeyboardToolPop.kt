@@ -30,7 +30,7 @@ class KeyboardToolPop(
         isTouchable = true
         isOutsideTouchable = false
         isFocusable = false
-        inputMethodMode = INPUT_METHOD_NEEDED //解决遮盖输入法
+        inputMethodMode = INPUT_METHOD_NEEDED // 解决遮盖输入法
         contentView = binding.root
         initRecyclerView()
     }

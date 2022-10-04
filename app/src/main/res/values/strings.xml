@@ -63,7 +63,7 @@
         <string name="origin">来源</string>
         <string name="change_origin">换源</string>
         <string name="read_dur_progress">最近: %s</string>
-        <string name="check_chapter_list">查看目录</string>
+        <string name="check_catalog">查看目录</string>
         <string name="book_groups">分组</string>
         <string name="manage_groups">设置分组</string>
         <string name="local">本地</string>
@@ -185,7 +185,7 @@
         <!-- Source Login Activity -->
         <string name="click_check_after_success">登录成功后请点击右上角图标进行首页访问测试</string>
         <string name="check_host_cookie">正在打开首页，成功自动返回主界面</string>
-        <!-- Chapter List Activity -->
+        <!-- Catalog Activity -->
         <string name="catalog">目录</string>
         <string name="this_book_have_no_bookmark">本书暂无书签信息</string>
         <!-- Book Read Activity -->
@@ -499,27 +499,119 @@
         <!-- View Empty -->
         <string name="no_data">暂无数据</string>
 
-    <!-- Page Loader & Page Viewer -->
-        <string name="load_error_msg">加载失败\n%s</string>
+    <!-- Widget -->
+        <!-- Page Loader & Page Viewer -->
+        <string name="load_error_msg">内容加载失败！\n%s</string>
         <string name="content_empty">文章内容为空</string>
-        <string name="chapter_list_empty">目录列表为空</string>
+        <string name="catalog_empty">目录列表为空</string>
         <string name="is_changing_source">正在换源中</string>
         <string name="load_un_complete">未加载完成</string>
         <string name="no_prior_page">没有上一页</string>
         <string name="no_next_page">没有下一页</string>
+        <!-- Chapter Provider -->
+        <string name="read_content_error">读取内容出错\n</string>
+        <string name="cache_file_do_not_exist">缓存文件不存在</string>
+        <string name="cannot_load_content">未加载到内容</string>
+        <!-- Page Loader Epub -->
+        <string name="parse_file_error">文件解析失败</string>
+        <string name="cover">封面</string>
+        <string name="catalog_updating">目录更新中</string>
+        <string name="update_finish">更新完成</string>
+        <!-- Page Loader Net -->
+        <string name="update_finish_with_new_chapter">更新完成，有新章节</string>
+        <string name="update_finish_without_new_chapter">更新完成，无新章节</string>
+        <!-- Page Loader Text-->
+        <string name="chapter">第%d章（%d）</string>
+    
+    <!-- Model -->
+        <!-- Analyze Rule -->
+        <string name="fail_to_preprocess_info_skip_parsing_info_page">└详情预处理失败，跳过详情页解析</string>
+        <string name="get_catalog_url">┌获取目录网址</string>
+        <string name="preprocess_info_success">└详情预处理完成</string>
+        <string name="get_book_name">┌获取书籍名称</string>
+        <string name="get_book_author">┌获取书籍作者</string>
+        <string name="get_latest_chapter">┌获取最新章节</string>
+        <string name="get_book_introduction">┌获取书籍简介</string>
+        <string name="get_cover_url">┌获取封面网址</string>
+        <string name="parse_info_page_success">-详情页解析完成</string>
+        <!-- Content -->
+        <string name="get_catalog_page_success">成功获取目录页</string>
+        <string name="load_next_page">正在加载下一页></string>
+        <string name="load_next_page_success">下一页加载完成共%d页</string>
+        <string name="load_other_page">正在加载其它%d页</string>
+        <string name="load_other_page_success">其它页加载完成，目录共%d条</string>
+        <string name="parse_catalog_success">-目录解析完成</string>
+        <string name="get_next_page_url_success">┌获取目录下一页网址</string>
+        <string name="parse_catalog_list">┌解析目录列表</string>
+        <string name="find_0_chapter">└找到0个章节</string>
+        <string name="find_chapter">└找到%d个章节</string>
+        <string name="reverse">-倒序</string>
+        <string name="get_chapter_name">┌获取章节名称</string>
+        <string name="get_chapter_url">┌获取章节网址</string>
+        <string name="get_text_page_success">┌成功获取正文页</string>
+        <string name="parse_text_content">┌解析正文内容</string>
+        <string name="parse_next_page_url">┌解析下一页url</string>
+        <!-- Book Info -->
+        <string name="get_info_page_success">┌成功获取详情页</string>
+        <string name="preprocess_info">┌详情信息预处理</string>
+        <string name="get_book_kind">┌获取书籍分类</string>
+        <string name="get_book_cover">┌获取书籍封面</string>
+        <!-- Book List -->
+        <string name="get_search_result_success">┌成功获取搜索结果</string>
+        <string name="get_book_url">┌获取书籍网址</string>
+        <string name="search_result_is_info_page">>搜索结果为详情页</string>
+        <string name="parse_search_list">┌解析搜索列表</string>
+        <string name="search_list_empty_process_as_info_page">└搜索列表为空，作为详情页处理</string>
+        <string name="find_matching_result">└找到%d个匹配的结果</string>
+        <string name="finish_parse_book_list">-书籍列表解析结束</string>
+        <string name="book_url">>书籍网址:</string>
+        <string name="get_book">获取书籍</string>
+        <string name="start_visit_info_page">⇒开始访问详情页:</string>
+        <string name="start_visit_find_page">⇒开始访问发现页:</string>
+        <string name="start_search_key_word">⇒开始搜索关键字:</string>
+        <string name="start_get_find_page">\n%s ≡开始获取发现页</string>
+        <string name="start_get_search_page">\n%s ≡开始获取搜索页</string>
+        <string name="start_get_info_page">\n%s ≡开始获取详情页</string>
+        <string name="start_get_catalog_page">\n%s ≡开始获取目录页</string>
+        <string name="catalog_found_is_empty">获取到的目录为空</string>
+        <string name="start_get_text_page">\n%s ≡开始获取正文页</string>
+        <!-- Web Book -->
+        <string name="have_not_find_book_source_config">没有找到书源配置</string>
 
-    <!-- Others -->
+    <!-- Error -->
         <string name="get_book_info_error">书籍信息获取失败</string>
-        <string name="dialog_title">提示</string>
-        <string name="dialog_setting">去设置</string>
         <string name="tip_cannot_jump_setting_page">无法跳转至设置界面</string>
         <string name="net_error_10001">没有网络</string>
         <string name="net_error_10002">网络连接超时</string>
         <string name="net_error_10003">数据解析失败</string>
-        <string name="nb_file_sub_count">%1$d 项</string>
         <string name="get_content_error">内容获取失败</string>
-        <string name="get_chapter_list_error">目录获取失败</string>
+        <string name="get_catalog_error">目录获取失败</string>
         <string name="no_book_name">未获取到书名</string>
         <string name="get_web_content_error">访问网站失败:%s</string>
         <string name="find_rule_grammar_error">发现规则语法错误</string>
+        <string name="not_json_or_url_format">不是Json或Url格式</string>
+        <string name="have_not_choose_any_book_source">未选中任何书源</string>
+        <string name="have_not_find_any_content">未搜索到内容</string>
+        <string name="have_not_find_more_content">未搜索到更多内容</string>
+        <string name="download_chapter_error">下载章节出错</string>
+        <string name="save_chapter_error">保存章节出错</string>
+        <string name="unknown_error_please_contact_developer">未知错误，请联系开发者！</string>
+
+    <!-- Others -->
+        <!-- Request-->
+        <string name="dialog_title">提示</string>
+        <string name="dialog_setting">去设置</string>
+        <!-- File Holder-->
+        <string name="nb_file_sub_count">%1$d 项</string>
+        <!-- Web -->
+        <string name="debug_finish">调试结束</string>
+        <string name="book_source_and_url_cannot_be_empty">书源名称和URL不能为空</string>
+        <string name="url_cannot_be_empty_please_specify_book_source_url">参数Url不能为空，请指定书源地址</string>
+        <string name="cannot_find_book_source_please_check_url">未找到书源，请检查书源地址</string>
+        <string name="book_source_empty">设备书源列表为空</string>
+        <string name="have_execute">已执行</string>
+        <string name="have_not_add_novel">还没有添加小说</string>
+        <string name="url_cannot_be_empty_please_specify_book_url">参数Url不能为空，请指定书籍地址</string>
+        <string name="url_cannot_be_empty_please_specify_content_url">参数Url不能为空，请指定内容地址</string>
+        <string name="cannot_find">未找到</string>
 </resources>

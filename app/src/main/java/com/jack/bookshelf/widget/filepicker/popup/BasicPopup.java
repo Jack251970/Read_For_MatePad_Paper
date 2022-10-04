@@ -184,7 +184,6 @@ public abstract class BasicPopup<V extends View> implements DialogInterface.OnKe
      */
     public void setSize(int width, int height) {
         if (width == MATCH_PARENT) {
-            //360奇酷等手机对话框MATCH_PARENT时两边还会有边距，故强制填充屏幕宽
             width = screenWidthPixels;
         }
         if (width == 0 && height == 0) {
@@ -262,9 +261,8 @@ public abstract class BasicPopup<V extends View> implements DialogInterface.OnKe
         dialog.dismiss();
     }
 
-    public boolean onBackPress() {
+    public void onBackPress() {
         dismiss();
-        return false;
     }
 
     @Override

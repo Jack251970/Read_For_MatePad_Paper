@@ -1,5 +1,6 @@
 package com.jack.bookshelf.view.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,13 +23,12 @@ import java.util.List;
  */
 
 public class SourceDebugAdapter extends Adapter<SourceDebugAdapter.MyViewHolder> {
-    private final Context context;
     private final List<String> data = new ArrayList<>();
 
     public SourceDebugAdapter(Context context) {
-        this.context = context;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void clearData() {
         data.clear();
         notifyDataSetChanged();

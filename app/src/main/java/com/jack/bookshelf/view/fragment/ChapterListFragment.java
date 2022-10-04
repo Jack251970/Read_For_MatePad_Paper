@@ -22,7 +22,7 @@ import com.jack.bookshelf.bean.BookShelfBean;
 import com.jack.bookshelf.bean.OpenChapterBean;
 import com.jack.bookshelf.constant.RxBusTag;
 import com.jack.bookshelf.databinding.FragmentChapterListBinding;
-import com.jack.bookshelf.view.activity.ChapterListActivity;
+import com.jack.bookshelf.view.activity.CatalogActivity;
 import com.jack.bookshelf.view.fragment.adapter.ChapterListAdapter;
 
 import java.util.List;
@@ -150,7 +150,7 @@ public class ChapterListFragment extends MBaseFragment<IPresenter> {
         return (ReadChapterBookmarkPop) getView();
     }*/
 
-    private ChapterListActivity getFatherActivity() {
-        return (ChapterListActivity) getActivity();
+    private CatalogActivity getFatherActivity() {
+        return (CatalogActivity) getActivity();
     }
 }

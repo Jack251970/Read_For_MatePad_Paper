@@ -41,7 +41,7 @@ public class StringUtils {
     }
 
     public static String getString(@StringRes int id) {
-        return MApplication.getInstance().getResources().getString(id);
+        return MApplication.getInstance().getString(id);
     }
 
     public static String getString(@StringRes int id, Object... formatArgs) {

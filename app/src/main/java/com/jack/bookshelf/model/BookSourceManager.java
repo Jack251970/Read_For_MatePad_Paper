@@ -28,8 +28,8 @@ import io.reactivex.Single;
 import io.reactivex.SingleOnSubscribe;
 
 /**
+ * Book Source Manager
  * Created by GKF on 2017/12/15.
- * 所有书源
  */
 
 public class BookSourceManager {

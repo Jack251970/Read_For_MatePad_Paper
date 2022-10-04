@@ -23,5 +23,4 @@ public interface IHttpGetApi {
     Observable<Response<String>> getMap(@Url String url,
                                         @QueryMap(encoded = true) Map<String, String> queryMap,
                                         @HeaderMap Map<String, String> headers);
-
 }

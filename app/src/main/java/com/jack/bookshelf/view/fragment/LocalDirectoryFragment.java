@@ -153,8 +153,8 @@ public class LocalDirectoryFragment extends BaseFileFragment {
     @Override
     public int getFileCount() {
         int count = 0;
-        Set<Map.Entry<File, Boolean>> entrys = mAdapter.getCheckMap().entrySet();
-        for (Map.Entry<File, Boolean> entry : entrys) {
+        Set<Map.Entry<File, Boolean>> entries = mAdapter.getCheckMap().entrySet();
+        for (Map.Entry<File, Boolean> entry : entries) {
             if (!entry.getKey().isDirectory()) {
                 ++count;
             }

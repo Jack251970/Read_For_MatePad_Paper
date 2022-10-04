@@ -10,6 +10,7 @@ import com.jack.bookshelf.R;
 import com.jack.bookshelf.bean.BookShelfBean;
 import com.jack.bookshelf.bean.BookSourceBean;
 import com.jack.bookshelf.bean.SearchBookBean;
+import com.jack.bookshelf.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +26,8 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
+ * Search Book Model
  * Created by GKF on 2018/1/16.
- * 搜索
  */
 
 public class SearchBookModel {
@@ -124,10 +125,10 @@ public class SearchBookModel {
             page = 1;
         }
         if (page == 1) {
-            handler.post(() -> searchListener.refreshSearchBook());
+            handler.post(searchListener::refreshSearchBook);
         }
         if (searchEngineS.size() == 0) {
-            searchBookError(new Throwable("没有选中任何书源"));
+            searchBookError(new Throwable(StringUtils.getString(R.string.have_not_choose_any_book_source)));
             return;
         }
         searchSuccessNum = 0;
@@ -150,7 +151,7 @@ public class SearchBookModel {
                         .searchBook(content, page, searchEngine.getTag())
                         .subscribeOn(scheduler)
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<List<SearchBookBean>>() {
+                        .subscribe(new Observer<>() {
                             @Override
                             public void onSubscribe(Disposable d) {
                                 compositeDisposable.add(d);
@@ -172,30 +173,26 @@ public class SearchBookModel {
                                             }
                                         }
 
-                                            if(search_result_filter_grade>0){
-                                                for(int index=0;index<searchBookBeans.size();index++){
-                                                    SearchBookBean temp=searchBookBeans.get(index);
-                                                    String r=temp.getName()+temp.getAuthor();
-                                                    char[] s=content.replaceAll("\\s","").toCharArray();
-                                                    int j=9-search_result_filter_grade;
+                                        if (search_result_filter_grade > 0) {
+                                            for (int index = 0; index < searchBookBeans.size(); index++) {
+                                                SearchBookBean temp = searchBookBeans.get(index);
+                                                String r = temp.getName() + temp.getAuthor();
+                                                char[] s = content.replaceAll("\\s", "").toCharArray();
+                                                int j = 9 - search_result_filter_grade;
 
-                                                    for(int i=0;i<s.length;i++){
-                                                        if(r.indexOf(s[i])<0){
-                                                            j--;
-                                                        }
-                                                        if(j<0){
-//                                                            Log.d("search_result_filter="+search_result_filter_grade,"search="+content+", result="+r);
-                                                            searchBookBeans.remove(index);
-                                                            index--;
-                                                            break;
-                                                        }
+                                                for (char c : s) {
+                                                    if (r.indexOf(c) < 0) {
+                                                        j--;
+                                                    }
+                                                    if (j < 0) {
+                                                        searchBookBeans.remove(index);
+                                                        index--;
+                                                        break;
                                                     }
                                                 }
-
-                                        }else{
-//                                                Log.d("search_result_filter="+search_result_filter_grade,"search="+content);
                                             }
 
+                                        }
                                         searchListener.loadMoreSearchBook(searchBookBeans);
                                     } else {
                                         searchEngine.setHasMore(false);
@@ -223,9 +220,9 @@ public class SearchBookModel {
             if (searchEngineIndex >= searchEngineS.size() + threadsNum - 1) {
                 if (searchSuccessNum == 0 && searchListener.getItemCount() == 0) {
                     if (page == 1) {
-                        searchBookError(new Throwable("未搜索到内容"));
+                        searchBookError(new Throwable(StringUtils.getString(R.string.have_not_find_any_content)));
                     } else {
-                        searchBookError(new Throwable("未搜索到更多内容"));
+                        searchBookError(new Throwable(StringUtils.getString(R.string.have_not_find_more_content)));
                     }
                 } else {
                     if (page == 1) {
@@ -266,6 +263,7 @@ public class SearchBookModel {
     }
 
     private static class SearchEngine {
+
         private String tag;
         private Boolean hasMore;
 
@@ -284,6 +282,5 @@ public class SearchBookModel {
         void setHasMore(Boolean hasMore) {
             this.hasMore = hasMore;
         }
-
     }
 }
