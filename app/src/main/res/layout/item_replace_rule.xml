@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:ignore="ContentDescription" >
     <com.jack.bookshelf.widget.onoff.checkbox.RectCheckBox
         android:id="@+id/cb_replace_rule"
         android:layout_width="0dp"
@@ -15,14 +16,14 @@
         android:textColor="@color/text_color"
         android:textStyle="bold"
         tools:text="净化规则1"/>
-    <androidx.appcompat.widget.AppCompatImageView
+    <ImageView
         android:id="@+id/iv_edit"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
         android:padding="8dp"
         android:src="@drawable/ic_edit"/>
-    <androidx.appcompat.widget.AppCompatImageView
+    <ImageView
         android:id="@+id/iv_del"
         android:layout_width="40dp"
         android:layout_height="40dp"

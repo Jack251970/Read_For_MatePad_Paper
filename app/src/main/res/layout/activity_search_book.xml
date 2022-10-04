@@ -60,9 +60,7 @@
             android:id="@+id/rfRv_search_books"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
-            app:second_max_progress="80dp"
-            app:speed="2dp"/>
+            android:background="@color/white"/>
     </RelativeLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_search_stop"

@@ -13,11 +13,10 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:singleLine="true"
-        android:text=""
         android:textColor="@color/black"
         android:textStyle="bold"
         tools:text="风雨小说（《精选书源》）"/>
-    <androidx.appcompat.widget.AppCompatImageView
+    <ImageView
         android:id="@+id/iv_edit_source"
         android:layout_width="40dp"
         android:layout_height="40dp"

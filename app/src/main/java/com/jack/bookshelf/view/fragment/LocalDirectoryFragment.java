@@ -17,7 +17,6 @@ import com.jack.bookshelf.help.FileHelp;
 import com.jack.bookshelf.utils.FileStack;
 import com.jack.bookshelf.view.fragment.adapter.FileSystemAdapter;
 import com.jack.bookshelf.view.fragment.base.BaseFileFragment;
-import com.jack.bookshelf.widget.itemdecoration.DividerItemDecoration;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -65,7 +64,6 @@ public class LocalDirectoryFragment extends BaseFileFragment {
     private void setUpAdapter() {
         mAdapter = new FileSystemAdapter();
         binding.fileCategoryRvContent.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.fileCategoryRvContent.addItemDecoration(new DividerItemDecoration(requireContext()));
         binding.fileCategoryRvContent.setAdapter(mAdapter);
         setTextViewIconColor(binding.fileCategoryTvBackLast);
     }

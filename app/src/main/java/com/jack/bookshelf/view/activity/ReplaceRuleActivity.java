@@ -7,9 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
-import android.widget.LinearLayout;
 
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -143,7 +141,6 @@ public class ReplaceRuleActivity extends MBaseActivity<ReplaceRuleContract.Prese
      */
     private void initRecyclerView() {
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        binding.recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
         adapter = new ReplaceRuleAdapter(this);
         binding.recyclerView.setAdapter(adapter);
         ItemTouchCallback itemTouchCallback = new ItemTouchCallback();

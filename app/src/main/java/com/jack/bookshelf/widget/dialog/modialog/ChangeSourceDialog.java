@@ -11,13 +11,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.hwangjr.rxbus.RxBus;
@@ -144,7 +142,6 @@ public class ChangeSourceDialog extends BaseDialog implements ChangeSourceAdapte
 
     private void bindEvent() {
         llContent.setOnClickListener(null);
-        rvSource.addItemDecoration(new DividerItemDecoration(context, LinearLayout.VERTICAL));
         rvSource.setBaseRefreshListener(this::reSearchBook);
         ibtStop.setOnClickListener(v -> stopChangeSource());
     }

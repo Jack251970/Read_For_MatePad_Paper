@@ -42,14 +42,11 @@ import kotlin.Unit;
  * Edited by Jack251970
  */
 
-public class TxtChapterRuleActivity extends MBaseActivity<TxtChapterRuleContract.Presenter>
-        implements TxtChapterRuleContract.View {
+public class TxtChapterRuleActivity extends MBaseActivity<TxtChapterRuleContract.Presenter> implements TxtChapterRuleContract.View {
     private final int requestImport = 102;
-
     private ActivityTxtChapterRuleBinding binding;
     private TxtChapterRuleAdapter adapter;
     private boolean selectAll = true;
-
     private MoreSettingMenu moreSettingMenu;
 
     public static void startThis(Context context) {

@@ -10,11 +10,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -248,7 +246,6 @@ public class BookSourceActivity extends MBaseActivity<BookSourceContract.Present
      */
     private void initRecyclerView() {
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        binding.recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
         adapter = new BookSourceAdapter(this);
         binding.recyclerView.setAdapter(adapter);
         itemTouchCallback = new ItemTouchCallback();

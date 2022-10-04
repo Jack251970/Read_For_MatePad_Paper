@@ -24,8 +24,7 @@ import java.util.Objects;
  */
 
 public class RefreshRecyclerView extends FrameLayout {
-    private final ViewRefreshRecyclerViewBinding binding = ViewRefreshRecyclerViewBinding
-            .inflate(LayoutInflater.from(getContext()), this, true);
+    private final ViewRefreshRecyclerViewBinding binding = ViewRefreshRecyclerViewBinding.inflate(LayoutInflater.from(getContext()), this, true);
     private View noDataView;
     private View refreshErrorView;
     private BaseRefreshListener baseRefreshListener;
@@ -90,10 +89,6 @@ public class RefreshRecyclerView extends FrameLayout {
     public RefreshRecyclerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         bindEvent();
-    }
-
-    public void addItemDecoration(@NonNull RecyclerView.ItemDecoration decor) {
-        binding.recyclerView.addItemDecoration(decor);
     }
 
     public void setBaseRefreshListener(BaseRefreshListener baseRefreshListener) {

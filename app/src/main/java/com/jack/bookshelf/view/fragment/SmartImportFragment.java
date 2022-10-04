@@ -12,7 +12,6 @@ import com.jack.bookshelf.help.BookshelfHelp;
 import com.jack.bookshelf.help.media.MediaStoreHelper;
 import com.jack.bookshelf.view.fragment.adapter.FileSystemAdapter;
 import com.jack.bookshelf.view.fragment.base.BaseFileFragment;
-import com.jack.bookshelf.widget.itemdecoration.DividerItemDecoration;
 
 /**
  * Smart Import Fragment
@@ -47,7 +46,6 @@ public class SmartImportFragment extends BaseFileFragment {
         mAdapter = new FileSystemAdapter();
         if (getContext() != null) {
             binding.localBookRvContent.setLayoutManager(new LinearLayoutManager(getContext()));
-            binding.localBookRvContent.addItemDecoration(new DividerItemDecoration(getContext()));
             binding.localBookRvContent.setAdapter(mAdapter);
         }
     }

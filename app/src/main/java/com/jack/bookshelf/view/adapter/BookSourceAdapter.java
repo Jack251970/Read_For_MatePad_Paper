@@ -1,5 +1,6 @@
 package com.jack.bookshelf.view.adapter;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -57,6 +58,7 @@ public class BookSourceAdapter extends RecyclerView.Adapter<BookSourceAdapter.My
         dataList = new ArrayList<>();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void resetDataS(List<BookSourceBean> bookSourceBeanList) {
         this.dataList = bookSourceBeanList;
         notifyDataSetChanged();
@@ -64,6 +66,7 @@ public class BookSourceAdapter extends RecyclerView.Adapter<BookSourceAdapter.My
         activity.upSearchView(dataList.size());
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void setAllDataList(List<BookSourceBean> bookSourceBeanList) {
         this.allDataList = bookSourceBeanList;
         notifyDataSetChanged();
@@ -99,6 +102,7 @@ public class BookSourceAdapter extends RecyclerView.Adapter<BookSourceAdapter.My
         return new MyViewHolder(view);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.itemView.setBackgroundColor(Color.WHITE);

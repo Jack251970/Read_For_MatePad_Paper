@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -74,18 +73,13 @@ public class FilePicker extends ConfirmPopup<LinearLayout> implements FileAdapte
     @NonNull
     protected LinearLayout makeCenterView() {
         LinearLayout rootLayout = (LinearLayout) LayoutInflater.from(activity).inflate(R.layout.view_file_picker, null);
-
         RecyclerView recyclerView = rootLayout.findViewById(R.id.rv_file);
-        recyclerView.addItemDecoration(new DividerItemDecoration(activity, LinearLayout.VERTICAL));
         recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         recyclerView.setAdapter(adapter);
-
         emptyView = rootLayout.findViewById(R.id.tv_empty);
-
         RecyclerView pathView = rootLayout.findViewById(R.id.rv_path);
         pathView.setLayoutManager(new LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false));
         pathView.setAdapter(pathAdapter);
-
         return rootLayout;
     }
 

@@ -35,8 +35,8 @@ public class AutoCompleteTextView extends AppCompatAutoCompleteTextView {
 
     private void init() {
         setBackgroundTintList(Selector.colorBuild()
-                .setFocusedColor(Color.WHITE)
-                .setDefaultColor(Color.WHITE).create());
+                .setFocusedColor(Color.BLACK)
+                .setDefaultColor(Color.BLACK).create());
     }
 
     @Override

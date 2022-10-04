@@ -1,5 +1,6 @@
 package com.jack.bookshelf.view.adapter;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +21,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * Txt Chapter Rule Adapter
  * Created by GKF on 2017/12/22.
- * 目录正则Adapter
- * 目录正则在TxtChapterRuleActivity.java
  * Edited by Jack251970
  */
 
@@ -55,6 +55,7 @@ public class TxtChapterRuleAdapter extends RecyclerView.Adapter<TxtChapterRuleAd
         return itemTouchCallbackListener;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void resetDataS(List<TxtChapterRuleBean> dataList) {
         this.data.clear();
         this.data.addAll(dataList);
@@ -73,6 +74,7 @@ public class TxtChapterRuleAdapter extends RecyclerView.Adapter<TxtChapterRuleAd
         return new MyViewHolder(view);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.itemView.setBackgroundColor(Color.WHITE);
