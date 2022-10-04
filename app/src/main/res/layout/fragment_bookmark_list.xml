@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_below="@id/cl_menu_top"
@@ -10,4 +12,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never" />
-</RelativeLayout>
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_no_bookmark"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:constraint_referenced_ids="iv_no_bookmark, tv_no_bookmark"
+        tools:visibility="visible"/>
+    <ImageView
+        android:id="@+id/iv_no_bookmark"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_bookmark"
+        app:tint="@color/text_light"
+        app:layout_constraintLeft_toLeftOf="@id/rv_list"
+        app:layout_constraintRight_toRightOf="@id/rv_list"
+        app:layout_constraintTop_toTopOf="@id/rv_list"
+        app:layout_constraintBottom_toBottomOf="@id/rv_list"
+        tools:ignore="ContentDescription"/>
+    <TextView
+        android:id="@+id/tv_no_bookmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/this_book_have_no_bookmark"
+        android:textColor="@color/text_light"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/rv_list"
+        app:layout_constraintRight_toRightOf="@id/rv_list"
+        app:layout_constraintTop_toBottomOf="@id/iv_no_bookmark"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

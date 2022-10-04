@@ -109,6 +109,7 @@ public class BookmarkFragment extends MBaseFragment<IPresenter> {
             if (bookShelf != null) {
                 bookmarkBeanList = BookshelfHelp.getBookmarkList(bookShelf.getBookInfoBean().getName());
                 emitter.onSuccess(true);
+                binding.groupNoBookmark.setVisibility(bookmarkBeanList.isEmpty() ? View.VISIBLE: View.GONE);
             } else {
                 emitter.onSuccess(false);
             }
@@ -150,6 +151,7 @@ public class BookmarkFragment extends MBaseFragment<IPresenter> {
                         DbHelper.getDaoSession().getBookmarkBeanDao().delete(bookmarkBean);
                         bookmarkBeanList = BookshelfHelp.getBookmarkList(bookShelf.getBookInfoBean().getName());
                         adapter.setAllBookmark(bookmarkBeanList);
+                        binding.groupNoBookmark.setVisibility(bookmarkBeanList.isEmpty() ? View.VISIBLE: View.GONE);
                     }
 
                     @Override
@@ -165,11 +167,11 @@ public class BookmarkFragment extends MBaseFragment<IPresenter> {
                 }).show();
     }
 
-    /*private ReadChapterBookmarkPop getFatherView() {
-        return (ReadChapterBookmarkPop) getView();
-    }*/
-
     private ChapterListActivity getFatherActivity() {
         return (ChapterListActivity) getActivity();
     }
+
+    /*private ReadChapterBookmarkPop getFatherView() {
+        return (ReadChapterBookmarkPop) getView();
+    }*/
 }

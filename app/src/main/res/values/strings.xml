@@ -187,6 +187,7 @@
         <string name="check_host_cookie">正在打开首页，成功自动返回主界面</string>
         <!-- Chapter List Activity -->
         <string name="catalog">目录</string>
+        <string name="this_book_have_no_bookmark">本书暂无书签信息</string>
         <!-- Book Read Activity -->
         <string name="pay">购买</string>
         <string name="aloud_cannot_auto_page">朗读正在运行,不能自动翻页</string>
@@ -520,5 +521,5 @@
         <string name="get_chapter_list_error">目录获取失败</string>
         <string name="no_book_name">未获取到书名</string>
         <string name="get_web_content_error">访问网站失败:%s</string>
-    <string name="find_rule_grammar_error">发现规则语法错误</string>
+        <string name="find_rule_grammar_error">发现规则语法错误</string>
 </resources>
