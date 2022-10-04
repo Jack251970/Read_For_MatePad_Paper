@@ -109,10 +109,9 @@ public class ChangeSourceDialog extends BaseDialog implements ChangeSourceAdapte
         rvSource = view.findViewById(R.id.rf_rv_change_source);
     }
 
-    /**
-     * 初始化搜索框
-     */
     private void initSearchView(SearchView searchView) {
+        TextView searchSrcText = searchView.findViewById(R.id.search_src_text);
+        searchSrcText.setTextSize(16);
         ImageView closeButton = searchView.findViewById(R.id.search_close_btn);
         closeButton.setBackgroundColor(Color.TRANSPARENT);
         closeButton.setImageResource(R.drawable.ic_close);
