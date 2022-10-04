@@ -92,8 +92,7 @@ public class ChangeSourceDialog extends BaseDialog implements ChangeSourceAdapte
     private void init(BookShelfBean bookShelf) {
         this.book = bookShelf;
         compositeDisposable = new CompositeDisposable();
-        @SuppressLint("InflateParams") View view = LayoutInflater.from(context)
-                .inflate(R.layout.dialog_change_source, null);
+        @SuppressLint("InflateParams") View view = LayoutInflater.from(context).inflate(R.layout.dialog_change_source, null);
         bindView(view);
         bindEvent();
         setContentView(view);
