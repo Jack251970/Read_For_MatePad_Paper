@@ -16,5 +16,4 @@ object OkHttpModeLoaderFactory : ModelLoaderFactory<GlideUrl?, InputStream?> {
     override fun teardown() {
         // Do nothing, this instance doesn't own the client.
     }
-
 }

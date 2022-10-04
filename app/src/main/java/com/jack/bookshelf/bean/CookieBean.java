@@ -56,7 +56,7 @@ public class CookieBean implements Parcelable {
         this.cookie = cookie;
     }
 
-    public static final Creator<CookieBean> CREATOR = new Creator<CookieBean>() {
+    public static final Creator<CookieBean> CREATOR = new Creator<>() {
         @Override
         public CookieBean createFromParcel(Parcel in) {
             return new CookieBean(in);

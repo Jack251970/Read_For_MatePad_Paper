@@ -34,7 +34,7 @@ internal object RequestManager : OnPermissionsResultCallback {
             if (index >= 0) {
                 val to = it.size - 1
                 if (index != to) {
-                    Collections.swap(requests, index, to)
+                    requests?.let { it1 -> Collections.swap(it1, index, to) }
                 }
             } else {
                 it.push(request)

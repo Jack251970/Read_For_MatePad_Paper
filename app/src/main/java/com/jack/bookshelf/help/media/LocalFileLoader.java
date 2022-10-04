@@ -19,7 +19,6 @@ import java.util.List;
  */
 
 public class LocalFileLoader extends CursorLoader {
-    private static final String TAG = "LocalFileLoader";
 
     private static final Uri FILE_URI = Uri.parse("content://media/external/file");
     private static final String SELECTION = MediaStore.Files.FileColumns.DATA + " like ? or " + MediaStore.Files.FileColumns.DATA + " like ?";
@@ -75,10 +74,6 @@ public class LocalFileLoader extends CursorLoader {
 
     /**
      * 从Cursor中读取对应columnName的值
-     *
-     * @param cursor
-     * @param columnName
-     * @param defaultValue
      * @return 当columnName无效时返回默认值；
      */
     protected Object getValueFromCursor(@NonNull Cursor cursor, String columnName, Object defaultValue) {

@@ -15,6 +15,4 @@ internal object RequestPlugins {
     fun setOnPermissionsResultCallback(callback: OnPermissionsResultCallback) {
         sResultCallback = callback
     }
-
-
 }

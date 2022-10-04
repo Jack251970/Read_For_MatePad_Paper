@@ -4,7 +4,7 @@ import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import androidx.annotation.CallSuper
-import io.legado.app.help.coroutine.Coroutine
+import com.jack.bookshelf.help.coroutine.Coroutine
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope

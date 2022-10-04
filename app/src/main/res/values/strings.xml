@@ -520,4 +520,5 @@
         <string name="get_chapter_list_error">目录获取失败</string>
         <string name="no_book_name">未获取到书名</string>
         <string name="get_web_content_error">访问网站失败:%s</string>
+    <string name="find_rule_grammar_error">发现规则语法错误</string>
 </resources>

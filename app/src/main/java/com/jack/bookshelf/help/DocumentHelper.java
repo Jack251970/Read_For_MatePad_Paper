@@ -163,8 +163,6 @@ public class DocumentHelper {
             fis.close();
             bos.close();
             buffer = bos.toByteArray();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

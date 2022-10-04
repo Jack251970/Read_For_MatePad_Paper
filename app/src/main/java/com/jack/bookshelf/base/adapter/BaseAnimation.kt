@@ -1,4 +1,4 @@
-package com.jack.bookshelf.base.adapter.animations
+package com.jack.bookshelf.base.adapter
 
 import android.animation.Animator
 import android.view.View
@@ -9,5 +9,4 @@ import android.view.View
 interface BaseAnimation {
 
     fun getAnimators(view: View): Array<Animator>
-
 }

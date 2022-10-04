@@ -1,4 +1,4 @@
-package io.legado.app.help.coroutine
+package com.jack.bookshelf.help.coroutine
 
 internal interface CoroutineContainer {
 
@@ -11,5 +11,4 @@ internal interface CoroutineContainer {
     fun delete(coroutine: Coroutine<*>): Boolean
 
     fun clear()
-
 }

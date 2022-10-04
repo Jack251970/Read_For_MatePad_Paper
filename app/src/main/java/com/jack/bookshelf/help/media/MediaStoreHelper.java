@@ -24,9 +24,6 @@ public class MediaStoreHelper {
      * 获取媒体库中所有的书籍文件
      * <p>
      * 暂时只支持 TXT
-     *
-     * @param activity
-     * @param resultCallback
      */
     public static void getAllBookFile(FragmentActivity activity, MediaResultCallback resultCallback) {
         // 将文件的获取处理交给 LoaderManager。

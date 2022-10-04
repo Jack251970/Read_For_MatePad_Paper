@@ -1,5 +1,7 @@
 package com.jack.bookshelf.bean;
 
+import androidx.annotation.NonNull;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
@@ -33,6 +35,7 @@ public class BookmarkBean implements Cloneable {
     public BookmarkBean() {
     }
 
+    @NonNull
     @Override
     protected Object clone() throws CloneNotSupportedException {
         BookmarkBean bookmarkBean = (BookmarkBean) super.clone();
@@ -43,7 +46,6 @@ public class BookmarkBean implements Cloneable {
         bookmarkBean.chapterName = chapterName;
         bookmarkBean.pageIndex = pageIndex;
         bookmarkBean.content = content;
-
         return bookmarkBean;
     }
 

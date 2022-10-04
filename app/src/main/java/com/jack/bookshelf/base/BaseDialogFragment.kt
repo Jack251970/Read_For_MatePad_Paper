@@ -6,7 +6,7 @@ import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import io.legado.app.help.coroutine.Coroutine
+import com.jack.bookshelf.help.coroutine.Coroutine
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope

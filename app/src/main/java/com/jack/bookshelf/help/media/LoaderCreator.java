@@ -16,8 +16,6 @@ public class LoaderCreator {
         LocalFileLoader loader = null;
         if (id == ALL_BOOK_FILE) {
             loader = new LocalFileLoader(context);
-        } else {
-            loader = null;
         }
         if (loader != null) {
             return loader;

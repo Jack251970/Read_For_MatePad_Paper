@@ -7,9 +7,12 @@ import static com.jack.bookshelf.constant.AppConstant.SCRIPT_ENGINE;
 import android.text.TextUtils;
 import android.util.Pair;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.Gson;
 import com.jack.bookshelf.DbHelper;
 import com.jack.bookshelf.MApplication;
+import com.jack.bookshelf.R;
 import com.jack.bookshelf.help.JsExtensions;
 import com.jack.bookshelf.model.BookSourceManager;
 import com.jack.bookshelf.model.analyzeRule.AnalyzeHeaders;
@@ -253,6 +256,7 @@ public class BookSourceBean implements Cloneable, JsExtensions {
         return Objects.equals(str1, str2) || (isEmpty(str1) && isEmpty(str2));
     }
 
+    @NonNull
     @Override
     public Object clone() {
         try {
@@ -703,7 +707,6 @@ public class BookSourceBean implements Cloneable, JsExtensions {
      * 把书源bean转为json，并去除不必要的信息。
      *
      * @param removeFind false，去除空信息和排序、可用性信息。true，额外去除发现规则
-     * @return
      */
     public String getMinJson(Boolean removeFind) {
         BookSourceBean bean = new BookSourceBean(this);
@@ -756,7 +759,7 @@ public class BookSourceBean implements Cloneable, JsExtensions {
     /**
      * 执行JS
      */
-    public Object evalJS(String jsStr) throws Exception {
+    public Object evalJS(String jsStr) {
         try {
             SimpleBindings bindings = new SimpleBindings();
             bindings.put("java", this);
@@ -846,7 +849,7 @@ public class BookSourceBean implements Cloneable, JsExtensions {
     }
 
     public Pair<FindKindGroupBean, List<FindKindBean>> getFindList() {
-        String findError = "发现规则语法错误";
+        String findError = StringUtils.getString(R.string.find_rule_grammar_error);
         ACache aCache = ACache.get(MApplication.getInstance(), "findCache");
         try {
             String[] kindA;

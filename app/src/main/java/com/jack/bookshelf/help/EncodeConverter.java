@@ -2,6 +2,8 @@ package com.jack.bookshelf.help;
 
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
+
 import com.jack.bookshelf.utils.EncodingDetect;
 
 import java.lang.annotation.Annotation;
@@ -33,7 +35,7 @@ public class EncodeConverter extends Converter.Factory {
     }
 
     @Override
-    public Converter<ResponseBody, String> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
+    public Converter<ResponseBody, String> responseBodyConverter(@NonNull Type type, @NonNull Annotation[] annotations, @NonNull Retrofit retrofit) {
         return value -> {
             byte[] responseBytes = UTF8BOMFighter.removeUTF8BOM(value.bytes());
             if (!TextUtils.isEmpty(encode)) {

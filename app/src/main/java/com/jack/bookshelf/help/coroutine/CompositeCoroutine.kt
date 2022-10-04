@@ -1,4 +1,4 @@
-package io.legado.app.help.coroutine
+package com.jack.bookshelf.help.coroutine
 
 @Suppress("unused")
 class CompositeCoroutine : CoroutineContainer {

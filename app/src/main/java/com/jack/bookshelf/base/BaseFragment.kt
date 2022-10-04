@@ -19,13 +19,6 @@ import kotlinx.coroutines.cancel
 abstract class BaseFragment(@LayoutRes layoutID: Int) : Fragment(layoutID),
     CoroutineScope by MainScope() {
 
-    var supportToolbar: Toolbar? = null
-        private set
-
-    val menuInflater: MenuInflater
-        @SuppressLint("RestrictedApi")
-        get() = SupportMenuInflater(requireContext())
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onMultiWindowModeChanged()
@@ -55,12 +48,6 @@ abstract class BaseFragment(@LayoutRes layoutID: Int) : Fragment(layoutID),
     }
 
     open fun observeLiveBus() {
-    }
-
-    open fun onCompatCreateOptionsMenu(menu: Menu) {
-    }
-
-    open fun onCompatOptionsItemSelected(item: MenuItem) {
     }
 
 }

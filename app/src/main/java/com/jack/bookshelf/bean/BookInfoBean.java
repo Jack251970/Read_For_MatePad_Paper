@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.Gson;
 import com.jack.bookshelf.DbHelper;
 import com.jack.bookshelf.R;
@@ -67,8 +69,9 @@ public class BookInfoBean implements Cloneable {
         this.bookSourceType = bookSourceType;
     }
 
+    @NonNull
     @Override
-    protected Object clone() {
+    protected Object clone() throws CloneNotSupportedException {
         try {
             Gson gson = new Gson();
             String json = gson.toJson(this);
@@ -163,6 +166,7 @@ public class BookInfoBean implements Cloneable {
     }
 
     private void extractEpubCoverImage() {
+        // Don't use Lambda sentence!!!
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {

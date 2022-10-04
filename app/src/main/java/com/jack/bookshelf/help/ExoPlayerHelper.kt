@@ -12,7 +12,6 @@ import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource
 import com.google.android.exoplayer2.util.Util.inferContentType
 import com.jack.bookshelf.base.BaseModelImpl
 
-
 object ExoPlayerHelper {
 
     fun createMediaSource(uri: Uri, overrideExtension: String?): MediaSource {
@@ -25,7 +24,5 @@ object ExoPlayerHelper {
             else -> ProgressiveMediaSource.Factory(dataSourceFactory)
         }
         return mediaSourceFactory.createMediaSource(mediaItem)
-
     }
-
 }

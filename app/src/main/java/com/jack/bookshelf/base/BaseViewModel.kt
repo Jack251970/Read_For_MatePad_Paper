@@ -5,7 +5,7 @@ import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.jack.bookshelf.MApplication
-import io.legado.app.help.coroutine.Coroutine
+import com.jack.bookshelf.help.coroutine.Coroutine
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
@@ -31,5 +31,4 @@ open class BaseViewModel(application: Application) : AndroidViewModel(applicatio
     ): Coroutine<R> {
         return Coroutine.async(scope, context) { block().await() }
     }
-
 }

@@ -8,5 +8,4 @@ interface RequestSource {
     val context: Context?
 
     fun startActivity(intent: Intent)
-
 }

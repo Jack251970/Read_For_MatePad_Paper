@@ -1,4 +1,4 @@
-package io.legado.app.help.coroutine
+package com.jack.bookshelf.help.coroutine
 
 import kotlinx.coroutines.*
 import timber.log.Timber
@@ -7,7 +7,7 @@ import kotlin.coroutines.CoroutineContext
 
 @Suppress("unused")
 class Coroutine<T>(
-    val scope: CoroutineScope,
+    private val scope: CoroutineScope,
     context: CoroutineContext = Dispatchers.IO,
     block: suspend CoroutineScope.() -> T
 ) {

@@ -97,17 +97,6 @@ public class BookSource3Bean {
         String wordCount;
     }
 
-/*    @Override
-    public Object clone() {
-        try {
-            Gson gson = new Gson();
-            String json = gson.toJson(this);
-            return gson.fromJson(json, BookSource3Bean.class);
-        } catch (Exception ignored) {
-        }
-        return this;
-    }*/
-
     // 给书源增加一个标签
     public BookSource3Bean addGroupTag(String tag) {
         if (this.bookSourceGroup != null) {
@@ -129,7 +118,7 @@ public class BookSource3Bean {
         return this;
     }
 
-    class httpRequest {
+    static class httpRequest {
         String method;
         String body;
         String headers;
@@ -147,7 +136,7 @@ public class BookSource3Bean {
                     Gson gson = new Gson();
                     httpRequest request = gson.fromJson(strings[1], httpRequest.class);
                     if (gson.toJson(request).replaceAll("\\s", "").length() > 0) {
-                        // 阅读2.0没有单独的header，只有useragent
+                        // 阅读2.0没有单独的header，只有userAgent
                         if (request.headers != null) {
                             if (this.header == null)
                                 this.header = request.headers;
@@ -197,8 +186,6 @@ public class BookSource3Bean {
     public BookSourceBean toBookSourceBean() {
         // 带注释的行，表示2.0/3.0书源json的数据命名不同。注释后方为2.0名称
         String bookSourceType = "";
-        if (this.bookSourceType != 0)
-            bookSourceType = "" + this.bookSourceType;
 
         RuleSearchUrl = searchUrl2RuleSearchUrl(searchUrl);
 
@@ -216,7 +203,7 @@ public class BookSource3Bean {
         String header="";
         if(this.header!=null){
             if(this.header.trim().length()>0)
-            header="@Header:"+this.header.replaceAll("\\n"," ");
+                header="@Header:"+this.header.replaceAll("\\n"," ");
         }
 
 

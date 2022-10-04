@@ -40,7 +40,7 @@ public class SourceDebugWebSocket extends NanoWSD.WebSocket {
         compositeDisposable = new CompositeDisposable();
         Observable.interval(10, 10, TimeUnit.SECONDS)
                 .observeOn(Schedulers.io())
-                .subscribe(new MyObserver<Long>() {
+                .subscribe(new MyObserver<>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);
