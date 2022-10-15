@@ -6,21 +6,21 @@ A Read Application for Huawei Matepad Paper
 
 </div>
 
-# *Function*-主要功能
-* 1.纯黑白界面无动画，完美适配墨水屏，界面风格高度适配华为*MatePad Paper*。
-* 2.自带精选书源，支持设置、导入规则。
-* 3.支持根据书源搜索网络书籍，同时支持下载网络书籍。
-* 4.支持替换净化，方便去除广告、替换内容。
-* 5.支持本地*TXT、EPUB*阅读，手动浏览，智能扫描。
-* 6.支持高度自定义阅读界面，切换字体、间距、加粗、简繁转换等。
-* 7.支持本地备份与*WebDav*备份，方便保存阅读进度。
+# *Function*
+* 1.*Pure black and white interface without animation, perfectly adapted to the ink screen, interface style is highly adapted to Huawei MatePad Paper.*
+* 2.*Comes with selected book sources, supports setting and importing rules.*
+* 3.*Support searching network books according to the book source, and support downloading network books.*
+* 4.*Support replace purification, easy to remove ads and replace contents.*
+* 5.*Support local TXT, EPUB reading, manual browsing, intelligent scanning.*
+* 6.*Support highly customizable reading interface, switch fonts, spacing, bolding, simple and traditional conversion, etc.*
+* 7.*Support local backup and WebDav backup, easy to save reading progress.*
 
 # *Download*
 #### *Android*
 * [Releases](https://github.com/Jack251970/Read_For_MatePad_Paper/releases/latest)
 
 # *Develop*
-* 本项目Fork于：https://github.com/gedoor/MyBookshelf
+* *This project forks:* https://github.com/gedoor/MyBookshelf
 
 # *Others*
 * [Disclaimer](app/src/main/assets/disclaimer.md)
@@ -40,5 +40,5 @@ A Read Application for Huawei Matepad Paper
 <img src="https://github.com/Jack251970/start-docusaurus2/blob/master/static/interface4.jpg" width="800">
 
 <a href="#readme">
-    <img src="https://img.shields.io/badge/-返回顶部-white.svg" alt="#" align="left">
+    <img src="https://img.shields.io/badge/-BackToTop-white.svg" alt="#" align="left">
 </a>
