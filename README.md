@@ -39,7 +39,6 @@
 <img src="https://github.com/Jack251970/start-docusaurus2/blob/master/static/interface3.jpg" width="800">
 <img src="https://github.com/Jack251970/start-docusaurus2/blob/master/static/interface4.jpg" width="800">
 
-
 <a href="#readme">
     <img src="https://img.shields.io/badge/-返回顶部-white.svg" alt="#" align="left">
 </a>
