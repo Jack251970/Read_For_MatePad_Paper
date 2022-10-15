@@ -27,11 +27,11 @@ A Read Application for Huawei Matepad Paper
 * [UpdateLog](app/src/main/assets/updateLog.md)
 
 # *Grateful*
-> * gedoor(kunfei) https://github.com/gedoor
-> * DaguDuiyuan https://github.com/DaguDuiyuan
-> * atbest https://github.com/atbest
-> * Antecer https://github.com/Antecer
-> * mabDc https://github.com/mabDc
+> * *gedoor(kunfei)* https://github.com/gedoor
+> * *DaguDuiyuan* https://github.com/DaguDuiyuan
+> * *atbest* https://github.com/atbest
+> * *Antecer* https://github.com/Antecer
+> * *mabDc* https://github.com/mabDc
 
 # *Interface*
 <img src="https://github.com/Jack251970/start-docusaurus2/blob/master/static/interface1.jpg" width="800">
