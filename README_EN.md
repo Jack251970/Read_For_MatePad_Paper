@@ -1,8 +1,8 @@
 <div align="center">
 <img width="150" height="150" src="app/src/main/res/mipmap-xxxhdpi/book_launcher_matepad_paper.png" alt="icon"/>  
 
-# 阅读（Read）
-一款为华为*MatePad Paper*适配的阅读软件（A Read Application for Huawei Matepad Paper）
+# Read
+A Read Application for Huawei Matepad Paper
 
 </div>
 
@@ -15,25 +15,25 @@
 * 6.支持高度自定义阅读界面，切换字体、间距、加粗、简繁转换等。
 * 7.支持本地备份与*WebDav*备份，方便保存阅读进度。
 
-# *Download*-下载
-#### *Android*-安卓
+# *Download*
+#### *Android*
 * [Releases](https://github.com/Jack251970/Read_For_MatePad_Paper/releases/latest)
 
-# *Develop*-开发
+# *Develop*
 * 本项目Fork于：https://github.com/gedoor/MyBookshelf
 
-# *Others*-其他
-* [免责声明](app/src/main/assets/disclaimer.md)
-* [更新日志](app/src/main/assets/updateLog.md)
+# *Others*
+* [Disclaimer](app/src/main/assets/disclaimer.md)
+* [UpdateLog](app/src/main/assets/updateLog.md)
 
-# *Grateful*-感谢
+# *Grateful*
 > * gedoor(kunfei) https://github.com/gedoor
 > * DaguDuiyuan https://github.com/DaguDuiyuan
 > * atbest https://github.com/atbest
 > * Antecer https://github.com/Antecer
 > * mabDc https://github.com/mabDc
 
-# *Interface*-界面
+# *Interface*
 <img src="https://github.com/Jack251970/start-docusaurus2/blob/master/static/interface1.jpg" width="800">
 <img src="https://github.com/Jack251970/start-docusaurus2/blob/master/static/interface2.jpg" width="800">
 <img src="https://github.com/Jack251970/start-docusaurus2/blob/master/static/interface3.jpg" width="800">
