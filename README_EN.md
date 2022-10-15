@@ -7,13 +7,13 @@ A Read Application for Huawei Matepad Paper
 </div>
 
 # *Function*
-* 1.*Pure black and white interface without animation, perfectly adapted to the ink screen, interface style is highly adapted to Huawei MatePad Paper.*
-* 2.*Comes with selected book sources, supports setting and importing rules.*
-* 3.*Support searching network books according to the book source, and support downloading network books.*
-* 4.*Support replace purification, easy to remove ads and replace contents.*
-* 5.*Support local TXT, EPUB reading, manual browsing, intelligent scanning.*
-* 6.*Support highly customizable reading interface, switch fonts, spacing, bolding, simple and traditional conversion, etc.*
-* 7.*Support local backup and WebDav backup, easy to save reading progress.*
+* 1. *Pure black and white interface without animation, perfectly adapted to the ink screen, interface style is highly adapted to Huawei MatePad Paper.*
+* 2. *Comes with selected book sources, supports setting and importing rules.*
+* 3. *Support searching network books according to the book source, and support downloading network books.*
+* 4. *Support replace purification, easy to remove ads and replace contents.*
+* 5. *Support local TXT, EPUB reading, manual browsing, intelligent scanning.*
+* 6. *Support highly customizable reading interface, switch fonts, spacing, bolding, simple and traditional conversion, etc.*
+* 7. *Support local backup and WebDav backup, easy to save reading progress.*
 
 # *Download*
 #### *Android*
