@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base String -->
+        <string name="app_name">Reading</string>
+        <string name="read_summary">Let reading become a habit.</string>
+        <string name="yes">Yes</string>
+        <string name="no">No</string>
+        <string name="confirm">Confirm</string>
+        <string name="cancel">Cancel</string>
+        <string name="error">Error</string>
+
+    <!-- Shortcuts -->
+        <string name="enter_bookshelf">Go to bookshelf</string>
+        <string name="last_read">Jump to last read</string>
+
+    <!-- Presenter -->
+        <!-- Txt Chapter Rule Presenter -->
+        <string name="delete_fail">Delete failed</string>
+        <string name="delete_success">Delete succeeded</string>
+        <string name="read_file_error">Read file failed</string>
+        <string name="import_fail">Import failed</string>
+        <string name="format_error">Wrong format</string>
+        <!-- Source Edit Presenter -->
+        <string name="seem_not_source_info">It seems not to be book source information</string>
+        <string name="import_read_3_book_source">Import Read 3.0 book sources</string>
+        <!-- Read Book Presenter -->
+        <string name="no_book">No books</string>
+        <string name="open_text_fail">Open text failed</string>
+        <!-- Main Presenter -->
+        <string name="already_in_bookshelf">Already in your bookshelf</string>
+        <string name="add_book_fail">Add book failed</string>
+        <string name="add_book_success">Add book successfully</string>
+        <!-- Book Source Presenter -->
+        <string name="is_importing_book_source">Importing book sources</string>
+        <string name="import_number_book_source_success">Import %d book sources successfully</string>
+        <!-- Book Detail Presenter -->
+        <string name="add_to_bookshelf_fail">Add to bookshelf failed</string>
+        <string name="delete_book_fail">Delete book failed</string>
+
+    <!-- Permission -->
+        <string name="import_local_book_need_storage_permission">Importing local books requires storage permission.</string>
+        <string name="need_storage_permission_to_backup_book_information">This software requires storage permission to store and backup book information.</string>
+
+    <!-- Activity -->
+        <!-- MainActivity -->
+        <string name="book_source">Source</string>
+        <string name="purify">Purify</string>
+        <string name="download">Download</string>
+        <string name="backup">Backup</string>
+        <string name="restore">Restore</string>
+        <string name="bookshelf">Bookshelf</string>
+        <string name="search_book_name_or_author">name, author…</string>
+        <string name="all_books">All books</string>
+        <string name="pursue">Pursuing books</string>
+        <string name="fattening">Fattening books</string>
+        <string name="finish">Finished books</string>
+        <string name="local_book">Local books</string>
+        <string name="double_click_exit_read">Double click to exit</string>
+        <!-- BookDetailActivity -->
+        <string name="book_info">Information</string>
+        <string name="book_name">Title</string>
+        <string name="author">Author</string>
+        <string name="origin">Source</string>
+        <string name="change_origin">Change Source</string>
+        <string name="read_dur_progress">Recent: %s</string>
+        <string name="check_catalog">View directory</string>
+        <string name="book_groups">Group</string>
+        <string name="manage_groups">Set group</string>
+        <string name="local">Local</string>
+        <string name="book_intro">Introduction</string>
+        <string name="remove_from_bookshelf">Delete book</string>
+        <string name="start_read">Start read</string>
+        <string name="add_to_shelf">Add to bookshelf</string>
+        <string name="continue_read">Continue read</string>
+        <string name="data_loading">Loading data</string>
+        <string name="load_error_retry">Loading failed, click to retry.</string>
+        <string name="unknown">Unknown</string>
+        <string name="copy_complete">Copied</string>
+        <!-- Import Book Activity -->
+        <string name="local_directory">Local directory</string>
+        <string name="smart_import">Smart import</string>
+        <!-- Book Source Activity -->
+        <string name="search">Search</string>
+        <string name="search_book_source">Search book sources</string>
+        <string name="search_book_source_num">Search (%d book sources in total)</string>
+        <string name="del_delete_book_source">Delete the selected book source?</string>
+        <string name="sys_file_picker">System file selector</string>
+        <string name="input_book_source_url">Enter the book source URL</string>
+        <string name="import_success">Import succeeded</string>
+        <!-- Replace Rule Activity -->
+        <string name="del_delete_all_replace_rule">Delete all rules?</string>
+        <!-- Download Activity -->
+        <string name="download_offline">Offline download</string>
+        <string name="un_download">%d chapters left to be downloaded.</string>
+        <!-- Txt Chapter Rule Activity -->
+        <string name="chapter_regex">Chapter regex</string>
+        <string name="del_delete_all_txt_chapter_rule">Delete all chapter regex?</string>
+        <!-- About Activity -->
+        <string name="about_read">About Read</string>
+        <string name="cannot_open">Cannot open</string>
+        <string name="version_name">Version %s</string>
+        <string name="about_description">For Huawei Matepad Paper</string>
+        <string name="check_update">Check for updates</string>
+        <string name="update_log">Update log</string>
+        <string name="git_hub">Github homepage</string>
+        <string name="disclaimer">Disclaimer</string>
+        <!-- Search Book Activity -->
+        <string name="cannot_search_any_books">No relevant books found.</string>
+        <string name="get_data_error">Failed to get data.</string>
+        <string name="retry">Retry</string>
+        <string name="book_source_search_range">Book source search scope</string>
+        <string name="all_source">All book sources</string>
+        <string name="delete_all_history">Delete all history records?</string>
+        <string name="searchHistory">Search history</string>
+        <string name="origin_format">Source: %s</string>
+        <string name="is_loading">Loading</string>
+        <string name="book_search_last">Latest: %s</string>
+        <string name="no_kind">Not classified yet</string>
+        <!-- Book Info Edit Activity -->
+        <string name="edit_book_info">Book information editing</string>
+        <string name="cover_path">Cover address</string>
+        <string name="bg_image_per">Access to background images requires storage permissions.</string>
+        <string name="select_local_image">Select a local image</string>
+        <string name="cover_change_source">Change cover source</string>
+        <string name="refresh_cover">Refresh cover</string>
+        <!-- Source Edit Activity -->
+        <string name="audio">Audio</string>
+        <string name="is_enable">Enable</string>
+        <string name="source_no_login">No login address is configured for the current source</string>
+        <string name="if_copy_find_content">Copy the discovered content?</string>
+        <string name="basic">Basic</string>
+        <string name="find">Find</string>
+        <string name="info">Details</string>
+        <string name="main_content">Body</string>
+        <string name="save_success">Save succeeded</string>
+        <string name="non_null_source_name_url">The book source name and URL cannot be empty.</string>
+        <string name="book_source_url">Book source URL(bookSourceUrl)</string>
+        <string name="book_source_name">Book source name(bookSourceName)</string>
+        <string name="book_source_group">Book source group(bookSourceGroup)</string>
+        <string name="book_source_login_url">Login URL(loginUrl)</string>
+        <string name="login_ui">Login UI(loginUi)</string>
+        <string name="login_check_js">Login check Js(loginCheckJs)</string>
+        <string name="rule_search_url">Search URL(ruleSearchUrl)</string>
+        <string name="rule_search_list">Search list rules(ruleSearchList)</string>
+        <string name="rule_search_name">Search name rules(ruleSearchName)</string>
+        <string name="rule_search_author">Search author rules(ruleSearchAuthor)</string>
+        <string name="rule_search_kind">Search classification rules(ruleSearchKind)</string>
+        <string name="rule_search_last_chapter">Search latest chapter rules(ruleSearchLastChapter)</string>
+        <string name="rule_search_introduce">Search introduction rules(ruleSearchIntroduce)</string>
+        <string name="rule_search_cover_url">Search cover rules(ruleSearchCoverUrl)</string>
+        <string name="rule_search_note_url">Search book URL rules(ruleSearchNoteUrl)</string>
+        <string name="book_url_pattern">Book detail regex(ruleBookUrlPattern)</string>
+        <string name="rule_book_info_init">Init book detail rules(ruleBookInfoInit)</string>
+        <string name="rule_book_name">Book name rule(ruleBookName)</string>
+        <string name="rule_book_author">Book author rule(ruleBookAuthor)</string>
+        <string name="rule_cover_url">Book cover rule(ruleCoverUrl)</string>
+        <string name="rule_introduce">Book introduction rule(ruleIntroduce)</string>
+        <string name="rule_book_kind">Book classification rule(ruleBookKind)</string>
+        <string name="rule_book_last_chapter">Latest chapter rule(ruleBookLastChapter)</string>
+        <string name="rule_chapter_list_url">Category URL rule(ruleChapterUrl)</string>
+        <string name="rule_chapter_list_url_next">Category next chapter URL rule(ruleChapterUrlNext)</string>
+        <string name="rule_chapter_list">Category list rule(ruleChapterList)</string>
+        <string name="rule_chapter_name">Chapter name rule(ruleChapterName)</string>
+        <string name="rule_content_url">Chapter URL rule(ruleContentUrl)</string>
+        <string name="rule_chapter_vip">VIP Sign(ruleChapterVip)</string>
+        <string name="rule_chapter_pay">Purchase Sign(ruleChapterPay)</string>
+        <string name="rule_content_url_next">Content next page URL rule(ruleContentUrlNext)</string>
+        <string name="rule_book_content">Content rule(ruleBookContent)</string>
+        <string name="rule_book_content_replace">Content purify rule(ruleBookContentReplace)</string>
+        <string name="source_user_agent">HttpUserAgent</string>
+        <string name="rule_find_url">Find rule(ruleFindUrl)</string>
+        <string name="rule_find_list">Find list rule(ruleFindList)</string>
+        <string name="rule_find_name">Find name rule(ruleFindName)</string>
+        <string name="rule_find_author">Find author rule(ruleFindAuthor)</string>
+        <string name="rule_find_kind">Find classification rule(ruleFindKind)</string>
+        <string name="rule_find_introduce">Find introduction rule(ruleFindIntroduce)</string>
+        <string name="rule_find_last_chapter">Find latest chapter rule(ruleFindLastChapter)</string>
+        <string name="rule_find_note_url">Find book URL rule(ruleFindNoteUrl)</string>
+        <string name="rule_find_cover_url">Find cover rule(ruleFindCoverUrl)</string>
+        <string name="cannot_share">Share failed</string>
+        <string name="exit_no_save">Continue editing the book source?</string>
+        <!-- Source Debug Activity -->
+        <string name="debug_hint">Title, author, URL</string>
+        <string name="cannot_empty">The input cannot be empty.</string>
+        <!-- Source Login Activity -->
+        <string name="click_check_after_success">After successful login, please click the icon in the upper right corner to perform the home page access test.</string>
+        <string name="check_host_cookie">Opening the home page, and automatically returning to the main interface if successful.</string>
+        <!-- Catalog Activity -->
+        <string name="catalog">Directory</string>
+        <string name="this_book_have_no_bookmark">This book not has bookmarks yet.</string>
+        <!-- Book Read Activity -->
+        <string name="pay">Purchase</string>
+        <string name="aloud_cannot_auto_page">Reading aloud is running, and cannot automatically flip pages.</string>
+        <string name="have_not_buy_chapter_please_login_and_refresh">The paid chapter has not been purchased. If you have purchased it, please log in and refresh the directory.</string>
+        <string name="have_copy_to_clipboard">The selected content has been copied to the clipboard.</string>
+        <string name="network_connection_unavailable_cannot_refresh_chapter">The network is unavailable and the current chapter cannot be refreshed.</string>
+        <string name="input_charset">Input charset</string>
+        <string name="choose_txt_regex">Select text regex</string>
+        <string name="manage_txt_regex">Manage text regex</string>
+        <string name="check_add_bookshelf">Put %s on the bookshelf?</string>
+        <string name="read_aloud_pause">Pause reading aloud</string>
+        <string name="please_grant_storage_permission">Please give storage permission.</string>
+
+    <!-- Fragment -->
+        <!-- BookList Fragment-->
+        <string name="have_choose_items">Selected %d items</string>
+        <string name="unselected">Not Selected</string>
+        <string name="sure_del_book">Delete these books?</string>
+        <string name="bookshelf_empty">The bookshelf is empty.\nGo to add books first!</string>
+        <string name="select_all">Select all</string>
+        <string name="delete">Delete</string>
+        <!-- File Category Fragment -->
+        <string name="default_file_path">Internal storage</string>
+        <string name="parent">Parent directory</string>
+        <!-- General Setting Fragment -->
+        <string name="setting">Setting</string>
+        <string name="sure_delete_download_book">Delete the downloaded book directory at the same time?</string>
+        <string name="launcher_setting">Startup settings</string>
+        <string name="default_read">Jump to the last reading progress by default</string>
+        <string name="backup_setting">Backup settings</string>
+        <string name="local_backup_setting">Local backup settings</string>
+        <string name="web_dav_setting">WebDav settings</string>
+        <string name="update_setting">Update settings</string>
+        <string name="auto_update">Automatically update books</string>
+        <string name="auto_download">Automatically download the latest chapters</string>
+        <string name="auto_change_source_update_chapter">Change source, and update latest chapters in the background</string>
+        <string name="purify_setting">Purification settings</string>
+        <string name="default_enable_purify">Enable replacement purification by default</string>
+        <string name="search_setting">Search settings</string>
+        <string name="search_result_filter_grade">Filter level of search results</string>
+        <string name="search_result_filter_grade_tip">Raising the filter level can avoid seeing search results unrelated to book title/author.
+            \nLevel 1-9: Search keywords need to appear in the book name/author, but 8-0 characters
+            \n(excluding spaces) are allowed to not appear.</string>
+        <string name="show_all_find">Show all finding contents</string>
+        <string name="other_setting">Other settings</string>
+        <string name="update_search_threads_num">Number of update and search threads</string>
+        <string name="threads_num">Current number of threads %s</string>
+        <string name="web_port_title">Web port</string>
+        <string name="web_port_summary">Current port %s</string>
+        <string name="clear_cache">Clear application cache</string>
+        <!-- WebDav Setting Fragment -->
+        <string name="web_dav_config">WebDav configuration</string>
+        <string name="web_dav_backup_and_restore">WebDav backup and restore</string>
+        <string name="webdav">WebDav</string>
+        <string name="no_backup">No backup</string>
+        <string name="web_dav_url">WebDav server address</string>
+        <string name="web_dav_account">WebDav account</string>
+        <string name="input_web_dav_account">Enter your WebDav account</string>
+        <string name="web_dav_password">WebDav password</string>
+        <string name="input_web_dav_password">Enter your WebDav authorization password</string>
+        <string name="web_dav_backup">WebDav backup</string>
+        <string name="web_dav_restore">WebDav restore</string>
+        <!-- Local Backup Setting Fragment -->
+        <string name="local_backup_config">Local backup configuration</string>
+        <string name="local_backup_and_restore">Local backup and restore</string>
+        <string name="backup_path">Local backup path</string>
+        <string name="auto_backup">Automatically local backup</string>
+        <!-- Chapter List Fragment -->
+        <string name="chapter_info_format">%s (%d/%d chapter)</string>
+
+    <!-- Service -->
+        <!-- WebService -->
+        <string name="web_service_starting_short">Starting web service</string>
+        <string name="web_service_starting_long">Starting web service\nSee the notice bar for specific information</string>
+        <string name="http_ip">http://%s:%d</string>
+        <!-- SharedService -->
+        <string name="shared_service_starting_short">Starting web service</string>
+        <string name="shared_service_starting_long">Starting web service\nSee the notice bar for specific information</string>
+        <string name="sharded_address">Sharing address:%s</string>
+        <!-- Read Aloud Service -->
+        <string name="read_aloud_timer_stop">"Timing canceled"</string>
+        <string name="read_aloud_timer_remaining">%d minutes</string>
+        <string name="read_aloud_timer_remaining_length">"%d hours and %d minutes"</string>
+        <string name="read_aloud_error">Reading aloud error</string>
+        <string name="read_aloud_s">Click to open the reading interface</string>
+        <string name="read_aloud_timer">Reading aloud (%d minutes left)</string>
+        <string name="read_aloud_timer_long">"Reading aloud (%d hours and %d minutes left)"</string>
+        <string name="read_aloud_t">Reading aloud</string>
+        <string name="stop">Stop</string>
+        <string name="pause">Pause</string>
+        <string name="resume">Continue</string>
+        <string name="set_timer">Timing</string>
+        <string name="tts_init_failed">TTS initialization failed</string>
+        <!-- Check Source Service -->
+        <string name="check_success">Verification complete</string>
+        <string name="start_check">Start verification</string>
+        <string name="check_book_source">Verifying book sources</string>
+        <string name="progress_show">Progress %d/%d</string>
+        <!-- Download Service -->
+        <string name="download_offline_t">Offline download</string>
+        <string name="download_offline_s">Downloading selected chapters to local</string>
+        <string name="is_downloading">Downloading</string>
+        <string name="wait_download">Wait for download</string>
+
+    <!-- Help -->
+        <!-- Backup & Restore Ui -->
+        <string name="backup_success">Backup succeeded</string>
+        <string name="restore_success">Restore Succeeded</string>
+        <string name="select_folder">Select a folder</string>
+        <!-- Select Menu -->
+        <string name="sys_folder_picker">System folder selector</string>
+        <string name="app_folder_picker">Application folder selector</string>
+        <string name="default_path">Default path</string>
+        <!-- WebDav Helper -->
+        <string name="backup_fail">Backup failed</string>
+        <string name="choose_restore_file">"Select file to restore"</string>
+        <!-- Source Helper -->
+        <string name="website_illegal_cannot_import">%s URL is illegal and cannot be imported.</string>
+        <!-- Update Manager -->
+        <string name="update">Update</string>
+        <string name="hide">Hide</string>
+        <string name="version">Version</string>
+        <string name="find_new_version">Found a new version</string>
+        <string name="up_to_date">Your software is up to date.</string>
+        <string name="check_update_error">Error checking new version</string>
+        <string name="download_update">Download updates</string>
+        <string name="download_success">Download succeeded</string>
+        <string name="download_fail">Download failed</string>
+        <string name="download_pause">Download paused</string>
+        <string name="download_cancel">Download cancelled</string>
+        <string name="cannot_go_to_install_page">Cannot jump to the installation interface</string>
+
+    <!-- Dialog -->
+        <!-- InputDialog Main -->
+        <string name="add_book_url">Enter a book URL</string>
+        <!-- Replace Rule Dialog -->
+        <string name="replace_rule_edit">Edit replacement rules</string>
+        <string name="replace_rule_summary">Replacement rule name</string>
+        <string name="replace_rule">Replacement rules</string>
+        <string name="use_regex">Using regular expressions</string>
+        <string name="replace_to">Replace with</string>
+        <string name="use_to">Replacement range (book name or source name is optional)</string>
+        <string name="replace_ad_intro">The ad script function uses an automatically optimized algorithm, without regular expressions,
+            You only need to mark the text you do not want to see many times to get a better advertising replacement effect.
+            The ad scripts of the same website are automatically saved in one rule, avoiding too many rules in the list.</string>
+        <string name="replace_ad">Advertising script</string>
+        <string name="replace_ad_title">Editing advertising script rules</string>
+        <string name="replace_add_ad_title">Add advertising script rules</string>
+        <!-- InputDialog Replace Rule -->
+        <string name="input_replace_url">Enter the replacement rule URL</string>
+        <!-- Source Login Dialog -->
+        <string name="login_source">Login to %s</string>
+        <!-- Bookmark Dialog -->
+        <string name="bookmark">Bookmarks</string>
+        <string name="content">Content</string>
+        <string name="save">Save</string>
+        <!-- Download Choice Dialog -->
+        <string name="chapter_s">Chapter:</string>
+        <string name="to">to</string>
+        <string name="exceed_total_chapter">Exceeding the general chapter</string>
+        <string name="input_error">Input error</string>
+        <string name="input_download_offline_chapter">Please enter the numbers of the chapters to be offline</string>
+        <!-- Change Source Dialog -->
+        <string name="disable_book_source">Disable book source</string>
+        <string name="delete_book_source">Deleting book source</string>
+        <string name="have_disabled">Disabled</string>
+        <string name="have_deleted">Deleted</string>
+        <string name="no_last_chapter">No latest chapter information</string>
+        <!-- Font Select Dialog -->
+        <string name="select_font">Select a font</string>
+        <string name="self_choose_font">Customized font</string>
+        <string name="choose_font_cannot_find">Font file not found</string>
+        <string name="fonts_folder">Please put the font file in the folder called Fonts under the internal storage root directory and reselect.</string>
+        <!-- Txt Chapter Rule Dialog -->
+        <string name="name">Name</string>
+        <string name="regex">Regex</string>
+
+    <!-- Select Menu -->
+        <!-- Select Menu Main -->
+        <string name="sequence_book_by_reading_time">Sorted by reading Time</string>
+        <string name="sequence_book_by_updating_time">Sorted by updating Time</string>
+        <string name="import_book">Importing books</string>
+        <string name="import_local_book">Import local books</string>
+        <string name="import_online_book">Import online books</string>
+        <string name="local_backup">Local backup</string>
+        <string name="webdav_backup">WebDav backup</string>
+        <string name="local_restore">Local restore</string>
+        <string name="webdav_restore">WebDav restore</string>
+        <!-- Select Menu Book Source UpGroup -->
+        <string name="book_source_sequence">Sort book sources</string>
+        <string name="sort_manual">Manual sorting</string>
+        <string name="sort_auto">Smart sorting</string>
+        <string name="sort_pin_yin">Pinyin sorting</string>
+        <!-- Select Menu Book Source Quick Search -->
+        <string name="quick_search">Quick search</string>
+        <string name="enabled_book_source">Enable book source</string>
+
+    <!-- More Setting Menu -->
+        <!-- More Setting Menu Main -->
+        <string name="refresh_all">Refresh all</string>
+        <string name="download_all">Download all</string>
+        <string name="network_connection_unavailable">Network connection is unavailable</string>
+        <string name="organize_bookshelf">Organize books</string>
+        <string name="sequence_book">Sort books</string>
+        <string name="bookshelf_layout">Bookshelf layout</string>
+        <string name="web_service">Web services</string>
+        <string name="web_service_already_started">The web service has been started</string>
+        <!-- More Setting Menu BookDetail -->
+        <string name="refresh">Reload</string>
+        <string name="disable_update">Disable update</string>
+        <string name="allow_update">Allow updates</string>
+        <string name="edit_book_source">Edit book source</string>
+        <string name="copy_book_url">Copy URL</string>
+        <!-- More Setting Menu BookSource -->
+        <string name="add_book_source">Add local</string>
+        <string name="import_local">Import local</string>
+        <string name="import_book_source_online">Import online</string>
+        <string name="import_default">Import default</string>
+        <string name="revert_selection">Invert selection</string>
+        <string name="del_select">Delete selected</string>
+        <string name="check_select_source">Verify selected</string>
+        <string name="wifi_share">Wifi sharing</string>
+        <!-- More Setting Menu TxtChapter Rule-->
+        <string name="import_online">Import online</string>
+        <string name="del_all">Delete all</string>
+        <!-- More Setting Menu Source Edit -->
+        <string name="login">Login</string>
+        <string name="copy_source">Copying book sources</string>
+        <string name="paste_source">Paste book source</string>
+        <string name="str_share">String sharing</string>
+        <string name="rule_summary">Rule description</string>
+        <!-- More Setting Menu Book Read -->
+        <string name="replace_rule_title">Replacement purification</string>
+        <string name="edit_replace_rule">Edit replacement rules</string>
+        <string name="light_novel_paragraph">Paragraph repartition</string>
+        <string name="update_chapter">Update directory</string>
+        <string name="open_browser">Open in browser</string>
+
+    <!-- Pop Menu -->
+        <!-- Pop Read Menu -->
+        <string name="aloud_stop">Stop reading aloud</string>
+        <string name="read_aloud">Read aloud</string>
+        <string name="auto_next_page">Auto flipping</string>
+        <string name="auto_next_page_stop">Stop automatic page flipping</string>
+        <string name="previous_chapter">Previous chapter</string>
+        <string name="next_chapter">Next chapter</string>
+        <!-- Pop Read Interface Menu -->
+        <string name="light">Lights</string>
+        <string name="flow_sys">Follow the system</string>
+        <string name="text_bold">Thick/Thin</string>
+        <string name="custom_font">Font</string>
+        <string name="indent">Indent</string>
+            <string name="indent_0_char">No indentation</string>
+            <string name="indent_1_char">One character indent</string>
+            <string name="indent_2_char">Two character indent</string>
+            <string name="indent_3_char">Three character indent</string>
+            <string name="indent_4_char">Four character indent</string>
+        <string name="chinese_convert_title">Simplified/Traditional</string>
+            <string name="chinese_convert">Chinese converter</string>
+            <string name="chinese_convert_off">Off</string>
+            <string name="chinese_convert_to_traditional">To traditional Chinese</string>
+            <string name="chinese_convert_to_simplified">To simplified Chinese</string>
+        <string name="row_1_time">Single</string>
+        <string name="row_2_time">Double</string>
+        <string name="row_3_time">Triple</string>
+        <string name="_default">Default</string>
+        <string name="text_space">Spacing</string>
+        <string name="get_file_list_error">Error obtaining file list\n%s</string>
+        <!-- Pop Read Long Press Menu -->
+        <string name="replace">Replace</string>
+        <string name="advertisement">Ad</string>
+        <!-- Pop More Setting Menu -->
+        <string name="read_setting">Reading settings</string>
+        <string name="parameter_setting">Parameter setting</string>
+            <string name="read_aloud_speed">Reading speed</string>
+            <string name="auto_next_page_speed">Number of words read per minute (CPM) during automatic page flipping</string>
+        <string name="display_setting">Display settings</string>
+        <string name="operation_setting">Operation setting</string>
+        <string name="screen_orientation">Screen orientation</string>
+            <string name="screen_landscape">Landscape</string>
+            <string name="screen_portrait">Portrait</string>
+        <string name="keep_light_time">Screen sleep time</string>
+            <string name="system">System</string>
+            <string name="light_time_5_minute">5 minutes</string>
+            <string name="light_time_10_minute">10 minutes</string>
+            <string name="light_time_15_minute">15 minutes</string>
+            <string name="light_always">Always on</string>
+        <string name="disable_return_key">Disable the return key</string>
+        <string name="click_open_page">Click turn page</string>
+        <string name="click_all_next_page">Click always turn to the next page</string>
+        <string name="volume_open_page">Volume key page turn</string>
+        <string name="aloud_volume_page">Volume key turns pages when reading aloud</string>
+        <string name="select_text">Long press to select text</string>
+        <!-- Pop Read Adjust Margin Menu -->
+        <string name="custom_mr">Custom spacing</string>
+        <string name="custom_mr_rm">Line spacing</string>
+        <string name="custom_mr_dm">Segment spacing</string>
+        <string name="custom_mr_f">Word spacing</string>
+        <string name="custom_mr_z_t">Top margin</string>
+        <string name="custom_mr_z_b">Bottom margin</string>
+        <string name="custom_mr_z_l">Left margin</string>
+        <string name="custom_mr_z_r">Right margin</string>
+        <string name="custom_mr_t_t">Top Tip</string>
+        <string name="custom_mr_t_b">Bottom Tip</string>
+        <string name="custom_mr_t_l">Left Tip</string>
+        <string name="custom_mr_t_r">Right Tip</string>
+
+    <!-- View -->
+        <!-- View Empty -->
+        <string name="no_data">No data</string>
+
+    <!-- Widget -->
+        <!-- Page Loader & Page Viewer -->
+        <string name="load_error_msg">Content loading failed! \n%s</string>
+            <string name="content_empty">The content of the article is empty</string>
+            <string name="catalog_empty">The directory list is empty</string>
+            <string name="is_changing_source">Changing sources</string>
+            <string name="load_un_complete">Loading is not complete</string>
+            <string name="no_prior_page">No previous page</string>
+            <string name="no_next_page">No next page</string>
+        <!-- Chapter Provider -->
+        <string name="read_content_error">Error reading content\n</string>
+        <string name="cache_file_do_not_exist">The cache file does not exist</string>
+        <string name="cannot_load_content">The content is not loaded</string>
+        <!-- Page Loader Epub -->
+        <string name="parse_file_error">File parsing failed</string>
+        <string name="cover">Cover</string>
+        <string name="catalog_updating">Updating directory</string>
+        <string name="update_finish">Update complete</string>
+        <!-- Page Loader Net -->
+        <string name="update_finish_with_new_chapter">The update is complete and there are new chapters</string>
+        <string name="update_finish_without_new_chapter">The update is complete and there are no new chapters</string>
+        <!-- Page Loader Text-->
+        <string name="chapter">Chapter %d (%d)</string>
+    
+    <!-- Model -->
+        <!-- Analyze Rule -->
+        <string name="fail_to_preprocess_info_skip_parsing_info_page">└Detail pre-processing failed, and details page parsing was skipped</string>
+        <string name="get_catalog_url">┌Obtain category URL</string>
+        <string name="preprocess_info_success">└Detail preprocessing completed</string>
+        <string name="get_book_name">┌Obtain the book name</string>
+        <string name="get_book_author">┌Obtain the book author</string>
+        <string name="get_latest_chapter">┌Obtain the latest chapter</string>
+        <string name="get_book_introduction">┌Obtain the book introduction</string>
+        <string name="get_cover_url">┌Obtain the cover URL</string>
+        <string name="parse_info_page_success">-Details page parsing completed</string>
+        <!-- Content -->
+        <string name="get_catalog_page_success">Obtain the directory page successfully</string>
+        <string name="load_next_page">Loading the next page></string>
+        <string name="load_next_page_success">The next page has been loaded, %d pages in total</string>
+        <string name="load_other_page">Loading other %d pages</string>
+        <string name="load_other_page_success">Other pages have been loaded. There are %d directories in total</string>
+        <string name="parse_catalog_success">- Directory parsing completed</string>
+        <string name="get_next_page_url_success">┌Obtain the URL of the next page in the directory</string>
+        <string name="parse_catalog_list">┌Parse directory list</string>
+        <string name="find_0_chapter">└0 chapters found</string>
+        <string name="find_chapter">└%d chapters found</string>
+        <string name="reverse">-Reverse</string>
+        <string name="get_chapter_name">┌Obtain chapter names</string>
+        <string name="get_chapter_url">┌Obtain chapter URL</string>
+        <string name="get_text_page_success">┌Obtain the body page successfully</string>
+        <string name="parse_text_content">┌Parse text content</string>
+        <string name="parse_next_page_url">┌Parse the next page URL</string>
+        <!-- Book Info -->
+        <string name="get_info_page_success">┌Obtain the details page successfully</string>
+        <string name="preprocess_info">┌Preprocess the details page information</string>
+        <string name="get_book_kind">┌Obtain book classification</string>
+        <string name="get_book_cover">┌Obtain book cover</string>
+        <!-- Book List -->
+        <string name="get_search_result_success">┌Obtained search results successfully</string>
+        <string name="get_book_url">┌Obtain book URL</string>
+        <string name="search_result_is_info_page">>The search result is a detail page</string>
+        <string name="parse_search_list">┌Parse search list</string>
+        <string name="search_list_empty_process_as_info_page">└The search list is empty and treated as a detail page</string>
+        <string name="find_matching_result">└Find %d matching results</string>
+        <string name="finish_parse_book_list">-Parsing book list ended</string>
+        <string name="book_url">>Book URL:</string>
+        <string name="get_book">Obtain book</string>
+        <string name="start_visit_info_page">⇒Start accessing the detail page:</string>
+        <string name="start_visit_find_page">⇒Start accessing the finding page:</string>
+        <string name="start_search_key_word">⇒Start searching for keywords:</string>
+        <string name="start_get_find_page">\n%s ≡Start obtaining the finding page</string>
+        <string name="start_get_search_page">\n%s ≡Start obtaining the searching page</string>
+        <string name="start_get_info_page">\n%s ≡Start obtaining the detail page</string>
+        <string name="start_get_catalog_page">\n%s ≡Start obtaining the category page</string>
+        <string name="catalog_found_is_empty">The obtained directory is empty</string>
+        <string name="start_get_text_page">\n%s ≡Start obtaining the body page</string>
+        <!-- Web Book -->
+        <string name="have_not_find_book_source_config">No book source configuration found</string>
+
+    <!-- Error -->
+        <string name="get_book_info_error">Failed to obtain book information</string>
+        <string name="tip_cannot_jump_setting_page">Cannot jump to the setting</string>
+        <string name="net_error_10001">No network</string>
+        <string name="net_error_10002">Network connection timeout</string>
+        <string name="net_error_10003">Data parsing failed</string>
+        <string name="get_content_error">Content acquisition failed</string>
+        <string name="get_catalog_error">Directory acquisition failed</string>
+        <string name="no_book_name">Failed to obtain book name</string>
+        <string name="get_web_content_error">Failed to access the website: %s</string>
+        <string name="find_rule_grammar_error">Find rule has syntax error</string>
+        <string name="not_json_or_url_format">Not in Json or Url format</string>
+        <string name="have_not_choose_any_book_source">No book source is selected</string>
+        <string name="have_not_find_any_content">No content found</string>
+        <string name="have_not_find_more_content">No more content is found</string>
+        <string name="download_chapter_error">Error downloading chapter</string>
+        <string name="save_chapter_error">Error saving chapter</string>
+        <string name="unknown_error_please_contact_developer">Unknown error, please contact the developer!</string>
+
+    <!-- Others -->
+        <!-- Request-->
+        <string name="dialog_title">Tips</string>
+        <string name="dialog_setting">Go to setting</string>
+        <!-- File Holder-->
+        <string name="nb_file_sub_count">%1$d Item</string>
+        <!-- Web -->
+        <string name="debug_finish">Debug ended</string>
+        <string name="book_source_and_url_cannot_be_empty">The book source name and URL cannot be empty.</string>
+        <string name="url_cannot_be_empty_please_specify_book_source_url">The parameter Url cannot be empty, please specify the book source address.</string>
+        <string name="cannot_find_book_source_please_check_url">The book source is not found, please check the book source address.</string>
+        <string name="book_source_empty">The book source list of this device is empty.</string>
+        <string name="have_execute">Executed</string>
+        <string name="have_not_add_novel">Any novels have not been added.</string>
+        <string name="url_cannot_be_empty_please_specify_book_url">The parameter Url cannot be empty, please specify the book address.</string>
+        <string name="url_cannot_be_empty_please_specify_content_url">The parameter Url cannot be empty, please specify the content address.</string>
+        <string name="cannot_find">Have not found</string>
+</resources>

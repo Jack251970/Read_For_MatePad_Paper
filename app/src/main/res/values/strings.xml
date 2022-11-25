@@ -272,7 +272,6 @@
         <string name="read_aloud_timer_remaining_length">"%d小时%d分"</string>
         <string name="read_aloud_error">播放出错</string>
         <string name="read_aloud_s">点击打开阅读界面</string>
-
         <string name="read_aloud_timer">正在朗读(还剩%d分钟)</string>
         <string name="read_aloud_timer_long">"正在朗读(还剩%d小时%d分)"</string>
         <string name="read_aloud_t">正在朗读</string>
@@ -390,7 +389,7 @@
         <string name="refresh_all">刷新全部</string>
         <string name="download_all">下载全部</string>
         <string name="network_connection_unavailable">网络连接不可用</string>
-        <string name="organize_bookshelf">整理书架</string>
+        <string name="organize_bookshelf">整理书籍</string>
         <string name="sequence_book">书籍排序</string>
         <string name="bookshelf_layout">书架布局</string>
         <string name="web_service">Web服务</string>

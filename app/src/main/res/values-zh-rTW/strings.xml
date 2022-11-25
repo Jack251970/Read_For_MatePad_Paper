@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base String -->
+        <string name="app_name">閱讀</string>
+        <string name="read_summary">讓閱讀成為一種習慣。</string>
+        <string name="yes">是</string>
+        <string name="no">否</string>
+        <string name="confirm">確認</string>
+        <string name="cancel">取消</string>
+        <string name="error">錯誤</string>
+
+    <!-- Shortcuts -->
+        <string name="enter_bookshelf">進入書架</string>
+        <string name="last_read">最後閱讀</string>
+
+    <!-- Presenter -->
+        <!-- Txt Chapter Rule Presenter -->
+        <string name="delete_fail">刪除失敗</string>
+        <string name="delete_success">刪除成功</string>
+        <string name="read_file_error">文件讀取失敗</string>
+        <string name="import_fail">導入失敗</string>
+        <string name="format_error">格式不對</string>
+        <!-- Source Edit Presenter -->
+        <string name="seem_not_source_info">似乎不是書源信息</string>
+        <string name="import_read_3_book_source">導入了閱讀3.0書源</string>
+        <!-- Read Book Presenter -->
+        <string name="no_book">沒有書籍</string>
+        <string name="open_text_fail">打開文本失敗</string>
+        <!-- Main Presenter -->
+        <string name="already_in_bookshelf">已在書架中</string>
+        <string name="add_book_fail">添加書籍失敗</string>
+        <string name="add_book_success">添加書籍成功</string>
+        <!-- Book Source Presenter -->
+        <string name="is_importing_book_source">正在導入書源</string>
+        <string name="import_number_book_source_success">導入成功%d個書源</string>
+        <!-- Book Detail Presenter -->
+        <string name="add_to_bookshelf_fail">放入書架失敗</string>
+        <string name="delete_book_fail">刪除書籍失敗</string>
+
+    <!-- Permission -->
+        <string name="import_local_book_need_storage_permission">導入本地書籍需要儲存權限</string>
+        <string name="need_storage_permission_to_backup_book_information">本軟件需要存儲權限來存儲備份書籍信息</string>
+
+    <!-- Activity -->
+        <!-- MainActivity -->
+        <string name="book_source">書源</string>
+        <string name="purify">凈化</string>
+        <string name="download">下載</string>
+        <string name="backup">備份</string>
+        <string name="restore">恢復</string>
+        <string name="bookshelf">書架</string>
+        <string name="search_book_name_or_author">搜索書名、作者</string>
+        <string name="all_books">所有書籍</string>
+        <string name="pursue">追更</string>
+        <string name="fattening">養肥</string>
+        <string name="finish">完結</string>
+        <string name="local_book">本地書籍</string>
+        <string name="double_click_exit_read">再按一次退出閱讀</string>
+        <!-- BookDetailActivity -->
+        <string name="book_info">書籍信息</string>
+        <string name="book_name">書名</string>
+        <string name="author">作者</string>
+        <string name="origin">來源</string>
+        <string name="change_origin">換源</string>
+        <string name="read_dur_progress">最近: %s</string>
+        <string name="check_catalog">查看目錄</string>
+        <string name="book_groups">分組</string>
+        <string name="manage_groups">設置分組</string>
+        <string name="local">本地</string>
+        <string name="book_intro">內容簡介</string>
+        <string name="remove_from_bookshelf">刪除書籍</string>
+        <string name="start_read">開始閱讀</string>
+        <string name="add_to_shelf">放入書架</string>
+        <string name="continue_read">繼續閱讀</string>
+        <string name="data_loading">加載數據中</string>
+        <string name="load_error_retry">加載失敗，點擊重試</string>
+        <string name="unknown">未知</string>
+        <string name="copy_complete">已拷貝</string>
+        <!-- Import Book Activity -->
+        <string name="local_directory">本地目錄</string>
+        <string name="smart_import">智能導入</string>
+        <!-- Book Source Activity -->
+        <string name="search">搜索</string>
+        <string name="search_book_source">搜索書源</string>
+        <string name="search_book_source_num">搜索(共%d個書源)</string>
+        <string name="del_delete_book_source">是否刪除所選書源？</string>
+        <string name="sys_file_picker">系統文件選擇器</string>
+        <string name="input_book_source_url">輸入書源網址</string>
+        <string name="import_success">導入成功</string>
+        <!-- Replace Rule Activity -->
+        <string name="del_delete_all_replace_rule">是否刪除所有規則？</string>
+        <!-- Download Activity -->
+        <string name="download_offline">離線下載</string>
+        <string name="un_download">還剩%d章未下載</string>
+        <!-- Txt Chapter Rule Activity -->
+        <string name="chapter_regex">目錄正則</string>
+        <string name="del_delete_all_txt_chapter_rule">是否刪除所有目錄正則？</string>
+        <!-- About Activity -->
+        <string name="about_read">關於閱讀</string>
+        <string name="cannot_open">無法打開</string>
+        <string name="version_name">Version %s</string>
+        <string name="about_description">For Huawei Matepad Paper</string>
+        <string name="check_update">檢查更新</string>
+        <string name="update_log">更新日誌</string>
+        <string name="git_hub">項目主頁</string>
+        <string name="disclaimer">免責聲明</string>
+        <!-- Search Book Activity -->
+        <string name="cannot_search_any_books">未搜索到相關書籍！</string>
+        <string name="get_data_error">獲取數據失敗！</string>
+        <string name="retry">重試</string>
+        <string name="book_source_search_range">書源搜索範圍</string>
+        <string name="all_source">全部書源</string>
+        <string name="delete_all_history">是否刪除所有歷史記錄?</string>
+        <string name="searchHistory">搜索歷史</string>
+        <string name="origin_format">來源: %s</string>
+        <string name="is_loading">加載中</string>
+        <string name="book_search_last">最新: %s</string>
+        <string name="no_kind">暫未分類</string>
+        <!-- Book Info Edit Activity -->
+        <string name="edit_book_info">書籍信息編輯</string>
+        <string name="cover_path">封面地址</string>
+        <string name="bg_image_per">獲取背景圖片需存儲權限</string>
+        <string name="select_local_image">選擇本地圖片</string>
+        <string name="cover_change_source">封面換源</string>
+        <string name="refresh_cover">刷新封面</string>
+        <!-- Source Edit Activity -->
+        <string name="audio">音頻</string>
+        <string name="is_enable">啟用</string>
+        <string name="source_no_login">當前源沒有配置登陸地址</string>
+        <string name="if_copy_find_content">是否拷貝發現內容？</string>
+        <string name="basic">基本</string>
+        <string name="find">發現</string>
+        <string name="info">詳情</string>
+        <string name="main_content">正文</string>
+        <string name="save_success">保存成功</string>
+        <string name="non_null_source_name_url">書源名稱和URL不能為空</string>
+        <string name="book_source_url">書源URL(bookSourceUrl)</string>
+        <string name="book_source_name">書源名稱(bookSourceName)</string>
+        <string name="book_source_group">書源分組(bookSourceGroup)</string>
+        <string name="book_source_login_url">登錄URL(loginUrl)</string>
+        <string name="login_ui">登錄UI(loginUi)</string>
+        <string name="login_check_js">登錄檢查Js(loginCheckJs)</string>
+        <string name="rule_search_url">搜索地址(ruleSearchUrl)</string>
+        <string name="rule_search_list">搜索列表規則(ruleSearchList)</string>
+        <string name="rule_search_name">搜索書名規則(ruleSearchName)</string>
+        <string name="rule_search_author">搜索作者規則(ruleSearchAuthor)</string>
+        <string name="rule_search_kind">搜索分類規則(ruleSearchKind)</string>
+        <string name="rule_search_last_chapter">搜索最新章節規則(ruleSearchLastChapter)</string>
+        <string name="rule_search_introduce">搜索簡介規則(ruleSearchIntroduce)</string>
+        <string name="rule_search_cover_url">搜索封面規則(ruleSearchCoverUrl)</string>
+        <string name="rule_search_note_url">搜索書籍URL規則(ruleSearchNoteUrl)</string>
+        <string name="book_url_pattern">書籍詳情URL正則(ruleBookUrlPattern)</string>
+        <string name="rule_book_info_init">書籍詳情預處理規則(ruleBookInfoInit)</string>
+        <string name="rule_book_name">書名規則(ruleBookName)</string>
+        <string name="rule_book_author">作者規則(ruleBookAuthor)</string>
+        <string name="rule_cover_url">封面規則(ruleCoverUrl)</string>
+        <string name="rule_introduce">簡介規則(ruleIntroduce)</string>
+        <string name="rule_book_kind">分類規則(ruleBookKind)</string>
+        <string name="rule_book_last_chapter">最新章節規則(ruleBookLastChapter)</string>
+        <string name="rule_chapter_list_url">目錄URL規則(ruleChapterUrl)</string>
+        <string name="rule_chapter_list_url_next">目錄下一頁規則(ruleChapterUrlNext)</string>
+        <string name="rule_chapter_list">目錄列表規則(ruleChapterList)</string>
+        <string name="rule_chapter_name">章節名稱規則(ruleChapterName)</string>
+        <string name="rule_content_url">章節URL規則(ruleContentUrl)</string>
+        <string name="rule_chapter_vip">VIP標識(ruleChapterVip)</string>
+        <string name="rule_chapter_pay">購買標識(ruleChapterPay)</string>
+        <string name="rule_content_url_next">正文下一頁URL規則(ruleContentUrlNext)</string>
+        <string name="rule_book_content">正文規則(ruleBookContent)</string>
+        <string name="rule_book_content_replace">正文替換規則(ruleBookContentReplace)</string>
+        <string name="source_user_agent">HttpUserAgent</string>
+        <string name="rule_find_url">發現規則(ruleFindUrl)</string>
+        <string name="rule_find_list">發現列表規則(ruleFindList)</string>
+        <string name="rule_find_name">發現書名規則(ruleFindName)</string>
+        <string name="rule_find_author">發現作者規則(ruleFindAuthor)</string>
+        <string name="rule_find_kind">發現分類規則(ruleFindKind)</string>
+        <string name="rule_find_introduce">發現簡介規則(ruleFindIntroduce)</string>
+        <string name="rule_find_last_chapter">發現最新章節規則(ruleFindLastChapter)</string>
+        <string name="rule_find_note_url">發現書籍URL規則(ruleFindNoteUrl)</string>
+        <string name="rule_find_cover_url">發現封面規則(ruleFindCoverUrl)</string>
+        <string name="cannot_share">分享失敗</string>
+        <string name="exit_no_save">是否繼續編輯書源？</string>
+        <!-- Source Debug Activity -->
+        <string name="debug_hint">書名、作者、URL</string>
+        <string name="cannot_empty">輸入不能為空</string>
+        <!-- Source Login Activity -->
+        <string name="click_check_after_success">登錄成功后請點擊右上角圖標進行首頁訪問測試</string>
+        <string name="check_host_cookie">正在打開首頁，成功自動返回主界面</string>
+        <!-- Catalog Activity -->
+        <string name="catalog">目錄</string>
+        <string name="this_book_have_no_bookmark">本書暫無書籤信息</string>
+        <!-- Book Read Activity -->
+        <string name="pay">購買</string>
+        <string name="aloud_cannot_auto_page">朗讀正在運行,不能自動翻頁</string>
+        <string name="have_not_buy_chapter_please_login_and_refresh">付費章節未購買，如已購買請登錄並刷新目錄</string>
+        <string name="have_copy_to_clipboard">所選內容已經複製到剪貼板</string>
+        <string name="network_connection_unavailable_cannot_refresh_chapter">網絡不可用，無法刷新當前章節</string>
+        <string name="input_charset">輸入編碼</string>
+        <string name="choose_txt_regex">選擇目錄正則</string>
+        <string name="manage_txt_regex">管理目錄正則</string>
+        <string name="check_add_bookshelf">是否將《%s》放入書架？</string>
+        <string name="read_aloud_pause">朗讀暫停</string>
+        <string name="please_grant_storage_permission">請給於存儲權限</string>
+
+    <!-- Fragment -->
+        <!-- BookList Fragment-->
+        <string name="have_choose_items">已選擇%d項</string>
+        <string name="unselected">未選擇</string>
+        <string name="sure_del_book">是否刪除書籍？</string>
+        <string name="bookshelf_empty">書架還空着，先去添加吧！</string>
+        <string name="select_all">全選</string>
+        <string name="delete">刪除</string>
+        <!-- File Category Fragment -->
+        <string name="default_file_path">內部存儲</string>
+        <string name="parent">上級</string>
+        <!-- General Setting Fragment -->
+        <string name="setting">設置</string>
+        <string name="sure_delete_download_book">是否同時刪除已下載的書籍目錄？</string>
+        <string name="launcher_setting">啟動設置</string>
+        <string name="default_read">默認跳轉最近閱讀</string>
+        <string name="backup_setting">備份設置</string>
+        <string name="local_backup_setting">本地備份設置</string>
+        <string name="web_dav_setting">WebDav設置</string>
+        <string name="update_setting">更新設置</string>
+        <string name="auto_update">自動更新書籍</string>
+        <string name="auto_download">自動下載最新章節</string>
+        <string name="auto_change_source_update_chapter">後台換源更新最新章節</string>
+        <string name="purify_setting">凈化設置</string>
+        <string name="default_enable_purify">默認啟用替換凈化</string>
+        <string name="search_setting">搜索設置</string>
+        <string name="search_result_filter_grade">搜索結果過濾等級</string>
+        <string name="search_result_filter_grade_tip">調高過濾等級可以避免看到書名/作者無關的搜索結果。
+            \n等級1-9：搜索關鍵字需要出現到書名/作者中，但是允許有8-0個字（空格不計）沒有出現。</string>
+        <string name="show_all_find">显示所有發現內容</string>
+        <string name="other_setting">其他設置</string>
+        <string name="update_search_threads_num">更新和搜索線程數</string>
+        <string name="threads_num">當前線程數 %s</string>
+        <string name="web_port_title">Web端口</string>
+        <string name="web_port_summary">當前端口 %s</string>
+        <string name="clear_cache">清除應用緩存</string>
+        <!-- WebDav Setting Fragment -->
+        <string name="web_dav_config">WebDav配置</string>
+        <string name="web_dav_backup_and_restore">WebDav備份與恢復</string>
+        <string name="webdav">WebDav</string>
+        <string name="no_backup">沒有備份</string>
+        <string name="web_dav_url">WebDav 服務器地址</string>
+        <string name="web_dav_account">WebDav 賬號</string>
+        <string name="input_web_dav_account">輸入你的WebDav賬號</string>
+        <string name="web_dav_password">WebDav 密碼</string>
+        <string name="input_web_dav_password">輸入你的WebDav授權密碼</string>
+        <string name="web_dav_backup">WebDav 備份</string>
+        <string name="web_dav_restore">WebDav 恢復</string>
+        <!-- Local Backup Setting Fragment -->
+        <string name="local_backup_config">本地備份配置</string>
+        <string name="local_backup_and_restore">本地備份與恢復</string>
+        <string name="backup_path">本地備份路徑</string>
+        <string name="auto_backup">自動本地備份</string>
+        <!-- Chapter List Fragment -->
+        <string name="chapter_info_format">%s（%d/%d章）</string>
+
+    <!-- Service -->
+        <!-- WebService -->
+        <string name="web_service_starting_short">正在啟動Web服務</string>
+        <string name="web_service_starting_long">正在啟動Web服務\n具體信息查看通知欄</string>
+        <string name="http_ip">http://%s:%d</string>
+        <!-- SharedService -->
+        <string name="shared_service_starting_short">正在啟動Web服務</string>
+        <string name="shared_service_starting_long">正在啟動Web服務\n具體信息查看通知欄</string>
+        <string name="sharded_address">分享地址:%s</string>
+        <!-- Read Aloud Service -->
+        <string name="read_aloud_timer_stop">"計時已取消"</string>
+        <string name="read_aloud_timer_remaining">%d分鐘</string>
+        <string name="read_aloud_timer_remaining_length">"%d小時%d分"</string>
+        <string name="read_aloud_error">播放出錯</string>
+        <string name="read_aloud_s">點擊打開閱讀界面</string>
+        <string name="read_aloud_timer">正在朗讀(還剩%d分鐘)</string>
+        <string name="read_aloud_timer_long">"正在朗讀(還剩%d小時%d分)"</string>
+        <string name="read_aloud_t">正在朗讀</string>
+        <string name="stop">停止</string>
+        <string name="pause">暫停</string>
+        <string name="resume">繼續</string>
+        <string name="set_timer">定時</string>
+        <string name="tts_init_failed">TTS初始化失敗!</string>
+        <!-- Check Source Service -->
+        <string name="check_success">校驗完成</string>
+        <string name="start_check">開始校驗</string>
+        <string name="check_book_source">校驗書源</string>
+        <string name="progress_show">進度 %d/%d</string>
+        <!-- Download Service -->
+        <string name="download_offline_t">離線下載</string>
+        <string name="download_offline_s">下載選擇的章節到本地</string>
+        <string name="is_downloading">正在下載</string>
+        <string name="wait_download">等待下載</string>
+
+    <!-- Help -->
+        <!-- Backup & Restore Ui -->
+        <string name="backup_success">備份成功</string>
+        <string name="restore_success">恢復成功</string>
+        <string name="select_folder">選擇文件夾</string>
+        <!-- Select Menu -->
+        <string name="sys_folder_picker">系統文件夾選擇器</string>
+        <string name="app_folder_picker">軟件文件夾選擇器</string>
+        <string name="default_path">默認路徑</string>
+        <!-- WebDav Helper -->
+        <string name="backup_fail">備份失敗</string>
+        <string name="choose_restore_file">"選擇恢復文件"</string>
+        <!-- Source Helper -->
+        <string name="website_illegal_cannot_import">%s網址非法，不能導入！</string>
+        <!-- Update Manager -->
+        <string name="update">更新</string>
+        <string name="hide">隱藏</string>
+        <string name="version">版本</string>
+        <string name="find_new_version">發現新版本</string>
+        <string name="up_to_date">已是最新版本</string>
+        <string name="check_update_error">檢查新版本出錯</string>
+        <string name="download_update">下載更新</string>
+        <string name="download_success">下載成功</string>
+        <string name="download_fail">下載失敗</string>
+        <string name="download_pause">下載暫停</string>
+        <string name="download_cancel">下載取消</string>
+        <string name="cannot_go_to_install_page">無法跳轉安裝界面</string>
+
+    <!-- Dialog -->
+        <!-- InputDialog Main -->
+        <string name="add_book_url">添加書籍網址</string>
+        <!-- Replace Rule Dialog -->
+        <string name="replace_rule_edit">替換規則編輯</string>
+        <string name="replace_rule_summary">替換規則名稱</string>
+        <string name="replace_rule">替換規則</string>
+        <string name="use_regex">使用正則表達式</string>
+        <string name="replace_to">替換為</string>
+        <string name="use_to">替換範圍（選填書名或者源名）</string>
+        <string name="replace_ad_intro">廣告話術功能使用了自動優化的算法，無需正則表達式，
+                只需多次標記不想看的文字，就可以獲得較好的廣告替換效果。
+                同個網站的廣告話術自動保存在一個規則內，避免了列表中有太多規則。</string>
+        <string name="replace_ad">廣告話術</string>
+        <string name="replace_ad_title">編輯廣告話術規則</string>
+        <string name="replace_add_ad_title">添加廣告話術規則</string>
+        <!-- InputDialog Replace Rule -->
+        <string name="input_replace_url">輸入替換規則網址</string>
+        <!-- Source Login Dialog -->
+        <string name="login_source">登錄%s</string>
+        <!-- Bookmark Dialog -->
+        <string name="bookmark">書籤</string>
+        <string name="content">內容</string>
+        <string name="save">保存</string>
+        <!-- Download Choice Dialog -->
+        <string name="chapter_s">章節:</string>
+        <string name="to">至</string>
+        <string name="exceed_total_chapter">超過總章節</string>
+        <string name="input_error">輸入錯誤</string>
+        <string name="input_download_offline_chapter">請輸入要離線的章節</string>
+        <!-- Change Source Dialog -->
+        <string name="disable_book_source">禁用書源</string>
+        <string name="delete_book_source">刪除書源</string>
+        <string name="have_disabled">已禁用</string>
+        <string name="have_deleted">已刪除</string>
+        <string name="no_last_chapter">無最新章節信息</string>
+        <!-- Font Select Dialog -->
+        <string name="select_font">選擇字體</string>
+        <string name="self_choose_font">自定義字體</string>
+        <string name="choose_font_cannot_find">字體文件未找到</string>
+        <string name="fonts_folder">請將字體文件放到內部存儲根目錄下的Fonts文件夾中重新選擇</string>
+        <!-- Txt Chapter Rule Dialog -->
+        <string name="name">名稱</string>
+        <string name="regex">正則</string>
+
+    <!-- Select Menu -->
+        <!-- Select Menu Main -->
+        <string name="sequence_book_by_reading_time">按閱讀時間排序</string>
+        <string name="sequence_book_by_updating_time">按更新時間排序</string>
+        <string name="import_book">導入書籍</string>
+        <string name="import_local_book">導入本地書籍</string>
+        <string name="import_online_book">導入網絡書籍</string>
+        <string name="local_backup">本地備份</string>
+        <string name="webdav_backup">WebDav備份</string>
+        <string name="local_restore">本地恢復</string>
+        <string name="webdav_restore">WebDav恢復</string>
+        <!-- Select Menu Book Source UpGroup -->
+        <string name="book_source_sequence">書源排序</string>
+        <string name="sort_manual">手動排序</string>
+        <string name="sort_auto">智能排序</string>
+        <string name="sort_pin_yin">拼音排序</string>
+        <!-- Select Menu Book Source Quick Search -->
+        <string name="quick_search">快速搜索</string>
+        <string name="enabled_book_source">啟用書源</string>
+
+    <!-- More Setting Menu -->
+        <!-- More Setting Menu Main -->
+        <string name="refresh_all">刷新全部</string>
+        <string name="download_all">下載全部</string>
+        <string name="network_connection_unavailable">網絡連接不可用</string>
+        <string name="organize_bookshelf">整理書籍</string>
+        <string name="sequence_book">書籍排序</string>
+        <string name="bookshelf_layout">書架布局</string>
+        <string name="web_service">Web服務</string>
+        <string name="web_service_already_started">Web服務已啟動</string>
+        <!-- More Setting Menu BookDetail -->
+        <string name="refresh">重新加載</string>
+        <string name="disable_update">禁止更新</string>
+        <string name="allow_update">允許更新</string>
+        <string name="edit_book_source">編輯書源</string>
+        <string name="copy_book_url">複製網址</string>
+        <!-- More Setting Menu BookSource -->
+        <string name="add_book_source">新建本地</string>
+        <string name="import_local">導入本地</string>
+        <string name="import_book_source_online">導入網絡</string>
+        <string name="import_default">導入默認</string>
+        <string name="revert_selection">反轉選擇</string>
+        <string name="del_select">刪除所選</string>
+        <string name="check_select_source">校驗所選</string>
+        <string name="wifi_share">wifi分享</string>
+        <!-- More Setting Menu TxtChapter Rule-->
+        <string name="import_online">導入網絡</string>
+        <string name="del_all">刪除所有</string>
+        <!-- More Setting Menu Source Edit -->
+        <string name="login">登錄</string>
+        <string name="copy_source">拷貝書源</string>
+        <string name="paste_source">粘貼書源</string>
+        <string name="str_share">字符串分享</string>
+        <string name="rule_summary">規則說明</string>
+        <!-- More Setting Menu Book Read -->
+        <string name="replace_rule_title">替換凈化</string>
+        <string name="edit_replace_rule">編輯替換規則</string>
+        <string name="light_novel_paragraph">重新分段</string>
+        <string name="update_chapter">更新目錄</string>
+        <string name="open_browser">在瀏覽器中打開</string>
+
+    <!-- Pop Menu -->
+        <!-- Pop Read Menu -->
+        <string name="aloud_stop">朗讀停止</string>
+        <string name="read_aloud">朗讀</string>
+        <string name="auto_next_page">自動翻頁</string>
+        <string name="auto_next_page_stop">停止自動翻頁</string>
+        <string name="previous_chapter">上一章</string>
+        <string name="next_chapter">下一章</string>
+        <!-- Pop Read Interface Menu -->
+        <string name="light">燈光</string>
+        <string name="flow_sys">跟隨系統</string>
+        <string name="text_bold">粗/細</string>
+        <string name="custom_font">字體</string>
+        <string name="indent">縮進</string>
+            <string name="indent_0_char">無縮進</string>
+            <string name="indent_1_char">一字符縮進</string>
+            <string name="indent_2_char">二字符縮進</string>
+            <string name="indent_3_char">三字符縮進</string>
+            <string name="indent_4_char">四字符縮進</string>
+        <string name="chinese_convert_title">簡/繁</string>
+            <string name="chinese_convert">簡繁轉換</string>
+            <string name="chinese_convert_off">關閉</string>
+            <string name="chinese_convert_to_traditional">簡轉繁</string>
+            <string name="chinese_convert_to_simplified">繁轉簡</string>
+        <string name="row_1_time">單倍</string>
+        <string name="row_2_time">雙倍</string>
+        <string name="row_3_time">三倍</string>
+        <string name="_default">默認</string>
+        <string name="text_space">間距</string>
+        <string name="get_file_list_error">獲取文件列表出錯\n%s</string>
+        <!-- Pop Read Long Press Menu -->
+        <string name="replace">替換</string>
+        <string name="advertisement">廣告</string>
+        <!-- Pop More Setting Menu -->
+        <string name="read_setting">閱讀設置</string>
+        <string name="parameter_setting">參數設置</string>
+            <string name="read_aloud_speed">朗讀語速</string>
+            <string name="auto_next_page_speed">自動翻頁時每分鐘閱讀字數(CPM)</string>
+        <string name="display_setting">显示設置</string>
+        <string name="operation_setting">操作設置</string>
+        <string name="screen_orientation">屏幕方向</string>
+            <string name="screen_landscape">橫屏</string>
+            <string name="screen_portrait">豎屏</string>
+        <string name="keep_light_time">屏幕關閉時間</string>
+            <string name="system">系統</string>
+            <string name="light_time_5_minute">5分鐘</string>
+            <string name="light_time_10_minute">10分鐘</string>
+            <string name="light_time_15_minute">15分鐘</string>
+            <string name="light_always">常亮</string>
+        <string name="disable_return_key">禁用返回鍵</string>
+        <string name="click_open_page">點擊翻頁</string>
+        <string name="click_all_next_page">點擊總是翻下一頁</string>
+        <string name="volume_open_page">音量鍵翻頁</string>
+        <string name="aloud_volume_page">朗讀時音量鍵翻頁</string>
+        <string name="select_text">長按選擇文本</string>
+        <!-- Pop Read Adjust Margin Menu -->
+        <string name="custom_mr">自定義間距</string>
+        <string name="custom_mr_rm">行間距</string>
+        <string name="custom_mr_dm">段間距</string>
+        <string name="custom_mr_f">字間距</string>
+        <string name="custom_mr_z_t">上邊距</string>
+        <string name="custom_mr_z_b">下邊距</string>
+        <string name="custom_mr_z_l">左邊距</string>
+        <string name="custom_mr_z_r">右邊距</string>
+        <string name="custom_mr_t_t">上Tip</string>
+        <string name="custom_mr_t_b">下Tip</string>
+        <string name="custom_mr_t_l">左Tip</string>
+        <string name="custom_mr_t_r">右Tip</string>
+
+    <!-- View -->
+        <!-- View Empty -->
+        <string name="no_data">暫無數據</string>
+
+    <!-- Widget -->
+        <!-- Page Loader & Page Viewer -->
+        <string name="load_error_msg">內容加載失敗！\n%s</string>
+        <string name="content_empty">文章內容為空</string>
+        <string name="catalog_empty">目錄列表為空</string>
+        <string name="is_changing_source">正在換源中</string>
+        <string name="load_un_complete">未加載完成</string>
+        <string name="no_prior_page">沒有上一頁</string>
+        <string name="no_next_page">沒有下一頁</string>
+        <!-- Chapter Provider -->
+        <string name="read_content_error">讀取內容出錯\n</string>
+        <string name="cache_file_do_not_exist">緩存文件不存在</string>
+        <string name="cannot_load_content">未加載到內容</string>
+        <!-- Page Loader Epub -->
+        <string name="parse_file_error">文件解析失敗</string>
+        <string name="cover">封面</string>
+        <string name="catalog_updating">目錄更新中</string>
+        <string name="update_finish">更新完成</string>
+        <!-- Page Loader Net -->
+        <string name="update_finish_with_new_chapter">更新完成，有新章節</string>
+        <string name="update_finish_without_new_chapter">更新完成，無新章節</string>
+        <!-- Page Loader Text-->
+        <string name="chapter">第%d章（%d）</string>
+
+    <!-- Model -->
+        <!-- Analyze Rule -->
+        <string name="fail_to_preprocess_info_skip_parsing_info_page">└詳情預處理失敗，跳過詳情頁解析</string>
+        <string name="get_catalog_url">┌獲取目錄網址</string>
+        <string name="preprocess_info_success">└詳情預處理完成</string>
+        <string name="get_book_name">┌獲取書籍名稱</string>
+        <string name="get_book_author">┌獲取書籍作者</string>
+        <string name="get_latest_chapter">┌獲取最新章節</string>
+        <string name="get_book_introduction">┌獲取書籍簡介</string>
+        <string name="get_cover_url">┌獲取封面網址</string>
+        <string name="parse_info_page_success">-詳情頁解析完成</string>
+        <!-- Content -->
+        <string name="get_catalog_page_success">成功獲取目錄頁</string>
+        <string name="load_next_page">正在加載下一頁></string>
+        <string name="load_next_page_success">下一頁加載完成共%d頁</string>
+        <string name="load_other_page">正在加載其它%d頁</string>
+        <string name="load_other_page_success">其它頁加載完成，目錄共%d條</string>
+        <string name="parse_catalog_success">-目錄解析完成</string>
+        <string name="get_next_page_url_success">┌獲取目錄下一頁網址</string>
+        <string name="parse_catalog_list">┌解析目錄列表</string>
+        <string name="find_0_chapter">└找到0個章節</string>
+        <string name="find_chapter">└找到%d個章節</string>
+        <string name="reverse">-倒序</string>
+        <string name="get_chapter_name">┌獲取章節名稱</string>
+        <string name="get_chapter_url">┌獲取章節網址</string>
+        <string name="get_text_page_success">┌成功獲取正文頁</string>
+        <string name="parse_text_content">┌解析正文內容</string>
+        <string name="parse_next_page_url">┌解析下一頁url</string>
+        <!-- Book Info -->
+        <string name="get_info_page_success">┌成功獲取詳情頁</string>
+        <string name="preprocess_info">┌詳情信息預處理</string>
+        <string name="get_book_kind">┌獲取書籍分類</string>
+        <string name="get_book_cover">┌獲取書籍封面</string>
+        <!-- Book List -->
+        <string name="get_search_result_success">┌成功獲取搜索結果</string>
+        <string name="get_book_url">┌獲取書籍網址</string>
+        <string name="search_result_is_info_page">>搜索結果為詳情頁</string>
+        <string name="parse_search_list">┌解析搜索列表</string>
+        <string name="search_list_empty_process_as_info_page">└搜索列表為空，作為詳情頁處理</string>
+        <string name="find_matching_result">└找到%d個匹配的結果</string>
+        <string name="finish_parse_book_list">-書籍列表解析結束</string>
+        <string name="book_url">>書籍網址:</string>
+        <string name="get_book">獲取書籍</string>
+        <string name="start_visit_info_page">⇒開始訪問詳情頁:</string>
+        <string name="start_visit_find_page">⇒開始訪問發現頁:</string>
+        <string name="start_search_key_word">⇒開始搜索關鍵字:</string>
+        <string name="start_get_find_page">\n%s ≡開始獲取發現頁</string>
+        <string name="start_get_search_page">\n%s ≡開始獲取搜索頁</string>
+        <string name="start_get_info_page">\n%s ≡開始獲取詳情頁</string>
+        <string name="start_get_catalog_page">\n%s ≡開始獲取目錄頁</string>
+        <string name="catalog_found_is_empty">獲取到的目錄為空</string>
+        <string name="start_get_text_page">\n%s ≡開始獲取正文頁</string>
+        <!-- Web Book -->
+        <string name="have_not_find_book_source_config">沒有找到書源配置</string>
+
+    <!-- Error -->
+        <string name="get_book_info_error">書籍信息獲取失敗</string>
+        <string name="tip_cannot_jump_setting_page">無法跳轉至設置界面</string>
+        <string name="net_error_10001">沒有網絡</string>
+        <string name="net_error_10002">網絡連接超時</string>
+        <string name="net_error_10003">數據解析失敗</string>
+        <string name="get_content_error">內容獲取失敗</string>
+        <string name="get_catalog_error">目錄獲取失敗</string>
+        <string name="no_book_name">未獲取到書名</string>
+        <string name="get_web_content_error">訪問網站失敗:%s</string>
+        <string name="find_rule_grammar_error">發現規則語法錯誤</string>
+        <string name="not_json_or_url_format">不是Json或Url格式</string>
+        <string name="have_not_choose_any_book_source">未選中任何書源</string>
+        <string name="have_not_find_any_content">未搜索到內容</string>
+        <string name="have_not_find_more_content">未搜索到更多內容</string>
+        <string name="download_chapter_error">下載章節出錯</string>
+        <string name="save_chapter_error">保存章節出錯</string>
+        <string name="unknown_error_please_contact_developer">未知錯誤，請聯繫開發者！</string>
+
+    <!-- Others -->
+        <!-- Request-->
+        <string name="dialog_title">提示</string>
+        <string name="dialog_setting">去設置</string>
+        <!-- File Holder-->
+        <string name="nb_file_sub_count">%1$d 項</string>
+        <!-- Web -->
+        <string name="debug_finish">調試結束</string>
+        <string name="book_source_and_url_cannot_be_empty">書源名稱和URL不能為空</string>
+        <string name="url_cannot_be_empty_please_specify_book_source_url">參數Url不能為空，請指定書源地址</string>
+        <string name="cannot_find_book_source_please_check_url">未找到書源，請檢查書源地址</string>
+        <string name="book_source_empty">設備書源列表為空</string>
+        <string name="have_execute">已執行</string>
+        <string name="have_not_add_novel">還沒有添加小說</string>
+        <string name="url_cannot_be_empty_please_specify_book_url">參數Url不能為空，請指定書籍地址</string>
+        <string name="url_cannot_be_empty_please_specify_content_url">參數Url不能為空，請指定內容地址</string>
+        <string name="cannot_find">未找到</string>
+</resources>

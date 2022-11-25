@@ -72,7 +72,7 @@
     <!-- 左侧边栏 -->
     <View
         android:id="@+id/main_left_drawer_content"
-        android:layout_width="60dp"
+        android:layout_width="80dp"
         android:layout_height="match_parent"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="24dp"
@@ -80,7 +80,7 @@
         app:layout_constraintRight_toRightOf="@id/main_left_drawer"/>
     <LinearLayout
         android:id="@+id/ll_book_source_main"
-        android:layout_width="wrap_content"
+        android:layout_width="64dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="@id/main_left_drawer_content"
@@ -89,6 +89,7 @@
         <ImageView
             android:layout_width="42dp"
             android:layout_height="42dp"
+            android:layout_gravity="center"
             android:src="@drawable/ic_book_source" />
         <TextView
             android:layout_width="match_parent"
@@ -99,7 +100,7 @@
     </LinearLayout>
     <LinearLayout
         android:id="@+id/ll_replace_main"
-        android:layout_width="wrap_content"
+        android:layout_width="64dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
         android:orientation="vertical"
@@ -120,7 +121,7 @@
     </LinearLayout>
     <LinearLayout
         android:id="@+id/ll_download_main"
-        android:layout_width="wrap_content"
+        android:layout_width="64dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
         android:orientation="vertical"
@@ -141,7 +142,7 @@
     </LinearLayout>
     <LinearLayout
         android:id="@+id/ll_backup_main"
-        android:layout_width="wrap_content"
+        android:layout_width="64dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
         android:orientation="vertical"
@@ -162,7 +163,7 @@
     </LinearLayout>
     <LinearLayout
         android:id="@+id/ll_restore_main"
-        android:layout_width="wrap_content"
+        android:layout_width="64dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
         android:orientation="vertical"
