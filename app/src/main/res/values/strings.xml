@@ -195,14 +195,15 @@
         <string name="have_copy_to_clipboard">所选内容已经复制到剪贴板</string>
         <string name="network_connection_unavailable_cannot_refresh_chapter">网络不可用，无法刷新当前章节</string>
         <string name="input_charset">输入编码</string>
-        <string name="choose_txt_regex">选择目录正则</string>
-        <string name="manage_txt_regex">管理目录正则</string>
+        <string name="choose_chapter_regex">选择目录正则</string>
+        <string name="manage_chapter_regex">管理目录正则</string>
         <string name="check_add_bookshelf">是否将《%s》放入书架？</string>
         <string name="read_aloud_pause">朗读暂停</string>
         <string name="please_grant_storage_permission">请给于存储权限</string>
 
     <!-- Fragment -->
         <!-- BookList Fragment-->
+        <string name="have_choose_item">已选择%d项</string>
         <string name="have_choose_items">已选择%d项</string>
         <string name="unselected">未选择</string>
         <string name="sure_del_book">是否删除书籍？</string>
@@ -431,8 +432,8 @@
         <string name="read_aloud">朗读</string>
         <string name="auto_next_page">自动翻页</string>
         <string name="auto_next_page_stop">停止自动翻页</string>
-        <string name="previous_chapter">上一章</string>
-        <string name="next_chapter">下一章</string>
+        <string name="previous_page">上一页</string>
+        <string name="next_page">下一页</string>
         <!-- Pop Read Interface Menu -->
         <string name="light">灯光</string>
         <string name="flow_sys">跟随系统</string>

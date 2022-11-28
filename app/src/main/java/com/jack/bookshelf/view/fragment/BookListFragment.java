@@ -279,6 +279,10 @@ public class BookListFragment extends MBaseFragment<BookListContract.Presenter> 
             binding.tvSelectCount.setText(R.string.unselected);
             binding.tvDelete.setTextColor(getResources().getColor(R.color.button_unable));
             binding.ivDelete.setImageResource(R.drawable.ic_delete_unable);
+        } else if (bookShelfAdapter.getSelected().size() == 1) {
+            binding.tvSelectCount.setText(getString(R.string.have_choose_item, 1));
+            binding.tvDelete.setTextColor(getResources().getColor(R.color.black));
+            binding.ivDelete.setImageResource(R.drawable.ic_delete);
         } else {
             binding.tvSelectCount.setText(getString(R.string.have_choose_items, bookShelfAdapter.getSelected().size()));
             binding.tvDelete.setTextColor(getResources().getColor(R.color.black));

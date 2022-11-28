@@ -195,15 +195,16 @@
         <string name="have_copy_to_clipboard">The selected content has been copied to the clipboard.</string>
         <string name="network_connection_unavailable_cannot_refresh_chapter">The network is unavailable and the current chapter cannot be refreshed.</string>
         <string name="input_charset">Input charset</string>
-        <string name="choose_txt_regex">Select text regex</string>
-        <string name="manage_txt_regex">Manage text regex</string>
+        <string name="choose_chapter_regex">Select chapter regex</string>
+        <string name="manage_chapter_regex">Manage chapter regex</string>
         <string name="check_add_bookshelf">Put %s on the bookshelf?</string>
         <string name="read_aloud_pause">Pause reading aloud</string>
         <string name="please_grant_storage_permission">Please give storage permission.</string>
 
     <!-- Fragment -->
         <!-- BookList Fragment-->
-        <string name="have_choose_items">Selected %d items</string>
+        <string name="have_choose_item">%d item selected</string>
+        <string name="have_choose_items">%d items selected</string>
         <string name="unselected">Not Selected</string>
         <string name="sure_del_book">Delete these books?</string>
         <string name="bookshelf_empty">The bookshelf is empty.\nGo to add books first!</string>
@@ -223,7 +224,7 @@
         <string name="update_setting">Update settings</string>
         <string name="auto_update">Automatically update books</string>
         <string name="auto_download">Automatically download the latest chapters</string>
-        <string name="auto_change_source_update_chapter">Change source, and update latest chapters in the background</string>
+        <string name="auto_change_source_update_chapter">Change source and update latest chapters in the background</string>
         <string name="purify_setting">Purification settings</string>
         <string name="default_enable_purify">Enable replacement purification by default</string>
         <string name="search_setting">Search settings</string>
@@ -399,7 +400,7 @@
         <string name="refresh">Reload</string>
         <string name="disable_update">Disable update</string>
         <string name="allow_update">Allow updates</string>
-        <string name="edit_book_source">Edit book source</string>
+        <string name="edit_book_source">Edit source</string>
         <string name="copy_book_url">Copy URL</string>
         <!-- More Setting Menu BookSource -->
         <string name="add_book_source">Add local</string>
@@ -420,7 +421,7 @@
         <string name="str_share">String sharing</string>
         <string name="rule_summary">Rule description</string>
         <!-- More Setting Menu Book Read -->
-        <string name="replace_rule_title">Replacement purification</string>
+        <string name="replace_rule_title">Replacement purify</string>
         <string name="edit_replace_rule">Edit replacement rules</string>
         <string name="light_novel_paragraph">Paragraph repartition</string>
         <string name="update_chapter">Update directory</string>
@@ -432,8 +433,8 @@
         <string name="read_aloud">Read aloud</string>
         <string name="auto_next_page">Auto flipping</string>
         <string name="auto_next_page_stop">Stop automatic page flipping</string>
-        <string name="previous_chapter">Previous chapter</string>
-        <string name="next_chapter">Next chapter</string>
+        <string name="previous_page">Previous</string>
+        <string name="next_page">Next</string>
         <!-- Pop Read Interface Menu -->
         <string name="light">Lights</string>
         <string name="flow_sys">Follow the system</string>
@@ -461,11 +462,11 @@
         <string name="advertisement">Ad</string>
         <!-- Pop More Setting Menu -->
         <string name="read_setting">Reading settings</string>
-        <string name="parameter_setting">Parameter setting</string>
+        <string name="parameter_setting">Parameter settings</string>
             <string name="read_aloud_speed">Reading speed</string>
             <string name="auto_next_page_speed">Number of words read per minute (CPM) during automatic page flipping</string>
         <string name="display_setting">Display settings</string>
-        <string name="operation_setting">Operation setting</string>
+        <string name="operation_setting">Operation settings</string>
         <string name="screen_orientation">Screen orientation</string>
             <string name="screen_landscape">Landscape</string>
             <string name="screen_portrait">Portrait</string>
@@ -475,11 +476,11 @@
             <string name="light_time_10_minute">10 minutes</string>
             <string name="light_time_15_minute">15 minutes</string>
             <string name="light_always">Always on</string>
-        <string name="disable_return_key">Disable the return key</string>
-        <string name="click_open_page">Click turn page</string>
+        <string name="disable_return_key">Disable the return button</string>
+        <string name="click_open_page">Turn pages with clicking</string>
         <string name="click_all_next_page">Click always turn to the next page</string>
-        <string name="volume_open_page">Volume key page turn</string>
-        <string name="aloud_volume_page">Volume key turns pages when reading aloud</string>
+        <string name="volume_open_page">Turn pages with volume buttons</string>
+        <string name="aloud_volume_page">Turn pages with volume buttons when reading books</string>
         <string name="select_text">Long press to select text</string>
         <!-- Pop Read Adjust Margin Menu -->
         <string name="custom_mr">Custom spacing</string>

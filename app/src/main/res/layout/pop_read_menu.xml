@@ -99,7 +99,7 @@
                     android:focusable="true"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:text="@string/previous_chapter"
+                    android:text="@string/previous_page"
                     android:textColor="@color/text_color"
                     android:textSize="14sp"
                     android:textStyle="bold"/>
@@ -122,7 +122,7 @@
                     android:focusable="true"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:text="@string/next_chapter"
+                    android:text="@string/next_page"
                     android:textColor="@color/text_color"
                     android:textSize="14sp"
                     android:textStyle="bold"/>

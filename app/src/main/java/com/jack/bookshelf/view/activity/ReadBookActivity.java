@@ -1233,8 +1233,8 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                 checkedItem = 0;
             }
             SelectMenu.builder(this)
-                    .setTitle(R.string.choose_txt_regex)
-                    .setBottomButton(R.string.manage_txt_regex)
+                    .setTitle(R.string.choose_chapter_regex)
+                    .setBottomButton(R.string.manage_chapter_regex)
                     .setMenu(ruleNameList, checkedItem)
                     .setListener(new SelectMenu.OnItemClickListener() {
                         @Override
