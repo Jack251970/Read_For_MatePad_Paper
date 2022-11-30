@@ -3,11 +3,11 @@
     <!-- Base String -->
         <string name="app_name">Reading</string>
         <string name="read_summary">Let reading become a habit.</string>
-        <string name="yes">Yes</string>
-        <string name="no">No</string>
-        <string name="confirm">Confirm</string>
-        <string name="cancel">Cancel</string>
-        <string name="error">Error</string>
+        <string name="yes">YES</string>
+        <string name="no">NO</string>
+        <string name="confirm">CONFIRM</string>
+        <string name="cancel">@android:string/cancel</string>
+        <string name="error">ERROR</string>
 
     <!-- Shortcuts -->
         <string name="enter_bookshelf">Go to bookshelf</string>
@@ -51,11 +51,11 @@
         <string name="bookshelf">Bookshelf</string>
         <string name="search_book_name_or_author">name, author…</string>
         <string name="all_books">All books</string>
-        <string name="pursue">Pursuing books</string>
-        <string name="fattening">Fattening books</string>
-        <string name="finish">Finished books</string>
-        <string name="local_book">Local books</string>
-        <string name="double_click_exit_read">Double click to exit</string>
+        <string name="pursue">Pursue</string>
+        <string name="fattening">Fatten</string>
+        <string name="finish">Finished</string>
+        <string name="local_book">Local</string>
+        <string name="double_click_exit_read">Double click to exit.</string>
         <!-- BookDetailActivity -->
         <string name="book_info">Information</string>
         <string name="book_name">Title</string>
@@ -72,7 +72,7 @@
         <string name="start_read">Start read</string>
         <string name="add_to_shelf">Add to bookshelf</string>
         <string name="continue_read">Continue read</string>
-        <string name="data_loading">Loading data</string>
+        <string name="data_loading">Loading data…</string>
         <string name="load_error_retry">Loading failed, click to retry.</string>
         <string name="unknown">Unknown</string>
         <string name="copy_complete">Copied</string>
@@ -113,9 +113,9 @@
         <string name="delete_all_history">Delete all history records?</string>
         <string name="searchHistory">Search history</string>
         <string name="origin_format">Source: %s</string>
-        <string name="is_loading">Loading</string>
+        <string name="is_loading">Loading…</string>
         <string name="book_search_last">Latest: %s</string>
-        <string name="no_kind">Not classified yet</string>
+        <string name="no_kind">No classification yet</string>
         <!-- Book Info Edit Activity -->
         <string name="edit_book_info">Book information editing</string>
         <string name="cover_path">Cover address</string>
@@ -209,7 +209,7 @@
         <string name="sure_del_book">Delete these books?</string>
         <string name="bookshelf_empty">The bookshelf is empty.\nGo to add books first!</string>
         <string name="select_all">Select all</string>
-        <string name="delete">Delete</string>
+        <string name="delete">DELETE</string>
         <!-- File Category Fragment -->
         <string name="default_file_path">Internal storage</string>
         <string name="parent">Parent directory</string>
@@ -272,11 +272,11 @@
         <string name="read_aloud_timer_stop">"Timing canceled"</string>
         <string name="read_aloud_timer_remaining">%d minutes</string>
         <string name="read_aloud_timer_remaining_length">"%d hours and %d minutes"</string>
-        <string name="read_aloud_error">Reading aloud error</string>
+        <string name="read_aloud_error">Error reading book</string>
         <string name="read_aloud_s">Click to open the reading interface</string>
-        <string name="read_aloud_timer">Reading aloud (%d minutes left)</string>
-        <string name="read_aloud_timer_long">"Reading aloud (%d hours and %d minutes left)"</string>
-        <string name="read_aloud_t">Reading aloud</string>
+        <string name="read_aloud_timer">Reading book (%d minutes left)</string>
+        <string name="read_aloud_timer_long">Reading book (%d hours and %d minutes left)</string>
+        <string name="read_aloud_t">Reading book</string>
         <string name="stop">Stop</string>
         <string name="pause">Pause</string>
         <string name="resume">Continue</string>
@@ -368,8 +368,8 @@
 
     <!-- Select Menu -->
         <!-- Select Menu Main -->
-        <string name="sequence_book_by_reading_time">Sorted by reading Time</string>
-        <string name="sequence_book_by_updating_time">Sorted by updating Time</string>
+        <string name="sequence_book_by_reading_time">Sort by reading Time</string>
+        <string name="sequence_book_by_updating_time">Sort by updating Time</string>
         <string name="import_book">Importing books</string>
         <string name="import_local_book">Import local books</string>
         <string name="import_online_book">Import online books</string>
@@ -392,7 +392,7 @@
         <string name="download_all">Download all</string>
         <string name="network_connection_unavailable">Network connection is unavailable</string>
         <string name="organize_bookshelf">Organize books</string>
-        <string name="sequence_book">Sort books</string>
+        <string name="sequence_book">Sort by</string>
         <string name="bookshelf_layout">Bookshelf layout</string>
         <string name="web_service">Web services</string>
         <string name="web_service_already_started">The web service has been started</string>

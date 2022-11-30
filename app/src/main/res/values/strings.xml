@@ -72,7 +72,7 @@
         <string name="start_read">开始阅读</string>
         <string name="add_to_shelf">放入书架</string>
         <string name="continue_read">继续阅读</string>
-        <string name="data_loading">加载数据中</string>
+        <string name="data_loading">加载数据中…</string>
         <string name="load_error_retry">加载失败，点击重试</string>
         <string name="unknown">未知</string>
         <string name="copy_complete">已拷贝</string>
@@ -113,7 +113,7 @@
         <string name="delete_all_history">是否删除所有历史记录?</string>
         <string name="searchHistory">搜索历史</string>
         <string name="origin_format">来源: %s</string>
-        <string name="is_loading">加载中</string>
+        <string name="is_loading">加载中…</string>
         <string name="book_search_last">最新: %s</string>
         <string name="no_kind">暂未分类</string>
         <!-- Book Info Edit Activity -->
