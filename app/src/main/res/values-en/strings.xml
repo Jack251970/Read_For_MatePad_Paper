@@ -397,7 +397,7 @@
         <string name="web_service">Web services</string>
         <string name="web_service_already_started">The web service has been started</string>
         <!-- More Setting Menu BookDetail -->
-        <string name="refresh">Reload</string>
+        <string name="refresh">Reload book</string>
         <string name="disable_update">Disable update</string>
         <string name="allow_update">Allow updates</string>
         <string name="edit_book_source">Edit source</string>
