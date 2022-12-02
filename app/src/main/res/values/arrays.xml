@@ -5,7 +5,7 @@
         <string-array name="more_setting_menu_main">
             <item>@string/refresh_all</item>
             <item>@string/download_all</item>
-            <item>@string/sequence_book</item>
+            <item>@string/sequence_rule</item>
             <item>@string/organize_bookshelf</item>
             <item>@string/web_service</item>
         </string-array>

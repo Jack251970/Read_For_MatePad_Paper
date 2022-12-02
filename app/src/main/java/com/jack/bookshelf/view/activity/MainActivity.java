@@ -247,7 +247,7 @@ public class MainActivity extends BaseViewPagerActivity<MainContract.Presenter> 
                             break;
                         case 2:
                             SelectMenu.builder(MainActivity.this)
-                                    .setTitle(getString(R.string.sequence_book))
+                                    .setTitle(getString(R.string.sequence_rule))
                                     .setBottomButton(getString(R.string.cancel))
                                     .setMenu(getResources().getStringArray(R.array.sequence_book), preferences.getInt(getString(R.string.pk_bookshelf_px), 0))
                                     .setListener(new SelectMenu.OnItemClickListener() {

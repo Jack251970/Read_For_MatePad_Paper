@@ -55,7 +55,7 @@
         <string name="fattening">Fatten</string>
         <string name="finish">Finished</string>
         <string name="local_book">Local</string>
-        <string name="double_click_exit_read">Double click to exit.</string>
+        <string name="double_click_exit_read">Click back again to quit.</string>
         <!-- BookDetailActivity -->
         <string name="book_info">Information</string>
         <string name="book_name">Title</string>
@@ -368,8 +368,8 @@
 
     <!-- Select Menu -->
         <!-- Select Menu Main -->
-        <string name="sequence_book_by_reading_time">Sort by reading Time</string>
-        <string name="sequence_book_by_updating_time">Sort by updating Time</string>
+        <string name="sequence_book_by_reading_time">Sort by reading time</string>
+        <string name="sequence_book_by_updating_time">Sort by updating time</string>
         <string name="import_book">Importing books</string>
         <string name="import_local_book">Import local books</string>
         <string name="import_online_book">Import online books</string>
@@ -392,7 +392,7 @@
         <string name="download_all">Download all</string>
         <string name="network_connection_unavailable">Network connection is unavailable</string>
         <string name="organize_bookshelf">Organize books</string>
-        <string name="sequence_book">Sort by</string>
+        <string name="sequence_rule">Sort by</string>
         <string name="bookshelf_layout">Bookshelf layout</string>
         <string name="web_service">Web services</string>
         <string name="web_service_already_started">The web service has been started</string>

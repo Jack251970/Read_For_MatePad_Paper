@@ -391,7 +391,7 @@
         <string name="download_all">下載全部</string>
         <string name="network_connection_unavailable">網絡連接不可用</string>
         <string name="organize_bookshelf">整理書籍</string>
-        <string name="sequence_book">書籍排序</string>
+        <string name="sequence_rule">排序規則</string>
         <string name="bookshelf_layout">書架布局</string>
         <string name="web_service">Web服務</string>
         <string name="web_service_already_started">Web服務已啟動</string>
