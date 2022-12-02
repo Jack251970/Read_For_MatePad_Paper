@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base String -->
         <string name="app_name">Reading</string>
         <string name="read_summary">Let reading become a habit.</string>
         <string name="yes">YES</string>
         <string name="no">NO</string>
         <string name="confirm">CONFIRM</string>
-        <string name="cancel">@android:string/cancel</string>
+        <string name="cancel" tools:ignore="ButtonCase">CANCEL</string>
         <string name="error">ERROR</string>
 
     <!-- Shortcuts -->
