@@ -77,10 +77,6 @@ android {
     }
 }
 
-resourcePlaceholders {
-    files = ['xml/shortcuts.xml']
-}
-
 dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
     testImplementation 'junit:junit:4.13.2'
