@@ -390,9 +390,9 @@
         <!-- More Setting Menu Main -->
         <string name="refresh_all">Refresh all</string>
         <string name="download_all">Download all</string>
-        <string name="network_connection_unavailable">Network connection is unavailable</string>
+        <string name="network_connection_unavailable">Network connection is unavailable.</string>
         <string name="organize_bookshelf">Organize books</string>
-        <string name="sequence_rule">Sort by</string>
+        <string name="sequence_rule">Sequence rule</string>
         <string name="bookshelf_layout">Bookshelf layout</string>
         <string name="web_service">Web services</string>
         <string name="web_service_already_started">The web service has been started</string>
