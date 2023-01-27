@@ -18,9 +18,9 @@ import com.jack.basemvplib.BaseActivity;
 import com.jack.basemvplib.impl.IPresenter;
 import com.jack.bookshelf.MApplication;
 import com.jack.bookshelf.R;
-import com.jack.bookshelf.utils.ActivityExtensionsKt;
 import com.jack.bookshelf.utils.SoftInputUtil;
 import com.jack.bookshelf.utils.ToastsKt;
+import com.jack.bookshelf.utils.screen.ActivityExtensionsKt;
 
 /**
  * MBase Activity

@@ -9,10 +9,6 @@
         <string name="cancel" tools:ignore="ButtonCase">CANCEL</string>
         <string name="error">ERROR</string>
 
-    <!-- Shortcuts -->
-        <string name="enter_bookshelf">Go to bookshelf</string>
-        <string name="last_read">Jump to last read</string>
-
     <!-- Presenter -->
         <!-- Txt Chapter Rule Presenter -->
         <string name="delete_fail">Delete failed</string>
@@ -359,9 +355,7 @@
         <string name="no_last_chapter">No latest chapter information</string>
         <!-- Font Select Dialog -->
         <string name="select_font">Select a font</string>
-        <string name="self_choose_font">Customized font</string>
         <string name="choose_font_cannot_find">Font file not found</string>
-        <string name="fonts_folder">Please put the font file in the folder called Fonts under the internal storage root directory and reselect.</string>
         <!-- Txt Chapter Rule Dialog -->
         <string name="name">Name</string>
         <string name="regex">Regex</string>

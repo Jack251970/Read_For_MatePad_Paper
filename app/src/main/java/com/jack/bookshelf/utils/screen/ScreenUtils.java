@@ -9,8 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.jack.bookshelf.MApplication;
 
-import java.lang.reflect.Method;
-
 /**
  * Created by newbiechen on 17-5-1.
  */
@@ -68,45 +66,6 @@ public class ScreenUtils {
         @SuppressLint("InternalInsetResource")
         int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
         return resources.getDimensionPixelSize(resourceId);
-    }
-
-    /**
-     * 获取虚拟按键的高度
-     */
-    public static int getNavigationBarHeight() {
-        int navigationBarHeight = 0;
-        Resources rs = MApplication.getInstance().getResources();
-        @SuppressLint("InternalInsetResource")
-        int id = rs.getIdentifier("navigation_bar_height", "dimen", "android");
-        if (id > 0 && hasNavigationBar()) {
-            navigationBarHeight = rs.getDimensionPixelSize(id);
-        }
-        return navigationBarHeight;
-    }
-
-    /**
-     * 是否存在虚拟按键
-     */
-    @SuppressWarnings("unchecked")
-    private static boolean hasNavigationBar() {
-        boolean hasNavigationBar = false;
-        Resources rs = MApplication.getInstance().getResources();
-        int id = rs.getIdentifier("config_showNavigationBar", "bool", "android");
-        if (id > 0) {
-            hasNavigationBar = rs.getBoolean(id);
-        }
-        try {
-            @SuppressLint("PrivateApi") Class<?> systemPropertiesClass = Class.forName("android.os.SystemProperties");
-            Method m = systemPropertiesClass.getMethod("get", String.class);
-            String navBarOverride = (String) m.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
-            if ("1".equals(navBarOverride)) {
-                hasNavigationBar = false;
-            } else if ("0".equals(navBarOverride)) {
-                hasNavigationBar = true;
-            }
-        } catch (Exception ignored) {
-        }
-        return hasNavigationBar;
     }
 
     public static DisplayMetrics getDisplayMetrics() {

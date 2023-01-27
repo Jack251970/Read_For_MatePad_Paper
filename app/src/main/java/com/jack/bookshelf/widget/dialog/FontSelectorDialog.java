@@ -21,17 +21,13 @@ import kotlin.text.Regex;
  */
 
 public class FontSelectorDialog extends PopupWindow {
-    private final Context context;
     private final View view;
     private final ReadBookControl readBookControl = ReadBookControl.getInstance();
     private OnThisListener thisListener;
 
-    public static Regex fontRegex = new Regex("(?i).*\\.[ot]tf");
-
     @SuppressLint("InflateParams")
     public FontSelectorDialog(Context context) {
         super(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        this.context = context;
         this.view = LayoutInflater.from(context).inflate(R.layout.dialog_font_selector, null);
         this.setContentView(view);
         initView();
@@ -43,10 +39,13 @@ public class FontSelectorDialog extends PopupWindow {
     private void initView() {
         switch (readBookControl.getFontItem()) {
             case 0:
-                ((ImageView)view.findViewById(R.id.iv_indicator_font_harmony_regular)).setImageResource(R.drawable.ic_select_menu_selected);
+                ((ImageView)view.findViewById(R.id.iv_indicator_font_harmony_bold)).setImageResource(R.drawable.ic_select_menu_selected);
                 break;
             case 1:
-                ((ImageView)view.findViewById(R.id.iv_indicator_font_harmony_bold)).setImageResource(R.drawable.ic_select_menu_selected);
+                ((ImageView)view.findViewById(R.id.iv_indicator_font_source_han)).setImageResource(R.drawable.ic_select_menu_selected);
+                break;
+            case 2:
+                ((ImageView)view.findViewById(R.id.iv_indicator_font_kai_ti)).setImageResource(R.drawable.ic_select_menu_selected);
                 break;
         }
     }
@@ -54,15 +53,21 @@ public class FontSelectorDialog extends PopupWindow {
     private void bindView() {
         view.findViewById(R.id.tv_font_self_choose).setOnClickListener(v -> {
             dismiss();
-            thisListener.forBottomButton();
         });
-        view.findViewById(R.id.tv_font_harmony_regular).setOnClickListener(v -> {
+        // 鸿蒙粗体
+        view.findViewById(R.id.tv_font_harmony_bold).setOnClickListener(v -> {
             dismiss();
             thisListener.forMenuItem(0);
         });
-        view.findViewById(R.id.tv_font_harmony_bold).setOnClickListener(v -> {
+        // 思源黑体
+        view.findViewById(R.id.tv_font_source_han).setOnClickListener(v -> {
             dismiss();
             thisListener.forMenuItem(1);
+        });
+        // 微软楷体
+        view.findViewById(R.id.tv_font_kai_ti).setOnClickListener(v -> {
+            dismiss();
+            thisListener.forMenuItem(2);
         });
     }
 
@@ -77,7 +82,5 @@ public class FontSelectorDialog extends PopupWindow {
 
     public interface OnThisListener {
         void forMenuItem(int item);
-
-        void forBottomButton();
     }
 }

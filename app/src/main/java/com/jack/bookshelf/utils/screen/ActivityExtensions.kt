@@ -1,7 +1,8 @@
 @file:Suppress("unused")
 
-package com.jack.bookshelf.utils
+package com.jack.bookshelf.utils.screen
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Color
 import android.os.Build
@@ -115,3 +116,42 @@ fun Activity.setNavigationBarColorWhite() {
     val systemUiVisibility = decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
     decorView.systemUiVisibility = systemUiVisibility
 }
+
+/////以下方法需要在View完全被绘制出来之后调用，否则判断不了,在比如 onWindowFocusChanged() 方法中可以得到正确的结果/////
+
+/**
+ * 返回NavigationBar
+ */
+val Activity.navigationBar: View?
+    get() {
+        val viewGroup = (window.decorView as? ViewGroup) ?: return null
+        for (i in 0 until viewGroup.childCount) {
+            val child = viewGroup.getChildAt(i)
+            val childId = child.id
+            if (childId != View.NO_ID
+                && resources.getResourceEntryName(childId) == "navigationBarBackground"
+            ) {
+                return child
+            }
+        }
+        return null
+    }
+
+/**
+ * 返回NavigationBar是否存在
+ */
+val Activity.isNavigationBarExist: Boolean
+    get() = navigationBar != null
+
+/**
+ * 返回NavigationBar高度
+ */
+val Activity.navigationBarHeight: Int
+    @SuppressLint("InternalInsetResource", "DiscouragedApi")
+    get() {
+        if (isNavigationBarExist) {
+            val resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
+            return resources.getDimensionPixelSize(resourceId)
+        }
+        return 0
+    }

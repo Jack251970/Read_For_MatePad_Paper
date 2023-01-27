@@ -42,6 +42,8 @@ import com.jack.bookshelf.presenter.contract.ReadBookContract;
 import com.jack.bookshelf.service.DownloadService;
 import com.jack.bookshelf.service.ReadAloudService;
 import com.jack.bookshelf.utils.StringUtils;
+import com.jack.bookshelf.utils.screen.ActivityExtensionsKt;
+import com.jack.bookshelf.utils.screen.ScreenUtils;
 
 import java.io.File;
 import java.util.ArrayList;

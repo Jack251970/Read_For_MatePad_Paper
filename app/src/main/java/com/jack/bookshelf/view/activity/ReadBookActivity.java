@@ -49,12 +49,12 @@ import com.jack.bookshelf.model.analyzeRule.AnalyzeUrl;
 import com.jack.bookshelf.presenter.ReadBookPresenter;
 import com.jack.bookshelf.presenter.contract.ReadBookContract;
 import com.jack.bookshelf.service.ReadAloudService;
-import com.jack.bookshelf.utils.ActivityExtensionsKt;
 import com.jack.bookshelf.utils.BatteryUtil;
 import com.jack.bookshelf.utils.NetworkUtils;
 import com.jack.bookshelf.utils.SoftInputUtil;
 import com.jack.bookshelf.utils.StringUtils;
 import com.jack.bookshelf.utils.SystemUtil;
+import com.jack.bookshelf.utils.screen.ActivityExtensionsKt;
 import com.jack.bookshelf.utils.screen.ScreenUtils;
 import com.jack.bookshelf.view.popupwindow.MoreSettingPop;
 import com.jack.bookshelf.view.popupwindow.ReadAdjustMarginPop;
@@ -93,7 +93,6 @@ import kotlin.Unit;
  */
 
 public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> implements ReadBookContract.View, View.OnTouchListener {
-    public final int fontDirRequest = 24345;
     private ActivityBookReadBinding binding;
     private PageLoader mPageLoader;
     private final Handler mHandler = new Handler();
@@ -113,6 +112,7 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     private boolean autoPage = false;
     private boolean aloudNextPage;
     private int lastX, lastY;
+    private int bottomMenuInitFlag = 0;
 
     @Override
     protected ReadBookContract.Presenter initInjector() {
@@ -352,12 +352,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
     @Override
     protected void bindView() {
         upMenu();
-        binding.clMenuTop.setPadding(0, ScreenUtils.getStatusBarHeight(),0,0);
-        binding.readMenuBottom.setPadding(0,0,0,ScreenUtils.getNavigationBarHeight());
-        binding.readInterfacePop.setPadding(0,0,0,ScreenUtils.getNavigationBarHeight());
-        binding.readAdjustMarginPop.setPadding(0,0,0,ScreenUtils.getNavigationBarHeight());
-        binding.moreSettingPop.setPadding(0,ScreenUtils.getStatusBarHeight(),0,ScreenUtils.getNavigationBarHeight());
-        /*binding.chapterBookmarkPop.setPadding(0,ScreenUtils.getStatusBarHeight(),0,ScreenUtils.getNavigationBarHeight());*/
         mPresenter.initData(this);
         moDialogHUD = new MoDialogHUD(this);
         initBottomMenu();
@@ -870,7 +864,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
         } else {
             binding.readLongPress.setX(binding.cursorLeft.getX() + binding.cursorLeft.getWidth() + ScreenUtils.dpToPx(5));
         }
-
         // 如果太靠上
         if ((binding.cursorLeft.getY() - ScreenUtils.spToPx(readBookControl.getTextSize()) - ScreenUtils.dpToPx(60)) < 0) {
             binding.readLongPress.setY(binding.cursorLeft.getY() - ScreenUtils.spToPx(readBookControl.getTextSize()));
@@ -967,7 +960,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                     if (name != null)
                         if (name.trim().length() > 0)
                             spacer = "|" + Pattern.quote(name.trim());
-//                        spacer = "|" + Matcher.quoteReplacement(name.trim());
 
                     name = (mPresenter.getBookShelf().getBookInfoBean().getAuthor());
                     if (name != null)
@@ -1301,6 +1293,17 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
      * 显示菜单
      */
     private void popMenuIn() {
+        if (bottomMenuInitFlag < 2) {
+            int statusBarHeight = ScreenUtils.getStatusBarHeight();
+            int navigationBarHeight = ActivityExtensionsKt.getNavigationBarHeight(this);
+            binding.clMenuTop.setPadding(0, statusBarHeight,0,0);
+            binding.readMenuBottom.setPadding(0,0,0, navigationBarHeight);
+            binding.readInterfacePop.setPadding(0,0,0, navigationBarHeight);
+            binding.readAdjustMarginPop.setPadding(0,0,0, navigationBarHeight);
+            binding.moreSettingPop.setPadding(0, statusBarHeight,0, navigationBarHeight);
+            /*binding.chapterBookmarkPop.setPadding(0, statusBarHeight,0, navigationBarHeight);*/
+            bottomMenuInitFlag += 1;
+        }
         binding.clMenu.setVisibility(View.VISIBLE);
         binding.clMenuTop.setVisibility(View.VISIBLE);
         binding.readMenuBottom.setVisibility(View.VISIBLE);
@@ -1662,34 +1665,6 @@ public class ReadBookActivity extends MBaseActivity<ReadBookContract.Presenter> 
                 ReadBookActivity.this.popMenuOut();
                 readAloud();
         }
-    }
-
-    public void selectFontDir() {
-        try {
-            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            // noinspection deprecation
-            startActivityForResult(intent, fontDirRequest);
-        } catch (Exception e) {
-            e.printStackTrace();
-            toast(e.getLocalizedMessage());
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == fontDirRequest && resultCode == RESULT_OK) {
-            if (data != null) {
-                Uri uri = data.getData();
-                if (uri != null) {
-                    int modeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
-                    getContentResolver().takePersistableUriPermission(uri, modeFlags);
-                    binding.readInterfacePop.showFontSelector(uri);
-                }
-            }
-        }
-        initImmersionBar();
     }
 
     @SuppressLint("DefaultLocale")

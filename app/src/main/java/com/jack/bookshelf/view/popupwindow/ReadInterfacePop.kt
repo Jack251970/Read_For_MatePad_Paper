@@ -2,26 +2,21 @@ package com.jack.bookshelf.view.popupwindow
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.SeekBar
-import androidx.documentfile.provider.DocumentFile
 import com.jack.bookshelf.R
 import com.jack.bookshelf.databinding.PopReadInterfaceBinding
 import com.jack.bookshelf.help.ReadBookControl
 import com.jack.bookshelf.help.permission.Permissions
 import com.jack.bookshelf.help.permission.PermissionsCompat
-import com.jack.bookshelf.utils.DocumentUtils
 import com.jack.bookshelf.utils.toastOnUi
 import com.jack.bookshelf.view.activity.ReadBookActivity
 import com.jack.bookshelf.widget.dialog.FontSelectorDialog
-import com.jack.bookshelf.widget.dialog.FontSelectorDialog.OnThisListener
 import com.jack.bookshelf.widget.menu.SelectMenu
-import timber.log.Timber
 
 /**
  * Read Interface Menu
@@ -210,32 +205,12 @@ class ReadInterfacePop : FrameLayout {
         }
     }
 
-    fun showFontSelector(uri: Uri) {
-        kotlin.runCatching {
-            val doc = DocumentFile.fromTreeUri(context, uri)
-            DocumentUtils.listFiles(doc!!.uri) {
-                it.name.matches(FontSelectorDialog.fontRegex)
-            }.let {
-                selectFont()
-            }
-        }.onFailure {
-            context.toastOnUi(context.getString(R.string.get_file_list_error,it.localizedMessage))
-            Timber.e(it)
-        }
-    }
-
     private fun selectFont() {
         FontSelectorDialog(context)
-            .setListener(object : OnThisListener {
-                override fun forMenuItem(item: Int) {
-                    readBookControl.fontItem = item
-                    callback!!.refresh()
-                }
-
-                override fun forBottomButton() {
-                    activity!!.selectFontDir()
-                }
-            })
+            .setListener { item ->
+                readBookControl.fontItem = item
+                callback!!.refresh()
+            }
             .show(mainView)
     }
 

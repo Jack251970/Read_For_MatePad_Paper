@@ -9,10 +9,6 @@
         <string name="cancel">取消</string>
         <string name="error">錯誤</string>
 
-    <!-- Shortcuts -->
-        <string name="enter_bookshelf">進入書架</string>
-        <string name="last_read">最後閱讀</string>
-
     <!-- Presenter -->
         <!-- Txt Chapter Rule Presenter -->
         <string name="delete_fail">刪除失敗</string>
@@ -358,9 +354,7 @@
         <string name="no_last_chapter">無最新章節信息</string>
         <!-- Font Select Dialog -->
         <string name="select_font">選擇字體</string>
-        <string name="self_choose_font">自定義字體</string>
         <string name="choose_font_cannot_find">字體文件未找到</string>
-        <string name="fonts_folder">請將字體文件放到內部存儲根目錄下的Fonts文件夾中重新選擇</string>
         <!-- Txt Chapter Rule Dialog -->
         <string name="name">名稱</string>
         <string name="regex">正則</string>

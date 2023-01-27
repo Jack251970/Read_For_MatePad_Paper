@@ -170,7 +170,8 @@
 
     <!-- Font Path -->
     <string-array name="font_path">
-        <item>font/HarmonyOS_Sans/HarmonyOS_Sans_Bold.ttf</item>
-        <item>font/HarmonyOS_Sans/HarmonyOS_Sans_Black.ttf</item>
+        <item>font/HarmonyOS_Sans_Regular.ttf</item>
+        <item>font/SourceHanSansCN-Regular.otf</item>
+        <item>font/simkai.ttf</item>
     </string-array>
 </resources>
